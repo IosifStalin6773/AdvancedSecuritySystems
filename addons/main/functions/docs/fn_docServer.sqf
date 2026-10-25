@@ -25,7 +25,7 @@ switch (_action) do {
             if (_data isEqualType []) then {_data = createHashMapFromArray _data};
             _ok = (_types isEqualTo [] || {_type in _types})
                 && {_req isEqualTo [] || {[_caller, _req] call ADVSEC_fnc_accessCheck}}
-                && {private _c = _data getOrDefault ["clearance", 0]; ([_c, parseNumber _c] select (_c isEqualType "")) <= (_issuer getVariable ["ADVSEC_issueMaxClearance", 5])};
+                && {private _c = _data getOrDefault ["clearance", 0]; (if (_c isEqualType "") then {parseNumber _c} else {_c}) <= (_issuer getVariable ["ADVSEC_issueMaxClearance", 5])};
         };
         if (!_ok) exitWith {[_caller, format ["emitir %1 a %2", _type, name _unit]] call ADVSEC_fnc_deny};
         private _id = [_unit, _type, _data] call ADVSEC_fnc_docCreate;
