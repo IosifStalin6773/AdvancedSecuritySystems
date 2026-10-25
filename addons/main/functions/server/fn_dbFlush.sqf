@@ -29,4 +29,11 @@ if ("fines" in _d) then {
     profileNamespace setVariable [ADVSEC_repKey + "_fineseq", localNamespace getVariable ["ADVSEC_fineSeq", 0]];
 };
 if ("players" in _d) then {profileNamespace setVariable [ADVSEC_repKey + "_players", [[] call ADVSEC_fnc_pdbDB] call ADVSEC_fnc_docPairs]};
+if ("eco" in _d) then {
+    private _out = [];
+    {_out pushBack [_x, _y]} forEach ([] call ADVSEC_fnc_ecoDB);
+    profileNamespace setVariable [ADVSEC_repKey + "_eco", _out];
+    profileNamespace setVariable [ADVSEC_repKey + "_treasury", localNamespace getVariable ["ADVSEC_treasury", 0]];
+    profileNamespace setVariable [ADVSEC_repKey + "_treasuryHist", localNamespace getVariable ["ADVSEC_treasuryHist", []]];
+};
 saveProfileNamespace;

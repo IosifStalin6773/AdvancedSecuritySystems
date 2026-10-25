@@ -41,7 +41,7 @@ private _names = createHashMapFromArray [
     ["wanted", "Gestionar buscados"], ["arrest", "Arrestar"], ["release", "Liberar"], ["evidenceAnalyze", "Analizar pruebas"],
     ["reportStatus", "Cambiar estado de informes"], ["revokeDoc", "Revocar documentos"], ["caseClose", "AA.II.: cerrar expedientes"],
     ["suspicionView", "AA.II.: ver índice de sospecha"], ["evidenceTamper", "AA.II.: alterar pruebas"], ["evidenceAudit", "AA.II.: auditoría forense"],
-    ["playerDB", "Base de datos de jugadores"], ["rankPM", "Asignar rangos PM"], ["rankAI", "AA.II.: asignar rangos"], ["rankGlobal", "Asignar rangos globales"]
+    ["playerDB", "Base de datos de jugadores"], ["rankPM", "Asignar rangos PM"], ["rankAI", "AA.II.: asignar rangos"], ["rankGlobal", "Asignar rangos globales"], ["treasury", "Tesorería de la PM"]
 ];
 {
     private _c = _x;
@@ -78,6 +78,19 @@ private _rules = createHashMapFromArray [
 ["currency", "EDITBOX", "Moneda", "", "7 · Multas", [["currency"], "€"] call _num] call _add;
 ["moneyVar", "EDITBOX", "Variable de dinero del jugador", "Vacío = pago manual ante un agente.", "7 · Multas", [["moneyVar"], ""] call _num] call _add;
 ["fineWantedThreshold", "SLIDER", "Deuda que añade a buscados (0 = nunca)", "", "7 · Multas", [0, 100000, [["fineWantedThreshold"], 0] call _num, 0]] call _add;
+
+// --- Economía
+["economy", "CHECKBOX", "Economía de ADVSEC", "Efectivo, banco, nóminas, cajeros y tiendas. Compatible con el HUD THUD (variable moneyX).", "9 · Economía", ([["economy"], 1] call _num) call _bool] call _add;
+["startCash", "SLIDER", "Efectivo inicial", "", "9 · Economía", [0, 100000, [["startCash"], 500] call _num, 0]] call _add;
+["startBank", "SLIDER", "Banco inicial", "", "9 · Economía", [0, 1000000, [["startBank"], 2000] call _num, 0]] call _add;
+["salaryInterval", "SLIDER", "Minutos entre nóminas (0 = sin nóminas)", "", "9 · Economía", [0, 240, [["salaryInterval"], 30] call _num, 0]] call _add;
+["salaryBase", "SLIDER", "Nómina base", "Más el plus por rango PM, AA.II. y global.", "9 · Economía", [0, 10000, [["salaryBase"], 100] call _num, 0]] call _add;
+["salaryFromTreasury", "CHECKBOX", "Las nóminas salen de la tesorería", "", "9 · Economía", ([["salaryFromTreasury"], 0] call _num) call _bool] call _add;
+["fineToTreasury", "CHECKBOX", "Las multas van a la tesorería de la PM", "", "9 · Economía", ([["fineToTreasury"], 1] call _num) call _bool] call _add;
+["shopToTreasury", "CHECKBOX", "Las compras van a la tesorería de la PM", "", "9 · Economía", ([["shopToTreasury"], 0] call _num) call _bool] call _add;
+["sellFactor", "SLIDER", "Parte del precio al vender", "", "9 · Economía", [0, 1, [["sellFactor"], 0.5] call _num, 2]] call _add;
+["atmAnywhere", "CHECKBOX", "Banco sin cajero", "Ingresar, retirar y transferir desde cualquier sitio.", "9 · Economía", ([["atmAnywhere"], 0] call _num) call _bool] call _add;
+["thudCompat", "CHECKBOX", "Compatibilidad con el HUD THUD", "Publica tesorería, agentes y jefe (resourcesFIA, hr, theBoss) fuera de Antistasi.", "9 · Economía", ([["thudCompat"], 1] call _num) call _bool] call _add;
 
 // --- Control de carretera
 ["checkpointFine", "SLIDER", "Multa por ir sin documentación", "", "8 · Control de carretera", [0, 10000, [["checkpointFine"], 150] call _num, 0]] call _add;

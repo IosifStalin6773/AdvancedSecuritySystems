@@ -59,6 +59,7 @@ switch (_id) do {
     };
     case "playerDB": {[] call ADVSEC_fnc_pdbOpen};
     case "superAdmin": {[] call ADVSEC_fnc_adminOpen};
+    case "wallet": {[] call ADVSEC_fnc_ecoOpen};
     case "zeusPanel": {
         if !([player] call ADVSEC_fnc_isZeus) exitWith {hint "Solo Zeus o administrador."};
         [] call ADVSEC_fnc_zeusPanelOpen;

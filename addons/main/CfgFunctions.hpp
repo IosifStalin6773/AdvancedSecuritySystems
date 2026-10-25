@@ -183,6 +183,35 @@ class CfgFunctions {
             class pdbSet {};
             class pdbAction {};
         };
+        class economy {
+            file = "\x\advsec\addons\main\functions\economy";
+            class ecoOn {};
+            class ecoA3A {};
+            class ecoDB {};
+            class ecoAcc {};
+            class ecoHist {};
+            class ecoCash {};
+            class ecoSetCash {};
+            class ecoPush {};
+            class ecoCharge {};
+            class ecoTreasury {};
+            class ecoPublish {};
+            class ecoLoop {};
+            class ecoSalary {};
+            class ecoItemName {};
+            class ecoItemPic {};
+            class ecoServer {};
+            class ecoGiveItem {};
+            class ecoTakeItem {};
+            class ecoOpen {};
+            class ecoShopOpen {};
+            class ecoTreasuryOpen {};
+            class ecoClient {};
+            class atmInit {};
+            class shopInit {};
+            class moduleAtm {};
+            class moduleShop {};
+        };
         class admin {
             file = "\x\advsec\addons\main\functions\admin";
             class adminIs {};

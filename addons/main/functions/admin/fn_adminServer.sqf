@@ -141,6 +141,51 @@ switch (_action) do {
     // --- Documentos
     case "docDel": {[_data] call _docsOff; ["Documentos retirados", _data] call _log};
     case "docWipe": {{[_x] call _docsOff} forEach (keys ([] call ADVSEC_fnc_docStore)); ["TODOS los documentos retirados"] call _log};
+    // --- Economía
+    case "ecoAdd": {
+        _data params ["_uid", "_v"];
+        _v params [["_where", "bank"], ["_n", "0"]];
+        _n = round parseNumber _n;
+        private _a = ([] call ADVSEC_fnc_ecoDB) getOrDefault [_uid, []];
+        if (_a isEqualTo [] || {_n == 0}) exitWith {};
+        private _u = _online getOrDefault [_uid, objNull];
+        if (_where == "cash" && {!isNull _u}) then {[_u, ([_u] call ADVSEC_fnc_ecoCash) + _n] call ADVSEC_fnc_ecoSetCash} else {
+            if (_where == "cash") then {_a set [0, ((_a select 0) + _n) max 0]} else {_a set [1, ((_a select 1) + _n) max 0]};
+        };
+        [_a, "Ajuste de la administración", _n] call ADVSEC_fnc_ecoHist;
+        if (!isNull _u) then {[_u] call ADVSEC_fnc_ecoPush};
+        [format ["Dinero %1 %2", ["banco", "efectivo"] select (_where == "cash"), _n], _uid] call _log;
+    };
+    case "ecoZero": {
+        private _a = ([] call ADVSEC_fnc_ecoDB) getOrDefault [_data, []];
+        if (_a isEqualTo []) exitWith {};
+        _a set [0, 0]; _a set [1, 0];
+        [_a, "Saldo puesto a cero por la administración", 0] call ADVSEC_fnc_ecoHist;
+        private _u = _online getOrDefault [_data, objNull];
+        if (!isNull _u) then {[_u, 0] call ADVSEC_fnc_ecoSetCash; [_u] call ADVSEC_fnc_ecoPush};
+        ["Cuenta puesta a cero", _data] call _log;
+    };
+    case "ecoDel": {
+        ([] call ADVSEC_fnc_ecoDB) deleteAt _data;
+        ["eco"] call ADVSEC_fnc_dbDirty;
+        private _u = _online getOrDefault [_data, objNull];
+        if (!isNull _u) then {[_u] call ADVSEC_fnc_ecoPush};
+        ["Cuenta borrada", _data] call _log;
+    };
+    case "ecoWipe": {
+        private _db = [] call ADVSEC_fnc_ecoDB;
+        {(_db get _x) set [0, 0]; (_db get _x) set [1, 0]} forEach (keys _db);
+        ["eco"] call ADVSEC_fnc_dbDirty;
+        {[_x, 0] call ADVSEC_fnc_ecoSetCash; [_x] call ADVSEC_fnc_ecoPush} forEach (values _online);
+        ["TODAS las cuentas puestas a cero"] call _log;
+    };
+    case "treasurySet": {
+        _data params ["", "_v"];
+        private _n = round parseNumber (_v param [0, "0"]);
+        [] call ADVSEC_fnc_ecoDB;
+        [_n - (localNamespace getVariable ["ADVSEC_treasury", 0]), "Ajuste de la administración"] call ADVSEC_fnc_ecoTreasury;
+        [format ["Tesorería fijada en %1", _n]] call _log;
+    };
     // --- Registro de eventos
     case "logWipe": {
         private _l = call _events;
@@ -235,6 +280,18 @@ switch (_cat) do {
                 format ["<t size='1.15' font='RobotoCondensedBold'>%1</t><br/>Clave: %2<br/><br/>%3", ([_x] call _nameOf) call _esc, _x, (_y apply {format ["%1 · %2", _x get "type", _x getOrDefault ["number", ""]]}) joinString "<br/>"], []];
         } forEach ([] call ADVSEC_fnc_docStore);
         _info = format ["Titulares con documentos: <t font='RobotoCondensedBold'>%1</t>", count _rows];
+    };
+    case "economy": {
+        private _cur = ["currency", "€"] call ADVSEC_fnc_setting;
+        {
+            _y params ["_cash", "_bank", "_name", "_hist"];
+            private _u = _online getOrDefault [_x, objNull];
+            if (!isNull _u) then {_cash = [_u] call ADVSEC_fnc_ecoCash};
+            _rows pushBack [format ["%1 · efectivo %2 · banco %3", _name, _cash, _bank], _x,
+                format ["<t size='1.15' font='RobotoCondensedBold'>%1</t>%2<br/>SteamID: %3<br/>Efectivo: %4 %6<br/>Banco: %5 %6<br/><br/>%7", _name call _esc, ["", " <t color='#66FF66'>EN LÍNEA</t>"] select (!isNull _u), _x, _cash, _bank, _cur,
+                    ((_hist select [((count _hist) - 10) max 0]) apply {format ["%1 · %2 · %3", _x select 0, (_x select 1) call _esc, _x select 2]}) joinString "<br/>"], []];
+        } forEach ([] call ADVSEC_fnc_ecoDB);
+        _info = format ["Cuentas: <t font='RobotoCondensedBold'>%1</t> · Tesorería de la PM: <t font='RobotoCondensedBold'>%2 %3</t>", count _rows, localNamespace getVariable ["ADVSEC_treasury", 0], _cur];
     };
     case "log": {
         private _l = call _events;

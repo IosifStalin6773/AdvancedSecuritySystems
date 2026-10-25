@@ -195,6 +195,33 @@ class CfgVehicles {
         };
     };
 
+    class ADVSEC_ModuleAtm: ADVSEC_Module_Base {
+        scope = 2;
+        displayName = "Cajero automático";
+        icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\box_ca.paa";
+        function = "ADVSEC_fnc_moduleAtm";
+        class Attributes: AttributesBase {
+            class Name: Edit { property = "ADVSEC_Atm_Name"; displayName = "Nombre"; typeName = "STRING"; defaultValue = """Cajero automático"""; };
+            class ModuleDescription: ModuleDescription {};
+        };
+        class ModuleDescription: ModuleDescription {
+            description = "Sincronízalo con cualquier objeto (o déjalo solo y crea un cajero). Permite ingresar, retirar y transferir dinero.";
+        };
+    };
+    class ADVSEC_ModuleShop: ADVSEC_Module_Base {
+        scope = 2;
+        displayName = "Tienda";
+        icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\box_ca.paa";
+        function = "ADVSEC_fnc_moduleShop";
+        class Attributes: AttributesBase {
+            class Name: Edit { property = "ADVSEC_Shop_Name"; displayName = "Nombre"; typeName = "STRING"; defaultValue = """Tienda"""; };
+            class Items: Edit { property = "ADVSEC_Shop_Items"; displayName = "Artículos"; tooltip = "clase:precio separados por comas, p. ej. FirstAidKit:25, ToolKit:150. Vacío = shopItems de ADVSEC_Settings."; typeName = "STRING"; defaultValue = """"""; };
+            class ModuleDescription: ModuleDescription {};
+        };
+        class ModuleDescription: ModuleDescription {
+            description = "Sincronízalo con una mesa, un mostrador o un PNJ (o déjalo solo y crea una mesa). Vende y recompra los artículos de la lista.";
+        };
+    };
     class ADVSEC_ModuleAdmin: ADVSEC_Module_Base {
         scope = 2;
         displayName = "Terminal de superadministrador";
@@ -341,6 +368,16 @@ class CfgVehicles {
         displayName = "Control de carretera (IA)";
         icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\car_ca.paa";
         ADVSEC_kind = "checkpoint";
+    };
+    class ADVSEC_ZeusAtm: ADVSEC_Zeus_Base {
+        displayName = "Cajero automático";
+        icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\box_ca.paa";
+        ADVSEC_kind = "atm";
+    };
+    class ADVSEC_ZeusShop: ADVSEC_Zeus_Base {
+        displayName = "Tienda";
+        icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\box_ca.paa";
+        ADVSEC_kind = "shop";
     };
     class ADVSEC_ZeusAdmin: ADVSEC_Zeus_Base {
         displayName = "Terminal de superadministrador";

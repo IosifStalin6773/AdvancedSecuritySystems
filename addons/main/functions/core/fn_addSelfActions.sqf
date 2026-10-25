@@ -45,3 +45,9 @@ if (((["reportsSelfAction", 1] call ADVSEC_fnc_cfg)) isEqualTo 1) then {
     {[_player] call ADVSEC_fnc_adminIs},
     "self"
 ] call ADVSEC_fnc_addInteraction;
+
+[_unit, "advsec_wallet", "Cartera y banco", ADVSEC_icDoc,
+    {[] call ADVSEC_fnc_ecoOpen},
+    {[] call ADVSEC_fnc_ecoOn},
+    "self"
+] call ADVSEC_fnc_addInteraction;

@@ -47,11 +47,19 @@ switch (_action) do {
         private _key = [_caller] call ADVSEC_fnc_docKey;
         private _f = [_key, _id] call _find;
         if (_f isEqualTo [] || {(_f select 6) != "Pendiente"}) exitWith {"Esa multa no está pendiente." call _say};
-        private _var = ["moneyVar", ""] call ADVSEC_fnc_setting;
-        if (_var isEqualTo "") exitWith {"El pago se hace ante un agente: pídele que la marque como pagada." call _say};
-        private _cash = _caller getVariable [_var, 0];
-        if (!(_cash isEqualType 0) || {_cash < (_f select 2)}) exitWith {(format ["Fondos insuficientes (%1 %2).", _cash, _cur]) call _say};
-        _caller setVariable [_var, _cash - (_f select 2), true];
+        if ([] call ADVSEC_fnc_ecoOn) then {
+            if !([_caller, _f select 2, format ["Multa %1", _id], (["fineToTreasury", 1] call ADVSEC_fnc_setting) isEqualTo 1] call ADVSEC_fnc_ecoCharge) exitWith {
+                (format ["Fondos insuficientes: la multa es de %1 %2 (efectivo + banco).", _f select 2, _cur]) call _say;
+                _f = [];
+            };
+        } else {
+            private _var = ["moneyVar", ""] call ADVSEC_fnc_setting;
+            if (_var isEqualTo "") exitWith {"El pago se hace ante un agente: pídele que la marque como pagada." call _say; _f = []};
+            private _cash = _caller getVariable [_var, 0];
+            if (!(_cash isEqualType 0) || {_cash < (_f select 2)}) exitWith {(format ["Fondos insuficientes (%1 %2).", _cash, _cur]) call _say; _f = []};
+            _caller setVariable [_var, _cash - (_f select 2), true];
+        };
+        if (_f isEqualTo []) exitWith {};
         _f set [6, "Pagada"];
         _f set [8, format ["Pagada por el sancionado el %1", call ADVSEC_fnc_now]];
         ["fines"] call ADVSEC_fnc_dbDirty;
@@ -66,6 +74,15 @@ switch (_action) do {
         if !([_caller, ["fine", "fineCancel"] select _cancel] call ADVSEC_fnc_perm) exitWith {"Tu rango no lo permite." call _say};
         private _f = [_key, _id] call _find;
         if (_f isEqualTo [] || {(_f select 6) != "Pendiente"}) exitWith {"Esa multa no está pendiente." call _say};
+        // Con economía, «Marcar pagada» cobra al sancionado (efectivo y banco) si está conectado
+        if (!_cancel && {[] call ADVSEC_fnc_ecoOn}) then {
+            private _u = allPlayers param [allPlayers findIf {getPlayerUID _x isEqualTo _key}, objNull];
+            if (isNull _u) exitWith {"El sancionado no está conectado: no se le puede cobrar." call _say; _f = []};
+            if !([_u, _f select 2, format ["Multa %1 (cobrada por %2)", _id, name _caller], (["fineToTreasury", 1] call ADVSEC_fnc_setting) isEqualTo 1] call ADVSEC_fnc_ecoCharge) exitWith {
+                (format ["%1 no tiene fondos para pagar %2 %3.", name _u, _f select 2, _cur]) call _say; _f = [];
+            };
+        };
+        if (_f isEqualTo []) exitWith {};
         _f set [6, ["Pagada", "Anulada"] select _cancel];
         _f set [8, format ["%1 por %2 el %3%4", ["Cobrada", "Anulada"] select _cancel, name _caller, call ADVSEC_fnc_now, ["", ". " + _note] select (_note isNotEqualTo "")]];
         if (_cancel && {(_f select 5) isNotEqualTo getPlayerUID _caller}) then {[_caller, "fineCancelled", _id] call ADVSEC_fnc_heatAdd};

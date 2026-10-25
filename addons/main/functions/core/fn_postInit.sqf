@@ -7,6 +7,8 @@ if (isServer) then {
     [] call ADVSEC_fnc_fineDB;
     [] call ADVSEC_fnc_pdbInit;
     [] call ADVSEC_fnc_adminLoad;
+    [] call ADVSEC_fnc_ecoDB;
+    if (isNil "ADVSEC_ecoLoopH") then {ADVSEC_ecoLoopH = [] spawn ADVSEC_fnc_ecoLoop};
 };
 if (!hasInterface) exitWith {};
 
@@ -16,6 +18,7 @@ addMissionEventHandler ["Draw3D", {call ADVSEC_fnc_zeusDraw}];
 [] spawn {
     waitUntil {!isNull player && {time > 0}};
     [player] call ADVSEC_fnc_addSelfActions;
+    [] call ADVSEC_fnc_ecoClient;
     [player] call ADVSEC_fnc_evClient;
     [] call ADVSEC_fnc_docLoad;
     ["check", player] remoteExecCall ["ADVSEC_fnc_jailServer", 2];
@@ -29,6 +32,7 @@ addMissionEventHandler ["Draw3D", {call ADVSEC_fnc_zeusDraw}];
     player addEventHandler ["Respawn", {
         params ["_unit"];
         [_unit] call ADVSEC_fnc_addSelfActions;
+        [] call ADVSEC_fnc_ecoClient;
         [_unit] call ADVSEC_fnc_evClient;
         [] call ADVSEC_fnc_docLoad;
         ["check", _unit] remoteExecCall ["ADVSEC_fnc_jailServer", 2];

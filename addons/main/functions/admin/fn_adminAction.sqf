@@ -31,7 +31,7 @@ switch (_action) do {
     case "btn": {
         private _def = _buttons param [_arg, []];
         if (_def isEqualTo []) exitWith {};
-        _def params ["_text", "_act", "_needSel", "_confirm"];
+        _def params ["_text", "_act", "_needSel", "_confirm", ["_form", []]];
         if (_needSel && {_row isEqualTo []}) exitWith {hint "Selecciona un elemento de la lista."};
         // Doble pulsación en 4 s para lo destructivo
         if (_confirm && {(ADVSEC_admConfirm select 0) != _arg || {time - (ADVSEC_admConfirm select 1) > 4}}) exitWith {
@@ -45,6 +45,14 @@ switch (_action) do {
         };
         ADVSEC_admConfirm = [-1, 0];
         (_disp displayCtrl (87810 + _arg)) ctrlSetText _text;
+        if (_form isNotEqualTo []) exitWith {
+            _form params ["_title", "_fields"];
+            [_title, _fields, {
+                params ["_v", "_ctx"];
+                _ctx params ["_act", "_key", "_data"];
+                [_act, player, [_key, [_data, _v]]] remoteExecCall ["ADVSEC_fnc_adminServer", 2];
+            }, [_act, _key, _row param [1, ""]]] call ADVSEC_fnc_zeusPrompt;
+        };
         [_act, player, [_key, _row param [1, ""]]] remoteExecCall ["ADVSEC_fnc_adminServer", 2];
     };
 };

@@ -59,6 +59,14 @@ switch (_kind) do {
         if (isNull _target) then {_target = ["Land_HelipadEmpty_F"] call _spawn};
         [_target, _v#0, _v#1] remoteExecCall ["ADVSEC_fnc_jailInit", 0, ["ADVSEC_fnc_jailInit", _target] call _jip];
     };
+    case "atm": {
+        if (isNull _target) then {_target = ["Land_Atm_01_F"] call _spawn};
+        [_target, _v#0] remoteExecCall ["ADVSEC_fnc_atmInit", 0, ["ADVSEC_fnc_atmInit", _target] call _jip];
+    };
+    case "shop": {
+        if (isNull _target) then {_target = ["Land_CampingTable_F"] call _spawn};
+        [_target, _v#0, _v#1] remoteExecCall ["ADVSEC_fnc_shopInit", 0, ["ADVSEC_fnc_shopInit", _target] call _jip];
+    };
     case "admin": {
         if (isNull _target) then {_target = ["Land_Laptop_unfolded_F"] call _spawn};
         [_target, _v#0] remoteExecCall ["ADVSEC_fnc_adminInit", 0, ["ADVSEC_fnc_adminInit", _target] call _jip];

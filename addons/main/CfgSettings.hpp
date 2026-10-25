@@ -33,7 +33,8 @@ class ADVSEC_Settings {
         playerDB[] = {"PM", 4};      // abrir la base de datos de jugadores
         rankPM[] = {"PM", 5};        // asignar rangos PM (solo inferiores al propio)
         rankAI[] = {"AI", 5};        // asignar rangos AA.II. (solo inferiores al propio)
-        rankGlobal[] = {"PM", 5};    // asignar rangos globales
+        rankGlobal[] = {"PM", 5};
+        treasury[] = {"PM", 5};     // ver la tesorería de la PM y pagar primas    // asignar rangos globales
     };
 
     // Evidencias
@@ -71,8 +72,30 @@ class ADVSEC_Settings {
 
     // Multas
     currency = "€";
-    moneyVar = "";               // variable numérica del jugador para cobrar (p. ej. "cash"); vacío = pago manual
+    moneyVar = "";               // variable extra donde copiar el efectivo (además de moneyX); sin economía, la que se cobra (vacío = pago manual)
     fineWantedThreshold = 0;     // importe pendiente que añade a buscados automáticamente (0 = no)
+
+    // Economía (compatible con el HUD THUD: efectivo en la variable moneyX del jugador; tesorería, agentes y jefe en resourcesFIA, hr y theBoss)
+    economy = 1;                 // 0 = desactivada (las multas usan moneyVar o pago manual)
+    startCash = 500;             // efectivo de una cuenta nueva
+    startBank = 2000;            // banco de una cuenta nueva
+    treasuryStart = 10000;       // tesorería inicial de la PM
+    salaryInterval = 30;         // minutos entre nóminas (0 = sin nóminas)
+    salaryBase = 100;            // nómina de cualquier jugador
+    salaryPM[] = {0, 150, 250, 400, 600, 900};   // plus por nivel de placa PM (0-5)
+    salaryAI[] = {0, 150, 250, 400, 600, 900};   // plus por nivel de credencial AA.II. (0-5)
+    salaryGlobalStep = 20;       // plus por cada escalón de rango global
+    salaryFromTreasury = 0;      // 1 = las nóminas salen de la tesorería de la PM
+    fineToTreasury = 1;          // las multas cobradas van a la tesorería
+    shopToTreasury = 0;          // las compras en tiendas van a la tesorería
+    sellFactor = 0.5;            // parte del precio que devuelve la tienda al vender
+    atmAnywhere = 0;             // 1 = ingresar, retirar y transferir sin cajero
+    thudCompat = 1;              // publica resourcesFIA, hr y theBoss para el HUD THUD (solo fuera de Antistasi)
+    thudTreasuryName = "PM";     // nombre de la «facción» en la línea de tesorería del HUD
+    shopItems[] = {
+        {"FirstAidKit", 25}, {"Medikit", 250}, {"ToolKit", 150}, {"ItemMap", 10}, {"ItemCompass", 10}, {"ItemWatch", 10},
+        {"ItemRadio", 50}, {"ItemGPS", 150}, {"Binocular", 75}, {"Chemlight_green", 5}, {"SmokeShell", 20}, {"B_AssaultPack_rgr", 120}
+    };
 
     // Checkpoint IA
     illegalItems[] = {};         // clases que provocan multa/detención en un registro
@@ -108,6 +131,7 @@ class ADVSEC_Keys {
     class evidence { name = "Registro de pruebas"; tooltip = "Pruebas bajo tu custodia"; category = "Policía Militar"; key[] = {211, 0, 1, 0}; };
     class heat { name = "Índice de sospecha (AA.II.)"; tooltip = "Panel de Asuntos Internos"; category = "Asuntos Internos"; key[] = {211, 1, 1, 0}; };
     class playerDB { name = "Base de datos de jugadores"; tooltip = "Lista de jugadores y gestión de rangos"; category = "Policía Militar"; key[] = {207, 0, 0, 1}; };
+    class wallet { name = "Cartera y banco"; tooltip = "Efectivo, banco, dar dinero (cajero para ingresar y retirar)"; category = "General"; key[] = {210, 0, 0, 1}; };
     class superAdmin { name = "Terminal de superadministrador"; tooltip = "Solo superadministradores / Zeus"; category = "Zeus"; key[] = {207, 0, 1, 1}; };
     class zeusPanel { name = "Panel de seguridad (Zeus)"; tooltip = "Solo Zeus / administrador"; category = "Zeus"; key[] = {210, 1, 1, 0}; };
 };

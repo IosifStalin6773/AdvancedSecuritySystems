@@ -20,12 +20,12 @@ ADVSEC_icJail = "\A3\ui_f\data\igui\cfg\simpleTasks\types\wait_ca.paa";
 ADVSEC_kindOrder = ["camera", "monitor", "keypad", "door", "alarm", "issuer", "reports", "jail"];
 ADVSEC_kindNames = createHashMapFromArray [
     ["camera", "Cámara"], ["monitor", "Monitor"], ["keypad", "Keypad"], ["door", "Cerradura"],
-    ["alarm", "Alarma"], ["issuer", "Oficina"], ["reports", "Terminal"], ["jail", "Calabozo"], ["admin", "Terminal superadmin"]
+    ["alarm", "Alarma"], ["issuer", "Oficina"], ["reports", "Terminal"], ["jail", "Calabozo"], ["admin", "Terminal superadmin"], ["atm", "Cajero"], ["shop", "Tienda"]
 ];
 ADVSEC_kindIcons = createHashMapFromArray [
     ["camera", ADVSEC_icCam], ["monitor", ADVSEC_icCam], ["keypad", ADVSEC_icPad], ["door", ADVSEC_icKey],
     ["alarm", ADVSEC_icAlarm], ["issuer", ADVSEC_icDoc], ["reports", ADVSEC_icDoc], ["jail", ADVSEC_icJail],
-    ["lab", ADVSEC_icSearch], ["checkpoint", ADVSEC_icCar], ["admin", ADVSEC_icPol]
+    ["lab", ADVSEC_icSearch], ["checkpoint", ADVSEC_icCar], ["admin", ADVSEC_icPol], ["atm", ADVSEC_icDoc], ["shop", ADVSEC_icSearch]
 ];
 {if (isNil _x) then {missionNamespace setVariable [_x, []]}} forEach ["ADVSEC_secObjects", "ADVSEC_jails", "ADVSEC_wanted", "ADVSEC_wantedUIDs"];
 

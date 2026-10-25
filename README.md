@@ -1,6 +1,6 @@
 # Advanced Security Systems (ADVSEC)
 
-**Versión 1.10.0** · Addon de Arma 3 para servidores con **Policía Militar (PM)** y **Asuntos Internos (AA.II.)**.
+**Versión 1.11.0** · Addon de Arma 3 para servidores con **Policía Militar (PM)** y **Asuntos Internos (AA.II.)**.
 
 ADVSEC reúne en un solo mod:
 - documentación de identidad;
@@ -9,7 +9,8 @@ ADVSEC reúne en un solo mod:
 - investigación forense y expedientes de Asuntos Internos;
 - controles de carretera con IA;
 - una base de datos de jugadores con gestión de rangos;
-- un terminal de superadministrador para borrar datos y retirar rangos.
+- un terminal de superadministrador para borrar datos y retirar rangos;
+- una economía (efectivo, banco, nóminas, cajeros, tiendas y tesorería de la PM) compatible con el HUD THUD.
 
 Todo es configurable desde el editor (Eden), desde Zeus durante la partida, desde `description.ext` o desde las opciones de CBA.
 
@@ -75,13 +76,13 @@ La carpeta contiene:
 - `addons\advsec_main.pbo`: todo el sistema.
 - `addons\advsec_buildings.pbo`: el edificio de la PM.
 - Las firmas `.bisign` de los dos PBO.
-- `keys\advsec_1.10.0.bikey`.
+- `keys\advsec_1.11.0.bikey`.
 - `mod.cpp`.
 
 ### Servidor dedicado
 
 1. Carga el mod con `-mod=@AdvancedSecuritySystems`. No uses `-serverMod`, porque los clientes también lo necesitan.
-2. Copia `keys\advsec_1.10.0.bikey` a la carpeta `keys` del servidor y borra las claves `advsec_*` antiguas. Los dos PBO están firmados, así que funciona con `verifySignatures = 2`.
+2. Copia `keys\advsec_1.11.0.bikey` a la carpeta `keys` del servidor y borra las claves `advsec_*` antiguas. Los dos PBO están firmados, así que funciona con `verifySignatures = 2`.
 3. Si la misión usa `CfgRemoteExec` en modo lista blanca, copia las clases `ADVSEC_fnc_*` del `description.ext` de ejemplo.
 
 ### Dependencias
@@ -348,10 +349,49 @@ Los formatos siguen el *Manual Maestro PM / AA.II.*:
 
 - **Poner una multa:** importe y motivo. Se registra con número, agente y fecha.
 - **Mis multas** (**Shift + Insert**): cualquier jugador ve su historial y paga.
-  - Si `moneyVar` apunta a la variable de dinero de la misión, el pago se cobra automáticamente.
-  - Si no, un agente la marca como pagada.
+  - Con la economía activada (por defecto) se cobra del efectivo y, si no llega, del banco. El dinero va a la tesorería de la PM.
+  - «Marcar pagada» (agente) cobra al sancionado si está conectado.
+  - Sin economía: si `moneyVar` apunta a la variable de dinero de la misión se cobra de ahí; si no, un agente la marca como pagada.
 - **Anular** exige rango (`fineCancel`) y anular una multa ajena suma sospecha.
 - Con `fineWantedThreshold > 0`, quien deba esa cantidad pasa automáticamente a buscados.
+
+### Economía
+
+Activa por defecto (`economy = 1`). Funciona en cualquier misión y es compatible con el HUD **THUD Antistasi** aunque no se juegue Antistasi.
+
+**Dinero**
+- Cada jugador (por SteamID) tiene **efectivo** y **banco**. Las cuentas nuevas reciben `startCash` y `startBank`.
+- **Cartera y banco** (**Alt + Insert** o acción propia): saldo, últimos 40 movimientos y botones Ingresar, Retirar, Transferir y Dar efectivo.
+- Ingresar, retirar y transferir exige estar junto a un **cajero** (módulo «Cajero automático»), salvo con `atmAnywhere = 1`.
+- Dar efectivo: a otra persona a menos de 5 m.
+
+**Nóminas**
+- Cada `salaryInterval` minutos se ingresa en el banco: `salaryBase` + plus por nivel PM (`salaryPM[]`) + plus por nivel AA.II. (`salaryAI[]`) + `salaryGlobalStep` por escalón de rango global.
+- Con `salaryFromTreasury = 1` las paga la tesorería de la PM.
+
+**Tiendas**
+- Módulo «Tienda» sobre una mesa, un mostrador o un PNJ. Artículos `clase:precio, ...` o, vacío, la lista `shopItems[]`.
+- Comprar 1 o 5 (efectivo y, si falta, banco). Lo comprado va al uniforme, chaleco o mochila; si no cabe, al suelo.
+- Vender uno: devuelve `sellFactor` del precio.
+
+**Tesorería de la PM**
+- Recibe las multas (`fineToTreasury`) y, opcionalmente, las compras (`shopToTreasury`).
+- Con permiso `treasury` (PM nivel 5) se consulta y se pagan primas a agentes.
+
+**Superadministrador:** categoría «Economía» del terminal: sumar o restar dinero, poner a cero, borrar cuentas y fijar la tesorería.
+
+**HUD THUD**
+
+| Línea del HUD | Qué muestra con ADVSEC |
+|---|---|
+| Dinero | Efectivo del jugador (variable `moneyX`) |
+| Tesorería | Tesorería de la PM (`resourcesFIA`). THUD solo la enseña al «jefe» salvo que lo cambies en su menú |
+| Jefe | Agente PM de mayor rango conectado (`theBoss`) |
+| ЛР / HR | Agentes PM conectados (`hr`) |
+| Rango | Rango de Arma, que ADVSEC fija con el rango global |
+
+- Fuera de Antistasi, ADVSEC desactiva la espera de THUD por Antistasi y llama «PM» a la tesorería (`thudTreasuryName`). Las líneas propias de Antistasi (nivel de guerra, agresión...) se pueden ocultar en el menú de THUD.
+- **En Antistasi** el efectivo (`moneyX`) es de Antistasi. ADVSEC lo usa tal cual y solo añade banco, nóminas, cajeros y tiendas; no toca `resourcesFIA`, `hr` ni `theBoss`.
 
 ---
 
@@ -493,6 +533,8 @@ Los módulos funcionan con jugadores que entran a mitad de partida, y reaplicarl
 | Laboratorio forense | Analizar pruebas | Nombre |
 | Control de carretera (IA) | Checkpoint automático | Nombre, agentes, radio |
 | Terminal de superadministrador | Administración total (borrados y rangos) | Nombre (Zeus) |
+| Cajero automático | Ingresar, retirar y transferir | Nombre |
+| Tienda | Comprar y vender | Nombre, artículos `clase:precio` |
 | Panel de seguridad (solo Zeus) | Abre el panel de Zeus | |
 | Acciones de PM sobre unidad (solo Zeus) | Menú policial sobre la unidad | |
 
@@ -535,7 +577,7 @@ Con CBA se cambian en *Opciones › Controles › Configurar complementos › Ad
 | Ctrl + Fin | Acciones sobre el objetivo | Alt + Fin | Base de datos de jugadores |
 | Shift + Fin | Esposar / quitar | Ctrl + Shift + Supr | Índice de sospecha (AA.II.) |
 | Ctrl + Shift + Fin | Escoltar / soltar | Ctrl + Shift + Insert | Panel de seguridad (Zeus) |
-| Ctrl + Alt + Fin | Terminal de superadministrador | | |
+| Ctrl + Alt + Fin | Terminal de superadministrador | Alt + Insert | Cartera y banco |
 
 ---
 
@@ -564,6 +606,7 @@ Con CBA se cambian en *Opciones › Controles › Configurar complementos › Ad
 
 - **Rangos:** `ranksPM[]`, `ranksAI[]`, `ranksGlobal[]`, `ranksGlobalArma[]`, `globalRankSetUnit`.
 - **Superadministradores:** `superAdmins[] = {"7656119..."};`.
+- **Economía:** `economy`, `startCash`, `startBank`, `treasuryStart`, `salaryInterval`, `salaryBase`, `salaryPM[]`, `salaryAI[]`, `salaryGlobalStep`, `salaryFromTreasury`, `fineToTreasury`, `shopToTreasury`, `sellFactor`, `atmAnywhere`, `shopItems[]`, `thudCompat`, `thudTreasuryName`.
 - **Permisos:** `class Permissions { accion[] = {"PM"|"AI", nivel}; }`.
 - **Evidencias:** `evidenceTTL`, `casingEvery`, `printChance`, `gloveChance`, `gloveItems[]`, `labTime`, `auditTime`, `sceneRadius`.
 - **Sospecha:** `heatThreshold`, `heatDecay`, `class Rules`.
@@ -574,7 +617,7 @@ Con CBA se cambian en *Opciones › Controles › Configurar complementos › Ad
 
 ### CBA
 
-En *Opciones de complementos › Advanced Security Systems* hay 8 secciones: General, Documentos, Policía Militar, Rangos y permisos, Evidencias, Sospecha, Multas y Checkpoint. Son ajustes globales, que fija el servidor o el administrador.
+En *Opciones de complementos › Advanced Security Systems* hay 9 secciones: General, Documentos, Policía Militar, Rangos y permisos, Evidencias, Sospecha, Multas, Checkpoint y Economía. Son ajustes globales, que fija el servidor o el administrador.
 
 ---
 
