@@ -195,6 +195,19 @@ class CfgVehicles {
         };
     };
 
+    class ADVSEC_ModuleAdmin: ADVSEC_Module_Base {
+        scope = 2;
+        displayName = "Terminal de superadministrador";
+        icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\intel_ca.paa";
+        function = "ADVSEC_fnc_moduleAdmin";
+        class Attributes: AttributesBase {
+            class ModuleDescription: ModuleDescription {};
+        };
+        class ModuleDescription: ModuleDescription {
+            description = "Sincroniza con un ordenador (o déjalo sin sincronizar y crea un portátil). Solo lo abren Zeus/administradores y los UID de superadministrador. Permite borrar informes, buscados, multas, pruebas, documentos, registros y quitar rangos.";
+        };
+    };
+
     class ADVSEC_ModuleJail: ADVSEC_Module_Base {
         scope = 2;
         displayName = "Calabozo / centro de detención";
@@ -328,5 +341,10 @@ class CfgVehicles {
         displayName = "Control de carretera (IA)";
         icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\car_ca.paa";
         ADVSEC_kind = "checkpoint";
+    };
+    class ADVSEC_ZeusAdmin: ADVSEC_Zeus_Base {
+        displayName = "Terminal de superadministrador";
+        icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\intel_ca.paa";
+        ADVSEC_kind = "admin";
     };
 };

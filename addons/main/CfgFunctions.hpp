@@ -183,6 +183,17 @@ class CfgFunctions {
             class pdbSet {};
             class pdbAction {};
         };
+        class admin {
+            file = "\x\advsec\addons\main\functions\admin";
+            class adminIs {};
+            class adminLoad {};
+            class adminInit {};
+            class moduleAdmin {};
+            class adminServer {};
+            class adminOpen {};
+            class adminAction {};
+            class adminSet {};
+        };
         class perm {
             file = "\x\advsec\addons\main\functions\perm";
             class perm {};

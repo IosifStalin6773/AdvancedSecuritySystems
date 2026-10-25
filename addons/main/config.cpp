@@ -2,7 +2,7 @@ class CfgPatches {
     class AdvancedSecuritySystems {
         name = "Advanced Security Systems";
         author = "oscar";
-        version = "1.9.2";
+        version = "1.10.0";
         requiredVersion = 2.14;
         requiredAddons[] = {"A3_Functions_F", "A3_UI_F", "A3_Weapons_F", "A3_Characters_F", "A3_Modules_F", "A3_Modules_F_Curator"};
         units[] = {
@@ -10,7 +10,8 @@ class CfgPatches {
             "ADVSEC_ZeusCamera", "ADVSEC_ZeusMonitor", "ADVSEC_ZeusKeypad", "ADVSEC_ZeusDoor", "ADVSEC_ZeusAlarm", "ADVSEC_ZeusIssuer",
             "ADVSEC_ModuleReports", "ADVSEC_ZeusReports",
             "ADVSEC_ModuleJail", "ADVSEC_ZeusJail", "ADVSEC_ZeusPanel", "ADVSEC_ZeusPolice",
-            "ADVSEC_ModuleLab", "ADVSEC_ZeusLab", "ADVSEC_ModuleCheckpoint", "ADVSEC_ZeusCheckpoint"
+            "ADVSEC_ModuleLab", "ADVSEC_ZeusLab", "ADVSEC_ModuleCheckpoint", "ADVSEC_ZeusCheckpoint",
+            "ADVSEC_ModuleAdmin", "ADVSEC_ZeusAdmin"
         };
         weapons[] = {"ADVSEC_Passport", "ADVSEC_IDCard", "ADVSEC_Permit", "ADVSEC_Keycard", "ADVSEC_Key", "ADVSEC_MilitaryID", "ADVSEC_MPBadge", "ADVSEC_IABadge", "ADVSEC_PDA_PM", "ADVSEC_PDA_AI", "ADVSEC_EvidenceBag"};
     };

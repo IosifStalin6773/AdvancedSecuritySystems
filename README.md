@@ -1,6 +1,6 @@
 # Advanced Security Systems (ADVSEC)
 
-**Versión 1.9.2** · Addon de Arma 3 para servidores con **Policía Militar (PM)** y **Asuntos Internos (AA.II.)**.
+**Versión 1.10.0** · Addon de Arma 3 para servidores con **Policía Militar (PM)** y **Asuntos Internos (AA.II.)**.
 
 ADVSEC reúne en un solo mod:
 - documentación de identidad;
@@ -8,7 +8,8 @@ ADVSEC reúne en un solo mod:
 - herramientas policiales (esposar, cachear, arrestar, multar, buscados);
 - investigación forense y expedientes de Asuntos Internos;
 - controles de carretera con IA;
-- una base de datos de jugadores con gestión de rangos.
+- una base de datos de jugadores con gestión de rangos;
+- un terminal de superadministrador para borrar datos y retirar rangos.
 
 Todo es configurable desde el editor (Eden), desde Zeus durante la partida, desde `description.ext` o desde las opciones de CBA.
 
@@ -74,13 +75,13 @@ La carpeta contiene:
 - `addons\advsec_main.pbo`: todo el sistema.
 - `addons\advsec_buildings.pbo`: el edificio de la PM.
 - Las firmas `.bisign` de los dos PBO.
-- `keys\advsec_1.9.2.bikey`.
+- `keys\advsec_1.10.0.bikey`.
 - `mod.cpp`.
 
 ### Servidor dedicado
 
 1. Carga el mod con `-mod=@AdvancedSecuritySystems`. No uses `-serverMod`, porque los clientes también lo necesitan.
-2. Copia `keys\advsec_1.9.2.bikey` a la carpeta `keys` del servidor y borra las claves `advsec_*` antiguas. Los dos PBO están firmados, así que funciona con `verifySignatures = 2`.
+2. Copia `keys\advsec_1.10.0.bikey` a la carpeta `keys` del servidor y borra las claves `advsec_*` antiguas. Los dos PBO están firmados, así que funciona con `verifySignatures = 2`.
 3. Si la misión usa `CfgRemoteExec` en modo lista blanca, copia las clases `ADVSEC_fnc_*` del `description.ext` de ejemplo.
 
 ### Dependencias
@@ -419,6 +420,39 @@ Se apunta automáticamente a todo jugador que entra en el servidor:
   - Zeus y los administradores no tienen límite.
 - Cada cambio queda en el historial y en el registro de eventos.
 
+### Terminal de superadministrador
+
+Panel de administración total de la PM y AA.II. Pensado para el mando o el staff del servidor.
+
+**Quién puede abrirlo**
+- Zeus y los administradores del servidor, siempre.
+- Los SteamID de `superAdmins[]` en `class ADVSEC_Settings` de la misión.
+- Los jugadores a los que un superadministrador da acceso desde el propio terminal. Esa lista se guarda en el perfil del servidor.
+
+**Cómo se abre**
+- **Ctrl + Alt + Fin**.
+- Acción propia «Terminal de superadministrador» (ACE o rueda), visible solo para superadministradores.
+- Un ordenador con el módulo «Terminal de superadministrador» (Eden o Zeus).
+
+**Qué permite**
+
+| Categoría | Acciones |
+|---|---|
+| Informes y expedientes | Borrar uno · borrar todos |
+| Jugadores y rangos | Quitar sus rangos (PM, AA.II. y global) · volver a los rangos de la misión · dar o quitar superadmin · borrar la ficha · quitar rangos a todos |
+| Superadministradores | Ver la lista y quitar accesos |
+| Buscados | Retirar una requisitoria · vaciar la lista |
+| Detenidos | Liberar a uno · liberar a todos |
+| Multas | Borrar una · borrar todas |
+| Pruebas | Borrar una · borrar todas |
+| Sospecha (AA.II.) | Archivar un índice · archivar todos |
+| Documentos | Retirar los documentos de un titular · de todos |
+| Registro de eventos | Vaciarlo |
+
+- Las acciones destructivas piden **doble pulsación** en 4 segundos («¿Seguro? Pulsa otra vez»).
+- Los rangos retirados se aplican al momento si el jugador está conectado: pierde la placa y el rango de Arma.
+- Todo lo hace el servidor, que vuelve a comprobar el acceso. Cada acción queda en el registro de eventos como `superAdmin` (salvo el propio vaciado, que deja una única entrada nueva).
+
 ---
 
 ## 12. PDA
@@ -458,6 +492,7 @@ Los módulos funcionan con jugadores que entran a mitad de partida, y reaplicarl
 | Calabozo | Centro de detención | Nombre, radio |
 | Laboratorio forense | Analizar pruebas | Nombre |
 | Control de carretera (IA) | Checkpoint automático | Nombre, agentes, radio |
+| Terminal de superadministrador | Administración total (borrados y rangos) | Nombre (Zeus) |
 | Panel de seguridad (solo Zeus) | Abre el panel de Zeus | |
 | Acciones de PM sobre unidad (solo Zeus) | Menú policial sobre la unidad | |
 
@@ -500,6 +535,7 @@ Con CBA se cambian en *Opciones › Controles › Configurar complementos › Ad
 | Ctrl + Fin | Acciones sobre el objetivo | Alt + Fin | Base de datos de jugadores |
 | Shift + Fin | Esposar / quitar | Ctrl + Shift + Supr | Índice de sospecha (AA.II.) |
 | Ctrl + Shift + Fin | Escoltar / soltar | Ctrl + Shift + Insert | Panel de seguridad (Zeus) |
+| Ctrl + Alt + Fin | Terminal de superadministrador | | |
 
 ---
 
@@ -527,6 +563,7 @@ Con CBA se cambian en *Opciones › Controles › Configurar complementos › Ad
 ### `class ADVSEC_Settings`
 
 - **Rangos:** `ranksPM[]`, `ranksAI[]`, `ranksGlobal[]`, `ranksGlobalArma[]`, `globalRankSetUnit`.
+- **Superadministradores:** `superAdmins[] = {"7656119..."};`.
 - **Permisos:** `class Permissions { accion[] = {"PM"|"AI", nivel}; }`.
 - **Evidencias:** `evidenceTTL`, `casingEvery`, `printChance`, `gloveChance`, `gloveItems[]`, `labTime`, `auditTime`, `sceneRadius`.
 - **Sospecha:** `heatThreshold`, `heatDecay`, `class Rules`.

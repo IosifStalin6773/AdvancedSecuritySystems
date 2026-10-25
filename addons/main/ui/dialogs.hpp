@@ -664,3 +664,41 @@ class ADVSEC_PlayerDB {
         class CloseX: ADVSEC_BtnX { x = 0.9362; y = 0.04; w = 0.0338; h = 0.045; };
     };
 };
+
+// ===== Terminal de superadministrador =====
+#define ADM_BTN(N,X) class Btn##N: ADVSEC_Btn { idc = 8781##N; x = X; y = 0.885; w = 0.15; h = 0.05; action = "['btn', N] call ADVSEC_fnc_adminAction"; };
+class ADVSEC_AdminDlg {
+    idd = 87800;
+    movingEnable = 0;
+    onLoad = "['on'] call ADVSEC_fnc_uiBlur";
+    onUnload = "['off'] call ADVSEC_fnc_uiBlur";
+    class controlsBackground {
+        class BG: ADVSEC_Panel { x = 0.02; y = 0.04; w = 0.96; h = 0.92; };
+        class Border: ADVSEC_Border { x = 0.02; y = 0.04; w = 0.96; h = 0.92; };
+        class Line: ADVSEC_Line { x = 0.02; y = 0.085; w = 0.96; h = 0.003; };
+        class Warn: RscText { x = 0.02; y = 0.088; w = 0.96; h = 0.004; colorBackground[] = {0.8, 0.2, 0.2, 1}; };
+        class InfoBG: RscText { x = 0.20; y = 0.10; w = 0.77; h = 0.06; colorBackground[] = ADVSEC_COL_FIELD; };
+        class ViewBG: RscText { x = 0.59; y = 0.17; w = 0.38; h = 0.70; colorBackground[] = ADVSEC_COL_FIELD; };
+        class LCat: ADVSEC_Label { text = "CATEGORÍAS"; font = "RobotoCondensedBold"; x = 0.03; y = 0.10; w = 0.16; h = 0.04; };
+    };
+    class controls {
+        class Title: ADVSEC_Header { idc = 87801; text = " SUPERADMINISTRADOR"; x = 0.02; y = 0.04; w = 0.96; h = 0.045; };
+        class Cats: ADVSEC_List { idc = 87802; x = 0.03; y = 0.14; w = 0.16; h = 0.73; sizeEx = 0.03; rowHeight = 0.04; onLBSelChanged = "['cat'] call ADVSEC_fnc_adminAction"; };
+        class Info: ADVSEC_Struct { idc = 87804; x = 0.205; y = 0.105; w = 0.76; h = 0.05; };
+        class List: ADVSEC_List { idc = 87803; x = 0.20; y = 0.17; w = 0.38; h = 0.70; sizeEx = 0.028; rowHeight = 0.034; onLBSelChanged = "['select'] call ADVSEC_fnc_adminAction"; };
+        class ViewGroup: RscControlsGroup {
+            idc = 87806;
+            x = 0.59; y = 0.17; w = 0.38; h = 0.70;
+            class controls {
+                class View: ADVSEC_Struct { idc = 87805; x = 0.01; y = 0.005; w = 0.35; h = 0.6; };
+            };
+        };
+        class BtnRefresh: ADVSEC_Btn { text = "Actualizar"; x = 0.03; y = 0.885; w = 0.16; h = 0.05; action = "['refresh'] call ADVSEC_fnc_adminAction"; };
+        ADM_BTN(0,0.20)
+        ADM_BTN(1,0.355)
+        ADM_BTN(2,0.51)
+        ADM_BTN(3,0.665)
+        ADM_BTN(4,0.82)
+        class CloseX: ADVSEC_BtnX { x = 0.9462; y = 0.04; w = 0.0338; h = 0.045; };
+    };
+};

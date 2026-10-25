@@ -85,6 +85,7 @@ class CfgRemoteExec {
         class ADVSEC_fnc_checkpointInit { allowedTargets = 2; };
         class ADVSEC_fnc_cpServer { allowedTargets = 2; };
         class ADVSEC_fnc_pdbServer { allowedTargets = 2; };
+        class ADVSEC_fnc_adminServer { allowedTargets = 2; };
         // Respuestas del servidor a un cliente concreto
         class ADVSEC_fnc_docGive { allowedTargets = 0; };
         class ADVSEC_fnc_docView { allowedTargets = 0; };
@@ -101,6 +102,7 @@ class CfgRemoteExec {
         class ADVSEC_fnc_cpAsk { allowedTargets = 0; };
         class ADVSEC_fnc_cpProgress { allowedTargets = 0; };
         class ADVSEC_fnc_pdbSet { allowedTargets = 0; };
+        class ADVSEC_fnc_adminSet { allowedTargets = 0; };
         // Inicialización de objetos en todas las máquinas (cola JIP)
         class ADVSEC_fnc_alarmInit { allowedTargets = 0; jip = 1; };
         class ADVSEC_fnc_cameraInit { allowedTargets = 0; jip = 1; };
@@ -111,6 +113,7 @@ class CfgRemoteExec {
         class ADVSEC_fnc_monitorInit { allowedTargets = 0; jip = 1; };
         class ADVSEC_fnc_repTerminalInit { allowedTargets = 0; jip = 1; };
         class ADVSEC_fnc_labInit { allowedTargets = 0; jip = 1; };
+        class ADVSEC_fnc_adminInit { allowedTargets = 0; jip = 1; };
     };
     // El servidor no está limitado por esta lista: no añadas aquí removeItem, disableAI, etc.
     class Commands {

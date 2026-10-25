@@ -7,6 +7,7 @@ class ADVSEC_Settings {
     ranksGlobal[] = {"Sin rango", "Soldado", "Cabo", "Cabo primero", "Sargento", "Sargento primero", "Brigada", "Subteniente", "Alférez", "Teniente", "Capitán", "Comandante", "Teniente coronel", "Coronel", "General"};
     // Rango de Arma 3 que recibe la unidad con cada rango global (mismo orden; "" = no cambiar)
     ranksGlobalArma[] = {"", "PRIVATE", "CORPORAL", "CORPORAL", "SERGEANT", "SERGEANT", "SERGEANT", "LIEUTENANT", "LIEUTENANT", "LIEUTENANT", "CAPTAIN", "MAJOR", "MAJOR", "COLONEL", "COLONEL"};
+    superAdmins[] = {};          // UIDs con acceso al terminal de superadministrador (además de Zeus y los añadidos en partida)
     globalRankSetUnit = 1;       // 1 = aplica setUnitRank según ranksGlobalArma
 
     // Permisos: {cuerpo ("PM" admite también AA.II.; "AI" solo AA.II.), nivel mínimo}
@@ -107,5 +108,6 @@ class ADVSEC_Keys {
     class evidence { name = "Registro de pruebas"; tooltip = "Pruebas bajo tu custodia"; category = "Policía Militar"; key[] = {211, 0, 1, 0}; };
     class heat { name = "Índice de sospecha (AA.II.)"; tooltip = "Panel de Asuntos Internos"; category = "Asuntos Internos"; key[] = {211, 1, 1, 0}; };
     class playerDB { name = "Base de datos de jugadores"; tooltip = "Lista de jugadores y gestión de rangos"; category = "Policía Militar"; key[] = {207, 0, 0, 1}; };
+    class superAdmin { name = "Terminal de superadministrador"; tooltip = "Solo superadministradores / Zeus"; category = "Zeus"; key[] = {207, 0, 1, 1}; };
     class zeusPanel { name = "Panel de seguridad (Zeus)"; tooltip = "Solo Zeus / administrador"; category = "Zeus"; key[] = {210, 1, 1, 0}; };
 };

@@ -39,3 +39,9 @@ if (((["reportsSelfAction", 1] call ADVSEC_fnc_cfg)) isEqualTo 1) then {
     {isNull objectParent _player && {(_player nearEntities [["Car", "Motorcycle", "Tank"], 5]) isNotEqualTo []} && {!([_player] call ADVSEC_fnc_isRestrained)}},
     "self"
 ] call ADVSEC_fnc_addInteraction;
+
+[_unit, "advsec_superadmin", "Terminal de superadministrador", ADVSEC_icPol,
+    {[] call ADVSEC_fnc_adminOpen},
+    {[_player] call ADVSEC_fnc_adminIs},
+    "self"
+] call ADVSEC_fnc_addInteraction;

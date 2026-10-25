@@ -6,6 +6,7 @@ if (isServer) then {
     [] call ADVSEC_fnc_heatDB;
     [] call ADVSEC_fnc_fineDB;
     [] call ADVSEC_fnc_pdbInit;
+    [] call ADVSEC_fnc_adminLoad;
 };
 if (!hasInterface) exitWith {};
 
