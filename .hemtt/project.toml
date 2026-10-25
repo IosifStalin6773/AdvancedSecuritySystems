@@ -5,5 +5,5 @@ mainprefix = "x"
 [version]
 git_hash = 0
 major = 1
-minor = 11
+minor = 12
 patch = 0

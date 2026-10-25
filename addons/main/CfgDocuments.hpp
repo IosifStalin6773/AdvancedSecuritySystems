@@ -88,4 +88,19 @@ class ADVSEC_DocumentTypes {
         clearance = 1;
         dark = 1;
     };
+    // Licencias de pago (oficina de documentación). Usan la tarjeta de permiso.
+    class WeaponLicense: Permit {
+        displayName = "LICENCIA DE ARMAS";
+        labels[] = {"Titular", "Nº licencia", "Autoridad", "Caduca", "Nivel", "Clase"};
+    };
+    class DriverLicense: Permit {
+        displayName = "PERMISO DE CONDUCIR";
+        color[] = {0.10, 0.25, 0.45, 0.95};
+        labels[] = {"Titular", "Nº permiso", "Autoridad", "Caduca", "Nivel", "Clase"};
+    };
+    class PilotLicense: Permit {
+        displayName = "LICENCIA DE PILOTO";
+        color[] = {0.25, 0.10, 0.40, 0.95};
+        labels[] = {"Titular", "Nº licencia", "Autoridad", "Caduca", "Nivel", "Clase"};
+    };
 };

@@ -215,11 +215,38 @@ class CfgVehicles {
         function = "ADVSEC_fnc_moduleShop";
         class Attributes: AttributesBase {
             class Name: Edit { property = "ADVSEC_Shop_Name"; displayName = "Nombre"; typeName = "STRING"; defaultValue = """Tienda"""; };
-            class Items: Edit { property = "ADVSEC_Shop_Items"; displayName = "Artículos"; tooltip = "clase:precio separados por comas, p. ej. FirstAidKit:25, ToolKit:150. Vacío = shopItems de ADVSEC_Settings."; typeName = "STRING"; defaultValue = """"""; };
+            class Items: Edit { property = "ADVSEC_Shop_Items"; displayName = "Artículos"; tooltip = "clase:precio separados por comas, p. ej. FirstAidKit:25, ToolKit:150. Vacío = shopItems (o blackMarketItems si es oculta)."; typeName = "STRING"; defaultValue = """"""; };
+            class Hidden: CheckboxNumber { property = "ADVSEC_Shop_Hidden"; displayName = "Mercado negro (oculta)"; tooltip = "Sin nombre, solo a menos de 2,5 m; las compras no van a la tesorería ni registran armas."; defaultValue = "0"; };
             class ModuleDescription: ModuleDescription {};
         };
         class ModuleDescription: ModuleDescription {
             description = "Sincronízalo con una mesa, un mostrador o un PNJ (o déjalo solo y crea una mesa). Vende y recompra los artículos de la lista.";
+        };
+    };
+    class ADVSEC_ModuleDealer: ADVSEC_Module_Base {
+        scope = 2;
+        displayName = "Concesionario de vehículos";
+        icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\car_ca.paa";
+        function = "ADVSEC_fnc_moduleDealer";
+        class Attributes: AttributesBase {
+            class Name: Edit { property = "ADVSEC_Dealer_Name"; displayName = "Nombre"; typeName = "STRING"; defaultValue = """Concesionario"""; };
+            class Items: Edit { property = "ADVSEC_Dealer_Items"; displayName = "Vehículos"; tooltip = "clase:precio separados por comas. Vacío = dealerVehicles de ADVSEC_Settings."; typeName = "STRING"; defaultValue = """"""; };
+            class ModuleDescription: ModuleDescription {};
+        };
+        class ModuleDescription: ModuleDescription {
+            description = "Vende vehículos matriculados a nombre del comprador (registro consultable por la PM). Se entregan cerca del objeto sincronizado.";
+        };
+    };
+    class ADVSEC_ModuleDuty: ADVSEC_Module_Base {
+        scope = 2;
+        displayName = "Terminal de fichaje (servicio)";
+        icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\wait_ca.paa";
+        function = "ADVSEC_fnc_moduleDuty";
+        class Attributes: AttributesBase {
+            class ModuleDescription: ModuleDescription {};
+        };
+        class ModuleDescription: ModuleDescription {
+            description = "La PM y AA.II. fichan entrada y salida de servicio. Con dutyAnywhere = 0 es el único sitio donde se puede fichar.";
         };
     };
     class ADVSEC_ModuleAdmin: ADVSEC_Module_Base {
@@ -378,6 +405,16 @@ class CfgVehicles {
         displayName = "Tienda";
         icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\box_ca.paa";
         ADVSEC_kind = "shop";
+    };
+    class ADVSEC_ZeusDealer: ADVSEC_Zeus_Base {
+        displayName = "Concesionario de vehículos";
+        icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\car_ca.paa";
+        ADVSEC_kind = "dealer";
+    };
+    class ADVSEC_ZeusDuty: ADVSEC_Zeus_Base {
+        displayName = "Terminal de fichaje (servicio)";
+        icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\wait_ca.paa";
+        ADVSEC_kind = "duty";
     };
     class ADVSEC_ZeusAdmin: ADVSEC_Zeus_Base {
         displayName = "Terminal de superadministrador";

@@ -15,7 +15,10 @@ private _cur = ["currency", "€"] call ADVSEC_fnc_setting;
     if (_uid isNotEqualTo "") then {
         private _g = (_pdb getOrDefault [_uid, []]) param [7, 0];
         if !(_g isEqualType 0) then {_g = 0};
-        private _amt = round (_base + (_pmT param [[_x, "PM"] call ADVSEC_fnc_rankLevel, 0]) + (_aiT param [[_x, "AI"] call ADVSEC_fnc_rankLevel, 0]) + _g * _gStep);
+        // Plus PM/AA.II. solo de servicio (salaryDutyOnly)
+        private _plus = (_pmT param [[_x, "PM"] call ADVSEC_fnc_rankLevel, 0]) + (_aiT param [[_x, "AI"] call ADVSEC_fnc_rankLevel, 0]);
+        if ((["salaryDutyOnly", 1] call ADVSEC_fnc_setting) isEqualTo 1 && {!(_x getVariable ["ADVSEC_onDuty", false])}) then {_plus = 0};
+        private _amt = round (_base + _plus + _g * _gStep);
         if (_amt > 0 && {!_fromT || {(localNamespace getVariable ["ADVSEC_treasury", 0]) >= _amt}}) then {
             if (_fromT) then {[-_amt, format ["Nómina · %1", name _x]] call ADVSEC_fnc_ecoTreasury};
             private _a = [_uid, name _x] call ADVSEC_fnc_ecoAcc;

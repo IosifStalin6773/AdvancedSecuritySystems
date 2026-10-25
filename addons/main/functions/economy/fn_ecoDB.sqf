@@ -11,5 +11,6 @@ _db = createHashMap;
 } forEach (profileNamespace getVariable [ADVSEC_repKey + "_eco", []]);
 localNamespace setVariable ["ADVSEC_ecoDB", _db];
 localNamespace setVariable ["ADVSEC_treasury", profileNamespace getVariable [ADVSEC_repKey + "_treasury", ["treasuryStart", 10000] call ADVSEC_fnc_setting]];
+localNamespace setVariable ["ADVSEC_ecoFlags", +(profileNamespace getVariable [ADVSEC_repKey + "_ecoFlags", []])];
 localNamespace setVariable ["ADVSEC_treasuryHist", +(profileNamespace getVariable [ADVSEC_repKey + "_treasuryHist", []])];
 _db

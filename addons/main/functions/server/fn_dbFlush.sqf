@@ -35,5 +35,16 @@ if ("eco" in _d) then {
     profileNamespace setVariable [ADVSEC_repKey + "_eco", _out];
     profileNamespace setVariable [ADVSEC_repKey + "_treasury", localNamespace getVariable ["ADVSEC_treasury", 0]];
     profileNamespace setVariable [ADVSEC_repKey + "_treasuryHist", localNamespace getVariable ["ADVSEC_treasuryHist", []]];
+    profileNamespace setVariable [ADVSEC_repKey + "_ecoFlags", localNamespace getVariable ["ADVSEC_ecoFlags", []]];
 };
+// Sistemas de rol: hashmaps guardados como pares [clave, valor]
+{
+    _x params ["_k", "_var"];
+    if (_k in _d) then {
+        private _h = localNamespace getVariable [_var, createHashMap];
+        private _out = [];
+        {_out pushBack [_x, _y]} forEach _h;
+        profileNamespace setVariable [ADVSEC_repKey + "_" + _k, _out];
+    };
+} forEach [["spec", "ADVSEC_specDB"], ["duty", "ADVSEC_dutyDB"], ["susp", "ADVSEC_susDB"], ["plates", "ADVSEC_plateDB"], ["weapons", "ADVSEC_wpnDB"], ["bodycam", "ADVSEC_bodyDB"]];
 saveProfileNamespace;

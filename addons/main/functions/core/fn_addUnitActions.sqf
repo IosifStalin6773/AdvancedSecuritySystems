@@ -20,3 +20,9 @@ params ["_unit"];
     "main", [], 3, [0, 0, 0],
     {[_target, _player, "unit"] call ADVSEC_fnc_policeChildren}
 ] call ADVSEC_fnc_addInteraction;
+
+[_unit, "advsec_bribe", "Ofrecer dinero", ADVSEC_icDoc,
+    {[_target] call ADVSEC_fnc_bribeOffer},
+    {alive _target && {isPlayer _target} && {[] call ADVSEC_fnc_ecoOn} && {[_target, "PM"] call ADVSEC_fnc_repAccess} && {!([_player, "PM"] call ADVSEC_fnc_repAccess)}},
+    "main", [], 3
+] call ADVSEC_fnc_addInteraction;

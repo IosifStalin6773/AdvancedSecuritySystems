@@ -24,6 +24,21 @@ switch (_action) do {
         private _id = [_unit, _amount, _reason, name _caller, getPlayerUID _caller] call ADVSEC_fnc_fineAdd;
         (format ["Multa %1 impuesta a %2: %3 %4.", _id, name _unit, _amount, _cur]) call _say;
     };
+    case "radar": {
+        // Multa directa por radar: el servidor vuelve a medir la velocidad
+        _args params [["_veh", objNull]];
+        if !([_caller, "radar"] call ADVSEC_fnc_perm) exitWith {[_caller, "usar el radar"] call ADVSEC_fnc_deny};
+        if (isNull _veh || {(_caller distance _veh) > 400}) exitWith {};
+        private _drv = driver _veh;
+        private _s = round abs speed _veh;
+        private _lim = ["speedLimit", 90] call ADVSEC_fnc_setting;
+        if (isNull _drv || {!isPlayer _drv}) exitWith {"No hay un conductor identificable." call _say};
+        if (_s <= _lim) exitWith {(format ["Ya circula a %1 km/h: no hay infracción.", _s]) call _say};
+        private _amt = (["speedFineBase", 100] call ADVSEC_fnc_setting) + (_s - _lim) * (["speedFinePerKmh", 5] call ADVSEC_fnc_setting);
+        private _id = [_drv, _amt, format ["Exceso de velocidad: %1 km/h (límite %2) · %3", _s, _lim, getPlateNumber _veh], name _caller, getPlayerUID _caller] call ADVSEC_fnc_fineAdd;
+        ["radarFine", _caller, [name _drv, _s, _amt]] call ADVSEC_fnc_logEvent;
+        (format ["Multa %1 por radar a %2: %3 %4.", _id, name _drv, _amt, _cur]) call _say;
+    };
     case "list": {
         _args params [["_key", ""]];
         private _own = _key isEqualTo ([_caller] call ADVSEC_fnc_docKey);

@@ -51,6 +51,7 @@ switch (_action) do {
         private _v = [_args param [0, 0]] call _amt;
         if (_v <= 0) exitWith {"Importe no válido." call _say};
         if !(call _atm) exitWith {"Necesitas un cajero cerca." call _say};
+        if (_action == "withdraw" && {_a param [4, false]}) exitWith {"Tu cuenta está congelada por AA.II." call _say};
         private _cash = [_caller] call ADVSEC_fnc_ecoCash;
         if (_action == "deposit") then {
             if (_cash < _v) exitWith {(format ["No llevas tanto efectivo (%1).", _cash call _fmt]) call _say};
@@ -71,6 +72,7 @@ switch (_action) do {
         _v = [_v] call _amt;
         if (_v <= 0 || {_to isEqualTo _uid}) exitWith {"Transferencia no válida." call _say};
         if !(call _atm) exitWith {"Necesitas un cajero cerca." call _say};
+        if (_a param [4, false]) exitWith {"Tu cuenta está congelada por AA.II." call _say};
         private _b = ([] call ADVSEC_fnc_ecoDB) getOrDefault [_to, []];
         if (_b isEqualTo []) exitWith {"Esa cuenta no existe." call _say};
         if ((_a select 1) < _v) exitWith {(format ["Saldo insuficiente (%1).", (_a select 1) call _fmt]) call _say};
@@ -85,6 +87,7 @@ switch (_action) do {
             (format ["%1 te ha transferido %2.", name _caller, _v call _fmt]) remoteExecCall ["hint", _u];
         };
         ["economy", _caller, ["transfer", _to, _v]] call ADVSEC_fnc_logEvent;
+        [[_uid, name _caller], [_to, _b select 2], _v, "Transferencia"] call ADVSEC_fnc_ecoFlag;
         ["wallet", _caller] call ADVSEC_fnc_ecoServer;
     };
     case "give": {
@@ -99,6 +102,7 @@ switch (_action) do {
         [[getPlayerUID _u, name _u] call ADVSEC_fnc_ecoAcc, format ["Recibido de %1", name _caller], _v] call ADVSEC_fnc_ecoHist;
         (format ["%1 te ha dado %2 en efectivo.", name _caller, _v call _fmt]) remoteExecCall ["hint", _u];
         ["economy", _caller, ["give", getPlayerUID _u, _v]] call ADVSEC_fnc_logEvent;
+        [[_uid, name _caller], [getPlayerUID _u, name _u], _v, "Efectivo en mano"] call ADVSEC_fnc_ecoFlag;
         ["wallet", _caller] call ADVSEC_fnc_ecoServer;
     };
     case "shop": {
@@ -121,10 +125,13 @@ switch (_action) do {
         if (_it isEqualTo [] || {!(_n in [1, 5])}) exitWith {};
         _it params ["_c", "_p"];
         private _total = _p * _n;
-        if !([_caller, _total, format ["Compra: %1 × %2", _n, [_c] call ADVSEC_fnc_ecoItemName], (["shopToTreasury", 0] call ADVSEC_fnc_setting) isEqualTo 1] call ADVSEC_fnc_ecoCharge) exitWith {
+        private _illegal = _s getVariable ["ADVSEC_shopIllegal", false];
+        if !([_caller, _total, format ["Compra: %1 × %2", _n, [_c] call ADVSEC_fnc_ecoItemName], !_illegal && {(["shopToTreasury", 0] call ADVSEC_fnc_setting) isEqualTo 1}] call ADVSEC_fnc_ecoCharge) exitWith {
             (format ["No te llega: cuesta %1.", _total call _fmt]) call _say;
         };
         [_c, _n] remoteExecCall ["ADVSEC_fnc_ecoGiveItem", _caller];
+        // Armas de tienda legal: quedan registradas a nombre del comprador
+        if (!_illegal && {(["shopRegistersWeapons", 1] call ADVSEC_fnc_setting) isEqualTo 1} && {getNumber (configFile >> "CfgWeapons" >> _c >> "type") in [1, 2, 4]}) then {[_caller, _c] call ADVSEC_fnc_wpnRegister};
         ["shop", _caller, [_s]] call ADVSEC_fnc_ecoServer;
     };
     case "sell": {

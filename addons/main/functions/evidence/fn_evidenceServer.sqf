@@ -140,7 +140,16 @@ switch (_action) do {
             sleep _secs;
             private _who = [[_e get "name", _e get "uid"], _e get "fake"] select ((_e get "fake") isNotEqualTo []);
             private _res = switch (_e get "type") do {
-                case "casing": {format ["Disparado con %1 (serie %2), arma registrada a %3 [%4].", _e get "weaponName", _e get "serial", _who select 0, _who select 1]};
+                case "casing": {
+                    // Registro de armas: el titular sale del registro; un arma sin registrar no identifica a nadie (weaponRegistryStrict)
+                    private _reg = ([] call ADVSEC_fnc_wpnDB) getOrDefault [_e get "serial", []];
+                    switch (true) do {
+                        case ((_e get "fake") isNotEqualTo []): {format ["Disparado con %1 (serie %2), arma registrada a %3 [%4].", _e get "weaponName", _e get "serial", _who select 0, _who select 1]};
+                        case (_reg isNotEqualTo []): {format ["Disparado con %1 (serie %2), arma registrada a %3 [%4] desde %5.", _e get "weaponName", _e get "serial", _reg select 2, _reg select 1, _reg select 3]};
+                        case ((["weaponRegistryStrict", 1] call ADVSEC_fnc_setting) isEqualTo 1): {format ["Disparado con %1 (serie %2). ARMA SIN REGISTRAR: no consta titular.", _e get "weaponName", _e get "serial"]};
+                        default {format ["Disparado con %1 (serie %2, sin registrar). Huella balística compatible con %3 [%4].", _e get "weaponName", _e get "serial", _who select 0, _who select 1]};
+                    };
+                };
                 case "print": {format ["Huella dactilar coincidente con %1 [%2].", _who select 0, _who select 1]};
                 default {format ["Perfil genético coincidente con %1 [%2].", _who select 0, _who select 1]};
             };

@@ -1,6 +1,6 @@
 # Advanced Security Systems (ADVSEC)
 
-**Versión 1.11.0** · Addon de Arma 3 para servidores con **Policía Militar (PM)** y **Asuntos Internos (AA.II.)**.
+**Versión 1.12.0** · Addon de Arma 3 para servidores con **Policía Militar (PM)** y **Asuntos Internos (AA.II.)**.
 
 ADVSEC reúne en un solo mod:
 - documentación de identidad;
@@ -10,7 +10,8 @@ ADVSEC reúne en un solo mod:
 - controles de carretera con IA;
 - una base de datos de jugadores con gestión de rangos;
 - un terminal de superadministrador para borrar datos y retirar rangos;
-- una economía (efectivo, banco, nóminas, cajeros, tiendas y tesorería de la PM) compatible con el HUD THUD.
+- una economía (efectivo, banco, nóminas, cajeros, tiendas y tesorería de la PM) compatible con el HUD THUD;
+- sistemas de rol militar: rangos ORBAT, especialidades, servicio, despacho, alerta de base, matrículas, licencias, corrupción, K9, radar y cámara corporal.
 
 Todo es configurable desde el editor (Eden), desde Zeus durante la partida, desde `description.ext` o desde las opciones de CBA.
 
@@ -22,7 +23,7 @@ Todo es configurable desde el editor (Eden), desde Zeus durante la partida, desd
 
 | Ruta | Contenido |
 |---|---|
-| `release/@AdvancedSecuritySystems/` | Mod compilado y listo para usar: 2 PBO firmados, `.bisign`, `keys/*.bikey` y `mod.cpp` |
+| `release/@AdvancedSecuritySystems/` | Mod compilado y listo para usar: 3 PBO firmados (el tercero, `advsec_thud`, es opcional y solo se carga con THUD), `.bisign`, `keys/*.bikey` y `mod.cpp` |
 | `addons/main/` | Código fuente del sistema: SQF, configs, interfaces y texturas |
 | `addons/buildings/` | Edificio de la Policía Militar: modelo, `model.cfg`, config y texturas |
 | `.hemtt/project.toml` | Proyecto de compilación de [HEMTT](https://github.com/BrettMayson/HEMTT) |
@@ -75,14 +76,14 @@ Cada compilación genera una clave nueva (`keys/advsec_<versión>.bikey`), que e
 La carpeta contiene:
 - `addons\advsec_main.pbo`: todo el sistema.
 - `addons\advsec_buildings.pbo`: el edificio de la PM.
-- Las firmas `.bisign` de los dos PBO.
-- `keys\advsec_1.11.0.bikey`.
+- Las firmas `.bisign` de los tres PBO.
+- `keys\advsec_1.12.0.bikey`.
 - `mod.cpp`.
 
 ### Servidor dedicado
 
 1. Carga el mod con `-mod=@AdvancedSecuritySystems`. No uses `-serverMod`, porque los clientes también lo necesitan.
-2. Copia `keys\advsec_1.11.0.bikey` a la carpeta `keys` del servidor y borra las claves `advsec_*` antiguas. Los dos PBO están firmados, así que funciona con `verifySignatures = 2`.
+2. Copia `keys\advsec_1.12.0.bikey` a la carpeta `keys` del servidor y borra las claves `advsec_*` antiguas. Los tres PBO están firmados, así que funciona con `verifySignatures = 2`.
 3. Si la misión usa `CfgRemoteExec` en modo lista blanca, copia las clases `ADVSEC_fnc_*` del `description.ext` de ejemplo.
 
 ### Dependencias
@@ -393,6 +394,37 @@ Activa por defecto (`economy = 1`). Funciona en cualquier misión y es compatibl
 - Fuera de Antistasi, ADVSEC desactiva la espera de THUD por Antistasi y llama «PM» a la tesorería (`thudTreasuryName`). Las líneas propias de Antistasi (nivel de guerra, agresión...) se pueden ocultar en el menú de THUD.
 - **En Antistasi** el efectivo (`moneyX`) es de Antistasi. ADVSEC lo usa tal cual y solo añade banco, nóminas, cajeros y tiendas; no toca `resourcesFIA`, `hr` ni `theBoss`.
 
+### Rol militar (1.12)
+
+**Rangos (toda la tropa).** `ranksGlobal[]` pasa a la jerarquía Rct., Sdo., Sdo 1º. (Tropa) · Cbo., Cbo 1º., Cbo M., Sgt., Sgt 1º., Sgt M. (Suboficial) · Brig., Tte., Cap. (Oficial). Se asignan en la base de datos de jugadores. El rango exacto lo lleva ADVSEC (`class ADVSEC_Ranks`); el de Arma (`ranksGlobalArma`) se fija con `setUnitRank` y THUD muestra el escalón (Tropa, Cabo, Sargento, Brigada, Teniente, Capitán) gracias a `advsec_thud.pbo`. *Los índices antiguos (15 rangos) cambian de nombre: revisa los rangos globales ya asignados.* El `description.ext` de ejemplo incluye un `CfgORBAT`.
+
+**Especialidades (metopas).** JTAC, RO, Sanitario, Médico, AT, Ametrallador, Ingeniero, EOD, AA, Granadero, Carrista, Paracaidista, Piloto, Logística, Artillería y Tirador (`class ADVSEC_Specialties`).
+- **Ctrl + Alt + Inicio** o acción propia «Especialidades»: lista, solicitar ingreso y darse de baja.
+- **PDA de la metopa** (la misma para todas, parametrizada): miembros, solicitudes, aceptar, rechazar o dar de baja, añadir jugador. La gestionan sus **encargados**; los nombra un superadministrador.
+- Rasgos automáticos: Sanitario y Médico (`Medic`, ACE `medicClass` 1 y 2), Ingeniero y Logística (`Engineer`), EOD (`ExplosiveSpecialist`, ACE EOD).
+
+**Servicio y despacho**
+- Fichar entrada y salida (menú PM o módulo «Terminal de fichaje»; `dutyAnywhere`). Se guardan las horas; el plus PM/AA.II. de la nómina solo se cobra de servicio (`salaryDutyOnly`). De servicio se enciende la **cámara corporal**.
+- **112**: cualquiera llama (acción propia). El aviso va a la patrulla de servicio más cercana (o a toda la PM) con marca en el mapa. **Botón de pánico**: **Alt + Supr**. **Central de despacho**: **Ctrl + Alt + Insert**.
+
+**AA.II.**
+- **Suspensión temporal**: retira rangos PM, AA.II. y global durante X horas de reloj real y los devuelve solos.
+- **Auditoría bancaria**: movimientos sospechosos (agentes implicados o ≥ `suspiciousAmount`), historial de cualquier cuenta y **congelación** (la cuenta congelada solo usa efectivo).
+- **Cámaras corporales**: lo que hace un agente con la cámara encendida queda grabado. Apagarla de servicio suma sospecha.
+
+**Base, vehículos y licencias**
+- **Nivel de alerta** (verde, amarillo, rojo): amarillo arma las alarmas; rojo además cierra las puertas controladas y los keypads piden documento. THUD lo muestra en la línea de nivel (`tierWar`).
+- **Concesionario**: vehículos matriculados a tu nombre y cerrados (acción «Abrir / cerrar mi vehículo»). «Mis vehículos»: denunciar robo, que lo pone en buscados. La PM consulta matrículas.
+- **Licencias** de armas, conducir y piloto en la oficina de documentación, con tasa a la tesorería. La PM puede retirarlas. Con licencia de armas se **registran las armas**: el casquillo analizado en el laboratorio da el titular registrado; un arma sin registrar no identifica a nadie (`weaponRegistryStrict`).
+- **Fianza**: el detenido paga `bailPerMinute` × minutos pendientes y sale.
+
+**Corrupción, mercado negro y apoyo**
+- «Ofrecer dinero» a un agente: si acepta, el movimiento queda marcado como soborno para AA.II.
+- **Mercado negro**: tienda oculta (opción del módulo Tienda) con `blackMarketItems[]`.
+- **K9** (menú PM): llamar al perro y olfatear vehículos o personas; lo marcado aparece seguro en el registro.
+- **Radar**: apunta a un vehículo; si supera `speedLimit`, multa directa al conductor.
+- **Discord**: `discordWebhook` + una extensión de servidor (`discordExtension`) envía detenciones, buscados, fianzas, suspensiones, alertas, pánicos y robos.
+
 ---
 
 ## 10. Controles de carretera con IA
@@ -534,7 +566,9 @@ Los módulos funcionan con jugadores que entran a mitad de partida, y reaplicarl
 | Control de carretera (IA) | Checkpoint automático | Nombre, agentes, radio |
 | Terminal de superadministrador | Administración total (borrados y rangos) | Nombre (Zeus) |
 | Cajero automático | Ingresar, retirar y transferir | Nombre |
-| Tienda | Comprar y vender | Nombre, artículos `clase:precio` |
+| Tienda | Comprar y vender (o mercado negro) | Nombre, artículos `clase:precio`, oculta |
+| Concesionario de vehículos | Vender vehículos matriculados | Nombre, vehículos `clase:precio` |
+| Terminal de fichaje | Fichar entrada y salida de servicio | |
 | Panel de seguridad (solo Zeus) | Abre el panel de Zeus | |
 | Acciones de PM sobre unidad (solo Zeus) | Menú policial sobre la unidad | |
 
@@ -578,6 +612,8 @@ Con CBA se cambian en *Opciones › Controles › Configurar complementos › Ad
 | Shift + Fin | Esposar / quitar | Ctrl + Shift + Supr | Índice de sospecha (AA.II.) |
 | Ctrl + Shift + Fin | Escoltar / soltar | Ctrl + Shift + Insert | Panel de seguridad (Zeus) |
 | Ctrl + Alt + Fin | Terminal de superadministrador | Alt + Insert | Cartera y banco |
+| Alt + Supr | Botón de pánico | Ctrl + Alt + Insert | Central de despacho |
+| Ctrl + Alt + Inicio | Especialidades (PDA de metopa) | | |
 
 ---
 

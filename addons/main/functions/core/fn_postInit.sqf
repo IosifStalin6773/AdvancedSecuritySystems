@@ -9,6 +9,7 @@ if (isServer) then {
     [] call ADVSEC_fnc_adminLoad;
     [] call ADVSEC_fnc_ecoDB;
     if (isNil "ADVSEC_ecoLoopH") then {ADVSEC_ecoLoopH = [] spawn ADVSEC_fnc_ecoLoop};
+    [] call ADVSEC_fnc_rpInit;
 };
 if (!hasInterface) exitWith {};
 

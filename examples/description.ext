@@ -87,6 +87,16 @@ class CfgRemoteExec {
         class ADVSEC_fnc_pdbServer { allowedTargets = 2; };
         class ADVSEC_fnc_adminServer { allowedTargets = 2; };
         class ADVSEC_fnc_ecoServer { allowedTargets = 2; };
+        class ADVSEC_fnc_specServer { allowedTargets = 2; };
+        class ADVSEC_fnc_dutyServer { allowedTargets = 2; };
+        class ADVSEC_fnc_dspServer { allowedTargets = 2; };
+        class ADVSEC_fnc_susServer { allowedTargets = 2; };
+        class ADVSEC_fnc_alertServer { allowedTargets = 2; };
+        class ADVSEC_fnc_plateServer { allowedTargets = 2; };
+        class ADVSEC_fnc_licServer { allowedTargets = 2; };
+        class ADVSEC_fnc_k9Server { allowedTargets = 2; };
+        class ADVSEC_fnc_bodyServer { allowedTargets = 2; };
+        class ADVSEC_fnc_ecoAI { allowedTargets = 2; };
         // Respuestas del servidor a un cliente concreto
         class ADVSEC_fnc_docGive { allowedTargets = 0; };
         class ADVSEC_fnc_docView { allowedTargets = 0; };
@@ -106,6 +116,11 @@ class CfgRemoteExec {
         class ADVSEC_fnc_adminSet { allowedTargets = 0; };
         class ADVSEC_fnc_ecoGiveItem { allowedTargets = 0; };
         class ADVSEC_fnc_ecoTakeItem { allowedTargets = 0; };
+        class ADVSEC_fnc_specLocal { allowedTargets = 0; };
+        class ADVSEC_fnc_dspNotify { allowedTargets = 0; };
+        class ADVSEC_fnc_dspMark { allowedTargets = 0; };
+        class ADVSEC_fnc_alertHint { allowedTargets = 0; };
+        class ADVSEC_fnc_bribeAsk { allowedTargets = 0; };
         // Inicialización de objetos en todas las máquinas (cola JIP)
         class ADVSEC_fnc_alarmInit { allowedTargets = 0; jip = 1; };
         class ADVSEC_fnc_cameraInit { allowedTargets = 0; jip = 1; };
@@ -119,6 +134,8 @@ class CfgRemoteExec {
         class ADVSEC_fnc_adminInit { allowedTargets = 0; jip = 1; };
         class ADVSEC_fnc_atmInit { allowedTargets = 0; jip = 1; };
         class ADVSEC_fnc_shopInit { allowedTargets = 0; jip = 1; };
+        class ADVSEC_fnc_dutyTermInit { allowedTargets = 0; jip = 1; };
+        class ADVSEC_fnc_dealerInit { allowedTargets = 0; jip = 1; };
     };
     // El servidor no está limitado por esta lista: no añadas aquí removeItem, disableAI, etc.
     class Commands {
@@ -127,5 +144,37 @@ class CfgRemoteExec {
         class systemChat { allowedTargets = 0; };
         class switchMove { allowedTargets = 0; };
         class addCuratorEditableObjects { allowedTargets = 2; };
+    };
+};
+
+// ORBAT de la unidad (vista de mapa / briefing). Rangos de Arma = ranksGlobalArma; el rango exacto (Rct. … Cap.) lo lleva ADVSEC.
+class CfgORBAT {
+    class ADVSEC_Bn {
+        id = 1; idType = 0; side = "West"; size = "Battalion"; type = "Infantry";
+        insignia = ""; colorInsignia[] = {0, 0.3, 0.6, 1};
+        commander = "Cap."; commanderRank = "MAJOR";
+        text = "%1 Batallón"; textShort = "%1 Bn";
+        description = "Mando: Cap. · Oficiales: Cap., Tte., Brig. · Suboficiales: Sgt M., Sgt 1º., Sgt., Cbo M., Cbo 1º., Cbo. · Tropa: Sdo 1º., Sdo., Rct.";
+        class Mando { id = 1; idType = 0; side = "West"; size = "Platoon"; type = "HQ"; commander = "Tte."; commanderRank = "CAPTAIN"; text = "Plana mayor"; };
+        class Fusileros { id = 1; idType = 0; side = "West"; size = "Company"; type = "Infantry"; commander = "Brig."; commanderRank = "LIEUTENANT"; text = "%1 Compañía";
+            class S_MG { id = 1; idType = 0; side = "West"; size = "Squad"; type = "MotorizedInfantry"; commander = "Sgt."; commanderRank = "SERGEANT"; text = "Ametralladoras"; };
+            class S_AT { id = 2; idType = 0; side = "West"; size = "Squad"; type = "Infantry"; commander = "Sgt."; commanderRank = "SERGEANT"; text = "Contracarro (AT)"; };
+            class S_GRN { id = 3; idType = 0; side = "West"; size = "Squad"; type = "Infantry"; commander = "Cbo M."; commanderRank = "CORPORAL"; text = "Granaderos"; };
+            class S_MRK { id = 4; idType = 0; side = "West"; size = "FireTeam"; type = "Recon"; commander = "Cbo 1º."; commanderRank = "CORPORAL"; text = "Tiradores"; };
+        };
+        class Apoyo { id = 2; idType = 0; side = "West"; size = "Company"; type = "Support"; commander = "Brig."; commanderRank = "LIEUTENANT"; text = "Compañía de apoyo";
+            class S_JTAC { id = 1; idType = 0; side = "West"; size = "FireTeam"; type = "Recon"; commander = "Sgt 1º."; commanderRank = "SERGEANT"; text = "JTAC"; };
+            class S_RO { id = 2; idType = 0; side = "West"; size = "FireTeam"; type = "HQ"; commander = "Sgt."; commanderRank = "SERGEANT"; text = "Transmisiones (RO)"; };
+            class S_MED { id = 3; idType = 0; side = "West"; size = "Squad"; type = "Medical"; commander = "Sgt 1º."; commanderRank = "SERGEANT"; text = "Sanidad (Sanitarios / Médicos)"; };
+            class S_ENG { id = 4; idType = 0; side = "West"; size = "Squad"; type = "Engineers"; commander = "Sgt."; commanderRank = "SERGEANT"; text = "Ingenieros y EOD"; };
+            class S_AA { id = 5; idType = 0; side = "West"; size = "Squad"; type = "AntiAir"; commander = "Sgt."; commanderRank = "SERGEANT"; text = "Antiaérea (AA)"; };
+            class S_ART { id = 6; idType = 0; side = "West"; size = "Squad"; type = "Artillery"; commander = "Sgt M."; commanderRank = "SERGEANT"; text = "Artillería"; };
+            class S_LOG { id = 7; idType = 0; side = "West"; size = "Squad"; type = "Maintenance"; commander = "Sgt."; commanderRank = "SERGEANT"; text = "Logística"; };
+        };
+        class Especiales { id = 3; idType = 0; side = "West"; size = "Company"; type = "Infantry"; commander = "Brig."; commanderRank = "LIEUTENANT"; text = "Unidades especiales";
+            class S_TANK { id = 1; idType = 0; side = "West"; size = "Platoon"; type = "Armored"; commander = "Sgt 1º."; commanderRank = "SERGEANT"; text = "Carros (Tank)"; };
+            class S_PARA { id = 2; idType = 0; side = "West"; size = "Platoon"; type = "Airborne"; commander = "Sgt 1º."; commanderRank = "SERGEANT"; text = "Paracaidistas"; };
+            class S_PILOT { id = 3; idType = 0; side = "West"; size = "Squad"; type = "Helicopter"; commander = "Sgt M."; commanderRank = "SERGEANT"; text = "Pilotos"; };
+        };
     };
 };

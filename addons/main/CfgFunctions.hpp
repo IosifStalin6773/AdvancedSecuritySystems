@@ -11,6 +11,9 @@ class CfgFunctions {
             class postInit { postInit = 1; };
             class addInteraction {};
             class addSelfActions {};
+            class utcMin {};
+            class uidUnit {};
+            class rpInit {};
             class addUnitActions {};
             class accessCheck {};
             class parseList {};
@@ -211,6 +214,87 @@ class CfgFunctions {
             class shopInit {};
             class moduleAtm {};
             class moduleShop {};
+            class ecoFlag {};
+            class ecoAI {};
+            class bribeAsk {};
+            class bribeOffer {};
+            class auditOpen {};
+        };
+        class spec {
+            file = "\x\advsec\addons\main\functions\spec";
+            class specDB {};
+            class specName {};
+            class specApply {};
+            class specLocal {};
+            class specServer {};
+            class specOpen {};
+            class specPda {};
+        };
+        class duty {
+            file = "\x\advsec\addons\main\functions\duty";
+            class dutyDB {};
+            class dutySet {};
+            class dutyServer {};
+            class dutyTermInit {};
+            class moduleDuty {};
+            class dutyOpen {};
+        };
+        class dispatch {
+            file = "\x\advsec\addons\main\functions\dispatch";
+            class dspServer {};
+            class dspNotify {};
+            class dspMark {};
+            class dspOpen {};
+            class dspCall {};
+        };
+        class aimod {
+            file = "\x\advsec\addons\main\functions\aimod";
+            class susServer {};
+            class susOpen {};
+        };
+        class alert {
+            file = "\x\advsec\addons\main\functions\alert";
+            class alertServer {};
+            class alertHint {};
+            class alertOpen {};
+        };
+        class plates {
+            file = "\x\advsec\addons\main\functions\plates";
+            class plateDB {};
+            class plateServer {};
+            class dealerInit {};
+            class moduleDealer {};
+            class dealerOpen {};
+            class plateMine {};
+            class plateQuery {};
+        };
+        class licenses {
+            file = "\x\advsec\addons\main\functions\licenses";
+            class wpnSerial {};
+            class wpnDB {};
+            class wpnRegister {};
+            class licServer {};
+            class licOpen {};
+            class licRevokePrompt {};
+        };
+        class k9 {
+            file = "\x\advsec\addons\main\functions\k9";
+            class k9Server {};
+        };
+        class radar {
+            file = "\x\advsec\addons\main\functions\radar";
+            class radarUse {};
+        };
+        class bodycam {
+            file = "\x\advsec\addons\main\functions\bodycam";
+            class bodyServer {};
+            class bodyDB {};
+            class bodyOpen {};
+        };
+        class discord {
+            file = "\x\advsec\addons\main\functions\discord";
+            class jsonEsc {};
+            class discord {};
         };
         class admin {
             file = "\x\advsec\addons\main\functions\admin";

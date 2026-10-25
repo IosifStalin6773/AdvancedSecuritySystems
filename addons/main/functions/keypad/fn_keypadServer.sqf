@@ -13,6 +13,10 @@ private _ok = (_caller distance _kp < 6) && {
         default {false};
     }
 };
+// Alerta roja: además del PIN o la tarjeta hace falta un documento de identidad válido
+if (_ok && {(missionNamespace getVariable ["ADVSEC_alertLevel", 0]) >= 2} && {!([_caller] call ADVSEC_fnc_isZeus)} && {!([_caller, [0, ["alertRedIdTypes", []] call ADVSEC_fnc_setting, ""]] call ADVSEC_fnc_accessCheck)}) exitWith {
+    ["ALERTA ROJA: IDENTIFÍQUESE", false] remoteExecCall ["ADVSEC_fnc_keypadFeedback", _caller];
+};
 private _alarm = _kp getVariable ["ADVSEC_kpAlarm", objNull];
 if (_alarm isEqualType "") then {
     private _i = ADVSEC_alarms findIf {(_x getVariable ["ADVSEC_alarmZone", ""]) isEqualTo _alarm};

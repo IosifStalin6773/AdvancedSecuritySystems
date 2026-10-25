@@ -65,7 +65,15 @@ switch (_kind) do {
     };
     case "shop": {
         if (isNull _target) then {_target = ["Land_CampingTable_F"] call _spawn};
-        [_target, _v#0, _v#1] remoteExecCall ["ADVSEC_fnc_shopInit", 0, ["ADVSEC_fnc_shopInit", _target] call _jip];
+        [_target, _v#0, _v#1, _v#2] remoteExecCall ["ADVSEC_fnc_shopInit", 0, ["ADVSEC_fnc_shopInit", _target] call _jip];
+    };
+    case "dealer": {
+        if (isNull _target) then {_target = ["Land_CampingTable_F"] call _spawn};
+        [_target, _v#0, _v#1] remoteExecCall ["ADVSEC_fnc_dealerInit", 0, ["ADVSEC_fnc_dealerInit", _target] call _jip];
+    };
+    case "duty": {
+        if (isNull _target) then {_target = ["Land_Laptop_unfolded_F"] call _spawn};
+        [_target, _v#0] remoteExecCall ["ADVSEC_fnc_dutyTermInit", 0, ["ADVSEC_fnc_dutyTermInit", _target] call _jip];
     };
     case "admin": {
         if (isNull _target) then {_target = ["Land_Laptop_unfolded_F"] call _spawn};

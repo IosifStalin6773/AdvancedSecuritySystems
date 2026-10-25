@@ -60,6 +60,9 @@ switch (_id) do {
     case "playerDB": {[] call ADVSEC_fnc_pdbOpen};
     case "superAdmin": {[] call ADVSEC_fnc_adminOpen};
     case "wallet": {[] call ADVSEC_fnc_ecoOpen};
+    case "panic": {if ([player, "PM"] call ADVSEC_fnc_repAccess) then {["panic", player] remoteExecCall ["ADVSEC_fnc_dspServer", 2]}};
+    case "dispatch": {[] call ADVSEC_fnc_dspOpen};
+    case "specs": {[] call ADVSEC_fnc_specOpen};
     case "zeusPanel": {
         if !([player] call ADVSEC_fnc_isZeus) exitWith {hint "Solo Zeus o administrador."};
         [] call ADVSEC_fnc_zeusPanelOpen;

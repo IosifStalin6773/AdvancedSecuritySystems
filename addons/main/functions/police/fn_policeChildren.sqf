@@ -23,6 +23,26 @@ if (_mode == "self") exitWith {
     if ([_player, "suspicionView"] call ADVSEC_fnc_perm) then {
         ["advsec_ai_heat", "AA.II.: índice de sospecha", ADVSEC_icPol, {[] call ADVSEC_fnc_heatOpen}, []] call _add;
     };
+    // Servicio, central, alerta, matrículas, radar, K9 y AA.II.
+    ["advsec_pm_duty", ["Fichar ENTRADA de servicio", "Fichar SALIDA de servicio"] select (_player getVariable ["ADVSEC_onDuty", false]), ADVSEC_icJail, {["toggle", _player] remoteExecCall ["ADVSEC_fnc_dutyServer", 2]}, []] call _add;
+    if (_player getVariable ["ADVSEC_onDuty", false]) then {
+        ["advsec_pm_cam", ["Encender cámara corporal", "Apagar cámara corporal"] select (_player getVariable ["ADVSEC_bodycam", false]), ADVSEC_icCam, {["bodycam", _player] remoteExecCall ["ADVSEC_fnc_dutyServer", 2]}, []] call _add;
+    };
+    ["advsec_pm_dsp", "Central de despacho", ADVSEC_icAlarm, {[] call ADVSEC_fnc_dspOpen}, []] call _add;
+    ["advsec_pm_panic", "BOTÓN DE PÁNICO", ADVSEC_icAlarm, {["panic", _player] remoteExecCall ["ADVSEC_fnc_dspServer", 2]}, []] call _add;
+    if ([_player, "dutyView"] call ADVSEC_fnc_perm) then {["advsec_pm_dutyv", "Control de servicio", ADVSEC_icJail, {[] call ADVSEC_fnc_dutyOpen}, []] call _add};
+    if ([_player, "alertLevel"] call ADVSEC_fnc_perm) then {["advsec_pm_alert", "Nivel de alerta de la base", ADVSEC_icAlarm, {[] call ADVSEC_fnc_alertOpen}, []] call _add};
+    if ([_player, "plateQuery"] call ADVSEC_fnc_perm) then {["advsec_pm_plate", "Consultar matrícula", ADVSEC_icCar, {[] call ADVSEC_fnc_plateQuery}, []] call _add};
+    if ([_player, "radar"] call ADVSEC_fnc_perm) then {["advsec_pm_radar", "Radar de velocidad (apunta)", ADVSEC_icCar, {[] call ADVSEC_fnc_radarUse}, []] call _add};
+    if ([_player, "k9"] call ADVSEC_fnc_perm) then {
+        ["advsec_pm_k9", ["K9: llamar al perro", "K9: retirar al perro"] select !isNull (_player getVariable ["ADVSEC_k9", objNull]), ADVSEC_icSearch, {["toggle", _player] remoteExecCall ["ADVSEC_fnc_k9Server", 2]}, []] call _add;
+        if (!isNull (_player getVariable ["ADVSEC_k9", objNull])) then {
+            ["advsec_pm_sniff", "K9: olfatear lo que apuntas", ADVSEC_icSearch, {["sniff", _player, [cursorObject]] remoteExecCall ["ADVSEC_fnc_k9Server", 2]}, []] call _add;
+        };
+    };
+    if ([_player, "suspend"] call ADVSEC_fnc_perm) then {["advsec_ai_susp", "AA.II.: suspensiones", ADVSEC_icPol, {[] call ADVSEC_fnc_susOpen}, []] call _add};
+    if ([_player, "bankAudit"] call ADVSEC_fnc_perm) then {["advsec_ai_bank", "AA.II.: auditoría bancaria", ADVSEC_icSearch, {[] call ADVSEC_fnc_auditOpen}, []] call _add};
+    if ([_player, "bodycamView"] call ADVSEC_fnc_perm) then {["advsec_ai_cam", "AA.II.: cámaras corporales", ADVSEC_icCam, {[] call ADVSEC_fnc_bodyOpen}, []] call _add};
     if ([_player, "playerDB"] call ADVSEC_fnc_perm) then {
         ["advsec_pm_playerdb", "Base de datos de jugadores", ADVSEC_icDoc, {[] call ADVSEC_fnc_pdbOpen}, []] call _add;
     };
@@ -67,6 +87,9 @@ if (isPlayer _target) then {
     } else {
         ["advsec_pm_want", "Declarar buscado", ADVSEC_icPol, {[_target] call ADVSEC_fnc_wantedPrompt}, []] call _add;
     };
+};
+if (isPlayer _target && {[_player, "licenseRevoke"] call ADVSEC_fnc_perm}) then {
+    ["advsec_pm_lic", "Retirar licencia", ADVSEC_icDoc, {[_target] call ADVSEC_fnc_licRevokePrompt}, []] call _add;
 };
 if ([_player, "fine"] call ADVSEC_fnc_perm) then {
     ["advsec_pm_fine", "Multar", ADVSEC_icDoc, {[_target] call ADVSEC_fnc_finePrompt}, []] call _add;

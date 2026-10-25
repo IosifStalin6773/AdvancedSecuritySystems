@@ -4,9 +4,9 @@ class ADVSEC_Settings {
     ranksPM[] = {"Agente", "Cabo", "Sargento", "Teniente", "Capitán"};
     ranksAI[] = {"Inspector", "Inspector jefe", "Comisario", "Comisario jefe", "Director"};
     // Rangos globales (base de datos de jugadores). El primero es "sin rango".
-    ranksGlobal[] = {"Sin rango", "Soldado", "Cabo", "Cabo primero", "Sargento", "Sargento primero", "Brigada", "Subteniente", "Alférez", "Teniente", "Capitán", "Comandante", "Teniente coronel", "Coronel", "General"};
+    ranksGlobal[] = {"Sin rango", "Rct.", "Sdo.", "Sdo 1º.", "Cbo.", "Cbo 1º.", "Cbo M.", "Sgt.", "Sgt 1º.", "Sgt M.", "Brig.", "Tte.", "Cap."};   // ORBAT: Tropa 1-3, Suboficial 4-9, Oficial 10-12 (ver class ADVSEC_Ranks)
     // Rango de Arma 3 que recibe la unidad con cada rango global (mismo orden; "" = no cambiar)
-    ranksGlobalArma[] = {"", "PRIVATE", "CORPORAL", "CORPORAL", "SERGEANT", "SERGEANT", "SERGEANT", "LIEUTENANT", "LIEUTENANT", "LIEUTENANT", "CAPTAIN", "MAJOR", "MAJOR", "COLONEL", "COLONEL"};
+    ranksGlobalArma[] = {"", "PRIVATE", "PRIVATE", "PRIVATE", "CORPORAL", "CORPORAL", "CORPORAL", "SERGEANT", "SERGEANT", "SERGEANT", "LIEUTENANT", "CAPTAIN", "MAJOR"};   // rango de Arma (lo lee THUD; textos en advsec_thud)
     superAdmins[] = {};          // UIDs con acceso al terminal de superadministrador (además de Zeus y los añadidos en partida)
     globalRankSetUnit = 1;       // 1 = aplica setUnitRank según ranksGlobalArma
 
@@ -34,7 +34,18 @@ class ADVSEC_Settings {
         rankPM[] = {"PM", 5};        // asignar rangos PM (solo inferiores al propio)
         rankAI[] = {"AI", 5};        // asignar rangos AA.II. (solo inferiores al propio)
         rankGlobal[] = {"PM", 5};
-        treasury[] = {"PM", 5};     // ver la tesorería de la PM y pagar primas    // asignar rangos globales
+        treasury[] = {"PM", 5};     // ver la tesorería de la PM y pagar primas
+        dutyView[] = {"PM", 3};     // ver agentes de servicio y horas
+        dispatch[] = {"PM", 1};     // central de despacho: aceptar y cerrar avisos
+        suspend[] = {"AI", 4};      // suspender agentes temporalmente
+        alertLevel[] = {"PM", 4};   // cambiar el nivel de alerta de la base
+        plateQuery[] = {"PM", 1};   // consultar matrículas
+        licenseRevoke[] = {"PM", 2}; // retirar licencias
+        bankAudit[] = {"AI", 3};    // auditar cuentas y movimientos sospechosos
+        bankFreeze[] = {"AI", 4};   // congelar cuentas
+        k9[] = {"PM", 2};           // unidad canina
+        radar[] = {"PM", 1};        // radar de velocidad
+        bodycamView[] = {"AI", 2};  // revisar cámaras corporales    // asignar rangos globales
     };
 
     // Evidencias
@@ -60,6 +71,9 @@ class ADVSEC_Settings {
         ownCaseAccess = 20;      // un investigador consulta un expediente en el que figura
         evidenceTamper = 40;     // manipulación de prueba descubierta en auditoría
         fineCancelled = 5;       // anular una multa ajena
+        bribe = 25;              // aceptar un soborno (queda rastro en el banco)
+        suspiciousMoney = 10;    // movimiento de dinero sospechoso con un agente
+        bodycamOff = 5;          // apagar la cámara corporal de servicio
     };
 
     // Cacheo y registro de vehículos
@@ -97,6 +111,32 @@ class ADVSEC_Settings {
         {"ItemRadio", 50}, {"ItemGPS", 150}, {"Binocular", 75}, {"Chemlight_green", 5}, {"SmokeShell", 20}, {"B_AssaultPack_rgr", 120}
     };
 
+    // Servicio, despacho y alerta
+    salaryDutyOnly = 1;          // el plus PM/AA.II. de la nómina solo se cobra de servicio
+    dutyAnywhere = 1;            // 1 = fichar desde el menú propio; 0 = solo en un terminal de fichaje
+    callCooldown = 60;           // segundos entre llamadas al 112 del mismo jugador
+    alertRedIdTypes[] = {"MilitaryID", "IDCard", "MPBadge", "IABadge"};   // en alerta roja los keypads exigen además uno de estos documentos
+    // Vehículos, licencias y fianza
+    dealerVehicles[] = {{"C_Quadbike_01_F", 800}, {"C_Hatchback_01_F", 2500}, {"C_Offroad_01_F", 4000}, {"C_SUV_01_F", 6500}, {"C_Van_01_transport_F", 7000}, {"C_Heli_Light_01_civil_F", 45000}};
+    platePrefix = "ET";          // prefijo de las matrículas
+    licensePrices[] = {{"WeaponLicense", 1500}, {"DriverLicense", 300}, {"PilotLicense", 5000}};
+    bailPerMinute = 50;          // fianza por minuto de condena pendiente (0 = sin fianza)
+    // Corrupción y AA.II.
+    suspiciousAmount = 2000;     // importe a partir del cual un movimiento con un agente es sospechoso
+    weaponRegistryStrict = 1;    // 1 = un casquillo de arma sin registrar no identifica al titular
+    shopRegistersWeapons = 1;    // las armas compradas en tiendas legales quedan registradas
+    blackMarketItems[] = {{"hgun_Pistol_heavy_01_F", 1800}, {"11Rnd_45ACP_Mag", 80}, {"SMG_02_F", 3500}, {"30Rnd_9x21_Mag_SMG_02", 90}, {"APERSMine_Range_Mag", 900}, {"DemoCharge_Remote_Mag", 1500}};
+    // K9 y radar
+    k9Class = "Alsatian_Random_F";
+    k9FindChance = 0.9;          // probabilidad de marcar cada objeto escondido
+    speedLimit = 90;             // km/h
+    speedFineBase = 100;         // multa base por exceso
+    speedFinePerKmh = 5;         // y por cada km/h de más
+    // Discord (requiere una extensión de webhook en el servidor)
+    discordWebhook = "";         // URL del webhook; vacío = desactivado
+    discordExtension = "DiscordEmbedBuilder";   // extensión que hace la petición HTTP
+    discordEvents[] = {"jail", "wantedAdd", "bail", "suspend", "alertLevel", "panic", "plateStolen"};
+
     // Checkpoint IA
     illegalItems[] = {};         // clases que provocan multa/detención en un registro
     checkpointFine = 150;        // multa por circular sin documentación válida
@@ -133,5 +173,44 @@ class ADVSEC_Keys {
     class playerDB { name = "Base de datos de jugadores"; tooltip = "Lista de jugadores y gestión de rangos"; category = "Policía Militar"; key[] = {207, 0, 0, 1}; };
     class wallet { name = "Cartera y banco"; tooltip = "Efectivo, banco, dar dinero (cajero para ingresar y retirar)"; category = "General"; key[] = {210, 0, 0, 1}; };
     class superAdmin { name = "Terminal de superadministrador"; tooltip = "Solo superadministradores / Zeus"; category = "Zeus"; key[] = {207, 0, 1, 1}; };
+    class panic { name = "Botón de pánico"; tooltip = "Avisa a toda la PM con tu posición"; category = "Policía Militar"; key[] = {211, 0, 0, 1}; };
+    class dispatch { name = "Central de despacho"; tooltip = "Avisos 112 y pánicos"; category = "Policía Militar"; key[] = {210, 0, 1, 1}; };
+    class specs { name = "PDA de especialidad"; tooltip = "Metopas: miembros, solicitudes, altas y bajas"; category = "General"; key[] = {199, 0, 1, 1}; };
     class zeusPanel { name = "Panel de seguridad (Zeus)"; tooltip = "Solo Zeus / administrador"; category = "Zeus"; key[] = {210, 1, 1, 0}; };
+};
+
+// Especialidades (metopas). traits: setUnitTrait · ace: variables de ACE en la unidad
+class ADVSEC_Specialties {
+    class JTAC { name = "JTAC"; };
+    class RO { name = "Radio operador"; };
+    class SAN { name = "Sanitario"; traits[] = {{"Medic", 1}}; ace[] = {{"ace_medical_medicClass", 1}}; };
+    class MED { name = "Médico"; traits[] = {{"Medic", 1}}; ace[] = {{"ace_medical_medicClass", 2}}; };
+    class AT { name = "Antitanque (AT)"; };
+    class MG { name = "Ametrallador"; };
+    class ENG { name = "Ingeniero"; traits[] = {{"Engineer", 1}}; ace[] = {{"ace_isEngineer", 2}}; };
+    class EOD { name = "EOD (desactivación)"; traits[] = {{"ExplosiveSpecialist", 1}}; ace[] = {{"ace_isEOD", 1}, {"ace_isEngineer", 1}}; };
+    class AA { name = "Antiaéreo (AA)"; };
+    class GRN { name = "Granadero"; };
+    class TANK { name = "Carrista"; };
+    class PARA { name = "Paracaidista"; };
+    class PILOT { name = "Piloto"; };
+    class LOG { name = "Logística"; traits[] = {{"Engineer", 1}}; ace[] = {{"ace_isEngineer", 1}}; };
+    class ART { name = "Artillería"; };
+    class MRK { name = "Tirador"; };
+};
+
+// Rangos (capa de datos sobre CfgORBAT): índice = posición en ranksGlobal
+class ADVSEC_Ranks {
+    class R1 { abbr = "Rct."; name = "Recluta"; category = "Tropa"; arma = "PRIVATE"; };
+    class R2 { abbr = "Sdo."; name = "Soldado"; category = "Tropa"; arma = "PRIVATE"; };
+    class R3 { abbr = "Sdo 1º."; name = "Soldado primero"; category = "Tropa"; arma = "PRIVATE"; };
+    class R4 { abbr = "Cbo."; name = "Cabo"; category = "Suboficial"; arma = "CORPORAL"; };
+    class R5 { abbr = "Cbo 1º."; name = "Cabo primero"; category = "Suboficial"; arma = "CORPORAL"; };
+    class R6 { abbr = "Cbo M."; name = "Cabo mayor"; category = "Suboficial"; arma = "CORPORAL"; };
+    class R7 { abbr = "Sgt."; name = "Sargento"; category = "Suboficial"; arma = "SERGEANT"; };
+    class R8 { abbr = "Sgt 1º."; name = "Sargento primero"; category = "Suboficial"; arma = "SERGEANT"; };
+    class R9 { abbr = "Sgt M."; name = "Sargento mayor"; category = "Suboficial"; arma = "SERGEANT"; };
+    class R10 { abbr = "Brig."; name = "Brigada"; category = "Oficial"; arma = "LIEUTENANT"; };
+    class R11 { abbr = "Tte."; name = "Teniente"; category = "Oficial"; arma = "CAPTAIN"; };
+    class R12 { abbr = "Cap."; name = "Capitán"; category = "Oficial"; arma = "MAJOR"; };
 };

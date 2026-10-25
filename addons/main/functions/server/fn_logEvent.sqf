@@ -16,3 +16,21 @@ private _max = (["logMax", 5000] call ADVSEC_fnc_cfg);
 if (count _log > _max) then {_log deleteRange [0, count _log - _max]};
 ["log"] call ADVSEC_fnc_dbDirty;
 diag_log (["[ADVSEC] EVENTO"] + _e);
+// Cámara corporal: todo lo que hace un agente con la cámara encendida queda en su grabación
+if (!isNull _actor && {_actor getVariable ["ADVSEC_bodycam", false]}) then {
+    private _bdb = [] call ADVSEC_fnc_bodyDB;
+    private _b = _bdb getOrDefault [getPlayerUID _actor, [name _actor, []]];
+    (_b select 1) pushBack [_e select 0, _type, _e select 5, _data];
+    if (count (_b select 1) > 150) then {(_b select 1) deleteAt 0};
+    _bdb set [getPlayerUID _actor, _b];
+    ["bodycam"] call ADVSEC_fnc_dbDirty;
+};
+// Discord: eventos de discordEvents[]
+if (_type in (["discordEvents", []] call ADVSEC_fnc_setting)) then {
+    [_type, format ["%1%2", ["", (_e select 3) + ": "] select ((_e select 3) isNotEqualTo ""), ((if (_data isEqualType []) then {_data} else {[_data]}) apply {[str _x, _x] select (_x isEqualType "")}) joinString " · "],
+        [13672496, 15158332] select (_type in ["jail", "wantedAdd", "panic", "plateStolen"])] spawn {
+        params ["_t", "_d", "_c"];
+        private _titles = createHashMapFromArray [["jail", "Detención"], ["wantedAdd", "Busca y captura"], ["bail", "Fianza pagada"], ["suspend", "Suspensión de AA.II."], ["alertLevel", "Nivel de alerta"], ["panic", "Botón de pánico"], ["plateStolen", "Vehículo robado"]];
+        [_titles getOrDefault [_t, _t], _d, _c] call ADVSEC_fnc_discord;
+    };
+};

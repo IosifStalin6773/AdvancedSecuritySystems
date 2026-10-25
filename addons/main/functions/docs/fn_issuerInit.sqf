@@ -16,3 +16,9 @@ _obj setVariable ["ADVSEC_issueReq", _req];
     {_args isEqualTo [] || {!isMultiplayer} || {(call BIS_fnc_admin) > 0} || {[_player, _args] call ADVSEC_fnc_accessCheck}},
     "main", _req, 3
 ] call ADVSEC_fnc_addInteraction;
+
+[_obj, "advsec_licenses", "Licencias y registro de armas", ADVSEC_icDoc,
+    {[_target] call ADVSEC_fnc_licOpen},
+    {[] call ADVSEC_fnc_ecoOn},
+    "main", [], 3
+] call ADVSEC_fnc_addInteraction;

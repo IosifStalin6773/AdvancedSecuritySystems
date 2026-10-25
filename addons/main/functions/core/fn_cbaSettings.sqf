@@ -41,7 +41,7 @@ private _names = createHashMapFromArray [
     ["wanted", "Gestionar buscados"], ["arrest", "Arrestar"], ["release", "Liberar"], ["evidenceAnalyze", "Analizar pruebas"],
     ["reportStatus", "Cambiar estado de informes"], ["revokeDoc", "Revocar documentos"], ["caseClose", "AA.II.: cerrar expedientes"],
     ["suspicionView", "AA.II.: ver índice de sospecha"], ["evidenceTamper", "AA.II.: alterar pruebas"], ["evidenceAudit", "AA.II.: auditoría forense"],
-    ["playerDB", "Base de datos de jugadores"], ["rankPM", "Asignar rangos PM"], ["rankAI", "AA.II.: asignar rangos"], ["rankGlobal", "Asignar rangos globales"], ["treasury", "Tesorería de la PM"]
+    ["playerDB", "Base de datos de jugadores"], ["rankPM", "Asignar rangos PM"], ["rankAI", "AA.II.: asignar rangos"], ["rankGlobal", "Asignar rangos globales"], ["treasury", "Tesorería de la PM"], ["dutyView", "Control de servicio"], ["dispatch", "Central de despacho"], ["suspend", "AA.II.: suspender agentes"], ["alertLevel", "Nivel de alerta"], ["plateQuery", "Consultar matrículas"], ["licenseRevoke", "Retirar licencias"], ["bankAudit", "AA.II.: auditoría bancaria"], ["bankFreeze", "AA.II.: congelar cuentas"], ["k9", "Unidad canina"], ["radar", "Radar de velocidad"], ["bodycamView", "AA.II.: cámaras corporales"]
 ];
 {
     private _c = _x;
@@ -68,7 +68,7 @@ private _names = createHashMapFromArray [
 private _rules = createHashMapFromArray [
     ["restrainNoCause", "esposar sin motivo"], ["arrestNoCause", "arrestar sin motivo"], ["arrestNoReport", "arrestar sin acta"],
     ["hitRestrained", "herir a un esposado"], ["earlyRelease", "liberar antes de tiempo"], ["wantedRemovedByOther", "retirar un buscado ajeno"],
-    ["ownCaseAccess", "consultar su propio expediente"], ["evidenceTamper", "manipular pruebas"], ["fineCancelled", "anular una multa ajena"]
+    ["ownCaseAccess", "consultar su propio expediente"], ["evidenceTamper", "manipular pruebas"], ["fineCancelled", "anular una multa ajena"], ["bribe", "aceptar un soborno"], ["suspiciousMoney", "movimiento de dinero sospechoso"], ["bodycamOff", "apagar la cámara corporal"]
 ];
 {
     ["Rules_" + configName _x, "SLIDER", format ["Sospecha por %1", _rules getOrDefault [configName _x, configName _x]], "", "6 · Asuntos Internos", [0, 100, [["Rules", configName _x], getNumber _x] call _num, 0]] call _add;

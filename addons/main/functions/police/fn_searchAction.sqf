@@ -125,6 +125,7 @@ switch (_action) do {
             if (time < _end) exitWith {hint "Registro interrumpido."};
             if (_z == "legs") then {
                 private _p = ["hiddenFindChance", 0.75] call ADVSEC_fnc_setting;
+                if ((_t getVariable ["ADVSEC_k9Mark", -1]) > serverTime) then {_p = 1};   // marcado por el perro K9
                 {if (random 1 < _p) then {ADVSEC_searchFound pushBackUnique _x}} forEach (_t getVariable ["ADVSEC_hidden", []]);
             };
             ADVSEC_searchZones pushBackUnique _z;
