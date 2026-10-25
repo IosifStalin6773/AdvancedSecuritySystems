@@ -1,5 +1,5 @@
 /*
-    [posición, nombre, radio, agentes IA, llamador, dirección, agentesNuevos] (servidor) — control de carretera automático.
+    [posición, nombre, radio, agentes IA, llamador, dirección, agentesNuevos] (servidor) -> ancla — control de carretera automático.
     Si no se le dan agentes crea los suyos (agentesNuevos, por defecto checkpointUnits) con conos de señalización.
     Los agentes dan el alto, se acercan al vehículo, piden la documentación y registran; borrar el ancla en Zeus lo retira todo.
 */
@@ -40,9 +40,20 @@ if (_spawn > 0) then {
     } forEach [[3, 7, 0], [-3, 7, 0], [3, -7, 0], [-3, -7, 0], [0, 9, 0], [0, -9, 0]];
     _owned append _officers;
 };
-{_x setVariable ["ADVSEC_cpPost", [getPosATL _x, getDir _x]]} forEach _officers;
+{
+    _x setVariable ["ADVSEC_cpPost", [getPosATL _x, getDir _x]];
+    // Que el combate no anule las órdenes del control (doMove / doStop)
+    [_x, "AUTOCOMBAT"] remoteExecCall ["disableAI", _x];
+    [_x, "UP"] remoteExecCall ["setUnitPos", _x];
+} forEach _officers;
+// Datos para la limpieza: lo que creó el control y los agentes que solo se tomaron prestados (sincronizados)
+_anchor setVariable ["ADVSEC_cpOwned", _owned];
+_anchor setVariable ["ADVSEC_cpGuests", _officers - _owned];
+_anchor setVariable ["ADVSEC_cpRadius", _radius];
+_anchor setVariable ["ADVSEC_cpName", _name];
+_anchor addEventHandler ["Deleted", {params ["_a"]; [_a, true] call ADVSEC_fnc_cpCleanup}];
 {_x addCuratorEditableObjects [[_anchor] + _owned, true]} forEach allCurators;
 [_anchor, "checkpoint", _name] call ADVSEC_fnc_register;
 ["checkpoint", objNull, [_name, mapGridPosition _pos]] call ADVSEC_fnc_logEvent;
 [_anchor, _pos, _name, _radius, _officers, _owned] spawn ADVSEC_fnc_checkpointLoop;
-_id
+_anchor

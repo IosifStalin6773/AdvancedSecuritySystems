@@ -252,6 +252,7 @@ class CfgFunctions {
             class cpAsk {};
             class cpAskAction {};
             class cpServer {};
+            class cpCleanup {};
             class cpProgress {};
         };
         class keys {

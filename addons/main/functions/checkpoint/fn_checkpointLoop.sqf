@@ -32,10 +32,14 @@ private _goHome = {
     private _post = _u getVariable ["ADVSEC_cpPost", []];
     if (_post isNotEqualTo []) then {[_u, "doMove", _post select 0] call _cmd};
 };
+private _cpId = _anchor getVariable ["ADVSEC_cpId", -1];
+// Localidad: el frenado y las órdenes de IA se ejecutan en la máquina DUEÑA del vehículo/conductor (remoteExec al objeto).
+// El servidor solo decide; si el dueño cambia (otro conductor, HC), el bucle lo detecta y reenvía (ver "owner" más abajo).
 private _hold = {
     params ["_veh", "_stop"];
     _veh setVariable ["ADVSEC_cpHold", _stop, true];
-    if (_stop) then {[_veh] remoteExecCall ["ADVSEC_fnc_cpBrake", _veh]};
+    _veh setVariable ["ADVSEC_cpHoldBy", [nil, _cpId] select _stop, true];
+    if (_stop) then {[_veh, _pos] remoteExecCall ["ADVSEC_fnc_cpBrake", _veh]};
     private _d = driver _veh;
     if (isNull _d || {isPlayer _d}) exitWith {};
     if (_stop) then {
@@ -43,6 +47,7 @@ private _hold = {
         [_d] remoteExecCall ["doStop", _d];
     } else {
         [_d, "MOVE"] remoteExecCall ["enableAI", _d];
+        [_d, -1] remoteExecCall ["forceSpeed", _d];
         [_d, leader _d] remoteExecCall ["doFollow", _d];
     };
 };
@@ -78,7 +83,7 @@ while {!isNull _anchor} do {
     {
         private _veh = _x;
         if !(netId _veh in _state) then {
-            _state set [netId _veh, ["stop", serverTime, _veh, objNull, [], [], 0, false]];
+            _state set [netId _veh, ["stop", serverTime, _veh, objNull, [], [], 0, false, owner _veh, serverTime]];
             [_veh, true] call _hold;
             [_veh, "ALTO", format ["<t font='RobotoCondensedBold'>%1</t><br/>Detenga el vehículo y prepare la documentación.", _name]] call _popup;
             {
@@ -98,6 +103,11 @@ while {!isNull _anchor} do {
         private _moving = speed _veh > 6;
         private _offOk = !isNull _off && {alive _off} && {lifeState _off in ["HEALTHY", "INJURED"]};
         if (_phase != "stop" && {_moving || {_dist > _radius * 3}}) then {[_k, _veh, _off] call _fled; continue};
+        // Cambio de dueño (cambió el conductor, desconexión, HC): el frenado es local, así que se reenvía al nuevo dueño
+        if ((owner _veh) != (_e param [8, -1])) then {
+            _e set [8, owner _veh];
+            [_veh, true] call _hold;
+        };
         if (_phase in ["approach", "ask", "papers", "searchMove", "search"] && {!_offOk}) then {_e set [0, "wait"]; _e set [1, serverTime]; _e set [3, objNull]; continue};
         switch (_phase) do {
             case "stop": {
@@ -118,20 +128,28 @@ while {!isNull _anchor} do {
                 };
             };
             case "approach": {
-                if ((_off distance (_veh modelToWorld [-2.3, 1, 0])) < 2.5 || {serverTime - _t > 30}) then {
+                private _win = _veh modelToWorld [-2.3, 1, 0];
+                // doMove se reenvía cada 2 s al dueño del agente con la posición actual de la ventanilla
+                // (el vehículo pudo moverse al terminar de frenar, o el agente pudo cambiar de máquina)
+                if (serverTime - (_e param [9, 0]) > 2 && {(_off distance _win) >= 2.5}) then {
+                    _e set [9, serverTime];
+                    [_off, "doMove", _win] call _cmd;
+                };
+                if ((_off distance _win) < 2.5 || {serverTime - _t > 30}) then {
                     [_off, "doMove", getPosATL _off] call _cmd;
                     [_off, "doWatch", [_d, _veh] select (isNull _d)] call _cmd;
                     [_off, "papers"] call _anim;
                     _veh setVariable ["ADVSEC_cpShown", []];
                     {
-                        if (isPlayer _x) then {[_veh, name _off, _name] remoteExecCall ["ADVSEC_fnc_cpAsk", _x]};
+                        if (isPlayer _x) then {[_veh, name _off, _name, serverTime + 40] remoteExecCall ["ADVSEC_fnc_cpAsk", _x]};
                     } forEach crew _veh;
                     _e set [0, "ask"]; _e set [1, serverTime];
                 };
             };
             case "ask": {
                 // Espera a que cada jugador pulse "Mostrar documentación" (40 s máx.; si no, cuenta como negativa)
-                private _players = (crew _veh) select {isPlayer _x};
+                // Solo cuentan los jugadores vivos, conscientes y que siguen dentro del vehículo
+                private _players = (crew _veh) select {isPlayer _x && {alive _x} && {lifeState _x in ["HEALTHY", "INJURED"]}};
                 private _shown = _veh getVariable ["ADVSEC_cpShown", []];
                 private _refused = _veh getVariable ["ADVSEC_cpRefused", []];
                 if ((_players findIf {!(getPlayerUID _x in _shown) && {!(getPlayerUID _x in _refused)}}) > -1 && {serverTime - _t < 40}) then {
@@ -164,7 +182,7 @@ while {!isNull _anchor} do {
                         private _fid = [_u, _amt, format ["Circular sin documentación (%1)", _name], _name, ""] call ADVSEC_fnc_fineAdd;
                         _out pushBack format ["%1: sin documentación, multa %2.", name _u, _fid];
                     };
-                } forEach crew _veh;
+                } forEach ((crew _veh) select {alive _x});
                 if (_e param [7, false] && {_arrest isEqualTo []} && {_offOk}) then {
                     private _bb = boundingBoxReal _veh;
                     [_off, "doWatch", objNull] call _cmd;

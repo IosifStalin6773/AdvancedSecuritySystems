@@ -2,7 +2,7 @@ class CfgPatches {
     class AdvancedSecuritySystems {
         name = "Advanced Security Systems";
         author = "oscar";
-        version = "1.9.0";
+        version = "1.9.1";
         requiredVersion = 2.14;
         requiredAddons[] = {"A3_Functions_F", "A3_UI_F", "A3_Weapons_F", "A3_Characters_F", "A3_Modules_F", "A3_Modules_F_Curator"};
         units[] = {
