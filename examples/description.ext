@@ -1,0 +1,123 @@
+// Persistencia en el perfil del SERVIDOR (desde v1.5 también los documentos, por SteamID)
+ADVSEC_persist = 1;
+// Segundos entre guardados a disco y tamaño máximo del registro de eventos
+ADVSEC_saveInterval = 60;
+ADVSEC_logMax = 5000;
+
+// ID militar automático ligado al SteamID en cada aparición
+ADVSEC_autoMilitaryID = 1;
+ADVSEC_militaryIssuer = "Estado Mayor de I.V.M.";
+ADVSEC_militaryClearance = 1;
+
+// Placas automáticas por SteamID (Policía Militar / Asuntos Internos).
+// Desde v1.6 cada entrada puede llevar rango (1-5): "uid" (rango 1) o {"uid", nivel}.
+ADVSEC_pmUIDs[] = {"76561198000000001", {"76561198000000003", 3}};
+ADVSEC_iaUIDs[] = {{"76561198000000002", 3}};
+
+// Clave del archivo en el perfil del servidor para informes, detenidos, buscados, documentos y eventos
+// (misma clave = mismos datos en todas las misiones)
+ADVSEC_reportKey = "ADVSEC_reports_IVM";
+ADVSEC_reportsSelfAction = 1;
+
+// Forzar cerraduras: objeto necesario y segundos
+ADVSEC_breachItem = "ToolKit";
+ADVSEC_breachTime = 20;
+
+// v1.7: con CBA casi todo se configura en partida (Opciones > Opciones de complementos > Advanced Security Systems)
+// y las teclas en Opciones > Controles > Configurar complementos. Lo que pongas aquí es el valor por defecto de la misión.
+// Teclas sin CBA (o por defecto de la misión): {código DIK, shift, ctrl, alt}; {0,0,0,0} desactiva.
+class ADVSEC_Keys {
+    class pda { key[] = {199, 0, 0, 0}; };      // Inicio
+    // class fine { key[] = {0, 0, 0, 0}; };     // ejemplo: sin tecla para multar
+};
+// 1 = llevar la PDA basta para acceder (sin placa/credencial)
+ADVSEC_pdaGrantsAccess = 0;
+
+// v1.6: ajustes de rangos, permisos, evidencias, sospecha, multas y checkpoints.
+// Solo hace falta poner lo que quieras cambiar; el resto sale del addon (CfgSettings.hpp).
+class ADVSEC_Settings {
+    currency = "€";
+    moneyVar = "";                 // p. ej. "cash" si tu misión guarda el dinero en una variable del jugador
+    fineWantedThreshold = 1000;    // deuda pendiente que añade a buscados (0 = nunca)
+    illegalItems[] = {"MineDetector"}; // clases de objeto prohibidas en registros (ejemplo)
+    class Permissions {
+        arrest[] = {"PM", 2};      // {cuerpo, rango mínimo}
+        fineCancel[] = {"PM", 4};
+    };
+};
+
+// Ejemplo de definición de documento propio de la misión
+class ADVSEC_DocumentTypes {
+    class WeaponLicense {
+        displayName = "LICENCIA DE ARMAS";
+        item = "ADVSEC_Permit";
+        icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\rifle_ca.paa";
+        color[] = {0.35, 0.08, 0.08, 0.95};
+        fields[] = {"name", "number", "issuer", "expires", "clearance", "notes"};
+        labels[] = {"Titular", "Nº licencia", "Expedida por", "Caduca", "Categoría", "Armas autorizadas"};
+        clearance = 1;
+    };
+};
+
+// CfgRemoteExec en modo lista blanca (recomendado en servidores públicos).
+// Si la misión ya tiene CfgRemoteExec, copia solo las clases ADVSEC_fnc_* y los comandos.
+// Desde v1.5 las funciones de servidor validan quién llama, así que esta lista es una capa extra, no la única.
+class CfgRemoteExec {
+    class Functions {
+        mode = 1;
+        jip = 1;
+        // Peticiones de clientes al servidor
+        class ADVSEC_fnc_alarmSet { allowedTargets = 2; };
+        class ADVSEC_fnc_breachServer { allowedTargets = 2; };
+        class ADVSEC_fnc_docServer { allowedTargets = 2; };
+        class ADVSEC_fnc_doorSet { allowedTargets = 2; };
+        class ADVSEC_fnc_jailServer { allowedTargets = 2; };
+        class ADVSEC_fnc_keypadServer { allowedTargets = 2; };
+        class ADVSEC_fnc_policeServer { allowedTargets = 2; };
+        class ADVSEC_fnc_repServer { allowedTargets = 2; };
+        class ADVSEC_fnc_wantedServer { allowedTargets = 2; };
+        class ADVSEC_fnc_zeusServer { allowedTargets = 2; };
+        class ADVSEC_fnc_evidenceServer { allowedTargets = 2; };
+        class ADVSEC_fnc_heatServer { allowedTargets = 2; };
+        class ADVSEC_fnc_fineServer { allowedTargets = 2; };
+        class ADVSEC_fnc_queryServer { allowedTargets = 2; };
+        class ADVSEC_fnc_vehServer { allowedTargets = 2; };
+        class ADVSEC_fnc_checkpointInit { allowedTargets = 2; };
+        class ADVSEC_fnc_cpServer { allowedTargets = 2; };
+        class ADVSEC_fnc_pdbServer { allowedTargets = 2; };
+        // Respuestas del servidor a un cliente concreto
+        class ADVSEC_fnc_docGive { allowedTargets = 0; };
+        class ADVSEC_fnc_docView { allowedTargets = 0; };
+        class ADVSEC_fnc_jailClient { allowedTargets = 0; };
+        class ADVSEC_fnc_keypadFeedback { allowedTargets = 0; };
+        class ADVSEC_fnc_policeLocal { allowedTargets = 0; };
+        class ADVSEC_fnc_repClient { allowedTargets = 0; };
+        class ADVSEC_fnc_panelSet { allowedTargets = 0; };
+        class ADVSEC_fnc_evShow { allowedTargets = 0; };
+        class ADVSEC_fnc_evBagMove { allowedTargets = 0; };
+        class ADVSEC_fnc_evAuditBar { allowedTargets = 0; };
+        class ADVSEC_fnc_cpAlert { allowedTargets = 0; };
+        class ADVSEC_fnc_cpBrake { allowedTargets = 0; };
+        class ADVSEC_fnc_cpAsk { allowedTargets = 0; };
+        class ADVSEC_fnc_cpProgress { allowedTargets = 0; };
+        class ADVSEC_fnc_pdbSet { allowedTargets = 0; };
+        // Inicialización de objetos en todas las máquinas (cola JIP)
+        class ADVSEC_fnc_alarmInit { allowedTargets = 0; jip = 1; };
+        class ADVSEC_fnc_cameraInit { allowedTargets = 0; jip = 1; };
+        class ADVSEC_fnc_doorInit { allowedTargets = 0; jip = 1; };
+        class ADVSEC_fnc_issuerInit { allowedTargets = 0; jip = 1; };
+        class ADVSEC_fnc_jailInit { allowedTargets = 0; jip = 1; };
+        class ADVSEC_fnc_keypadInit { allowedTargets = 0; jip = 1; };
+        class ADVSEC_fnc_monitorInit { allowedTargets = 0; jip = 1; };
+        class ADVSEC_fnc_repTerminalInit { allowedTargets = 0; jip = 1; };
+        class ADVSEC_fnc_labInit { allowedTargets = 0; jip = 1; };
+    };
+    // El servidor no está limitado por esta lista: no añadas aquí removeItem, disableAI, etc.
+    class Commands {
+        mode = 1;
+        class hint { allowedTargets = 0; };
+        class systemChat { allowedTargets = 0; };
+        class switchMove { allowedTargets = 0; };
+        class addCuratorEditableObjects { allowedTargets = 2; };
+    };
+};

@@ -1,0 +1,11 @@
+name = "Advanced Security Systems";
+author = "oscar";
+tooltip = "Advanced Security Systems (ADVSEC) 1.9.0";
+overview = "Seguridad, Policía Militar y Asuntos Internos: documentación, cerraduras, keypads, alarmas, CCTV, informes, arrestos, pruebas forenses, multas, controles de carretera IA y PDA. ACE y CBA opcionales.";
+picture = "x\advsec\addons\main\data\overview_ca.paa";
+logo = "x\advsec\addons\main\data\logo_ca.paa";
+logoOver = "x\advsec\addons\main\data\logo_ca.paa";
+logoSmall = "x\advsec\addons\main\data\logo_ca.paa";
+hideName = 0;
+hidePicture = 0;
+dlcColor[] = {0.816, 0.639, 0.188, 1};
