@@ -1,6 +1,6 @@
 # Advanced Security Systems (ADVSEC)
 
-**Versión 1.12.0** · Addon de Arma 3 para servidores con **Policía Militar (PM)** y **Asuntos Internos (AA.II.)**.
+**Versión 1.12.1** · Addon de Arma 3 para servidores con **Policía Militar (PM)** y **Asuntos Internos (AA.II.)**.
 
 ADVSEC reúne en un solo mod:
 - documentación de identidad;
@@ -77,13 +77,13 @@ La carpeta contiene:
 - `addons\advsec_main.pbo`: todo el sistema.
 - `addons\advsec_buildings.pbo`: el edificio de la PM.
 - Las firmas `.bisign` de los tres PBO.
-- `keys\advsec_1.12.0.bikey`.
+- `keys\advsec_1.12.1.bikey`.
 - `mod.cpp`.
 
 ### Servidor dedicado
 
 1. Carga el mod con `-mod=@AdvancedSecuritySystems`. No uses `-serverMod`, porque los clientes también lo necesitan.
-2. Copia `keys\advsec_1.12.0.bikey` a la carpeta `keys` del servidor y borra las claves `advsec_*` antiguas. Los tres PBO están firmados, así que funciona con `verifySignatures = 2`.
+2. Copia `keys\advsec_1.12.1.bikey` a la carpeta `keys` del servidor y borra las claves `advsec_*` antiguas. Los tres PBO están firmados, así que funciona con `verifySignatures = 2`.
 3. Si la misión usa `CfgRemoteExec` en modo lista blanca, copia las clases `ADVSEC_fnc_*` del `description.ext` de ejemplo.
 
 ### Dependencias
@@ -374,6 +374,8 @@ Activa por defecto (`economy = 1`). Funciona en cualquier misión y es compatibl
 - Módulo «Tienda» sobre una mesa, un mostrador o un PNJ. Artículos `clase:precio, ...` o, vacío, la lista `shopItems[]`.
 - Comprar 1 o 5 (efectivo y, si falta, banco). Lo comprado va al uniforme, chaleco o mochila; si no cabe, al suelo.
 - Vender uno: devuelve `sellFactor` del precio.
+- Selector como el del arsenal: pestañas con los iconos del arsenal (solo las que tienen artículos), lista con icono y precio, búsqueda en todas las pestañas, orden por nombre o precio, imagen grande, estadísticas (peso, cadencia, cargador, capacidad, protección) y, para armas, los cargadores y accesorios compatibles que vende la tienda. Doble clic compra. Lo que llevas encima sale en dorado.
+- Cámara orbital sobre tu personaje (arrastrar en el centro, rueda para acercar). Se desactiva con `shopCamera = 0`.
 
 **Tesorería de la PM**
 - Recibe las multas (`fineToTreasury`) y, opcionalmente, las compras (`shopToTreasury`).

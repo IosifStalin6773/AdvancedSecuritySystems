@@ -702,3 +702,51 @@ class ADVSEC_AdminDlg {
         class CloseX: ADVSEC_BtnX { x = 0.9462; y = 0.04; w = 0.0338; h = 0.045; };
     };
 };
+
+// ===== Tienda con selector estilo arsenal =====
+#define SHOP_STAT(N,Y,YB) \
+    class StatL##N: ADVSEC_Label { idc = 8794##N; x = "safezoneX + safezoneW - 0.42"; y = Y; w = 0.40; h = 0.03; }; \
+    class StatB##N: ADVSEC_Bar { idc = 8795##N; x = "safezoneX + safezoneW - 0.42"; y = YB; w = 0.40; h = 0.01; };
+class ADVSEC_ShopDlg {
+    idd = 87900;
+    movingEnable = 0;
+    onUnload = "['off'] call ADVSEC_fnc_shopCam; ADVSEC_shopData = nil";
+    class controlsBackground {
+        class LeftBG: ADVSEC_Panel { x = "safezoneX + 0.01"; y = "safezoneY + 0.01"; w = 0.53; h = "safezoneH - 0.12"; colorBackground[] = {0.110, 0.110, 0.110, 0.92}; };
+        class LeftBorder: ADVSEC_Border { x = "safezoneX + 0.01"; y = "safezoneY + 0.01"; w = 0.53; h = "safezoneH - 0.12"; };
+        class LeftLine: ADVSEC_Line { x = "safezoneX + 0.01"; y = "safezoneY + 0.055"; w = 0.53; h = 0.003; };
+        class RightBG: ADVSEC_Panel { x = "safezoneX + safezoneW - 0.44"; y = "safezoneY + 0.01"; w = 0.43; h = "safezoneH - 0.12"; colorBackground[] = {0.110, 0.110, 0.110, 0.92}; };
+        class RightBorder: ADVSEC_Border { x = "safezoneX + safezoneW - 0.44"; y = "safezoneY + 0.01"; w = 0.43; h = "safezoneH - 0.12"; };
+        class PicBG: RscText { x = "safezoneX + safezoneW - 0.43"; y = "safezoneY + 0.02"; w = 0.41; h = 0.20; colorBackground[] = ADVSEC_COL_FIELD; };
+        class BottomBG: ADVSEC_Panel { x = "safezoneX + 0.01"; y = "safezoneY + safezoneH - 0.10"; w = "safezoneW - 0.02"; h = 0.09; colorBackground[] = {0.110, 0.110, 0.110, 0.92}; };
+        class BottomBar: ADVSEC_Accent { x = "safezoneX + 0.01"; y = "safezoneY + safezoneH - 0.10"; w = 0.004; h = 0.09; };
+        class LCompat: ADVSEC_Label { idc = 87921; text = "COMPATIBLE EN ESTA TIENDA"; font = "RobotoCondensedBold"; x = "safezoneX + safezoneW - 0.43"; y = "safezoneY + 0.575"; w = 0.41; h = 0.03; };
+    };
+    class controls {
+        class Title: ADVSEC_Header { idc = 87901; x = "safezoneX + 0.01"; y = "safezoneY + 0.01"; w = 0.53; h = 0.045; };
+        class Tabs: RscControlsGroupNoHScrollbars { idc = 87904; x = "safezoneX + 0.015"; y = "safezoneY + 0.065"; w = 0.065; h = "safezoneH - 0.185"; class controls {}; };
+        class Search: ADVSEC_Edit { idc = 87906; x = "safezoneX + 0.085"; y = "safezoneY + 0.065"; w = 0.29; h = 0.04; tooltip = "Buscar por nombre o clase"; onKeyUp = "['list'] call ADVSEC_fnc_shopUI"; };
+        class Sort: ADVSEC_Combo { idc = 87905; x = "safezoneX + 0.38"; y = "safezoneY + 0.065"; w = 0.155; h = 0.04; onLBSelChanged = "['list'] call ADVSEC_fnc_shopUI"; };
+        class Cat: ADVSEC_Label { idc = 87902; font = "RobotoCondensedBold"; colorText[] = ADVSEC_COL_ACCENT; x = "safezoneX + 0.085"; y = "safezoneY + 0.11"; w = 0.45; h = 0.035; };
+        class List: ADVSEC_List { idc = 87903; x = "safezoneX + 0.085"; y = "safezoneY + 0.145"; w = 0.45; h = "safezoneH - 0.265"; sizeEx = 0.03; rowHeight = 0.05; onLBSelChanged = "['select'] call ADVSEC_fnc_shopUI"; onLBDblClick = "['buy', 1] call ADVSEC_fnc_shopUI"; };
+        class Pic: RscPictureKeepAspect { idc = 87910; x = "safezoneX + safezoneW - 0.42"; y = "safezoneY + 0.03"; w = 0.39; h = 0.18; };
+        class InfoGroup: RscControlsGroupNoHScrollbars {
+            idc = 87919;
+            x = "safezoneX + safezoneW - 0.43"; y = "safezoneY + 0.23"; w = 0.41; h = 0.19;
+            class controls {
+                class Info: ADVSEC_Struct { idc = 87911; x = 0; y = 0; w = 0.39; h = 0.6; };
+            };
+        };
+        SHOP_STAT(0,"safezoneY + 0.425","safezoneY + 0.457")
+        SHOP_STAT(1,"safezoneY + 0.475","safezoneY + 0.507")
+        SHOP_STAT(2,"safezoneY + 0.525","safezoneY + 0.557")
+        class Compat: ADVSEC_List { idc = 87920; x = "safezoneX + safezoneW - 0.43"; y = "safezoneY + 0.605"; w = 0.41; h = "safezoneH - 0.725"; sizeEx = 0.028; rowHeight = 0.042; onLBSelChanged = "['compat'] call ADVSEC_fnc_shopUI"; };
+        class Money: ADVSEC_Struct { idc = 87930; x = "safezoneX + 0.025"; y = "safezoneY + safezoneH - 0.095"; w = "safezoneW - 0.72"; h = 0.08; };
+        class BtnBuy: ADVSEC_BtnPrimary { idc = 87931; text = "Comprar"; x = "safezoneX + safezoneW - 0.685"; y = "safezoneY + safezoneH - 0.08"; w = 0.13; h = 0.05; action = "['buy', 1] call ADVSEC_fnc_shopUI"; };
+        class BtnBuy5: ADVSEC_Btn { idc = 87932; text = "Comprar × 5"; x = "safezoneX + safezoneW - 0.55"; y = "safezoneY + safezoneH - 0.08"; w = 0.13; h = 0.05; action = "['buy', 5] call ADVSEC_fnc_shopUI"; };
+        class BtnSell: ADVSEC_Btn { idc = 87933; text = "Vender uno"; x = "safezoneX + safezoneW - 0.415"; y = "safezoneY + safezoneH - 0.08"; w = 0.13; h = 0.05; action = "['sell'] call ADVSEC_fnc_shopUI"; };
+        class BtnWallet: ADVSEC_Btn { idc = 87934; text = "Mi cartera"; x = "safezoneX + safezoneW - 0.28"; y = "safezoneY + safezoneH - 0.08"; w = 0.13; h = 0.05; action = "closeDialog 0; [] spawn {sleep 0.1; [] call ADVSEC_fnc_ecoOpen}"; };
+        class BtnClose: ADVSEC_Btn { text = "Cerrar"; x = "safezoneX + safezoneW - 0.145"; y = "safezoneY + safezoneH - 0.08"; w = 0.12; h = 0.05; action = "closeDialog 0"; };
+        class CloseX: ADVSEC_BtnX { x = "safezoneX + 0.5062"; y = "safezoneY + 0.01"; w = 0.0338; h = 0.045; };
+    };
+};

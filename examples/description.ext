@@ -115,6 +115,7 @@ class CfgRemoteExec {
         class ADVSEC_fnc_pdbSet { allowedTargets = 0; };
         class ADVSEC_fnc_adminSet { allowedTargets = 0; };
         class ADVSEC_fnc_ecoGiveItem { allowedTargets = 0; };
+        class ADVSEC_fnc_shopSet { allowedTargets = 0; };
         class ADVSEC_fnc_ecoTakeItem { allowedTargets = 0; };
         class ADVSEC_fnc_specLocal { allowedTargets = 0; };
         class ADVSEC_fnc_dspNotify { allowedTargets = 0; };

@@ -102,6 +102,7 @@ class ADVSEC_Settings {
     salaryFromTreasury = 0;      // 1 = las nóminas salen de la tesorería de la PM
     fineToTreasury = 1;          // las multas cobradas van a la tesorería
     shopToTreasury = 0;          // las compras en tiendas van a la tesorería
+    shopCamera = 1;              // 1 = la tienda enfoca a tu personaje con cámara orbital, como el arsenal
     sellFactor = 0.5;            // parte del precio que devuelve la tienda al vender
     atmAnywhere = 0;             // 1 = ingresar, retirar y transferir sin cajero
     thudCompat = 1;              // publica resourcesFIA, hr y theBoss para el HUD THUD (solo fuera de Antistasi)

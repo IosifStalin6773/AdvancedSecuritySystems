@@ -6,6 +6,9 @@ class RscEdit;
 class RscListBox;
 class RscCombo;
 class RscControlsGroup;
+class RscControlsGroupNoHScrollbars;
+class RscPictureKeepAspect;
+class RscProgress;
 
 // Paleta estilo THUD: panel gris muy oscuro, bordes grises, acento dorado, Roboto Condensed
 #define ADVSEC_COL_PANEL {0.110, 0.110, 0.110, 0.98}
@@ -167,4 +170,17 @@ class ADVSEC_KpBtn: ADVSEC_Btn {
     colorText[] = ADVSEC_COL_TEXT;
     colorBackground[] = ADVSEC_COL_ROW;
     onButtonClick = "['press', ctrlText (_this select 0)] call ADVSEC_fnc_keypadUI";
+};
+
+// Tienda estilo arsenal: pestaña transparente sobre icono y barra de estadística
+class ADVSEC_ShopTab: ADVSEC_Btn {
+    colorBackground[] = {0, 0, 0, 0};
+    colorBackgroundActive[] = {1, 1, 1, 0.08};
+    colorFocused[] = {0, 0, 0, 0};
+    text = "";
+};
+class ADVSEC_Bar: RscProgress {
+    colorFrame[] = {0, 0, 0, 0};
+    colorBar[] = ADVSEC_COL_ACCENT;
+    texture = "#(argb,8,8,3)color(1,1,1,1)";
 };

@@ -1,7 +1,7 @@
 /*
     [acción, llamador, args] (servidor) — economía.
     "wallet" · "deposit" [importe] · "withdraw" [importe] · "transfer" [SteamID, importe] · "give" [unidad, importe]
-    "shop" [tienda] · "buy" [tienda, índice, cantidad] · "sell" [tienda, índice]
+    "shop" [tienda] · "shopData" [tienda] · "buy" [tienda, índice, cantidad] · "sell" [tienda, índice]
     "treasury" · "bonus" [unidad, importe, motivo]
 */
 params ["_action", "_caller", ["_args", []]];
@@ -118,6 +118,12 @@ switch (_action) do {
         } forEach _items;
         ["shop", format ["<t size='1.1'>%1</t> · Efectivo: <t font='RobotoCondensedBold'>%2</t> · Banco: %3<br/><t color='#8C8C8C'>Se paga en efectivo y, si no llega, con el banco.</t>", _name call ADVSEC_fnc_repEsc, ([_caller] call ADVSEC_fnc_ecoCash) call _fmt, (_a select 1) call _fmt], _rows] remoteExecCall ["ADVSEC_fnc_panelSet", _caller];
     };
+    case "shopData": {
+        _args params [["_s", objNull]];
+        if !([_s] call _shopOk) exitWith {};
+        (_s getVariable "ADVSEC_shop") params ["_name", "_items"];
+        [_name, _items, ["sellFactor", 0.5] call ADVSEC_fnc_setting, [_caller] call ADVSEC_fnc_ecoCash, _a select 1, _cur, _s getVariable ["ADVSEC_shopIllegal", false]] remoteExecCall ["ADVSEC_fnc_shopSet", _caller];
+    };
     case "buy": {
         _args params [["_s", objNull], ["_i", -1], ["_n", 1]];
         if !([_s] call _shopOk) exitWith {"Tienes que estar en la tienda." call _say};
@@ -132,7 +138,7 @@ switch (_action) do {
         [_c, _n] remoteExecCall ["ADVSEC_fnc_ecoGiveItem", _caller];
         // Armas de tienda legal: quedan registradas a nombre del comprador
         if (!_illegal && {(["shopRegistersWeapons", 1] call ADVSEC_fnc_setting) isEqualTo 1} && {getNumber (configFile >> "CfgWeapons" >> _c >> "type") in [1, 2, 4]}) then {[_caller, _c] call ADVSEC_fnc_wpnRegister};
-        ["shop", _caller, [_s]] call ADVSEC_fnc_ecoServer;
+        ["shopData", _caller, [_s]] call ADVSEC_fnc_ecoServer;
     };
     case "sell": {
         _args params [["_s", objNull], ["_i", -1]];
@@ -146,7 +152,7 @@ switch (_action) do {
         [_c] remoteExecCall ["ADVSEC_fnc_ecoTakeItem", _caller];
         [_caller, ([_caller] call ADVSEC_fnc_ecoCash) + _v] call ADVSEC_fnc_ecoSetCash;
         [_a, format ["Venta: %1", [_c] call ADVSEC_fnc_ecoItemName], _v] call ADVSEC_fnc_ecoHist;
-        ["shop", _caller, [_s]] call ADVSEC_fnc_ecoServer;
+        ["shopData", _caller, [_s]] call ADVSEC_fnc_ecoServer;
     };
     case "treasury": {
         if !([_caller, "treasury"] call ADVSEC_fnc_perm) exitWith {[_caller, "consultar la tesorería"] call ADVSEC_fnc_deny};

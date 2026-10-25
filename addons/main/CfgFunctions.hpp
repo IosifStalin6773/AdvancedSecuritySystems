@@ -208,6 +208,11 @@ class CfgFunctions {
             class ecoTakeItem {};
             class ecoOpen {};
             class ecoShopOpen {};
+            class shopSet {};
+            class shopUI {};
+            class shopCat {};
+            class shopStats {};
+            class shopCam {};
             class ecoTreasuryOpen {};
             class ecoClient {};
             class atmInit {};
