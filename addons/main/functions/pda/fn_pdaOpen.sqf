@@ -9,6 +9,8 @@ if (_mode isEqualTo "") then {
         default {""};
     };
 };
+// Solo PDA de especialidad: abre las metopas
+if (_mode isEqualTo "" && {"ADVSEC_PDA_SPEC" in _inv}) exitWith {[] call ADVSEC_fnc_specOpen};
 if !(("ADVSEC_PDA_" + _mode) in _inv) exitWith {hint "No llevas ninguna PDA."};
 if !([player, _mode] call ADVSEC_fnc_repAccess) exitWith {
     hint (["La PDA está bloqueada: necesitas placa de Policía Militar.", "La PDA está bloqueada: necesitas credencial de Asuntos Internos."] select (_mode == "AI"));

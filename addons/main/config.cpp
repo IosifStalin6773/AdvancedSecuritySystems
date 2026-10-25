@@ -2,7 +2,7 @@ class CfgPatches {
     class AdvancedSecuritySystems {
         name = "Advanced Security Systems";
         author = "oscar";
-        version = "1.12.1";
+        version = "1.12.2";
         requiredVersion = 2.14;
         requiredAddons[] = {"A3_Functions_F", "A3_UI_F", "A3_Weapons_F", "A3_Characters_F", "A3_Modules_F", "A3_Modules_F_Curator"};
         units[] = {
@@ -13,9 +13,10 @@ class CfgPatches {
             "ADVSEC_ModuleLab", "ADVSEC_ZeusLab", "ADVSEC_ModuleCheckpoint", "ADVSEC_ZeusCheckpoint",
             "ADVSEC_ModuleAdmin", "ADVSEC_ZeusAdmin",
             "ADVSEC_ModuleAtm", "ADVSEC_ZeusAtm", "ADVSEC_ModuleShop", "ADVSEC_ZeusShop",
-            "ADVSEC_ModuleDealer", "ADVSEC_ZeusDealer", "ADVSEC_ModuleDuty", "ADVSEC_ZeusDuty"
+            "ADVSEC_ModuleDealer", "ADVSEC_ZeusDealer", "ADVSEC_ModuleDuty", "ADVSEC_ZeusDuty",
+            "ADVSEC_Box_Equipment", "Item_ADVSEC_Passport", "Item_ADVSEC_IDCard", "Item_ADVSEC_Permit", "Item_ADVSEC_Keycard", "Item_ADVSEC_Key", "Item_ADVSEC_MilitaryID", "Item_ADVSEC_MPBadge", "Item_ADVSEC_IABadge", "Item_ADVSEC_PDA_PM", "Item_ADVSEC_PDA_AI", "Item_ADVSEC_PDA_SPEC", "Item_ADVSEC_EvidenceBag"
         };
-        weapons[] = {"ADVSEC_Passport", "ADVSEC_IDCard", "ADVSEC_Permit", "ADVSEC_Keycard", "ADVSEC_Key", "ADVSEC_MilitaryID", "ADVSEC_MPBadge", "ADVSEC_IABadge", "ADVSEC_PDA_PM", "ADVSEC_PDA_AI", "ADVSEC_EvidenceBag"};
+        weapons[] = {"ADVSEC_Passport", "ADVSEC_IDCard", "ADVSEC_Permit", "ADVSEC_Keycard", "ADVSEC_Key", "ADVSEC_MilitaryID", "ADVSEC_MPBadge", "ADVSEC_IABadge", "ADVSEC_PDA_PM", "ADVSEC_PDA_AI", "ADVSEC_PDA_SPEC", "ADVSEC_EvidenceBag"};
     };
 };
 

@@ -1,6 +1,6 @@
 # Advanced Security Systems (ADVSEC)
 
-**Versión 1.12.1** · Addon de Arma 3 para servidores con **Policía Militar (PM)** y **Asuntos Internos (AA.II.)**.
+**Versión 1.12.2** · Addon de Arma 3 para servidores con **Policía Militar (PM)** y **Asuntos Internos (AA.II.)**.
 
 ADVSEC reúne en un solo mod:
 - documentación de identidad;
@@ -77,13 +77,13 @@ La carpeta contiene:
 - `addons\advsec_main.pbo`: todo el sistema.
 - `addons\advsec_buildings.pbo`: el edificio de la PM.
 - Las firmas `.bisign` de los tres PBO.
-- `keys\advsec_1.12.1.bikey`.
+- `keys\advsec_1.12.2.bikey`.
 - `mod.cpp`.
 
 ### Servidor dedicado
 
 1. Carga el mod con `-mod=@AdvancedSecuritySystems`. No uses `-serverMod`, porque los clientes también lo necesitan.
-2. Copia `keys\advsec_1.12.1.bikey` a la carpeta `keys` del servidor y borra las claves `advsec_*` antiguas. Los tres PBO están firmados, así que funciona con `verifySignatures = 2`.
+2. Copia `keys\advsec_1.12.2.bikey` a la carpeta `keys` del servidor y borra las claves `advsec_*` antiguas. Los tres PBO están firmados, así que funciona con `verifySignatures = 2`.
 3. Si la misión usa `CfgRemoteExec` en modo lista blanca, copia las clases `ADVSEC_fnc_*` del `description.ext` de ejemplo.
 
 ### Dependencias
@@ -531,7 +531,12 @@ Panel de administración total de la PM y AA.II. Pensado para el mando o el staf
 
 ## 12. PDA
 
-Hay dos objetos: **PDA de Policía Militar** (`ADVSEC_PDA_PM`) y **PDA de Asuntos Internos** (`ADVSEC_PDA_AI`). Se abren y cierran con **Inicio**.
+Hay tres objetos: **PDA de Policía Militar** (`ADVSEC_PDA_PM`), **PDA de Asuntos Internos** (`ADVSEC_PDA_AI`) y **PDA de especialidad** (`ADVSEC_PDA_SPEC`, abre las metopas). Se abren y cierran con **Inicio**.
+
+Dónde encontrarlos:
+- **Arsenal**: pestaña de objetos varios (como el detector de minas).
+- **Eden y Zeus**: *Equipo › Objetos de inventario* (`Item_ADVSEC_*`), o la **Caja de material ADVSEC** (`ADVSEC_Box_Equipment`, en cajas de munición) con PDA, placas, documentos y bolsas de pruebas.
+- **Por script**: `player addItem "ADVSEC_PDA_PM";`
 
 - **Pestañas:** Inicio, Informes / Expedientes, Denuncias y Buscados.
 - **Accesos directos de PM:** consulta central, nuevo informe, denuncias, registro de pruebas, buscados y mis documentos.

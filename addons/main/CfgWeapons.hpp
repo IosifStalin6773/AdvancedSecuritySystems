@@ -69,6 +69,11 @@ class CfgWeapons {
         descriptionShort = "Terminal de campo AA.II.: expedientes y denuncias recibidas. Tecla Inicio.";
         picture = "\x\advsec\addons\main\data\pda_ai_ca.paa";
     };
+    class ADVSEC_PDA_SPEC: ADVSEC_PDA_PM {
+        displayName = "PDA de especialidad";
+        descriptionShort = "Metopas: miembros, solicitudes, altas y bajas. Tecla Inicio (o Ctrl+Alt+Inicio sin PDA).";
+        picture = "\x\advsec\addons\main\data\pda_pm_ca.paa";
+    };
     class ADVSEC_EvidenceBag: ADVSEC_ItemBase {
         scope = 2;
         displayName = "Bolsa de pruebas";

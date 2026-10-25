@@ -421,4 +421,43 @@ class CfgVehicles {
         icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\intel_ca.paa";
         ADVSEC_kind = "admin";
     };
+    // Objetos sueltos en Eden/Zeus (Equipo > Objetos de inventario) y caja con todo el material ADVSEC
+    class Item_Base_F;
+#define ADVSEC_GROUND(C,N) class Item_##C: Item_Base_F { scope = 2; scopeCurator = 2; author = "oscar"; displayName = N; editorCategory = "EdCat_Equipment"; editorSubcategory = "EdSubcat_InventoryItems"; vehicleClass = "Items"; class TransportItems { class C { name = #C; count = 1; }; }; }
+    ADVSEC_GROUND(ADVSEC_Passport,"Pasaporte");
+    ADVSEC_GROUND(ADVSEC_IDCard,"Tarjeta de identificación");
+    ADVSEC_GROUND(ADVSEC_Permit,"Permiso");
+    ADVSEC_GROUND(ADVSEC_Keycard,"Tarjeta de acceso");
+    ADVSEC_GROUND(ADVSEC_Key,"Llave");
+    ADVSEC_GROUND(ADVSEC_MilitaryID,"Identificación militar");
+    ADVSEC_GROUND(ADVSEC_MPBadge,"Placa de Policía Militar");
+    ADVSEC_GROUND(ADVSEC_IABadge,"Credencial de Asuntos Internos");
+    ADVSEC_GROUND(ADVSEC_PDA_PM,"PDA de Policía Militar");
+    ADVSEC_GROUND(ADVSEC_PDA_AI,"PDA de Asuntos Internos");
+    ADVSEC_GROUND(ADVSEC_PDA_SPEC,"PDA de especialidad");
+    ADVSEC_GROUND(ADVSEC_EvidenceBag,"Bolsa de pruebas");
+    class Box_NATO_Support_F;
+    class ADVSEC_Box_Equipment: Box_NATO_Support_F {
+        scope = 2;
+        scopeCurator = 2;
+        author = "oscar";
+        displayName = "Caja de material ADVSEC (PDA, placas, documentos)";
+        class TransportWeapons {};
+        class TransportMagazines {};
+        class TransportBackpacks {};
+        class TransportItems {
+            class _xx_ADVSEC_Passport { name = "ADVSEC_Passport"; count = 10; };
+            class _xx_ADVSEC_IDCard { name = "ADVSEC_IDCard"; count = 10; };
+            class _xx_ADVSEC_Permit { name = "ADVSEC_Permit"; count = 10; };
+            class _xx_ADVSEC_Keycard { name = "ADVSEC_Keycard"; count = 10; };
+            class _xx_ADVSEC_Key { name = "ADVSEC_Key"; count = 10; };
+            class _xx_ADVSEC_MilitaryID { name = "ADVSEC_MilitaryID"; count = 10; };
+            class _xx_ADVSEC_MPBadge { name = "ADVSEC_MPBadge"; count = 10; };
+            class _xx_ADVSEC_IABadge { name = "ADVSEC_IABadge"; count = 5; };
+            class _xx_ADVSEC_PDA_PM { name = "ADVSEC_PDA_PM"; count = 10; };
+            class _xx_ADVSEC_PDA_AI { name = "ADVSEC_PDA_AI"; count = 5; };
+            class _xx_ADVSEC_PDA_SPEC { name = "ADVSEC_PDA_SPEC"; count = 16; };
+            class _xx_ADVSEC_EvidenceBag { name = "ADVSEC_EvidenceBag"; count = 20; };
+        };
+    };
 };
