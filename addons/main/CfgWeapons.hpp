@@ -69,11 +69,27 @@ class CfgWeapons {
         descriptionShort = "Terminal de campo AA.II.: expedientes y denuncias recibidas. Tecla Inicio.";
         picture = "\x\advsec\addons\main\data\pda_ai_ca.paa";
     };
-    class ADVSEC_PDA_SPEC: ADVSEC_PDA_PM {
-        displayName = "PDA de especialidad";
-        descriptionShort = "Metopas: miembros, solicitudes, altas y bajas. Tecla Inicio (o Ctrl+Alt+Inicio sin PDA).";
-        picture = "\x\advsec\addons\main\data\pda_pm_ca.paa";
+    // Una PDA por metopa: abre directamente la gestión de esa especialidad
+    class ADVSEC_PDA_SpecBase: ADVSEC_PDA_PM {
+        scope = 1;
+        descriptionShort = "PDA de metopa: miembros, solicitudes, altas y bajas. Tecla Inicio.";
     };
+    class ADVSEC_PDA_JTAC: ADVSEC_PDA_SpecBase { scope = 2; displayName = "PDA de metopa: JTAC"; picture = "\x\advsec\addons\main\data\pda_spec_jtac_ca.paa"; };
+    class ADVSEC_PDA_RO: ADVSEC_PDA_SpecBase { scope = 2; displayName = "PDA de metopa: Radio operador"; picture = "\x\advsec\addons\main\data\pda_spec_ro_ca.paa"; };
+    class ADVSEC_PDA_SAN: ADVSEC_PDA_SpecBase { scope = 2; displayName = "PDA de metopa: Sanitario"; picture = "\x\advsec\addons\main\data\pda_spec_san_ca.paa"; };
+    class ADVSEC_PDA_MED: ADVSEC_PDA_SpecBase { scope = 2; displayName = "PDA de metopa: Médico"; picture = "\x\advsec\addons\main\data\pda_spec_med_ca.paa"; };
+    class ADVSEC_PDA_AT: ADVSEC_PDA_SpecBase { scope = 2; displayName = "PDA de metopa: Antitanque (AT)"; picture = "\x\advsec\addons\main\data\pda_spec_at_ca.paa"; };
+    class ADVSEC_PDA_MG: ADVSEC_PDA_SpecBase { scope = 2; displayName = "PDA de metopa: Ametrallador"; picture = "\x\advsec\addons\main\data\pda_spec_mg_ca.paa"; };
+    class ADVSEC_PDA_ENG: ADVSEC_PDA_SpecBase { scope = 2; displayName = "PDA de metopa: Ingeniero"; picture = "\x\advsec\addons\main\data\pda_spec_eng_ca.paa"; };
+    class ADVSEC_PDA_EOD: ADVSEC_PDA_SpecBase { scope = 2; displayName = "PDA de metopa: EOD (desactivación)"; picture = "\x\advsec\addons\main\data\pda_spec_eod_ca.paa"; };
+    class ADVSEC_PDA_AA: ADVSEC_PDA_SpecBase { scope = 2; displayName = "PDA de metopa: Antiaéreo (AA)"; picture = "\x\advsec\addons\main\data\pda_spec_aa_ca.paa"; };
+    class ADVSEC_PDA_GRN: ADVSEC_PDA_SpecBase { scope = 2; displayName = "PDA de metopa: Granadero"; picture = "\x\advsec\addons\main\data\pda_spec_grn_ca.paa"; };
+    class ADVSEC_PDA_TANK: ADVSEC_PDA_SpecBase { scope = 2; displayName = "PDA de metopa: Carrista"; picture = "\x\advsec\addons\main\data\pda_spec_tank_ca.paa"; };
+    class ADVSEC_PDA_PARA: ADVSEC_PDA_SpecBase { scope = 2; displayName = "PDA de metopa: Paracaidista"; picture = "\x\advsec\addons\main\data\pda_spec_para_ca.paa"; };
+    class ADVSEC_PDA_PILOT: ADVSEC_PDA_SpecBase { scope = 2; displayName = "PDA de metopa: Piloto"; picture = "\x\advsec\addons\main\data\pda_spec_pilot_ca.paa"; };
+    class ADVSEC_PDA_LOG: ADVSEC_PDA_SpecBase { scope = 2; displayName = "PDA de metopa: Logística"; picture = "\x\advsec\addons\main\data\pda_spec_log_ca.paa"; };
+    class ADVSEC_PDA_ART: ADVSEC_PDA_SpecBase { scope = 2; displayName = "PDA de metopa: Artillería"; picture = "\x\advsec\addons\main\data\pda_spec_art_ca.paa"; };
+    class ADVSEC_PDA_MRK: ADVSEC_PDA_SpecBase { scope = 2; displayName = "PDA de metopa: Tirador"; picture = "\x\advsec\addons\main\data\pda_spec_mrk_ca.paa"; };
     class ADVSEC_EvidenceBag: ADVSEC_ItemBase {
         scope = 2;
         displayName = "Bolsa de pruebas";

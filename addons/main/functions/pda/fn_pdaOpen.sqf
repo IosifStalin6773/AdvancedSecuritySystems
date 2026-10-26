@@ -9,8 +9,13 @@ if (_mode isEqualTo "") then {
         default {""};
     };
 };
-// Solo PDA de especialidad: abre las metopas
-if (_mode isEqualTo "" && {"ADVSEC_PDA_SPEC" in _inv}) exitWith {[] call ADVSEC_fnc_specOpen};
+// Sin PDA de PM/AA.II.: PDA de metopa (una abre su especialidad; varias, la lista)
+if (_mode isEqualTo "") then {
+    private _sp = (("true" configClasses (configFile >> "ADVSEC_Specialties")) apply {configName _x}) select {("ADVSEC_PDA_" + _x) in _inv};
+    if (_sp isNotEqualTo []) then {_mode = ["#" + (_sp select 0), "#"] select (count _sp > 1)};
+};
+if (_mode isEqualTo "#") exitWith {[] call ADVSEC_fnc_specOpen};
+if ((_mode select [0, 1]) isEqualTo "#") exitWith {[_mode select [1]] call ADVSEC_fnc_specPda};
 if !(("ADVSEC_PDA_" + _mode) in _inv) exitWith {hint "No llevas ninguna PDA."};
 if !([player, _mode] call ADVSEC_fnc_repAccess) exitWith {
     hint (["La PDA está bloqueada: necesitas placa de Policía Militar.", "La PDA está bloqueada: necesitas credencial de Asuntos Internos."] select (_mode == "AI"));
