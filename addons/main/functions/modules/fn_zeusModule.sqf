@@ -75,8 +75,8 @@ private _def = switch (_kind) do {
         ["Radio", 6, [["3 m", 3], ["6 m", 6], ["10 m", 10], ["20 m", 20]]]
     ]]};
     case "atm": {["CAJERO AUTOMÁTICO", [["Nombre", "Cajero automático"]]]};
-    case "shop": {["TIENDA", [["Nombre", "Tienda"], ["Artículos «clase:precio, ...» (vacío = lista por defecto)", ""], ["Mercado negro (oculta)", false, "bool"]]]};
-    case "dealer": {["CONCESIONARIO", [["Nombre", "Concesionario"], ["Vehículos «clase:precio, ...» (vacío = lista por defecto)", ""]]]};
+    case "shop": {["TIENDA", [["Nombre", "Tienda"], ["Artículos (vacío = por defecto)", "", ["catalog", "items"]], ["Mercado negro (oculta)", false, "bool"]]]};
+    case "dealer": {["CONCESIONARIO", [["Nombre", "Concesionario"], ["Vehículos (vacío = por defecto)", "", ["catalog", "vehicles"]]]]};
     case "duty": {["TERMINAL DE FICHAJE", [["Nombre", "Fichaje"]]]};
     case "admin": {["TERMINAL DE SUPERADMINISTRADOR", [["Nombre", "Terminal de superadministrador"]]]};
     case "lab": {["LABORATORIO FORENSE", [["Nombre", "Laboratorio forense"]]]};

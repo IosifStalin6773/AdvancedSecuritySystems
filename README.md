@@ -1,6 +1,6 @@
 # Advanced Security Systems (ADVSEC)
 
-**Versión 1.13.0** · Addon de Arma 3 para servidores con **Policía Militar (PM)** y **Asuntos Internos (AA.II.)**.
+**Versión 1.13.1** · Addon de Arma 3 para servidores con **Policía Militar (PM)** y **Asuntos Internos (AA.II.)**.
 
 ADVSEC reúne en un solo mod:
 - documentación de identidad;
@@ -77,13 +77,13 @@ La carpeta contiene:
 - `addons\advsec_main.pbo`: todo el sistema.
 - `addons\advsec_buildings.pbo`: el edificio de la PM.
 - Las firmas `.bisign` de los tres PBO.
-- `keys\advsec_1.13.0.bikey`.
+- `keys\advsec_1.13.1.bikey`.
 - `mod.cpp`.
 
 ### Servidor dedicado
 
 1. Carga el mod con `-mod=@AdvancedSecuritySystems`. No uses `-serverMod`, porque los clientes también lo necesitan.
-2. Copia `keys\advsec_1.13.0.bikey` a la carpeta `keys` del servidor y borra las claves `advsec_*` antiguas. Los tres PBO están firmados, así que funciona con `verifySignatures = 2`.
+2. Copia `keys\advsec_1.13.1.bikey` a la carpeta `keys` del servidor y borra las claves `advsec_*` antiguas. Los tres PBO están firmados, así que funciona con `verifySignatures = 2`.
 3. Si la misión usa `CfgRemoteExec` en modo lista blanca, copia las clases `ADVSEC_fnc_*` del `description.ext` de ejemplo.
 
 ### Dependencias
@@ -371,7 +371,7 @@ Activa por defecto (`economy = 1`). Funciona en cualquier misión y es compatibl
 - Con `salaryFromTreasury = 1` las paga la tesorería de la PM.
 
 **Tiendas**
-- Módulo «Tienda» sobre una mesa, un mostrador o un PNJ. Artículos `clase:precio, ...` o, vacío, la lista `shopItems[]`.
+- Módulo «Tienda» sobre una mesa, un mostrador o un PNJ. Los artículos se eligen con el **selector de catálogo** (Eden y Zeus): 1º desplegable la categoría (las del arsenal), 2º el objeto, con búsqueda; se pone el precio y se añade. Vacío = lista `shopItems[]`. El concesionario usa el mismo selector con categorías de vehículos (motos, coches, camiones, blindados, orugas, helicópteros, aviones, barcos, drones). Por script sigue valiendo `clase:precio, ...`.
 - Comprar 1 o 5 (efectivo y, si falta, banco). Lo comprado va al uniforme, chaleco o mochila; si no cabe, al suelo.
 - Vender uno: devuelve `sellFactor` del precio.
 - Selector como el del arsenal: pestañas con los iconos del arsenal (solo las que tienen artículos), lista con icono y precio, búsqueda en todas las pestañas, orden por nombre o precio, imagen grande, estadísticas (peso, cadencia, cargador, capacidad, protección) y, para armas, los cargadores y accesorios compatibles que vende la tienda. Doble clic compra. Lo que llevas encima sale en dorado.

@@ -5,6 +5,7 @@ private _values = _ctrls apply {
     switch (_kind) do {
         case "combo": {_vals param [lbCurSel _c, _default]};
         case "multi": {(lbSelection _c) apply {_vals select _x}};
+        case "catalog": {_c getVariable ["ADVSEC_val", ""]};
         default {ctrlText _c};
     }
 };

@@ -215,7 +215,7 @@ class CfgVehicles {
         function = "ADVSEC_fnc_moduleShop";
         class Attributes: AttributesBase {
             class Name: Edit { property = "ADVSEC_Shop_Name"; displayName = "Nombre"; typeName = "STRING"; defaultValue = """Tienda"""; };
-            class Items: Edit { property = "ADVSEC_Shop_Items"; displayName = "Artículos"; tooltip = "clase:precio separados por comas, p. ej. FirstAidKit:25, ToolKit:150. Vacío = shopItems (o blackMarketItems si es oculta)."; typeName = "STRING"; defaultValue = """"""; };
+            class Items: Edit { property = "ADVSEC_Shop_Items"; displayName = "Artículos"; tooltip = "Elige categoría y artículo con precio. Vacío = shopItems (o blackMarketItems si es oculta)."; typeName = "STRING"; control = "ADVSEC_CatalogItems"; defaultValue = """"""; };
             class Hidden: CheckboxNumber { property = "ADVSEC_Shop_Hidden"; displayName = "Mercado negro (oculta)"; tooltip = "Sin nombre, solo a menos de 2,5 m; las compras no van a la tesorería ni registran armas."; defaultValue = "0"; };
             class ModuleDescription: ModuleDescription {};
         };
@@ -230,7 +230,7 @@ class CfgVehicles {
         function = "ADVSEC_fnc_moduleDealer";
         class Attributes: AttributesBase {
             class Name: Edit { property = "ADVSEC_Dealer_Name"; displayName = "Nombre"; typeName = "STRING"; defaultValue = """Concesionario"""; };
-            class Items: Edit { property = "ADVSEC_Dealer_Items"; displayName = "Vehículos"; tooltip = "clase:precio separados por comas. Vacío = dealerVehicles de ADVSEC_Settings."; typeName = "STRING"; defaultValue = """"""; };
+            class Items: Edit { property = "ADVSEC_Dealer_Items"; displayName = "Vehículos"; tooltip = "Elige categoría y vehículo con precio. Vacío = dealerVehicles de ADVSEC_Settings."; typeName = "STRING"; control = "ADVSEC_CatalogVehicles"; defaultValue = """"""; };
             class ModuleDescription: ModuleDescription {};
         };
         class ModuleDescription: ModuleDescription {

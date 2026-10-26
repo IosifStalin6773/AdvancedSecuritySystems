@@ -2,9 +2,9 @@ class CfgPatches {
     class AdvancedSecuritySystems {
         name = "Advanced Security Systems";
         author = "oscar";
-        version = "1.13.0";
+        version = "1.13.1";
         requiredVersion = 2.14;
-        requiredAddons[] = {"A3_Functions_F", "A3_UI_F", "A3_Weapons_F", "A3_Characters_F", "A3_Modules_F", "A3_Modules_F_Curator"};
+        requiredAddons[] = {"A3_Functions_F", "A3_UI_F", "A3_Weapons_F", "A3_Characters_F", "A3_Modules_F", "A3_Modules_F_Curator", "3DEN"};
         units[] = {
             "ADVSEC_ModuleCamera", "ADVSEC_ModuleMonitor", "ADVSEC_ModuleKeypad", "ADVSEC_ModuleDoor", "ADVSEC_ModuleAlarm", "ADVSEC_ModuleIssuer",
             "ADVSEC_ZeusCamera", "ADVSEC_ZeusMonitor", "ADVSEC_ZeusKeypad", "ADVSEC_ZeusDoor", "ADVSEC_ZeusAlarm", "ADVSEC_ZeusIssuer",
@@ -37,4 +37,5 @@ class Extended_PreInit_EventHandlers {
 #include "ui\defines.hpp"
 #include "ui\RscTitles.hpp"
 #include "ui\dialogs.hpp"
+#include "ui\Cfg3DEN.hpp"
 #include "ui\pda.hpp"

@@ -8,6 +8,7 @@
       ["a", "b"]               -> desplegable (devuelve el texto)
       [["texto", valor], ...]  -> desplegable (devuelve el valor)
       ["multi", [[texto, valor], ...]] -> selección múltiple (devuelve array de valores)
+      ["catalog", "items"|"vehicles"] -> botón que abre el selector de catálogo (devuelve "clase:precio, ...")
 */
 params ["_title", "_fields", "_code", ["_args", []]];
 if (!createDialog "ADVSEC_ZeusPrompt") exitWith {};
@@ -34,6 +35,7 @@ private _rows = _fields apply {
         case (_type isEqualType [] && {_type isNotEqualTo []} && {(_type select 0) isEqualTo "multi"}): {
             _kind = "multi"; _opts = _type select 1; _h = 0.16;
         };
+        case (_type isEqualType [] && {_type isNotEqualTo []} && {(_type select 0) isEqualTo "catalog"}): {_kind = "catalog"; _opts = [[_type select 1, _type select 1]]};
         case (_type isEqualType [] && {_type isNotEqualTo []} && {(_type select 0) isEqualType []}): {_kind = "combo"; _opts = _type};
         case (_type isEqualType [] && {_type isNotEqualTo []}): {_kind = "combo"; _opts = _type apply {[_x, _x]}};
     };
@@ -75,6 +77,21 @@ private _ctrls = [];
             _c = _disp ctrlCreate ["ADVSEC_Combo", -1];
             {_c lbAdd (_x select 0)} forEach _opts;
             _c lbSetCurSel ((_opts findIf {(_x select 1) isEqualTo _default}) max 0);
+        };
+        case "catalog": {
+            _c = _disp ctrlCreate ["ADVSEC_Btn", -1];
+            _c setVariable ["ADVSEC_val", _default];
+            _c setVariable ["ADVSEC_kind", (_opts select 0) select 0];
+            _c setVariable ["ADVSEC_title", _label];
+            _c ctrlSetText format ["Elegir del catálogo (%1)", count ((_default splitString ",") select {_x find ":" > 0})];
+            _c ctrlAddEventHandler ["ButtonClick", {
+                params ["_b"];
+                [_b getVariable "ADVSEC_kind", _b getVariable ["ADVSEC_val", ""], {
+                    params ["_txt", "_b"];
+                    _b setVariable ["ADVSEC_val", _txt];
+                    _b ctrlSetText format ["Elegir del catálogo (%1)", count ((_txt splitString ",") select {_x find ":" > 0})];
+                }, _b, toUpper (_b getVariable ["ADVSEC_title", "CATÁLOGO"])] call ADVSEC_fnc_catalogOpen;
+            }];
         };
         case "multi": {
             _c = _disp ctrlCreate ["ADVSEC_ListMulti", -1];

@@ -777,3 +777,31 @@ class ADVSEC_BodyLive {
         class CloseX: ADVSEC_BtnX { x = 0.9462; y = 0.04; w = 0.0338; h = 0.045; };
     };
 };
+
+// ===== Selector de catálogo para tiendas y concesionarios (categoría -> objeto) =====
+class ADVSEC_CatalogDlg {
+    idd = 88100;
+    movingEnable = 0;
+    class controlsBackground {
+        class BG: ADVSEC_Panel { x = 0.10; y = 0.10; w = 0.80; h = 0.80; };
+        class Border: ADVSEC_Border { x = 0.10; y = 0.10; w = 0.80; h = 0.80; };
+        class Line: ADVSEC_Line { x = 0.10; y = 0.145; w = 0.80; h = 0.003; };
+        class LCat: ADVSEC_Label { text = "1. Categoría"; x = 0.12; y = 0.16; w = 0.36; h = 0.035; };
+        class LItem: ADVSEC_Label { text = "2. Objeto o vehículo"; x = 0.12; y = 0.255; w = 0.36; h = 0.035; };
+        class LPrice: ADVSEC_Label { text = "Precio"; x = 0.12; y = 0.35; w = 0.10; h = 0.035; };
+        class LList: ADVSEC_Label { text = "EN VENTA"; font = "RobotoCondensedBold"; x = 0.50; y = 0.16; w = 0.38; h = 0.035; };
+    };
+    class controls {
+        class Title: ADVSEC_Header { idc = 88101; x = 0.10; y = 0.10; w = 0.80; h = 0.045; };
+        class Cat: ADVSEC_Combo { idc = 88102; x = 0.12; y = 0.195; w = 0.36; h = 0.045; onLBSelChanged = "[ctrlParent (_this select 0), 'cat'] call ADVSEC_fnc_catalogUI"; };
+        class Search: ADVSEC_Edit { idc = 88106; x = 0.33; y = 0.255; w = 0.15; h = 0.035; tooltip = "Filtrar por nombre o clase"; onKeyUp = "[ctrlParent (_this select 0), 'search'] call ADVSEC_fnc_catalogUI"; };
+        class Item: ADVSEC_Combo { idc = 88103; x = 0.12; y = 0.29; w = 0.36; h = 0.045; };
+        class Price: ADVSEC_Edit { idc = 88104; x = 0.22; y = 0.35; w = 0.12; h = 0.04; };
+        class BtnAdd: ADVSEC_BtnPrimary { text = "Añadir / cambiar precio"; x = 0.12; y = 0.41; w = 0.36; h = 0.05; onButtonClick = "[ctrlParent (_this select 0), 'add'] call ADVSEC_fnc_catalogUI"; };
+        class Info: ADVSEC_Struct { idc = 88110; x = 0.12; y = 0.48; w = 0.36; h = 0.30; };
+        class List: ADVSEC_List { idc = 88105; x = 0.50; y = 0.195; w = 0.38; h = 0.59; sizeEx = 0.03; rowHeight = 0.042; onLBSelChanged = "[ctrlParent (_this select 0), 'pick'] call ADVSEC_fnc_catalogUI"; };
+        class BtnDel: ADVSEC_BtnDanger { text = "Quitar seleccionado"; x = 0.50; y = 0.795; w = 0.38; h = 0.045; onButtonClick = "[ctrlParent (_this select 0), 'remove'] call ADVSEC_fnc_catalogUI"; };
+        class BtnOk: ADVSEC_BtnOk { text = "Aceptar"; x = 0.58; y = 0.85; w = 0.15; h = 0.04; onButtonClick = "[ctrlParent (_this select 0), 'ok'] call ADVSEC_fnc_catalogUI"; };
+        class BtnCancel: ADVSEC_BtnDanger { text = "Cancelar"; x = 0.74; y = 0.85; w = 0.14; h = 0.04; onButtonClick = "[ctrlParent (_this select 0), 'cancel'] call ADVSEC_fnc_catalogUI"; };
+    };
+};

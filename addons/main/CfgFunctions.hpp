@@ -188,6 +188,13 @@ class CfgFunctions {
             class pdbSet {};
             class pdbAction {};
         };
+        class catalog {
+            file = "\x\advsec\addons\main\functions\catalog";
+            class catalogData {};
+            class catalogOpen {};
+            class catalogUI {};
+            class catalogAttr {};
+        };
         class economy {
             file = "\x\advsec\addons\main\functions\economy";
             class ecoOn {};
