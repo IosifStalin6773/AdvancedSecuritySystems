@@ -298,6 +298,12 @@ class CfgFunctions {
         class radar {
             file = "\x\advsec\addons\main\functions\radar";
             class radarUse {};
+            class speedCamInit {};
+            class speedCamConfig {};
+            class speedCamServer {};
+            class speedCamFlash {};
+            class moduleSpeedCam {};
+            class speedCamClass {};
         };
         class bodycam {
             file = "\x\advsec\addons\main\functions\bodycam";

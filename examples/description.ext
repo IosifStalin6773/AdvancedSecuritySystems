@@ -116,6 +116,8 @@ class CfgRemoteExec {
         class ADVSEC_fnc_adminSet { allowedTargets = 0; };
         class ADVSEC_fnc_ecoGiveItem { allowedTargets = 0; };
         class ADVSEC_fnc_shopSet { allowedTargets = 0; };
+        class ADVSEC_fnc_speedCamFlash { allowedTargets = 0; };
+        class ADVSEC_fnc_speedCamServer { allowedTargets = 2; };
         class ADVSEC_fnc_ecoTakeItem { allowedTargets = 0; };
         class ADVSEC_fnc_specLocal { allowedTargets = 0; };
         class ADVSEC_fnc_dspNotify { allowedTargets = 0; };
@@ -137,6 +139,7 @@ class CfgRemoteExec {
         class ADVSEC_fnc_shopInit { allowedTargets = 0; jip = 1; };
         class ADVSEC_fnc_dutyTermInit { allowedTargets = 0; jip = 1; };
         class ADVSEC_fnc_dealerInit { allowedTargets = 0; jip = 1; };
+        class ADVSEC_fnc_speedCamInit { allowedTargets = 0; jip = 1; };
     };
     // El servidor no está limitado por esta lista: no añadas aquí removeItem, disableAI, etc.
     class Commands {

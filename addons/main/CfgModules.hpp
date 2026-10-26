@@ -249,6 +249,23 @@ class CfgVehicles {
             description = "La PM y AA.II. fichan entrada y salida de servicio. Con dutyAnywhere = 0 es el único sitio donde se puede fichar.";
         };
     };
+    class ADVSEC_ModuleSpeedCam: ADVSEC_Module_Base {
+        scope = 2;
+        displayName = "Radar fijo de velocidad";
+        icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\car_ca.paa";
+        function = "ADVSEC_fnc_moduleSpeedCam";
+        class Attributes: AttributesBase {
+            class Name: Edit { property = "ADVSEC_SC_Name"; displayName = "Nombre"; typeName = "STRING"; defaultValue = """Radar"""; };
+            class Limit: Edit { property = "ADVSEC_SC_Limit"; displayName = "Límite (km/h)"; tooltip = "0 = speedLimit de ADVSEC_Settings"; typeName = "NUMBER"; defaultValue = "0"; };
+            class Range: Edit { property = "ADVSEC_SC_Range"; displayName = "Alcance (m)"; typeName = "NUMBER"; defaultValue = "40"; };
+            class FineBase: Edit { property = "ADVSEC_SC_Base"; displayName = "Multa base"; tooltip = "0 = speedFineBase"; typeName = "NUMBER"; defaultValue = "0"; };
+            class FinePer: Edit { property = "ADVSEC_SC_Per"; displayName = "Multa por km/h de más"; tooltip = "0 = speedFinePerKmh"; typeName = "NUMBER"; defaultValue = "0"; };
+            class ModuleDescription: ModuleDescription {};
+        };
+        class ModuleDescription: ModuleDescription {
+            description = "Radar fijo: multa automáticamente a quien pase por encima del límite. Sincronízalo con una cámara (cwa_Kamera) o déjalo solo y la crea. La PM lo configura interactuando con él. Además, toda cwa_Kamera colocada en la misión ya es un radar (speedCamAuto).";
+        };
+    };
     class ADVSEC_ModuleAdmin: ADVSEC_Module_Base {
         scope = 2;
         displayName = "Terminal de superadministrador";
@@ -415,6 +432,11 @@ class CfgVehicles {
         displayName = "Terminal de fichaje (servicio)";
         icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\wait_ca.paa";
         ADVSEC_kind = "duty";
+    };
+    class ADVSEC_ZeusSpeedCam: ADVSEC_Zeus_Base {
+        displayName = "Radar fijo de velocidad";
+        icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\car_ca.paa";
+        ADVSEC_kind = "speedcam";
     };
     class ADVSEC_ZeusAdmin: ADVSEC_Zeus_Base {
         displayName = "Terminal de superadministrador";

@@ -78,6 +78,7 @@ private _def = switch (_kind) do {
     case "shop": {["TIENDA", [["Nombre", "Tienda"], ["Artículos (vacío = por defecto)", "", ["catalog", "items"]], ["Mercado negro (oculta)", false, "bool"]]]};
     case "dealer": {["CONCESIONARIO", [["Nombre", "Concesionario"], ["Vehículos (vacío = por defecto)", "", ["catalog", "vehicles"]]]]};
     case "duty": {["TERMINAL DE FICHAJE", [["Nombre", "Fichaje"]]]};
+    case "speedcam": {["RADAR FIJO", [["Nombre", "Radar"], ["Límite km/h (0 = por defecto)", "0"], ["Alcance (m)", "40"], ["Multa base (0 = por defecto)", "0"], ["Multa por km/h (0 = por defecto)", "0"]]]};
     case "admin": {["TERMINAL DE SUPERADMINISTRADOR", [["Nombre", "Terminal de superadministrador"]]]};
     case "lab": {["LABORATORIO FORENSE", [["Nombre", "Laboratorio forense"]]]};
     case "checkpoint": {["CONTROL DE CARRETERA (IA)", [

@@ -132,7 +132,10 @@ class ADVSEC_Settings {
     k9FindChance = 0.9;          // probabilidad de marcar cada objeto escondido
     speedLimit = 90;             // km/h
     speedFineBase = 100;         // multa base por exceso
-    speedFinePerKmh = 5;         // y por cada km/h de más
+    speedFinePerKmh = 5;
+    speedCamClass = "cwa_Kamera";  // modelo de los radares fijos (CWR²); si no está cargado, Land_HandyCam_F
+    speedCamAuto = 1;            // 1 = toda cámara speedCamClass colocada en la misión es un radar
+    speedCamExemptDuty = 1;      // 1 = la PM de servicio no salta en los radares         // y por cada km/h de más
     // Discord (requiere una extensión de webhook en el servidor)
     discordWebhook = "";         // URL del webhook; vacío = desactivado
     discordExtension = "DiscordEmbedBuilder";   // extensión que hace la petición HTTP

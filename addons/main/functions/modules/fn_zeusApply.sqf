@@ -71,6 +71,10 @@ switch (_kind) do {
         if (isNull _target) then {_target = ["Land_CampingTable_F"] call _spawn};
         [_target, _v#0, _v#1] remoteExecCall ["ADVSEC_fnc_dealerInit", 0, ["ADVSEC_fnc_dealerInit", _target] call _jip];
     };
+    case "speedcam": {
+        if (isNull _target) then {_target = [[] call ADVSEC_fnc_speedCamClass] call _spawn};
+        [_target, _v#0, parseNumber (_v#1), parseNumber (_v#2), parseNumber (_v#3), parseNumber (_v#4)] remoteExecCall ["ADVSEC_fnc_speedCamInit", 0, ["ADVSEC_fnc_speedCamInit", _target] call _jip];
+    };
     case "duty": {
         if (isNull _target) then {_target = ["Land_Laptop_unfolded_F"] call _spawn};
         [_target, _v#0] remoteExecCall ["ADVSEC_fnc_dutyTermInit", 0, ["ADVSEC_fnc_dutyTermInit", _target] call _jip];
