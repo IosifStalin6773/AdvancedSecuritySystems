@@ -1,5 +1,5 @@
 /*
-    Acciones de Policía Militar -> [[id, texto, icono, código, args], ...] (hijos ACE y menú sin ACE)
+    Acciones de Policía Militar -> [[id, texto, icono, código, args, subhijos?], ...] (hijos ACE y menú sin ACE)
     [objetivo, agente, modo] modo: "unit" | "self" | "zeus"
 */
 params ["_target", "_player", ["_mode", "unit"]];
@@ -7,45 +7,53 @@ private _list = [];
 private _add = {_list pushBack _this};
 
 if (_mode == "self") exitWith {
-    ["advsec_pm_unload", "Sacar detenidos del vehículo", ADVSEC_icCar, {[_player] call ADVSEC_fnc_policeUnload}, []] call _add;
-    ["advsec_pm_wanted", "Lista de buscados", ADVSEC_icPol, {[] call ADVSEC_fnc_wantedOpen}, []] call _add;
-    ["advsec_pm_reports", "Archivo de informes", ADVSEC_icDoc, {["BOTH"] call ADVSEC_fnc_repOpen}, []] call _add;
-    ["advsec_pm_incident", "Registrar incidente", ADVSEC_icDoc, {["PM"] call ADVSEC_fnc_repEditorOpen}, []] call _add;
-    ["advsec_pm_query", "Consulta a la central", ADVSEC_icSearch, {[] call ADVSEC_fnc_queryOpen}, []] call _add;
+    // Agrupado en submenús para no saturar el menú de ACE
+    private _grp = {params ["_id", "_t", "_i", "_sub"]; if (_sub isNotEqualTo []) then {_list pushBack [_id, _t, _i, {}, [], _sub]}};
+    private _onDuty = _player getVariable ["ADVSEC_onDuty", false];
+
+    private _srv = [["advsec_pm_duty", ["Fichar ENTRADA de servicio", "Fichar SALIDA de servicio"] select _onDuty, ADVSEC_icJail, {["toggle", _player] remoteExecCall ["ADVSEC_fnc_dutyServer", 2]}, []]];
+    if (_onDuty) then {
+        _srv pushBack ["advsec_pm_cam", ["Encender cámara corporal", "Apagar cámara corporal"] select (_player getVariable ["ADVSEC_bodycam", false]), ADVSEC_icCam, {["bodycam", _player] remoteExecCall ["ADVSEC_fnc_dutyServer", 2]}, []];
+    };
+    _srv pushBack ["advsec_pm_panic", "BOTÓN DE PÁNICO", ADVSEC_icAlarm, {["panic", _player] remoteExecCall ["ADVSEC_fnc_dspServer", 2]}, []];
+    _srv pushBack ["advsec_pm_dsp", "Central de despacho", ADVSEC_icAlarm, {[] call ADVSEC_fnc_dspOpen}, []];
+    if ([_player, "dutyView"] call ADVSEC_fnc_perm) then {_srv pushBack ["advsec_pm_dutyv", "Control de servicio", ADVSEC_icJail, {[] call ADVSEC_fnc_dutyOpen}, []]};
+    if ([_player, "alertLevel"] call ADVSEC_fnc_perm) then {_srv pushBack ["advsec_pm_alert", "Nivel de alerta de la base", ADVSEC_icAlarm, {[] call ADVSEC_fnc_alertOpen}, []]};
+    ["advsec_pm_g_srv", "Servicio", ADVSEC_icJail, _srv] call _grp;
+
+    private _pat = [["advsec_pm_unload", "Sacar detenidos del vehículo", ADVSEC_icCar, {[_player] call ADVSEC_fnc_policeUnload}, []]];
     private _veh = (nearestObjects [_player, ["Car", "Motorcycle", "Tank", "Ship"], 7]) select {alive _x && {isNull objectParent _player}};
     if (_veh isNotEqualTo [] && {[_player, "vehicleSearch"] call ADVSEC_fnc_perm}) then {
-        ["advsec_pm_vehsearch", format ["Registrar %1", getText (configOf (_veh select 0) >> "displayName")], ADVSEC_icCar, {[_args select 0] call ADVSEC_fnc_vehOpen}, [_veh select 0]] call _add;
+        _pat pushBack ["advsec_pm_vehsearch", format ["Registrar %1", getText (configOf (_veh select 0) >> "displayName")], ADVSEC_icCar, {[_args select 0] call ADVSEC_fnc_vehOpen}, [_veh select 0]];
     };
-    if ([_player, "evidenceCollect"] call ADVSEC_fnc_perm) then {
-        ["advsec_pm_scene", "Inspeccionar escena (pruebas)", ADVSEC_icSearch, {["scene", _player] remoteExecCall ["ADVSEC_fnc_evidenceServer", 2]}, []] call _add;
-    };
-    ["advsec_pm_evidence", "Registro de pruebas", ADVSEC_icDoc, {[] call ADVSEC_fnc_evOpen}, []] call _add;
-    if ([_player, "suspicionView"] call ADVSEC_fnc_perm) then {
-        ["advsec_ai_heat", "AA.II.: índice de sospecha", ADVSEC_icPol, {[] call ADVSEC_fnc_heatOpen}, []] call _add;
-    };
-    // Servicio, central, alerta, matrículas, radar, K9 y AA.II.
-    ["advsec_pm_duty", ["Fichar ENTRADA de servicio", "Fichar SALIDA de servicio"] select (_player getVariable ["ADVSEC_onDuty", false]), ADVSEC_icJail, {["toggle", _player] remoteExecCall ["ADVSEC_fnc_dutyServer", 2]}, []] call _add;
-    if (_player getVariable ["ADVSEC_onDuty", false]) then {
-        ["advsec_pm_cam", ["Encender cámara corporal", "Apagar cámara corporal"] select (_player getVariable ["ADVSEC_bodycam", false]), ADVSEC_icCam, {["bodycam", _player] remoteExecCall ["ADVSEC_fnc_dutyServer", 2]}, []] call _add;
-    };
-    ["advsec_pm_dsp", "Central de despacho", ADVSEC_icAlarm, {[] call ADVSEC_fnc_dspOpen}, []] call _add;
-    ["advsec_pm_panic", "BOTÓN DE PÁNICO", ADVSEC_icAlarm, {["panic", _player] remoteExecCall ["ADVSEC_fnc_dspServer", 2]}, []] call _add;
-    if ([_player, "dutyView"] call ADVSEC_fnc_perm) then {["advsec_pm_dutyv", "Control de servicio", ADVSEC_icJail, {[] call ADVSEC_fnc_dutyOpen}, []] call _add};
-    if ([_player, "alertLevel"] call ADVSEC_fnc_perm) then {["advsec_pm_alert", "Nivel de alerta de la base", ADVSEC_icAlarm, {[] call ADVSEC_fnc_alertOpen}, []] call _add};
-    if ([_player, "plateQuery"] call ADVSEC_fnc_perm) then {["advsec_pm_plate", "Consultar matrícula", ADVSEC_icCar, {[] call ADVSEC_fnc_plateQuery}, []] call _add};
-    if ([_player, "radar"] call ADVSEC_fnc_perm) then {["advsec_pm_radar", "Radar de velocidad (apunta)", ADVSEC_icCar, {[] call ADVSEC_fnc_radarUse}, []] call _add};
+    if ([_player, "radar"] call ADVSEC_fnc_perm) then {_pat pushBack ["advsec_pm_radar", "Radar de velocidad (apunta)", ADVSEC_icCar, {[] call ADVSEC_fnc_radarUse}, []]};
     if ([_player, "k9"] call ADVSEC_fnc_perm) then {
-        ["advsec_pm_k9", ["K9: llamar al perro", "K9: retirar al perro"] select !isNull (_player getVariable ["ADVSEC_k9", objNull]), ADVSEC_icSearch, {["toggle", _player] remoteExecCall ["ADVSEC_fnc_k9Server", 2]}, []] call _add;
+        _pat pushBack ["advsec_pm_k9", ["K9: llamar al perro", "K9: retirar al perro"] select !isNull (_player getVariable ["ADVSEC_k9", objNull]), ADVSEC_icSearch, {["toggle", _player] remoteExecCall ["ADVSEC_fnc_k9Server", 2]}, []];
         if (!isNull (_player getVariable ["ADVSEC_k9", objNull])) then {
-            ["advsec_pm_sniff", "K9: olfatear lo que apuntas", ADVSEC_icSearch, {["sniff", _player, [cursorObject]] remoteExecCall ["ADVSEC_fnc_k9Server", 2]}, []] call _add;
+            _pat pushBack ["advsec_pm_sniff", "K9: olfatear lo que apuntas", ADVSEC_icSearch, {["sniff", _player, [cursorObject]] remoteExecCall ["ADVSEC_fnc_k9Server", 2]}, []];
         };
     };
-    if ([_player, "suspend"] call ADVSEC_fnc_perm) then {["advsec_ai_susp", "AA.II.: suspensiones", ADVSEC_icPol, {[] call ADVSEC_fnc_susOpen}, []] call _add};
-    if ([_player, "bankAudit"] call ADVSEC_fnc_perm) then {["advsec_ai_bank", "AA.II.: auditoría bancaria", ADVSEC_icSearch, {[] call ADVSEC_fnc_auditOpen}, []] call _add};
-    if ([_player, "bodycamView"] call ADVSEC_fnc_perm) then {["advsec_ai_cam", "AA.II.: cámaras corporales", ADVSEC_icCam, {[] call ADVSEC_fnc_bodyOpen}, []] call _add};
-    if ([_player, "playerDB"] call ADVSEC_fnc_perm) then {
-        ["advsec_pm_playerdb", "Base de datos de jugadores", ADVSEC_icDoc, {[] call ADVSEC_fnc_pdbOpen}, []] call _add;
+    ["advsec_pm_g_pat", "Patrulla", ADVSEC_icCar, _pat] call _grp;
+
+    private _q = [["advsec_pm_query", "Consulta a la central", ADVSEC_icSearch, {[] call ADVSEC_fnc_queryOpen}, []], ["advsec_pm_wanted", "Lista de buscados", ADVSEC_icPol, {[] call ADVSEC_fnc_wantedOpen}, []]];
+    if ([_player, "plateQuery"] call ADVSEC_fnc_perm) then {_q pushBack ["advsec_pm_plate", "Consultar matrícula", ADVSEC_icCar, {[] call ADVSEC_fnc_plateQuery}, []]};
+    if ([_player, "playerDB"] call ADVSEC_fnc_perm) then {_q pushBack ["advsec_pm_playerdb", "Base de datos de jugadores", ADVSEC_icDoc, {[] call ADVSEC_fnc_pdbOpen}, []]};
+    ["advsec_pm_g_q", "Consultas", ADVSEC_icSearch, _q] call _grp;
+
+    private _rep = [["advsec_pm_reports", "Archivo de informes", ADVSEC_icDoc, {["BOTH"] call ADVSEC_fnc_repOpen}, []], ["advsec_pm_incident", "Registrar incidente", ADVSEC_icDoc, {["PM"] call ADVSEC_fnc_repEditorOpen}, []]];
+    if ([_player, "evidenceCollect"] call ADVSEC_fnc_perm) then {_rep pushBack ["advsec_pm_scene", "Inspeccionar escena (pruebas)", ADVSEC_icSearch, {["scene", _player] remoteExecCall ["ADVSEC_fnc_evidenceServer", 2]}, []]};
+    _rep pushBack ["advsec_pm_evidence", "Registro de pruebas", ADVSEC_icDoc, {[] call ADVSEC_fnc_evOpen}, []];
+    ["advsec_pm_g_rep", "Informes y pruebas", ADVSEC_icDoc, _rep] call _grp;
+
+    private _ai = [];
+    if ([_player, "suspicionView"] call ADVSEC_fnc_perm) then {_ai pushBack ["advsec_ai_heat", "Índice de sospecha", ADVSEC_icPol, {[] call ADVSEC_fnc_heatOpen}, []]};
+    if ([_player, "bodycamView"] call ADVSEC_fnc_perm) then {
+        _ai pushBack ["advsec_ai_live", "Cámaras corporales en directo", ADVSEC_icCam, {["open"] call ADVSEC_fnc_bodyLive}, []];
+        _ai pushBack ["advsec_ai_cam", "Grabaciones de cámaras corporales", ADVSEC_icCam, {[] call ADVSEC_fnc_bodyOpen}, []];
     };
+    if ([_player, "suspend"] call ADVSEC_fnc_perm) then {_ai pushBack ["advsec_ai_susp", "Suspensiones", ADVSEC_icPol, {[] call ADVSEC_fnc_susOpen}, []]};
+    if ([_player, "bankAudit"] call ADVSEC_fnc_perm) then {_ai pushBack ["advsec_ai_bank", "Auditoría bancaria", ADVSEC_icSearch, {[] call ADVSEC_fnc_auditOpen}, []]};
+    ["advsec_pm_g_ai", "Asuntos Internos", ADVSEC_icPol, _ai] call _grp;
     _list
 };
 if (!alive _target) exitWith {_list};

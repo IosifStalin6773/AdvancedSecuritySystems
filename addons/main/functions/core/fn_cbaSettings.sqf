@@ -18,7 +18,6 @@ private _bool = {(_this isEqualTo 1) || {_this isEqualTo true}};
 ["saveInterval", "SLIDER", "Guardado a disco (s)", "Cada cuántos segundos se escriben los datos del servidor en el perfil.", "1 · General", [15, 600, ["saveInterval", 60] call _mis, 0]] call _add;
 ["logMax", "SLIDER", "Tamaño del registro de eventos", "Máximo de eventos guardados (auditoría).", "1 · General", [500, 50000, ["logMax", 5000] call _mis, 0]] call _add;
 ["uiBlur", "CHECKBOX", "Desenfoque tras los menús", "Difumina el fondo al abrir ventanas del mod.", "1 · General", (["uiBlur", 1] call _mis) call _bool] call _add;
-["reportsSelfAction", "CHECKBOX", "Acción propia «Informes PM / AA.II.»", "Muestra el acceso a informes en el menú propio.", "1 · General", (["reportsSelfAction", 1] call _mis) call _bool] call _add;
 ["pdaGrantsAccess", "CHECKBOX", "La PDA basta para acceder", "Llevar la PDA da acceso sin placa ni credencial.", "1 · General", (["pdaGrantsAccess", 0] call _mis) call _bool] call _add;
 
 // --- Documentos

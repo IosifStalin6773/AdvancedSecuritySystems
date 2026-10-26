@@ -1,6 +1,6 @@
 # Advanced Security Systems (ADVSEC)
 
-**Versión 1.12.3** · Addon de Arma 3 para servidores con **Policía Militar (PM)** y **Asuntos Internos (AA.II.)**.
+**Versión 1.13.0** · Addon de Arma 3 para servidores con **Policía Militar (PM)** y **Asuntos Internos (AA.II.)**.
 
 ADVSEC reúne en un solo mod:
 - documentación de identidad;
@@ -77,13 +77,13 @@ La carpeta contiene:
 - `addons\advsec_main.pbo`: todo el sistema.
 - `addons\advsec_buildings.pbo`: el edificio de la PM.
 - Las firmas `.bisign` de los tres PBO.
-- `keys\advsec_1.12.3.bikey`.
+- `keys\advsec_1.13.0.bikey`.
 - `mod.cpp`.
 
 ### Servidor dedicado
 
 1. Carga el mod con `-mod=@AdvancedSecuritySystems`. No uses `-serverMod`, porque los clientes también lo necesitan.
-2. Copia `keys\advsec_1.12.3.bikey` a la carpeta `keys` del servidor y borra las claves `advsec_*` antiguas. Los tres PBO están firmados, así que funciona con `verifySignatures = 2`.
+2. Copia `keys\advsec_1.13.0.bikey` a la carpeta `keys` del servidor y borra las claves `advsec_*` antiguas. Los tres PBO están firmados, así que funciona con `verifySignatures = 2`.
 3. Si la misión usa `CfgRemoteExec` en modo lista blanca, copia las clases `ADVSEC_fnc_*` del `description.ext` de ejemplo.
 
 ### Dependencias
@@ -167,7 +167,7 @@ Las misiones pueden definir tipos propios en `class ADVSEC_DocumentTypes` (por e
 
 ### Interacción
 
-- **Mis documentos** (acción propia o tecla **Insert**): lista de tus documentos para verlos.
+- **Mis documentos** (Mi personaje › Mis documentos, o tecla **Insert**): lista de tus documentos para verlos.
 - **Mostrar documento** (sobre otra persona): le enseñas uno de tus documentos.
 - **Solicitar documentación** (sobre otra persona, o **Ctrl + Insert**): le pides que te enseñe los suyos.
 - **Tarjeta del documento:** aparece en el centro de la pantalla con foto en directo del titular y sello **VÁLIDO / CADUCADO / NO COINCIDE**. La comprobación tiene en cuenta la caducidad y si el SteamID coincide con el de quien la lleva.
@@ -405,6 +405,13 @@ Activa por defecto (`economy = 1`). Funciona en cualquier misión y es compatibl
 - **PDA de la metopa** (la misma para todas, parametrizada): miembros, solicitudes, aceptar, rechazar o dar de baja, añadir jugador. La gestionan sus **encargados**; los nombra un superadministrador.
 - Rasgos automáticos: Sanitario y Médico (`Medic`, ACE `medicClass` 1 y 2), Ingeniero y Logística (`Engineer`), EOD (`ExplosiveSpecialist`, ACE EOD).
 
+**Menú de interacción propio (ACE)**
+Solo tres entradas; todo lo demás va en submenús y solo aparece lo que puedes usar en ese momento:
+- **Mi personaje**: Llamar al 112 · Mis documentos › · Dinero, multas y vehículos › (cartera, multas, fianza, mis vehículos, abrir/cerrar) · Especialidades · Esconder › (ropa, doble fondo).
+- **Policía Militar**: Servicio › (fichar, cámara, pánico, central, control, alerta) · Patrulla › (detenidos, registrar vehículo, radar, K9) · Consultas › (central, buscados, matrícula, base de datos) · Informes y pruebas › · Asuntos Internos ›.
+- **Terminal de superadministrador** (solo superadmins).
+Sin ACE, cada entrada abre una lista con todo («Grupo · acción»).
+
 **Servicio y despacho**
 - Fichar entrada y salida (menú PM o módulo «Terminal de fichaje»; `dutyAnywhere`). Se guardan las horas; el plus PM/AA.II. de la nómina solo se cobra de servicio (`salaryDutyOnly`). De servicio se enciende la **cámara corporal**.
 - **112**: cualquiera llama (acción propia). El aviso va a la patrulla de servicio más cercana (o a toda la PM) con marca en el mapa. **Botón de pánico**: **Alt + Supr**. **Central de despacho**: **Ctrl + Alt + Insert**.
@@ -413,6 +420,7 @@ Activa por defecto (`economy = 1`). Funciona en cualquier misión y es compatibl
 - **Suspensión temporal**: retira rangos PM, AA.II. y global durante X horas de reloj real y los devuelve solos.
 - **Auditoría bancaria**: movimientos sospechosos (agentes implicados o ≥ `suspiciousAmount`), historial de cualquier cuenta y **congelación** (la cuenta congelada solo usa efectivo).
 - **Cámaras corporales**: lo que hace un agente con la cámara encendida queda grabado. Apagarla de servicio suma sospecha.
+- **Cámara en directo** (permiso `bodycamView`): desde la PDA (mosaico «Cámaras corporales») o el menú PM › Asuntos Internos. Imagen en tiempo real de la cámara del agente, con lista de quién está grabando, cambio de agente y rótulo REC, hora y cuadrícula. Cada visionado queda en el registro. Necesita «Imagen en imagen (PiP)» activado en Opciones › Vídeo.
 
 **Base, vehículos y licencias**
 - **Nivel de alerta** (verde, amarillo, rojo): amarillo arma las alarmas; rojo además cierra las puertas controladas y los keypads piden documento. THUD lo muestra en la línea de nivel (`tierWar`).
@@ -539,8 +547,8 @@ Dónde encontrarlos:
 - **Por script**: `player addItem "ADVSEC_PDA_PM";`
 
 - **Pestañas:** Inicio, Informes / Expedientes, Denuncias y Buscados.
-- **Accesos directos de PM:** consulta central, nuevo informe, denuncias, registro de pruebas, buscados y mis documentos.
-- **Accesos directos de AA.II.:** abrir expediente, índice de sospecha, expedientes, consulta central, pruebas y buscados.
+- **Accesos directos de PM:** consulta central, nuevo informe, denuncias, registro de pruebas, buscados (o cámaras corporales, con permiso `bodycamView`) y mis documentos.
+- **Accesos directos de AA.II.:** abrir expediente, índice de sospecha, expedientes, consulta central, pruebas y cámaras corporales en directo.
 - La cabecera muestra rango, nombre, unidad, posición, fecha y hora.
 - Sin placa o credencial la PDA queda bloqueada, salvo con `pdaGrantsAccess = 1`.
 

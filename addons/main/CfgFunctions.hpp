@@ -11,6 +11,8 @@ class CfgFunctions {
             class postInit { postInit = 1; };
             class addInteraction {};
             class addSelfActions {};
+            class selfChildren {};
+            class aceKids {};
             class utcMin {};
             class uidUnit {};
             class rpInit {};
@@ -295,6 +297,7 @@ class CfgFunctions {
             class bodyServer {};
             class bodyDB {};
             class bodyOpen {};
+            class bodyLive {};
         };
         class discord {
             file = "\x\advsec\addons\main\functions\discord";

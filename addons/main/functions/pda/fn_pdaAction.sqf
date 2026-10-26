@@ -55,6 +55,7 @@ switch (_action) do {
             case "listReports": {call _reports};
             case "listPM": {["PM", "!FPM02", "Informes de Policía Militar", 1] call _list};
             case "wanted": {[] call ADVSEC_fnc_wantedOpen};
+            case "bodycam": {["open"] call ADVSEC_fnc_bodyLive};
             case "query": {[] call ADVSEC_fnc_queryOpen};
             case "evidence": {[] call ADVSEC_fnc_evOpen};
             case "heat": {

@@ -750,3 +750,30 @@ class ADVSEC_ShopDlg {
         class CloseX: ADVSEC_BtnX { x = "safezoneX + 0.5062"; y = "safezoneY + 0.01"; w = 0.0338; h = 0.045; };
     };
 };
+
+// ===== Cámara corporal en directo (render-to-texture) =====
+class ADVSEC_BodyLive {
+    idd = 88000;
+    movingEnable = 0;
+    onUnload = "['off'] call ADVSEC_fnc_bodyLive";
+    class controlsBackground {
+        class BG: ADVSEC_Panel { x = 0.02; y = 0.04; w = 0.96; h = 0.92; };
+        class Border: ADVSEC_Border { x = 0.02; y = 0.04; w = 0.96; h = 0.92; };
+        class Line: ADVSEC_Line { x = 0.02; y = 0.085; w = 0.96; h = 0.003; };
+        class VideoBG: RscText { x = 0.26; y = 0.10; w = 0.71; h = 0.73; colorBackground[] = {0, 0, 0, 1}; };
+        class LAg: ADVSEC_Label { text = "AGENTES GRABANDO"; font = "RobotoCondensedBold"; x = 0.03; y = 0.095; w = 0.22; h = 0.035; };
+    };
+    class controls {
+        class Title: ADVSEC_Header { idc = 88001; text = " CÁMARAS CORPORALES · EN DIRECTO"; x = 0.02; y = 0.04; w = 0.96; h = 0.045; };
+        class List: ADVSEC_List { idc = 88002; x = 0.03; y = 0.13; w = 0.22; h = 0.70; sizeEx = 0.03; rowHeight = 0.04; onLBSelChanged = "['select'] call ADVSEC_fnc_bodyLive"; };
+        class Video: RscPicture { idc = 88003; x = 0.26; y = 0.10; w = 0.71; h = 0.73; text = ""; };
+        class Osd: ADVSEC_Struct { idc = 88004; x = 0.27; y = 0.105; w = 0.69; h = 0.05; colorBackground[] = {0, 0, 0, 0.35}; };
+        class Lost: ADVSEC_Struct { idc = 88005; x = 0.26; y = 0.42; w = 0.71; h = 0.08; };
+        class Info: ADVSEC_Struct { idc = 88006; x = 0.03; y = 0.845; w = 0.94; h = 0.045; };
+        class BtnPrev: ADVSEC_Btn { text = "‹ Anterior"; x = 0.03; y = 0.895; w = 0.14; h = 0.05; action = "['step', -1] call ADVSEC_fnc_bodyLive"; };
+        class BtnNext: ADVSEC_Btn { text = "Siguiente ›"; x = 0.18; y = 0.895; w = 0.14; h = 0.05; action = "['step', 1] call ADVSEC_fnc_bodyLive"; };
+        class BtnLog: ADVSEC_Btn { text = "Ver grabación"; x = 0.33; y = 0.895; w = 0.16; h = 0.05; action = "closeDialog 0; [] spawn {sleep 0.1; [] call ADVSEC_fnc_bodyOpen}"; };
+        class BtnClose: ADVSEC_Btn { text = "Cerrar"; x = 0.83; y = 0.895; w = 0.14; h = 0.05; action = "closeDialog 0"; };
+        class CloseX: ADVSEC_BtnX { x = 0.9462; y = 0.04; w = 0.0338; h = 0.045; };
+    };
+};

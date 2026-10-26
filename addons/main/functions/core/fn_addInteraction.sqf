@@ -51,15 +51,7 @@ if (_ace) then {
         [{}, {
             params ["_target", "_player", "_p"];
             _p params ["", "", "_args", "_kids"];
-            (call _kids) apply {
-                _x params ["_cid", "_ctext", "_cicon", "_ccode", "_cargs"];
-                private _child = [
-                    _cid, _ctext, _cicon,
-                    {params ["_target", "_player", "_p"]; _p params ["_code", "_args"]; call _code},
-                    {true}, {}, [_ccode, _cargs]
-                ] call ace_interact_menu_fnc_createAction;
-                [_child, [], _target]
-            }
+            [call _kids, _target] call ADVSEC_fnc_aceKids
         }] select _hasChildren,
         [_statement, _condition, _args, _children],
         _position,

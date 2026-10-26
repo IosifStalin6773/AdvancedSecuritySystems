@@ -1,4 +1,4 @@
-// [acción, llamador, args] (servidor) — cámaras corporales: "list" · "view" [SteamID] (permiso bodycamView)
+// [acción, llamador, args] (servidor) — cámaras corporales: "list" · "view" [SteamID] · "watch" [SteamID] (permiso bodycamView)
 params ["_action", "_caller", ["_args", []]];
 if (!isServer) exitWith {};
 if !([_caller] call ADVSEC_fnc_srvCaller) exitWith {};
@@ -13,6 +13,11 @@ switch (_action) do {
             _rows pushBack [format ["%1%2 · %3 registros", ["", "● "] select _on, _y select 0, count (_y select 1)], _x, format ["<t font='RobotoCondensedBold'>%1</t><br/>SteamID: %2<br/>%3", (_y select 0) call ADVSEC_fnc_repEsc, _x, ["Cámara apagada o fuera de servicio", "<t color='#66FF66'>GRABANDO</t>"] select _on], [[], [0.45, 1, 0.45, 1]] select _on, ""];
         } forEach _db;
         ["bodycam", format ["Agentes con grabaciones: %1 · «Ver grabación» muestra sus acciones registradas", count _rows], _rows] remoteExecCall ["ADVSEC_fnc_panelSet", _caller];
+    };
+    case "watch": {
+        // Visionado en directo: queda en el registro de AA.II.
+        _args params [["_uid", ""]];
+        ["bodycamLive", _caller, [_uid]] call ADVSEC_fnc_logEvent;
     };
     case "view": {
         _args params [["_uid", ""]];

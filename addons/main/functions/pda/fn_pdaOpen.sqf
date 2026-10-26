@@ -35,10 +35,10 @@ ADVSEC_repSelect = "";
 
 private _tiles = if (_ai) then {
     [["Abrir expediente", "documents", "newCase"], ["Índice de sospecha", "danger", "heat"], ["Expedientes", "intel", "listReports"],
-     ["Consulta central", "radio", "query"], ["Registro de pruebas", "box", "evidence"], ["Buscados", "target", "wanted"]]
+     ["Consulta central", "radio", "query"], ["Registro de pruebas", "box", "evidence"], ["Cámaras corporales", "scout", "bodycam"]]
 } else {
     [["Consulta central", "radio", "query"], ["Nuevo informe", "documents", "newReport"], ["Denuncias", "talk", "listComplaints"],
-     ["Registro de pruebas", "box", "evidence"], ["Buscados", "target", "wanted"], ["Mis documentos", "meet", "docs"]]
+     ["Registro de pruebas", "box", "evidence"], [["Buscados", "target", "wanted"], ["Cámaras corporales", "scout", "bodycam"]] select ([player, "bodycamView"] call ADVSEC_fnc_perm), ["Mis documentos", "meet", "docs"]]
 };
 ADVSEC_pdaTiles = _tiles apply {_x select 2};
 {
