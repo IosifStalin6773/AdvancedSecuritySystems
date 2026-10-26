@@ -473,6 +473,7 @@ class CfgVehicles {
     ADVSEC_GROUND(ADVSEC_PDA_ART,"PDA de metopa: Artillería");
     ADVSEC_GROUND(ADVSEC_PDA_MRK,"PDA de metopa: Tirador");
     ADVSEC_GROUND(ADVSEC_EvidenceBag,"Bolsa de pruebas");
+    ADVSEC_GROUND(ADVSEC_SpeedCamKit,"Radar de tráfico portátil");
     class Box_NATO_Support_F;
     class ADVSEC_Box_Equipment: Box_NATO_Support_F {
         scope = 2;
@@ -509,6 +510,7 @@ class CfgVehicles {
             class _xx_ADVSEC_PDA_LOG { name = "ADVSEC_PDA_LOG"; count = 4; };
             class _xx_ADVSEC_PDA_ART { name = "ADVSEC_PDA_ART"; count = 4; };
             class _xx_ADVSEC_PDA_MRK { name = "ADVSEC_PDA_MRK"; count = 4; };
+            class _xx_ADVSEC_SpeedCamKit { name = "ADVSEC_SpeedCamKit"; count = 2; };
             class _xx_ADVSEC_EvidenceBag { name = "ADVSEC_EvidenceBag"; count = 20; };
         };
     };

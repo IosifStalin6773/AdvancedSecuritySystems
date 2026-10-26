@@ -1,6 +1,6 @@
 # Advanced Security Systems (ADVSEC)
 
-**Versión 1.14.0** · Addon de Arma 3 para servidores con **Policía Militar (PM)** y **Asuntos Internos (AA.II.)**.
+**Versión 1.15.0** · Addon de Arma 3 para servidores con **Policía Militar (PM)** y **Asuntos Internos (AA.II.)**.
 
 ADVSEC reúne en un solo mod:
 - documentación de identidad;
@@ -77,13 +77,13 @@ La carpeta contiene:
 - `addons\advsec_main.pbo`: todo el sistema.
 - `addons\advsec_buildings.pbo`: el edificio de la PM.
 - Las firmas `.bisign` de los tres PBO.
-- `keys\advsec_1.14.0.bikey`.
+- `keys\advsec_1.15.0.bikey`.
 - `mod.cpp`.
 
 ### Servidor dedicado
 
 1. Carga el mod con `-mod=@AdvancedSecuritySystems`. No uses `-serverMod`, porque los clientes también lo necesitan.
-2. Copia `keys\advsec_1.14.0.bikey` a la carpeta `keys` del servidor y borra las claves `advsec_*` antiguas. Los tres PBO están firmados, así que funciona con `verifySignatures = 2`.
+2. Copia `keys\advsec_1.15.0.bikey` a la carpeta `keys` del servidor y borra las claves `advsec_*` antiguas. Los tres PBO están firmados, así que funciona con `verifySignatures = 2`.
 3. Si la misión usa `CfgRemoteExec` en modo lista blanca, copia las clases `ADVSEC_fnc_*` del `description.ext` de ejemplo.
 
 ### Dependencias
@@ -434,6 +434,8 @@ Sin ACE, cada entrada abre una lista con todo («Grupo · acción»).
 - **K9** (menú PM): llamar al perro y olfatear vehículos o personas; lo marcado aparece seguro en el registro.
 - **Radar**: apunta a un vehículo; si supera `speedLimit`, multa directa al conductor.
 - **Radares fijos**: toda cámara `cwa_Kamera` (CWR², `speedCamClass`) colocada en la misión es un radar (`speedCamAuto`); también el módulo «Radar fijo de velocidad» (Eden/Zeus), sincronizado con un objeto o solo. Multa automática al conductor que pase por encima del límite dentro del alcance (un aviso por vehículo y minuto), con destello. La PM de servicio está exenta (`speedCamExemptDuty`). Con permiso `radar`, interactuando con el radar: **configurar** (nombre, límite, alcance, multas, activo) y **últimas capturas**.
+- **Radar portátil** (`ADVSEC_SpeedCamKit`, en la Caja de material ADVSEC): con el objeto en el inventario, *Mi personaje › Desplegar radar portátil* lo coloca delante del agente mirando hacia donde mira. Al interactuar con él se abre el **panel del radar**: lectura en directo (velocidad máxima en el alcance), nombre, límite y alcance con botones −/+, multas, sentido (ambos, solo los que se acercan o solo los que se alejan), activo y si la PM de servicio está exenta. Botones Guardar, Capturas y **Recoger** (vuelve al inventario).
+- Al saltar un radar, el **conductor ve un fogonazo blanco** en pantalla y el aviso de la multa; quien esté cerca ve el destello de la cámara.
 - **Discord**: `discordWebhook` + una extensión de servidor (`discordExtension`) envía detenciones, buscados, fianzas, suspensiones, alertas, pánicos y robos.
 
 ---

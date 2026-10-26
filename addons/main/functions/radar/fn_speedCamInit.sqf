@@ -12,8 +12,13 @@ if (isServer) then {
     ["start"] call ADVSEC_fnc_speedCamServer;
 };
 [_obj, "advsec_speedcam_cfg", "Radar: configurar", ADVSEC_icCar,
-    {[_target] call ADVSEC_fnc_speedCamConfig},
+    {["open", _target] call ADVSEC_fnc_radarDlg},
     {[_player, "radar"] call ADVSEC_fnc_perm},
+    "main", [], 3
+] call ADVSEC_fnc_addInteraction;
+[_obj, "advsec_speedcam_pick", "Radar: recoger", ADVSEC_icCar,
+    {["pickup", _player, [_target]] remoteExecCall ["ADVSEC_fnc_speedCamServer", 2]},
+    {[_player, "radar"] call ADVSEC_fnc_perm && {(_target getVariable ["ADVSEC_speedCamPortable", []]) isNotEqualTo []}},
     "main", [], 3
 ] call ADVSEC_fnc_addInteraction;
 [_obj, "advsec_speedcam_log", "Radar: últimas capturas", ADVSEC_icDoc,

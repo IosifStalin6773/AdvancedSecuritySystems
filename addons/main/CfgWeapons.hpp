@@ -90,6 +90,13 @@ class CfgWeapons {
     class ADVSEC_PDA_LOG: ADVSEC_PDA_SpecBase { scope = 2; displayName = "PDA de metopa: Logística"; picture = "\x\advsec\addons\main\data\pda_spec_log_ca.paa"; };
     class ADVSEC_PDA_ART: ADVSEC_PDA_SpecBase { scope = 2; displayName = "PDA de metopa: Artillería"; picture = "\x\advsec\addons\main\data\pda_spec_art_ca.paa"; };
     class ADVSEC_PDA_MRK: ADVSEC_PDA_SpecBase { scope = 2; displayName = "PDA de metopa: Tirador"; picture = "\x\advsec\addons\main\data\pda_spec_mrk_ca.paa"; };
+    class ADVSEC_SpeedCamKit: ADVSEC_ItemBase {
+        scope = 2;
+        displayName = "Radar de tráfico portátil";
+        descriptionShort = "Cámara de velocidad desplegable. Menú propio › Mi personaje › Desplegar radar portátil.";
+        picture = "\x\advsec\addons\main\data\speedcam_ca.paa";
+        class ItemInfo: InventoryItem_Base_F { mass = 60; };
+    };
     class ADVSEC_EvidenceBag: ADVSEC_ItemBase {
         scope = 2;
         displayName = "Bolsa de pruebas";

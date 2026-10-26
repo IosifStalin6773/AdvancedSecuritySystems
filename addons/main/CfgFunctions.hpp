@@ -304,6 +304,7 @@ class CfgFunctions {
             class speedCamFlash {};
             class moduleSpeedCam {};
             class speedCamClass {};
+            class radarDlg {};
         };
         class bodycam {
             file = "\x\advsec\addons\main\functions\bodycam";

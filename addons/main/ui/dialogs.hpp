@@ -805,3 +805,48 @@ class ADVSEC_CatalogDlg {
         class BtnCancel: ADVSEC_BtnDanger { text = "Cancelar"; x = 0.74; y = 0.85; w = 0.14; h = 0.04; onButtonClick = "[ctrlParent (_this select 0), 'cancel'] call ADVSEC_fnc_catalogUI"; };
     };
 };
+
+// ===== Radar de tráfico: panel de configuración =====
+#define RDR_ROW(N,Y,LBL) class L##N: ADVSEC_Label { text = LBL; x = 0.24; y = Y; w = 0.18; h = 0.045; };
+#define RDR_STEP(IDC,Y) \
+    class Minus##IDC: ADVSEC_Btn { idc = 1##IDC; text = "−"; x = 0.43; y = Y; w = 0.05; h = 0.045; onButtonClick = "['step', ctrlIDC (_this select 0)] call ADVSEC_fnc_radarDlg"; }; \
+    class Plus##IDC: ADVSEC_Btn { idc = 2##IDC; text = "+"; x = 0.71; y = Y; w = 0.05; h = 0.045; onButtonClick = "['step', ctrlIDC (_this select 0)] call ADVSEC_fnc_radarDlg"; }; \
+    class E##IDC: ADVSEC_Edit { idc = IDC; x = 0.485; y = Y; w = 0.22; h = 0.045; style = 2; };
+class ADVSEC_RadarDlg {
+    idd = 88200;
+    movingEnable = 0;
+    onUnload = "['off'] call ADVSEC_fnc_radarDlg";
+    class controlsBackground {
+        class BG: ADVSEC_Panel { x = 0.22; y = 0.10; w = 0.56; h = 0.80; };
+        class Border: ADVSEC_Border { x = 0.22; y = 0.10; w = 0.56; h = 0.80; };
+        class Line: ADVSEC_Line { x = 0.22; y = 0.145; w = 0.56; h = 0.003; };
+        class Lcd: RscText { x = 0.24; y = 0.16; w = 0.52; h = 0.15; colorBackground[] = {0.02, 0.05, 0.02, 1}; };
+        class LcdBar: ADVSEC_Accent { x = 0.24; y = 0.16; w = 0.004; h = 0.15; };
+        RDR_ROW(1,0.325,"Nombre")
+        RDR_ROW(2,0.38,"Límite (km/h)")
+        RDR_ROW(3,0.435,"Alcance (m)")
+        RDR_ROW(4,0.49,"Multa base")
+        RDR_ROW(5,0.545,"Multa por km/h de más")
+        RDR_ROW(6,0.60,"Sentido")
+        RDR_ROW(7,0.655,"Estado")
+        RDR_ROW(8,0.71,"PM de servicio")
+    };
+    class controls {
+        class Title: ADVSEC_Header { idc = 88201; x = 0.22; y = 0.10; w = 0.56; h = 0.045; };
+        class Read: ADVSEC_Struct { idc = 88202; x = 0.25; y = 0.165; w = 0.50; h = 0.14; };
+        class Name: ADVSEC_Edit { idc = 88210; x = 0.43; y = 0.325; w = 0.33; h = 0.045; };
+        RDR_STEP(88211,0.38)
+        RDR_STEP(88212,0.435)
+        RDR_STEP(88213,0.49)
+        RDR_STEP(88214,0.545)
+        class Mode: ADVSEC_Combo { idc = 88215; x = 0.43; y = 0.60; w = 0.33; h = 0.045; };
+        class On: ADVSEC_Combo { idc = 88216; x = 0.43; y = 0.655; w = 0.33; h = 0.045; };
+        class Exempt: ADVSEC_Combo { idc = 88217; x = 0.43; y = 0.71; w = 0.33; h = 0.045; };
+        class Info: ADVSEC_Struct { idc = 88203; x = 0.24; y = 0.77; w = 0.52; h = 0.05; };
+        class BtnSave: ADVSEC_BtnPrimary { text = "Guardar"; x = 0.24; y = 0.835; w = 0.125; h = 0.045; action = "['save'] call ADVSEC_fnc_radarDlg"; };
+        class BtnLog: ADVSEC_Btn { text = "Capturas"; x = 0.372; y = 0.835; w = 0.125; h = 0.045; action = "['log'] call ADVSEC_fnc_radarDlg"; };
+        class BtnPick: ADVSEC_Btn { idc = 88221; text = "Recoger"; x = 0.504; y = 0.835; w = 0.125; h = 0.045; action = "['pickup'] call ADVSEC_fnc_radarDlg"; };
+        class BtnClose: ADVSEC_Btn { text = "Cerrar"; x = 0.636; y = 0.835; w = 0.124; h = 0.045; action = "closeDialog 0"; };
+        class CloseX: ADVSEC_BtnX { x = 0.7462; y = 0.10; w = 0.0338; h = 0.045; };
+    };
+};

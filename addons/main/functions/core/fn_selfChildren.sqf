@@ -31,6 +31,9 @@ if (_mine isNotEqualTo []) then {
 };
 ["advsec_me_money", ["Dinero y multas", "Dinero, multas y vehículos"] select _eco, ADVSEC_icDoc, _money] call _grp;
 
+if (_free && {"ADVSEC_SpeedCamKit" in items _player}) then {
+    ["advsec_me_radar", "Desplegar radar portátil", ADVSEC_icCar, {["deploy", _player] remoteExecCall ["ADVSEC_fnc_speedCamServer", 2]}, []] call _add;
+};
 ["advsec_me_specs", "Especialidades (metopas)", ADVSEC_icDoc, {[] call ADVSEC_fnc_specOpen}, []] call _add;
 
 // Esconder cosas (solo si se puede)
