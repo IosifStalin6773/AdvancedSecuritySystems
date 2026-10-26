@@ -40,7 +40,7 @@ switch (_a) do {
                             };
                         } forEach (_cam nearEntities [["LandVehicle"], _range]);
                     };
-                } forEach ((missionNamespace getVariable ["ADVSEC_secObjects", []]) select {!isNull _x && {(_x getVariable ["ADVSEC_speedCam", []]) isNotEqualTo []}});
+                } forEach (((missionNamespace getVariable ["ADVSEC_secObjects", []]) select {(_x select 1) == "speedcam" && {!isNull (_x select 0)}}) apply {_x select 0});
                 sleep 0.5;
             };
         };

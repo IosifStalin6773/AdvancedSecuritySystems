@@ -6,4 +6,4 @@ mainprefix = "x"
 git_hash = 0
 major = 1
 minor = 15
-patch = 0
+patch = 1

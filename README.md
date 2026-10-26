@@ -1,6 +1,6 @@
 # Advanced Security Systems (ADVSEC)
 
-**Versión 1.15.0** · Addon de Arma 3 para servidores con **Policía Militar (PM)** y **Asuntos Internos (AA.II.)**.
+**Versión 1.15.1** · Addon de Arma 3 para servidores con **Policía Militar (PM)** y **Asuntos Internos (AA.II.)**.
 
 ADVSEC reúne en un solo mod:
 - documentación de identidad;
@@ -77,13 +77,13 @@ La carpeta contiene:
 - `addons\advsec_main.pbo`: todo el sistema.
 - `addons\advsec_buildings.pbo`: el edificio de la PM.
 - Las firmas `.bisign` de los tres PBO.
-- `keys\advsec_1.15.0.bikey`.
+- `keys\advsec_1.15.1.bikey`.
 - `mod.cpp`.
 
 ### Servidor dedicado
 
 1. Carga el mod con `-mod=@AdvancedSecuritySystems`. No uses `-serverMod`, porque los clientes también lo necesitan.
-2. Copia `keys\advsec_1.15.0.bikey` a la carpeta `keys` del servidor y borra las claves `advsec_*` antiguas. Los tres PBO están firmados, así que funciona con `verifySignatures = 2`.
+2. Copia `keys\advsec_1.15.1.bikey` a la carpeta `keys` del servidor y borra las claves `advsec_*` antiguas. Los tres PBO están firmados, así que funciona con `verifySignatures = 2`.
 3. Si la misión usa `CfgRemoteExec` en modo lista blanca, copia las clases `ADVSEC_fnc_*` del `description.ext` de ejemplo.
 
 ### Dependencias
