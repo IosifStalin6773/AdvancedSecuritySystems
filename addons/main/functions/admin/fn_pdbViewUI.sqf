@@ -94,11 +94,11 @@ switch (_action) do {
             private _b = _disp displayCtrl (87870 + _i);
             _b ctrlSetText format ["%1%2", _tabNames select _i, [format [" (%1)", _n], ""] select (_n == 0)];
             if (_i == ADVSEC_pdbTab) then {
-                _b ctrlSetBackgroundColor ADVSEC_COL_ACCENT;
-                _b ctrlSetTextColor ADVSEC_COL_DARK;
+                _b ctrlSetBackgroundColor [0.816, 0.639, 0.188, 1];
+                _b ctrlSetTextColor [0.078, 0.078, 0.078, 1];
             } else {
-                _b ctrlSetBackgroundColor ADVSEC_COL_BTN;
-                _b ctrlSetTextColor ADVSEC_COL_TEXTD;
+                _b ctrlSetBackgroundColor [0.157, 0.157, 0.157, 1];
+                _b ctrlSetTextColor [0.667, 0.667, 0.667, 1];
             };
         };
         private _c = _disp displayCtrl 87890;
