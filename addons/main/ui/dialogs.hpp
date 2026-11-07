@@ -694,12 +694,58 @@ class ADVSEC_AdminDlg {
             };
         };
         class BtnRefresh: ADVSEC_Btn { text = "Actualizar"; x = 0.03; y = 0.885; w = 0.16; h = 0.05; action = "['refresh'] call ADVSEC_fnc_adminAction"; };
+        class BtnPlayerDB: ADVSEC_Btn { idc = 87807; text = "Base de datos de jugadores"; x = 0.20; y = 0.885; w = 0.26; h = 0.05; tooltip = "Vista de solo lectura de cada jugador: documentos, sanciones, informes, economía y registro"; action = "closeDialog 0; [] spawn {sleep 0.1; [] call ADVSEC_fnc_pdbViewOpen}"; };
         ADM_BTN(0,0.20)
         ADM_BTN(1,0.355)
         ADM_BTN(2,0.51)
         ADM_BTN(3,0.665)
         ADM_BTN(4,0.82)
         class CloseX: ADVSEC_BtnX { x = 0.9462; y = 0.04; w = 0.0338; h = 0.045; };
+    };
+};
+
+// ===== Base de datos de jugadores (vista de solo lectura, desde la terminal de superadministrador) =====
+class ADVSEC_PlayerDBDlg {
+    idd = 87850;
+    movingEnable = 0;
+    onLoad = "['on'] call ADVSEC_fnc_uiBlur";
+    onUnload = "['off'] call ADVSEC_fnc_uiBlur";
+    class controlsBackground {
+        class BG: ADVSEC_Panel { x = 0.02; y = 0.04; w = 0.96; h = 0.92; };
+        class Border: ADVSEC_Border { x = 0.02; y = 0.04; w = 0.96; h = 0.92; };
+        class Line: ADVSEC_Line { x = 0.02; y = 0.092; w = 0.96; h = 0.003; };
+        class TileBG0: RscText { x = 0.345; y = 0.11; w = 0.1435; h = 0.075; colorBackground[] = ADVSEC_COL_FIELD; };
+        class TileBG1: RscText { x = 0.5005; y = 0.11; w = 0.1435; h = 0.075; colorBackground[] = ADVSEC_COL_FIELD; };
+        class TileBG2: RscText { x = 0.656; y = 0.11; w = 0.1435; h = 0.075; colorBackground[] = ADVSEC_COL_FIELD; };
+        class TileBG3: RscText { x = 0.8115; y = 0.11; w = 0.1435; h = 0.075; colorBackground[] = ADVSEC_COL_FIELD; };
+        class HeadBG: RscText { x = 0.345; y = 0.195; w = 0.61; h = 0.06; colorBackground[] = ADVSEC_COL_FIELD; };
+        class DetailBG: RscText { x = 0.345; y = 0.815; w = 0.61; h = 0.095; colorBackground[] = ADVSEC_COL_FIELD; };
+    };
+    class controls {
+        class Title: ADVSEC_Header { idc = 87851; text = " BASE DE DATOS DE JUGADORES  ·  SOLO LECTURA"; x = 0.04; y = 0.05; w = 0.80; h = 0.04; };
+        class CloseX: ADVSEC_BtnX { x = 0.9462; y = 0.04; w = 0.0338; h = 0.045; action = "closeDialog 0"; };
+        class Search: ADVSEC_Edit { idc = 87852; x = 0.03; y = 0.11; w = 0.30; h = 0.04; tooltip = "Buscar por nombre o SteamID"; onKeyUp = "['filter'] call ADVSEC_fnc_pdbViewUI"; };
+        class Mode: ADVSEC_Combo { idc = 87853; x = 0.03; y = 0.155; w = 0.30; h = 0.04; onLBSelChanged = "['filter'] call ADVSEC_fnc_pdbViewUI"; };
+        class Players: ADVSEC_NBox { idc = 87859; x = 0.03; y = 0.205; w = 0.30; h = 0.69; sizeEx = 0.027; rowHeight = 0.036; onLBSelChanged = "['select'] call ADVSEC_fnc_pdbViewUI"; };
+        class Tile0: RscStructuredText { idc = 87860; x = 0.345; y = 0.11; w = 0.1435; h = 0.075; colorBackground[] = {0, 0, 0, 0}; };
+        class Tile1: RscStructuredText { idc = 87861; x = 0.5005; y = 0.11; w = 0.1435; h = 0.075; colorBackground[] = {0, 0, 0, 0}; };
+        class Tile2: RscStructuredText { idc = 87862; x = 0.656; y = 0.11; w = 0.1435; h = 0.075; colorBackground[] = {0, 0, 0, 0}; };
+        class Tile3: RscStructuredText { idc = 87863; x = 0.8115; y = 0.11; w = 0.1435; h = 0.075; colorBackground[] = {0, 0, 0, 0}; };
+        class Head: ADVSEC_Struct { idc = 87864; x = 0.355; y = 0.20; w = 0.59; h = 0.05; };
+        class Tab0: ADVSEC_Btn { idc = 87870; text = "Resumen"; x = 0.345; y = 0.265; w = 0.0668; h = 0.04; sizeEx = 0.024; action = "['tab', 0] call ADVSEC_fnc_pdbViewUI"; };
+        class Tab1: ADVSEC_Btn { idc = 87871; text = "Documentos"; x = 0.4168; y = 0.265; w = 0.0668; h = 0.04; sizeEx = 0.024; action = "['tab', 1] call ADVSEC_fnc_pdbViewUI"; };
+        class Tab2: ADVSEC_Btn { idc = 87872; text = "Sanciones"; x = 0.4886; y = 0.265; w = 0.0668; h = 0.04; sizeEx = 0.024; action = "['tab', 2] call ADVSEC_fnc_pdbViewUI"; };
+        class Tab3: ADVSEC_Btn { idc = 87873; text = "Informes"; x = 0.5604; y = 0.265; w = 0.0668; h = 0.04; sizeEx = 0.024; action = "['tab', 3] call ADVSEC_fnc_pdbViewUI"; };
+        class Tab4: ADVSEC_Btn { idc = 87874; text = "Sospecha"; x = 0.6322; y = 0.265; w = 0.0668; h = 0.04; sizeEx = 0.024; action = "['tab', 4] call ADVSEC_fnc_pdbViewUI"; };
+        class Tab5: ADVSEC_Btn { idc = 87875; text = "Evidencias"; x = 0.704; y = 0.265; w = 0.0668; h = 0.04; sizeEx = 0.024; action = "['tab', 5] call ADVSEC_fnc_pdbViewUI"; };
+        class Tab6: ADVSEC_Btn { idc = 87876; text = "Economía"; x = 0.7758; y = 0.265; w = 0.0668; h = 0.04; sizeEx = 0.024; action = "['tab', 6] call ADVSEC_fnc_pdbViewUI"; };
+        class Tab7: ADVSEC_Btn { idc = 87877; text = "Especialid."; x = 0.8476; y = 0.265; w = 0.0668; h = 0.04; sizeEx = 0.024; action = "['tab', 7] call ADVSEC_fnc_pdbViewUI"; };
+        class Tab8: ADVSEC_Btn { idc = 87878; text = "Registro"; x = 0.9194; y = 0.265; w = 0.0356; h = 0.04; sizeEx = 0.024; action = "['tab', 8] call ADVSEC_fnc_pdbViewUI"; };
+        class Table: ADVSEC_NBox { idc = 87890; x = 0.345; y = 0.315; w = 0.61; h = 0.49; sizeEx = 0.027; rowHeight = 0.038; onLBSelChanged = "['row'] call ADVSEC_fnc_pdbViewUI"; };
+        class Detail: ADVSEC_Struct { idc = 87891; x = 0.355; y = 0.82; w = 0.59; h = 0.085; };
+        class BtnRefresh: ADVSEC_Btn { idc = 87897; text = "Actualizar"; x = 0.03; y = 0.918; w = 0.14; h = 0.035; action = "['refresh'] call ADVSEC_fnc_pdbViewUI"; };
+        class BtnAdmin: ADVSEC_Btn { idc = 87896; text = "Terminal de superadmin"; x = 0.18; y = 0.918; w = 0.22; h = 0.035; action = "closeDialog 0; [] spawn {sleep 0.1; [] call ADVSEC_fnc_adminOpen}"; };
+        class BtnClose: ADVSEC_Btn { idc = 87898; text = "Cerrar"; x = 0.84; y = 0.918; w = 0.13; h = 0.035; action = "closeDialog 0"; };
     };
 };
 

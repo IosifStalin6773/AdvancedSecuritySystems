@@ -328,6 +328,10 @@ class CfgFunctions {
             class adminOpen {};
             class adminAction {};
             class adminSet {};
+            class pdbViewOpen {};
+            class pdbViewServer {};
+            class pdbViewUI {};
+            class pdbViewSet {};
         };
         class perm {
             file = "\x\advsec\addons\main\functions\perm";
