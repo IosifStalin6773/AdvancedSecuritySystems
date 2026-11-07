@@ -4,6 +4,7 @@ class RscPicture;
 class RscButton;
 class RscEdit;
 class RscListBox;
+class RscListNBox;
 class RscCombo;
 class RscControlsGroup;
 class RscControlsGroupNoHScrollbars;
@@ -160,6 +161,35 @@ class ADVSEC_List: RscListBox {
 };
 class ADVSEC_ListMulti: ADVSEC_List {
     style = 32;
+};
+
+// Tabla de varias columnas (base de datos): misma paleta que ADVSEC_List, sin flechas laterales
+class ADVSEC_NBox: RscListNBox {
+    font = "RobotoCondensed";
+    sizeEx = 0.029;
+    rowHeight = 0.04;
+    shadow = 0;
+    drawSideArrows = 0;
+    idcLeft = -1;
+    idcRight = -1;
+    columns[] = {0, 0.5};
+    colorText[] = ADVSEC_COL_TEXT;
+    colorBackground[] = ADVSEC_COL_FIELD;
+    colorSelect[] = ADVSEC_COL_DARK;
+    colorSelect2[] = ADVSEC_COL_DARK;
+    colorSelectBackground[] = ADVSEC_COL_ACCENT;
+    colorSelectBackground2[] = {0.816, 0.639, 0.188, 0.8};
+    colorScrollbar[] = ADVSEC_COL_ACCENT;
+    class ListScrollBar {
+        color[] = {0.816, 0.639, 0.188, 0.75};
+        colorActive[] = ADVSEC_COL_ACCENT;
+        colorDisabled[] = {0.5, 0.5, 0.5, 0.5};
+        thumb = "\A3\ui_f\data\gui\cfg\scrollbar\thumb_ca.paa";
+        arrowFull = "\A3\ui_f\data\gui\cfg\scrollbar\arrowFull_ca.paa";
+        arrowEmpty = "\A3\ui_f\data\gui\cfg\scrollbar\arrowEmpty_ca.paa";
+        border = "\A3\ui_f\data\gui\cfg\scrollbar\border_ca.paa";
+        shadow = 0;
+    };
 };
 
 class ADVSEC_KpBtn: ADVSEC_Btn {
