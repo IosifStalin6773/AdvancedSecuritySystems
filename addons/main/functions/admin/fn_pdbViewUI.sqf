@@ -1,4 +1,4 @@
-// ["filter"|"select"|"tab"|"row"|"refresh"|"header"|"render", dato] (cliente) — base de datos de jugadores
+// ["filter"|"select"|"tab"|"row"|"refresh"|"header"|"render"|"acts"|"act", dato] (cliente) — base de datos de jugadores del superadministrador
 params ["_action", ["_arg", 0]];
 private _disp = findDisplay 87850;
 if (isNull _disp) exitWith {};
@@ -9,6 +9,11 @@ private _tabPos = [
     [0, 0.16, 0.34, 0.56, 0.78], [0, 0.34, 0.8], [0, 0.4, 0.7], [0, 0.3, 0.6]
 ];
 private _esc = {[_this] call ADVSEC_fnc_repEsc};
+private _rowKey = {
+    private _r = lnbCurSelRow (_disp displayCtrl 87890);
+    if (_r < 1) exitWith {[]};
+    ((((ADVSEC_pdbSections param [ADVSEC_pdbTab, [[], []]]) select 1) param [_r - 1, []]) param [2, []])
+};
 
 switch (_action) do {
     // Filtra y ordena la lista de jugadores por texto y por grupo
@@ -30,7 +35,7 @@ switch (_action) do {
         };
         private _c = _disp displayCtrl 87859;
         lnbClear _c;
-        _c lnbSetColumnsPos [0, 0.5, 0.68, 0.84];
+        _c lnbSetColumnsPos [0, 0.46, 0.64, 0.82];
         _c lnbAddRow ["NOMBRE", "PM", "AA.II.", "GLOBAL"];
         {
             private _r = _c lnbAddRow (_x select 1);
@@ -50,6 +55,7 @@ switch (_action) do {
         if (_uid isEqualTo "" || {_uid isEqualTo ADVSEC_pdbSel}) exitWith {};
         ADVSEC_pdbSel = _uid;
         ADVSEC_pdbSections = [];
+        ADVSEC_pdbCur = [];
         (_disp displayCtrl 87864) ctrlSetStructuredText parseText "<t color='#8C8C8C'>Cargando ficha...</t>";
         ["render"] call ADVSEC_fnc_pdbViewUI;
         ["player", player, [_uid]] remoteExecCall ["ADVSEC_fnc_pdbViewServer", 2];
@@ -83,7 +89,7 @@ switch (_action) do {
         if (_adm) then {_flags pushBack "<t color='#D0A330'>SUPERADMINISTRADOR</t>"};
         (_disp displayCtrl 87864) ctrlSetStructuredText parseText format [
             "<t size='1.25' font='RobotoCondensedBold'>%1</t>  %2<br/><t color='#8C8C8C'>SteamID</t> %3",
-            [_name] call _esc, _flags joinString " · ", [_uid] call _esc];
+            _name call _esc, _flags joinString " · ", _uid call _esc];
     };
 
     // Pinta la tabla de la pestaña activa y las etiquetas de las pestañas con su número de filas
@@ -117,13 +123,109 @@ switch (_action) do {
             _c lnbSetData [[_r, 0], _det];
         } forEach _rows;
         (_disp displayCtrl 87891) ctrlSetStructuredText parseText "<t color='#8C8C8C'>Selecciona una fila para ver su detalle.</t>";
+        ["acts"] call ADVSEC_fnc_pdbViewUI;
     };
 
     // Detalle de la fila seleccionada
     case "row": {
         private _c = _disp displayCtrl 87890;
         private _r = lnbCurSelRow _c;
-        private _txt = if (_r < 1) then {"<t color='#8C8C8C'>Selecciona una fila para ver su detalle.</t>"} else {[_c lnbData [_r, 0]] call _esc};
-        (_disp displayCtrl 87891) ctrlSetStructuredText parseText _txt;
+        private _txt = if (_r < 1) then {"<t color='#8C8C8C'>Selecciona una fila para ver su detalle.</t>"} else {(_c lnbData [_r, 0]) call _esc};
+        private _d = _disp displayCtrl 87891;
+        _d ctrlSetStructuredText parseText _txt;
+        private _p = ctrlPosition _d;
+        _d ctrlSetPosition [_p select 0, _p select 1, _p select 2, (ctrlTextHeight _d) max (safezoneH * 0.09)];
+        _d ctrlCommit 0;
+        ["acts"] call ADVSEC_fnc_pdbViewUI;
+    };
+
+    // Botones de acción según la pestaña y la fila elegida: [texto, operación, dato, confirmar, formulario]
+    case "acts": {
+        private _acts = [];
+        if (ADVSEC_pdbSel isNotEqualTo "" && {ADVSEC_pdbCur isNotEqualTo []}) then {
+            ADVSEC_pdbCur params ["_name", "_on", "_adm", ["_cur", []]];
+            _cur params [["_pm", -1], ["_ai", -1], ["_glob", 0], ["_notes", ""]];
+            private _key = call _rowKey;
+            private _kt = _key param [0, ""];
+            private _money = ["Sumar / restar dinero", "money", [], false, ["SUMAR O RESTAR DINERO", [["Dónde", "bank", [["Banco", "bank"], ["Efectivo", "cash"]]], ["Importe (negativo para restar)", "1000"]]]];
+            switch (ADVSEC_pdbTab) do {
+                case 0: {
+                    private _opt = {
+                        private _o = [["Según la misión", -1], ["Sin rango", 0]];
+                        {_o pushBack [_x, _forEachIndex + 1]} forEach _this;
+                        _o
+                    };
+                    private _pmO = (["ranksPM", []] call ADVSEC_fnc_setting) call _opt;
+                    private _aiO = (["ranksAI", []] call ADVSEC_fnc_setting) call _opt;
+                    private _gO = [];
+                    {_gO pushBack [_x, _forEachIndex]} forEach (["ranksGlobal", []] call ADVSEC_fnc_setting);
+                    _acts pushBack ["Editar rangos y notas", "profile", [], false, [format ["EDITAR FICHA · %1", toUpper _name], [["Rango PM", _pm, _pmO], ["Rango AA.II.", _ai, _aiO], ["Rango global", _glob, _gO], ["Notas", _notes, "text"]]]];
+                    _acts pushBack _money;
+                    _acts pushBack [["Dar superadmin", "Quitar superadmin"] select _adm, "admin", [], true, []];
+                    _acts pushBack ["Retirar documentos", "docsOff", [], true, []];
+                    _acts pushBack ["Borrar ficha", "delete", [], true, []];
+                };
+                case 1: {
+                    if (_kt == "plate") then {_acts pushBack ["Borrar matrícula", "plateDel", _key select 1, true, []]};
+                    if (_kt == "wpn") then {_acts pushBack ["Borrar arma del registro", "wpnDel", _key select 1, true, []]};
+                    _acts pushBack ["Retirar todos los documentos", "docsOff", [], true, []];
+                };
+                case 2: {
+                    _acts pushBack ["Poner multa", "fineAdd", [], false, [format ["MULTA · %1", toUpper _name], [["Importe", "100"], ["Motivo", "Sanción de la administración", "text"]]]];
+                    if (_kt == "fine") then {
+                        if ((_key select 2) == "Pendiente") then {
+                            _acts pushBack ["Marcar pagada", "finePaid", _key select 1, false, []];
+                            _acts pushBack ["Anular multa", "fineCancel", _key select 1, true, []];
+                        };
+                        _acts pushBack ["Borrar multa", "fineDel", _key select 1, true, []];
+                    };
+                    if (_kt == "wanted") then {_acts pushBack ["Retirar requisitoria", "wantedDel", [], true, []]};
+                    if (_kt == "jail") then {_acts pushBack ["Liberar", "jailDel", [], true, []]};
+                };
+                case 3: {if (_kt == "rep") then {_acts pushBack ["Borrar informe", "repDel", _key select 1, true, []]}};
+                case 4: {if (_kt == "heat") then {_acts pushBack ["Archivar índice de sospecha", "heatDel", [], true, []]}};
+                case 5: {if (_kt == "ev") then {_acts pushBack ["Borrar prueba", "evDel", _key select 1, true, []]}};
+                case 6: {_acts pushBack _money; _acts pushBack ["Poner saldo a cero", "zero", [], true, []]};
+                case 7: {if (_kt == "spec") then {_acts pushBack [["Quitar de la especialidad", "Quitar como encargado", "Rechazar solicitud"] select (_key select 2), "specDel", [_key select 1, _key select 2], true, []]}};
+                default {};
+            };
+        };
+        ADVSEC_pdbActs = _acts;
+        ADVSEC_pdbConfirm = [-1, 0];
+        for "_i" from 0 to 4 do {
+            private _b = _disp displayCtrl (87880 + _i);
+            private _a = _acts param [_i, []];
+            _b ctrlShow (_a isNotEqualTo []);
+            if (_a isNotEqualTo []) then {_b ctrlSetText (_a select 0)};
+        };
+    };
+
+    // Pulsación de un botón de acción. Lo destructivo pide una segunda pulsación en 4 s
+    case "act": {
+        private _a = (missionNamespace getVariable ["ADVSEC_pdbActs", []]) param [_arg, []];
+        if (_a isEqualTo [] || {ADVSEC_pdbSel isEqualTo ""}) exitWith {};
+        _a params ["_text", "_op", "_data", "_confirm", "_form"];
+        private _b = _disp displayCtrl (87880 + _arg);
+        if (_confirm && {(ADVSEC_pdbConfirm select 0) != _arg || {time - (ADVSEC_pdbConfirm select 1) > 4}}) exitWith {
+            ADVSEC_pdbConfirm = [_arg, time];
+            _b ctrlSetText "¿Seguro? Pulsa otra vez";
+            [_b, _arg, _text] spawn {
+                params ["_b", "_i", "_text"];
+                sleep 4;
+                if (!isNull _b && {(ADVSEC_pdbConfirm select 0) == _i}) then {_b ctrlSetText _text; ADVSEC_pdbConfirm = [-1, 0]};
+            };
+        };
+        ADVSEC_pdbConfirm = [-1, 0];
+        _b ctrlSetText _text;
+        private _uid = ADVSEC_pdbSel;
+        if (_form isNotEqualTo []) exitWith {
+            _form params ["_title", "_fields"];
+            [_title, _fields, {
+                params ["_v", "_ctx"];
+                _ctx params ["_uid", "_op"];
+                ["edit", player, [_uid, _op, _v]] remoteExecCall ["ADVSEC_fnc_pdbViewServer", 2];
+            }, [_uid, _op]] call ADVSEC_fnc_zeusPrompt;
+        };
+        ["edit", player, [_uid, _op, _data]] remoteExecCall ["ADVSEC_fnc_pdbViewServer", 2];
     };
 };

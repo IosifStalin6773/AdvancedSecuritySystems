@@ -1,4 +1,4 @@
-// Abre la base de datos de jugadores en vista de solo lectura (cliente). Solo superadministradores; el servidor lo vuelve a comprobar.
+// Abre la base de datos de jugadores del superadministrador (cliente). Solo superadministradores; el servidor lo vuelve a comprobar.
 if !([player] call ADVSEC_fnc_adminIs) exitWith {hint "Solo superadministradores."};
 if (!isNull findDisplay 87850) exitWith {};
 if (!createDialog "ADVSEC_PlayerDBDlg") exitWith {};
@@ -7,11 +7,14 @@ ADVSEC_pdbList = [];
 ADVSEC_pdbSections = [];
 ADVSEC_pdbSel = "";
 ADVSEC_pdbTab = 0;
+ADVSEC_pdbCur = [];
+ADVSEC_pdbConfirm = [-1, 0];
 private _mode = _disp displayCtrl 87853;
 lbClear _mode;
 {_mode lbAdd _x} forEach ["Todos", "En línea", "Policía Militar", "Asuntos Internos", "Superadministradores", "Sin rango"];
 _mode lbSetCurSel 0;
 (_disp displayCtrl 87852) ctrlSetText "";
 (_disp displayCtrl 87891) ctrlSetStructuredText parseText "<t color='#8C8C8C'>Selecciona una fila para ver su detalle.</t>";
+["acts"] call ADVSEC_fnc_pdbViewUI;
 (_disp displayCtrl 87864) ctrlSetStructuredText parseText "<t color='#8C8C8C'>Selecciona un jugador de la lista.</t>";
 ["list", player] remoteExecCall ["ADVSEC_fnc_pdbViewServer", 2];

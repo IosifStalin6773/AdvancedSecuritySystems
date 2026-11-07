@@ -683,7 +683,7 @@ class ADVSEC_AdminDlg {
     };
     class controls {
         class Title: ADVSEC_Header { idc = 87801; text = " SUPERADMINISTRADOR"; x = 0.02; y = 0.04; w = 0.96; h = 0.045; };
-        class Cats: ADVSEC_List { idc = 87802; x = 0.03; y = 0.14; w = 0.16; h = 0.73; sizeEx = 0.03; rowHeight = 0.04; onLBSelChanged = "['cat'] call ADVSEC_fnc_adminAction"; };
+        class Cats: ADVSEC_List { idc = 87802; x = 0.03; y = 0.14; w = 0.16; h = 0.675; sizeEx = 0.03; rowHeight = 0.04; onLBSelChanged = "['cat'] call ADVSEC_fnc_adminAction"; };
         class Info: ADVSEC_Struct { idc = 87804; x = 0.205; y = 0.105; w = 0.76; h = 0.05; };
         class List: ADVSEC_List { idc = 87803; x = 0.20; y = 0.17; w = 0.38; h = 0.70; sizeEx = 0.028; rowHeight = 0.034; onLBSelChanged = "['select'] call ADVSEC_fnc_adminAction"; };
         class ViewGroup: RscControlsGroup {
@@ -694,7 +694,7 @@ class ADVSEC_AdminDlg {
             };
         };
         class BtnRefresh: ADVSEC_Btn { text = "Actualizar"; x = 0.03; y = 0.885; w = 0.16; h = 0.05; action = "['refresh'] call ADVSEC_fnc_adminAction"; };
-        class BtnPlayerDB: ADVSEC_Btn { idc = 87807; text = "Base de datos de jugadores"; x = 0.20; y = 0.885; w = 0.26; h = 0.05; tooltip = "Vista de solo lectura de cada jugador: documentos, sanciones, informes, economía y registro"; action = "closeDialog 0; [] spawn {sleep 0.1; [] call ADVSEC_fnc_pdbViewOpen}"; };
+        class BtnPlayerDB: ADVSEC_BtnPrimary { idc = 87807; text = "BD de jugadores"; x = 0.03; y = 0.825; w = 0.16; h = 0.05; tooltip = "Ficha completa de cada jugador: ver y editar rangos, notas, dinero, multas, requisitorias, documentos, informes, pruebas y especialidades"; action = "closeDialog 0; [] spawn {sleep 0.1; [] call ADVSEC_fnc_pdbViewOpen}"; };
         ADM_BTN(0,0.20)
         ADM_BTN(1,0.355)
         ADM_BTN(2,0.51)
@@ -704,48 +704,73 @@ class ADVSEC_AdminDlg {
     };
 };
 
-// ===== Base de datos de jugadores (vista de solo lectura, desde la terminal de superadministrador) =====
+// ===== Base de datos de jugadores (superadministrador): ocupa casi toda la pantalla =====
+#define PDB_Q(s) #s
+#define PX(N) PDB_Q(safezoneX + safezoneW * (N))
+#define PY(N) PDB_Q(safezoneY + safezoneH * (N))
+#define PW(N) PDB_Q(safezoneW * (N))
+#define PH(N) PDB_Q(safezoneH * (N))
+#define PDB_TILE(N,X) \
+    class TileBG##N: RscText { x = PX(X); y = PY(0.09); w = PW(0.1575); h = PH(0.07); colorBackground[] = ADVSEC_COL_FIELD; };
+#define PDB_TILET(N,X) \
+    class Tile##N: RscStructuredText { idc = 8786##N; x = PX(X); y = PY(0.093); w = PW(0.1575); h = PH(0.065); colorBackground[] = {0, 0, 0, 0}; };
+#define PDB_TAB(N,X) \
+    class Tab##N: ADVSEC_Btn { idc = 8787##N; x = PX(X); y = PY(0.235); w = PW(0.0712); h = PH(0.04); sizeEx = 0.026; onButtonClick = "['tab', (ctrlIDC (_this select 0)) - 87870] call ADVSEC_fnc_pdbViewUI"; };
+#define PDB_ACT(N,X) \
+    class Act##N: ADVSEC_Btn { idc = 8788##N; x = PX(X); y = PY(0.87); w = PW(0.125); h = PH(0.04); sizeEx = 0.027; onButtonClick = "['act', (ctrlIDC (_this select 0)) - 87880] call ADVSEC_fnc_pdbViewUI"; };
 class ADVSEC_PlayerDBDlg {
     idd = 87850;
     movingEnable = 0;
     onLoad = "['on'] call ADVSEC_fnc_uiBlur";
     onUnload = "['off'] call ADVSEC_fnc_uiBlur";
     class controlsBackground {
-        class BG: ADVSEC_Panel { x = 0.02; y = 0.04; w = 0.96; h = 0.92; };
-        class Border: ADVSEC_Border { x = 0.02; y = 0.04; w = 0.96; h = 0.92; };
-        class Line: ADVSEC_Line { x = 0.02; y = 0.092; w = 0.96; h = 0.003; };
-        class TileBG0: RscText { x = 0.345; y = 0.11; w = 0.1435; h = 0.075; colorBackground[] = ADVSEC_COL_FIELD; };
-        class TileBG1: RscText { x = 0.5005; y = 0.11; w = 0.1435; h = 0.075; colorBackground[] = ADVSEC_COL_FIELD; };
-        class TileBG2: RscText { x = 0.656; y = 0.11; w = 0.1435; h = 0.075; colorBackground[] = ADVSEC_COL_FIELD; };
-        class TileBG3: RscText { x = 0.8115; y = 0.11; w = 0.1435; h = 0.075; colorBackground[] = ADVSEC_COL_FIELD; };
-        class HeadBG: RscText { x = 0.345; y = 0.195; w = 0.61; h = 0.06; colorBackground[] = ADVSEC_COL_FIELD; };
-        class DetailBG: RscText { x = 0.345; y = 0.815; w = 0.61; h = 0.095; colorBackground[] = ADVSEC_COL_FIELD; };
+        class BG: ADVSEC_Panel { x = PX(0.03); y = PY(0.03); w = PW(0.94); h = PH(0.94); };
+        class Border: ADVSEC_Border { x = PX(0.03); y = PY(0.03); w = PW(0.94); h = PH(0.94); };
+        class Line: ADVSEC_Line { x = PX(0.03); y = PY(0.075); w = PW(0.94); h = 0.003; };
+        PDB_TILE(0,0.31)
+        PDB_TILE(1,0.4775)
+        PDB_TILE(2,0.645)
+        PDB_TILE(3,0.8125)
+        class HeadBG: RscText { x = PX(0.31); y = PY(0.17); w = PW(0.66); h = PH(0.055); colorBackground[] = ADVSEC_COL_FIELD; };
+        class DetailBG: RscText { x = PX(0.31); y = PY(0.76); w = PW(0.66); h = PH(0.1); colorBackground[] = ADVSEC_COL_FIELD; };
+        class LActs: ADVSEC_Label { text = "ACCIONES"; font = "RobotoCondensedBold"; x = PX(0.04); y = PY(0.87); w = PW(0.26); h = PH(0.04); };
     };
     class controls {
-        class Title: ADVSEC_Header { idc = 87851; text = " BASE DE DATOS DE JUGADORES  ·  SOLO LECTURA"; x = 0.04; y = 0.05; w = 0.80; h = 0.04; };
-        class CloseX: ADVSEC_BtnX { x = 0.9462; y = 0.04; w = 0.0338; h = 0.045; action = "closeDialog 0"; };
-        class Search: ADVSEC_Edit { idc = 87852; x = 0.03; y = 0.11; w = 0.30; h = 0.04; tooltip = "Buscar por nombre o SteamID"; onKeyUp = "['filter'] call ADVSEC_fnc_pdbViewUI"; };
-        class Mode: ADVSEC_Combo { idc = 87853; x = 0.03; y = 0.155; w = 0.30; h = 0.04; onLBSelChanged = "['filter'] call ADVSEC_fnc_pdbViewUI"; };
-        class Players: ADVSEC_NBox { idc = 87859; x = 0.03; y = 0.205; w = 0.30; h = 0.69; sizeEx = 0.027; rowHeight = 0.036; onLBSelChanged = "['select'] call ADVSEC_fnc_pdbViewUI"; };
-        class Tile0: RscStructuredText { idc = 87860; x = 0.345; y = 0.11; w = 0.1435; h = 0.075; colorBackground[] = {0, 0, 0, 0}; };
-        class Tile1: RscStructuredText { idc = 87861; x = 0.5005; y = 0.11; w = 0.1435; h = 0.075; colorBackground[] = {0, 0, 0, 0}; };
-        class Tile2: RscStructuredText { idc = 87862; x = 0.656; y = 0.11; w = 0.1435; h = 0.075; colorBackground[] = {0, 0, 0, 0}; };
-        class Tile3: RscStructuredText { idc = 87863; x = 0.8115; y = 0.11; w = 0.1435; h = 0.075; colorBackground[] = {0, 0, 0, 0}; };
-        class Head: ADVSEC_Struct { idc = 87864; x = 0.355; y = 0.20; w = 0.59; h = 0.05; };
-        class Tab0: ADVSEC_Btn { idc = 87870; text = "Resumen"; x = 0.345; y = 0.265; w = 0.0668; h = 0.04; sizeEx = 0.024; action = "['tab', 0] call ADVSEC_fnc_pdbViewUI"; };
-        class Tab1: ADVSEC_Btn { idc = 87871; text = "Documentos"; x = 0.4168; y = 0.265; w = 0.0668; h = 0.04; sizeEx = 0.024; action = "['tab', 1] call ADVSEC_fnc_pdbViewUI"; };
-        class Tab2: ADVSEC_Btn { idc = 87872; text = "Sanciones"; x = 0.4886; y = 0.265; w = 0.0668; h = 0.04; sizeEx = 0.024; action = "['tab', 2] call ADVSEC_fnc_pdbViewUI"; };
-        class Tab3: ADVSEC_Btn { idc = 87873; text = "Informes"; x = 0.5604; y = 0.265; w = 0.0668; h = 0.04; sizeEx = 0.024; action = "['tab', 3] call ADVSEC_fnc_pdbViewUI"; };
-        class Tab4: ADVSEC_Btn { idc = 87874; text = "Sospecha"; x = 0.6322; y = 0.265; w = 0.0668; h = 0.04; sizeEx = 0.024; action = "['tab', 4] call ADVSEC_fnc_pdbViewUI"; };
-        class Tab5: ADVSEC_Btn { idc = 87875; text = "Evidencias"; x = 0.704; y = 0.265; w = 0.0668; h = 0.04; sizeEx = 0.024; action = "['tab', 5] call ADVSEC_fnc_pdbViewUI"; };
-        class Tab6: ADVSEC_Btn { idc = 87876; text = "Economía"; x = 0.7758; y = 0.265; w = 0.0668; h = 0.04; sizeEx = 0.024; action = "['tab', 6] call ADVSEC_fnc_pdbViewUI"; };
-        class Tab7: ADVSEC_Btn { idc = 87877; text = "Especialid."; x = 0.8476; y = 0.265; w = 0.0668; h = 0.04; sizeEx = 0.024; action = "['tab', 7] call ADVSEC_fnc_pdbViewUI"; };
-        class Tab8: ADVSEC_Btn { idc = 87878; text = "Registro"; x = 0.9194; y = 0.265; w = 0.0356; h = 0.04; sizeEx = 0.024; action = "['tab', 8] call ADVSEC_fnc_pdbViewUI"; };
-        class Table: ADVSEC_NBox { idc = 87890; x = 0.345; y = 0.315; w = 0.61; h = 0.49; sizeEx = 0.027; rowHeight = 0.038; onLBSelChanged = "['row'] call ADVSEC_fnc_pdbViewUI"; };
-        class Detail: ADVSEC_Struct { idc = 87891; x = 0.355; y = 0.82; w = 0.59; h = 0.085; };
-        class BtnRefresh: ADVSEC_Btn { idc = 87897; text = "Actualizar"; x = 0.03; y = 0.918; w = 0.14; h = 0.035; action = "['refresh'] call ADVSEC_fnc_pdbViewUI"; };
-        class BtnAdmin: ADVSEC_Btn { idc = 87896; text = "Terminal de superadmin"; x = 0.18; y = 0.918; w = 0.22; h = 0.035; action = "closeDialog 0; [] spawn {sleep 0.1; [] call ADVSEC_fnc_adminOpen}"; };
-        class BtnClose: ADVSEC_Btn { idc = 87898; text = "Cerrar"; x = 0.84; y = 0.918; w = 0.13; h = 0.035; action = "closeDialog 0"; };
+        class Title: ADVSEC_Header { idc = 87851; text = " BASE DE DATOS DE JUGADORES  ·  SUPERADMINISTRADOR"; x = PX(0.03); y = PY(0.03); w = PW(0.90); h = PH(0.045); };
+        class CloseX: ADVSEC_BtnX { x = PX(0.94); y = PY(0.03); w = PW(0.03); h = PH(0.045); action = "closeDialog 0"; };
+        class Search: ADVSEC_Edit { idc = 87852; x = PX(0.04); y = PY(0.09); w = PW(0.26); h = PH(0.035); tooltip = "Buscar por nombre o SteamID"; onKeyUp = "['filter'] call ADVSEC_fnc_pdbViewUI"; };
+        class Mode: ADVSEC_Combo { idc = 87853; x = PX(0.04); y = PY(0.13); w = PW(0.26); h = PH(0.035); onLBSelChanged = "['filter'] call ADVSEC_fnc_pdbViewUI"; };
+        class Players: ADVSEC_NBox { idc = 87859; x = PX(0.04); y = PY(0.175); w = PW(0.26); h = PH(0.685); sizeEx = 0.03; rowHeight = 0.04; onLBSelChanged = "['select'] call ADVSEC_fnc_pdbViewUI"; };
+        PDB_TILET(0,0.31)
+        PDB_TILET(1,0.4775)
+        PDB_TILET(2,0.645)
+        PDB_TILET(3,0.8125)
+        class Head: ADVSEC_Struct { idc = 87864; x = PX(0.315); y = PY(0.173); w = PW(0.65); h = PH(0.05); };
+        PDB_TAB(0,0.31)
+        PDB_TAB(1,0.3833)
+        PDB_TAB(2,0.4566)
+        PDB_TAB(3,0.5299)
+        PDB_TAB(4,0.6032)
+        PDB_TAB(5,0.6765)
+        PDB_TAB(6,0.7498)
+        PDB_TAB(7,0.8231)
+        PDB_TAB(8,0.8964)
+        class Table: ADVSEC_NBox { idc = 87890; x = PX(0.31); y = PY(0.28); w = PW(0.66); h = PH(0.47); sizeEx = 0.03; rowHeight = 0.042; onLBSelChanged = "['row'] call ADVSEC_fnc_pdbViewUI"; };
+        class DetailGroup: RscControlsGroupNoHScrollbars {
+            idc = 87892;
+            x = PX(0.31); y = PY(0.76); w = PW(0.66); h = PH(0.1);
+            class controls {
+                class Detail: ADVSEC_Struct { idc = 87891; x = 0.01; y = 0.005; w = PW(0.64); h = PH(0.09); };
+            };
+        };
+        PDB_ACT(0,0.31)
+        PDB_ACT(1,0.4433)
+        PDB_ACT(2,0.5766)
+        PDB_ACT(3,0.7099)
+        PDB_ACT(4,0.8432)
+        class BtnRefresh: ADVSEC_Btn { idc = 87897; text = "Actualizar"; x = PX(0.04); y = PY(0.92); w = PW(0.1); h = PH(0.04); action = "['refresh'] call ADVSEC_fnc_pdbViewUI"; };
+        class BtnAdmin: ADVSEC_Btn { idc = 87896; text = "Terminal de superadmin"; x = PX(0.145); y = PY(0.92); w = PW(0.155); h = PH(0.04); action = "closeDialog 0; [] spawn {sleep 0.1; [] call ADVSEC_fnc_adminOpen}"; };
+        class BtnClose: ADVSEC_Btn { idc = 87898; text = "Cerrar"; x = PX(0.8432); y = PY(0.92); w = PW(0.125); h = PH(0.04); action = "closeDialog 0"; };
     };
 };
 

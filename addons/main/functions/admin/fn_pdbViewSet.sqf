@@ -10,10 +10,11 @@ switch (_kind) do {
         if (_data isEqualTo []) exitWith {
             (findDisplay 87850 displayCtrl 87864) ctrlSetStructuredText parseText "<t color='#8C8C8C'>Este jugador ya no tiene ficha.</t>";
         };
-        _data params ["_uid", "_name", "_on", "_adm", "_stats", "_secs"];
+        _data params ["_uid", "_name", "_on", "_adm", "_stats", "_secs", ["_cur", []]];
         // Ignora la respuesta si mientras tanto se eligió a otro jugador
         if (_uid isNotEqualTo ADVSEC_pdbSel) exitWith {};
         ADVSEC_pdbSections = _secs;
+        ADVSEC_pdbCur = [_name, _on, _adm, _cur];
         ["header", [_name, _uid, _on, _adm, _stats]] call ADVSEC_fnc_pdbViewUI;
         ["render"] call ADVSEC_fnc_pdbViewUI;
     };
