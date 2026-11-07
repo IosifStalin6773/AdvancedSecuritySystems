@@ -9840,6 +9840,31 @@
                 <English>PMC contract terminal: offers, negotiation, signing, assignment and settlement. Sync it with a laptop or leave it alone to create one.</English>
                 <Spanish>Terminal de contratos de la PMC: ofertas, negociación, firma, asignación y liquidación. Sincronízalo con un portátil o déjalo solo para crear uno.</Spanish>
             </Key>
+            <Key ID="STR_ADVSEC_pmc_mod_zone">
+                <Original>Contract zone</Original>
+                <English>Contract zone</English>
+                <Spanish>Zona de encargos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_mod_zone_desc">
+                <Original>Marks an area where automatic contract offers take place (marker advsec_ctr_*). Remove it to delete the zone.</Original>
+                <English>Marks an area where automatic contract offers take place (marker advsec_ctr_*). Remove it to delete the zone.</English>
+                <Spanish>Marca una zona donde se generan los encargos automáticos (marcador advsec_ctr_*). Bórralo para quitar la zona.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_mod_hostile">
+                <Original>Contract enemies</Original>
+                <English>Contract enemies</English>
+                <Spanish>Enemigos de encargo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_mod_hostile_desc">
+                <Original>Synced units count as enemies of the contracts, wherever they are. Use it to place enemies by hand without a zone.</Original>
+                <English>Synced units count as enemies of the contracts, wherever they are. Use it to place enemies by hand without a zone.</English>
+                <Spanish>Las unidades sincronizadas cuentan como enemigas de los encargos, estén donde estén. Úsalo para colocar enemigos a mano sin zona.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_zone_name">
+                <Original>Contract zone</Original>
+                <English>Contract zone</English>
+                <Spanish>Zona de encargos</Spanish>
+            </Key>
             <Key ID="STR_ADVSEC_pmc_mod_armory_desc">
                 <Original>Corporate armory: everything taken out is signed with a serial number and must be returned. Sync it with a crate or locker.</Original>
                 <English>Corporate armory: everything taken out is signed with a serial number and must be returned. Sync it with a crate or locker.</English>

@@ -1,16 +1,16 @@
-// Escala de la interfaz (1.19.0): todo se mide respecto a la zona segura, así que ocupa lo mismo con cualquier
-// tamaño de interfaz del juego, y a lo ancho se estira hasta un 25 % para que quepan los textos.
-// UIX/UIY/UIW/UIH: diálogos centrados · UIF: tamaños sin estirar (letra, filas, imágenes) · UIXP: imagen centrada sin deformar
+// Escala de la interfaz (1.19.1): la geometría es la original (sin estirar ni ampliar el marco, así no parece un zoom);
+// solo el texto crece un 12 % para que se lea bien dentro de las mismas cajas.
+// UIX/UIY/UIW/UIH: posiciones y tamaños de diálogo · UIF: letra y filas de texto · UIXA/UIYA/UIXP/UIXPL: idem sin estirar
 #define ADVSEC_UQ(V) #V
-#define UIX(V) ADVSEC_UQ(0.5 + ((V) - 0.5) * (safezoneH * (1.25 min ((safezoneW / safezoneH) * 0.98))))
-#define UIY(V) ADVSEC_UQ(0.5 + ((V) - 0.5) * safezoneH)
-#define UIW(V) ADVSEC_UQ((V) * (safezoneH * (1.25 min ((safezoneW / safezoneH) * 0.98))))
-#define UIH(V) ADVSEC_UQ((V) * safezoneH)
-#define UIF(V) ADVSEC_UQ((V) * safezoneH)
-#define UIXA(V) ADVSEC_UQ(0.5 + ((V) - 0.5) * safezoneH)
-#define UIYA(V) ADVSEC_UQ(0.5 + ((V) - 0.5) * safezoneH)
-#define UIXP(V,W) ADVSEC_UQ(0.5 + (((V) + (W) / 2) - 0.5) * (safezoneH * (1.25 min ((safezoneW / safezoneH) * 0.98))) - (W) * safezoneH / 2)
-#define UIXPL(V,W) ADVSEC_UQ(((V) + (W) / 2) * (safezoneH * (1.25 min ((safezoneW / safezoneH) * 0.98))) - (W) * safezoneH / 2)
+#define UIX(V) ADVSEC_UQ(V)
+#define UIY(V) ADVSEC_UQ(V)
+#define UIW(V) ADVSEC_UQ(V)
+#define UIH(V) ADVSEC_UQ(V)
+#define UIF(V) ADVSEC_UQ((V) * 1.12)
+#define UIXA(V) ADVSEC_UQ(V)
+#define UIYA(V) ADVSEC_UQ(V)
+#define UIXP(V,W) ADVSEC_UQ(V)
+#define UIXPL(V,W) ADVSEC_UQ(V)
 
 class RscText;
 class RscStructuredText;

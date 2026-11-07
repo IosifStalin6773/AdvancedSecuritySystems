@@ -347,6 +347,44 @@ class CfgVehicles {
     };
 
     // ===== Zeus =====
+    class ADVSEC_ModuleContractZone: ADVSEC_Module_Base {
+        scope = 2;
+        isGlobal = 0;
+        displayName = "$STR_ADVSEC_pmc_mod_zone";
+        icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\interact_ca.paa";
+        function = "ADVSEC_fnc_moduleContractZone";
+        class Attributes: AttributesBase {
+            class Name: Edit { property = "ADVSEC_CtrZone_Name"; displayName = "$STR_ADVSEC_name"; typeName = "STRING"; defaultValue = """Zona de encargos"""; };
+            class Radius: Combo {
+                property = "ADVSEC_CtrZone_Radius"; displayName = "$STR_ADVSEC_radius"; typeName = "NUMBER"; defaultValue = "300";
+                class Values {
+                    class R150 { name = "150 m"; value = 150; };
+                    class R300 { name = "300 m"; value = 300; };
+                    class R600 { name = "600 m"; value = 600; };
+                    class R1000 { name = "1000 m"; value = 1000; };
+                };
+            };
+            class ModuleDescription: ModuleDescription {};
+        };
+        class ModuleDescription: ModuleDescription {
+            description = "$STR_ADVSEC_pmc_mod_zone_desc";
+        };
+    };
+
+    class ADVSEC_ModuleContractHostile: ADVSEC_Module_Base {
+        scope = 2;
+        isGlobal = 0;
+        displayName = "$STR_ADVSEC_pmc_mod_hostile";
+        icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\interact_ca.paa";
+        function = "ADVSEC_fnc_moduleContractHostile";
+        class Attributes: AttributesBase {
+            class ModuleDescription: ModuleDescription {};
+        };
+        class ModuleDescription: ModuleDescription {
+            description = "$STR_ADVSEC_pmc_mod_hostile_desc";
+        };
+    };
+
     class ADVSEC_ModuleContract: ADVSEC_Module_Base {
         scope = 2;
         displayName = "$STR_ADVSEC_pmc_terminal";

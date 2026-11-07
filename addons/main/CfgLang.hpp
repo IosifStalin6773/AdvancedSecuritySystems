@@ -1967,6 +1967,11 @@ class ADVSEC_Lang {
     class STR_ADVSEC_pmc_minutes0 { en = "Minutes (0 = by type)"; es = "Minutos (0 = según tipo)"; };
     class STR_ADVSEC_pmc_contract { en = "Contract"; es = "Contrato"; };
     class STR_ADVSEC_pmc_mod_contract_desc { en = "PMC contract terminal: offers, negotiation, signing, assignment and settlement. Sync it with a laptop or leave it alone to create one."; es = "Terminal de contratos de la PMC: ofertas, negociación, firma, asignación y liquidación. Sincronízalo con un portátil o déjalo solo para crear uno."; };
+    class STR_ADVSEC_pmc_mod_zone { en = "Contract zone"; es = "Zona de encargos"; };
+    class STR_ADVSEC_pmc_mod_zone_desc { en = "Marks an area where automatic contract offers take place (marker advsec_ctr_*). Remove it to delete the zone."; es = "Marca una zona donde se generan los encargos automáticos (marcador advsec_ctr_*). Bórralo para quitar la zona."; };
+    class STR_ADVSEC_pmc_mod_hostile { en = "Contract enemies"; es = "Enemigos de encargo"; };
+    class STR_ADVSEC_pmc_mod_hostile_desc { en = "Synced units count as enemies of the contracts, wherever they are. Use it to place enemies by hand without a zone."; es = "Las unidades sincronizadas cuentan como enemigas de los encargos, estén donde estén. Úsalo para colocar enemigos a mano sin zona."; };
+    class STR_ADVSEC_pmc_zone_name { en = "Contract zone"; es = "Zona de encargos"; };
     class STR_ADVSEC_pmc_mod_armory_desc { en = "Corporate armory: everything taken out is signed with a serial number and must be returned. Sync it with a crate or locker."; es = "Armería corporativa: todo lo que se saca queda firmado con número de serie y debe devolverse. Sincronízalo con una caja o taquilla."; };
     class STR_ADVSEC_pmc_mod_cyber_desc { en = "Intelligence/Compliance cyber terminal: alerts, logs, person timelines and CCTV reconstruction."; es = "Terminal ciber de Inteligencia/Compliance: alertas, registros, cronologías por persona y reconstrucción CCTV."; };
     class STR_ADVSEC_pmc_rep_settle { en = "PMC contract settlement"; es = "Liquidación de contrato PMC"; };

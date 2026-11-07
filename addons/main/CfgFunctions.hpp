@@ -287,6 +287,8 @@ class CfgFunctions {
             class ctrTick {};
             class ctrHostiles {};
             class moduleContract {};
+            class moduleContractZone {};
+            class moduleContractHostile {};
             class pmcClasses {};
             class pmcLoop {};
             class pmcPay {};
