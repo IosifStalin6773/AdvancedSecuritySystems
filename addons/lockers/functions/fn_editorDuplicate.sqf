@@ -1,0 +1,12 @@
+private _e=uiNamespace getVariable ['TSL_editor',createHashMap];if !(_e getOrDefault ['active',false]) exitWith {};
+private _key=_e getOrDefault ['selected',''];private _o=_e getOrDefault ['ghost',objNull];if (isNull _o) exitWith {};
+private _ru=(profileNamespace getVariable ['TSL_uiLanguage','en'])=='ru';
+if (_key select [0,5]=='slot_' || {count (_e get 'added')>=40}) exitWith {hint (if (_ru) then {'Копировать можно декор из каталога. Лимит объектов: 40.'} else {'Duplicate catalog decorations only. Object limit: 40.'});};
+private _model='';private _existing=(_e get 'added') findIf {(_x select 0)==_key};
+if (_existing>=0) then {_model=((_e get 'added') select _existing) select 1;} else {private _file=toLower ((getModelInfo _o) select 0);private _catalog=[] call TSL_fnc_editorCatalog;private _i=_catalog findIf {toLower ((_x select 0)+'.p3d')==_file};if (_i>=0) then {_model=(_catalog select _i) select 0;};};
+if (_model=='') exitWith {hint (if (_ru) then {'Эта деталь не входит в каталог копирования.'} else {'This detail is not in the duplication catalog.'});};
+['finish'] call TSL_fnc_editorInput;['checkpoint'] call TSL_fnc_editorInput;
+private _l=(uiNamespace getVariable ['TSL_camera',createHashMap]) get 'locker';private _pose=[_l,_o] call TSL_fnc_editorPose;_pose set [0,(_pose select 0) vectorAdd [.06,0,0]];
+['cancel'] call TSL_fnc_editorInput;private _id='added_'+str floor (diag_tickTime*1000)+'_'+str floor random 1000000;
+(_e get 'added') pushBack [_id,_model,_pose];[] call TSL_fnc_editorRefresh;
+private _i=(_e get 'proxies') findIf {(_x select 0)==_id};private _record=(_e get 'proxies') select _i;_e set ['selected',_id];_e set ['ghost',_record select 1];_e set ['source',objNull];_e set ['label',_model];

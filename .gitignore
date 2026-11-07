@@ -1,3 +1,6 @@
 .hemttout/
 releases/
 *.biprivatekey
+
+# Supera el límite de 100 MB de GitHub: se publica como archivo de la Release
+release/@AdvancedSecuritySystems/addons/advsec_lockers.pbo

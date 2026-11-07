@@ -1,0 +1,1 @@
+params ['_o','_l','_adj'];if (isNull _o || {isNull _l}) exitWith {};private _pose=TSL_sourcePistolPose;private _off=(_pose select 0) vectorAdd [_adj select 0,_adj select 1,_adj select 2];private _d=[_pose select 1,-(_adj select 3)] call BIS_fnc_rotateVector2D;private _u=[_pose select 2,-(_adj select 3)] call BIS_fnc_rotateVector2D;[_o,_l,_off,_d,_u] call TSL_fnc_placeDisplay;

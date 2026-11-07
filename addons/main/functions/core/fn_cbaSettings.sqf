@@ -90,6 +90,12 @@ private _rules = createHashMapFromArray [
 ["sellFactor", "SLIDER", "Parte del precio al vender", "", "9 · Economía", [0, 1, [["sellFactor"], 0.5] call _num, 2]] call _add;
 ["atmAnywhere", "CHECKBOX", "Banco sin cajero", "Ingresar, retirar y transferir desde cualquier sitio.", "9 · Economía", ([["atmAnywhere"], 0] call _num) call _bool] call _add;
 ["thudCompat", "CHECKBOX", "Compatibilidad con el HUD THUD", "Publica tesorería, agentes y jefe (resourcesFIA, hr, theBoss) fuera de Antistasi.", "9 · Economía", ([["thudCompat"], 1] call _num) call _bool] call _add;
+["a3aTreasury", "CHECKBOX", "Antistasi: la tesorería es el dinero de la facción", "En una misión de Antistasi, multas, nóminas y compras usan resourcesFIA en vez de la tesorería propia de la PM.", "9 · Economía", ([["a3aTreasury"], 1] call _num) call _bool] call _add;
+
+// --- Taquillas (TS_Lockers)
+["lockerAccess", "LIST", "Quién puede reclamar una taquilla", "", "10 · Taquillas", [[0, 1, 2], ["Todos", "Solo Policía Militar", "PM o Asuntos Internos"], ([["lockerAccess"], 0] call _num) max 0 min 2]] call _add;
+["lockerJailBlock", "CHECKBOX", "Los detenidos no pueden usar su taquilla", "", "10 · Taquillas", ([["lockerJailBlock"], 1] call _num) call _bool] call _add;
+["lockerPersist", "LIST", "Recrear las taquillas colocadas con Zeus", "Al reiniciar el servidor vuelven a aparecer donde estaban. Antistasi no guarda los objetos de Zeus.", "10 · Taquillas", [[0, 1, 2], ["Nunca", "Siempre", "Solo en Antistasi"], ([["lockerPersist"], 2] call _num) max 0 min 2]] call _add;
 
 // --- Control de carretera
 ["checkpointFine", "SLIDER", "Multa por ir sin documentación", "", "8 · Control de carretera", [0, 10000, [["checkpointFine"], 150] call _num, 0]] call _add;

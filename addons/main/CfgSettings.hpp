@@ -107,6 +107,11 @@ class ADVSEC_Settings {
     atmAnywhere = 0;             // 1 = ingresar, retirar y transferir sin cajero
     thudCompat = 1;              // publica resourcesFIA, hr y theBoss para el HUD THUD (solo fuera de Antistasi)
     thudTreasuryName = "PM";     // nombre de la «facción» en la línea de tesorería del HUD
+    a3aTreasury = 1;             // en Antistasi, la tesorería de la PM es el dinero de la facción rebelde (resourcesFIA)
+    // Taquillas personales (TS_Lockers integrado; necesita ACE y CBA)
+    lockerAccess = 0;            // quién puede reclamar una taquilla: 0 todos, 1 solo PM, 2 PM o AA.II.
+    lockerJailBlock = 1;         // los detenidos no pueden usar su taquilla
+    lockerPersist = 2;           // recrear las taquillas colocadas con Zeus al reiniciar: 0 nunca, 1 siempre, 2 solo en Antistasi
     shopItems[] = {
         {"FirstAidKit", 25}, {"Medikit", 250}, {"ToolKit", 150}, {"ItemMap", 10}, {"ItemCompass", 10}, {"ItemWatch", 10},
         {"ItemRadio", 50}, {"ItemGPS", 150}, {"Binocular", 75}, {"Chemlight_green", 5}, {"SmokeShell", 20}, {"B_AssaultPack_rgr", 120}

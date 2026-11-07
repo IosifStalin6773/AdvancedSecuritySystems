@@ -14,6 +14,7 @@ class CfgFunctions {
             class selfChildren {};
             class aceKids {};
             class utcMin {};
+            class isA3A {};
             class uidUnit {};
             class rpInit {};
             class addUnitActions {};
@@ -195,10 +196,16 @@ class CfgFunctions {
             class catalogUI {};
             class catalogAttr {};
         };
+        class lockers {
+            file = "\x\advsec\addons\main\functions\lockers";
+            class lockerGate {};
+            class lockerPersist {};
+        };
         class economy {
             file = "\x\advsec\addons\main\functions\economy";
             class ecoOn {};
             class ecoA3A {};
+            class ecoTreasuryNow {};
             class ecoDB {};
             class ecoAcc {};
             class ecoHist {};

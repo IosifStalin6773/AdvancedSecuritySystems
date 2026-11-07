@@ -173,6 +173,10 @@ switch (_action) do {
                         case "admin": {_acts pushBack [["Dar superadmin", "Quitar superadmin"] select _adm, "admin", [], true, []]};
                         case "wanted": {_acts pushBack _wanted};
                         case "fines": {_acts pushBack _fineNew};
+                        case "locker": {
+                            _acts pushBack ["Liberar taquilla", "lockerFree", [], true, []];
+                            _acts pushBack ["Vaciar taquilla (borra su equipo)", "lockerWipe", [], true, []];
+                        };
                         default {_acts pushBack _profile};
                     };
                     {if !((_x select 1) in (_acts apply {_x select 1})) then {_acts pushBack _x}} forEach [_profile, _moneySet];

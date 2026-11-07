@@ -1,0 +1,3 @@
+params ['_l'];if (!isServer || {isNull _l}) exitWith {};private _old=_l getVariable ['TSL_clamps',[]];private _key=str [getPosWorld _l,vectorDir _l,vectorUp _l];if (_key==(_l getVariable ['TSL_mountKey','']) && {count _old==1} && {!isNull (_old select 0)}) exitWith {};{if (!isNull _x) then {deleteVehicle _x;};} forEach _old;private _o=createSimpleObject ['\TS_Lockers\TSL_SourceHooks.p3d',getPosWorld _l,true];_o enableSimulationGlobal false;_o allowDamage false;[_o,_l,[0,0,0],[0,1,0]] call TSL_fnc_placeDisplay;_o setVariable ['TSL_editKey','part_hooks',true];_o setVariable ['TSL_editLabel','Weapon hooks / Крючки оружия',true];_l setVariable ['TSL_clamps',[_o]];_l setVariable ['TSL_mountKey',_key];
+
+[_l] call TSL_fnc_publishVisuals;

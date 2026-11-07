@@ -85,6 +85,11 @@ switch (_action) do {
             ["Armas registradas", str (count _myWpns)],
             ["Notas", _notes, "profile"]
         ];
+        // Taquilla personal (TS_Lockers integrado)
+        if (!isNil "TSL_uidMap") then {
+            private _lk = TSL_uidMap getOrDefault [_uid, objNull];
+            _res pushBack ["Taquilla", ["Sin taquilla asignada", format ["Asignada · cuadrícula %1", mapGridPosition _lk]] select !isNull _lk, "locker"];
+        };
         private _resRows = _res apply {[[_x select 0, _x select 1], _x select 1, ["sum", _x param [2, ""]]]};
 
         // 2. Documentos (documentos, matrículas y armas)
@@ -309,6 +314,24 @@ switch (_action) do {
                     ["spec"] call ADVSEC_fnc_dbDirty;
                     if (!isNull _u) then {[_u] call ADVSEC_fnc_specApply};
                     (format ["Especialidad %1 retirada", _sid]) call _log;
+                };
+                // Taquilla: liberar la asignada (el equipo queda guardado) o borrar también lo guardado
+                case "lockerFree";
+                case "lockerWipe": {
+                    if (isNil "TSL_uidMap") exitWith {};
+                    private _lk = TSL_uidMap getOrDefault [_uid, objNull];
+                    if (!isNull _lk) then {
+                        [_lk] call TSL_fnc_reconcileTransfer;
+                        [_lk] call TSL_fnc_save;
+                        [_lk] call TSL_fnc_clear;
+                        TSL_uidMap deleteAt _uid;
+                    };
+                    if (_op == "lockerWipe") then {
+                        private _sc = [_uid] call TSL_fnc_scenarioKey;
+                        {profileNamespace setVariable [_x, nil]} forEach [_sc + "_Kit", _sc + "_Locker", "TS_Locker_v1_" + _uid, "TS_Locker_backup_" + _uid];
+                        saveProfileNamespace;
+                    };
+                    (["Taquilla liberada", "Taquilla liberada y su contenido guardado borrado"] select (_op == "lockerWipe")) call _log;
                 };
                 // [efectivo, banco] exactos
                 case "moneySet": {

@@ -1,0 +1,2 @@
+params ['_language',['_locker',objNull]];if (!hasInterface || {!(_language in ['en','ru'])}) exitWith {};profileNamespace setVariable ['TSL_uiLanguage',_language];saveProfileNamespace;private _d=findDisplay 78150;if (!isNull _d && {!isNull _locker}) then {uiNamespace setVariable ['TSL_UI_history',[]];[[_locker,player,['root']] call TSL_fnc_menu] call TSL_fnc_uiFill;};
+private _action=player getVariable ['TSL_openAction',-1];if (_action>=0) then {player setUserActionText [_action,format ['<t color="#D4C29B">%1</t>',['Open personal locker'] call TSL_fnc_localize]];};

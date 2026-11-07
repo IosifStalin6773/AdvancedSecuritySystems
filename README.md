@@ -1,6 +1,6 @@
 # Advanced Security Systems (ADVSEC)
 
-**Versión 1.15.5** · Addon de Arma 3 para servidores con **Policía Militar (PM)** y **Asuntos Internos (AA.II.)**.
+**Versión 1.16.0** · Addon de Arma 3 para servidores con **Policía Militar (PM)** y **Asuntos Internos (AA.II.)**.
 
 ADVSEC reúne en un solo mod:
 - documentación de identidad;
@@ -23,7 +23,8 @@ Todo es configurable desde el editor (Eden), desde Zeus durante la partida, desd
 
 | Ruta | Contenido |
 |---|---|
-| `release/@AdvancedSecuritySystems/` | Mod compilado y listo para usar: 3 PBO firmados (el tercero, `advsec_thud`, es opcional y solo se carga con THUD), `.bisign`, `keys/*.bikey` y `mod.cpp` |
+| `addons/lockers/` | Configuración y scripts de TS_Lockers con los enganches de ADVSEC. Los modelos y texturas (p3d/paa) solo van dentro de `advsec_lockers.pbo` |
+| `release/@AdvancedSecuritySystems/` | Mod compilado y listo para usar: 4 PBO firmados (`advsec_thud` solo se carga con THUD; `advsec_lockers`, las taquillas TS_Lockers, solo con ACE y CBA), `.bisign`, `keys/*.bikey` y `mod.cpp` |
 | `addons/main/` | Código fuente del sistema: SQF, configs, interfaces y texturas |
 | `addons/buildings/` | Edificio de la Policía Militar: modelo, `model.cfg`, config y texturas |
 | `.hemtt/project.toml` | Proyecto de compilación de [HEMTT](https://github.com/BrettMayson/HEMTT) |
@@ -76,14 +77,15 @@ Cada compilación genera una clave nueva (`keys/advsec_<versión>.bikey`), que e
 La carpeta contiene:
 - `addons\advsec_main.pbo`: todo el sistema.
 - `addons\advsec_buildings.pbo`: el edificio de la PM.
-- Las firmas `.bisign` de los tres PBO.
-- `keys\advsec_1.15.5.bikey`.
+- `addons\advsec_lockers.pbo`: taquillas personales TS_Lockers integradas (necesita ACE y CBA; si no están, no se carga). **Quita el `TS_Lockers.pbo` suelto de tu lista de mods**: ya va dentro. Pesa 400 MB y GitHub no admite archivos de más de 100 MB en el repositorio: descárgalo de la página **Releases** (versión v1.16.0) y cópialo en `addons\` junto a su `.bisign`.
+- Las firmas `.bisign` de los PBO.
+- `keys\advsec_1.16.0.bikey`.
 - `mod.cpp`.
 
 ### Servidor dedicado
 
 1. Carga el mod con `-mod=@AdvancedSecuritySystems`. No uses `-serverMod`, porque los clientes también lo necesitan.
-2. Copia `keys\advsec_1.15.5.bikey` a la carpeta `keys` del servidor y borra las claves `advsec_*` antiguas. Los tres PBO están firmados, así que funciona con `verifySignatures = 2`.
+2. Copia `keys\advsec_1.16.0.bikey` a la carpeta `keys` del servidor y borra las claves `advsec_*` antiguas. Todos los PBO están firmados, así que funciona con `verifySignatures = 2`.
 3. Si la misión usa `CfgRemoteExec` en modo lista blanca, copia las clases `ADVSEC_fnc_*` del `description.ext` de ejemplo.
 
 ### Dependencias

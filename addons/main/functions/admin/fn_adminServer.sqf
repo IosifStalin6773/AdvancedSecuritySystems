@@ -183,7 +183,7 @@ switch (_action) do {
         _data params ["", "_v"];
         private _n = round parseNumber (_v param [0, "0"]);
         [] call ADVSEC_fnc_ecoDB;
-        [_n - (localNamespace getVariable ["ADVSEC_treasury", 0]), "Ajuste de la administración"] call ADVSEC_fnc_ecoTreasury;
+        [_n - ([] call ADVSEC_fnc_ecoTreasuryNow), "Ajuste de la administración"] call ADVSEC_fnc_ecoTreasury;
         [format ["Tesorería fijada en %1", _n]] call _log;
     };
     // --- Registro de eventos
@@ -291,7 +291,7 @@ switch (_cat) do {
                 format ["<t size='1.15' font='RobotoCondensedBold'>%1</t>%2<br/>SteamID: %3<br/>Efectivo: %4 %6<br/>Banco: %5 %6<br/><br/>%7", _name call _esc, ["", " <t color='#66FF66'>EN LÍNEA</t>"] select (!isNull _u), _x, _cash, _bank, _cur,
                     ((_hist select [((count _hist) - 10) max 0]) apply {format ["%1 · %2 · %3", _x select 0, (_x select 1) call _esc, _x select 2]}) joinString "<br/>"], []];
         } forEach ([] call ADVSEC_fnc_ecoDB);
-        _info = format ["Cuentas: <t font='RobotoCondensedBold'>%1</t> · Tesorería de la PM: <t font='RobotoCondensedBold'>%2 %3</t>", count _rows, localNamespace getVariable ["ADVSEC_treasury", 0], _cur];
+        _info = format ["Cuentas: <t font='RobotoCondensedBold'>%1</t> · Tesorería de la PM: <t font='RobotoCondensedBold'>%2 %3</t>", count _rows, [] call ADVSEC_fnc_ecoTreasuryNow, _cur];
     };
     case "log": {
         private _l = call _events;

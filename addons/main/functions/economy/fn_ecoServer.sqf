@@ -162,14 +162,14 @@ switch (_action) do {
             [format ["%1 · %2%3 · %4", _d, ["", "+"] select (_v > 0), _v call _fmt, _t], [], format ["<t font='RobotoCondensedBold'>%1</t><br/>%2<br/>Importe: %3", _t call ADVSEC_fnc_repEsc, _d, _v call _fmt], [[1, 0.45, 0.35, 1], [0.45, 1, 0.45, 1]] select (_v > 0), ""]
         };
         reverse _rows;
-        ["treasury", format ["<t size='1.1'>Tesorería de la PM: <t font='RobotoCondensedBold'>%1</t></t><br/><t color='#8C8C8C'>Ingresan las multas cobradas%2.</t>", (localNamespace getVariable ["ADVSEC_treasury", 0]) call _fmt, ["", " y las compras"] select ((["shopToTreasury", 0] call ADVSEC_fnc_setting) isEqualTo 1)], _rows] remoteExecCall ["ADVSEC_fnc_panelSet", _caller];
+        ["treasury", format ["<t size='1.1'>Tesorería de la PM: <t font='RobotoCondensedBold'>%1</t></t><br/><t color='#8C8C8C'>Ingresan las multas cobradas%2.</t>", ([] call ADVSEC_fnc_ecoTreasuryNow) call _fmt, ["", " y las compras"] select ((["shopToTreasury", 0] call ADVSEC_fnc_setting) isEqualTo 1)], _rows] remoteExecCall ["ADVSEC_fnc_panelSet", _caller];
     };
     case "bonus": {
         _args params [["_u", objNull], ["_v", 0], ["_why", ""]];
         if !([_caller, "treasury"] call ADVSEC_fnc_perm) exitWith {[_caller, "pagar desde la tesorería"] call ADVSEC_fnc_deny};
         _v = [_v] call _amt;
         if (isNull _u || {getPlayerUID _u isEqualTo ""} || {_v <= 0}) exitWith {"Datos no válidos." call _say};
-        if ((localNamespace getVariable ["ADVSEC_treasury", 0]) < _v) exitWith {"La tesorería no tiene fondos suficientes." call _say};
+        if (([] call ADVSEC_fnc_ecoTreasuryNow) < _v) exitWith {"La tesorería no tiene fondos suficientes." call _say};
         _why = (_why select [0, 120]);
         if (_why isEqualTo "") then {_why = "Prima"};
         [-_v, format ["%1 · %2 (autoriza %3)", _why, name _u, name _caller]] call ADVSEC_fnc_ecoTreasury;

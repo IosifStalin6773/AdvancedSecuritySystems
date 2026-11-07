@@ -1,0 +1,1 @@
+private _args=+_this;_args set [1,[_args select 1] call TSL_fnc_localize];if (count _args<10) then {_args pushBack [false,false,false,false,false];};_args set [10,TSL_fnc_modifyAction];_args call ace_interact_menu_fnc_createAction

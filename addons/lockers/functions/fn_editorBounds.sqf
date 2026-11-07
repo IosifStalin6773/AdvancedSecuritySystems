@@ -1,0 +1,1 @@
+params ['_o'];private _bb=boundingBoxReal _o;if ((_o getVariable ['TSL_weaponVisual',false]) || {(weaponsItemsCargo _o) isNotEqualTo []}) then {private _shape=boundingBoxReal [_o,'Geometry'];if (count _shape>=2 && {vectorMagnitude ((_shape select 1) vectorDiff (_shape select 0))>.01}) then {_bb=_shape;} else {_bb=0 boundingBoxReal _o;};};_bb
