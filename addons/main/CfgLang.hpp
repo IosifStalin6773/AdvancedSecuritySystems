@@ -2112,6 +2112,7 @@ class ADVSEC_Lang {
     class STR_ADVSEC_pmc_s_contractEvery { en = "Minutes between offers"; es = "Minutos entre ofertas"; };
     class STR_ADVSEC_pmc_s_contractMax { en = "Open offers at most"; es = "Ofertas abiertas como máximo"; };
     class STR_ADVSEC_pmc_s_contractMaxActive { en = "Active contracts at most"; es = "Contratos activos como máximo"; };
+    class STR_ADVSEC_pmc_s_contractMinOps { en = "Minimum PM operators per contract (-1 = by type)"; es = "Operadores PM mínimos por contrato (-1 = según tipo)"; };
     class STR_ADVSEC_pmc_s_contractAdvance { en = "Default advance (0-1)"; es = "Anticipo por defecto (0-1)"; };
     class STR_ADVSEC_pmc_s_contractInsurance { en = "Insurance premium (0-1)"; es = "Prima del seguro (0-1)"; };
     class STR_ADVSEC_pmc_s_contractOpShare { en = "Profit share for operators (0-1)"; es = "Parte del beneficio para operadores (0-1)"; };

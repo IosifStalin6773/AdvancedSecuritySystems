@@ -88,10 +88,13 @@ private _offer = {
     private _id = format ["C-%1", _n];
     private _risk = [_tc, "risk", 1] call ADVSEC_fnc_pmcVal;
     if (_title isEqualTo "") then {_title = format ["%1 · %2", _client call _clName, _type call _tyName]};
+    // contractMinOps >= 0 fija el número de operadores PM (útil para probar en local); -1 usa el de cada tipo
+    private _minOps = ["contractMinOps", -1] call ADVSEC_fnc_setting;
+    if (_minOps < 0) then {_minOps = [_tc, "minOps", 2] call ADVSEC_fnc_pmcVal};
     private _c = createHashMapFromArray [
         ["id", _id], ["client", _client], ["type", _type], ["title", _title select [0, 60]], ["pos", [_pos select 0, _pos select 1]], ["radius", _rad],
         ["route", _route], ["minutes", _min], ["pay", round _pay], ["adv", ["contractAdvance", 0.3] call ADVSEC_fnc_setting], ["penal", 0.5],
-        ["repMin", [-30, 0, 20, 50] select (_risk min 3)], ["specs", [_tc, "specs", []] call ADVSEC_fnc_pmcVal], ["minOps", [_tc, "minOps", 2] call ADVSEC_fnc_pmcVal],
+        ["repMin", [-30, 0, 20, 50] select (_risk min 3)], ["specs", [_tc, "specs", []] call ADVSEC_fnc_pmcVal], ["minOps", _minOps],
         ["grey", ([_cc, "kind", ""] call ADVSEC_fnc_pmcVal) == "grey"], ["risk", _risk], ["rounds", ["contractRounds", 2] call ADVSEC_fnc_setting], ["rejects", 0],
         ["state", "Ofertado"], ["signer", []], ["assigned", []], ["roe", "Ámbar"], ["insured", false], ["created", call ADVSEC_fnc_now],
         ["expires", serverTime + 120 * (["contractEvery", 45] call ADVSEC_fnc_setting)], ["t0", -1], ["start", ""], ["end", ""], ["home", []],

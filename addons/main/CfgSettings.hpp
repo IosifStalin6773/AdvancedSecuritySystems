@@ -193,6 +193,7 @@ class ADVSEC_Settings {
     contractEvery = 20;          // minutos entre ofertas automáticas (las ofertas caducan a 2× este tiempo)
     contractMax = 6;             // ofertas abiertas a la vez como máximo
     contractMaxActive = 3;       // contratos en curso a la vez como máximo
+    contractMinOps = -1;         // operadores PM mínimos por contrato; -1 = el de cada tipo (0 = ninguno, para probar en local)
     contractRounds = 2;          // contraofertas que admite un cliente
     contractAdvance = 0.3;       // anticipo por defecto (0-1) al iniciar el contrato
     contractInsurance = 0.05;    // prima del seguro (fracción del pago); el seguro recupera el 50 % del material perdido

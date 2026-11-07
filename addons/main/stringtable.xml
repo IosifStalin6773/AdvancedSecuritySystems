@@ -10577,6 +10577,11 @@ Posición del VIP en vivo: %1</Spanish>
                 <English>Active contracts at most</English>
                 <Spanish>Contratos activos como máximo</Spanish>
             </Key>
+            <Key ID="STR_ADVSEC_pmc_s_contractMinOps">
+                <Original>Minimum PM operators per contract (-1 = by type)</Original>
+                <English>Minimum PM operators per contract (-1 = by type)</English>
+                <Spanish>Operadores PM mínimos por contrato (-1 = según tipo)</Spanish>
+            </Key>
             <Key ID="STR_ADVSEC_pmc_s_contractAdvance">
                 <Original>Default advance (0-1)</Original>
                 <English>Default advance (0-1)</English>

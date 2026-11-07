@@ -114,6 +114,7 @@ _rules insert [
 ["contractEvery", "SLIDER", ("STR_ADVSEC_pmc_s_contractEvery" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec12" call ADVSEC_fnc_L), [5, 180, [["contractEvery"], 20] call _num, 0]] call _add;
 ["contractMax", "SLIDER", ("STR_ADVSEC_pmc_s_contractMax" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec12" call ADVSEC_fnc_L), [1, 20, [["contractMax"], 6] call _num, 0]] call _add;
 ["contractMaxActive", "SLIDER", ("STR_ADVSEC_pmc_s_contractMaxActive" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec12" call ADVSEC_fnc_L), [1, 10, [["contractMaxActive"], 3] call _num, 0]] call _add;
+["contractMinOps", "SLIDER", ("STR_ADVSEC_pmc_s_contractMinOps" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec12" call ADVSEC_fnc_L), [-1, 10, [["contractMinOps"], -1] call _num, 0]] call _add;
 ["contractAdvance", "SLIDER", ("STR_ADVSEC_pmc_s_contractAdvance" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec12" call ADVSEC_fnc_L), [0, 1, [["contractAdvance"], 0.3] call _num, 2]] call _add;
 ["contractInsurance", "SLIDER", ("STR_ADVSEC_pmc_s_contractInsurance" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec12" call ADVSEC_fnc_L), [0, 0.5, [["contractInsurance"], 0.05] call _num, 2]] call _add;
 ["contractOpShare", "SLIDER", ("STR_ADVSEC_pmc_s_contractOpShare" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec12" call ADVSEC_fnc_L), [0, 1, [["contractOpShare"], 0.4] call _num, 2]] call _add;
