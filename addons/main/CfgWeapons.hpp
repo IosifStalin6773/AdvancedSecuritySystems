@@ -97,6 +97,13 @@ class CfgWeapons {
         picture = "\x\advsec\addons\main\data\speedcam_ca.paa";
         class ItemInfo: InventoryItem_Base_F { mass = 60; };
     };
+    class ADVSEC_HackKit: ADVSEC_ItemBase {
+        scope = 2;
+        displayName = "$STR_ADVSEC_pmc_hackkit";
+        descriptionShort = "$STR_ADVSEC_pmc_hackkit_desc";
+        picture = "\A3\ui_f\data\igui\cfg\simpleTasks\types\intel_ca.paa";
+        class ItemInfo: InventoryItem_Base_F { mass = 20; };
+    };
     class ADVSEC_EvidenceBag: ADVSEC_ItemBase {
         scope = 2;
         displayName = "$STR_ADVSEC_evidence_bag";

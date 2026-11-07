@@ -271,6 +271,58 @@ class CfgFunctions {
             class patrolPlan {};
             class patrolOpen {};
         };
+        class contract {
+            file = "\x\advsec\addons\main\functions\contract";
+            class ctrAction {};
+            class ctrCost {};
+            class ctrDB {};
+            class ctrDamage {};
+            class ctrInit {};
+            class ctrOpen {};
+            class ctrRoute {};
+            class ctrServer {};
+            class ctrSettle {};
+            class ctrTick {};
+            class moduleContract {};
+            class pmcClasses {};
+            class pmcLoop {};
+            class pmcPay {};
+            class pmcVal {};
+        };
+        class armory {
+            file = "\x\advsec\addons\main\functions\armory";
+            class armAudit {};
+            class armClient {};
+            class armDB {};
+            class armInit {};
+            class armMissing {};
+            class armOpen {};
+            class armServer {};
+            class armSigned {};
+            class armValue {};
+            class contraband {};
+            class illegal {};
+            class moduleArmory {};
+            class pmcHasLic {};
+        };
+        class cell {
+            file = "\x\advsec\addons\main\functions\cell";
+            class cellDB {};
+            class cellOpen {};
+            class cellRole {};
+            class cellServer {};
+            class cellStandby {};
+            class cellVipMark {};
+        };
+        class cyber {
+            file = "\x\advsec\addons\main\functions\cyber";
+            class cyHackAction {};
+            class cyInit {};
+            class cyOpen {};
+            class cyReplay {};
+            class cyServer {};
+            class moduleCyber {};
+        };
         class dispatch {
             file = "\x\advsec\addons\main\functions\dispatch";
             class dspServer {};

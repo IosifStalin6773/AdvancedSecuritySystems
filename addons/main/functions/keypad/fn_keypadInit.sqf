@@ -24,6 +24,8 @@ _kp setVariable ["ADVSEC_kpLabel", _label];
     "main", [], 2.5
 ] call ADVSEC_fnc_addInteraction;
 
+[_kp] call ADVSEC_fnc_cyHackAction;
+
 if (_req isNotEqualTo []) then {
     [_kp, "advsec_kp_card", ("STR_ADVSEC_swipe_card_document" call ADVSEC_fnc_L), ADVSEC_icKey,
         {["card", _target, _player] remoteExecCall ["ADVSEC_fnc_keypadServer", 2]},

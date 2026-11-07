@@ -1,10 +1,12 @@
 /*
-    [agente (unidad o [SteamID, nombre]), regla, detalle] (servidor)
+    [agente (unidad o [SteamID, nombre]), regla, detalle, puntos] (servidor)
     Suma los puntos de la regla (ADVSEC_Settings >> Rules) a la sospecha del agente. Al superar el umbral abre un F-AI-01 automático.
 */
-params ["_who", "_rule", ["_detail", ""]];
+params ["_who", "_rule", ["_detail", ""], ["_force", -1]];
 if (!isServer) exitWith {};
 private _pts = [["Rules", _rule], 0] call ADVSEC_fnc_setting;
+// puntos explícitos (p. ej. incidentes declarados a la mitad)
+if (_force isEqualType 0 && {_force >= 0}) then {_pts = _force};
 if (isNil "_pts" || {!(_pts isEqualType 0)} || {_pts <= 0}) exitWith {};
 private _uid = ""; private _name = "";
 if (_who isEqualType objNull) then {

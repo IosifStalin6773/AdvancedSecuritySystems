@@ -43,6 +43,12 @@ private _names = createHashMapFromArray [
     ["suspicionView", ("STR_ADVSEC_ia_view_suspicion_index" call ADVSEC_fnc_L)], ["evidenceTamper", ("STR_ADVSEC_ia_tamper_with_evidence" call ADVSEC_fnc_L)], ["evidenceAudit", ("STR_ADVSEC_ia_forensic_audit" call ADVSEC_fnc_L)],
     ["playerDB", ("STR_ADVSEC_player_database" call ADVSEC_fnc_L)], ["rankPM", ("STR_ADVSEC_assign_mp_ranks" call ADVSEC_fnc_L)], ["rankAI", ("STR_ADVSEC_ia_assign_ranks" call ADVSEC_fnc_L)], ["rankGlobal", ("STR_ADVSEC_assign_global_ranks" call ADVSEC_fnc_L)], ["treasury", ("STR_ADVSEC_mp_treasury_4" call ADVSEC_fnc_L)], ["dutyView", ("STR_ADVSEC_duty_control" call ADVSEC_fnc_L)], ["dispatch", ("STR_ADVSEC_dispatch_centre" call ADVSEC_fnc_L)], ["suspend", ("STR_ADVSEC_ia_suspend_officers" call ADVSEC_fnc_L)], ["alertLevel", ("STR_ADVSEC_alert_level" call ADVSEC_fnc_L)], ["plateQuery", ("STR_ADVSEC_check_plates_2" call ADVSEC_fnc_L)], ["licenseRevoke", ("STR_ADVSEC_revoke_licences_2" call ADVSEC_fnc_L)], ["bankAudit", ("STR_ADVSEC_ia_bank_audit_2" call ADVSEC_fnc_L)], ["bankFreeze", ("STR_ADVSEC_ia_freeze_accounts" call ADVSEC_fnc_L)], ["k9", ("STR_ADVSEC_k9_unit" call ADVSEC_fnc_L)], ["radar", ("STR_ADVSEC_speed_gun" call ADVSEC_fnc_L)], ["bodycamView", ("STR_ADVSEC_ia_body_cameras_2" call ADVSEC_fnc_L)], ["patrolPlan", ("STR_ADVSEC_plan_patrols_2" call ADVSEC_fnc_L)]
 ];
+_names insert [
+    ["contractView", ("STR_ADVSEC_pmc_p_contractView" call ADVSEC_fnc_L)], ["contractAssign", ("STR_ADVSEC_pmc_p_contractAssign" call ADVSEC_fnc_L)], ["contractSign", ("STR_ADVSEC_pmc_p_contractSign" call ADVSEC_fnc_L)],
+    ["contractGrey", ("STR_ADVSEC_pmc_p_contractGrey" call ADVSEC_fnc_L)], ["armoryCheckout", ("STR_ADVSEC_pmc_p_armoryCheckout" call ADVSEC_fnc_L)], ["armoryManage", ("STR_ADVSEC_pmc_p_armoryManage" call ADVSEC_fnc_L)],
+    ["logisticsOrder", ("STR_ADVSEC_pmc_p_logisticsOrder" call ADVSEC_fnc_L)], ["cellView", ("STR_ADVSEC_pmc_p_cellView" call ADVSEC_fnc_L)], ["cellManage", ("STR_ADVSEC_pmc_p_cellManage" call ADVSEC_fnc_L)],
+    ["cyberView", ("STR_ADVSEC_pmc_p_cyberView" call ADVSEC_fnc_L)], ["cyberManage", ("STR_ADVSEC_pmc_p_cyberManage" call ADVSEC_fnc_L)]
+];
 {
     private _c = _x;
     private _a = configName _c;
@@ -69,6 +75,11 @@ private _rules = createHashMapFromArray [
     ["restrainNoCause", ("STR_ADVSEC_handcuff_without_reason" call ADVSEC_fnc_L)], ["arrestNoCause", ("STR_ADVSEC_arrest_without_reason" call ADVSEC_fnc_L)], ["arrestNoReport", ("STR_ADVSEC_arrest_without_a_report" call ADVSEC_fnc_L)],
     ["hitRestrained", ("STR_ADVSEC_injure_a_handcuffed_person" call ADVSEC_fnc_L)], ["earlyRelease", ("STR_ADVSEC_release_early" call ADVSEC_fnc_L)], ["wantedRemovedByOther", ("STR_ADVSEC_remove_someone_else_s_wanted" call ADVSEC_fnc_L)],
     ["ownCaseAccess", ("STR_ADVSEC_view_their_own_case_file" call ADVSEC_fnc_L)], ["evidenceTamper", ("STR_ADVSEC_tamper_with_evidence_2" call ADVSEC_fnc_L)], ["fineCancelled", ("STR_ADVSEC_cancel_someone_else_s_fine" call ADVSEC_fnc_L)], ["bribe", ("STR_ADVSEC_accept_a_bribe" call ADVSEC_fnc_L)], ["suspiciousMoney", ("STR_ADVSEC_suspicious_money_transaction" call ADVSEC_fnc_L)], ["bodycamOff", ("STR_ADVSEC_turn_off_the_body_camera" call ADVSEC_fnc_L)]
+];
+_rules insert [
+    ["contractGrey", ("STR_ADVSEC_pmc_r_contractGrey" call ADVSEC_fnc_L)], ["collateralHurt", ("STR_ADVSEC_pmc_r_collateralHurt" call ADVSEC_fnc_L)], ["collateralKill", ("STR_ADVSEC_pmc_r_collateralKill" call ADVSEC_fnc_L)],
+    ["collateralKillRoe", ("STR_ADVSEC_pmc_r_collateralKillRoe" call ADVSEC_fnc_L)], ["armoryMismatch", ("STR_ADVSEC_pmc_r_armoryMismatch" call ADVSEC_fnc_L)], ["armoryUnauthorized", ("STR_ADVSEC_pmc_r_armoryUnauthorized" call ADVSEC_fnc_L)],
+    ["corpDiversion", ("STR_ADVSEC_pmc_r_corpDiversion" call ADVSEC_fnc_L)], ["qrfIgnored", ("STR_ADVSEC_pmc_r_qrfIgnored" call ADVSEC_fnc_L)], ["cyberAnomaly", ("STR_ADVSEC_pmc_r_cyberAnomaly" call ADVSEC_fnc_L)]
 ];
 {
     ["Rules_" + configName _x, "SLIDER", format [("STR_ADVSEC_suspicion_for" call ADVSEC_fnc_L), _rules getOrDefault [configName _x, configName _x]], "", ("STR_ADVSEC_6_internal_affairs" call ADVSEC_fnc_L), [0, 100, [["Rules", configName _x], getNumber _x] call _num, 0]] call _add;
@@ -97,6 +108,36 @@ private _rules = createHashMapFromArray [
 ["patrolOrdered", "CHECKBOX", ("STR_ADVSEC_patrol_points_in_order" call ADVSEC_fnc_L), ("STR_ADVSEC_if_enabled_the_patrol_must" call ADVSEC_fnc_L), ("STR_ADVSEC_11_patrols" call ADVSEC_fnc_L), ([["patrolOrdered"], 1] call _num) call _bool] call _add;
 ["patrolNeedDuty", "CHECKBOX", ("STR_ADVSEC_only_on_duty_officers_count" call ADVSEC_fnc_L), "", ("STR_ADVSEC_11_patrols" call ADVSEC_fnc_L), ([["patrolNeedDuty"], 1] call _num) call _bool] call _add;
 ["patrolBonus", "SLIDER", ("STR_ADVSEC_bonus_per_completed_patrol" call ADVSEC_fnc_L), ("STR_ADVSEC_paid_into_the_bank_of" call ADVSEC_fnc_L), ("STR_ADVSEC_11_patrols" call ADVSEC_fnc_L), [0, 5000, ([["patrolBonus"], 0] call _num), 0]] call _add;
+
+// --- PMC: contratos (12), armería y contrabando (13), células QRF/CP (14), Inteligencia y ciber (15)
+["contractAuto", "CHECKBOX", ("STR_ADVSEC_pmc_s_contractAuto" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec12" call ADVSEC_fnc_L), ([["contractAuto"], 1] call _num) call _bool] call _add;
+["contractEvery", "SLIDER", ("STR_ADVSEC_pmc_s_contractEvery" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec12" call ADVSEC_fnc_L), [5, 180, [["contractEvery"], 20] call _num, 0]] call _add;
+["contractMax", "SLIDER", ("STR_ADVSEC_pmc_s_contractMax" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec12" call ADVSEC_fnc_L), [1, 20, [["contractMax"], 6] call _num, 0]] call _add;
+["contractMaxActive", "SLIDER", ("STR_ADVSEC_pmc_s_contractMaxActive" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec12" call ADVSEC_fnc_L), [1, 10, [["contractMaxActive"], 3] call _num, 0]] call _add;
+["contractAdvance", "SLIDER", ("STR_ADVSEC_pmc_s_contractAdvance" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec12" call ADVSEC_fnc_L), [0, 1, [["contractAdvance"], 0.3] call _num, 2]] call _add;
+["contractInsurance", "SLIDER", ("STR_ADVSEC_pmc_s_contractInsurance" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec12" call ADVSEC_fnc_L), [0, 0.5, [["contractInsurance"], 0.05] call _num, 2]] call _add;
+["contractOpShare", "SLIDER", ("STR_ADVSEC_pmc_s_contractOpShare" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec12" call ADVSEC_fnc_L), [0, 1, [["contractOpShare"], 0.4] call _num, 2]] call _add;
+["contractCivPenalty", "SLIDER", ("STR_ADVSEC_pmc_s_contractCivPenalty" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec12" call ADVSEC_fnc_L), [0, 1, [["contractCivPenalty"], 0.25] call _num, 2]] call _add;
+["contractRepGain", "SLIDER", ("STR_ADVSEC_pmc_s_contractRepGain" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec12" call ADVSEC_fnc_L), [0, 50, [["contractRepGain"], 10] call _num, 0]] call _add;
+["contractRepLoss", "SLIDER", ("STR_ADVSEC_pmc_s_contractRepLoss" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec12" call ADVSEC_fnc_L), [0, 100, [["contractRepLoss"], 20] call _num, 0]] call _add;
+["contractRepDecay", "SLIDER", ("STR_ADVSEC_pmc_s_contractRepDecay" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec12" call ADVSEC_fnc_L), [0, 30, [["contractRepDecay"], 3] call _num, 0]] call _add;
+["collateralCaseAt", "SLIDER", ("STR_ADVSEC_pmc_s_collateralCaseAt" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec12" call ADVSEC_fnc_L), [1, 10, [["collateralCaseAt"], 2] call _num, 0]] call _add;
+["armoryNeedDuty", "CHECKBOX", ("STR_ADVSEC_pmc_s_armoryNeedDuty" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec13" call ADVSEC_fnc_L), ([["armoryNeedDuty"], 1] call _num) call _bool] call _add;
+["armoryLossFactor", "SLIDER", ("STR_ADVSEC_pmc_s_armoryLossFactor" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec13" call ADVSEC_fnc_L), [0, 5, [["armoryLossFactor"], 1.5] call _num, 1]] call _add;
+["armoryAuditEvery", "SLIDER", ("STR_ADVSEC_pmc_s_armoryAuditEvery" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec13" call ADVSEC_fnc_L), [0, 240, [["armoryAuditEvery"], 0] call _num, 0]] call _add;
+["blackMarketIllegal", "CHECKBOX", ("STR_ADVSEC_pmc_s_blackMarketIllegal" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec13" call ADVSEC_fnc_L), ([["blackMarketIllegal"], 1] call _num) call _bool] call _add;
+["blackMarketTrace", "SLIDER", ("STR_ADVSEC_pmc_s_blackMarketTrace" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec13" call ADVSEC_fnc_L), [0, 1, [["blackMarketTrace"], 0.5] call _num, 2]] call _add;
+["qrfTarget", "SLIDER", ("STR_ADVSEC_pmc_s_qrfTarget" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec14" call ADVSEC_fnc_L), [1, 30, [["qrfTarget"], 8] call _num, 0]] call _add;
+["qrfArriveRadius", "SLIDER", ("STR_ADVSEC_pmc_s_qrfArriveRadius" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec14" call ADVSEC_fnc_L), [10, 300, [["qrfArriveRadius"], 50] call _num, 0]] call _add;
+["qrfBonus", "SLIDER", ("STR_ADVSEC_pmc_s_qrfBonus" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec14" call ADVSEC_fnc_L), [0, 5000, [["qrfBonus"], 250] call _num, 0]] call _add;
+["qrfStandbyPay", "SLIDER", ("STR_ADVSEC_pmc_s_qrfStandbyPay" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec14" call ADVSEC_fnc_L), [0, 5000, [["qrfStandbyPay"], 150] call _num, 0]] call _add;
+["qrfStandbyMin", "SLIDER", ("STR_ADVSEC_pmc_s_qrfStandbyMin" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec14" call ADVSEC_fnc_L), [0, 1, [["qrfStandbyMin"], 0.8] call _num, 2]] call _add;
+["cpCloseRadius", "SLIDER", ("STR_ADVSEC_pmc_s_cpCloseRadius" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec14" call ADVSEC_fnc_L), [2, 30, [["cpCloseRadius"], 5] call _num, 0]] call _add;
+["cpExposurePenalty", "SLIDER", ("STR_ADVSEC_pmc_s_cpExposurePenalty" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec14" call ADVSEC_fnc_L), [0, 0.1, [["cpExposurePenalty"], 0.01] call _num, 3]] call _add;
+["cctvSnapEvery", "SLIDER", ("STR_ADVSEC_pmc_s_cctvSnapEvery" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec15" call ADVSEC_fnc_L), [0, 120, [["cctvSnapEvery"], 20] call _num, 0]] call _add;
+["cctvSnapRange", "SLIDER", ("STR_ADVSEC_pmc_s_cctvSnapRange" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec15" call ADVSEC_fnc_L), [10, 200, [["cctvSnapRange"], 60] call _num, 0]] call _add;
+["hackChance", "SLIDER", ("STR_ADVSEC_pmc_s_hackChance" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec15" call ADVSEC_fnc_L), [0, 1, [["hackChance"], 0.5] call _num, 2]] call _add;
+["hackTime", "SLIDER", ("STR_ADVSEC_pmc_s_hackTime" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec15" call ADVSEC_fnc_L), [5, 120, [["hackTime"], 20] call _num, 0]] call _add;
 
 // --- Taquillas (TS_Lockers)
 ["lockerAccess", "LIST", ("STR_ADVSEC_who_can_claim_a_locker" call ADVSEC_fnc_L), "", ("STR_ADVSEC_10_lockers" call ADVSEC_fnc_L), [[0, 1, 2], [("STR_ADVSEC_all" call ADVSEC_fnc_L), ("STR_ADVSEC_military_police_only" call ADVSEC_fnc_L), ("STR_ADVSEC_mp_or_internal_affairs" call ADVSEC_fnc_L)], ([["lockerAccess"], 0] call _num) max 0 min 2]] call _add;

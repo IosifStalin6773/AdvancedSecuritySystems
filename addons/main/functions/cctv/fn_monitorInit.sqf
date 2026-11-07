@@ -10,3 +10,4 @@ _monitor setVariable ["ADVSEC_cams", _cams];
     {_args isEqualTo [] || {[_player, _args] call ADVSEC_fnc_accessCheck}},
     "main", _req, 3
 ] call ADVSEC_fnc_addInteraction;
+[_monitor] call ADVSEC_fnc_cyHackAction;

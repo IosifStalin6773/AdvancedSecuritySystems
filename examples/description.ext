@@ -121,6 +121,10 @@ class CfgRemoteExec {
         class ADVSEC_fnc_pdbViewSet { allowedTargets = 0; };
         class ADVSEC_fnc_speedCamFlash { allowedTargets = 0; };
         class ADVSEC_fnc_speedCamServer { allowedTargets = 2; };
+        class ADVSEC_fnc_ctrServer { allowedTargets = 2; };
+        class ADVSEC_fnc_armServer { allowedTargets = 2; };
+        class ADVSEC_fnc_cellServer { allowedTargets = 2; };
+        class ADVSEC_fnc_cyServer { allowedTargets = 2; };
         class ADVSEC_fnc_ecoTakeItem { allowedTargets = 0; };
         class ADVSEC_fnc_specLocal { allowedTargets = 0; };
         class ADVSEC_fnc_dspNotify { allowedTargets = 0; };
@@ -128,6 +132,8 @@ class CfgRemoteExec {
         class ADVSEC_fnc_patrolMarkers { allowedTargets = 0; };
         class ADVSEC_fnc_alertHint { allowedTargets = 0; };
         class ADVSEC_fnc_bribeAsk { allowedTargets = 0; };
+        class ADVSEC_fnc_cellVipMark { allowedTargets = 0; };
+        class ADVSEC_fnc_cyReplay { allowedTargets = 0; };
         // Inicialización de objetos en todas las máquinas (cola JIP)
         class ADVSEC_fnc_alarmInit { allowedTargets = 0; jip = 1; };
         class ADVSEC_fnc_cameraInit { allowedTargets = 0; jip = 1; };
@@ -144,6 +150,9 @@ class CfgRemoteExec {
         class ADVSEC_fnc_dutyTermInit { allowedTargets = 0; jip = 1; };
         class ADVSEC_fnc_dealerInit { allowedTargets = 0; jip = 1; };
         class ADVSEC_fnc_speedCamInit { allowedTargets = 0; jip = 1; };
+        class ADVSEC_fnc_ctrInit { allowedTargets = 0; jip = 1; };
+        class ADVSEC_fnc_armInit { allowedTargets = 0; jip = 1; };
+        class ADVSEC_fnc_cyInit { allowedTargets = 0; jip = 1; };
     };
     // El servidor no está limitado por esta lista: no añadas aquí removeItem, disableAI, etc.
     class Commands {

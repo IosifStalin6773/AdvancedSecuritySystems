@@ -26,6 +26,7 @@ if (_mode == "seize") exitWith {
         case "M": {_holder addMagazineCargoGlobal [_class, 1]};
         default {_holder addItemCargoGlobal [_class, 1]};
     };
+    [_unit, _class, _caller, ("STR_ADVSEC_pmc_contra_search" call ADVSEC_fnc_L)] call ADVSEC_fnc_contraband;
     private _h = _unit getVariable ["ADVSEC_hidden", []];
     if (_class in _h) then {_h deleteAt (_h find _class); _unit setVariable ["ADVSEC_hidden", _h, true]};
     [_unit, _mode, _args] call ADVSEC_fnc_policeLocal;

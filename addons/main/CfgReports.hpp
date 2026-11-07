@@ -66,6 +66,18 @@ class ADVSEC_ReportTypes {
         displayName = "$STR_ADVSEC_internal_affairs_quarterly_report";
         hint = "$STR_ADVSEC_summary_of_the_quarter_s";
     };
+    class FPMC01 {
+        code = "F-PMC-01";
+        dept = "PM";
+        displayName = "$STR_ADVSEC_pmc_rep_settle";
+        hint = "$STR_ADVSEC_pmc_rep_settle_hint";
+    };
+    class FPMC02 {
+        code = "F-PMC-02";
+        dept = "PM";
+        displayName = "$STR_ADVSEC_pmc_rep_audit";
+        hint = "$STR_ADVSEC_pmc_rep_audit_hint";
+    };
 };
 
 class ADVSEC_ReportLists {

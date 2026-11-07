@@ -50,6 +50,15 @@ switch (_action) do {
                 _hit = {random 1 < _p} count (_t getVariable ["ADVSEC_hidden", []]);
                 if (_hit > 0) then {_t setVariable ["ADVSEC_k9Mark", serverTime + 300, true]};
             };
+            // Contrabando a la vista (mercado negro, explosivos, material ilegal): el perro también lo marca
+            private _ill = [] call ADVSEC_fnc_illegal;
+            private _stuff = if (_t isKindOf "CAManBase") then {items _t + magazines _t + weapons _t} else {(getItemCargo _t select 0) + (getMagazineCargo _t select 0) + (getWeaponCargo _t select 0)};
+            private _c = {random 1 < _p} count (_stuff select {_x in _ill});
+            if (_c > 0) then {
+                _hit = _hit + _c;
+                if (_t isKindOf "CAManBase") then {_t setVariable ["ADVSEC_k9Mark", serverTime + 300, true]};
+                ["k9Contraband", _h, [typeOf _t, _c]] call ADVSEC_fnc_logEvent;
+            };
             ["k9", _h, [typeOf _t, _hit]] call ADVSEC_fnc_logEvent;
             ([("STR_ADVSEC_the_dog_does_not_alert" call ADVSEC_fnc_L), format [("STR_ADVSEC_the_dog_alerts_indication_s" call ADVSEC_fnc_L), _hit]] select (_hit > 0)) remoteExecCall ["hint", _h];
         };

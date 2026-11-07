@@ -129,7 +129,7 @@ switch (_action) do {
         private _ordered = (["patrolOrdered", 1] call ADVSEC_fnc_setting) isEqualTo 1;
         {
             private _id = _x;
-            private _p = _y;
+            private _p = _db get _x;
             if ((_p select 8) in ["assigned", "active"]) then {
                 private _us = [_p] call _units;
                 private _reached = _p select 9;
@@ -161,7 +161,7 @@ switch (_action) do {
                     };
                 };
             };
-        } forEach +_db;
+        } forEach (keys _db);
     };
     case "list": {
         private _uid = getPlayerUID _caller;

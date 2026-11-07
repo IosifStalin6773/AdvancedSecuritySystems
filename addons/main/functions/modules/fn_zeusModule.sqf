@@ -86,6 +86,17 @@ private _def = switch (_kind) do {
         [("STR_ADVSEC_radius" call ADVSEC_fnc_L), 20, [["10 m", 10], ["20 m", 20], ["35 m", 35]]],
         [("STR_ADVSEC_officers" call ADVSEC_fnc_L), 2, [[("STR_ADVSEC_create_2_officers" call ADVSEC_fnc_L), 2], [("STR_ADVSEC_create_4_officers" call ADVSEC_fnc_L), 4], [("STR_ADVSEC_group_of_the_unit_under" call ADVSEC_fnc_L), -1], [("STR_ADVSEC_no_officers_fines_and_wanted" call ADVSEC_fnc_L), 0]]]
     ]]};
+    case "contract": {[("STR_ADVSEC_pmc_terminal" call ADVSEC_fnc_L), [[("STR_ADVSEC_name" call ADVSEC_fnc_L), ("STR_ADVSEC_pmc_terminal" call ADVSEC_fnc_L)]]]};
+    case "armory": {[("STR_ADVSEC_pmc_armory" call ADVSEC_fnc_L), [[("STR_ADVSEC_name" call ADVSEC_fnc_L), ("STR_ADVSEC_pmc_armory" call ADVSEC_fnc_L)]]]};
+    case "cyber": {[("STR_ADVSEC_pmc_cy_terminal" call ADVSEC_fnc_L), [[("STR_ADVSEC_name" call ADVSEC_fnc_L), ("STR_ADVSEC_pmc_cy_terminal" call ADVSEC_fnc_L)]]]};
+    case "contractOffer": {[("STR_ADVSEC_pmc_offer_title" call ADVSEC_fnc_L), [
+        [("STR_ADVSEC_pmc_type" call ADVSEC_fnc_L), "escort", (["ContractTypes"] call ADVSEC_fnc_pmcClasses) apply {[[_x, "name", configName _x] call ADVSEC_fnc_pmcVal, configName _x]}],
+        [("STR_ADVSEC_pmc_client" call ADVSEC_fnc_L), "", (["Clients"] call ADVSEC_fnc_pmcClasses) apply {[[_x, "name", configName _x] call ADVSEC_fnc_pmcVal, configName _x]}],
+        [("STR_ADVSEC_pmc_title" call ADVSEC_fnc_L), ""],
+        [("STR_ADVSEC_radius" call ADVSEC_fnc_L), 150, [["50 m", 50], ["150 m", 150], ["300 m", 300], ["600 m", 600]]],
+        [("STR_ADVSEC_pmc_pay0" call ADVSEC_fnc_L), "0"],
+        [("STR_ADVSEC_pmc_minutes0" call ADVSEC_fnc_L), "0"]
+    ]]};
     default {[]};
 };
 if (_def isEqualTo []) exitWith {};

@@ -21,3 +21,5 @@ _db set [_uid, _e];
 _unit setVariable ["ADVSEC_onDuty", _on, true];
 _unit setVariable ["ADVSEC_bodycam", _on, true];
 [["dutyOff", "dutyOn"] select _on, _unit, [round (_e select 0)]] call ADVSEC_fnc_logEvent;
+// Fin de turno: recordatorio del material corporativo firmado (armería PMC)
+if (!_on && {!isNil {localNamespace getVariable "ADVSEC_armReady"}}) then {["dutyOff", _unit] call ADVSEC_fnc_armServer};

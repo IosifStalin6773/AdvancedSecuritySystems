@@ -19,6 +19,8 @@ private _cur = ["currency", "€"] call ADVSEC_fnc_setting;
         private _plus = (_pmT param [[_x, "PM"] call ADVSEC_fnc_rankLevel, 0]) + (_aiT param [[_x, "AI"] call ADVSEC_fnc_rankLevel, 0]);
         if ((["salaryDutyOnly", 1] call ADVSEC_fnc_setting) isEqualTo 1 && {!(_x getVariable ["ADVSEC_onDuty", false])}) then {_plus = 0};
         private _amt = round (_base + _plus + _g * _gStep);
+        // Plus de guardia de la QRF de la PMC (disponible al menos qrfStandbyMin del tiempo de servicio)
+        _amt = _amt + ([_uid] call ADVSEC_fnc_cellStandby);
         if (_amt > 0 && {!_fromT || {([] call ADVSEC_fnc_ecoTreasuryNow) >= _amt}}) then {
             if (_fromT) then {[-_amt, format [("STR_ADVSEC_payroll" call ADVSEC_fnc_L), name _x]] call ADVSEC_fnc_ecoTreasury};
             private _a = [_uid, name _x] call ADVSEC_fnc_ecoAcc;

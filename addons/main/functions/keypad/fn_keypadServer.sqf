@@ -30,6 +30,7 @@ if (!_ok) exitWith {
         _kp setVariable ["ADVSEC_kpFails", 0];
         _kp setVariable ["ADVSEC_kpLockout", time + 30, true];
         if (!isNull _alarm) then {[_alarm, "trigger", format [("STR_ADVSEC_keypad_forced_by" call ADVSEC_fnc_L), name _caller]] call ADVSEC_fnc_alarmSet};
+        ["alert", _caller, ["keypadForce", format [("STR_ADVSEC_pmc_cy_kp_force" call ADVSEC_fnc_L), _kp getVariable ["ADVSEC_kpLabel", typeOf _kp], mapGridPosition _kp]]] call ADVSEC_fnc_cyServer;
     };
     [("STR_ADVSEC_access_denied" call ADVSEC_fnc_L), false] remoteExecCall ["ADVSEC_fnc_keypadFeedback", _caller];
 };
@@ -43,6 +44,11 @@ private _lock = if (_doors isNotEqualTo []) then {
     !(_alarm getVariable ["ADVSEC_armed", false])
 };
 {_x params ["_b", "_i"]; [_b, _i, _lock] call ADVSEC_fnc_doorSet} forEach _doors;
+["keypadUse", _caller, [_kp getVariable ["ADVSEC_kpLabel", typeOf _kp], _mode, ["open", "lock"] select _lock]] call ADVSEC_fnc_logEvent;
+// Acceso fuera de servicio a una zona restringida de la PMC
+if (!_lock && {[_caller, "PM"] call ADVSEC_fnc_repAccess} && {!(_caller getVariable ["ADVSEC_onDuty", false])} && {!([_caller] call ADVSEC_fnc_isZeus)}) then {
+    ["alert", _caller, ["offDutyAccess", format [("STR_ADVSEC_pmc_cy_offduty" call ADVSEC_fnc_L), name _caller, _kp getVariable ["ADVSEC_kpLabel", typeOf _kp], mapGridPosition _kp]]] call ADVSEC_fnc_cyServer;
+};
 
 if (!isNull _alarm) then {
     if (_lock) then {

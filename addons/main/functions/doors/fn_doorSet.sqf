@@ -11,7 +11,10 @@ if (call ADVSEC_fnc_fromClient) then {
     ) then {[_caller, format [("STR_ADVSEC_change_door_of" call ADVSEC_fnc_L), _idx, typeOf _building]] call ADVSEC_fnc_deny; _locked = nil};
 };
 if (isNil "_locked") exitWith {};
-if (!isNull _caller && {isPlayer _caller}) then {["print", _caller, [_building]] call ADVSEC_fnc_evidenceServer};
+if (!isNull _caller && {isPlayer _caller}) then {
+    ["print", _caller, [_building]] call ADVSEC_fnc_evidenceServer;
+    ["doorSet", _caller, [typeOf _building, _idx, ["open", "lock"] select _locked]] call ADVSEC_fnc_logEvent;
+};
 
 private _v = [0, 1] select _locked;
 _building setVariable [format ["bis_disabled_door_%1", _idx], _v, true];

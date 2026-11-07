@@ -46,5 +46,23 @@ if ("eco" in _d) then {
         {_out pushBack [_x, _y]} forEach _h;
         profileNamespace setVariable [ADVSEC_repKey + "_" + _k, _out];
     };
-} forEach [["spec", "ADVSEC_specDB"], ["duty", "ADVSEC_dutyDB"], ["susp", "ADVSEC_susDB"], ["plates", "ADVSEC_plateDB"], ["weapons", "ADVSEC_wpnDB"], ["bodycam", "ADVSEC_bodyDB"], ["patrols", "ADVSEC_patrolDB"]];
+} forEach [["spec", "ADVSEC_specDB"], ["duty", "ADVSEC_dutyDB"], ["susp", "ADVSEC_susDB"], ["plates", "ADVSEC_plateDB"], ["weapons", "ADVSEC_wpnDB"], ["bodycam", "ADVSEC_bodyDB"], ["patrols", "ADVSEC_patrolDB"],
+    ["clients", "ADVSEC_ctrClients"], ["armory", "ADVSEC_armDebts"], ["cells", "ADVSEC_cellDB"], ["qrf", "ADVSEC_qrfStats"]];
+// PMC: contratos (hashmaps con métricas anidadas), contador de series y alertas ciber
+if ("contracts" in _d) then {
+    private _out = [];
+    {
+        private _c = +_y;
+        private _m = _c getOrDefault ["metrics", createHashMap];
+        private _mp = [];
+        {_mp pushBack [_x, _y]} forEach _m;
+        _c set ["metrics", _mp];
+        private _p = [];
+        {_p pushBack [_x, _y]} forEach _c;
+        _out pushBack _p;
+    } forEach (localNamespace getVariable ["ADVSEC_ctrDB", createHashMap]);
+    profileNamespace setVariable [ADVSEC_repKey + "_contracts", _out];
+};
+if ("armory" in _d) then {profileNamespace setVariable [ADVSEC_repKey + "_armseq", localNamespace getVariable ["ADVSEC_armSeq", 0]]};
+if ("cyber" in _d) then {profileNamespace setVariable [ADVSEC_repKey + "_cyber", localNamespace getVariable ["ADVSEC_cyAlerts", []]]};
 saveProfileNamespace;

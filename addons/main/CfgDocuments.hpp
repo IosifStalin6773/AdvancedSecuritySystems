@@ -33,6 +33,17 @@ class ADVSEC_DocumentTypes {
         clearance = 0;
         dark = 0;
     };
+    class VIPPass {
+        background = "\x\advsec\addons\main\data\doc_permit_ca.paa";
+        displayName = "PASE VIP";
+        item = "ADVSEC_Permit";
+        icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\meet_ca.paa";
+        color[] = {0.55, 0.42, 0.08, 0.95};
+        fields[] = {"name", "number", "issuer", "clearance", "notes"};
+        labels[] = {"$STR_ADVSEC_holder", "$STR_ADVSEC_pmc_contract", "$STR_ADVSEC_pmc_client", "$STR_ADVSEC_level_2", "$STR_ADVSEC_scope"};
+        clearance = 2;
+        dark = 0;
+    };
     class Keycard {
         background = "\x\advsec\addons\main\data\doc_keycard_ca.paa";
         displayName = "$STR_ADVSEC_access_card_2";

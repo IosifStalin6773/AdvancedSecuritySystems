@@ -32,6 +32,8 @@ switch (_action) do {
         [_id, format ["112 · %1", name _caller], _text, getPosATL _caller, false] remoteExecCall ["ADVSEC_fnc_dspNotify", _to];
         (format [("STR_ADVSEC_call_logged" call ADVSEC_fnc_L), _id, [("STR_ADVSEC_no_patrols_available_right_now" call ADVSEC_fnc_L), ("STR_ADVSEC_alert_sent_to_the_nearest" call ADVSEC_fnc_L)] select (_to isNotEqualTo [])]) call _say;
         ["call112", _caller, [_id, _text]] call ADVSEC_fnc_logEvent;
+        // Aviso dentro de la zona de un contrato en curso: también a la QRF de la PMC
+        if ((values ([] call ADVSEC_fnc_ctrDB)) findIf {(_x get "state") == "En curso" && {(_x get "pos") distance2D _caller <= ((_x get "radius") + 300)}} >= 0) then {["panic", _caller, [_id]] call ADVSEC_fnc_cellServer};
     };
     case "panic": {
         if !([_caller, "PM"] call ADVSEC_fnc_repAccess) exitWith {};
@@ -39,6 +41,7 @@ switch (_action) do {
         [_id, format [("STR_ADVSEC_panic" call ADVSEC_fnc_L), name _caller], format [("STR_ADVSEC_needs_immediate_backup_at" call ADVSEC_fnc_L), name _caller, mapGridPosition _caller], getPosATL _caller, true] remoteExecCall ["ADVSEC_fnc_dspNotify", _pm];
         ("STR_ADVSEC_panic_button_activated_the_whole" call ADVSEC_fnc_L) call _say;
         ["panic", _caller, [_id, mapGridPosition _caller]] call ADVSEC_fnc_logEvent;
+        ["panic", _caller, [_id]] call ADVSEC_fnc_cellServer;
     };
     case "accept";
     case "close": {
@@ -52,6 +55,7 @@ switch (_action) do {
             private _u = [_c select 1] call ADVSEC_fnc_uidUnit;
             if (!isNull _u) then {(format [("STR_ADVSEC_dispatch_is_on_the_way" call ADVSEC_fnc_L), name _caller, _id]) remoteExecCall ["hint", _u]};
             [_id, _c select 3] remoteExecCall ["ADVSEC_fnc_dspMark", _caller];
+            ["accept", _caller, [_id]] call ADVSEC_fnc_cellServer;
         } else {
             _c set [6, "Cerrado"];
         };

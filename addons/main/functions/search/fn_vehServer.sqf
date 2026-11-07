@@ -56,7 +56,7 @@ switch (_action) do {
                 _x params ["_k", "_class", "_n"];
                 private _cfg = [_class] call _cfgOf;
                 private _name = [_class, getText (_cfg >> "displayName")] select !isNull _cfg;
-                private _illegal = _class in (["illegalItems", []] call ADVSEC_fnc_setting);
+                private _illegal = _class in ([] call ADVSEC_fnc_illegal);
                 _rows pushBack [format ["    %1 x%2%3", _name, _n, [" ", ("STR_ADVSEC_illegal" call ADVSEC_fnc_L)] select _illegal], [_z, _k, _class],
                     format [("STR_ADVSEC_compartment_class_quantity" call ADVSEC_fnc_L), _name, _label, _class, _n],
                     [[], [1, 0.3, 0.3, 1]] select _illegal, getText (_cfg >> "picture")];
@@ -121,6 +121,10 @@ switch (_action) do {
             _ok = true;
         };
         if (!_ok) exitWith {("STR_ADVSEC_that_object_is_no_longer" call ADVSEC_fnc_L) call _say};
+        // Sanción de contrabando a quien conduce (o al último conductor registrado)
+        private _own = [driver _veh, (crew _veh) param [(crew _veh) findIf {isPlayer _x}, objNull]] select (isNull driver _veh || {!isPlayer driver _veh});
+        if (isNull _own) then {_own = [_veh getVariable ["ADVSEC_lastDriver", ""]] call ADVSEC_fnc_uidUnit};
+        if (!isNull _own) then {[_own, _class, _caller, format [("STR_ADVSEC_pmc_contra_veh" call ADVSEC_fnc_L), getPlateNumber _veh]] call ADVSEC_fnc_contraband};
         private _holder = (nearestObjects [_caller, ["GroundWeaponHolder"], 2]) param [0, objNull];
         if (isNull _holder) then {_holder = createVehicle ["GroundWeaponHolder", getPosATL _caller, [], 0.5, "CAN_COLLIDE"]};
         switch (_k) do {

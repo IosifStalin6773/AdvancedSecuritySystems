@@ -49,6 +49,18 @@ class ADVSEC_Settings {
         radar[] = {"PM", 1};        // radar de velocidad
         bodycamView[] = {"AI", 2};  // revisar cámaras corporales
         patrolPlan[] = {"PM", 3};   // planificar y cancelar patrullas con ruta
+        // PMC (1.18)
+        contractView[] = {"PM", 1};   // terminal de contratos: ver ofertas y contratos
+        contractAssign[] = {"PM", 3}; // asignar operadores, ruta y ROE; iniciar contratos
+        contractSign[] = {"PM", 4};   // negociar, firmar y rescindir contratos
+        contractGrey[] = {"PM", 5};   // aceptar contratos de clientes de zona gris
+        armoryCheckout[] = {"PM", 1}; // sacar material de la armería corporativa
+        armoryManage[] = {"PM", 3};   // intendencia: auditorías, bajas y avisos de desgaste
+        logisticsOrder[] = {"PM", 4}; // pedir material a la tesorería
+        cellView[] = {"PM", 1};       // ver las células operativas (CP, QRF, SEC)
+        cellManage[] = {"PM", 4};     // asignar roles de célula
+        cyberView[] = {"AI", 2};      // terminal ciber: alertas, registros, cronologías y CCTV
+        cyberManage[] = {"AI", 3};    // restaurar sistemas comprometidos
     };
 
     // Evidencias
@@ -77,6 +89,16 @@ class ADVSEC_Settings {
         bribe = 25;              // aceptar un soborno (queda rastro en el banco)
         suspiciousMoney = 10;    // movimiento de dinero sospechoso con un agente
         bodycamOff = 5;          // apagar la cámara corporal de servicio
+        // PMC (1.18)
+        contractGrey = 15;       // firmar un contrato de zona gris
+        collateralHurt = 5;      // herir a un civil durante un contrato
+        collateralKill = 15;     // matar a un civil durante un contrato
+        collateralKillRoe = 30;  // matar a un civil con ROE verde
+        armoryMismatch = 10;     // descuadre de material corporativo firmado
+        armoryUnauthorized = 15; // abrir la armería sin permiso o fuera de servicio
+        corpDiversion = 30;      // llevar material corporativo desviado
+        qrfIgnored = 5;          // QRF disponible que no responde a un pánico en 3 minutos
+        cyberAnomaly = 3;        // anomalía detectada por el terminal ciber (intrusión, accesos fuera de servicio)
     };
 
     // Cacheo y registro de vehículos
@@ -164,6 +186,94 @@ class ADVSEC_Settings {
     checkpointSide = "west";     // bando de los agentes creados
     checkpointExemptPM = 0;      // 1 = no para a jugadores con placa PM / AA.II. (ni a admins/Zeus)
     checkpointDocs[] = {"IDCard", "Passport", "MilitaryID", "MPBadge", "IABadge"}; // documentos que valen como identificación
+
+    // ===== PMC (1.18): contratos, armería corporativa, contrabando, células y ciber =====
+    // Contratos. Zonas automáticas: marcadores advsec_ctr_* o poblaciones cerca de un terminal
+    contractAuto = 1;            // 1 = el servidor genera ofertas automáticamente
+    contractEvery = 20;          // minutos entre ofertas automáticas (las ofertas caducan a 2× este tiempo)
+    contractMax = 6;             // ofertas abiertas a la vez como máximo
+    contractMaxActive = 3;       // contratos en curso a la vez como máximo
+    contractRounds = 2;          // contraofertas que admite un cliente
+    contractAdvance = 0.3;       // anticipo por defecto (0-1) al iniciar el contrato
+    contractInsurance = 0.05;    // prima del seguro (fracción del pago); el seguro recupera el 50 % del material perdido
+    contractOpShare = 0.4;       // parte del beneficio que se reparte entre los operadores de servicio
+    contractCivPenalty = 0.25;   // penalización por civil muerto (fracción del pago) cuando Collateral usa penalPct = -1
+    contractRepGain = 10;        // reputación por contrato cumplido
+    contractRepLoss = 20;        // reputación perdida por contrato fallido o rescindido
+    contractRivalLoss = 4;       // reputación que pierden los rivales del cliente al cumplir
+    contractRepDecay = 3;        // días para que la reputación baje/suba 1 punto hacia 0 (0 = nunca)
+    contractGreyHeat = 15;       // sospecha de AA.II. al firmar un contrato de zona gris
+    collateralCaseAt = 2;        // incidentes graves que dejan el contrato en revisión de Compliance (F-AI-01)
+    // Protección cercana (contratos VIP)
+    cpCloseRadius = 5;           // distancia máxima escolta-VIP para no contar como exposición
+    cpExposurePenalty = 0.01;    // penalización por cada 10 s de VIP expuesto (fracción del pago)
+    cpAdvanceRadius = 150;       // radio sin enemigos que se exige a la avanzadilla
+    cpAdvanceBonus = 0.1;        // bonus (fracción del pago) si la avanzadilla aseguró el destino
+    // QRF
+    qrfTarget = 8;               // minutos objetivo de llegada
+    qrfArriveRadius = 50;        // metros para contar la llegada
+    qrfBonus = 250;              // bonus por llegar a tiempo (a cada miembro)
+    qrfStandbyPay = 150;         // plus de guardia en la nómina
+    qrfStandbyMin = 0.8;         // fracción mínima del servicio en estado Disponible para cobrar el plus
+
+    class ContractTypes {
+        class escort { name = "$STR_ADVSEC_pmc_type_escort"; base = 6000; risk = 1; minutes = 45; minOps = 3; };
+        class vip { name = "$STR_ADVSEC_pmc_type_vip"; base = 9000; risk = 2; minutes = 60; minOps = 3; specs[] = {}; };
+        class guard { name = "$STR_ADVSEC_pmc_type_guard"; base = 4000; risk = 1; minutes = 40; minOps = 2; };
+        class checkpoint { name = "$STR_ADVSEC_pmc_type_checkpoint"; base = 3500; risk = 0; minutes = 30; minOps = 2; };
+        class qrf { name = "$STR_ADVSEC_pmc_type_qrf"; base = 5000; risk = 2; minutes = 45; minOps = 3; };
+        class recovery { name = "$STR_ADVSEC_pmc_type_recovery"; base = 7000; risk = 2; minutes = 50; minOps = 3; };
+    };
+    // kind: gov, corp, ngo o grey (zona gris: más pago, sospecha y permiso contractGrey)
+    class Clients {
+        class Gov { name = "$STR_ADVSEC_pmc_cl_gov"; kind = "gov"; payMul = 1; rivals[] = {"Cartel"}; };
+        class Corp { name = "$STR_ADVSEC_pmc_cl_corp"; kind = "corp"; payMul = 1.2; rivals[] = {}; };
+        class NGO { name = "$STR_ADVSEC_pmc_cl_ngo"; kind = "ngo"; payMul = 0.8; rivals[] = {}; };
+        class Cartel { name = "$STR_ADVSEC_pmc_cl_cartel"; kind = "grey"; payMul = 1.6; rivals[] = {"Gov"}; };
+    };
+    // Daños colaterales: penalPct (fracción del pago; -1 = contractCivPenalty), penalFlat, penalValue (× valor del bien),
+    // fine / fineValue (multa al autor), rep / repPer1000 (reputación con el cliente), rule (sospecha de AA.II.)
+    class Collateral {
+        class civHurt { penalPct = 0.05; rep = -3; rule = "collateralHurt"; };
+        class civKill { penalPct = -1; rep = -10; fine = 2000; rule = "collateralKill"; };
+        class civKillRoe { penalPct = 0.5; rep = -25; fine = 5000; rule = "collateralKillRoe"; };
+        class vehicle { penalValue = 0.5; repPer1000 = -1; fineValue = 0.25; };
+        class building { penalValue = 1; rep = -2; fine = 500; };
+        class clientProp { penalValue = 1; rep = -8; };
+    };
+
+    // Armería corporativa (cajas con el módulo Armería PMC)
+    armoryNeedDuty = 1;          // 1 = solo se saca material estando de servicio
+    armoryLossFactor = 1.5;      // deuda por material no devuelto (× valor)
+    armoryDefaultValue = 1000;   // valor de un arma que no está en ninguna lista de precios
+    armoryMagValue = 25;         // valor de un cargador sin precio
+    armoryAuditEvery = 0;        // minutos entre auditorías automáticas (0 = solo manuales)
+    armoryItems[] = {{"arifle_MX_F", 1800}, {"30Rnd_65x39_caseless_mag", 30}, {"hgun_P07_F", 600}, {"16Rnd_9x21_Mag", 15}, {"FirstAidKit", 20}}; // catálogo de pedidos
+    // Vida útil en disparos por tipo de arma (desgaste 100 % = Destruida; al 60 % avisa a intendencia)
+    class WeaponWear {
+        class rifle { life = 6000; };
+        class pistol { life = 4000; };
+        class mg { life = 10000; };
+        class launcher { life = 40; };
+    };
+    // Contrabando: fine (-1 = precio de WeaponLicense, < -1 = valor × |n|), rule (sospecha), wanted (Baja/Media/Alta/Extrema)
+    blackMarketIllegal = 1;      // 1 = lo que vende el mercado negro cuenta como ilegal en registros y controles
+    blackMarketTrace = 0.5;      // probabilidad de que vender material corporativo deje rastro en el registro
+    contrabandExplosives[] = {"DemoCharge_Remote_Mag", "SatchelCharge_Remote_Mag", "APERSMine_Range_Mag", "ATMine_Range_Mag", "IEDUrbanSmall_Remote_Mag", "IEDLandSmall_Remote_Mag"};
+    class ContrabandRules {
+        class explosive { fine = 5000; wanted = "Alta"; };
+        class corpDiverted { fine = -2; rule = "corpDiversion"; wanted = "Media"; };
+        class blackMarket { fine = 1000; wanted = "Baja"; };
+        class noLicense { fine = -1; };
+    };
+
+    // Inteligencia y Compliance (terminal ciber)
+    cyberAlertsMax = 300;        // alertas que se guardan
+    cctvSnapEvery = 20;          // segundos entre capturas CCTV para la reconstrucción (0 = desactivado)
+    cctvSnapKeep = 300;          // capturas que se guardan en memoria
+    cctvSnapRange = 60;          // metros que «ve» cada cámara
+    hackChance = 0.5;            // probabilidad de éxito con el kit de intrusión (+0,3 para la célula SEC)
+    hackTime = 20;               // segundos de intrusión
 };
 
 // Teclas. Con CBA se cambian en Opciones > Controles > Configurar complementos > Advanced Security Systems.

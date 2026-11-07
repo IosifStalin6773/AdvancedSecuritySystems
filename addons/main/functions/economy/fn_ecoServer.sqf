@@ -29,7 +29,10 @@ private _atm = {
 };
 private _shopOk = {
     params ["_s"];
-    !isNull _s && {(_s getVariable ["ADVSEC_shop", []]) isNotEqualTo []} && {(_caller distance _s) < 8}
+    !isNull _s && {(_s getVariable ["ADVSEC_shop", []]) isNotEqualTo []} && {(_caller distance _s) < 8} && {
+        (_s getVariable ["ADVSEC_shopClient", ["", 0]]) params ["_cl", "_min"];
+        _cl isEqualTo "" || {((localNamespace getVariable ["ADVSEC_ctrClients", createHashMap]) getOrDefault [_cl, [0]]) select 0 >= _min}
+    }
 };
 private _bankPush = {_caller setVariable ["ADVSEC_bank", _a select 1, true]};
 

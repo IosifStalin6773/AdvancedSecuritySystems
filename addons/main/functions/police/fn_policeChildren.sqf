@@ -21,6 +21,15 @@ if (_mode == "self") exitWith {
     if ([_player, "alertLevel"] call ADVSEC_fnc_perm) then {_srv pushBack ["advsec_pm_alert", ("STR_ADVSEC_base_alert_level_2" call ADVSEC_fnc_L), ADVSEC_icAlarm, {[] call ADVSEC_fnc_alertOpen}, []]};
     _srv pushBack ["advsec_pm_patrol", ("STR_ADVSEC_route_patrols" call ADVSEC_fnc_L), ADVSEC_icCar, {[] call ADVSEC_fnc_patrolOpen}, []];
     ["advsec_pm_g_srv", ("STR_ADVSEC_duty" call ADVSEC_fnc_L), ADVSEC_icJail, _srv] call _grp;
+    // PMC: contratos, células operativas y terminal ciber
+    private _pmc = [];
+    if ([_player, "contractView"] call ADVSEC_fnc_perm) then {
+        _pmc pushBack ["advsec_pmc_ctr", ("STR_ADVSEC_pmc_terminal" call ADVSEC_fnc_L), ADVSEC_icDoc, {[] call ADVSEC_fnc_ctrOpen}, []];
+        _pmc pushBack ["advsec_pmc_decl", ("STR_ADVSEC_pmc_btn_declare" call ADVSEC_fnc_L), ADVSEC_icDoc, {["declare", _player] remoteExecCall ["ADVSEC_fnc_ctrServer", 2]}, []];
+    };
+    if ([_player, "cellView"] call ADVSEC_fnc_perm || {(([_player] call ADVSEC_fnc_cellRole) select 0) isNotEqualTo ""}) then {_pmc pushBack ["advsec_pmc_cell", ("STR_ADVSEC_pmc_cells" call ADVSEC_fnc_L), ADVSEC_icPol, {[] call ADVSEC_fnc_cellOpen}, []]};
+    if ([_player, "cyberView"] call ADVSEC_fnc_perm || {(([_player] call ADVSEC_fnc_cellRole) select 0) == "SEC"}) then {_pmc pushBack ["advsec_pmc_cy", ("STR_ADVSEC_pmc_cy_terminal" call ADVSEC_fnc_L), ADVSEC_icCam, {[] call ADVSEC_fnc_cyOpen}, []]};
+    ["advsec_pm_g_pmc", ("STR_ADVSEC_pmc_menu" call ADVSEC_fnc_L), ADVSEC_icDoc, _pmc] call _grp;
 
     private _pat = [["advsec_pm_unload", ("STR_ADVSEC_take_detainees_out_of_the" call ADVSEC_fnc_L), ADVSEC_icCar, {[_player] call ADVSEC_fnc_policeUnload}, []]];
     private _veh = (nearestObjects [_player, ["Car", "Motorcycle", "Tank", "Ship"], 7]) select {alive _x && {isNull objectParent _player}};

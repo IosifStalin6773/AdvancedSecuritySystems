@@ -38,6 +38,9 @@ switch (_action) do {
         private _h = 0;
         {_h = (_h * 31 + _x) mod 9999991} forEach toArray (getPlayerUID _caller + _weapon);
         private _serial = format ["%1-%2", toUpper (_weapon select [0, 3]), _h];
+        // Arma corporativa firmada: la vaina lleva el número de serie de la armería y el firmante
+        private _corp = ((_caller getVariable ["ADVSEC_corpArms", []]) select {(_x select 0) == ([_weapon] call BIS_fnc_baseWeapon)}) param [0, []];
+        if (_corp isNotEqualTo []) then {_serial = _corp select 1};
         ["casing", _pos, createHashMapFromArray [
             ["uid", getPlayerUID _caller], ["name", name _caller], ["weapon", _weapon], ["weaponName", getText (_wc >> "displayName")],
             ["serial", _serial], ["ammo", _ammo], ["ammoName", getText (configFile >> "CfgMagazines" >> _ammo >> "displayNameShort")]
@@ -145,6 +148,7 @@ switch (_action) do {
                     private _reg = ([] call ADVSEC_fnc_wpnDB) getOrDefault [_e get "serial", []];
                     switch (true) do {
                         case ((_e get "fake") isNotEqualTo []): {format [("STR_ADVSEC_fired_with_serial_weapon_registered" call ADVSEC_fnc_L), _e get "weaponName", _e get "serial", _who select 0, _who select 1]};
+                        case (_reg isNotEqualTo [] && {(_reg param [4, ""]) == "CORP"}): {format [("STR_ADVSEC_pmc_ev_corp" call ADVSEC_fnc_L), _e get "weaponName", _e get "serial", (_reg select 6) param [1, "-"], (_reg select 6) param [0, "-"], (_reg select 6) param [2, "-"], (_reg select 5) call ADVSEC_fnc_Lv]};
                         case (_reg isNotEqualTo []): {format [("STR_ADVSEC_fired_with_serial_weapon_registered_2" call ADVSEC_fnc_L), _e get "weaponName", _e get "serial", _reg select 2, _reg select 1, _reg select 3]};
                         case ((["weaponRegistryStrict", 1] call ADVSEC_fnc_setting) isEqualTo 1): {format [("STR_ADVSEC_fired_with_serial_unregistered_weapon" call ADVSEC_fnc_L), _e get "weaponName", _e get "serial"]};
                         default {format [("STR_ADVSEC_fired_with_serial_unregistered_ballistic" call ADVSEC_fnc_L), _e get "weaponName", _e get "serial", _who select 0, _who select 1]};

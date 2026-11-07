@@ -79,6 +79,22 @@ switch (_kind) do {
         if (isNull _target) then {_target = ["Land_Laptop_unfolded_F"] call _spawn};
         [_target, _v#0] remoteExecCall ["ADVSEC_fnc_dutyTermInit", 0, ["ADVSEC_fnc_dutyTermInit", _target] call _jip];
     };
+    case "contract": {
+        if (isNull _target) then {_target = ["Land_Laptop_unfolded_F"] call _spawn};
+        [_target, _v#0] remoteExecCall ["ADVSEC_fnc_ctrInit", 0, ["ADVSEC_fnc_ctrInit", _target] call _jip];
+    };
+    case "armory": {
+        if (isNull _target) then {_target = ["B_supplyCrate_F"] call _spawn};
+        [_target, _v#0] remoteExecCall ["ADVSEC_fnc_armInit", 0, ["ADVSEC_fnc_armInit", _target] call _jip];
+    };
+    case "cyber": {
+        if (isNull _target) then {_target = ["Land_Laptop_unfolded_F"] call _spawn};
+        [_target, _v#0] remoteExecCall ["ADVSEC_fnc_cyInit", 0, ["ADVSEC_fnc_cyInit", _target] call _jip];
+    };
+    case "contractOffer": {
+        // Oferta a medida: zona donde se soltó el módulo; si cae sobre un objeto, es el objeto a proteger/recuperar
+        ["offer", player, [_v#0, _v#1, _pos, _v#3, parseNumber (_v#4), parseNumber (_v#5), [], _target, _v#2]] remoteExecCall ["ADVSEC_fnc_ctrServer", 2];
+    };
     case "admin": {
         if (isNull _target) then {_target = ["Land_Laptop_unfolded_F"] call _spawn};
         [_target, _v#0] remoteExecCall ["ADVSEC_fnc_adminInit", 0, ["ADVSEC_fnc_adminInit", _target] call _jip];

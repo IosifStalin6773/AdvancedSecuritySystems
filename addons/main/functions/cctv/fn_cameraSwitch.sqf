@@ -15,7 +15,7 @@ camUseNVG (ADVSEC_camNV == 1);
 
 private _hud = uiNamespace getVariable ["ADVSEC_camHUD", displayNull];
 if (isNull _hud) exitWith {};
-(_hud displayCtrl 4104) ctrlShow (!alive _src);
+(_hud displayCtrl 4104) ctrlShow (!alive _src || {(_src getVariable ["ADVSEC_camNet", "default"]) in (missionNamespace getVariable ["ADVSEC_camDown", []])});
 (_hud displayCtrl 4101) ctrlSetText format ["CAM %1/%2  %3", ADVSEC_camIdx + 1, _n, _src getVariable ["ADVSEC_camName", "CCTV"]];
 (_hud displayCtrl 4102) ctrlSetText format ["%1  %2", [dayTime, "HH:MM:SS"] call BIS_fnc_timeToString, ["", "NV", "TI"] select ADVSEC_camNV];
 private _active = ADVSEC_alarms select {_x getVariable ["ADVSEC_active", false]};

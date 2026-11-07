@@ -21,6 +21,7 @@ addMissionEventHandler ["Draw3D", {call ADVSEC_fnc_zeusDraw}];
     [player] call ADVSEC_fnc_addSelfActions;
     [] call ADVSEC_fnc_ecoClient;
     [player] call ADVSEC_fnc_evClient;
+    [player] call ADVSEC_fnc_armClient;
     [] call ADVSEC_fnc_docLoad;
     ["check", player] remoteExecCall ["ADVSEC_fnc_jailServer", 2];
 
@@ -35,6 +36,7 @@ addMissionEventHandler ["Draw3D", {call ADVSEC_fnc_zeusDraw}];
         [_unit] call ADVSEC_fnc_addSelfActions;
         [] call ADVSEC_fnc_ecoClient;
         [_unit] call ADVSEC_fnc_evClient;
+        [_unit] call ADVSEC_fnc_armClient;
         [] call ADVSEC_fnc_docLoad;
         ["check", _unit] remoteExecCall ["ADVSEC_fnc_jailServer", 2];
         [] spawn {sleep 3; [] call ADVSEC_fnc_docRestore};

@@ -347,6 +347,45 @@ class CfgVehicles {
     };
 
     // ===== Zeus =====
+    class ADVSEC_ModuleContract: ADVSEC_Module_Base {
+        scope = 2;
+        displayName = "$STR_ADVSEC_pmc_terminal";
+        icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\documents_ca.paa";
+        function = "ADVSEC_fnc_moduleContract";
+        class Attributes: AttributesBase {
+            class Name: Edit { property = "ADVSEC_Contract_Name"; displayName = "$STR_ADVSEC_name"; typeName = "STRING"; defaultValue = """Terminal de contratos"""; };
+            class ModuleDescription: ModuleDescription {};
+        };
+        class ModuleDescription: ModuleDescription {
+            description = "$STR_ADVSEC_pmc_mod_contract_desc";
+        };
+    };
+    class ADVSEC_ModuleArmory: ADVSEC_Module_Base {
+        scope = 2;
+        displayName = "$STR_ADVSEC_pmc_armory";
+        icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\rifle_ca.paa";
+        function = "ADVSEC_fnc_moduleArmory";
+        class Attributes: AttributesBase {
+            class Name: Edit { property = "ADVSEC_Armory_Name"; displayName = "$STR_ADVSEC_name"; typeName = "STRING"; defaultValue = """Armería corporativa"""; };
+            class ModuleDescription: ModuleDescription {};
+        };
+        class ModuleDescription: ModuleDescription {
+            description = "$STR_ADVSEC_pmc_mod_armory_desc";
+        };
+    };
+    class ADVSEC_ModuleCyber: ADVSEC_Module_Base {
+        scope = 2;
+        displayName = "$STR_ADVSEC_pmc_cy_terminal";
+        icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\intel_ca.paa";
+        function = "ADVSEC_fnc_moduleCyber";
+        class Attributes: AttributesBase {
+            class Name: Edit { property = "ADVSEC_Cyber_Name"; displayName = "$STR_ADVSEC_name"; typeName = "STRING"; defaultValue = """Terminal ciber"""; };
+            class ModuleDescription: ModuleDescription {};
+        };
+        class ModuleDescription: ModuleDescription {
+            description = "$STR_ADVSEC_pmc_mod_cyber_desc";
+        };
+    };
     class ADVSEC_Zeus_Base: ADVSEC_Module_Base {
         scope = 1;
         scopeCurator = 2;
@@ -443,6 +482,26 @@ class CfgVehicles {
         icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\intel_ca.paa";
         ADVSEC_kind = "admin";
     };
+    class ADVSEC_ZeusContract: ADVSEC_Zeus_Base {
+        displayName = "$STR_ADVSEC_pmc_terminal";
+        icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\documents_ca.paa";
+        ADVSEC_kind = "contract";
+    };
+    class ADVSEC_ZeusContractOffer: ADVSEC_Zeus_Base {
+        displayName = "$STR_ADVSEC_pmc_offer_title";
+        icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\documents_ca.paa";
+        ADVSEC_kind = "contractOffer";
+    };
+    class ADVSEC_ZeusArmory: ADVSEC_Zeus_Base {
+        displayName = "$STR_ADVSEC_pmc_armory";
+        icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\rifle_ca.paa";
+        ADVSEC_kind = "armory";
+    };
+    class ADVSEC_ZeusCyber: ADVSEC_Zeus_Base {
+        displayName = "$STR_ADVSEC_pmc_cy_terminal";
+        icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\intel_ca.paa";
+        ADVSEC_kind = "cyber";
+    };
     // Objetos sueltos en Eden/Zeus (Equipo > Objetos de inventario) y caja con todo el material ADVSEC
     class Item_Base_F;
 #define ADVSEC_GROUND(C,N) class Item_##C: Item_Base_F { scope = 2; scopeCurator = 2; author = "oscar"; displayName = N; editorCategory = "EdCat_Equipment"; editorSubcategory = "EdSubcat_InventoryItems"; vehicleClass = "Items"; class TransportItems { class C { name = #C; count = 1; }; }; }
@@ -474,6 +533,7 @@ class CfgVehicles {
     ADVSEC_GROUND(ADVSEC_PDA_MRK,"$STR_ADVSEC_patch_pda_marksman");
     ADVSEC_GROUND(ADVSEC_EvidenceBag,"$STR_ADVSEC_evidence_bag");
     ADVSEC_GROUND(ADVSEC_SpeedCamKit,"$STR_ADVSEC_portable_traffic_speed_camera");
+    ADVSEC_GROUND(ADVSEC_HackKit,"$STR_ADVSEC_pmc_hackkit");
     class Box_NATO_Support_F;
     class ADVSEC_Box_Equipment: Box_NATO_Support_F {
         scope = 2;
@@ -511,6 +571,7 @@ class CfgVehicles {
             class _xx_ADVSEC_PDA_ART { name = "ADVSEC_PDA_ART"; count = 4; };
             class _xx_ADVSEC_PDA_MRK { name = "ADVSEC_PDA_MRK"; count = 4; };
             class _xx_ADVSEC_SpeedCamKit { name = "ADVSEC_SpeedCamKit"; count = 2; };
+            class _xx_ADVSEC_HackKit { name = "ADVSEC_HackKit"; count = 1; };
             class _xx_ADVSEC_EvidenceBag { name = "ADVSEC_EvidenceBag"; count = 20; };
         };
     };

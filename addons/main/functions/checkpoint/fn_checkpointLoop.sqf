@@ -205,15 +205,20 @@ while {!isNull _anchor} do {
                     continue;
                 };
                 _out pushBack ("STR_ADVSEC_vehicle_searched" call ADVSEC_fnc_L);
-                private _ill = ["illegalItems", []] call ADVSEC_fnc_setting;
-                if (_ill isNotEqualTo []) then {
-                    private _cargo = (getItemCargo _veh select 0) + (getWeaponCargo _veh select 0) + (getMagazineCargo _veh select 0);
-                    {
-                        private _u = _x;
-                        if (((items _u + weapons _u + magazines _u + assignedItems _u) findIf {_x in _ill}) > -1) then {_arrest pushBackUnique [_u, ("STR_ADVSEC_illegal_material" call ADVSEC_fnc_L)]};
-                    } forEach crew _veh;
-                    if ((_cargo findIf {_x in _ill}) > -1 && {!isNull _d} && {(_arrest findIf {(_x select 0) isEqualTo _d}) < 0}) then {_arrest pushBack [_d, ("STR_ADVSEC_illegal_material_in_the_vehicle" call ADVSEC_fnc_L)]};
-                };
+                private _ill = [] call ADVSEC_fnc_illegal;
+                private _cargo = (getItemCargo _veh select 0) + (getWeaponCargo _veh select 0) + (getMagazineCargo _veh select 0);
+                {
+                    private _u = _x;
+                    if (((items _u + weapons _u + magazines _u + assignedItems _u) findIf {_x in _ill}) > -1) then {_arrest pushBackUnique [_u, ("STR_ADVSEC_illegal_material" call ADVSEC_fnc_L)]};
+                    // Contrabando: material corporativo desviado, mercado negro, explosivos o armas sin licencia
+                    if (isPlayer _u) then {
+                        {
+                            private _cat = [_u, _x, _off, _name] call ADVSEC_fnc_contraband;
+                            if (_cat in ["corpDiverted", "blackMarket", "explosive"] && {(_arrest findIf {(_x select 0) isEqualTo _u}) < 0}) then {_arrest pushBack [_u, (format ["STR_ADVSEC_pmc_contra_%1", _cat]) call ADVSEC_fnc_L]};
+                        } forEach ((weapons _u) + ((magazines _u) select {_x in (["contrabandExplosives", []] call ADVSEC_fnc_setting)}));
+                    };
+                } forEach crew _veh;
+                if ((_cargo findIf {_x in _ill}) > -1 && {!isNull _d} && {(_arrest findIf {(_x select 0) isEqualTo _d}) < 0}) then {_arrest pushBack [_d, ("STR_ADVSEC_illegal_material_in_the_vehicle" call ADVSEC_fnc_L)]};
                 _e set [0, "decide"]; _e set [1, serverTime];
             };
             case "decide": {
