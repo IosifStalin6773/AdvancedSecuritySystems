@@ -6,6 +6,6 @@ GitHub no admite archivos de más de 100 MB en un repositorio. `advsec_lockers.p
 2. En `lockers\`, ejecuta `UNIR.bat`: crea `advsec_lockers.pbo`.
 3. Copia `advsec_lockers.pbo` y `advsec_lockers.pbo.advsec_<versión>.bisign` a `@AdvancedSecuritySystems\addons\`.
 
-Versión: 1.17.0 · MD5 de advsec_lockers.pbo: 7d3b062a618d258d9e14f924738a1644
+Versión: 1.18.0 · MD5 de advsec_lockers.pbo: 478e7dbe0a6e6454c1af53a436645d2e
 
 Cada versión sustituye a la anterior (las partes antiguas quedan en el historial).
