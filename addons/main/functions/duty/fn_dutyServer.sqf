@@ -31,7 +31,7 @@ switch (_action) do {
             if (_on) then {_min = _min + round ((serverTime - (_u getVariable ["ADVSEC_dutyStart", serverTime])) / 60)};
             _rows pushBack [format ["%1%2 · %3 h %4 min", ["", "● "] select _on, _name, floor (_min / 60), _min mod 60], _x,
                 format ["<t font='RobotoCondensedBold'>%1</t><br/>%2<br/>Total: %3 h %4 min<br/><br/>%5", _name call ADVSEC_fnc_repEsc, ["Fuera de servicio", "<t color='#66FF66'>DE SERVICIO</t>"] select _on, floor (_min / 60), _min mod 60,
-                    ((_shifts select [((count _shifts) - 12) max 0]) apply {format ["%1 → %2 · %3 min", _x select 0, _x select 1, _x select 2]}) joinString "<br/>"], [[], [0.45, 1, 0.45, 1]] select _on, ""];
+                    ((_shifts select [((count _shifts) - 12) max 0]) apply {format ["%1 -> %2 · %3 min", _x select 0, _x select 1, _x select 2]}) joinString "<br/>"], [[], [0.45, 1, 0.45, 1]] select _on, ""];
         } forEach ([] call ADVSEC_fnc_dutyDB);
         ["duty", format ["Agentes con turnos registrados: %1 · ● = de servicio ahora", count _rows], _rows] remoteExecCall ["ADVSEC_fnc_panelSet", _caller];
     };

@@ -56,7 +56,7 @@ switch (_action) do {
                 _err = format ["Solo puedes gestionar rangos %1 inferiores al tuyo.", _label]; continue
             };
             if (_i != 7 && {!_zeus} && {_uid isEqualTo getPlayerUID _caller}) then {_err = "No puedes cambiar tu propio rango."; continue};
-            _changes pushBack format ["%1: %2 → %3", _label, [_i, _e select _i] call ADVSEC_fnc_pdbRankName, [_i, _v] call ADVSEC_fnc_pdbRankName];
+            _changes pushBack format ["%1: %2 -> %3", _label, [_i, _e select _i] call ADVSEC_fnc_pdbRankName, [_i, _v] call ADVSEC_fnc_pdbRankName];
             _e set [_i, _v];
         } forEach [[_pm, 5, _canPM, _myPM, "PM", 5], [_ai, 6, _canAI, _myAI, "AA.II.", 5], [_glob, 7, _canGlob, 99, "global", _maxG]];
         if (!isNil "_notes" && {_notes isEqualType ""} && {_notes isNotEqualTo (_e select 8)}) then {

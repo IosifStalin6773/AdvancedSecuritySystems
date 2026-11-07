@@ -14,7 +14,7 @@ lbClear _mode;
 {_mode lbAdd _x} forEach ["Todos", "En línea", "Policía Militar", "Asuntos Internos", "Superadministradores", "Sin rango"];
 _mode lbSetCurSel 0;
 (_disp displayCtrl 87852) ctrlSetText "";
-(_disp displayCtrl 87891) ctrlSetStructuredText parseText "<t color='#8C8C8C'>Selecciona una fila para ver su detalle.</t>";
+(_disp displayCtrl 87891) ctrlSetStructuredText parseText "<t color='#8C8C8C'>Selecciona una fila para ver su detalle y los botones para editarla.</t>";
 ["acts"] call ADVSEC_fnc_pdbViewUI;
 (_disp displayCtrl 87864) ctrlSetStructuredText parseText "<t color='#8C8C8C'>Selecciona un jugador de la lista.</t>";
 ["list", player] remoteExecCall ["ADVSEC_fnc_pdbViewServer", 2];

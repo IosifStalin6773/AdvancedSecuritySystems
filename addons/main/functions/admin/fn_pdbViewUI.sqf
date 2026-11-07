@@ -5,7 +5,7 @@ if (isNull _disp) exitWith {};
 
 private _tabNames = ["Resumen", "Documentos", "Sanciones", "Informes", "Sospecha", "Evidencias", "Economía", "Especialidades", "Registro"];
 private _tabPos = [
-    [0, 0.3], [0, 0.3, 0.55, 0.75], [0, 0.2, 0.4, 0.62, 0.84], [0, 0.2, 0.42, 0.8], [0, 0.35, 0.9],
+    [0, 0.3], [0, 0.3, 0.55, 0.75], [0, 0.09, 0.26, 0.38, 0.86], [0, 0.2, 0.42, 0.8], [0, 0.35, 0.9],
     [0, 0.16, 0.34, 0.56, 0.78], [0, 0.34, 0.8], [0, 0.4, 0.7], [0, 0.3, 0.6]
 ];
 private _esc = {[_this] call ADVSEC_fnc_repEsc};
@@ -122,7 +122,7 @@ switch (_action) do {
             private _r = _c lnbAddRow _cells;
             _c lnbSetData [[_r, 0], _det];
         } forEach _rows;
-        (_disp displayCtrl 87891) ctrlSetStructuredText parseText "<t color='#8C8C8C'>Selecciona una fila para ver su detalle.</t>";
+        (_disp displayCtrl 87891) ctrlSetStructuredText parseText "<t color='#8C8C8C'>Selecciona una fila para ver su detalle y los botones para editarla.</t>";
         ["acts"] call ADVSEC_fnc_pdbViewUI;
     };
 
@@ -130,7 +130,7 @@ switch (_action) do {
     case "row": {
         private _c = _disp displayCtrl 87890;
         private _r = lnbCurSelRow _c;
-        private _txt = if (_r < 1) then {"<t color='#8C8C8C'>Selecciona una fila para ver su detalle.</t>"} else {(_c lnbData [_r, 0]) call _esc};
+        private _txt = if (_r < 1) then {"<t color='#8C8C8C'>Selecciona una fila para ver su detalle y los botones para editarla.</t>"} else {(_c lnbData [_r, 0]) call _esc};
         private _d = _disp displayCtrl 87891;
         _d ctrlSetStructuredText parseText _txt;
         private _p = ctrlPosition _d;
@@ -140,53 +140,101 @@ switch (_action) do {
     };
 
     // Botones de acción según la pestaña y la fila elegida: [texto, operación, dato, confirmar, formulario]
+    // Con formulario se envía [dato, valores], o solo los valores si el dato es ""
     case "acts": {
         private _acts = [];
         if (ADVSEC_pdbSel isNotEqualTo "" && {ADVSEC_pdbCur isNotEqualTo []}) then {
             ADVSEC_pdbCur params ["_name", "_on", "_adm", ["_cur", []]];
-            _cur params [["_pm", -1], ["_ai", -1], ["_glob", 0], ["_notes", ""]];
+            _cur params [["_pm", -1], ["_ai", -1], ["_glob", 0], ["_notes", ""], ["_cash", 0], ["_bank", 0]];
             private _key = call _rowKey;
             private _kt = _key param [0, ""];
-            private _money = ["Sumar / restar dinero", "money", [], false, ["SUMAR O RESTAR DINERO", [["Dónde", "bank", [["Banco", "bank"], ["Efectivo", "cash"]]], ["Importe (negativo para restar)", "1000"]]]];
+            private _who = toUpper _name;
+            private _lists = configFile >> "ADVSEC_ReportLists";
+            private _opt = {
+                private _o = [["Según la misión", -1], ["Sin rango", 0]];
+                {_o pushBack [_x, _forEachIndex + 1]} forEach _this;
+                _o
+            };
+            private _gO = [];
+            {_gO pushBack [_x, _forEachIndex]} forEach (["ranksGlobal", []] call ADVSEC_fnc_setting);
+            private _profile = ["Editar rangos y notas", "profile", "", false, [format ["EDITAR FICHA · %1", _who], [
+                ["Rango PM", _pm, (["ranksPM", []] call ADVSEC_fnc_setting) call _opt],
+                ["Rango AA.II.", _ai, (["ranksAI", []] call ADVSEC_fnc_setting) call _opt],
+                ["Rango global", _glob, _gO],
+                ["Notas", _notes, "text"]]]];
+            private _moneySet = ["Fijar saldo", "moneySet", "", false, [format ["SALDO · %1", _who], [["Efectivo", str _cash], ["Banco", str _bank]]]];
+            private _money = ["Sumar / restar dinero", "money", "", false, ["SUMAR O RESTAR DINERO", [["Dónde", "bank", [["Banco", "bank"], ["Efectivo", "cash"]]], ["Importe (negativo para restar)", "1000"]]]];
+            private _wanted = ["Declarar / editar buscado", "wantedSet", "", false, [format ["REQUISITORIA · %1", _who], [["Motivo", "", "text"], ["Peligrosidad", "Media", ["Baja", "Media", "Alta", "Extrema"]]]]];
+            private _fineNew = ["Poner multa", "fineAdd", "", false, [format ["MULTA · %1", _who], [["Importe", "100"], ["Motivo", "Sanción de la administración", "text"]]]];
             switch (ADVSEC_pdbTab) do {
                 case 0: {
-                    private _opt = {
-                        private _o = [["Según la misión", -1], ["Sin rango", 0]];
-                        {_o pushBack [_x, _forEachIndex + 1]} forEach _this;
-                        _o
+                    switch (_key param [1, ""]) do {
+                        case "money": {_acts append [_moneySet, _money]};
+                        case "admin": {_acts pushBack [["Dar superadmin", "Quitar superadmin"] select _adm, "admin", [], true, []]};
+                        case "wanted": {_acts pushBack _wanted};
+                        case "fines": {_acts pushBack _fineNew};
+                        default {_acts pushBack _profile};
                     };
-                    private _pmO = (["ranksPM", []] call ADVSEC_fnc_setting) call _opt;
-                    private _aiO = (["ranksAI", []] call ADVSEC_fnc_setting) call _opt;
-                    private _gO = [];
-                    {_gO pushBack [_x, _forEachIndex]} forEach (["ranksGlobal", []] call ADVSEC_fnc_setting);
-                    _acts pushBack ["Editar rangos y notas", "profile", [], false, [format ["EDITAR FICHA · %1", toUpper _name], [["Rango PM", _pm, _pmO], ["Rango AA.II.", _ai, _aiO], ["Rango global", _glob, _gO], ["Notas", _notes, "text"]]]];
-                    _acts pushBack _money;
-                    _acts pushBack [["Dar superadmin", "Quitar superadmin"] select _adm, "admin", [], true, []];
-                    _acts pushBack ["Retirar documentos", "docsOff", [], true, []];
+                    {if !((_x select 1) in (_acts apply {_x select 1})) then {_acts pushBack _x}} forEach [_profile, _moneySet];
                     _acts pushBack ["Borrar ficha", "delete", [], true, []];
                 };
                 case 1: {
-                    if (_kt == "plate") then {_acts pushBack ["Borrar matrícula", "plateDel", _key select 1, true, []]};
+                    if (_kt == "doc") then {
+                        _key params ["", "_i", "_num", "_lvl", "_exp", "_t"];
+                        _acts pushBack ["Editar documento", "docEdit", _i, false, [format ["%1 · %2", toUpper _t, _who], [["Número", _num], ["Nivel de acceso", str _lvl], ["Caducidad (vacío = nunca)", _exp]]]];
+                        _acts pushBack ["Retirar este documento", "docDelOne", _i, true, []];
+                    };
+                    if (_kt == "plate") then {
+                        _acts pushBack [["Denunciar robo", "Quitar denuncia de robo"] select (_key select 2), "plateStolen", _key select 1, false, []];
+                        _acts pushBack ["Borrar matrícula", "plateDel", _key select 1, true, []];
+                    };
                     if (_kt == "wpn") then {_acts pushBack ["Borrar arma del registro", "wpnDel", _key select 1, true, []]};
-                    _acts pushBack ["Retirar todos los documentos", "docsOff", [], true, []];
+                    _acts pushBack ["Emitir documento", "docAdd", "", false, [format ["EMITIR DOCUMENTO · %1", _who], [["Tipo", "", [] call ADVSEC_fnc_docTypes], ["Número (vacío = automático)", ""], ["Nivel (vacío = el del tipo)", ""], ["Caducidad (vacío = nunca)", ""]]]];
+                    _acts pushBack ["Retirar todos", "docsOff", [], true, []];
                 };
                 case 2: {
-                    _acts pushBack ["Poner multa", "fineAdd", [], false, [format ["MULTA · %1", toUpper _name], [["Importe", "100"], ["Motivo", "Sanción de la administración", "text"]]]];
                     if (_kt == "fine") then {
-                        if ((_key select 2) == "Pendiente") then {
-                            _acts pushBack ["Marcar pagada", "finePaid", _key select 1, false, []];
-                            _acts pushBack ["Anular multa", "fineCancel", _key select 1, true, []];
-                        };
-                        _acts pushBack ["Borrar multa", "fineDel", _key select 1, true, []];
+                        _key params ["", "_id", "_st", "_amt", "_why"];
+                        _acts pushBack ["Editar multa", "fineEdit", _id, false, [format ["MULTA %1", _id], [["Importe", str _amt], ["Motivo", _why, "text"], ["Estado", _st, ["Pendiente", "Pagada", "Anulada"]]]]];
+                        _acts pushBack ["Borrar multa", "fineDel", _id, true, []];
                     };
-                    if (_kt == "wanted") then {_acts pushBack ["Retirar requisitoria", "wantedDel", [], true, []]};
-                    if (_kt == "jail") then {_acts pushBack ["Liberar", "jailDel", [], true, []]};
+                    if (_kt == "wanted") then {
+                        _key params ["", "_why", "_lvl"];
+                        _acts pushBack ["Editar requisitoria", "wantedSet", "", false, [format ["REQUISITORIA · %1", _who], [["Motivo", _why, "text"], ["Peligrosidad", _lvl, ["Baja", "Media", "Alta", "Extrema"]]]]];
+                        _acts pushBack ["Retirar requisitoria", "wantedDel", [], true, []];
+                    };
+                    if (_kt == "jail") then {
+                        _key params ["", "_min", "_why"];
+                        _acts pushBack ["Editar detención", "jailEdit", "", false, [format ["DETENCIÓN · %1", _who], [["Minutos restantes (-1 = hasta nueva orden)", str _min], ["Motivo", _why, "text"]]]];
+                        _acts pushBack ["Liberar", "jailDel", [], true, []];
+                    };
+                    _acts pushBack _fineNew;
+                    if (_kt != "wanted") then {_acts pushBack _wanted};
                 };
-                case 3: {if (_kt == "rep") then {_acts pushBack ["Borrar informe", "repDel", _key select 1, true, []]}};
-                case 4: {if (_kt == "heat") then {_acts pushBack ["Archivar índice de sospecha", "heatDel", [], true, []]}};
-                case 5: {if (_kt == "ev") then {_acts pushBack ["Borrar prueba", "evDel", _key select 1, true, []]}};
-                case 6: {_acts pushBack _money; _acts pushBack ["Poner saldo a cero", "zero", [], true, []]};
-                case 7: {if (_kt == "spec") then {_acts pushBack [["Quitar de la especialidad", "Quitar como encargado", "Rechazar solicitud"] select (_key select 2), "specDel", [_key select 1, _key select 2], true, []]}};
+                case 3: {
+                    if (_kt == "rep") then {
+                        _key params ["", "_id", "_t", "_st", "_g"];
+                        _acts pushBack ["Editar informe", "repEdit", _id, false, [format ["INFORME %1", _id], [["Título", _t], ["Estado", _st, getArray (_lists >> "status")], ["Gravedad", _g, getArray (_lists >> "gravity")]]]];
+                        _acts pushBack ["Borrar informe", "repDel", _id, true, []];
+                    };
+                };
+                case 4: {
+                    _acts pushBack ["Fijar índice", "heatSet", "", false, [format ["SOSPECHA · %1", _who], [["Puntos", str (_key param [1, 0])]]]];
+                    if (_kt == "heat") then {_acts pushBack ["Archivar índice", "heatDel", [], true, []]};
+                };
+                case 5: {
+                    if (_kt == "ev") then {
+                        _key params ["", "_id", "_st", "_res"];
+                        _acts pushBack ["Editar prueba", "evEdit", _id, false, [format ["PRUEBA %1", _id], [["Estado", _st, [["En la escena", "field"], ["Embolsada", "bagged"], ["En análisis", "analyzing"], ["Analizada", "analyzed"]]], ["Resultado", _res, "text"]]]];
+                        _acts pushBack ["Borrar prueba", "evDel", _id, true, []];
+                    };
+                };
+                case 6: {_acts append [_moneySet, _money, ["Poner saldo a cero", "zero", [], true, []]]};
+                case 7: {
+                    if (_kt == "spec") then {_acts pushBack [["Quitar de la especialidad", "Quitar como encargado", "Rechazar solicitud"] select (_key select 2), "specDel", [_key select 1, _key select 2], true, []]};
+                    private _sO = ("true" configClasses (configFile >> "ADVSEC_Specialties")) apply {[[configName _x] call ADVSEC_fnc_specName, configName _x]};
+                    _acts pushBack ["Añadir a especialidad", "specAdd", "", false, [format ["ESPECIALIDAD · %1", _who], [["Especialidad", (_sO param [0, ["", ""]]) select 1, _sO], ["Como", 0, [["Miembro", 0], ["Encargado", 1]]]]]];
+                };
                 default {};
             };
         };
@@ -222,9 +270,9 @@ switch (_action) do {
             _form params ["_title", "_fields"];
             [_title, _fields, {
                 params ["_v", "_ctx"];
-                _ctx params ["_uid", "_op"];
-                ["edit", player, [_uid, _op, _v]] remoteExecCall ["ADVSEC_fnc_pdbViewServer", 2];
-            }, [_uid, _op]] call ADVSEC_fnc_zeusPrompt;
+                _ctx params ["_uid", "_op", "_d"];
+                ["edit", player, [_uid, _op, [[_d, _v], _v] select (_d isEqualTo "")]] remoteExecCall ["ADVSEC_fnc_pdbViewServer", 2];
+            }, [_uid, _op, _data]] call ADVSEC_fnc_zeusPrompt;
         };
         ["edit", player, [_uid, _op, _data]] remoteExecCall ["ADVSEC_fnc_pdbViewServer", 2];
     };

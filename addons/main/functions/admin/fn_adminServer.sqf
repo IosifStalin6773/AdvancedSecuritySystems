@@ -233,7 +233,7 @@ switch (_cat) do {
             _rows pushBack [format ["%1 · %2%3", [_x] call _nameOf, _x, [" ", " · (misión)"] select _fromMission], _x,
                 format ["SteamID: %1<br/>Origen: %2", _x, ["concedido desde esta terminal", "lista superAdmins de la misión"] select _fromMission], []];
         } forEach (missionNamespace getVariable ["ADVSEC_superAdmins", []]);
-        _info = "Además de esta lista, Zeus y los administradores del servidor son siempre superadministradores. Para dar acceso: categoría Jugadores → «Dar / quitar superadmin».";
+        _info = "Además de esta lista, Zeus y los administradores del servidor son siempre superadministradores. Para dar acceso: categoría Jugadores -> «Dar / quitar superadmin».";
     };
     case "wanted": {
         {

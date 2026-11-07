@@ -40,7 +40,7 @@ switch (_action) do {
         if !([_caller, "bankAudit"] call ADVSEC_fnc_perm) exitWith {[_caller, "auditar cuentas"] call ADVSEC_fnc_deny};
         private _rows = (localNamespace getVariable ["ADVSEC_ecoFlags", []]) apply {
             _x params ["_d", "_fu", "_fn", "_tu", "_tn", "_a", "_k"];
-            [format ["%1 · %2 · %3 → %4 · %5 %6", _d, _k, _fn, _tn, _a, _cur], [_fu, _tu],
+            [format ["%1 · %2 · %3 -> %4 · %5 %6", _d, _k, _fn, _tn, _a, _cur], [_fu, _tu],
                 format ["<t font='RobotoCondensedBold'>%1</t><br/>%2<br/>De: %3 [%4]<br/>A: %5 [%6]<br/>Importe: %7 %8<br/><t color='#8C8C8C'>«Auditar» abre la cuenta del que paga; «Congelar» la bloquea.</t>", _k, _d, _fn call ADVSEC_fnc_repEsc, _fu, _tn call ADVSEC_fnc_repEsc, _tu, _a, _cur], [[1, 0.75, 0.3, 1], [1, 0.4, 0.3, 1]] select (_k == "Soborno"), ""]
         };
         reverse _rows;

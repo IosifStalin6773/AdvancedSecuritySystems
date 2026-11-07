@@ -17,4 +17,4 @@ _l pushBack [call ADVSEC_fnc_now, _from select 0, _from select 1, _to select 0, 
 if (count _l > 200) then {_l deleteRange [0, count _l - 200]};
 localNamespace setVariable ["ADVSEC_ecoFlags", _l];
 ["eco"] call ADVSEC_fnc_dbDirty;
-{[_x, ["suspiciousMoney", "bribe"] select (_kind == "Soborno"), format ["%1 de %2 %3 (%4 → %5)", _kind, _amt, ["currency", "€"] call ADVSEC_fnc_setting, _from select 1, _to select 1]] call ADVSEC_fnc_heatAdd} forEach _agents;
+{[_x, ["suspiciousMoney", "bribe"] select (_kind == "Soborno"), format ["%1 de %2 %3 (%4 -> %5)", _kind, _amt, ["currency", "€"] call ADVSEC_fnc_setting, _from select 1, _to select 1]] call ADVSEC_fnc_heatAdd} forEach _agents;
