@@ -15,4 +15,4 @@ addMissionEventHandler ["HandleDisconnect", {
     false
 }];
 if (isNil "ADVSEC_jailLoopH") then {ADVSEC_jailLoopH = [] spawn ADVSEC_fnc_jailLoop};
-diag_log format ["[ADVSEC] Detenidos: %1 · Buscados: %2", count ADVSEC_jailDB, count ADVSEC_wantedDB];
+diag_log format [("STR_ADVSEC_advsec_detainees_wanted" call ADVSEC_fnc_L), count ADVSEC_jailDB, count ADVSEC_wantedDB];

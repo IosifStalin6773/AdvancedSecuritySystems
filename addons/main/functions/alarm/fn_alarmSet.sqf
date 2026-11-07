@@ -8,7 +8,7 @@ if (call ADVSEC_fnc_fromClient) then {
     if !(
         [_caller] call ADVSEC_fnc_isZeus
         || {_mode in ["arm", "disarm", "silence"] && {_req isNotEqualTo []} && {[_caller, _req] call ADVSEC_fnc_accessCheck}}
-    ) then {[_caller, format ["%1 la alarma %2", _mode, _alarm getVariable ["ADVSEC_alarmName", ""]]] call ADVSEC_fnc_deny; _mode = ""};
+    ) then {[_caller, format [("STR_ADVSEC_alarm_3" call ADVSEC_fnc_L), _mode, _alarm getVariable ["ADVSEC_alarmName", ""]]] call ADVSEC_fnc_deny; _mode = ""};
 };
 
 switch (_mode) do {
@@ -22,7 +22,7 @@ switch (_mode) do {
         if (_alarm getVariable ["ADVSEC_active", false]) exitWith {};
         _alarm setVariable ["ADVSEC_active", true, true];
         _alarm setVariable ["ADVSEC_reason", _reason, true];
-        (format ["ALARMA %1: %2", _alarm getVariable ["ADVSEC_alarmName", ""], _reason]) remoteExecCall ["systemChat", 0];
+        (format [("STR_ADVSEC_alarm_4" call ADVSEC_fnc_L), _alarm getVariable ["ADVSEC_alarmName", ""], _reason]) remoteExecCall ["systemChat", 0];
         _alarm spawn {
             while {alive _this && {_this getVariable ["ADVSEC_active", false]}} do {
                 playSound3D [ADVSEC_alarmSound, _this, false, getPosASL _this, 5, 1, 400];

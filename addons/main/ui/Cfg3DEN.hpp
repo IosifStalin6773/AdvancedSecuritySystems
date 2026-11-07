@@ -19,7 +19,7 @@ class Cfg3DEN {
                     x = "48 * (pixelW * pixelGrid * 0.50)";
                     w = "82 * (pixelW * pixelGrid * 0.50)";
                     h = "5 * (pixelH * pixelGrid * 0.50)";
-                    text = "Elegir del catálogo";
+                    text = "$STR_ADVSEC_choose_from_catalog_2";
                     onButtonClick = "['edit', _this select 0] call ADVSEC_fnc_catalogAttr";
                 };
             };

@@ -90,6 +90,7 @@ class CfgRemoteExec {
         class ADVSEC_fnc_specServer { allowedTargets = 2; };
         class ADVSEC_fnc_dutyServer { allowedTargets = 2; };
         class ADVSEC_fnc_dspServer { allowedTargets = 2; };
+        class ADVSEC_fnc_patrolServer { allowedTargets = 2; };
         class ADVSEC_fnc_susServer { allowedTargets = 2; };
         class ADVSEC_fnc_alertServer { allowedTargets = 2; };
         class ADVSEC_fnc_plateServer { allowedTargets = 2; };
@@ -124,6 +125,7 @@ class CfgRemoteExec {
         class ADVSEC_fnc_specLocal { allowedTargets = 0; };
         class ADVSEC_fnc_dspNotify { allowedTargets = 0; };
         class ADVSEC_fnc_dspMark { allowedTargets = 0; };
+        class ADVSEC_fnc_patrolMarkers { allowedTargets = 0; };
         class ADVSEC_fnc_alertHint { allowedTargets = 0; };
         class ADVSEC_fnc_bribeAsk { allowedTargets = 0; };
         // Inicialización de objetos en todas las máquinas (cola JIP)

@@ -16,9 +16,9 @@ if (_mode isEqualTo "") then {
 };
 if (_mode isEqualTo "#") exitWith {[] call ADVSEC_fnc_specOpen};
 if ((_mode select [0, 1]) isEqualTo "#") exitWith {[_mode select [1]] call ADVSEC_fnc_specPda};
-if !(("ADVSEC_PDA_" + _mode) in _inv) exitWith {hint "No llevas ninguna PDA."};
+if !(("ADVSEC_PDA_" + _mode) in _inv) exitWith {hint ("STR_ADVSEC_you_are_not_carrying_any_2" call ADVSEC_fnc_L)};
 if !([player, _mode] call ADVSEC_fnc_repAccess) exitWith {
-    hint (["La PDA está bloqueada: necesitas placa de Policía Militar.", "La PDA está bloqueada: necesitas credencial de Asuntos Internos."] select (_mode == "AI"));
+    hint ([("STR_ADVSEC_the_pda_is_locked_you" call ADVSEC_fnc_L), ("STR_ADVSEC_the_pda_is_locked_you_2" call ADVSEC_fnc_L)] select (_mode == "AI"));
 };
 if (!createDialog "ADVSEC_PDA") exitWith {};
 private _disp = findDisplay 87200;
@@ -30,15 +30,15 @@ ADVSEC_repCurrent = createHashMap;
 ADVSEC_repSelect = "";
 
 (_disp displayCtrl 87299) ctrlSetText format ["\x\advsec\addons\main\data\pda_frame_%1_ca.paa", toLower _mode];
-(_disp displayCtrl 87201) ctrlSetText format ["%1  ·  PDA-%2", ["POLICÍA MILITAR", "ASUNTOS INTERNOS"] select _ai, (getPlayerUID player) select [((count getPlayerUID player) - 4) max 0]];
-{(_disp displayCtrl (87210 + _forEachIndex)) ctrlSetText _x} forEach ["Inicio", ["Informes", "Expedientes"] select _ai, "Denuncias", "Buscados"];
+(_disp displayCtrl 87201) ctrlSetText format ["%1  ·  PDA-%2", [("STR_ADVSEC_military_police_3" call ADVSEC_fnc_L), ("STR_ADVSEC_internal_affairs_2" call ADVSEC_fnc_L)] select _ai, (getPlayerUID player) select [((count getPlayerUID player) - 4) max 0]];
+{(_disp displayCtrl (87210 + _forEachIndex)) ctrlSetText _x} forEach [("STR_ADVSEC_home" call ADVSEC_fnc_L), [("STR_ADVSEC_reports" call ADVSEC_fnc_L), ("STR_ADVSEC_case_files" call ADVSEC_fnc_L)] select _ai, ("STR_ADVSEC_complaints" call ADVSEC_fnc_L), ("STR_ADVSEC_wanted_2" call ADVSEC_fnc_L)];
 
 private _tiles = if (_ai) then {
-    [["Abrir expediente", "documents", "newCase"], ["Índice de sospecha", "danger", "heat"], ["Expedientes", "intel", "listReports"],
-     ["Consulta central", "radio", "query"], ["Registro de pruebas", "box", "evidence"], ["Cámaras corporales", "scout", "bodycam"]]
+    [[("STR_ADVSEC_open_case_file" call ADVSEC_fnc_L), "documents", "newCase"], [("STR_ADVSEC_suspicion_index_2" call ADVSEC_fnc_L), "danger", "heat"], [("STR_ADVSEC_case_files" call ADVSEC_fnc_L), "intel", "listReports"],
+     [("STR_ADVSEC_dispatch_query" call ADVSEC_fnc_L), "radio", "query"], [("STR_ADVSEC_evidence_log" call ADVSEC_fnc_L), "box", "evidence"], [("STR_ADVSEC_body_cameras" call ADVSEC_fnc_L), "scout", "bodycam"]]
 } else {
-    [["Consulta central", "radio", "query"], ["Nuevo informe", "documents", "newReport"], ["Denuncias", "talk", "listComplaints"],
-     ["Registro de pruebas", "box", "evidence"], [["Buscados", "target", "wanted"], ["Cámaras corporales", "scout", "bodycam"]] select ([player, "bodycamView"] call ADVSEC_fnc_perm), ["Mis documentos", "meet", "docs"]]
+    [[("STR_ADVSEC_dispatch_query" call ADVSEC_fnc_L), "radio", "query"], [("STR_ADVSEC_new_report" call ADVSEC_fnc_L), "documents", "newReport"], [("STR_ADVSEC_complaints" call ADVSEC_fnc_L), "talk", "listComplaints"],
+     [("STR_ADVSEC_evidence_log" call ADVSEC_fnc_L), "box", "evidence"], [[("STR_ADVSEC_wanted_2" call ADVSEC_fnc_L), "target", "wanted"], [("STR_ADVSEC_body_cameras" call ADVSEC_fnc_L), "scout", "bodycam"]] select ([player, "bodycamView"] call ADVSEC_fnc_perm), [("STR_ADVSEC_my_documents" call ADVSEC_fnc_L), "meet", "docs"]]
 };
 ADVSEC_pdaTiles = _tiles apply {_x select 2};
 {
@@ -48,7 +48,7 @@ ADVSEC_pdaTiles = _tiles apply {_x select 2};
 } forEach _tiles;
 
 (_disp displayCtrl 87231) ctrlSetStructuredText parseText format [
-    "<t size='1.35' font='RobotoCondensedBold'>%1 %2</t><br/><t color='#8C8C8C'>%3  ·  </t><t color='#66FF66'>Credencial verificada</t><br/><t color='#8C8C8C' size='0.85'>%4 abre y cierra la PDA.</t>",
+    ("STR_ADVSEC_credentials_verified_opens_and_closes" call ADVSEC_fnc_L),
     [[player] call ADVSEC_fnc_rankTitle, [player] call ADVSEC_fnc_rankName] select (([player] call ADVSEC_fnc_rankTitle) isEqualTo ""), [name player] call ADVSEC_fnc_repEsc, [groupId group player] call ADVSEC_fnc_repEsc,
     (["pda"] call ADVSEC_fnc_keyCurrent) call ADVSEC_fnc_keyName
 ];

@@ -21,18 +21,18 @@ switch (_action) do {
     case "save": {
         private _title = ctrlText (_disp displayCtrl 86715);
         private _body = ctrlText (_disp displayCtrl 86718);
-        if (_title isEqualTo "" || {_body isEqualTo ""}) exitWith {hint "El asunto y la descripción son obligatorios."};
+        if (_title isEqualTo "" || {_body isEqualTo ""}) exitWith {hint ("STR_ADVSEC_subject_and_description_are_required" call ADVSEC_fnc_L)};
         private _subjects = ((ctrlText (_disp displayCtrl 86714)) splitString ";") apply {_x trim [" ", 0]} select {_x != ""};
         private _data = [
             ["type", _class],
-            ["gravity", (_disp displayCtrl 86711) lbText lbCurSel (_disp displayCtrl 86711)],
+            ["gravity", (_disp displayCtrl 86711) lbData lbCurSel (_disp displayCtrl 86711)],
             ["confidential", lbCurSel (_disp displayCtrl 86712) == 1],
             ["subjects", _subjects],
             ["title", _title],
             ["place", ctrlText (_disp displayCtrl 86716)],
             ["witnesses", ctrlText (_disp displayCtrl 86717)],
             ["body", _body],
-            ["sanction", (_disp displayCtrl 86720) lbText lbCurSel (_disp displayCtrl 86720)]
+            ["sanction", (_disp displayCtrl 86720) lbData lbCurSel (_disp displayCtrl 86720)]
         ];
         closeDialog 0;
         ["create", player, _data] remoteExecCall ["ADVSEC_fnc_repServer", 2];

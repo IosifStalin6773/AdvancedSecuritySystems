@@ -17,12 +17,12 @@ if (isServer) then {
 if (_req isEqualTo []) exitWith {};
 
 {
-    [_building, format ["advsec_door_%1", _x], format ["Cerradura (puerta %1)", _x], ADVSEC_icKey,
+    [_building, format ["advsec_door_%1", _x], format [("STR_ADVSEC_lock_door" call ADVSEC_fnc_L), _x], ADVSEC_icKey,
         {
             _args params ["_i"];
             private _lock = !(_target getVariable [format ["ADVSEC_locked_%1", _i], false]);
             [_target, _i, _lock] call ADVSEC_fnc_doorSet;
-            hint (["Puerta desbloqueada.", "Puerta bloqueada."] select _lock);
+            hint ([("STR_ADVSEC_door_unlocked" call ADVSEC_fnc_L), ("STR_ADVSEC_door_locked" call ADVSEC_fnc_L)] select _lock);
         },
         {[_player, _args select 1] call ADVSEC_fnc_accessCheck},
         "root", [_x, _req], 2.5, format ["Door_%1_trigger", _x]

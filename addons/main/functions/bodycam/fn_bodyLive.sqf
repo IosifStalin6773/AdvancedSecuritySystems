@@ -6,11 +6,11 @@ params ["_a", ["_v", ""]];
 private _d = findDisplay 88000;
 switch (_a) do {
     case "open": {
-        if !([player, "bodycamView"] call ADVSEC_fnc_perm) exitWith {hint "Tu rango no permite ver las cámaras corporales."};
+        if !([player, "bodycamView"] call ADVSEC_fnc_perm) exitWith {hint ("STR_ADVSEC_your_rank_does_not_allow_9" call ADVSEC_fnc_L)};
         if (isNull _d && {!createDialog "ADVSEC_BodyLive"}) exitWith {};
         ADVSEC_bodyLiveUid = _v;
         ADVSEC_bodyLiveTick = 0;
-        (findDisplay 88000 displayCtrl 88006) ctrlSetStructuredText parseText (["<t color='#8C8C8C'>Imagen en directo de la cámara del agente. Cada visionado queda registrado.</t>", "<t color='#FF6655'>Activa «Imagen en imagen (PiP)» en Opciones › Vídeo para ver la señal.</t>"] select !isPiPEnabled);
+        (findDisplay 88000 displayCtrl 88006) ctrlSetStructuredText parseText ([("STR_ADVSEC_live_feed_from_the_officer" call ADVSEC_fnc_L), ("STR_ADVSEC_enable_picture_in_picture_pip" call ADVSEC_fnc_L)] select !isPiPEnabled);
         ["list"] call ADVSEC_fnc_bodyLive;
         if (isNil "ADVSEC_bodyLiveEH") then {ADVSEC_bodyLiveEH = addMissionEventHandler ["EachFrame", {["frame"] call ADVSEC_fnc_bodyLive}]};
     };
@@ -76,10 +76,10 @@ switch (_a) do {
         if (diag_tickTime < ADVSEC_bodyLiveTick) exitWith {};
         ADVSEC_bodyLiveTick = diag_tickTime + 0.5;
         (_d displayCtrl 88003) ctrlShow _ok;
-        (_d displayCtrl 88005) ctrlSetStructuredText parseText (["<t align='center' size='1.6' font='RobotoCondensedBold' color='#FF5544'>SIN SEÑAL</t><br/><t align='center' color='#8C8C8C'>No hay ningún agente con la cámara encendida.</t>", ""] select _ok);
+        (_d displayCtrl 88005) ctrlSetStructuredText parseText ([("STR_ADVSEC_no_signalno_officer_has_their" call ADVSEC_fnc_L), ""] select _ok);
         if (_ok) then {
             date params ["_y", "_m", "_dd"];
-            (_d displayCtrl 88004) ctrlSetStructuredText parseText format ["<t color='#FF4040' font='RobotoCondensedBold'>%1 REC</t>  CAM-%2  ·  %3  ·  %4/%5/%6 %7  ·  CUAD. %8",
+            (_d displayCtrl 88004) ctrlSetStructuredText parseText format [("STR_ADVSEC_rec_cam_grid" call ADVSEC_fnc_L),
                 ["●", " "] select ((floor diag_tickTime) mod 2 == 1), ADVSEC_bodyLiveUid select [((count ADVSEC_bodyLiveUid) - 4) max 0], (name _u) call ADVSEC_fnc_repEsc, _dd, _m, _y, [dayTime, "HH:MM:SS"] call BIS_fnc_timeToString, mapGridPosition _u];
         } else {
             (_d displayCtrl 88004) ctrlSetStructuredText parseText "";

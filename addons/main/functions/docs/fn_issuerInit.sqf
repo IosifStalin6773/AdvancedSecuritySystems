@@ -2,7 +2,7 @@
     Oficina de expedición (init del objeto).
     [objeto, tipos ([] = todos), nombreEmisor, requisito del operador ([] = libre), nivelMáximo]
 */
-params ["_obj", ["_types", []], ["_name", "Autoridad"], ["_req", []], ["_maxClr", 5]];
+params ["_obj", ["_types", []], ["_name", ("STR_ADVSEC_authority" call ADVSEC_fnc_L)], ["_req", []], ["_maxClr", 5]];
 if (isServer && {!(call ADVSEC_fnc_trustedInit)}) exitWith {};
 if (isNull _obj) exitWith {};
 if (isServer) then {[_obj, "issuer", _name] call ADVSEC_fnc_register};
@@ -11,13 +11,13 @@ _obj setVariable ["ADVSEC_issuerName", _name];
 _obj setVariable ["ADVSEC_issueMaxClearance", _maxClr];
 _obj setVariable ["ADVSEC_issueReq", _req];
 
-[_obj, "advsec_issue", "Emitir documento", ADVSEC_icDoc,
+[_obj, "advsec_issue", ("STR_ADVSEC_issue_document" call ADVSEC_fnc_L), ADVSEC_icDoc,
     {[_target] call ADVSEC_fnc_docEditorOpen},
     {_args isEqualTo [] || {!isMultiplayer} || {(call BIS_fnc_admin) > 0} || {[_player, _args] call ADVSEC_fnc_accessCheck}},
     "main", _req, 3
 ] call ADVSEC_fnc_addInteraction;
 
-[_obj, "advsec_licenses", "Licencias y registro de armas", ADVSEC_icDoc,
+[_obj, "advsec_licenses", ("STR_ADVSEC_licences_and_weapon_registry" call ADVSEC_fnc_L), ADVSEC_icDoc,
     {[_target] call ADVSEC_fnc_licOpen},
     {[] call ADVSEC_fnc_ecoOn},
     "main", [], 3

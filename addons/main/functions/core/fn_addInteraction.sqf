@@ -37,7 +37,7 @@ if (_ace) then {
         && {!isClass (configOf _target >> "ACE_Actions" >> "ACE_MainActions")}
     ) then {
         _target setVariable ["ADVSEC_aceRoot", true];
-        private _root = ["ACE_MainActions", "Interacciones", "", {}, {true}, {}, [], [0, 0, 0], _distance max 3] call ace_interact_menu_fnc_createAction;
+        private _root = ["ACE_MainActions", ("STR_ADVSEC_interactions" call ADVSEC_fnc_L), "", {}, {true}, {}, [], [0, 0, 0], _distance max 3] call ace_interact_menu_fnc_createAction;
         [_target, 0, [], _root] call ace_interact_menu_fnc_addActionToObject;
     };
 

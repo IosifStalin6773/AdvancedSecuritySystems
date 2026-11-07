@@ -53,8 +53,8 @@ class ADVSEC_PDA {
             idc = 87240;
             x = 0.02; y = 0.135; w = 0.96; h = 0.82;
             class controls {
-                class Search: ADVSEC_Edit { idc = 86611; x = 0.01; y = 0.01; w = 0.25; h = 0.04; tooltip = "Buscar por ID, nombre, SteamID, estado..."; };
-                class BtnSearch: ADVSEC_BtnPrimary { text = "Buscar"; x = 0.265; y = 0.01; w = 0.085; h = 0.04; action = "['refresh'] call ADVSEC_fnc_repAction"; };
+                class Search: ADVSEC_Edit { idc = 86611; x = 0.01; y = 0.01; w = 0.25; h = 0.04; tooltip = "$STR_ADVSEC_search_by_id_name_steamid"; };
+                class BtnSearch: ADVSEC_BtnPrimary { text = "$STR_ADVSEC_search_5"; x = 0.265; y = 0.01; w = 0.085; h = 0.04; action = "['refresh'] call ADVSEC_fnc_repAction"; };
                 class Count: ADVSEC_Label { idc = 87241; x = 0.01; y = 0.055; w = 0.34; h = 0.035; sizeEx = 0.027; };
                 class List: ADVSEC_List { idc = 86602; x = 0.01; y = 0.09; w = 0.34; h = 0.64; sizeEx = 0.027; rowHeight = 0.034; onLBSelChanged = "['select'] call ADVSEC_fnc_repAction"; };
                 class ViewBG: RscText { x = 0.36; y = 0.01; w = 0.59; h = 0.72; colorBackground[] = ADVSEC_COL_FIELD; };
@@ -66,11 +66,11 @@ class ADVSEC_PDA {
                         class View: ADVSEC_Struct { idc = 86603; x = 0.01; y = 0.005; w = 0.56; h = 0.71; };
                     };
                 };
-                class BtnNew: ADVSEC_BtnPrimary { idc = 87250; text = "Nuevo"; x = 0.01; y = 0.75; w = 0.14; h = 0.05; action = "['new'] call ADVSEC_fnc_pdaAction"; };
-                class BtnNote: ADVSEC_Btn { text = "Anotación"; x = 0.16; y = 0.75; w = 0.13; h = 0.05; action = "['note'] call ADVSEC_fnc_repAction"; };
-                class BtnStatus: ADVSEC_Btn { text = "Estado / sanción"; x = 0.30; y = 0.75; w = 0.15; h = 0.05; action = "['status'] call ADVSEC_fnc_repAction"; };
+                class BtnNew: ADVSEC_BtnPrimary { idc = 87250; text = "$STR_ADVSEC_new"; x = 0.01; y = 0.75; w = 0.14; h = 0.05; action = "['new'] call ADVSEC_fnc_pdaAction"; };
+                class BtnNote: ADVSEC_Btn { text = "$STR_ADVSEC_note_3"; x = 0.16; y = 0.75; w = 0.13; h = 0.05; action = "['note'] call ADVSEC_fnc_repAction"; };
+                class BtnStatus: ADVSEC_Btn { text = "$STR_ADVSEC_status_sanction_2"; x = 0.30; y = 0.75; w = 0.15; h = 0.05; action = "['status'] call ADVSEC_fnc_repAction"; };
                 class BtnCtx: ADVSEC_Btn { idc = 87253; x = 0.46; y = 0.75; w = 0.19; h = 0.05; colorText[] = ADVSEC_COL_ACCENT; action = "['context'] call ADVSEC_fnc_pdaAction"; };
-                class BtnRefresh: ADVSEC_Btn { text = "Actualizar"; x = 0.84; y = 0.75; w = 0.11; h = 0.05; action = "['refresh'] call ADVSEC_fnc_repAction"; };
+                class BtnRefresh: ADVSEC_Btn { text = "$STR_ADVSEC_refresh"; x = 0.84; y = 0.75; w = 0.11; h = 0.05; action = "['refresh'] call ADVSEC_fnc_repAction"; };
             };
         };
 

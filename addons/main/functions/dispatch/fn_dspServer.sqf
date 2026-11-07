@@ -23,26 +23,26 @@ switch (_action) do {
     case "call": {
         _args params [["_text", ""]];
         _text = _text select [0, 200];
-        if (_text isEqualTo "") then {_text = "Sin detalles"};
+        if (_text isEqualTo "") then {_text = ("STR_ADVSEC_no_details" call ADVSEC_fnc_L)};
         private _last = _caller getVariable ["ADVSEC_dspLast", -1e6];
-        if (serverTime - _last < (["callCooldown", 60] call ADVSEC_fnc_setting)) exitWith {"Espera antes de volver a llamar al 112." call _say};
+        if (serverTime - _last < (["callCooldown", 60] call ADVSEC_fnc_setting)) exitWith {("STR_ADVSEC_wait_before_calling_112_again" call ADVSEC_fnc_L) call _say};
         _caller setVariable ["ADVSEC_dspLast", serverTime];
         private _id = ["call", _text] call _new;
         private _to = if (_onDuty isNotEqualTo []) then {[([_onDuty, [], {_x distance _caller}, "ASCEND"] call BIS_fnc_sortBy) select 0]} else {_pm};
         [_id, format ["112 · %1", name _caller], _text, getPosATL _caller, false] remoteExecCall ["ADVSEC_fnc_dspNotify", _to];
-        (format ["Llamada %1 registrada. %2", _id, ["No hay patrullas disponibles ahora mismo.", "Aviso enviado a la patrulla más cercana."] select (_to isNotEqualTo [])]) call _say;
+        (format [("STR_ADVSEC_call_logged" call ADVSEC_fnc_L), _id, [("STR_ADVSEC_no_patrols_available_right_now" call ADVSEC_fnc_L), ("STR_ADVSEC_alert_sent_to_the_nearest" call ADVSEC_fnc_L)] select (_to isNotEqualTo [])]) call _say;
         ["call112", _caller, [_id, _text]] call ADVSEC_fnc_logEvent;
     };
     case "panic": {
         if !([_caller, "PM"] call ADVSEC_fnc_repAccess) exitWith {};
-        private _id = ["panic", "AGENTE EN PELIGRO"] call _new;
-        [_id, format ["PÁNICO · %1", name _caller], format ["%1 necesita apoyo inmediato en %2.", name _caller, mapGridPosition _caller], getPosATL _caller, true] remoteExecCall ["ADVSEC_fnc_dspNotify", _pm];
-        "Botón de pánico activado: toda la PM ha recibido tu posición." call _say;
+        private _id = ["panic", ("STR_ADVSEC_officer_in_danger" call ADVSEC_fnc_L)] call _new;
+        [_id, format [("STR_ADVSEC_panic" call ADVSEC_fnc_L), name _caller], format [("STR_ADVSEC_needs_immediate_backup_at" call ADVSEC_fnc_L), name _caller, mapGridPosition _caller], getPosATL _caller, true] remoteExecCall ["ADVSEC_fnc_dspNotify", _pm];
+        ("STR_ADVSEC_panic_button_activated_the_whole" call ADVSEC_fnc_L) call _say;
         ["panic", _caller, [_id, mapGridPosition _caller]] call ADVSEC_fnc_logEvent;
     };
     case "accept";
     case "close": {
-        if !([_caller, "dispatch"] call ADVSEC_fnc_perm) exitWith {[_caller, "atender avisos de la central"] call ADVSEC_fnc_deny};
+        if !([_caller, "dispatch"] call ADVSEC_fnc_perm) exitWith {[_caller, ("STR_ADVSEC_handle_dispatch_alerts" call ADVSEC_fnc_L)] call ADVSEC_fnc_deny};
         _args params [["_id", ""]];
         private _c = _calls getOrDefault [_id, []];
         if (_c isEqualTo []) exitWith {};
@@ -50,7 +50,7 @@ switch (_action) do {
             _c set [6, "En camino"];
             _c set [7, name _caller];
             private _u = [_c select 1] call ADVSEC_fnc_uidUnit;
-            if (!isNull _u) then {(format ["Central: %1 va en camino (aviso %2).", name _caller, _id]) remoteExecCall ["hint", _u]};
+            if (!isNull _u) then {(format [("STR_ADVSEC_dispatch_is_on_the_way" call ADVSEC_fnc_L), name _caller, _id]) remoteExecCall ["hint", _u]};
             [_id, _c select 3] remoteExecCall ["ADVSEC_fnc_dspMark", _caller];
         } else {
             _c set [6, "Cerrado"];
@@ -63,11 +63,12 @@ switch (_action) do {
         private _rows = [];
         {
             _y params ["_kind", "", "_name", "_pos", "_text", "_date", "_state", "_who"];
-            _rows pushBack [format ["%1 · %2 · %3 · %4", _x, _name, mapGridPosition _pos, _state], _x,
-                format ["<t size='1.15' font='RobotoCondensedBold'>%1 · %2</t><br/>%3<br/>Cuadrícula: %4<br/>Hora: %5<br/>Estado: %6%7", ["Llamada 112", "PÁNICO"] select (_kind == "panic"), _x, _text call ADVSEC_fnc_repEsc, mapGridPosition _pos, _date, _state, ["", " (" + _who + ")"] select (_who isNotEqualTo "")],
+            private _stL = _state call ADVSEC_fnc_Lv;
+            _rows pushBack [format ["%1 · %2 · %3 · %4", _x, _name, mapGridPosition _pos, _stL], _x,
+                format [("STR_ADVSEC_grid_time_status" call ADVSEC_fnc_L), [("STR_ADVSEC_112_call" call ADVSEC_fnc_L), ("STR_ADVSEC_panic_2" call ADVSEC_fnc_L)] select (_kind == "panic"), _x, _text call ADVSEC_fnc_repEsc, mapGridPosition _pos, _date, _stL, ["", " (" + _who + ")"] select (_who isNotEqualTo "")],
                 switch (true) do {case (_state == "Cerrado"): {[0.55, 0.55, 0.55, 1]}; case (_kind == "panic"): {[1, 0.3, 0.3, 1]}; case (_state == "Pendiente"): {[1, 0.75, 0.3, 1]}; default {[]}}, ""];
         } forEach _calls;
         reverse _rows;
-        ["dispatch", format ["Avisos activos: %1 · Agentes de servicio: %2 / %3 PM conectados", {(_x select 6) != "Cerrado"} count (values _calls), count _onDuty, count _pm], _rows] remoteExecCall ["ADVSEC_fnc_panelSet", _caller];
+        ["dispatch", format [("STR_ADVSEC_active_alerts_officers_on_duty" call ADVSEC_fnc_L), {(_x select 6) != "Cerrado"} count (values _calls), count _onDuty, count _pm], _rows] remoteExecCall ["ADVSEC_fnc_panelSet", _caller];
     };
 };

@@ -14,13 +14,13 @@ _db set [_key, _list];
 ["fine", objNull, [name _unit, _key, _amount, _reason, _by]] call ADVSEC_fnc_logEvent;
 private _cur = ["currency", "€"] call ADVSEC_fnc_setting;
 if (isPlayer _unit) then {
-    (format ["Has recibido la multa %1 de %2 %3.\nMotivo: %4\nAgente: %5\n\nConsúltala en tu PDA o en el menú personal (Mis multas).", _id, _amount, _cur, _reason, _by]) remoteExecCall ["hint", _unit];
+    (format [("STR_ADVSEC_you_have_received_fine_of" call ADVSEC_fnc_L), _id, _amount, _cur, _reason, _by]) remoteExecCall ["hint", _unit];
 };
 // Importe pendiente alto: requisitoria automática
 private _thr = ["fineWantedThreshold", 0] call ADVSEC_fnc_setting;
 if (_thr > 0 && {isPlayer _unit}) then {
     private _due = 0;
     {if ((_x select 6) == "Pendiente") then {_due = _due + (_x select 2)}} forEach _list;
-    if (_due >= _thr) then {[_key, name _unit, format ["Multas impagadas (%1 %2)", _due, _cur], "Baja"] call ADVSEC_fnc_wantedSys};
+    if (_due >= _thr) then {[_key, name _unit, format [("STR_ADVSEC_unpaid_fines" call ADVSEC_fnc_L), _due, _cur], "Baja"] call ADVSEC_fnc_wantedSys};
 };
 _id

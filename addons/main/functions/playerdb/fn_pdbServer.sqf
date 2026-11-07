@@ -5,7 +5,7 @@
 params ["_action", "_caller", ["_args", []]];
 if (!isServer) exitWith {};
 if !([_caller] call ADVSEC_fnc_srvCaller) exitWith {};
-if !([_caller, "playerDB"] call ADVSEC_fnc_perm) exitWith {[_caller, "consultar la base de datos de jugadores"] call ADVSEC_fnc_deny};
+if !([_caller, "playerDB"] call ADVSEC_fnc_perm) exitWith {[_caller, ("STR_ADVSEC_view_the_player_database" call ADVSEC_fnc_L)] call ADVSEC_fnc_deny};
 private _db = [] call ADVSEC_fnc_pdbDB;
 private _zeus = [_caller] call ADVSEC_fnc_isZeus;
 // Nivel propio para limitar a quién puede ascender un mando (Zeus/admin sin límite)
@@ -38,7 +38,7 @@ switch (_action) do {
     case "set": {
         _args params [["_uid", ""], "_pm", "_ai", "_glob", "_notes"];
         private _e = _db getOrDefault [_uid, []];
-        if (_e isEqualTo []) exitWith {"Ese jugador no está en la base de datos." remoteExecCall ["hint", _caller]};
+        if (_e isEqualTo []) exitWith {("STR_ADVSEC_that_player_is_not_in" call ADVSEC_fnc_L) remoteExecCall ["hint", _caller]};
         private _u = _online getOrDefault [_uid, objNull];
         private _changes = [];
         private _err = "";
@@ -48,22 +48,22 @@ switch (_action) do {
             _x params ["_v", "_i", "_can", "_mine", "_label", "_max"];
             if (isNil "_v" || {!(_v isEqualType 0)} || {_v == (_e select _i)}) then {continue};
             _v = round _v;
-            if (_v < -1 || {_v > _max}) then {_err = "Valor de rango no válido."; continue};
-            if (!_can) then {_err = format ["Tu rango no permite cambiar el rango %1.", _label]; continue};
+            if (_v < -1 || {_v > _max}) then {_err = ("STR_ADVSEC_invalid_rank_value" call ADVSEC_fnc_L); continue};
+            if (!_can) then {_err = format [("STR_ADVSEC_your_rank_does_not_allow_7" call ADVSEC_fnc_L), _label]; continue};
             private _old = _e select _i;
             if (_old < 0 && {_i != 7} && {!isNull _u}) then {_old = [_u, ["PM", "AI"] select (_i == 6)] call ADVSEC_fnc_rankLevel};
             if (_i != 7 && {!_zeus} && {_v >= _mine || {_old >= _mine}}) then {
-                _err = format ["Solo puedes gestionar rangos %1 inferiores al tuyo.", _label]; continue
+                _err = format [("STR_ADVSEC_you_can_only_manage_ranks" call ADVSEC_fnc_L), _label]; continue
             };
-            if (_i != 7 && {!_zeus} && {_uid isEqualTo getPlayerUID _caller}) then {_err = "No puedes cambiar tu propio rango."; continue};
+            if (_i != 7 && {!_zeus} && {_uid isEqualTo getPlayerUID _caller}) then {_err = ("STR_ADVSEC_you_cannot_change_your_own" call ADVSEC_fnc_L); continue};
             _changes pushBack format ["%1: %2 -> %3", _label, [_i, _e select _i] call ADVSEC_fnc_pdbRankName, [_i, _v] call ADVSEC_fnc_pdbRankName];
             _e set [_i, _v];
-        } forEach [[_pm, 5, _canPM, _myPM, "PM", 5], [_ai, 6, _canAI, _myAI, "AA.II.", 5], [_glob, 7, _canGlob, 99, "global", _maxG]];
+        } forEach [[_pm, 5, _canPM, _myPM, "PM", 5], [_ai, 6, _canAI, _myAI, ("STR_ADVSEC_ia" call ADVSEC_fnc_L), 5], [_glob, 7, _canGlob, 99, "global", _maxG]];
         if (!isNil "_notes" && {_notes isEqualType ""} && {_notes isNotEqualTo (_e select 8)}) then {
             if (_canPM || {_canAI} || {_canGlob}) then {
                 _e set [8, _notes select [0, 1000]];
-                _changes pushBack "Notas actualizadas";
-            } else {_err = "Tu rango no permite editar notas."};
+                _changes pushBack ("STR_ADVSEC_notes_updated" call ADVSEC_fnc_L);
+            } else {_err = ("STR_ADVSEC_your_rank_does_not_allow_8" call ADVSEC_fnc_L)};
         };
         if (_changes isNotEqualTo []) then {
             {(_e select 9) pushBack [call ADVSEC_fnc_now, name _caller, _x]} forEach _changes;
@@ -76,7 +76,7 @@ switch (_action) do {
             };
         };
         if (_err isNotEqualTo "") then {_err remoteExecCall ["hint", _caller]} else {
-            if (_changes isNotEqualTo []) then {(format ["Ficha de %1 guardada.", _e select 0]) remoteExecCall ["hint", _caller]};
+            if (_changes isNotEqualTo []) then {(format [("STR_ADVSEC_record_of_saved" call ADVSEC_fnc_L), _e select 0]) remoteExecCall ["hint", _caller]};
         };
         ["list", _caller] call ADVSEC_fnc_pdbServer;
     };

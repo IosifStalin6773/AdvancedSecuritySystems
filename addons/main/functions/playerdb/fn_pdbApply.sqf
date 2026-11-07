@@ -14,7 +14,7 @@ private _short = _uid select [(count _uid - 8) max 0];
         } forEach +(([] call ADVSEC_fnc_docStore) getOrDefault [[_unit] call ADVSEC_fnc_docKey, []]);
     };
     if (_lvl > 0) then {
-        [_unit, _type, [["name", name _unit], ["uid", _uid], ["number", _prefix + _short], ["clearance", _lvl], ["issuer", "Estado Mayor"]], true, true, true] call ADVSEC_fnc_docCreate;
+        [_unit, _type, [["name", name _unit], ["uid", _uid], ["number", _prefix + _short], ["clearance", _lvl], ["issuer", ("STR_ADVSEC_general_staff" call ADVSEC_fnc_L)]], true, true, true] call ADVSEC_fnc_docCreate;
     };
 } forEach [[_pm, "MPBadge", "PM-"], [_ai, "IABadge", "AI-"]];
 

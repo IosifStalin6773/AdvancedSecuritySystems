@@ -8,10 +8,10 @@ while {true} do {
             if (_req isNotEqualTo []) then {
                 private _near = _alarm nearEntities ["CAManBase", _radius];
                 private _i = _near findIf {alive _x && {isPlayer _x} && {!([_x, _req] call ADVSEC_fnc_accessCheck)}};
-                if (_i > -1) then {_reason = format ["intruso sin documentación (%1)", name (_near select _i)]};
+                if (_i > -1) then {_reason = format [("STR_ADVSEC_intruder_without_documents" call ADVSEC_fnc_L), name (_near select _i)]};
             };
             if (_reason isEqualTo "" && {_doors findIf {_x params ["_b", "_n"]; (_b animationSourcePhase format ["Door_%1_source", _n]) > 0.1} > -1}) then {
-                _reason = "puerta abierta";
+                _reason = ("STR_ADVSEC_door_opened" call ADVSEC_fnc_L);
             };
             if (_reason isNotEqualTo "") then {[_alarm, "trigger", _reason] call ADVSEC_fnc_alarmSet};
         };

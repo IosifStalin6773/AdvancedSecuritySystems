@@ -23,7 +23,7 @@ private _esc = {
     if !(_v isEqualType "") then {_v = str _v};
     [_v] call ADVSEC_fnc_repEsc
 };
-private _labels = getArray (_cfg >> "labels");
+private _labels = (getArray (_cfg >> "labels")) call ADVSEC_fnc_Lc;
 private _rows = [];
 {
     private _v = _doc getOrDefault [_x, ""];
@@ -44,9 +44,9 @@ private _expired = _exp isNotEqualTo "" && {parseNumber ((_exp splitString "-/."
 private _uid = _doc getOrDefault ["uid", ""];
 private _foreign = _uid isNotEqualTo "" && {!isNull _owner} && {isPlayer _owner} && {_uid isNotEqualTo getPlayerUID _owner};
 (_disp displayCtrl 4008) ctrlSetStructuredText parseText (switch (true) do {
-    case _expired: {"<t align='right' font='RobotoCondensedBold' color='#FF4D4D'>■ CADUCADO</t>"};
-    case _foreign: {"<t align='right' font='RobotoCondensedBold' color='#D96600'>■ NO COINCIDE</t>"};
-    default {"<t align='right' font='RobotoCondensedBold' color='#66FF66'>■ VÁLIDO</t>"};
+    case _expired: {("STR_ADVSEC_expired" call ADVSEC_fnc_L)};
+    case _foreign: {("STR_ADVSEC_mismatch" call ADVSEC_fnc_L)};
+    default {("STR_ADVSEC_valid" call ADVSEC_fnc_L)};
 });
 
 private _mrz = toUpper format ["%1<%2<<%3", _doc get "type", _doc getOrDefault ["number", ""], (_doc getOrDefault ["name", ""]) splitString " " joinString "<"];
@@ -55,7 +55,7 @@ while {count _mrz < 44} do {_mrz = _mrz + "<"};
 (_disp displayCtrl 4004) ctrlSetStructuredText parseText format [
     "<t color='%1' size='0.85' font='RobotoCondensed'>%2</t><br/><t font='EtelkaMonospacePro' color='%3' size='0.95'>%4</t>",
     _cLabel,
-    [format ["ID %1", _doc get "id"], format ["Presentado por %1  ·  ID %2", _shownBy call _esc, _doc get "id"]] select (_shownBy != ""),
+    [format ["ID %1", _doc get "id"], format [("STR_ADVSEC_presented_by_id" call ADVSEC_fnc_L), _shownBy call _esc, _doc get "id"]] select (_shownBy != ""),
     _cValue, _mrz select [0, 44]
 ];
 playSound "FD_CP_Clear_F";

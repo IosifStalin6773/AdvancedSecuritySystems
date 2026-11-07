@@ -9,4 +9,4 @@ if (_url isEqualTo "") exitWith {};
 private _json = format ['{"username":"ADVSEC","embeds":[{"title":"%1","description":"%2","color":%3,"footer":{"text":"%4 · %5"}}]}',
     [_title] call ADVSEC_fnc_jsonEsc, [_text] call ADVSEC_fnc_jsonEsc, _color, [missionName] call ADVSEC_fnc_jsonEsc, call ADVSEC_fnc_now];
 private _r = (["discordExtension", "DiscordEmbedBuilder"] call ADVSEC_fnc_setting) callExtension [_url, [_json]];
-if ((_r select 1) != 0 || {(_r select 2) != 0}) then {diag_log format ["[ADVSEC] Discord: la extensión devolvió %1", _r]};
+if ((_r select 1) != 0 || {(_r select 2) != 0}) then {diag_log format [("STR_ADVSEC_advsec_discord_the_extension_returned" call ADVSEC_fnc_L), _r]};

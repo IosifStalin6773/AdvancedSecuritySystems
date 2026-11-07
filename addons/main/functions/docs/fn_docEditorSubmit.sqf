@@ -3,7 +3,7 @@ if (isNull _disp) exitWith {};
 private _cb = _disp displayCtrl 2001;
 private _type = _cb lbData (lbCurSel _cb);
 private _target = ADVSEC_editorTargets param [lbCurSel (_disp displayCtrl 2002), player];
-if (isNull _target || {!alive _target}) exitWith {hint "El destinatario ya no está disponible."};
+if (isNull _target || {!alive _target}) exitWith {hint ("STR_ADVSEC_the_recipient_is_no_longer" call ADVSEC_fnc_L)};
 
 private _data = createHashMap;
 {
@@ -11,7 +11,7 @@ private _data = createHashMap;
     private _v = ctrlText _c;
     if (ctrlEnabled _c && {_v != ""}) then {_data set [_x, _v]};
 } forEach ["name", "nationality", "dob", "number", "issuer", "", "", "keys", "notes"];
-if ((_data getOrDefault ["name", ""]) isEqualTo "") exitWith {hint "El nombre es obligatorio."};
+if ((_data getOrDefault ["name", ""]) isEqualTo "") exitWith {hint ("STR_ADVSEC_the_name_is_required" call ADVSEC_fnc_L)};
 
 private _exp = _disp displayCtrl 2106;
 if (ctrlEnabled _exp) then {_data set ["expires", _exp lbData (lbCurSel _exp)]};

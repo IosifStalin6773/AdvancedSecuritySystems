@@ -1,5 +1,5 @@
 // [objeto, nombre, radio] — centro de detención (calabozo)
-params ["_obj", ["_name", "Calabozo"], ["_radius", 6]];
+params ["_obj", ["_name", ("STR_ADVSEC_cell" call ADVSEC_fnc_L)], ["_radius", 6]];
 if (isServer && {!(call ADVSEC_fnc_trustedInit)}) exitWith {};
 if (isNull _obj || {!isServer}) exitWith {};
 _obj setVariable ["ADVSEC_jailName", _name, true];

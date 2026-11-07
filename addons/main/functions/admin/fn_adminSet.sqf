@@ -14,5 +14,5 @@ lbClear _lb;
     if (_col isNotEqualTo []) then {_lb lbSetColor [_i, _col]};
 } forEach _rows;
 if (_rows isNotEqualTo []) then {_lb lbSetCurSel ((_sel max 0) min (count _rows - 1))} else {
-    (_disp displayCtrl 87805) ctrlSetStructuredText parseText "<t color='#8C8C8C'>Vacío.</t>";
+    (_disp displayCtrl 87805) ctrlSetStructuredText parseText ("STR_ADVSEC_empty" call ADVSEC_fnc_L);
 };

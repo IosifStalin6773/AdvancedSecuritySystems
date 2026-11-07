@@ -20,11 +20,11 @@ _cb lbSetCurSel (_sel max 0);
 {
     _x params ["_idc", "_items"];
     private _c = _disp displayCtrl _idc;
-    {_c lbAdd _x} forEach _items;
+    {_c lbSetData [_c lbAdd (_x call ADVSEC_fnc_Lv), _x]} forEach _items;
     _c lbSetCurSel 0;
 } forEach [
     [86711, getArray (_lists >> "gravity")],
-    [86712, ["No", "Sí (solo AA.II.)"]],
+    [86712, ["No", ("STR_ADVSEC_yes_ia_only" call ADVSEC_fnc_L)]],
     [86720, getArray (_lists >> "sanction")]
 ];
 
@@ -36,7 +36,7 @@ private _sc = _disp displayCtrl 86713;
 _sc lbSetCurSel 0;
 
 date params ["_y", "_m", "_d", "_h", "_mi"];
-(_disp displayCtrl 86716) ctrlSetText format ["%1-%2-%3 %4:%5 (hora de misión) · %6 · cuadrícula %7", _y, _m, _d, _h, _mi, worldName, mapGridPosition player];
+(_disp displayCtrl 86716) ctrlSetText format [("STR_ADVSEC_mission_time_grid" call ADVSEC_fnc_L), _y, _m, _d, _h, _mi, worldName, mapGridPosition player];
 (_disp displayCtrl 86714) ctrlSetText _subject;
 (_disp displayCtrl 86715) ctrlSetText _title;
 (_disp displayCtrl 86718) ctrlSetText _body;

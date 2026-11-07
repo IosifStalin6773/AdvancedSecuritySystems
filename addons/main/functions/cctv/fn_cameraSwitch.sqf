@@ -20,5 +20,5 @@ if (isNull _hud) exitWith {};
 (_hud displayCtrl 4102) ctrlSetText format ["%1  %2", [dayTime, "HH:MM:SS"] call BIS_fnc_timeToString, ["", "NV", "TI"] select ADVSEC_camNV];
 private _active = ADVSEC_alarms select {_x getVariable ["ADVSEC_active", false]};
 (_hud displayCtrl 4103) ctrlSetText (
-    if (_active isEqualTo []) then {""} else {"ALARMA: " + ((_active apply {_x getVariable ["ADVSEC_alarmName", "?"]}) joinString ", ")}
+    if (_active isEqualTo []) then {""} else {("STR_ADVSEC_alarm_2" call ADVSEC_fnc_L) + ((_active apply {_x getVariable ["ADVSEC_alarmName", "?"]}) joinString ", ")}
 );

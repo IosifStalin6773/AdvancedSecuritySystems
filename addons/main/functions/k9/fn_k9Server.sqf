@@ -5,17 +5,17 @@
 params ["_action", "_caller", ["_args", []]];
 if (!isServer) exitWith {};
 if !([_caller] call ADVSEC_fnc_srvCaller) exitWith {};
-if !([_caller, "k9"] call ADVSEC_fnc_perm) exitWith {[_caller, "usar la unidad canina"] call ADVSEC_fnc_deny};
+if !([_caller, "k9"] call ADVSEC_fnc_perm) exitWith {[_caller, ("STR_ADVSEC_use_the_k9_unit" call ADVSEC_fnc_L)] call ADVSEC_fnc_deny};
 private _say = {_this remoteExecCall ["hint", _caller]};
 private _dog = _caller getVariable ["ADVSEC_k9", objNull];
 switch (_action) do {
     case "toggle": {
-        if (!isNull _dog) exitWith {deleteVehicle _dog; _caller setVariable ["ADVSEC_k9", objNull, true]; "Perro retirado." call _say};
+        if (!isNull _dog) exitWith {deleteVehicle _dog; _caller setVariable ["ADVSEC_k9", objNull, true]; ("STR_ADVSEC_dog_dismissed" call ADVSEC_fnc_L) call _say};
         _dog = createAgent [["k9Class", "Alsatian_Random_F"] call ADVSEC_fnc_setting, _caller getPos [2, getDir _caller], [], 0, "NONE"];
         _dog setVariable ["BIS_fnc_animalBehaviour_disable", true];
         _dog allowDamage false;
         _caller setVariable ["ADVSEC_k9", _dog, true];
-        "Perro a tu lado. Acción «K9: olfatear» sobre un vehículo o una persona." call _say;
+        ("STR_ADVSEC_dog_at_your_side_use" call ADVSEC_fnc_L) call _say;
         // Sigue al guía mientras ambos existan
         [_caller, _dog] spawn {
             params ["_h", "_d"];
@@ -31,11 +31,11 @@ switch (_action) do {
     };
     case "sniff": {
         _args params [["_t", objNull]];
-        if (isNull _dog) exitWith {"Primero llama al perro." call _say};
-        if (isNull _t || {(_t distance _caller) > 8}) exitWith {"Acércate al objetivo." call _say};
+        if (isNull _dog) exitWith {("STR_ADVSEC_call_the_dog_first" call ADVSEC_fnc_L) call _say};
+        if (isNull _t || {(_t distance _caller) > 8}) exitWith {("STR_ADVSEC_get_closer_to_the_target" call ADVSEC_fnc_L) call _say};
         if (_dog getVariable ["ADVSEC_k9Busy", false]) exitWith {};
         _dog setVariable ["ADVSEC_k9Busy", true];
-        "El perro olfatea..." call _say;
+        ("STR_ADVSEC_the_dog_is_sniffing" call ADVSEC_fnc_L) call _say;
         [_caller, _dog, _t] spawn {
             params ["_h", "_d", "_t"];
             _d moveTo (getPosATL _t);
@@ -51,7 +51,7 @@ switch (_action) do {
                 if (_hit > 0) then {_t setVariable ["ADVSEC_k9Mark", serverTime + 300, true]};
             };
             ["k9", _h, [typeOf _t, _hit]] call ADVSEC_fnc_logEvent;
-            (["El perro no marca nada.", format ["¡El perro MARCA! (%1 indicio/s). Registra: lo marcado aparecerá en el registro.", _hit]] select (_hit > 0)) remoteExecCall ["hint", _h];
+            ([("STR_ADVSEC_the_dog_does_not_alert" call ADVSEC_fnc_L), format [("STR_ADVSEC_the_dog_alerts_indication_s" call ADVSEC_fnc_L), _hit]] select (_hit > 0)) remoteExecCall ["hint", _h];
         };
     };
 };

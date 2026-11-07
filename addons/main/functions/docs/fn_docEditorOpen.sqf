@@ -2,8 +2,8 @@ params ["_issuer"];
 if (!createDialog "ADVSEC_DocEditor") exitWith {};
 private _disp = findDisplay 86200;
 ADVSEC_editorIssuer = _issuer;
-private _issName = _issuer getVariable ["ADVSEC_issuerName", "Autoridad"];
-(_disp displayCtrl 2000) ctrlSetText format [" EMISIÓN DE DOCUMENTO · %1", toUpper _issName];
+private _issName = _issuer getVariable ["ADVSEC_issuerName", ("STR_ADVSEC_authority" call ADVSEC_fnc_L)];
+(_disp displayCtrl 2000) ctrlSetText format [("STR_ADVSEC_document_issuance" call ADVSEC_fnc_L), toUpper _issName];
 
 private _types = _issuer getVariable ["ADVSEC_issueTypes", []];
 if (_types isEqualTo []) then {_types = [] call ADVSEC_fnc_docTypes};
@@ -22,7 +22,7 @@ private _tg = _disp displayCtrl 2002;
 {
     private _rk = [_x] call ADVSEC_fnc_rankName;
     _tg lbAdd (if (_x isEqualTo player) then {
-        format ["Yo mismo (%1)", name _x]
+        format [("STR_ADVSEC_myself" call ADVSEC_fnc_L), name _x]
     } else {
         format ["%1%2 · %3 m", [_rk + " ", ""] select (_rk isEqualTo ""), name _x, round (_x distance player)]
     });
@@ -31,7 +31,7 @@ private _tg = _disp displayCtrl 2002;
 private _max = _issuer getVariable ["ADVSEC_issueMaxClearance", 5];
 private _clr = _disp displayCtrl 2107;
 for "_n" from 0 to (_max max 0) do {
-    private _i = _clr lbAdd format ["Nivel %1", _n];
+    private _i = _clr lbAdd format [("STR_ADVSEC_level" call ADVSEC_fnc_L), _n];
     _clr lbSetValue [_i, _n];
 };
 
@@ -42,7 +42,7 @@ private _exp = _disp displayCtrl 2106;
     _x params ["_label", "_years"];
     private _i = _exp lbAdd _label;
     _exp lbSetData [_i, ["", format ["%1-%2-%3", _y + _years, _m call _pad, _d call _pad]] select (_years > 0)];
-} forEach [["Sin caducidad", 0], ["1 año", 1], ["2 años", 2], ["5 años", 5], ["10 años", 10]];
+} forEach [[("STR_ADVSEC_no_expiry_2" call ADVSEC_fnc_L), 0], [("STR_ADVSEC_1_year" call ADVSEC_fnc_L), 1], [("STR_ADVSEC_2_years" call ADVSEC_fnc_L), 2], [("STR_ADVSEC_5_years" call ADVSEC_fnc_L), 5], [("STR_ADVSEC_10_years" call ADVSEC_fnc_L), 10]];
 _exp lbSetCurSel 0;
 
 (_disp displayCtrl 2105) ctrlSetText _issName;

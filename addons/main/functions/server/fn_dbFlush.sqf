@@ -46,5 +46,5 @@ if ("eco" in _d) then {
         {_out pushBack [_x, _y]} forEach _h;
         profileNamespace setVariable [ADVSEC_repKey + "_" + _k, _out];
     };
-} forEach [["spec", "ADVSEC_specDB"], ["duty", "ADVSEC_dutyDB"], ["susp", "ADVSEC_susDB"], ["plates", "ADVSEC_plateDB"], ["weapons", "ADVSEC_wpnDB"], ["bodycam", "ADVSEC_bodyDB"]];
+} forEach [["spec", "ADVSEC_specDB"], ["duty", "ADVSEC_dutyDB"], ["susp", "ADVSEC_susDB"], ["plates", "ADVSEC_plateDB"], ["weapons", "ADVSEC_wpnDB"], ["bodycam", "ADVSEC_bodyDB"], ["patrols", "ADVSEC_patrolDB"]];
 saveProfileNamespace;

@@ -25,7 +25,7 @@ ADVSEC_cpAskH = [_veh] spawn {
         private _ctrl = (findDisplay 87600) displayCtrl 87602;
         if (!isNull _ctrl) then {
             _ctrl ctrlSetStructuredText parseText format [
-                "<t font='RobotoCondensedBold'>%1</t> · %2<br/><br/>«Buenos días, control policial. Documentación, por favor.»<br/><t color='#8C8C8C' size='0.85'>Tiempo para responder: %3 s</t>",
+                ("STR_ADVSEC_good_morning_police_checkpoint_documents" call ADVSEC_fnc_L),
                 [_officer] call ADVSEC_fnc_repEsc, [_cp] call ADVSEC_fnc_repEsc, (ceil (_deadline - serverTime)) max 0
             ];
         };

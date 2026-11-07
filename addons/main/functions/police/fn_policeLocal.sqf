@@ -27,7 +27,7 @@ switch (_mode) do {
                 };
                 if (alive _u && {isNull objectParent _u}) then {[_u, ""] remoteExecCall ["switchMove", 0]};
             };
-            if (isPlayer _unit) then {hint "Has sido esposado."};
+            if (isPlayer _unit) then {hint ("STR_ADVSEC_you_have_been_handcuffed" call ADVSEC_fnc_L)};
         } else {
             if (!isPlayer _unit) then {{_unit enableAI _x} forEach ["MOVE", "TARGET", "AUTOTARGET"]};
         };

@@ -2,7 +2,7 @@
 params ["_doc"];
 if (_doc isEqualType []) then {_doc = createHashMapFromArray _doc};
 private _cfg = [_doc get "type"] call ADVSEC_fnc_docTypeCfg;
-private _labels = getArray (_cfg >> "labels");
+private _labels = (getArray (_cfg >> "labels")) call ADVSEC_fnc_Lc;
 private _txt = format ["<t size='1.25' font='RobotoCondensedBold' color='#D0A330'>%1</t><br/><img image='%2' size='1.6'/><br/>", getText (_cfg >> "displayName"), getText (_cfg >> "icon")];
 {
     private _v = _doc getOrDefault [_x, ""];
@@ -13,6 +13,6 @@ private _txt = format ["<t size='1.25' font='RobotoCondensedBold' color='#D0A330
 private _exp = _doc getOrDefault ["expires", ""];
 if (_exp isNotEqualTo "") then {
     date params ["_y", "_m", "_d"];
-    if (parseNumber ((_exp splitString "-/.") joinString "") < (_y * 10000 + _m * 100 + _d)) then {_txt = _txt + "<br/><t color='#FF4D4D' font='RobotoCondensedBold'>CADUCADO</t>"};
+    if (parseNumber ((_exp splitString "-/.") joinString "") < (_y * 10000 + _m * 100 + _d)) then {_txt = _txt + ("STR_ADVSEC_expired_2" call ADVSEC_fnc_L)};
 };
 _txt + format ["<br/><t color='#8C8C8C' size='0.85'>%1</t>", _doc get "id"]

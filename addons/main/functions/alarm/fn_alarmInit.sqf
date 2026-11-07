@@ -2,7 +2,7 @@
     [objeto, radio, requisito de zona ([] = sin control de zona), [[edificio, puerta], ...], armada, nombre, zona]
     Armada: salta si hay un jugador sin documentación válida en el radio o se abre una puerta vigilada.
 */
-params ["_alarm", ["_radius", 15], ["_req", []], ["_doors", []], ["_armed", true], ["_name", "Alarma"], ["_zone", ""]];
+params ["_alarm", ["_radius", 15], ["_req", []], ["_doors", []], ["_armed", true], ["_name", ("STR_ADVSEC_alarm" call ADVSEC_fnc_L)], ["_zone", ""]];
 if (isServer && {!(call ADVSEC_fnc_trustedInit)}) exitWith {};
 if (isNull _alarm) exitWith {};
 
@@ -19,12 +19,12 @@ if (isServer) then {
 };
 
 if (_req isNotEqualTo []) then {
-    [_alarm, "advsec_alarm_off", "Desarmar alarma", ADVSEC_icAlarm,
+    [_alarm, "advsec_alarm_off", ("STR_ADVSEC_disarm_alarm" call ADVSEC_fnc_L), ADVSEC_icAlarm,
         {[_target, "disarm"] call ADVSEC_fnc_alarmSet},
         {(_target getVariable ["ADVSEC_armed", false]) && {[_player, _args] call ADVSEC_fnc_accessCheck}},
         "main", _req, 3
     ] call ADVSEC_fnc_addInteraction;
-    [_alarm, "advsec_alarm_on", "Armar alarma", ADVSEC_icAlarm,
+    [_alarm, "advsec_alarm_on", ("STR_ADVSEC_arm_alarm" call ADVSEC_fnc_L), ADVSEC_icAlarm,
         {[_target, "arm"] call ADVSEC_fnc_alarmSet},
         {!(_target getVariable ["ADVSEC_armed", false]) && {[_player, _args] call ADVSEC_fnc_accessCheck}},
         "main", _req, 3

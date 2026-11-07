@@ -3,68 +3,68 @@ class ADVSEC_ReportTypes {
     class FPM01 {
         code = "F-PM-01";
         dept = "PM";
-        displayName = "Parte de novedades de servicio";
-        hint = "SOP-PM-01/02/04. Plazo: 24 h. Servicio, incidencias, medidas inmediatas adoptadas.";
+        displayName = "$STR_ADVSEC_duty_report";
+        hint = "$STR_ADVSEC_sop_pm_01_02_04";
     };
     class FPM02 {
         code = "F-PM-02";
         dept = "PM";
-        displayName = "Denuncia o queja";
-        hint = "SOP-PM-03. Denunciante, denunciados, fecha/hora/lugar, hechos objetivos, evidencias y testigos, confidencialidad. Acuse 48 h, remisión a AI 24 h.";
+        displayName = "$STR_ADVSEC_complaint_or_grievance";
+        hint = "$STR_ADVSEC_sop_pm_03_complainant_accused";
     };
     class FPM03 {
         code = "F-PM-03";
         dept = "PM";
-        displayName = "Registro de evidencias y cadena de custodia";
-        hint = "SOP-AI-02. Evidencia (replay, log, captura), origen, hash, quién la entrega y quién la custodia.";
+        displayName = "$STR_ADVSEC_evidence_log_and_chain_of";
+        hint = "$STR_ADVSEC_sop_ai_02_evidence_replay";
     };
     class FPM04 {
         code = "F-PM-04";
         dept = "PM";
-        displayName = "Acta de detención e ingreso en calabozo";
-        hint = "Identidad del detenido, motivo, agente actuante, tiempo de arresto, objetos intervenidos y estado al ingreso.";
+        displayName = "$STR_ADVSEC_arrest_and_cell_admission_report";
+        hint = "$STR_ADVSEC_identity_of_the_detainee_reason";
     };
     class FAI01 {
         code = "F-AI-01";
         dept = "AI";
-        displayName = "Providencia de apertura de expediente";
-        hint = "Apertura (2 días), nombramiento de instructor y comunicación al Comandante.";
+        displayName = "$STR_ADVSEC_case_opening_order";
+        hint = "$STR_ADVSEC_opening_2_days_appointment_of";
     };
     class FAI02 {
         code = "F-AI-02";
         dept = "AI";
-        displayName = "Acta de declaración";
-        hint = "Declarante, condición (investigado/testigo/denunciante), contenido de la declaración.";
+        displayName = "$STR_ADVSEC_statement_record";
+        hint = "$STR_ADVSEC_declarant_role_investigated_witness_comp";
     };
     class FAI03 {
         code = "F-AI-03";
         dept = "AI";
-        displayName = "Pliego de cargos y citación";
-        hint = "Hechos imputados y calificación provisional. Descargos: 5 días.";
+        displayName = "$STR_ADVSEC_statement_of_charges_and_summons";
+        hint = "$STR_ADVSEC_alleged_facts_and_provisional_classifica";
     };
     class FAI04 {
         code = "F-AI-04";
         dept = "AI";
-        displayName = "Acta de audiencia";
-        hint = "Exposición oral ante AI, asistentes y alegaciones.";
+        displayName = "$STR_ADVSEC_hearing_record";
+        hint = "$STR_ADVSEC_oral_presentation_before_ia_attendees";
     };
     class FAI05 {
         code = "F-AI-05";
         dept = "AI";
-        displayName = "Propuesta de resolución y resolución";
-        hint = "Hechos probados, infracción, sanción (niveles 1-5) y autoridad competente.";
+        displayName = "$STR_ADVSEC_proposed_resolution_and_resolution";
+        hint = "$STR_ADVSEC_proven_facts_offence_sanction_levels";
     };
     class FAI06 {
         code = "F-AI-06";
         dept = "AI";
         displayName = "Recurso";
-        hint = "Reposición (5 días) o alzada (7 días). Resolución recurrida y motivos.";
+        hint = "$STR_ADVSEC_reconsideration_5_days_or_higher";
     };
     class FAI07 {
         code = "F-AI-07";
         dept = "AI";
-        displayName = "Informe trimestral de Asuntos Internos";
-        hint = "Resumen de expedientes del trimestre, sanciones y recomendaciones.";
+        displayName = "$STR_ADVSEC_internal_affairs_quarterly_report";
+        hint = "$STR_ADVSEC_summary_of_the_quarter_s";
     };
 };
 

@@ -24,7 +24,7 @@ private _gloved = {
 };
 private _get = {
     private _e = _db getOrDefault [_this, createHashMap];
-    if (count _e == 0) then {"La prueba no existe." call _say};
+    if (count _e == 0) then {("STR_ADVSEC_that_evidence_does_not_exist" call ADVSEC_fnc_L) call _say};
     _e
 };
 private _isHolder = {params ["_e"]; (_e get "holder") isEqualTo getPlayerUID _caller};
@@ -65,7 +65,7 @@ switch (_action) do {
         [_by, "hitRestrained", name _caller] call ADVSEC_fnc_heatAdd;
     };
     case "scene": {
-        if !([_caller, "evidenceCollect"] call ADVSEC_fnc_perm) exitWith {[_caller, "inspeccionar una escena"] call ADVSEC_fnc_deny};
+        if !([_caller, "evidenceCollect"] call ADVSEC_fnc_perm) exitWith {[_caller, ("STR_ADVSEC_inspect_a_scene" call ADVSEC_fnc_L)] call ADVSEC_fnc_deny};
         private _r = ["sceneRadius", 15] call ADVSEC_fnc_setting;
         private _ttl = ["evidenceTTL", 3600] call ADVSEC_fnc_setting;
         private _old = [];
@@ -84,15 +84,15 @@ switch (_action) do {
         _args params ["_id"];
         private _e = _id call _get;
         if (count _e == 0) exitWith {};
-        if !([_caller, "evidenceCollect"] call ADVSEC_fnc_perm) exitWith {[_caller, "recoger pruebas"] call ADVSEC_fnc_deny};
-        if ((_e get "state") != "field" || {(_caller distance (_e get "pos")) > 4}) exitWith {"Acércate a la prueba (menos de 4 m)." call _say};
+        if !([_caller, "evidenceCollect"] call ADVSEC_fnc_perm) exitWith {[_caller, ("STR_ADVSEC_collect_evidence" call ADVSEC_fnc_L)] call ADVSEC_fnc_deny};
+        if ((_e get "state") != "field" || {(_caller distance (_e get "pos")) > 4}) exitWith {("STR_ADVSEC_get_closer_to_the_evidence" call ADVSEC_fnc_L) call _say};
         _e set ["state", "bagged"];
         _e set ["holder", getPlayerUID _caller];
         _e set ["holderName", name _caller];
-        [_e, "Recogida y precintada en la escena"] call _chain;
+        [_e, ("STR_ADVSEC_collected_and_sealed_at_the" call ADVSEC_fnc_L)] call _chain;
         ["ev"] call ADVSEC_fnc_dbDirty;
         ["evidenceCollect", _caller, [_id, _e get "type"]] call ADVSEC_fnc_logEvent;
-        [_caller, _bag, format ["%1 embolsada.", _id]] remoteExecCall ["ADVSEC_fnc_docGive", _caller];
+        [_caller, _bag, format [("STR_ADVSEC_bagged_2" call ADVSEC_fnc_L), _id]] remoteExecCall ["ADVSEC_fnc_docGive", _caller];
     };
     case "list": {
         private _all = [_caller, "evidenceAnalyze"] call ADVSEC_fnc_perm || {[_caller, "AI"] call ADVSEC_fnc_repAccess};
@@ -101,40 +101,40 @@ switch (_action) do {
             if ((_y get "state") != "field" && {_all || {[_y] call _isHolder}}) then {
                 private _mine = [_y] call _isHolder;
                 _rows pushBack [
-                    format ["%1%2", [_y] call ADVSEC_fnc_evSummary, ["", "  [en tu poder]"] select _mine],
+                    format ["%1%2", [_y] call ADVSEC_fnc_evSummary, ["", ("STR_ADVSEC_in_your_possession" call ADVSEC_fnc_L)] select _mine],
                     _x, [_y] call ADVSEC_fnc_evDetail, [[], [0.816, 0.639, 0.188, 1]] select _mine, ""
                 ];
             };
         } forEach _db;
         _rows sort false;
-        ["evidence", format ["<t font='RobotoCondensedBold'>Registro de pruebas</t><br/><t color='#8C8C8C'>%1 pruebas en custodia. Las que llevas tú aparecen en dorado.</t>", count _rows], _rows] remoteExecCall ["ADVSEC_fnc_panelSet", _caller];
+        ["evidence", format [("STR_ADVSEC_evidence_log_items_in_custody" call ADVSEC_fnc_L), count _rows], _rows] remoteExecCall ["ADVSEC_fnc_panelSet", _caller];
     };
     case "transfer": {
         _args params ["_id", "_to"];
         private _e = _id call _get;
         if (count _e == 0) exitWith {};
-        if (!([_e] call _isHolder) || {isNull _to} || {(_to distance _caller) > 5} || {!([_to, "PM"] call ADVSEC_fnc_repAccess)}) exitWith {"Solo puedes entregar pruebas que custodias a un agente a menos de 5 m." call _say};
-        if !(_bag in items _caller) exitWith {"No llevas la bolsa de la prueba." call _say};
-        [_e, format ["Entregada a %1", name _to]] call _chain;
+        if (!([_e] call _isHolder) || {isNull _to} || {(_to distance _caller) > 5} || {!([_to, "PM"] call ADVSEC_fnc_repAccess)}) exitWith {("STR_ADVSEC_you_can_only_hand_evidence" call ADVSEC_fnc_L) call _say};
+        if !(_bag in items _caller) exitWith {("STR_ADVSEC_you_are_not_carrying_the" call ADVSEC_fnc_L) call _say};
+        [_e, format [("STR_ADVSEC_handed_to_2" call ADVSEC_fnc_L), name _to]] call _chain;
         _e set ["holder", getPlayerUID _to];
         _e set ["holderName", name _to];
         ["ev"] call ADVSEC_fnc_dbDirty;
         [_caller, _bag, false] remoteExecCall ["ADVSEC_fnc_evBagMove", _caller];
-        [_to, _bag, format ["%1 te entrega la prueba %2.", name _caller, _id]] remoteExecCall ["ADVSEC_fnc_docGive", _to];
-        format ["Prueba %1 entregada a %2.", _id, name _to] call _say;
+        [_to, _bag, format [("STR_ADVSEC_hands_you_evidence" call ADVSEC_fnc_L), name _caller, _id]] remoteExecCall ["ADVSEC_fnc_docGive", _to];
+        format [("STR_ADVSEC_evidence_handed_to" call ADVSEC_fnc_L), _id, name _to] call _say;
     };
     case "analyze": {
         _args params ["_id", "_lab"];
         private _e = _id call _get;
         if (count _e == 0) exitWith {};
-        if !([_caller, "evidenceAnalyze"] call ADVSEC_fnc_perm) exitWith {"Tu rango no permite solicitar análisis." call _say};
-        if (isNull _lab || {!(_lab getVariable ["ADVSEC_lab", false])} || {(_caller distance _lab) > 6}) exitWith {"Tienes que estar en el laboratorio." call _say};
-        if (!([_e] call _isHolder) || {(_e get "state") != "bagged"}) exitWith {"Solo puedes analizar pruebas embolsadas que custodias." call _say};
+        if !([_caller, "evidenceAnalyze"] call ADVSEC_fnc_perm) exitWith {("STR_ADVSEC_your_rank_does_not_allow_12" call ADVSEC_fnc_L) call _say};
+        if (isNull _lab || {!(_lab getVariable ["ADVSEC_lab", false])} || {(_caller distance _lab) > 6}) exitWith {("STR_ADVSEC_you_must_be_at_the_3" call ADVSEC_fnc_L) call _say};
+        if (!([_e] call _isHolder) || {(_e get "state") != "bagged"}) exitWith {("STR_ADVSEC_you_can_only_analyse_bagged" call ADVSEC_fnc_L) call _say};
         private _secs = ["labTime", 90] call ADVSEC_fnc_setting;
         _e set ["state", "analyzing"];
-        [_e, format ["Entregada al laboratorio %1", _lab getVariable ["ADVSEC_labName", ""]]] call _chain;
+        [_e, format [("STR_ADVSEC_handed_to_lab" call ADVSEC_fnc_L), _lab getVariable ["ADVSEC_labName", ""]]] call _chain;
         [_caller, _bag, false] remoteExecCall ["ADVSEC_fnc_evBagMove", _caller];
-        format ["Análisis en curso: %1 s.", _secs] call _say;
+        format [("STR_ADVSEC_analysis_in_progress_s" call ADVSEC_fnc_L), _secs] call _say;
         [_e, _secs, _caller] spawn {
             params ["_e", "_secs", "_caller"];
             sleep _secs;
@@ -144,20 +144,20 @@ switch (_action) do {
                     // Registro de armas: el titular sale del registro; un arma sin registrar no identifica a nadie (weaponRegistryStrict)
                     private _reg = ([] call ADVSEC_fnc_wpnDB) getOrDefault [_e get "serial", []];
                     switch (true) do {
-                        case ((_e get "fake") isNotEqualTo []): {format ["Disparado con %1 (serie %2), arma registrada a %3 [%4].", _e get "weaponName", _e get "serial", _who select 0, _who select 1]};
-                        case (_reg isNotEqualTo []): {format ["Disparado con %1 (serie %2), arma registrada a %3 [%4] desde %5.", _e get "weaponName", _e get "serial", _reg select 2, _reg select 1, _reg select 3]};
-                        case ((["weaponRegistryStrict", 1] call ADVSEC_fnc_setting) isEqualTo 1): {format ["Disparado con %1 (serie %2). ARMA SIN REGISTRAR: no consta titular.", _e get "weaponName", _e get "serial"]};
-                        default {format ["Disparado con %1 (serie %2, sin registrar). Huella balística compatible con %3 [%4].", _e get "weaponName", _e get "serial", _who select 0, _who select 1]};
+                        case ((_e get "fake") isNotEqualTo []): {format [("STR_ADVSEC_fired_with_serial_weapon_registered" call ADVSEC_fnc_L), _e get "weaponName", _e get "serial", _who select 0, _who select 1]};
+                        case (_reg isNotEqualTo []): {format [("STR_ADVSEC_fired_with_serial_weapon_registered_2" call ADVSEC_fnc_L), _e get "weaponName", _e get "serial", _reg select 2, _reg select 1, _reg select 3]};
+                        case ((["weaponRegistryStrict", 1] call ADVSEC_fnc_setting) isEqualTo 1): {format [("STR_ADVSEC_fired_with_serial_unregistered_weapon" call ADVSEC_fnc_L), _e get "weaponName", _e get "serial"]};
+                        default {format [("STR_ADVSEC_fired_with_serial_unregistered_ballistic" call ADVSEC_fnc_L), _e get "weaponName", _e get "serial", _who select 0, _who select 1]};
                     };
                 };
-                case "print": {format ["Huella dactilar coincidente con %1 [%2].", _who select 0, _who select 1]};
-                default {format ["Perfil genético coincidente con %1 [%2].", _who select 0, _who select 1]};
+                case "print": {format [("STR_ADVSEC_fingerprint_matching" call ADVSEC_fnc_L), _who select 0, _who select 1]};
+                default {format [("STR_ADVSEC_dna_profile_matching" call ADVSEC_fnc_L), _who select 0, _who select 1]};
             };
             _e set ["result", _res];
             _e set ["state", "analyzed"];
-            (_e get "chain") pushBack [call ADVSEC_fnc_now, "Laboratorio", "", "Análisis concluido"];
+            (_e get "chain") pushBack [call ADVSEC_fnc_now, ("STR_ADVSEC_lab" call ADVSEC_fnc_L), "", ("STR_ADVSEC_analysis_completed" call ADVSEC_fnc_L)];
             ["ev"] call ADVSEC_fnc_dbDirty;
-            if (!isNull _caller) then {(format ["Laboratorio: %1 analizada.", _e get "id"]) remoteExecCall ["hint", _caller]};
+            if (!isNull _caller) then {(format [("STR_ADVSEC_lab_analysed" call ADVSEC_fnc_L), _e get "id"]) remoteExecCall ["hint", _caller]};
         };
     };
     case "attach": {
@@ -166,40 +166,40 @@ switch (_action) do {
         if (count _e == 0) exitWith {};
         if (isNil "ADVSEC_repDB") then {[] call ADVSEC_fnc_repLoad};
         private _r = ADVSEC_repDB getOrDefault [_rid, createHashMap];
-        if (count _r == 0) exitWith {format ["No existe el informe %1.", _rid] call _say};
+        if (count _r == 0) exitWith {format [("STR_ADVSEC_report_does_not_exist" call ADVSEC_fnc_L), _rid] call _say};
         (_r get "notes") pushBack [call ADVSEC_fnc_now, name _caller, getPlayerUID _caller,
-            format ["Prueba adjunta %1 (%2, %3). Custodia: %4. Resultado: %5", _id, _e get "time", _e get "grid", _e get "holderName", ["pendiente", _e get "result"] select ((_e get "result") isNotEqualTo "")]];
+            format [("STR_ADVSEC_attached_evidence_custody_result" call ADVSEC_fnc_L), _id, _e get "time", _e get "grid", _e get "holderName", ["pendiente", _e get "result"] select ((_e get "result") isNotEqualTo "")]];
         [] call ADVSEC_fnc_repSave;
-        [_e, format ["Adjuntada al informe %1", _rid]] call _chain;
-        format ["%1 adjuntada a %2.", _id, _rid] call _say;
+        [_e, format [("STR_ADVSEC_attached_to_report" call ADVSEC_fnc_L), _rid]] call _chain;
+        format [("STR_ADVSEC_attached_to" call ADVSEC_fnc_L), _id, _rid] call _say;
     };
     case "tamper": {
         _args params ["_id", "_victim"];
         private _e = _id call _get;
         if (count _e == 0 || {isNull _victim}) exitWith {};
-        if !([_caller, "evidenceTamper"] call ADVSEC_fnc_perm) exitWith {[_caller, "manipular una prueba"] call ADVSEC_fnc_deny};
-        if (!([_e] call _isHolder) || {!((_e get "state") in ["bagged", "analyzed"])}) exitWith {"Solo puedes alterar pruebas que custodias." call _say};
+        if !([_caller, "evidenceTamper"] call ADVSEC_fnc_perm) exitWith {[_caller, ("STR_ADVSEC_tamper_with_evidence" call ADVSEC_fnc_L)] call ADVSEC_fnc_deny};
+        if (!([_e] call _isHolder) || {!((_e get "state") in ["bagged", "analyzed"])}) exitWith {("STR_ADVSEC_you_can_only_alter_evidence" call ADVSEC_fnc_L) call _say};
         _e set ["fake", [name _victim, getPlayerUID _victim]];
         (_e get "tamper") pushBack [call ADVSEC_fnc_now, name _caller, getPlayerUID _caller, name _victim];
-        [_e, "Revisión de precinto"] call _chain;
+        [_e, ("STR_ADVSEC_seal_check" call ADVSEC_fnc_L)] call _chain;
         if ((_e get "state") == "analyzed") then {
             private _res = switch (_e get "type") do {
-                case "casing": {format ["Disparado con %1 (serie %2), arma registrada a %3 [%4].", _e get "weaponName", _e get "serial", name _victim, getPlayerUID _victim]};
-                case "print": {format ["Huella dactilar coincidente con %1 [%2].", name _victim, getPlayerUID _victim]};
-                default {format ["Perfil genético coincidente con %1 [%2].", name _victim, getPlayerUID _victim]};
+                case "casing": {format [("STR_ADVSEC_fired_with_serial_weapon_registered" call ADVSEC_fnc_L), _e get "weaponName", _e get "serial", name _victim, getPlayerUID _victim]};
+                case "print": {format [("STR_ADVSEC_fingerprint_matching" call ADVSEC_fnc_L), name _victim, getPlayerUID _victim]};
+                default {format [("STR_ADVSEC_dna_profile_matching" call ADVSEC_fnc_L), name _victim, getPlayerUID _victim]};
             };
             _e set ["result", _res];
         };
         ["ev"] call ADVSEC_fnc_dbDirty;
-        "Prueba alterada. Si se audita, la manipulación puede descubrirse." call _say;
+        ("STR_ADVSEC_evidence_altered_if_audited_the" call ADVSEC_fnc_L) call _say;
     };
     case "auditStart";
     case "audit": {
         _args params ["_id", "_lab"];
         private _e = _id call _get;
         if (count _e == 0) exitWith {};
-        if !([_caller, "evidenceAudit"] call ADVSEC_fnc_perm) exitWith {"Tu rango no permite auditorías forenses." call _say};
-        if (isNull _lab || {!(_lab getVariable ["ADVSEC_lab", false])} || {(_caller distance _lab) > 6}) exitWith {"La auditoría se hace en el laboratorio." call _say};
+        if !([_caller, "evidenceAudit"] call ADVSEC_fnc_perm) exitWith {("STR_ADVSEC_your_rank_does_not_allow_13" call ADVSEC_fnc_L) call _say};
+        if (isNull _lab || {!(_lab getVariable ["ADVSEC_lab", false])} || {(_caller distance _lab) > 6}) exitWith {("STR_ADVSEC_the_audit_is_done_at" call ADVSEC_fnc_L) call _say};
         // Primero se inicia (barra de progreso en el cliente) y solo se resuelve cuando ha pasado el tiempo
         private _secs = ["auditTime", 25] call ADVSEC_fnc_setting;
         private _starts = localNamespace getVariable ["ADVSEC_auditStart", createHashMap];
@@ -210,20 +210,20 @@ switch (_action) do {
             [_id, _lab, _secs] remoteExecCall ["ADVSEC_fnc_evAuditBar", _caller];
         };
         private _t0 = _starts getOrDefault [_k, -1];
-        if (_t0 < 0 || {serverTime - _t0 < _secs - 2}) exitWith {"La auditoría no se ha completado." call _say};
+        if (_t0 < 0 || {serverTime - _t0 < _secs - 2}) exitWith {("STR_ADVSEC_the_audit_was_not_completed" call ADVSEC_fnc_L) call _say};
         _starts deleteAt _k;
-        [_e, "Auditoría forense"] call _chain;
+        [_e, ("STR_ADVSEC_forensic_audit" call ADVSEC_fnc_L)] call _chain;
         private _t = _e get "tamper";
         if (_t isEqualTo []) exitWith {
             ["ev"] call ADVSEC_fnc_dbDirty;
-            format ["Auditoría de %1: precintos y lote coherentes. Sin indicios de manipulación.", _id] call _say;
+            format [("STR_ADVSEC_audit_of_seals_and_batch" call ADVSEC_fnc_L), _id] call _say;
         };
         (_t select -1) params ["_ts", "_tname", "_tuid", "_vname"];
         _e set ["fake", []];
-        _e set ["result", format ["MANIPULADA. La firma química no coincide con el lote original. Revisión de precinto por %1 (%2). %3", _tname, _ts, ["Identidad original: " + (_e getOrDefault ["name", "?"]) + ".", ""] select ((_e get "state") != "analyzed")]];
+        _e set ["result", format [("STR_ADVSEC_tampered_the_chemical_signature_does" call ADVSEC_fnc_L), _tname, _ts, [("STR_ADVSEC_original_identity" call ADVSEC_fnc_L) + (_e getOrDefault ["name", "?"]) + ".", ""] select ((_e get "state") != "analyzed")]];
         ["ev"] call ADVSEC_fnc_dbDirty;
-        [[_tuid, _tname], "evidenceTamper", format ["%1 incriminando a %2", _id, _vname]] call ADVSEC_fnc_heatAdd;
+        [[_tuid, _tname], "evidenceTamper", format [("STR_ADVSEC_framing" call ADVSEC_fnc_L), _id, _vname]] call ADVSEC_fnc_heatAdd;
         ["evidenceAudit", _caller, [_id, _tname, _tuid]] call ADVSEC_fnc_logEvent;
-        format ["Auditoría de %1: MANIPULACIÓN detectada. Responsable de la última revisión: %2.", _id, _tname] call _say;
+        format [("STR_ADVSEC_audit_of_tampering_detected_responsible" call ADVSEC_fnc_L), _id, _tname] call _say;
     };
 };

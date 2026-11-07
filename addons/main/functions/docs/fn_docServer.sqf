@@ -27,19 +27,19 @@ switch (_action) do {
                 && {_req isEqualTo [] || {[_caller, _req] call ADVSEC_fnc_accessCheck}}
                 && {private _c = _data getOrDefault ["clearance", 0]; (if (_c isEqualType "") then {parseNumber _c} else {_c}) <= (_issuer getVariable ["ADVSEC_issueMaxClearance", 5])};
         };
-        if (!_ok) exitWith {[_caller, format ["emitir %1 a %2", _type, name _unit]] call ADVSEC_fnc_deny};
+        if (!_ok) exitWith {[_caller, format [("STR_ADVSEC_issue_to" call ADVSEC_fnc_L), _type, name _unit]] call ADVSEC_fnc_deny};
         private _id = [_unit, _type, _data] call ADVSEC_fnc_docCreate;
         ["docIssue", _caller, [name _unit, getPlayerUID _unit, _id]] call ADVSEC_fnc_logEvent;
-        (format ["Documento emitido a %1.", name _unit]) remoteExecCall ["hint", _caller];
+        (format [("STR_ADVSEC_document_issued_to" call ADVSEC_fnc_L), name _unit]) remoteExecCall ["hint", _caller];
     };
     case "autoissue": {
         _args params ["_unit", ["_force", false]];
-        if !([_caller] call ADVSEC_fnc_isZeus) exitWith {[_caller, "emitir documentación automática"] call ADVSEC_fnc_deny};
+        if !([_caller] call ADVSEC_fnc_isZeus) exitWith {[_caller, ("STR_ADVSEC_issue_automatic_documents" call ADVSEC_fnc_L)] call ADVSEC_fnc_deny};
         [_unit, _force] call ADVSEC_fnc_docAutoIssue;
     };
     case "revoke": {
         _args params ["_unit", "_id"];
-        if !([_caller, "revokeDoc"] call ADVSEC_fnc_perm) exitWith {[_caller, "retirar documentos"] call ADVSEC_fnc_deny};
+        if !([_caller, "revokeDoc"] call ADVSEC_fnc_perm) exitWith {[_caller, ("STR_ADVSEC_revoke_documents" call ADVSEC_fnc_L)] call ADVSEC_fnc_deny};
         [_unit, _id] call ADVSEC_fnc_docRevoke;
         ["docRevoke", _caller, [name _unit, getPlayerUID _unit, _id]] call ADVSEC_fnc_logEvent;
     };

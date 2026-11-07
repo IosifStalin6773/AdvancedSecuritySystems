@@ -8,7 +8,7 @@ if (isNull _unit) exitWith {""};
 if (!isServer) exitWith {["issue", player, [_unit, _type, _data, objNull]] remoteExecCall ["ADVSEC_fnc_docServer", 2]; ""};
 
 private _cfg = [_type] call ADVSEC_fnc_docTypeCfg;
-if (!isClass _cfg) exitWith {diag_log format ["[ADVSEC] Tipo de documento desconocido: %1", _type]; ""};
+if (!isClass _cfg) exitWith {diag_log format [("STR_ADVSEC_advsec_unknown_document_type" call ADVSEC_fnc_L), _type]; ""};
 if (_data isEqualType []) then {_data = createHashMapFromArray _data};
 
 private _doc = createHashMapFromArray [["clearance", getNumber (_cfg >> "clearance")], ["keys", []], ["expires", ""]];
@@ -33,6 +33,6 @@ if (isPlayer _unit) then {["docs"] call ADVSEC_fnc_dbDirty};
 [_unit] call ADVSEC_fnc_docPublish;
 
 private _item = [getText (_cfg >> "item"), ""] select !_giveItem;
-private _msg = ["", format ["Has recibido: %1", getText (_cfg >> "displayName")]] select (_isNew && {!_silent});
+private _msg = ["", format [("STR_ADVSEC_you_have_received" call ADVSEC_fnc_L), getText (_cfg >> "displayName")]] select (_isNew && {!_silent});
 [_unit, _item, _msg] remoteExecCall ["ADVSEC_fnc_docGive", _unit];
 _id

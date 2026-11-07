@@ -22,14 +22,14 @@ private _list = {
     (_disp displayCtrl 86611) ctrlSetText "";
     private _ctx = _disp displayCtrl 87253;
     _ctx ctrlShow (_type == "FPM02");
-    _ctx ctrlSetText (["Remitir a AA.II.", "Abrir expediente"] select _ai);
-    (_disp displayCtrl 87250) ctrlSetText (["Nuevo informe", "Nueva denuncia"] select (_type == "FPM02"));
+    _ctx ctrlSetText ([("STR_ADVSEC_refer_to_ia" call ADVSEC_fnc_L), ("STR_ADVSEC_open_case_file" call ADVSEC_fnc_L)] select _ai);
+    (_disp displayCtrl 87250) ctrlSetText ([("STR_ADVSEC_new_report" call ADVSEC_fnc_L), ("STR_ADVSEC_new_complaint" call ADVSEC_fnc_L)] select (_type == "FPM02"));
     lbClear (_disp displayCtrl 86602);
     [createHashMap] call ADVSEC_fnc_repRender;
     ["refresh"] call ADVSEC_fnc_repAction;
 };
-private _reports = {[ADVSEC_pdaMode, "!FPM02", ["Informes de Policía Militar", "Expedientes de Asuntos Internos"] select _ai, 1] call _list};
-private _complaints = {["PM", "FPM02", ["Denuncias y quejas", "Denuncias recibidas"] select _ai, 2] call _list};
+private _reports = {[ADVSEC_pdaMode, "!FPM02", [("STR_ADVSEC_military_police_reports_2" call ADVSEC_fnc_L), ("STR_ADVSEC_internal_affairs_case_files" call ADVSEC_fnc_L)] select _ai, 1] call _list};
+private _complaints = {["PM", "FPM02", [("STR_ADVSEC_complaints_and_grievances" call ADVSEC_fnc_L), ("STR_ADVSEC_complaints_received" call ADVSEC_fnc_L)] select _ai, 2] call _list};
 
 switch (_action) do {
     case "tab": {
@@ -38,7 +38,7 @@ switch (_action) do {
                 (_disp displayCtrl 87240) ctrlShow false;
                 (_disp displayCtrl 87230) ctrlShow true;
                 [0] call _mark;
-                (_disp displayCtrl 87232) ctrlSetStructuredText parseText "<t color='#8C8C8C'>Sincronizando con el archivo central...</t>";
+                (_disp displayCtrl 87232) ctrlSetStructuredText parseText ("STR_ADVSEC_syncing_with_the_central_archive" call ADVSEC_fnc_L);
                 ["stats", player] remoteExecCall ["ADVSEC_fnc_repServer", 2];
             };
             case 1: {call _reports};
@@ -53,17 +53,17 @@ switch (_action) do {
             case "newCase": {["AI", "", "", "", "FAI01"] call ADVSEC_fnc_repEditorOpen};
             case "listComplaints": {call _complaints};
             case "listReports": {call _reports};
-            case "listPM": {["PM", "!FPM02", "Informes de Policía Militar", 1] call _list};
+            case "listPM": {["PM", "!FPM02", ("STR_ADVSEC_military_police_reports_2" call ADVSEC_fnc_L), 1] call _list};
             case "wanted": {[] call ADVSEC_fnc_wantedOpen};
             case "bodycam": {["open"] call ADVSEC_fnc_bodyLive};
             case "query": {[] call ADVSEC_fnc_queryOpen};
             case "evidence": {[] call ADVSEC_fnc_evOpen};
             case "heat": {
-                if !([player, "suspicionView"] call ADVSEC_fnc_perm) exitWith {hint "Tu rango no permite consultar el índice de sospecha."};
+                if !([player, "suspicionView"] call ADVSEC_fnc_perm) exitWith {hint ("STR_ADVSEC_your_rank_does_not_allow_14" call ADVSEC_fnc_L)};
                 [] call ADVSEC_fnc_heatOpen;
             };
             case "docs": {
-                if (([player] call ADVSEC_fnc_docGetAll) isEqualTo []) exitWith {hint "No llevas documentos."};
+                if (([player] call ADVSEC_fnc_docGetAll) isEqualTo []) exitWith {hint ("STR_ADVSEC_you_carry_no_documents" call ADVSEC_fnc_L)};
                 [player] call ADVSEC_fnc_docListOpen;
             };
         };
@@ -76,17 +76,17 @@ switch (_action) do {
     case "context": {
         private _r = ADVSEC_repCurrent;
         private _id = _r getOrDefault ["id", ""];
-        if (_id isEqualTo "" || {(_r getOrDefault ["type", ""]) != "FPM02"}) exitWith {hint "Selecciona una denuncia."};
+        if (_id isEqualTo "" || {(_r getOrDefault ["type", ""]) != "FPM02"}) exitWith {hint ("STR_ADVSEC_select_a_complaint" call ADVSEC_fnc_L)};
         private _sanction = _r getOrDefault ["sanction", "Ninguna"];
         if (!_ai) exitWith {
-            ["status", player, [_id, "Remitido a AA.II.", _sanction, "Remitida a Asuntos Internos desde la PDA."]] remoteExecCall ["ADVSEC_fnc_repServer", 2];
-            hint format ["Denuncia %1 remitida a Asuntos Internos.", _id];
+            ["status", player, [_id, "Remitido a AA.II.", _sanction, ("STR_ADVSEC_referred_to_internal_affairs_from" call ADVSEC_fnc_L)]] remoteExecCall ["ADVSEC_fnc_repServer", 2];
+            hint format [("STR_ADVSEC_complaint_referred_to_internal_affairs" call ADVSEC_fnc_L), _id];
         };
-        ["status", player, [_id, "Expediente abierto", _sanction, "Se abre expediente F-AI-01."]] remoteExecCall ["ADVSEC_fnc_repServer", 2];
+        ["status", player, [_id, "Expediente abierto", _sanction, ("STR_ADVSEC_an_f_ai_01_case" call ADVSEC_fnc_L)]] remoteExecCall ["ADVSEC_fnc_repServer", 2];
         [
             "AI",
             (_r getOrDefault ["subjects", []]) joinString "; ",
-            "Expediente: " + (_r getOrDefault ["title", ""]),
+            ("STR_ADVSEC_case_file_2" call ADVSEC_fnc_L) + (_r getOrDefault ["title", ""]),
             format ["Origen: denuncia %1 (%2).\n\n%3", _id, _r getOrDefault ["created", ""], _r getOrDefault ["body", ""]],
             "FAI01"
         ] call ADVSEC_fnc_repEditorOpen;

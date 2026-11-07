@@ -8,7 +8,7 @@ switch (_kind) do {
     };
     case "player": {
         if (_data isEqualTo []) exitWith {
-            (findDisplay 87850 displayCtrl 87864) ctrlSetStructuredText parseText "<t color='#8C8C8C'>Este jugador ya no tiene ficha.</t>";
+            (findDisplay 87850 displayCtrl 87864) ctrlSetStructuredText parseText ("STR_ADVSEC_this_player_no_longer_has" call ADVSEC_fnc_L);
         };
         _data params ["_uid", "_name", "_on", "_adm", "_stats", "_secs", ["_cur", []]];
         // Ignora la respuesta si mientras tanto se eligió a otro jugador

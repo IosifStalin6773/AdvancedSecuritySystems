@@ -10,7 +10,7 @@ private _view = _disp displayCtrl 87805;
 switch (_action) do {
     case "cat": {
         ADVSEC_admConfirm = [-1, 0];
-        (_disp displayCtrl 87801) ctrlSetText format [" SUPERADMINISTRADOR · %1", toUpper _label];
+        (_disp displayCtrl 87801) ctrlSetText format [("STR_ADVSEC_superadmin_2" call ADVSEC_fnc_L), toUpper _label];
         for "_i" from 0 to 4 do {
             private _b = _disp displayCtrl (87810 + _i);
             private _def = _buttons param [_i, []];
@@ -19,12 +19,12 @@ switch (_action) do {
         };
         lbClear (_disp displayCtrl 87803);
         _view ctrlSetStructuredText parseText "";
-        (_disp displayCtrl 87804) ctrlSetStructuredText parseText "<t color='#8C8C8C'>Consultando...</t>";
+        (_disp displayCtrl 87804) ctrlSetStructuredText parseText ("STR_ADVSEC_querying" call ADVSEC_fnc_L);
         ["list", player, [_key]] remoteExecCall ["ADVSEC_fnc_adminServer", 2];
     };
     case "refresh": {["list", player, [_key]] remoteExecCall ["ADVSEC_fnc_adminServer", 2]};
     case "select": {
-        _view ctrlSetStructuredText parseText (_row param [2, "<t color='#8C8C8C'>Sin selección.</t>"]);
+        _view ctrlSetStructuredText parseText (_row param [2, ("STR_ADVSEC_nothing_selected" call ADVSEC_fnc_L)]);
         _view ctrlSetPositionH ((ctrlTextHeight _view) max 0.6);
         _view ctrlCommit 0;
     };
@@ -32,11 +32,11 @@ switch (_action) do {
         private _def = _buttons param [_arg, []];
         if (_def isEqualTo []) exitWith {};
         _def params ["_text", "_act", "_needSel", "_confirm", ["_form", []]];
-        if (_needSel && {_row isEqualTo []}) exitWith {hint "Selecciona un elemento de la lista."};
+        if (_needSel && {_row isEqualTo []}) exitWith {hint ("STR_ADVSEC_select_an_item_from_the" call ADVSEC_fnc_L)};
         // Doble pulsación en 4 s para lo destructivo
         if (_confirm && {(ADVSEC_admConfirm select 0) != _arg || {time - (ADVSEC_admConfirm select 1) > 4}}) exitWith {
             ADVSEC_admConfirm = [_arg, time];
-            (_disp displayCtrl (87810 + _arg)) ctrlSetText "¿Seguro? Pulsa otra vez";
+            (_disp displayCtrl (87810 + _arg)) ctrlSetText ("STR_ADVSEC_sure_press_again" call ADVSEC_fnc_L);
             [_disp, _arg, _text] spawn {
                 params ["_disp", "_i", "_text"];
                 sleep 4;

@@ -3,9 +3,9 @@
     Si no se le dan agentes crea los suyos (agentesNuevos, por defecto checkpointUnits) con conos de señalización.
     Los agentes dan el alto, se acercan al vehículo, piden la documentación y registran; borrar el ancla en Zeus lo retira todo.
 */
-params ["_pos", ["_name", "Control PM"], ["_radius", 20], ["_officers", []], ["_caller", objNull], ["_dir", 0], ["_spawn", -1]];
+params ["_pos", ["_name", ("STR_ADVSEC_mp_checkpoint" call ADVSEC_fnc_L)], ["_radius", 20], ["_officers", []], ["_caller", objNull], ["_dir", 0], ["_spawn", -1]];
 if (!isServer) exitWith {[_pos, _name, _radius, _officers, player, _dir, _spawn] remoteExecCall ["ADVSEC_fnc_checkpointInit", 2]};
-if (call ADVSEC_fnc_fromClient && {!([_caller] call ADVSEC_fnc_srvCaller) || {!([_caller] call ADVSEC_fnc_isZeus)}}) exitWith {[_caller, "crear un control de carretera"] call ADVSEC_fnc_deny};
+if (call ADVSEC_fnc_fromClient && {!([_caller] call ADVSEC_fnc_srvCaller) || {!([_caller] call ADVSEC_fnc_isZeus)}}) exitWith {[_caller, ("STR_ADVSEC_create_a_road_checkpoint" call ADVSEC_fnc_L)] call ADVSEC_fnc_deny};
 if (_pos isEqualType objNull) then {_dir = getDir _pos; _pos = getPosATL _pos};
 private _id = (missionNamespace getVariable ["ADVSEC_cpSeq", 0]) + 1;
 ADVSEC_cpSeq = _id;

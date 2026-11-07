@@ -17,5 +17,5 @@ ADVSEC_panelRows = _rows;
     if (_pic isNotEqualTo "") then {_lb lbSetPicture [_i, _pic]};
 } forEach _rows;
 if (_rows isNotEqualTo []) then {_lb lbSetCurSel ((_sel max 0) min (count _rows - 1))} else {
-    (_disp displayCtrl 87505) ctrlSetStructuredText parseText "<t color='#8C8C8C'>Sin resultados.</t>";
+    (_disp displayCtrl 87505) ctrlSetStructuredText parseText ("STR_ADVSEC_no_results" call ADVSEC_fnc_L);
 };

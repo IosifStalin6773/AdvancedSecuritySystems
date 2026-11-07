@@ -19,8 +19,8 @@ ADVSEC_icJail = "\A3\ui_f\data\igui\cfg\simpleTasks\types\wait_ca.paa";
 
 ADVSEC_kindOrder = ["camera", "monitor", "keypad", "door", "alarm", "issuer", "reports", "jail"];
 ADVSEC_kindNames = createHashMapFromArray [
-    ["camera", "Cámara"], ["monitor", "Monitor"], ["keypad", "Keypad"], ["door", "Cerradura"],
-    ["alarm", "Alarma"], ["issuer", "Oficina"], ["reports", "Terminal"], ["jail", "Calabozo"], ["admin", "Terminal superadmin"], ["atm", "Cajero"], ["shop", "Tienda"], ["dealer", "Concesionario"], ["duty", "Fichaje"], ["speedcam", "Radar"]
+    ["camera", ("STR_ADVSEC_camera" call ADVSEC_fnc_L)], ["monitor", "Monitor"], ["keypad", "Keypad"], ["door", ("STR_ADVSEC_lock" call ADVSEC_fnc_L)],
+    ["alarm", ("STR_ADVSEC_alarm" call ADVSEC_fnc_L)], ["issuer", ("STR_ADVSEC_office" call ADVSEC_fnc_L)], ["reports", "Terminal"], ["jail", ("STR_ADVSEC_cell" call ADVSEC_fnc_L)], ["admin", ("STR_ADVSEC_superadmin_terminal_3" call ADVSEC_fnc_L)], ["atm", ("STR_ADVSEC_atm_2" call ADVSEC_fnc_L)], ["shop", ("STR_ADVSEC_shop" call ADVSEC_fnc_L)], ["dealer", ("STR_ADVSEC_car_dealer" call ADVSEC_fnc_L)], ["duty", ("STR_ADVSEC_duty_clock" call ADVSEC_fnc_L)], ["speedcam", "Radar"]
 ];
 ADVSEC_kindIcons = createHashMapFromArray [
     ["camera", ADVSEC_icCam], ["monitor", ADVSEC_icCam], ["keypad", ADVSEC_icPad], ["door", ADVSEC_icKey],

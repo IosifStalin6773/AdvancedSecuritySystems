@@ -19,20 +19,20 @@ if (isNull _target && {!isNull curatorCamera}) then {
 if (!isNull _target && {_target isKindOf "Logic" || {typeOf _target isEqualTo ""}}) then {_target = objNull};
 if (!isNull _target && {isSimpleObject _target}) exitWith {
     deleteVehicle _logic;
-    [objNull, "Ese objeto es un «objeto simple» del editor: no admite interacciones. Desmarca «Objeto simple» en sus atributos."] call BIS_fnc_showCuratorFeedbackMessage;
+    [objNull, ("STR_ADVSEC_that_object_is_an_editor" call ADVSEC_fnc_L)] call BIS_fnc_showCuratorFeedbackMessage;
 };
-if (!isNull _target) then {[objNull, format ["Módulo sobre: %1", getText (configOf _target >> "displayName")]] call BIS_fnc_showCuratorFeedbackMessage};
+if (!isNull _target) then {[objNull, format [("STR_ADVSEC_module_on" call ADVSEC_fnc_L), getText (configOf _target >> "displayName")]] call BIS_fnc_showCuratorFeedbackMessage};
 private _ctx = [_kind, _target, getPosATL _logic, getDir _logic];
 deleteVehicle _logic;
 
 if (_kind == "panel") exitWith {[] spawn {sleep 0.05; [] call ADVSEC_fnc_zeusPanelOpen}};
 if (_kind == "police") exitWith {
-    if !(_target isKindOf "CAManBase") exitWith {[objNull, "Suelta el módulo sobre una unidad."] call BIS_fnc_showCuratorFeedbackMessage};
+    if !(_target isKindOf "CAManBase") exitWith {[objNull, ("STR_ADVSEC_drop_the_module_on_a" call ADVSEC_fnc_L)] call BIS_fnc_showCuratorFeedbackMessage};
     [_target] spawn {sleep 0.05; [_this select 0, "zeus"] call ADVSEC_fnc_policeMenu};
 };
 
 private _reg = missionNamespace getVariable ["ADVSEC_secObjects", []];
-private _clr = [["Sin nivel mínimo", -1]] + ([0, 1, 2, 3, 4, 5] apply {[format ["Nivel %1 o superior", _x], _x]});
+private _clr = [[("STR_ADVSEC_no_minimum_level" call ADVSEC_fnc_L), -1]] + ([0, 1, 2, 3, 4, 5] apply {[format [("STR_ADVSEC_level_or_higher" call ADVSEC_fnc_L), _x], _x]});
 private _types = ["multi", ([] call ADVSEC_fnc_docTypes) apply {[getText (([_x] call ADVSEC_fnc_docTypeCfg) >> "displayName"), _x]}];
 private _zones = [["(ninguna)", ""]];
 {if ((_x select 1) == "alarm") then {_zones pushBackUnique [format ["%1 (%2)", _x select 2, _x select 3], _x select 3]}} forEach _reg;
@@ -40,51 +40,51 @@ private _nets = ["default"];
 {if ((_x select 1) == "camera") then {_nets pushBackUnique (_x select 3)}} forEach _reg;
 private _req = {
     params [["_c", -1], ["_t", []]];
-    [["Nivel mínimo", _c, _clr], ["Documentos válidos", _t, _types], ["ID de llave (opcional)", ""]]
+    [[("STR_ADVSEC_minimum_level" call ADVSEC_fnc_L), _c, _clr], [("STR_ADVSEC_valid_documents" call ADVSEC_fnc_L), _t, _types], [("STR_ADVSEC_key_id_optional" call ADVSEC_fnc_L), ""]]
 };
 
 private _def = switch (_kind) do {
-    case "camera": {["CÁMARA CCTV", [
-        ["Nombre", format ["CAM-%1", count (_reg select {(_x select 1) == "camera"}) + 1]],
-        ["Red CCTV", _nets select -1],
-        ["Inclinación", -20, [["Horizontal", 0], ["Ligera (-10º)", -10], ["Media (-20º)", -20], ["Pronunciada (-35º)", -35], ["Cenital (-60º)", -60]]]
+    case "camera": {[("STR_ADVSEC_cctv_camera" call ADVSEC_fnc_L), [
+        [("STR_ADVSEC_name" call ADVSEC_fnc_L), format ["CAM-%1", count (_reg select {(_x select 1) == "camera"}) + 1]],
+        [("STR_ADVSEC_cctv_network" call ADVSEC_fnc_L), _nets select -1],
+        [("STR_ADVSEC_tilt" call ADVSEC_fnc_L), -20, [["Horizontal", 0], [("STR_ADVSEC_slight_10o" call ADVSEC_fnc_L), -10], [("STR_ADVSEC_medium_20o" call ADVSEC_fnc_L), -20], [("STR_ADVSEC_steep_35o" call ADVSEC_fnc_L), -35], [("STR_ADVSEC_top_down_60o" call ADVSEC_fnc_L), -60]]]
     ]]};
-    case "monitor": {["MONITOR CCTV", [["Red CCTV", _nets select 0, _nets]] + ([] call _req)]};
+    case "monitor": {[("STR_ADVSEC_cctv_monitor" call ADVSEC_fnc_L), [[("STR_ADVSEC_cctv_network" call ADVSEC_fnc_L), _nets select 0, _nets]] + ([] call _req)]};
     case "keypad": {["KEYPAD", [
         ["PIN", "1234"],
-        ["Puertas (all = todas)", "all"],
-        ["Alarma vinculada", "", _zones],
-        ["Texto de pantalla", "INTRODUZCA PIN"]
+        [("STR_ADVSEC_doors_all_every_door" call ADVSEC_fnc_L), "all"],
+        [("STR_ADVSEC_linked_alarm" call ADVSEC_fnc_L), "", _zones],
+        [("STR_ADVSEC_screen_text" call ADVSEC_fnc_L), ("STR_ADVSEC_enter_pin" call ADVSEC_fnc_L)]
     ] + ([1] call _req)]};
-    case "door": {["CERRADURA", [["Puertas (all = todas)", "all"], ["Bloqueada", true, "bool"]] + ([1] call _req)]};
+    case "door": {["CERRADURA", [[("STR_ADVSEC_doors_all_every_door" call ADVSEC_fnc_L), "all"], [("STR_ADVSEC_locked" call ADVSEC_fnc_L), true, "bool"]] + ([1] call _req)]};
     case "alarm": {["ALARMA", [
-        ["Nombre", "Alarma"],
-        ["Zona (ID)", format ["zona%1", count (_zones) ]],
-        ["Radio", 15, [["10 m", 10], ["15 m", 15], ["25 m", 25], ["40 m", 40], ["60 m", 60]]],
-        ["Puertas vigiladas (all/1,2/vacío)", ""],
-        ["Armada", true, "bool"]
+        [("STR_ADVSEC_name" call ADVSEC_fnc_L), ("STR_ADVSEC_alarm" call ADVSEC_fnc_L)],
+        [("STR_ADVSEC_zone_id" call ADVSEC_fnc_L), format ["zona%1", count (_zones) ]],
+        [("STR_ADVSEC_radius" call ADVSEC_fnc_L), 15, [["10 m", 10], ["15 m", 15], ["25 m", 25], ["40 m", 40], ["60 m", 60]]],
+        [("STR_ADVSEC_watched_doors_all_1_2" call ADVSEC_fnc_L), ""],
+        [("STR_ADVSEC_armed" call ADVSEC_fnc_L), true, "bool"]
     ] + ([] call _req)]};
-    case "issuer": {["OFICINA DE DOCUMENTACIÓN", [
-        ["Emisor", "Ministerio del Interior"],
-        ["Tipos emitibles (ninguno = todos)", [], _types],
-        ["Nivel máximo", 3, [0, 1, 2, 3, 4, 5] apply {[format ["Nivel %1", _x], _x]}]
+    case "issuer": {[("STR_ADVSEC_document_office" call ADVSEC_fnc_L), [
+        [("STR_ADVSEC_issuer" call ADVSEC_fnc_L), ("STR_ADVSEC_ministry_of_the_interior" call ADVSEC_fnc_L)],
+        [("STR_ADVSEC_issuable_types_none_all" call ADVSEC_fnc_L), [], _types],
+        [("STR_ADVSEC_maximum_level" call ADVSEC_fnc_L), 3, [0, 1, 2, 3, 4, 5] apply {[format [("STR_ADVSEC_level" call ADVSEC_fnc_L), _x], _x]}]
     ] + ([] call _req)]};
-    case "reports": {["TERMINAL DE INFORMES", [["Departamento", "PM", [["Policía Militar", "PM"], ["Asuntos Internos", "AI"], ["Ambos", "BOTH"]]]] + ([] call _req)]};
-    case "jail": {["CENTRO DE DETENCIÓN", [
-        ["Nombre", "Calabozo PM"],
-        ["Radio", 6, [["3 m", 3], ["6 m", 6], ["10 m", 10], ["20 m", 20]]]
+    case "reports": {[("STR_ADVSEC_reports_terminal" call ADVSEC_fnc_L), [[("STR_ADVSEC_department" call ADVSEC_fnc_L), "PM", [[("STR_ADVSEC_military_police" call ADVSEC_fnc_L), "PM"], [("STR_ADVSEC_internal_affairs" call ADVSEC_fnc_L), "AI"], [("STR_ADVSEC_both" call ADVSEC_fnc_L), "BOTH"]]]] + ([] call _req)]};
+    case "jail": {[("STR_ADVSEC_detention_centre" call ADVSEC_fnc_L), [
+        [("STR_ADVSEC_name" call ADVSEC_fnc_L), ("STR_ADVSEC_mp_cell" call ADVSEC_fnc_L)],
+        [("STR_ADVSEC_radius" call ADVSEC_fnc_L), 6, [["3 m", 3], ["6 m", 6], ["10 m", 10], ["20 m", 20]]]
     ]]};
-    case "atm": {["CAJERO AUTOMÁTICO", [["Nombre", "Cajero automático"]]]};
-    case "shop": {["TIENDA", [["Nombre", "Tienda"], ["Artículos (vacío = por defecto)", "", ["catalog", "items"]], ["Mercado negro (oculta)", false, "bool"]]]};
-    case "dealer": {["CONCESIONARIO", [["Nombre", "Concesionario"], ["Vehículos (vacío = por defecto)", "", ["catalog", "vehicles"]]]]};
-    case "duty": {["TERMINAL DE FICHAJE", [["Nombre", "Fichaje"]]]};
-    case "speedcam": {["RADAR FIJO", [["Nombre", "Radar"], ["Límite km/h (0 = por defecto)", "0"], ["Alcance (m)", "40"], ["Multa base (0 = por defecto)", "0"], ["Multa por km/h (0 = por defecto)", "0"]]]};
-    case "admin": {["TERMINAL DE SUPERADMINISTRADOR", [["Nombre", "Terminal de superadministrador"]]]};
-    case "lab": {["LABORATORIO FORENSE", [["Nombre", "Laboratorio forense"]]]};
-    case "checkpoint": {["CONTROL DE CARRETERA (IA)", [
-        ["Nombre", "Control PM"],
-        ["Radio", 20, [["10 m", 10], ["20 m", 20], ["35 m", 35]]],
-        ["Agentes", 2, [["Crear 2 agentes", 2], ["Crear 4 agentes", 4], ["Grupo de la unidad bajo el módulo", -1], ["Sin agentes (solo multas y buscados)", 0]]]
+    case "atm": {[("STR_ADVSEC_atm" call ADVSEC_fnc_L), [[("STR_ADVSEC_name" call ADVSEC_fnc_L), ("STR_ADVSEC_cash_machine" call ADVSEC_fnc_L)]]]};
+    case "shop": {["TIENDA", [[("STR_ADVSEC_name" call ADVSEC_fnc_L), ("STR_ADVSEC_shop" call ADVSEC_fnc_L)], [("STR_ADVSEC_items_empty_default" call ADVSEC_fnc_L), "", ["catalog", "items"]], [("STR_ADVSEC_black_market_hidden" call ADVSEC_fnc_L), false, "bool"]]]};
+    case "dealer": {["CONCESIONARIO", [[("STR_ADVSEC_name" call ADVSEC_fnc_L), ("STR_ADVSEC_car_dealer" call ADVSEC_fnc_L)], [("STR_ADVSEC_vehicles_empty_default" call ADVSEC_fnc_L), "", ["catalog", "vehicles"]]]]};
+    case "duty": {[("STR_ADVSEC_duty_terminal" call ADVSEC_fnc_L), [[("STR_ADVSEC_name" call ADVSEC_fnc_L), ("STR_ADVSEC_duty_clock" call ADVSEC_fnc_L)]]]};
+    case "speedcam": {[("STR_ADVSEC_fixed_speed_camera" call ADVSEC_fnc_L), [[("STR_ADVSEC_name" call ADVSEC_fnc_L), "Radar"], [("STR_ADVSEC_limit_km_h_0_default" call ADVSEC_fnc_L), "0"], [("STR_ADVSEC_range_m" call ADVSEC_fnc_L), "40"], [("STR_ADVSEC_base_fine_0_default" call ADVSEC_fnc_L), "0"], [("STR_ADVSEC_fine_per_km_h_0" call ADVSEC_fnc_L), "0"]]]};
+    case "admin": {[("STR_ADVSEC_superadmin_terminal" call ADVSEC_fnc_L), [[("STR_ADVSEC_name" call ADVSEC_fnc_L), ("STR_ADVSEC_superadmin_terminal_2" call ADVSEC_fnc_L)]]]};
+    case "lab": {[("STR_ADVSEC_forensic_lab" call ADVSEC_fnc_L), [[("STR_ADVSEC_name" call ADVSEC_fnc_L), ("STR_ADVSEC_forensic_lab_2" call ADVSEC_fnc_L)]]]};
+    case "checkpoint": {[("STR_ADVSEC_road_checkpoint_ai" call ADVSEC_fnc_L), [
+        [("STR_ADVSEC_name" call ADVSEC_fnc_L), ("STR_ADVSEC_mp_checkpoint" call ADVSEC_fnc_L)],
+        [("STR_ADVSEC_radius" call ADVSEC_fnc_L), 20, [["10 m", 10], ["20 m", 20], ["35 m", 35]]],
+        [("STR_ADVSEC_officers" call ADVSEC_fnc_L), 2, [[("STR_ADVSEC_create_2_officers" call ADVSEC_fnc_L), 2], [("STR_ADVSEC_create_4_officers" call ADVSEC_fnc_L), 4], [("STR_ADVSEC_group_of_the_unit_under" call ADVSEC_fnc_L), -1], [("STR_ADVSEC_no_officers_fines_and_wanted" call ADVSEC_fnc_L), 0]]]
     ]]};
     default {[]};
 };

@@ -2,7 +2,7 @@
     [objeto, nombre, artículos] — tienda (init del objeto, todas las máquinas)
     artículos: "clase:precio, clase:precio" o [[clase, precio], ...]; vacío = shopItems de ADVSEC_Settings.
 */
-params ["_obj", ["_name", "Tienda"], ["_items", ""], ["_hidden", false]];
+params ["_obj", ["_name", ("STR_ADVSEC_shop" call ADVSEC_fnc_L)], ["_items", ""], ["_hidden", false]];
 if (isServer && {!(call ADVSEC_fnc_trustedInit)}) exitWith {};
 if (isNull _obj) exitWith {};
 if (_items isEqualType "") then {
@@ -14,7 +14,7 @@ _obj setVariable ["ADVSEC_shop", [_name, _items]];
 _obj setVariable ["ADVSEC_shopIllegal", _hidden];
 if (isServer) then {[_obj, "shop", _name] call ADVSEC_fnc_register};
 // Mercado negro: sin nombre y solo a menos de 2,5 m
-[_obj, "advsec_shop", [format ["%1: comprar / vender", _name], "Hablar en voz baja"] select _hidden, ADVSEC_icSearch,
+[_obj, "advsec_shop", [format [("STR_ADVSEC_buy_sell" call ADVSEC_fnc_L), _name], ("STR_ADVSEC_speak_quietly" call ADVSEC_fnc_L)] select _hidden, ADVSEC_icSearch,
     {[_target] call ADVSEC_fnc_ecoShopOpen},
     [{[] call ADVSEC_fnc_ecoOn}, {[] call ADVSEC_fnc_ecoOn && {(_player distance _target) < 2.5}}] select _hidden,
     "main", [], [3, 2.5] select _hidden

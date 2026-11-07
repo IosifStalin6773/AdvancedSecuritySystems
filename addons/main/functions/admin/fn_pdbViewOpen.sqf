@@ -1,5 +1,5 @@
 // Abre la base de datos de jugadores del superadministrador (cliente). Solo superadministradores; el servidor lo vuelve a comprobar.
-if !([player] call ADVSEC_fnc_adminIs) exitWith {hint "Solo superadministradores."};
+if !([player] call ADVSEC_fnc_adminIs) exitWith {hint ("STR_ADVSEC_superadmins_only" call ADVSEC_fnc_L)};
 if (!isNull findDisplay 87850) exitWith {};
 if (!createDialog "ADVSEC_PlayerDBDlg") exitWith {};
 private _disp = findDisplay 87850;
@@ -11,10 +11,10 @@ ADVSEC_pdbCur = [];
 ADVSEC_pdbConfirm = [-1, 0];
 private _mode = _disp displayCtrl 87853;
 lbClear _mode;
-{_mode lbAdd _x} forEach ["Todos", "En línea", "Policía Militar", "Asuntos Internos", "Superadministradores", "Sin rango"];
+{_mode lbAdd _x} forEach [("STR_ADVSEC_all" call ADVSEC_fnc_L), ("STR_ADVSEC_online_2" call ADVSEC_fnc_L), ("STR_ADVSEC_military_police" call ADVSEC_fnc_L), ("STR_ADVSEC_internal_affairs" call ADVSEC_fnc_L), ("STR_ADVSEC_superadmins" call ADVSEC_fnc_L), ("STR_ADVSEC_no_rank" call ADVSEC_fnc_L)];
 _mode lbSetCurSel 0;
 (_disp displayCtrl 87852) ctrlSetText "";
-(_disp displayCtrl 87891) ctrlSetStructuredText parseText "<t color='#8C8C8C'>Selecciona una fila para ver su detalle y los botones para editarla.</t>";
+(_disp displayCtrl 87891) ctrlSetStructuredText parseText ("STR_ADVSEC_select_a_row_to_see" call ADVSEC_fnc_L);
 ["acts"] call ADVSEC_fnc_pdbViewUI;
-(_disp displayCtrl 87864) ctrlSetStructuredText parseText "<t color='#8C8C8C'>Selecciona un jugador de la lista.</t>";
+(_disp displayCtrl 87864) ctrlSetStructuredText parseText ("STR_ADVSEC_select_a_player_from_the" call ADVSEC_fnc_L);
 ["list", player] remoteExecCall ["ADVSEC_fnc_pdbViewServer", 2];

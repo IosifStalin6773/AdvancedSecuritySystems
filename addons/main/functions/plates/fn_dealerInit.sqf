@@ -1,5 +1,5 @@
 // [objeto, nombre, vehículos "clase:precio, ..." o [[clase, precio], ...]] — concesionario (init del objeto, todas las máquinas)
-params ["_obj", ["_name", "Concesionario"], ["_items", ""]];
+params ["_obj", ["_name", ("STR_ADVSEC_car_dealer" call ADVSEC_fnc_L)], ["_items", ""]];
 if (isServer && {!(call ADVSEC_fnc_trustedInit)}) exitWith {};
 if (isNull _obj) exitWith {};
 if (_items isEqualType "") then {
@@ -9,7 +9,7 @@ if (_items isEqualTo []) then {_items = ["dealerVehicles", []] call ADVSEC_fnc_s
 _items = _items select {_x isEqualType [] && {count _x == 2} && {isClass (configFile >> "CfgVehicles" >> (_x select 0))} && {(_x select 1) > 0}};
 _obj setVariable ["ADVSEC_dealer", [_name, _items]];
 if (isServer) then {[_obj, "dealer", _name] call ADVSEC_fnc_register};
-[_obj, "advsec_dealer", format ["%1: comprar vehículo", _name], ADVSEC_icCar,
+[_obj, "advsec_dealer", format [("STR_ADVSEC_buy_vehicle" call ADVSEC_fnc_L), _name], ADVSEC_icCar,
     {[_target] call ADVSEC_fnc_dealerOpen},
     {[] call ADVSEC_fnc_ecoOn},
     "main", [], 4

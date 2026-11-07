@@ -57,237 +57,237 @@ class CfgVehicles {
     // ===== Eden =====
     class ADVSEC_ModuleCamera: ADVSEC_Module_Base {
         scope = 2;
-        displayName = "Cámara CCTV";
+        displayName = "$STR_ADVSEC_cctv_camera_2";
         icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\scout_ca.paa";
         function = "ADVSEC_fnc_moduleCamera";
         class Attributes: AttributesBase {
-            class Name: Edit { property = "ADVSEC_Cam_Name"; displayName = "Nombre"; typeName = "STRING"; defaultValue = """CAM"""; };
-            class Network: Edit { property = "ADVSEC_Cam_Network"; displayName = "Red CCTV"; tooltip = "Los monitores de la misma red ven esta cámara"; typeName = "STRING"; defaultValue = """default"""; };
+            class Name: Edit { property = "ADVSEC_Cam_Name"; displayName = "$STR_ADVSEC_name"; typeName = "STRING"; defaultValue = """CAM"""; };
+            class Network: Edit { property = "ADVSEC_Cam_Network"; displayName = "$STR_ADVSEC_cctv_network"; tooltip = "$STR_ADVSEC_monitors_on_the_same_network"; typeName = "STRING"; defaultValue = """default"""; };
             class Pitch: Combo {
-                property = "ADVSEC_Cam_Pitch"; displayName = "Inclinación"; typeName = "NUMBER"; defaultValue = "-20";
+                property = "ADVSEC_Cam_Pitch"; displayName = "$STR_ADVSEC_tilt"; typeName = "NUMBER"; defaultValue = "-20";
                 class Values {
                     class P0 { name = "Horizontal"; value = 0; };
-                    class P10 { name = "Ligera (-10º)"; value = -10; };
-                    class P20 { name = "Media (-20º)"; value = -20; };
-                    class P35 { name = "Pronunciada (-35º)"; value = -35; };
-                    class P60 { name = "Cenital (-60º)"; value = -60; };
+                    class P10 { name = "$STR_ADVSEC_slight_10o"; value = -10; };
+                    class P20 { name = "$STR_ADVSEC_medium_20o"; value = -20; };
+                    class P35 { name = "$STR_ADVSEC_steep_35o"; value = -35; };
+                    class P60 { name = "$STR_ADVSEC_top_down_60o"; value = -60; };
                 };
             };
-            class Yaw: Edit { property = "ADVSEC_Cam_Yaw"; displayName = "Giro extra (º)"; typeName = "NUMBER"; defaultValue = "0"; };
+            class Yaw: Edit { property = "ADVSEC_Cam_Yaw"; displayName = "$STR_ADVSEC_extra_rotation_o"; typeName = "NUMBER"; defaultValue = "0"; };
             class ModuleDescription: ModuleDescription {};
         };
         class ModuleDescription: ModuleDescription {
-            description = "Sincroniza con objetos para usarlos como cámara. Sin sincronizar, el propio módulo (posición y rotación) es la cámara.";
+            description = "$STR_ADVSEC_sync_with_objects_to_use";
         };
     };
     class ADVSEC_ModuleMonitor: ADVSEC_Module_Base {
         scope = 2;
-        displayName = "Monitor CCTV";
+        displayName = "$STR_ADVSEC_cctv_monitor_2";
         icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\scout_ca.paa";
         function = "ADVSEC_fnc_moduleMonitor";
         class Attributes: AttributesBase {
-            class Network: Edit { property = "ADVSEC_Mon_Network"; displayName = "Red CCTV"; typeName = "STRING"; defaultValue = """default"""; };
+            class Network: Edit { property = "ADVSEC_Mon_Network"; displayName = "$STR_ADVSEC_cctv_network"; typeName = "STRING"; defaultValue = """default"""; };
             REQ_ATTRS(ADVSEC_Mon)
             class ModuleDescription: ModuleDescription {};
         };
         class ModuleDescription: ModuleDescription {
-            description = "Sincroniza con el objeto monitor/portátil.";
+            description = "$STR_ADVSEC_sync_with_the_monitor_laptop";
         };
     };
     class ADVSEC_ModuleKeypad: ADVSEC_Module_Base {
         scope = 2;
-        displayName = "Keypad / control de acceso";
+        displayName = "$STR_ADVSEC_keypad_access_control";
         function = "ADVSEC_fnc_moduleKeypad";
         class Attributes: AttributesBase {
             class Pin: Edit { property = "ADVSEC_Kp_Pin"; displayName = "PIN"; typeName = "STRING"; defaultValue = """1234"""; };
-            class Doors: Edit { property = "ADVSEC_Kp_Doors"; displayName = "Puertas"; tooltip = "Índices separados por coma, o all = todas"; typeName = "STRING"; defaultValue = """all"""; };
-            class Zone: Edit { property = "ADVSEC_Kp_Zone"; displayName = "Zona de alarma"; tooltip = "Zona del módulo de alarma vinculado (vacío = ninguna)"; typeName = "STRING"; defaultValue = """"""; };
-            class Label: Edit { property = "ADVSEC_Kp_Label"; displayName = "Etiqueta"; typeName = "STRING"; defaultValue = """INTRODUZCA PIN"""; };
+            class Doors: Edit { property = "ADVSEC_Kp_Doors"; displayName = "$STR_ADVSEC_doors"; tooltip = "$STR_ADVSEC_comma_separated_indexes_or_all"; typeName = "STRING"; defaultValue = """all"""; };
+            class Zone: Edit { property = "ADVSEC_Kp_Zone"; displayName = "$STR_ADVSEC_alarm_zone"; tooltip = "$STR_ADVSEC_zone_of_the_linked_alarm"; typeName = "STRING"; defaultValue = """"""; };
+            class Label: Edit { property = "ADVSEC_Kp_Label"; displayName = "$STR_ADVSEC_label"; typeName = "STRING"; defaultValue = """INTRODUZCA PIN"""; };
             REQ_ATTRS(ADVSEC_Kp)
             class ModuleDescription: ModuleDescription {};
         };
         class ModuleDescription: ModuleDescription {
-            description = "Sincroniza con el objeto keypad y con el edificio (si no, usa el edificio con puertas más cercano). Nivel/tipos/llave definen qué documentos sirven como tarjeta.";
+            description = "$STR_ADVSEC_sync_with_the_keypad_object";
         };
     };
     class ADVSEC_ModuleDoor: ADVSEC_Module_Base {
         scope = 2;
-        displayName = "Cerradura de puerta";
+        displayName = "$STR_ADVSEC_door_lock";
         icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\use_ca.paa";
         function = "ADVSEC_fnc_moduleDoor";
         class Attributes: AttributesBase {
-            class Doors: Edit { property = "ADVSEC_Door_Doors"; displayName = "Puertas"; tooltip = "Índices separados por coma, o all = todas"; typeName = "STRING"; defaultValue = """all"""; };
-            class Locked: Checkbox { property = "ADVSEC_Door_Locked"; displayName = "Bloqueada al inicio"; typeName = "BOOL"; defaultValue = "true"; };
+            class Doors: Edit { property = "ADVSEC_Door_Doors"; displayName = "$STR_ADVSEC_doors"; tooltip = "$STR_ADVSEC_comma_separated_indexes_or_all"; typeName = "STRING"; defaultValue = """all"""; };
+            class Locked: Checkbox { property = "ADVSEC_Door_Locked"; displayName = "$STR_ADVSEC_locked_at_start"; typeName = "BOOL"; defaultValue = "true"; };
             REQ_ATTRS(ADVSEC_Door)
             class ModuleDescription: ModuleDescription {};
         };
         class ModuleDescription: ModuleDescription {
-            description = "Sincroniza con el edificio o colócalo junto a él. Quien cumpla el requisito puede bloquear/desbloquear.";
+            description = "$STR_ADVSEC_sync_with_the_building_or";
         };
     };
     class ADVSEC_ModuleAlarm: ADVSEC_Module_Base {
         scope = 2;
-        displayName = "Alarma";
+        displayName = "$STR_ADVSEC_alarm";
         icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\danger_ca.paa";
         function = "ADVSEC_fnc_moduleAlarm";
         class Attributes: AttributesBase {
-            class Name: Edit { property = "ADVSEC_Al_Name"; displayName = "Nombre"; typeName = "STRING"; defaultValue = """Alarma"""; };
-            class Zone: Edit { property = "ADVSEC_Al_Zone"; displayName = "Zona"; tooltip = "ID para vincular keypads"; typeName = "STRING"; defaultValue = """zona1"""; };
-            class Radius: Edit { property = "ADVSEC_Al_Radius"; displayName = "Radio (m)"; typeName = "NUMBER"; defaultValue = "15"; };
-            class Doors: Edit { property = "ADVSEC_Al_Doors"; displayName = "Puertas vigiladas"; tooltip = "Índices, all = todas, vacío = ninguna"; typeName = "STRING"; defaultValue = """"""; };
-            class Armed: Checkbox { property = "ADVSEC_Al_Armed"; displayName = "Armada al inicio"; typeName = "BOOL"; defaultValue = "true"; };
+            class Name: Edit { property = "ADVSEC_Al_Name"; displayName = "$STR_ADVSEC_name"; typeName = "STRING"; defaultValue = """Alarma"""; };
+            class Zone: Edit { property = "ADVSEC_Al_Zone"; displayName = "$STR_ADVSEC_zone_2"; tooltip = "$STR_ADVSEC_id_to_link_keypads"; typeName = "STRING"; defaultValue = """zona1"""; };
+            class Radius: Edit { property = "ADVSEC_Al_Radius"; displayName = "$STR_ADVSEC_radius_m"; typeName = "NUMBER"; defaultValue = "15"; };
+            class Doors: Edit { property = "ADVSEC_Al_Doors"; displayName = "$STR_ADVSEC_watched_doors"; tooltip = "$STR_ADVSEC_indexes_all_every_door_empty"; typeName = "STRING"; defaultValue = """"""; };
+            class Armed: Checkbox { property = "ADVSEC_Al_Armed"; displayName = "$STR_ADVSEC_armed_at_start"; typeName = "BOOL"; defaultValue = "true"; };
             REQ_ATTRS(ADVSEC_Al)
             class ModuleDescription: ModuleDescription {};
         };
         class ModuleDescription: ModuleDescription {
-            description = "Sincroniza con el altavoz (opcional) y el edificio vigilado. El requisito define quién puede estar en la zona y desarmarla.";
+            description = "$STR_ADVSEC_sync_with_the_speaker_optional";
         };
     };
     class ADVSEC_ModuleIssuer: ADVSEC_Module_Base {
         scope = 2;
-        displayName = "Oficina de documentación";
+        displayName = "$STR_ADVSEC_document_office_2";
         icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\documents_ca.paa";
         function = "ADVSEC_fnc_moduleIssuer";
         class Attributes: AttributesBase {
-            class Issuer: Edit { property = "ADVSEC_Iss_Name"; displayName = "Emisor"; typeName = "STRING"; defaultValue = """Ministerio del Interior"""; };
-            class Types: Edit { property = "ADVSEC_Iss_Types"; displayName = "Tipos emitibles"; tooltip = "Vacío = todos"; typeName = "STRING"; defaultValue = """"""; };
+            class Issuer: Edit { property = "ADVSEC_Iss_Name"; displayName = "$STR_ADVSEC_issuer"; typeName = "STRING"; defaultValue = """Ministerio del Interior"""; };
+            class Types: Edit { property = "ADVSEC_Iss_Types"; displayName = "$STR_ADVSEC_issuable_types"; tooltip = "$STR_ADVSEC_empty_all"; typeName = "STRING"; defaultValue = """"""; };
             class MaxClearance: Combo {
-                property = "ADVSEC_Iss_Max"; displayName = "Nivel máximo que puede emitir"; typeName = "NUMBER"; defaultValue = "3";
+                property = "ADVSEC_Iss_Max"; displayName = "$STR_ADVSEC_maximum_level_it_can_issue"; typeName = "NUMBER"; defaultValue = "3";
                 class Values {
-                    class L0 { name = "Nivel 0"; value = 0; };
-                    class L1 { name = "Nivel 1"; value = 1; };
-                    class L2 { name = "Nivel 2"; value = 2; };
-                    class L3 { name = "Nivel 3"; value = 3; };
-                    class L4 { name = "Nivel 4"; value = 4; };
-                    class L5 { name = "Nivel 5"; value = 5; };
+                    class L0 { name = "$STR_ADVSEC_level_0"; value = 0; };
+                    class L1 { name = "$STR_ADVSEC_level_1"; value = 1; };
+                    class L2 { name = "$STR_ADVSEC_level_2_2"; value = 2; };
+                    class L3 { name = "$STR_ADVSEC_level_3"; value = 3; };
+                    class L4 { name = "$STR_ADVSEC_level_4"; value = 4; };
+                    class L5 { name = "$STR_ADVSEC_level_5"; value = 5; };
                 };
             };
             REQ_ATTRS(ADVSEC_Iss)
             class ModuleDescription: ModuleDescription {};
         };
         class ModuleDescription: ModuleDescription {
-            description = "Sincroniza con el objeto de la oficina. El requisito se aplica al operador que emite.";
+            description = "$STR_ADVSEC_sync_with_the_office_object";
         };
     };
 
     class ADVSEC_ModuleReports: ADVSEC_Module_Base {
         scope = 2;
-        displayName = "Terminal de informes PM / AA.II.";
+        displayName = "$STR_ADVSEC_mp_ia_reports_terminal";
         icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\documents_ca.paa";
         function = "ADVSEC_fnc_moduleReports";
         class Attributes: AttributesBase {
             class Dept: Combo {
                 property = "ADVSEC_Rep_Dept";
-                displayName = "Departamento";
+                displayName = "$STR_ADVSEC_department";
                 typeName = "STRING";
                 defaultValue = """PM""";
                 class Values {
-                    class PM { name = "Policía Militar"; value = "PM"; };
-                    class AI { name = "Asuntos Internos"; value = "AI"; };
-                    class BOTH { name = "Ambos"; value = "BOTH"; };
+                    class PM { name = "$STR_ADVSEC_military_police"; value = "PM"; };
+                    class AI { name = "$STR_ADVSEC_internal_affairs"; value = "AI"; };
+                    class BOTH { name = "$STR_ADVSEC_both"; value = "BOTH"; };
                 };
             };
             REQ_ATTRS(ADVSEC_Rep)
             class ModuleDescription: ModuleDescription {};
         };
         class ModuleDescription: ModuleDescription {
-            description = "Sincroniza con el ordenador/archivo. Acceso: placa PM o credencial AA.II. (y el requisito adicional si se define). Los informes se guardan en el perfil del servidor y persisten entre misiones.";
+            description = "$STR_ADVSEC_sync_with_the_computer_archive";
         };
     };
 
     class ADVSEC_ModuleAtm: ADVSEC_Module_Base {
         scope = 2;
-        displayName = "Cajero automático";
+        displayName = "$STR_ADVSEC_cash_machine";
         icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\box_ca.paa";
         function = "ADVSEC_fnc_moduleAtm";
         class Attributes: AttributesBase {
-            class Name: Edit { property = "ADVSEC_Atm_Name"; displayName = "Nombre"; typeName = "STRING"; defaultValue = """Cajero automático"""; };
+            class Name: Edit { property = "ADVSEC_Atm_Name"; displayName = "$STR_ADVSEC_name"; typeName = "STRING"; defaultValue = """Cajero automático"""; };
             class ModuleDescription: ModuleDescription {};
         };
         class ModuleDescription: ModuleDescription {
-            description = "Sincronízalo con cualquier objeto (o déjalo solo y crea un cajero). Permite ingresar, retirar y transferir dinero.";
+            description = "$STR_ADVSEC_sync_it_with_any_object";
         };
     };
     class ADVSEC_ModuleShop: ADVSEC_Module_Base {
         scope = 2;
-        displayName = "Tienda";
+        displayName = "$STR_ADVSEC_shop";
         icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\box_ca.paa";
         function = "ADVSEC_fnc_moduleShop";
         class Attributes: AttributesBase {
-            class Name: Edit { property = "ADVSEC_Shop_Name"; displayName = "Nombre"; typeName = "STRING"; defaultValue = """Tienda"""; };
-            class Items: Edit { property = "ADVSEC_Shop_Items"; displayName = "Artículos"; tooltip = "Elige categoría y artículo con precio. Vacío = shopItems (o blackMarketItems si es oculta)."; typeName = "STRING"; control = "ADVSEC_CatalogItems"; defaultValue = """"""; };
-            class Hidden: CheckboxNumber { property = "ADVSEC_Shop_Hidden"; displayName = "Mercado negro (oculta)"; tooltip = "Sin nombre, solo a menos de 2,5 m; las compras no van a la tesorería ni registran armas."; defaultValue = "0"; };
+            class Name: Edit { property = "ADVSEC_Shop_Name"; displayName = "$STR_ADVSEC_name"; typeName = "STRING"; defaultValue = """Tienda"""; };
+            class Items: Edit { property = "ADVSEC_Shop_Items"; displayName = "$STR_ADVSEC_items"; tooltip = "$STR_ADVSEC_pick_category_and_item_with"; typeName = "STRING"; control = "ADVSEC_CatalogItems"; defaultValue = """"""; };
+            class Hidden: CheckboxNumber { property = "ADVSEC_Shop_Hidden"; displayName = "$STR_ADVSEC_black_market_hidden"; tooltip = "$STR_ADVSEC_no_name_only_within_2"; defaultValue = "0"; };
             class ModuleDescription: ModuleDescription {};
         };
         class ModuleDescription: ModuleDescription {
-            description = "Sincronízalo con una mesa, un mostrador o un PNJ (o déjalo solo y crea una mesa). Vende y recompra los artículos de la lista.";
+            description = "$STR_ADVSEC_sync_it_with_a_table";
         };
     };
     class ADVSEC_ModuleDealer: ADVSEC_Module_Base {
         scope = 2;
-        displayName = "Concesionario de vehículos";
+        displayName = "$STR_ADVSEC_vehicle_dealer";
         icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\car_ca.paa";
         function = "ADVSEC_fnc_moduleDealer";
         class Attributes: AttributesBase {
-            class Name: Edit { property = "ADVSEC_Dealer_Name"; displayName = "Nombre"; typeName = "STRING"; defaultValue = """Concesionario"""; };
-            class Items: Edit { property = "ADVSEC_Dealer_Items"; displayName = "Vehículos"; tooltip = "Elige categoría y vehículo con precio. Vacío = dealerVehicles de ADVSEC_Settings."; typeName = "STRING"; control = "ADVSEC_CatalogVehicles"; defaultValue = """"""; };
+            class Name: Edit { property = "ADVSEC_Dealer_Name"; displayName = "$STR_ADVSEC_name"; typeName = "STRING"; defaultValue = """Concesionario"""; };
+            class Items: Edit { property = "ADVSEC_Dealer_Items"; displayName = "$STR_ADVSEC_vehicles"; tooltip = "$STR_ADVSEC_pick_category_and_vehicle_with"; typeName = "STRING"; control = "ADVSEC_CatalogVehicles"; defaultValue = """"""; };
             class ModuleDescription: ModuleDescription {};
         };
         class ModuleDescription: ModuleDescription {
-            description = "Vende vehículos matriculados a nombre del comprador (registro consultable por la PM). Se entregan cerca del objeto sincronizado.";
+            description = "$STR_ADVSEC_sells_vehicles_registered_to_the";
         };
     };
     class ADVSEC_ModuleDuty: ADVSEC_Module_Base {
         scope = 2;
-        displayName = "Terminal de fichaje (servicio)";
+        displayName = "$STR_ADVSEC_duty_terminal_2";
         icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\wait_ca.paa";
         function = "ADVSEC_fnc_moduleDuty";
         class Attributes: AttributesBase {
             class ModuleDescription: ModuleDescription {};
         };
         class ModuleDescription: ModuleDescription {
-            description = "La PM y AA.II. fichan entrada y salida de servicio. Con dutyAnywhere = 0 es el único sitio donde se puede fichar.";
+            description = "$STR_ADVSEC_mp_and_ia_clock_in";
         };
     };
     class ADVSEC_ModuleSpeedCam: ADVSEC_Module_Base {
         scope = 2;
-        displayName = "Radar fijo de velocidad";
+        displayName = "$STR_ADVSEC_fixed_speed_camera_2";
         icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\car_ca.paa";
         function = "ADVSEC_fnc_moduleSpeedCam";
         class Attributes: AttributesBase {
-            class Name: Edit { property = "ADVSEC_SC_Name"; displayName = "Nombre"; typeName = "STRING"; defaultValue = """Radar"""; };
-            class Limit: Edit { property = "ADVSEC_SC_Limit"; displayName = "Límite (km/h)"; tooltip = "0 = speedLimit de ADVSEC_Settings"; typeName = "NUMBER"; defaultValue = "0"; };
-            class Range: Edit { property = "ADVSEC_SC_Range"; displayName = "Alcance (m)"; typeName = "NUMBER"; defaultValue = "40"; };
-            class FineBase: Edit { property = "ADVSEC_SC_Base"; displayName = "Multa base"; tooltip = "0 = speedFineBase"; typeName = "NUMBER"; defaultValue = "0"; };
-            class FinePer: Edit { property = "ADVSEC_SC_Per"; displayName = "Multa por km/h de más"; tooltip = "0 = speedFinePerKmh"; typeName = "NUMBER"; defaultValue = "0"; };
+            class Name: Edit { property = "ADVSEC_SC_Name"; displayName = "$STR_ADVSEC_name"; typeName = "STRING"; defaultValue = """Radar"""; };
+            class Limit: Edit { property = "ADVSEC_SC_Limit"; displayName = "$STR_ADVSEC_limit_km_h"; tooltip = "$STR_ADVSEC_0_speedlimit_from_advsec_settings"; typeName = "NUMBER"; defaultValue = "0"; };
+            class Range: Edit { property = "ADVSEC_SC_Range"; displayName = "$STR_ADVSEC_range_m"; typeName = "NUMBER"; defaultValue = "40"; };
+            class FineBase: Edit { property = "ADVSEC_SC_Base"; displayName = "$STR_ADVSEC_base_fine"; tooltip = "0 = speedFineBase"; typeName = "NUMBER"; defaultValue = "0"; };
+            class FinePer: Edit { property = "ADVSEC_SC_Per"; displayName = "$STR_ADVSEC_fine_per_km_h_over"; tooltip = "0 = speedFinePerKmh"; typeName = "NUMBER"; defaultValue = "0"; };
             class ModuleDescription: ModuleDescription {};
         };
         class ModuleDescription: ModuleDescription {
-            description = "Radar fijo: multa automáticamente a quien pase por encima del límite. Sincronízalo con una cámara (cwa_Kamera) o déjalo solo y la crea. La PM lo configura interactuando con él. Además, toda cwa_Kamera colocada en la misión ya es un radar (speedCamAuto).";
+            description = "$STR_ADVSEC_fixed_speed_camera_automatically_fines";
         };
     };
     class ADVSEC_ModuleAdmin: ADVSEC_Module_Base {
         scope = 2;
-        displayName = "Terminal de superadministrador";
+        displayName = "$STR_ADVSEC_superadmin_terminal_2";
         icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\intel_ca.paa";
         function = "ADVSEC_fnc_moduleAdmin";
         class Attributes: AttributesBase {
             class ModuleDescription: ModuleDescription {};
         };
         class ModuleDescription: ModuleDescription {
-            description = "Sincroniza con un ordenador (o déjalo sin sincronizar y crea un portátil). Solo lo abren Zeus/administradores y los UID de superadministrador. Permite borrar informes, buscados, multas, pruebas, documentos, registros y quitar rangos.";
+            description = "$STR_ADVSEC_sync_with_a_computer_or";
         };
     };
 
     class ADVSEC_ModuleJail: ADVSEC_Module_Base {
         scope = 2;
-        displayName = "Calabozo / centro de detención";
+        displayName = "$STR_ADVSEC_cell_detention_centre";
         icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\wait_ca.paa";
         function = "ADVSEC_fnc_moduleJail";
         class Attributes: AttributesBase {
-            class Name: Edit { property = "ADVSEC_Jail_Name"; displayName = "Nombre"; typeName = "STRING"; defaultValue = """Calabozo PM"""; };
+            class Name: Edit { property = "ADVSEC_Jail_Name"; displayName = "$STR_ADVSEC_name"; typeName = "STRING"; defaultValue = """Calabozo PM"""; };
             class Radius: Combo {
-                property = "ADVSEC_Jail_Radius"; displayName = "Radio"; typeName = "NUMBER"; defaultValue = "6";
+                property = "ADVSEC_Jail_Radius"; displayName = "$STR_ADVSEC_radius"; typeName = "NUMBER"; defaultValue = "6";
                 class Values {
                     class R3 { name = "3 m"; value = 3; };
                     class R6 { name = "6 m"; value = 6; };
@@ -298,41 +298,41 @@ class CfgVehicles {
             class ModuleDescription: ModuleDescription {};
         };
         class ModuleDescription: ModuleDescription {
-            description = "Colócalo dentro de la celda (o sincronízalo con un objeto). Los detenidos aparecen aquí, no pueden salir del radio y el tiempo restante se guarda en el servidor aunque se desconecten o cambie la misión.";
+            description = "$STR_ADVSEC_place_it_inside_the_cell";
         };
     };
 
     class ADVSEC_ModuleLab: ADVSEC_Module_Base {
         scope = 2;
-        displayName = "Laboratorio forense";
+        displayName = "$STR_ADVSEC_forensic_lab_2";
         icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\search_ca.paa";
         function = "ADVSEC_fnc_moduleLab";
         class Attributes: AttributesBase {
-            class Name: Edit { property = "ADVSEC_Lab_Name"; displayName = "Nombre"; typeName = "STRING"; defaultValue = """Laboratorio forense"""; };
+            class Name: Edit { property = "ADVSEC_Lab_Name"; displayName = "$STR_ADVSEC_name"; typeName = "STRING"; defaultValue = """Laboratorio forense"""; };
             class ModuleDescription: ModuleDescription {};
         };
         class ModuleDescription: ModuleDescription {
-            description = "Sincronízalo con una mesa u ordenador. Allí se analizan las pruebas (casquillos, huellas, sangre) y AA.II. puede auditar la cadena de custodia.";
+            description = "$STR_ADVSEC_sync_it_with_a_table_2";
         };
     };
     class ADVSEC_ModuleCheckpoint: ADVSEC_Module_Base {
         scope = 2;
         isGlobal = 0;
-        displayName = "Control de carretera (IA)";
+        displayName = "$STR_ADVSEC_road_checkpoint_ai_2";
         icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\car_ca.paa";
         function = "ADVSEC_fnc_moduleCheckpoint";
         class Attributes: AttributesBase {
-            class Name: Edit { property = "ADVSEC_Cp_Name"; displayName = "Nombre"; typeName = "STRING"; defaultValue = """Control PM"""; };
+            class Name: Edit { property = "ADVSEC_Cp_Name"; displayName = "$STR_ADVSEC_name"; typeName = "STRING"; defaultValue = """Control PM"""; };
             class SpawnUnits: Combo {
-                property = "ADVSEC_Cp_Units"; displayName = "Agentes nuevos (si no hay unidades sincronizadas)"; typeName = "NUMBER"; defaultValue = "2";
+                property = "ADVSEC_Cp_Units"; displayName = "$STR_ADVSEC_new_officers_if_no_units"; typeName = "NUMBER"; defaultValue = "2";
                 class Values {
-                    class U0 { name = "Ninguno"; value = 0; };
+                    class U0 { name = "$STR_ADVSEC_none_2"; value = 0; };
                     class U2 { name = "2"; value = 2; };
                     class U4 { name = "4"; value = 4; };
                 };
             };
             class Radius: Combo {
-                property = "ADVSEC_Cp_Radius"; displayName = "Radio"; typeName = "NUMBER"; defaultValue = "20";
+                property = "ADVSEC_Cp_Radius"; displayName = "$STR_ADVSEC_radius"; typeName = "NUMBER"; defaultValue = "20";
                 class Values {
                     class R10 { name = "10 m"; value = 10; };
                     class R20 { name = "20 m"; value = 20; };
@@ -342,7 +342,7 @@ class CfgVehicles {
             class ModuleDescription: ModuleDescription {};
         };
         class ModuleDescription: ModuleDescription {
-            description = "Colócalo sobre la carretera orientado en el sentido de la vía. Si no lo sincronizas con agentes IA crea los suyos y pone conos. Detiene los vehículos, pide documentación, comprueba la lista de buscados, multa, registra al azar y detiene. Quien se lo salte pasa a buscados.";
+            description = "$STR_ADVSEC_place_it_on_the_road";
         };
     };
 
@@ -355,131 +355,131 @@ class CfgVehicles {
         function = "ADVSEC_fnc_zeusModule";
     };
     class ADVSEC_ZeusCamera: ADVSEC_Zeus_Base {
-        displayName = "Cámara CCTV";
+        displayName = "$STR_ADVSEC_cctv_camera_2";
         icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\scout_ca.paa";
         ADVSEC_kind = "camera";
     };
     class ADVSEC_ZeusMonitor: ADVSEC_Zeus_Base {
-        displayName = "Monitor CCTV";
+        displayName = "$STR_ADVSEC_cctv_monitor_2";
         icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\scout_ca.paa";
         ADVSEC_kind = "monitor";
     };
     class ADVSEC_ZeusKeypad: ADVSEC_Zeus_Base {
-        displayName = "Keypad / control de acceso";
+        displayName = "$STR_ADVSEC_keypad_access_control";
         ADVSEC_kind = "keypad";
     };
     class ADVSEC_ZeusDoor: ADVSEC_Zeus_Base {
-        displayName = "Cerradura de puerta";
+        displayName = "$STR_ADVSEC_door_lock";
         icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\use_ca.paa";
         ADVSEC_kind = "door";
     };
     class ADVSEC_ZeusAlarm: ADVSEC_Zeus_Base {
-        displayName = "Alarma";
+        displayName = "$STR_ADVSEC_alarm";
         icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\danger_ca.paa";
         ADVSEC_kind = "alarm";
     };
     class ADVSEC_ZeusIssuer: ADVSEC_Zeus_Base {
-        displayName = "Oficina de documentación";
+        displayName = "$STR_ADVSEC_document_office_2";
         icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\documents_ca.paa";
         ADVSEC_kind = "issuer";
     };
     class ADVSEC_ZeusReports: ADVSEC_Zeus_Base {
-        displayName = "Terminal de informes PM / AA.II.";
+        displayName = "$STR_ADVSEC_mp_ia_reports_terminal";
         icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\documents_ca.paa";
         ADVSEC_kind = "reports";
     };
     class ADVSEC_ZeusJail: ADVSEC_Zeus_Base {
-        displayName = "Calabozo / centro de detención";
+        displayName = "$STR_ADVSEC_cell_detention_centre";
         icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\wait_ca.paa";
         ADVSEC_kind = "jail";
     };
     class ADVSEC_ZeusPanel: ADVSEC_Zeus_Base {
-        displayName = "Panel de seguridad";
+        displayName = "$STR_ADVSEC_security_panel";
         icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\map_ca.paa";
         ADVSEC_kind = "panel";
     };
     class ADVSEC_ZeusPolice: ADVSEC_Zeus_Base {
-        displayName = "Acciones de Policía Militar (sobre unidad)";
+        displayName = "$STR_ADVSEC_military_police_actions_on_unit";
         icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\defend_ca.paa";
         ADVSEC_kind = "police";
     };
     class ADVSEC_ZeusLab: ADVSEC_Zeus_Base {
-        displayName = "Laboratorio forense";
+        displayName = "$STR_ADVSEC_forensic_lab_2";
         icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\search_ca.paa";
         ADVSEC_kind = "lab";
     };
     class ADVSEC_ZeusCheckpoint: ADVSEC_Zeus_Base {
-        displayName = "Control de carretera (IA)";
+        displayName = "$STR_ADVSEC_road_checkpoint_ai_2";
         icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\car_ca.paa";
         ADVSEC_kind = "checkpoint";
     };
     class ADVSEC_ZeusAtm: ADVSEC_Zeus_Base {
-        displayName = "Cajero automático";
+        displayName = "$STR_ADVSEC_cash_machine";
         icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\box_ca.paa";
         ADVSEC_kind = "atm";
     };
     class ADVSEC_ZeusShop: ADVSEC_Zeus_Base {
-        displayName = "Tienda";
+        displayName = "$STR_ADVSEC_shop";
         icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\box_ca.paa";
         ADVSEC_kind = "shop";
     };
     class ADVSEC_ZeusDealer: ADVSEC_Zeus_Base {
-        displayName = "Concesionario de vehículos";
+        displayName = "$STR_ADVSEC_vehicle_dealer";
         icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\car_ca.paa";
         ADVSEC_kind = "dealer";
     };
     class ADVSEC_ZeusDuty: ADVSEC_Zeus_Base {
-        displayName = "Terminal de fichaje (servicio)";
+        displayName = "$STR_ADVSEC_duty_terminal_2";
         icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\wait_ca.paa";
         ADVSEC_kind = "duty";
     };
     class ADVSEC_ZeusSpeedCam: ADVSEC_Zeus_Base {
-        displayName = "Radar fijo de velocidad";
+        displayName = "$STR_ADVSEC_fixed_speed_camera_2";
         icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\car_ca.paa";
         ADVSEC_kind = "speedcam";
     };
     class ADVSEC_ZeusAdmin: ADVSEC_Zeus_Base {
-        displayName = "Terminal de superadministrador";
+        displayName = "$STR_ADVSEC_superadmin_terminal_2";
         icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\intel_ca.paa";
         ADVSEC_kind = "admin";
     };
     // Objetos sueltos en Eden/Zeus (Equipo > Objetos de inventario) y caja con todo el material ADVSEC
     class Item_Base_F;
 #define ADVSEC_GROUND(C,N) class Item_##C: Item_Base_F { scope = 2; scopeCurator = 2; author = "oscar"; displayName = N; editorCategory = "EdCat_Equipment"; editorSubcategory = "EdSubcat_InventoryItems"; vehicleClass = "Items"; class TransportItems { class C { name = #C; count = 1; }; }; }
-    ADVSEC_GROUND(ADVSEC_Passport,"Pasaporte");
-    ADVSEC_GROUND(ADVSEC_IDCard,"Tarjeta de identificación");
-    ADVSEC_GROUND(ADVSEC_Permit,"Permiso");
-    ADVSEC_GROUND(ADVSEC_Keycard,"Tarjeta de acceso");
-    ADVSEC_GROUND(ADVSEC_Key,"Llave");
-    ADVSEC_GROUND(ADVSEC_MilitaryID,"Identificación militar");
-    ADVSEC_GROUND(ADVSEC_MPBadge,"Placa de Policía Militar");
-    ADVSEC_GROUND(ADVSEC_IABadge,"Credencial de Asuntos Internos");
-    ADVSEC_GROUND(ADVSEC_PDA_PM,"PDA de Policía Militar");
-    ADVSEC_GROUND(ADVSEC_PDA_AI,"PDA de Asuntos Internos");
-    ADVSEC_GROUND(ADVSEC_PDA_JTAC,"PDA de metopa: JTAC");
-    ADVSEC_GROUND(ADVSEC_PDA_RO,"PDA de metopa: Radio operador");
-    ADVSEC_GROUND(ADVSEC_PDA_SAN,"PDA de metopa: Sanitario");
-    ADVSEC_GROUND(ADVSEC_PDA_MED,"PDA de metopa: Médico");
-    ADVSEC_GROUND(ADVSEC_PDA_AT,"PDA de metopa: Antitanque (AT)");
-    ADVSEC_GROUND(ADVSEC_PDA_MG,"PDA de metopa: Ametrallador");
-    ADVSEC_GROUND(ADVSEC_PDA_ENG,"PDA de metopa: Ingeniero");
-    ADVSEC_GROUND(ADVSEC_PDA_EOD,"PDA de metopa: EOD (desactivación)");
-    ADVSEC_GROUND(ADVSEC_PDA_AA,"PDA de metopa: Antiaéreo (AA)");
-    ADVSEC_GROUND(ADVSEC_PDA_GRN,"PDA de metopa: Granadero");
-    ADVSEC_GROUND(ADVSEC_PDA_TANK,"PDA de metopa: Carrista");
-    ADVSEC_GROUND(ADVSEC_PDA_PARA,"PDA de metopa: Paracaidista");
-    ADVSEC_GROUND(ADVSEC_PDA_PILOT,"PDA de metopa: Piloto");
-    ADVSEC_GROUND(ADVSEC_PDA_LOG,"PDA de metopa: Logística");
-    ADVSEC_GROUND(ADVSEC_PDA_ART,"PDA de metopa: Artillería");
-    ADVSEC_GROUND(ADVSEC_PDA_MRK,"PDA de metopa: Tirador");
-    ADVSEC_GROUND(ADVSEC_EvidenceBag,"Bolsa de pruebas");
-    ADVSEC_GROUND(ADVSEC_SpeedCamKit,"Radar de tráfico portátil");
+    ADVSEC_GROUND(ADVSEC_Passport,"$STR_ADVSEC_passport");
+    ADVSEC_GROUND(ADVSEC_IDCard,"$STR_ADVSEC_identity_card");
+    ADVSEC_GROUND(ADVSEC_Permit,"$STR_ADVSEC_permit");
+    ADVSEC_GROUND(ADVSEC_Keycard,"$STR_ADVSEC_access_card");
+    ADVSEC_GROUND(ADVSEC_Key,"$STR_ADVSEC_key_3");
+    ADVSEC_GROUND(ADVSEC_MilitaryID,"$STR_ADVSEC_military_id");
+    ADVSEC_GROUND(ADVSEC_MPBadge,"$STR_ADVSEC_military_police_badge");
+    ADVSEC_GROUND(ADVSEC_IABadge,"$STR_ADVSEC_internal_affairs_credentials");
+    ADVSEC_GROUND(ADVSEC_PDA_PM,"$STR_ADVSEC_military_police_pda");
+    ADVSEC_GROUND(ADVSEC_PDA_AI,"$STR_ADVSEC_internal_affairs_pda");
+    ADVSEC_GROUND(ADVSEC_PDA_JTAC,"$STR_ADVSEC_patch_pda_jtac");
+    ADVSEC_GROUND(ADVSEC_PDA_RO,"$STR_ADVSEC_patch_pda_radio_operator");
+    ADVSEC_GROUND(ADVSEC_PDA_SAN,"$STR_ADVSEC_patch_pda_combat_medic");
+    ADVSEC_GROUND(ADVSEC_PDA_MED,"$STR_ADVSEC_patch_pda_doctor");
+    ADVSEC_GROUND(ADVSEC_PDA_AT,"$STR_ADVSEC_patch_pda_anti_tank_at");
+    ADVSEC_GROUND(ADVSEC_PDA_MG,"$STR_ADVSEC_patch_pda_machine_gunner");
+    ADVSEC_GROUND(ADVSEC_PDA_ENG,"$STR_ADVSEC_patch_pda_engineer");
+    ADVSEC_GROUND(ADVSEC_PDA_EOD,"$STR_ADVSEC_patch_pda_eod_disposal");
+    ADVSEC_GROUND(ADVSEC_PDA_AA,"$STR_ADVSEC_patch_pda_anti_air_aa");
+    ADVSEC_GROUND(ADVSEC_PDA_GRN,"$STR_ADVSEC_patch_pda_grenadier");
+    ADVSEC_GROUND(ADVSEC_PDA_TANK,"$STR_ADVSEC_patch_pda_tank_crew");
+    ADVSEC_GROUND(ADVSEC_PDA_PARA,"$STR_ADVSEC_patch_pda_paratrooper");
+    ADVSEC_GROUND(ADVSEC_PDA_PILOT,"$STR_ADVSEC_patch_pda_pilot");
+    ADVSEC_GROUND(ADVSEC_PDA_LOG,"$STR_ADVSEC_patch_pda_logistics");
+    ADVSEC_GROUND(ADVSEC_PDA_ART,"$STR_ADVSEC_patch_pda_artillery");
+    ADVSEC_GROUND(ADVSEC_PDA_MRK,"$STR_ADVSEC_patch_pda_marksman");
+    ADVSEC_GROUND(ADVSEC_EvidenceBag,"$STR_ADVSEC_evidence_bag");
+    ADVSEC_GROUND(ADVSEC_SpeedCamKit,"$STR_ADVSEC_portable_traffic_speed_camera");
     class Box_NATO_Support_F;
     class ADVSEC_Box_Equipment: Box_NATO_Support_F {
         scope = 2;
         scopeCurator = 2;
         author = "oscar";
-        displayName = "Caja de material ADVSEC (PDA, placas, documentos)";
+        displayName = "$STR_ADVSEC_advsec_equipment_box_pda_badges";
         class TransportWeapons {};
         class TransportMagazines {};
         class TransportBackpacks {};

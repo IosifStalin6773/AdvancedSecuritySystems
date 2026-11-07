@@ -9,7 +9,7 @@ switch (_action) do {
             case "OK": {
                 ["pin", ADVSEC_kpObj, player, ADVSEC_kpInput] remoteExecCall ["ADVSEC_fnc_keypadServer", 2];
                 ADVSEC_kpInput = "";
-                (_disp displayCtrl 1001) ctrlSetText "VERIFICANDO...";
+                (_disp displayCtrl 1001) ctrlSetText ("STR_ADVSEC_verifying" call ADVSEC_fnc_L);
             };
             default {if (count ADVSEC_kpInput < 8) then {ADVSEC_kpInput = ADVSEC_kpInput + _key}};
         };

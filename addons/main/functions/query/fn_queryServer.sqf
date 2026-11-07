@@ -2,9 +2,9 @@
 params ["_action", "_caller", ["_args", []]];
 if (!isServer) exitWith {};
 if !([_caller] call ADVSEC_fnc_srvCaller) exitWith {};
-if !([_caller, "query"] call ADVSEC_fnc_perm) exitWith {[_caller, "consultar la base central"] call ADVSEC_fnc_deny};
+if !([_caller, "query"] call ADVSEC_fnc_perm) exitWith {[_caller, ("STR_ADVSEC_query_the_central_database" call ADVSEC_fnc_L)] call ADVSEC_fnc_deny};
 if (!isClass (configFile >> "CfgPatches" >> "tfar_core") && {!isClass (configFile >> "CfgPatches" >> "acre_main")} && {!([_caller] call ADVSEC_fnc_hasRadio)}) exitWith {
-    ["query", "<t color='#FF4D4D'>Sin enlace con la central: necesitas una radio.</t>", []] remoteExecCall ["ADVSEC_fnc_panelSet", _caller];
+    ["query", ("STR_ADVSEC_no_link_to_dispatch_you_2" call ADVSEC_fnc_L), []] remoteExecCall ["ADVSEC_fnc_panelSet", _caller];
 };
 if (_caller getVariable ["ADVSEC_queryBusy", false]) exitWith {};
 _caller setVariable ["ADVSEC_queryBusy", true];
@@ -38,7 +38,7 @@ _args params [["_unit", objNull], ["_text", ""]];
         };
     };
     if (_key isEqualTo "") exitWith {
-        ["query", format ["Sin coincidencias para «%1».", _text call _esc], []] remoteExecCall ["ADVSEC_fnc_panelSet", _caller];
+        ["query", format [("STR_ADVSEC_no_matches_for" call ADVSEC_fnc_L), _text call _esc], []] remoteExecCall ["ADVSEC_fnc_panelSet", _caller];
     };
 
     private _rows = [];
@@ -48,23 +48,23 @@ _args params [["_unit", objNull], ["_text", ""]];
     // Requisitoria
     ["REQUISITORIAS"] call _h;
     private _w = ADVSEC_wantedDB getOrDefault [_key, []];
-    if (_w isEqualTo []) then {_rows pushBack ["    Sin requisitorias", [], "", [0.4, 1, 0.4, 1], ""]} else {
+    if (_w isEqualTo []) then {_rows pushBack [("STR_ADVSEC_no_warrants" call ADVSEC_fnc_L), [], "", [0.4, 1, 0.4, 1], ""]} else {
         _w params ["", "_reason", "_level", "_by", "_date"];
-        _rows pushBack [format ["    BUSCADO · %1 · %2", _level, _reason], [], format ["<t color='#FF4D4D' font='RobotoCondensedBold'>BUSCADO</t><br/>Motivo: %1<br/>Peligrosidad: %2<br/>Emitida por: %3<br/>Fecha: %4", _reason call _esc, _level, _by call _esc, _date], [1, 0.3, 0.3, 1], ADVSEC_icPol];
+        _rows pushBack [format [("STR_ADVSEC_wanted_5" call ADVSEC_fnc_L), _level call ADVSEC_fnc_Lv, _reason], [], format [("STR_ADVSEC_wantedreason_danger_level_issued_by" call ADVSEC_fnc_L), _reason call _esc, _level call ADVSEC_fnc_Lv, _by call _esc, _date], [1, 0.3, 0.3, 1], ADVSEC_icPol];
     };
     // Arresto
     private _j = ADVSEC_jailDB getOrDefault [_key, []];
     if (_j isNotEqualTo []) then {
         _j params ["_secs", "_reason", "", "_by", "_jname"];
-        _rows pushBack [format ["    ARRESTO PENDIENTE · %1 · %2 min", _jname, round (_secs / 60)], [], format ["Centro: %1<br/>Motivo: %2<br/>Agente: %3", _jname call _esc, _reason call _esc, _by call _esc], [1, 0.6, 0.2, 1], ADVSEC_icJail];
+        _rows pushBack [format [("STR_ADVSEC_pending_arrest_min" call ADVSEC_fnc_L), _jname, round (_secs / 60)], [], format [("STR_ADVSEC_facility_reason_officer" call ADVSEC_fnc_L), _jname call _esc, _reason call _esc, _by call _esc], [1, 0.6, 0.2, 1], ADVSEC_icJail];
     };
     // Documentos
-    ["DOCUMENTOS EN REGISTRO"] call _h;
+    [("STR_ADVSEC_documents_on_record" call ADVSEC_fnc_L)] call _h;
     private _docs = _store getOrDefault [_key, []];
-    if (_docs isEqualTo []) then {_rows pushBack ["    Ninguno", [], "", [], ""]};
+    if (_docs isEqualTo []) then {_rows pushBack [("STR_ADVSEC_none" call ADVSEC_fnc_L), [], "", [], ""]};
     {
         private _cfg = [_x get "type"] call ADVSEC_fnc_docTypeCfg;
-        _rows pushBack [format ["    %1 · %2", getText (_cfg >> "displayName"), _x getOrDefault ["expires", "sin caducidad"]], [], [_x] call ADVSEC_fnc_docFormat, [], getText (_cfg >> "icon")];
+        _rows pushBack [format ["    %1 · %2", getText (_cfg >> "displayName"), _x getOrDefault ["expires", ("STR_ADVSEC_no_expiry" call ADVSEC_fnc_L)]], [], [_x] call ADVSEC_fnc_docFormat, [], getText (_cfg >> "icon")];
     } forEach _docs;
     // Multas
     private _fl = _fines getOrDefault [_key, []];
@@ -72,7 +72,7 @@ _args params [["_unit", objNull], ["_text", ""]];
     {if ((_x select 6) == "Pendiente") then {_due = _due + (_x select 2)}} forEach _fl;
     ["MULTAS"] call _h;
     private _cur = ["currency", "€"] call ADVSEC_fnc_setting;
-    _rows pushBack [format ["    %1 multas · pendiente %2 %3", count _fl, _due, _cur], ["K", _key, _name],
+    _rows pushBack [format [("STR_ADVSEC_fines_pending" call ADVSEC_fnc_L), count _fl, _due, _cur], ["K", _key, _name],
         ((_fl select [(count _fl - 10) max 0]) apply {format ["%1 · %2 · %3 %4 · %5 · %6", _x select 0, _x select 1, _x select 2, _cur, (_x select 3) call _esc, _x select 6]}) joinString "<br/>",
         [[], [1, 0.6, 0.2, 1]] select (_due > 0), ADVSEC_icDoc];
     // Informes que le nombran
@@ -83,19 +83,19 @@ _args params [["_unit", objNull], ["_text", ""]];
             private _secret = (_y get "dept") == "AI" || {_y getOrDefault ["confidential", false]};
             if (_secret && !_ai) then {continue};
             _n = _n + 1;
-            _rows pushBack [format ["    %1 · %2 · %3", _x, _y get "status", _y get "title"], [], format ["<t font='RobotoCondensedBold'>%1</t><br/>%2<br/>Estado: %3 · Gravedad: %4<br/>Autor: %5 · %6", _x, (_y get "title") call _esc, _y get "status", _y get "gravity", (_y get "author") call _esc, _y get "created"],
+            _rows pushBack [format ["    %1 · %2 · %3", _x, (_y get "status" call ADVSEC_fnc_Lv), _y get "title"], [], format [("STR_ADVSEC_status_severity_author_2" call ADVSEC_fnc_L), _x, (_y get "title") call _esc, (_y get "status" call ADVSEC_fnc_Lv), (_y get "gravity" call ADVSEC_fnc_Lv), (_y get "author") call _esc, _y get "created"],
                 [[], [1, 0.5, 0.9, 1]] select _secret, ADVSEC_icDoc];
         };
     } forEach ADVSEC_repDB;
-    if (_n == 0) then {_rows pushBack ["    Ninguno", [], "", [], ""]};
+    if (_n == 0) then {_rows pushBack [("STR_ADVSEC_none" call ADVSEC_fnc_L), [], "", [], ""]};
     // Sospecha (AA.II.)
     if ([_caller, "suspicionView"] call ADVSEC_fnc_perm && {(_key select [0, 3]) != "AI:"}) then {
         private _e = [_key] call ADVSEC_fnc_heatGet;
         if ((_e select 0) > 0) then {
-            ["ASUNTOS INTERNOS"] call _h;
-            _rows pushBack [format ["    Índice de sospecha: %1", round (_e select 0)], [], ((_e select 2) apply {format ["%1 · %2 (+%3)", _x select 0, (_x select 1) call _esc, _x select 2]}) joinString "<br/>", [1, 0.5, 0.9, 1], ADVSEC_icPol];
+            [("STR_ADVSEC_internal_affairs_2" call ADVSEC_fnc_L)] call _h;
+            _rows pushBack [format [("STR_ADVSEC_suspicion_index" call ADVSEC_fnc_L), round (_e select 0)], [], ((_e select 2) apply {format ["%1 · %2 (+%3)", _x select 0, (_x select 1) call _esc, _x select 2]}) joinString "<br/>", [1, 0.5, 0.9, 1], ADVSEC_icPol];
         };
     };
     ["queryRun", _caller, [_key, _name]] call ADVSEC_fnc_logEvent;
-    ["query", format ["<t size='1.15' font='RobotoCondensedBold'>%1</t> · %2%3", _name call _esc, _key, ["", " · <t color='#FF4D4D'>BUSCADO</t>"] select (_w isNotEqualTo [])], _rows] remoteExecCall ["ADVSEC_fnc_panelSet", _caller];
+    ["query", format ["<t size='1.15' font='RobotoCondensedBold'>%1</t> · %2%3", _name call _esc, _key, ["", ("STR_ADVSEC_wanted_6" call ADVSEC_fnc_L)] select (_w isNotEqualTo [])], _rows] remoteExecCall ["ADVSEC_fnc_panelSet", _caller];
 };

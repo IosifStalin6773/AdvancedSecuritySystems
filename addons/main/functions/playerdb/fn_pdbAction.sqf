@@ -28,9 +28,9 @@ switch (_action) do {
             private _tags = [];
             if (_glob > 0) then {_tags pushBack ([7, _glob] call ADVSEC_fnc_pdbRankName)};
             private _p = [_pm, _effPM] select (_pm < 0);
-            if (_p > 0) then {_tags pushBack format ["%1 PM", [5, _p] call ADVSEC_fnc_pdbRankName]};
+            if (_p > 0) then {_tags pushBack format [("STR_ADVSEC_mp" call ADVSEC_fnc_L), [5, _p] call ADVSEC_fnc_pdbRankName]};
             private _a = [_ai, _effAI] select (_ai < 0);
-            if (_a > 0) then {_tags pushBack format ["%1 AA.II.", [6, _a] call ADVSEC_fnc_pdbRankName]};
+            if (_a > 0) then {_tags pushBack format [("STR_ADVSEC_ia_2" call ADVSEC_fnc_L), [6, _a] call ADVSEC_fnc_pdbRankName]};
             private _i = _lb lbAdd format ["%1%2", _name, ["", "  ·  " + (_tags joinString " · ")] select (_tags isNotEqualTo [])];
             _lb lbSetPicture [_i, "\A3\ui_f\data\map\markers\military\dot_ca.paa"];
             _lb lbSetPictureColor [_i, [[0.45, 0.45, 0.45, 1], [0.3, 1, 0.3, 1]] select _on];
@@ -38,14 +38,14 @@ switch (_action) do {
         } forEach ADVSEC_pdbShown;
         if (lbCurSel _lb < 0 && {ADVSEC_pdbShown isNotEqualTo []}) then {_lb lbSetCurSel 0};
         private _on = {_x select 12} count ADVSEC_pdbRows;
-        (_disp displayCtrl 87706) ctrlSetStructuredText parseText format ["<t color='#8C8C8C'>Registrados: </t>%1<t color='#8C8C8C'>  ·  en línea: </t><t color='#66FF66'>%2</t><t color='#8C8C8C'>  ·  mostrados: </t>%3", count ADVSEC_pdbRows, _on, count ADVSEC_pdbShown];
+        (_disp displayCtrl 87706) ctrlSetStructuredText parseText format [("STR_ADVSEC_registered_online_shown" call ADVSEC_fnc_L), count ADVSEC_pdbRows, _on, count ADVSEC_pdbShown];
         if (ADVSEC_pdbShown isEqualTo []) then {["select"] call ADVSEC_fnc_pdbAction};
     };
     case "select": {
         ADVSEC_pdbRights params ["_canPM", "_canAI", "_canGlob", "_myPM", "_myAI"];
         private _view = _disp displayCtrl 87705;
         if (_row isEqualTo []) exitWith {
-            _view ctrlSetStructuredText parseText "<t color='#8C8C8C'>Sin resultados.</t>";
+            _view ctrlSetStructuredText parseText ("STR_ADVSEC_no_results" call ADVSEC_fnc_L);
             {(_disp displayCtrl _x) ctrlEnable false} forEach [87710, 87711, 87712, 87713, 87720];
         };
         _row params ["_uid", "_name", "_alias", "_first", "_last", "_visits", "_pm", "_ai", "_glob", "_notes", "_hist", "_min", "_on", "_effPM", "_effAI"];
@@ -54,15 +54,15 @@ switch (_action) do {
         private _lvl = {
             params ["_set", "_eff", "_i"];
             if (_set >= 0) exitWith {[_i, _set] call ADVSEC_fnc_pdbRankName};
-            format ["según misión (%1)", [["actual: " + ([_i, _eff] call ADVSEC_fnc_pdbRankName), "desconectado"] select (_eff < 0), "sin placa"] select (_eff == 0)]
+            format [("STR_ADVSEC_as_set_by_mission_2" call ADVSEC_fnc_L), [[("STR_ADVSEC_current" call ADVSEC_fnc_L) + ([_i, _eff] call ADVSEC_fnc_pdbRankName), "desconectado"] select (_eff < 0), ("STR_ADVSEC_no_badge" call ADVSEC_fnc_L)] select (_eff == 0)]
         };
         _view ctrlSetStructuredText parseText format [
-            "<t size='1.3' font='RobotoCondensedBold'>%1</t>  %2<br/><t color='#8C8C8C'>SteamID:</t> %3<br/><t color='#8C8C8C'>Otros nombres:</t> %4<br/><t color='#8C8C8C'>Primera conexión:</t> %5<br/><t color='#8C8C8C'>Última conexión:</t> %6<br/><t color='#8C8C8C'>Conexiones:</t> %7  <t color='#8C8C8C'>· tiempo jugado:</t> %8 h %9 min<br/><br/><t color='#8C8C8C'>Rango global:</t> <t color='#D0A330'>%10</t><br/><t color='#8C8C8C'>Policía Militar:</t> %11<br/><t color='#8C8C8C'>Asuntos Internos:</t> %12<br/><br/><t font='RobotoCondensedBold'>Historial</t><br/>%13",
-            _name call _esc, ["<t color='#8C8C8C'>desconectado</t>", "<t color='#66FF66'>EN LÍNEA</t>"] select _on, _uid,
+            ("STR_ADVSEC_steamid_other_names_first_connection" call ADVSEC_fnc_L),
+            _name call _esc, [("STR_ADVSEC_offline_2" call ADVSEC_fnc_L), ("STR_ADVSEC_online" call ADVSEC_fnc_L)] select _on, _uid,
             [(_alias apply {_x call _esc}) joinString ", ", "—"] select (_alias isEqualTo []),
             _first, _last, _visits, floor (_min / 60), _min mod 60,
             [7, _glob] call ADVSEC_fnc_pdbRankName, [_pm, _effPM, 5] call _lvl, [_ai, _effAI, 6] call _lvl,
-            [(_h apply {format ["<t color='#8C8C8C'>%1 · %2:</t> %3", _x select 0, (_x select 1) call _esc, (_x select 2) call _esc]}) joinString "<br/>", "<t color='#8C8C8C'>Sin cambios registrados.</t>"] select (_h isEqualTo [])
+            [(_h apply {format ["<t color='#8C8C8C'>%1 · %2:</t> %3", _x select 0, (_x select 1) call _esc, (_x select 2) call _esc]}) joinString "<br/>", ("STR_ADVSEC_no_recorded_changes" call ADVSEC_fnc_L)] select (_h isEqualTo [])
         ];
         _view ctrlSetPositionH ((ctrlTextHeight _view) max 0.39);
         _view ctrlCommit 0;

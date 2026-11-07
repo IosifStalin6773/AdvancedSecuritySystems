@@ -7,40 +7,41 @@ if (!isClass (configFile >> "CfgPatches" >> "cba_settings") || {isNil "CBA_fnc_a
 private _cat = "Advanced Security Systems";
 // [variable, tipo, título, descripción, subcategoría, datos]
 private _add = {
-    params ["_var", "_type", "_title", "_tip", "_sub", "_data", ["_restart", false]];
-    ["ADVSEC_cba_" + _var, _type, [_title, _tip], [_cat, _sub], _data, 1, {}, _restart] call CBA_fnc_addSetting;
+    params ["_var", "_type", "_title", "_tip", "_sub", "_data", ["_restart", false], ["_script", {}]];
+    ["ADVSEC_cba_" + _var, _type, [_title, _tip], [_cat, _sub], _data, 1, _script, _restart] call CBA_fnc_addSetting;
 };
 private _num = {params ["_path", "_def"]; [_path, _def] call ADVSEC_fnc_setting};
 private _mis = {params ["_name", "_def"]; getMissionConfigValue ["ADVSEC_" + _name, _def]};
 private _bool = {(_this isEqualTo 1) || {_this isEqualTo true}};
 
 // --- General
-["saveInterval", "SLIDER", "Guardado a disco (s)", "Cada cuántos segundos se escriben los datos del servidor en el perfil.", "1 · General", [15, 600, ["saveInterval", 60] call _mis, 0]] call _add;
-["logMax", "SLIDER", "Tamaño del registro de eventos", "Máximo de eventos guardados (auditoría).", "1 · General", [500, 50000, ["logMax", 5000] call _mis, 0]] call _add;
-["uiBlur", "CHECKBOX", "Desenfoque tras los menús", "Difumina el fondo al abrir ventanas del mod.", "1 · General", (["uiBlur", 1] call _mis) call _bool] call _add;
-["pdaGrantsAccess", "CHECKBOX", "La PDA basta para acceder", "Llevar la PDA da acceso sin placa ni credencial.", "1 · General", (["pdaGrantsAccess", 0] call _mis) call _bool] call _add;
+["language", "LIST", "Idioma / Language", "Automático: idioma del juego (un servidor dedicado usa inglés para sus mensajes). / Automatic: game language (a dedicated server uses English for its messages).", "1 · General", [[0, 1, 2], ["Automático / Automatic", "English", "Español"], ((["language", 0] call _mis) max 0 min 2)], false, {ADVSEC_Lmap = nil}] call _add;
+["saveInterval", "SLIDER", ("STR_ADVSEC_save_to_disk_s" call ADVSEC_fnc_L), ("STR_ADVSEC_how_often_in_seconds_server" call ADVSEC_fnc_L), "1 · General", [15, 600, ["saveInterval", 60] call _mis, 0]] call _add;
+["logMax", "SLIDER", ("STR_ADVSEC_event_log_size" call ADVSEC_fnc_L), ("STR_ADVSEC_maximum_stored_events_audit" call ADVSEC_fnc_L), "1 · General", [500, 50000, ["logMax", 5000] call _mis, 0]] call _add;
+["uiBlur", "CHECKBOX", ("STR_ADVSEC_blur_behind_menus" call ADVSEC_fnc_L), ("STR_ADVSEC_blurs_the_background_when_the" call ADVSEC_fnc_L), "1 · General", (["uiBlur", 1] call _mis) call _bool] call _add;
+["pdaGrantsAccess", "CHECKBOX", ("STR_ADVSEC_the_pda_is_enough_for" call ADVSEC_fnc_L), ("STR_ADVSEC_carrying_the_pda_grants_access" call ADVSEC_fnc_L), "1 · General", (["pdaGrantsAccess", 0] call _mis) call _bool] call _add;
 
 // --- Documentos
-["autoMilitaryID", "CHECKBOX", "ID militar automático", "Entrega una identificación militar ligada al SteamID en cada aparición.", "2 · Documentos", (["autoMilitaryID", 1] call _mis) call _bool] call _add;
-["militaryIssuer", "EDITBOX", "Emisor del ID militar", "Texto del emisor en la identificación automática.", "2 · Documentos", ["militaryIssuer", "Estado Mayor"] call _mis] call _add;
-["militaryClearance", "SLIDER", "Nivel del ID militar", "Nivel de acceso de la identificación automática.", "2 · Documentos", [0, 5, ["militaryClearance", 1] call _mis, 0]] call _add;
+["autoMilitaryID", "CHECKBOX", ("STR_ADVSEC_automatic_military_id" call ADVSEC_fnc_L), ("STR_ADVSEC_hands_out_a_military_id" call ADVSEC_fnc_L), ("STR_ADVSEC_2_documents" call ADVSEC_fnc_L), (["autoMilitaryID", 1] call _mis) call _bool] call _add;
+["militaryIssuer", "EDITBOX", ("STR_ADVSEC_military_id_issuer" call ADVSEC_fnc_L), ("STR_ADVSEC_issuer_text_on_the_automatic" call ADVSEC_fnc_L), ("STR_ADVSEC_2_documents" call ADVSEC_fnc_L), ["militaryIssuer", ("STR_ADVSEC_general_staff" call ADVSEC_fnc_L)] call _mis] call _add;
+["militaryClearance", "SLIDER", ("STR_ADVSEC_military_id_level" call ADVSEC_fnc_L), ("STR_ADVSEC_access_level_of_the_automatic" call ADVSEC_fnc_L), ("STR_ADVSEC_2_documents" call ADVSEC_fnc_L), [0, 5, ["militaryClearance", 1] call _mis, 0]] call _add;
 
 // --- Policía Militar
-["breachItem", "EDITBOX", "Objeto para forzar cerraduras", "Clase del objeto necesario (p. ej. ToolKit).", "3 · Policía Militar", ["breachItem", "ToolKit"] call _mis] call _add;
-["breachTime", "SLIDER", "Tiempo para forzar (s)", "", "3 · Policía Militar", [3, 120, ["breachTime", 20] call _mis, 0]] call _add;
-["hiddenFindChance", "SLIDER", "Prob. de hallar objetos escondidos en la ropa", "", "3 · Policía Militar", [0, 1, [["hiddenFindChance"], 0.75] call _num, 2]] call _add;
-["stashFindChance", "SLIDER", "Prob. de hallar el doble fondo de un vehículo", "", "3 · Policía Militar", [0, 1, [["stashFindChance"], 0.5] call _num, 2]] call _add;
-["queryNeedsRadio", "CHECKBOX", "La consulta a la central exige radio", "TFAR / ACRE si están cargados; si no, la radio normal.", "3 · Policía Militar", ([["queryNeedsRadio"], 1] call _num) call _bool] call _add;
-["queryDelay", "SLIDER", "Espera de la central (s)", "", "3 · Policía Militar", [0, 30, [["queryDelay"], 3] call _num, 0]] call _add;
+["breachItem", "EDITBOX", ("STR_ADVSEC_lockpicking_item" call ADVSEC_fnc_L), ("STR_ADVSEC_class_of_the_required_item" call ADVSEC_fnc_L), ("STR_ADVSEC_3_military_police" call ADVSEC_fnc_L), ["breachItem", "ToolKit"] call _mis] call _add;
+["breachTime", "SLIDER", ("STR_ADVSEC_lockpicking_time_s" call ADVSEC_fnc_L), "", ("STR_ADVSEC_3_military_police" call ADVSEC_fnc_L), [3, 120, ["breachTime", 20] call _mis, 0]] call _add;
+["hiddenFindChance", "SLIDER", ("STR_ADVSEC_chance_to_find_items_hidden" call ADVSEC_fnc_L), "", ("STR_ADVSEC_3_military_police" call ADVSEC_fnc_L), [0, 1, [["hiddenFindChance"], 0.75] call _num, 2]] call _add;
+["stashFindChance", "SLIDER", ("STR_ADVSEC_chance_to_find_a_vehicle" call ADVSEC_fnc_L), "", ("STR_ADVSEC_3_military_police" call ADVSEC_fnc_L), [0, 1, [["stashFindChance"], 0.5] call _num, 2]] call _add;
+["queryNeedsRadio", "CHECKBOX", ("STR_ADVSEC_dispatch_queries_require_a_radio" call ADVSEC_fnc_L), ("STR_ADVSEC_tfar_acre_if_loaded_otherwise" call ADVSEC_fnc_L), ("STR_ADVSEC_3_military_police" call ADVSEC_fnc_L), ([["queryNeedsRadio"], 1] call _num) call _bool] call _add;
+["queryDelay", "SLIDER", ("STR_ADVSEC_dispatch_wait_s" call ADVSEC_fnc_L), "", ("STR_ADVSEC_3_military_police" call ADVSEC_fnc_L), [0, 30, [["queryDelay"], 3] call _num, 0]] call _add;
 
 // --- Rangos y permisos (rango mínimo 0-5; 0 = cualquiera del cuerpo)
 private _names = createHashMapFromArray [
-    ["restrain", "Esposar"], ["search", "Cachear"], ["seize", "Incautar"], ["vehicleSearch", "Registrar vehículos"],
-    ["evidenceCollect", "Recoger pruebas"], ["query", "Consultar la central"], ["fine", "Multar"], ["fineCancel", "Anular multas"],
-    ["wanted", "Gestionar buscados"], ["arrest", "Arrestar"], ["release", "Liberar"], ["evidenceAnalyze", "Analizar pruebas"],
-    ["reportStatus", "Cambiar estado de informes"], ["revokeDoc", "Revocar documentos"], ["caseClose", "AA.II.: cerrar expedientes"],
-    ["suspicionView", "AA.II.: ver índice de sospecha"], ["evidenceTamper", "AA.II.: alterar pruebas"], ["evidenceAudit", "AA.II.: auditoría forense"],
-    ["playerDB", "Base de datos de jugadores"], ["rankPM", "Asignar rangos PM"], ["rankAI", "AA.II.: asignar rangos"], ["rankGlobal", "Asignar rangos globales"], ["treasury", "Tesorería de la PM"], ["dutyView", "Control de servicio"], ["dispatch", "Central de despacho"], ["suspend", "AA.II.: suspender agentes"], ["alertLevel", "Nivel de alerta"], ["plateQuery", "Consultar matrículas"], ["licenseRevoke", "Retirar licencias"], ["bankAudit", "AA.II.: auditoría bancaria"], ["bankFreeze", "AA.II.: congelar cuentas"], ["k9", "Unidad canina"], ["radar", "Radar de velocidad"], ["bodycamView", "AA.II.: cámaras corporales"]
+    ["restrain", ("STR_ADVSEC_handcuff" call ADVSEC_fnc_L)], ["search", ("STR_ADVSEC_frisk" call ADVSEC_fnc_L)], ["seize", ("STR_ADVSEC_seize" call ADVSEC_fnc_L)], ["vehicleSearch", ("STR_ADVSEC_search_vehicles" call ADVSEC_fnc_L)],
+    ["evidenceCollect", ("STR_ADVSEC_collect_evidence_2" call ADVSEC_fnc_L)], ["query", ("STR_ADVSEC_query_dispatch_3" call ADVSEC_fnc_L)], ["fine", ("STR_ADVSEC_fine_5" call ADVSEC_fnc_L)], ["fineCancel", ("STR_ADVSEC_cancel_fines" call ADVSEC_fnc_L)],
+    ["wanted", ("STR_ADVSEC_manage_wanted_list" call ADVSEC_fnc_L)], ["arrest", ("STR_ADVSEC_arrest_3" call ADVSEC_fnc_L)], ["release", ("STR_ADVSEC_release" call ADVSEC_fnc_L)], ["evidenceAnalyze", ("STR_ADVSEC_analyse_evidence" call ADVSEC_fnc_L)],
+    ["reportStatus", ("STR_ADVSEC_change_report_status" call ADVSEC_fnc_L)], ["revokeDoc", ("STR_ADVSEC_revoke_documents_2" call ADVSEC_fnc_L)], ["caseClose", ("STR_ADVSEC_ia_close_case_files" call ADVSEC_fnc_L)],
+    ["suspicionView", ("STR_ADVSEC_ia_view_suspicion_index" call ADVSEC_fnc_L)], ["evidenceTamper", ("STR_ADVSEC_ia_tamper_with_evidence" call ADVSEC_fnc_L)], ["evidenceAudit", ("STR_ADVSEC_ia_forensic_audit" call ADVSEC_fnc_L)],
+    ["playerDB", ("STR_ADVSEC_player_database" call ADVSEC_fnc_L)], ["rankPM", ("STR_ADVSEC_assign_mp_ranks" call ADVSEC_fnc_L)], ["rankAI", ("STR_ADVSEC_ia_assign_ranks" call ADVSEC_fnc_L)], ["rankGlobal", ("STR_ADVSEC_assign_global_ranks" call ADVSEC_fnc_L)], ["treasury", ("STR_ADVSEC_mp_treasury_4" call ADVSEC_fnc_L)], ["dutyView", ("STR_ADVSEC_duty_control" call ADVSEC_fnc_L)], ["dispatch", ("STR_ADVSEC_dispatch_centre" call ADVSEC_fnc_L)], ["suspend", ("STR_ADVSEC_ia_suspend_officers" call ADVSEC_fnc_L)], ["alertLevel", ("STR_ADVSEC_alert_level" call ADVSEC_fnc_L)], ["plateQuery", ("STR_ADVSEC_check_plates_2" call ADVSEC_fnc_L)], ["licenseRevoke", ("STR_ADVSEC_revoke_licences_2" call ADVSEC_fnc_L)], ["bankAudit", ("STR_ADVSEC_ia_bank_audit_2" call ADVSEC_fnc_L)], ["bankFreeze", ("STR_ADVSEC_ia_freeze_accounts" call ADVSEC_fnc_L)], ["k9", ("STR_ADVSEC_k9_unit" call ADVSEC_fnc_L)], ["radar", ("STR_ADVSEC_speed_gun" call ADVSEC_fnc_L)], ["bodycamView", ("STR_ADVSEC_ia_body_cameras_2" call ADVSEC_fnc_L)], ["patrolPlan", ("STR_ADVSEC_plan_patrols_2" call ADVSEC_fnc_L)]
 ];
 {
     private _c = _x;
@@ -48,60 +49,65 @@ private _names = createHashMapFromArray [
     private _def = (getArray _c) param [1, 1];
     private _m = missionConfigFile >> "ADVSEC_Settings" >> "Permissions" >> _a;
     if (isArray _m) then {_def = (getArray _m) param [1, _def]};
-    ["perm_" + _a, "SLIDER", format ["Rango mínimo: %1", _names getOrDefault [_a, _a]], format ["Cuerpo: %1", (getArray _c) param [0, "PM"]], "4 · Rangos y permisos", [0, 5, _def, 0]] call _add;
+    ["perm_" + _a, "SLIDER", format [("STR_ADVSEC_minimum_rank" call ADVSEC_fnc_L), _names getOrDefault [_a, _a]], format [("STR_ADVSEC_corps" call ADVSEC_fnc_L), (getArray _c) param [0, "PM"]], ("STR_ADVSEC_4_ranks_and_permissions" call ADVSEC_fnc_L), [0, 5, _def, 0]] call _add;
 } forEach (configProperties [configFile >> "ADVSEC_Settings" >> "Permissions", "isArray _x", true]);
-["globalRankSetUnit", "CHECKBOX", "El rango global cambia el rango de Arma", "Aplica setUnitRank según ranksGlobalArma al asignar un rango global.", "4 · Rangos y permisos", ([["globalRankSetUnit"], 1] call _num) call _bool] call _add;
+["globalRankSetUnit", "CHECKBOX", ("STR_ADVSEC_global_rank_changes_the_arma" call ADVSEC_fnc_L), ("STR_ADVSEC_applies_setunitrank_from_ranksglobalarma" call ADVSEC_fnc_L), ("STR_ADVSEC_4_ranks_and_permissions" call ADVSEC_fnc_L), ([["globalRankSetUnit"], 1] call _num) call _bool] call _add;
 
 // --- Evidencias
-["evidenceTTL", "SLIDER", "Duración de las pruebas en el suelo (s)", "", "5 · Evidencias", [60, 14400, [["evidenceTTL"], 3600] call _num, 0]] call _add;
-["casingEvery", "SLIDER", "Casquillo registrado cada N disparos", "", "5 · Evidencias", [1, 30, [["casingEvery"], 4] call _num, 0]] call _add;
-["printChance", "SLIDER", "Prob. de dejar huella", "", "5 · Evidencias", [0, 1, [["printChance"], 0.8] call _num, 2]] call _add;
-["gloveChance", "SLIDER", "Prob. de dejar huella con guantes", "", "5 · Evidencias", [0, 1, [["gloveChance"], 0.15] call _num, 2]] call _add;
-["labTime", "SLIDER", "Tiempo de análisis (s)", "", "5 · Evidencias", [5, 900, [["labTime"], 90] call _num, 0]] call _add;
-["auditTime", "SLIDER", "Tiempo de auditoría forense (s)", "", "5 · Evidencias", [5, 300, [["auditTime"], 25] call _num, 0]] call _add;
-["sceneRadius", "SLIDER", "Radio de inspección de escena (m)", "", "5 · Evidencias", [3, 60, [["sceneRadius"], 15] call _num, 0]] call _add;
+["evidenceTTL", "SLIDER", ("STR_ADVSEC_evidence_lifetime_on_the_ground" call ADVSEC_fnc_L), "", ("STR_ADVSEC_5_evidence" call ADVSEC_fnc_L), [60, 14400, [["evidenceTTL"], 3600] call _num, 0]] call _add;
+["casingEvery", "SLIDER", ("STR_ADVSEC_casing_logged_every_n_shots" call ADVSEC_fnc_L), "", ("STR_ADVSEC_5_evidence" call ADVSEC_fnc_L), [1, 30, [["casingEvery"], 4] call _num, 0]] call _add;
+["printChance", "SLIDER", ("STR_ADVSEC_chance_to_leave_a_print" call ADVSEC_fnc_L), "", ("STR_ADVSEC_5_evidence" call ADVSEC_fnc_L), [0, 1, [["printChance"], 0.8] call _num, 2]] call _add;
+["gloveChance", "SLIDER", ("STR_ADVSEC_chance_to_leave_a_print_2" call ADVSEC_fnc_L), "", ("STR_ADVSEC_5_evidence" call ADVSEC_fnc_L), [0, 1, [["gloveChance"], 0.15] call _num, 2]] call _add;
+["labTime", "SLIDER", ("STR_ADVSEC_analysis_time_s" call ADVSEC_fnc_L), "", ("STR_ADVSEC_5_evidence" call ADVSEC_fnc_L), [5, 900, [["labTime"], 90] call _num, 0]] call _add;
+["auditTime", "SLIDER", ("STR_ADVSEC_forensic_audit_time_s" call ADVSEC_fnc_L), "", ("STR_ADVSEC_5_evidence" call ADVSEC_fnc_L), [5, 300, [["auditTime"], 25] call _num, 0]] call _add;
+["sceneRadius", "SLIDER", ("STR_ADVSEC_scene_inspection_radius_m" call ADVSEC_fnc_L), "", ("STR_ADVSEC_5_evidence" call ADVSEC_fnc_L), [3, 60, [["sceneRadius"], 15] call _num, 0]] call _add;
 
 // --- Asuntos Internos
-["heatThreshold", "SLIDER", "Umbral de expediente automático", "Puntos de sospecha que abren un F-AI-01.", "6 · Asuntos Internos", [5, 300, [["heatThreshold"], 30] call _num, 0]] call _add;
-["heatDecay", "SLIDER", "Pérdida de sospecha cada 10 min", "", "6 · Asuntos Internos", [0, 20, [["heatDecay"], 1] call _num, 0]] call _add;
+["heatThreshold", "SLIDER", ("STR_ADVSEC_automatic_case_file_threshold" call ADVSEC_fnc_L), ("STR_ADVSEC_suspicion_points_that_open_an" call ADVSEC_fnc_L), ("STR_ADVSEC_6_internal_affairs" call ADVSEC_fnc_L), [5, 300, [["heatThreshold"], 30] call _num, 0]] call _add;
+["heatDecay", "SLIDER", ("STR_ADVSEC_suspicion_decay_every_10_min" call ADVSEC_fnc_L), "", ("STR_ADVSEC_6_internal_affairs" call ADVSEC_fnc_L), [0, 20, [["heatDecay"], 1] call _num, 0]] call _add;
 private _rules = createHashMapFromArray [
-    ["restrainNoCause", "esposar sin motivo"], ["arrestNoCause", "arrestar sin motivo"], ["arrestNoReport", "arrestar sin acta"],
-    ["hitRestrained", "herir a un esposado"], ["earlyRelease", "liberar antes de tiempo"], ["wantedRemovedByOther", "retirar un buscado ajeno"],
-    ["ownCaseAccess", "consultar su propio expediente"], ["evidenceTamper", "manipular pruebas"], ["fineCancelled", "anular una multa ajena"], ["bribe", "aceptar un soborno"], ["suspiciousMoney", "movimiento de dinero sospechoso"], ["bodycamOff", "apagar la cámara corporal"]
+    ["restrainNoCause", ("STR_ADVSEC_handcuff_without_reason" call ADVSEC_fnc_L)], ["arrestNoCause", ("STR_ADVSEC_arrest_without_reason" call ADVSEC_fnc_L)], ["arrestNoReport", ("STR_ADVSEC_arrest_without_a_report" call ADVSEC_fnc_L)],
+    ["hitRestrained", ("STR_ADVSEC_injure_a_handcuffed_person" call ADVSEC_fnc_L)], ["earlyRelease", ("STR_ADVSEC_release_early" call ADVSEC_fnc_L)], ["wantedRemovedByOther", ("STR_ADVSEC_remove_someone_else_s_wanted" call ADVSEC_fnc_L)],
+    ["ownCaseAccess", ("STR_ADVSEC_view_their_own_case_file" call ADVSEC_fnc_L)], ["evidenceTamper", ("STR_ADVSEC_tamper_with_evidence_2" call ADVSEC_fnc_L)], ["fineCancelled", ("STR_ADVSEC_cancel_someone_else_s_fine" call ADVSEC_fnc_L)], ["bribe", ("STR_ADVSEC_accept_a_bribe" call ADVSEC_fnc_L)], ["suspiciousMoney", ("STR_ADVSEC_suspicious_money_transaction" call ADVSEC_fnc_L)], ["bodycamOff", ("STR_ADVSEC_turn_off_the_body_camera" call ADVSEC_fnc_L)]
 ];
 {
-    ["Rules_" + configName _x, "SLIDER", format ["Sospecha por %1", _rules getOrDefault [configName _x, configName _x]], "", "6 · Asuntos Internos", [0, 100, [["Rules", configName _x], getNumber _x] call _num, 0]] call _add;
+    ["Rules_" + configName _x, "SLIDER", format [("STR_ADVSEC_suspicion_for" call ADVSEC_fnc_L), _rules getOrDefault [configName _x, configName _x]], "", ("STR_ADVSEC_6_internal_affairs" call ADVSEC_fnc_L), [0, 100, [["Rules", configName _x], getNumber _x] call _num, 0]] call _add;
 } forEach (configProperties [configFile >> "ADVSEC_Settings" >> "Rules", "isNumber _x", true]);
 
 // --- Multas
-["currency", "EDITBOX", "Moneda", "", "7 · Multas", [["currency"], "€"] call _num] call _add;
-["moneyVar", "EDITBOX", "Variable de dinero del jugador", "Vacío = pago manual ante un agente.", "7 · Multas", [["moneyVar"], ""] call _num] call _add;
-["fineWantedThreshold", "SLIDER", "Deuda que añade a buscados (0 = nunca)", "", "7 · Multas", [0, 100000, [["fineWantedThreshold"], 0] call _num, 0]] call _add;
+["currency", "EDITBOX", ("STR_ADVSEC_currency" call ADVSEC_fnc_L), "", ("STR_ADVSEC_7_fines" call ADVSEC_fnc_L), [["currency"], "€"] call _num] call _add;
+["moneyVar", "EDITBOX", ("STR_ADVSEC_player_money_variable" call ADVSEC_fnc_L), ("STR_ADVSEC_empty_manual_payment_before_an" call ADVSEC_fnc_L), ("STR_ADVSEC_7_fines" call ADVSEC_fnc_L), [["moneyVar"], ""] call _num] call _add;
+["fineWantedThreshold", "SLIDER", ("STR_ADVSEC_debt_that_adds_to_wanted" call ADVSEC_fnc_L), "", ("STR_ADVSEC_7_fines" call ADVSEC_fnc_L), [0, 100000, [["fineWantedThreshold"], 0] call _num, 0]] call _add;
 
 // --- Economía
-["economy", "CHECKBOX", "Economía de ADVSEC", "Efectivo, banco, nóminas, cajeros y tiendas. Compatible con el HUD THUD (variable moneyX).", "9 · Economía", ([["economy"], 1] call _num) call _bool] call _add;
-["startCash", "SLIDER", "Efectivo inicial", "", "9 · Economía", [0, 100000, [["startCash"], 500] call _num, 0]] call _add;
-["startBank", "SLIDER", "Banco inicial", "", "9 · Economía", [0, 1000000, [["startBank"], 2000] call _num, 0]] call _add;
-["salaryInterval", "SLIDER", "Minutos entre nóminas (0 = sin nóminas)", "", "9 · Economía", [0, 240, [["salaryInterval"], 30] call _num, 0]] call _add;
-["salaryBase", "SLIDER", "Nómina base", "Más el plus por rango PM, AA.II. y global.", "9 · Economía", [0, 10000, [["salaryBase"], 100] call _num, 0]] call _add;
-["salaryFromTreasury", "CHECKBOX", "Las nóminas salen de la tesorería", "", "9 · Economía", ([["salaryFromTreasury"], 0] call _num) call _bool] call _add;
-["fineToTreasury", "CHECKBOX", "Las multas van a la tesorería de la PM", "", "9 · Economía", ([["fineToTreasury"], 1] call _num) call _bool] call _add;
-["shopToTreasury", "CHECKBOX", "Las compras van a la tesorería de la PM", "", "9 · Economía", ([["shopToTreasury"], 0] call _num) call _bool] call _add;
-["sellFactor", "SLIDER", "Parte del precio al vender", "", "9 · Economía", [0, 1, [["sellFactor"], 0.5] call _num, 2]] call _add;
-["atmAnywhere", "CHECKBOX", "Banco sin cajero", "Ingresar, retirar y transferir desde cualquier sitio.", "9 · Economía", ([["atmAnywhere"], 0] call _num) call _bool] call _add;
-["thudCompat", "CHECKBOX", "Compatibilidad con el HUD THUD", "Publica tesorería, agentes y jefe (resourcesFIA, hr, theBoss) fuera de Antistasi.", "9 · Economía", ([["thudCompat"], 1] call _num) call _bool] call _add;
-["a3aTreasury", "CHECKBOX", "Antistasi: la tesorería es el dinero de la facción", "En una misión de Antistasi, multas, nóminas y compras usan resourcesFIA en vez de la tesorería propia de la PM.", "9 · Economía", ([["a3aTreasury"], 1] call _num) call _bool] call _add;
+["economy", "CHECKBOX", ("STR_ADVSEC_advsec_economy" call ADVSEC_fnc_L), ("STR_ADVSEC_cash_bank_salaries_atms_and" call ADVSEC_fnc_L), ("STR_ADVSEC_9_economy" call ADVSEC_fnc_L), ([["economy"], 1] call _num) call _bool] call _add;
+["startCash", "SLIDER", ("STR_ADVSEC_starting_cash" call ADVSEC_fnc_L), "", ("STR_ADVSEC_9_economy" call ADVSEC_fnc_L), [0, 100000, [["startCash"], 500] call _num, 0]] call _add;
+["startBank", "SLIDER", ("STR_ADVSEC_starting_bank" call ADVSEC_fnc_L), "", ("STR_ADVSEC_9_economy" call ADVSEC_fnc_L), [0, 1000000, [["startBank"], 2000] call _num, 0]] call _add;
+["salaryInterval", "SLIDER", ("STR_ADVSEC_minutes_between_salaries_0_no" call ADVSEC_fnc_L), "", ("STR_ADVSEC_9_economy" call ADVSEC_fnc_L), [0, 240, [["salaryInterval"], 30] call _num, 0]] call _add;
+["salaryBase", "SLIDER", ("STR_ADVSEC_base_salary" call ADVSEC_fnc_L), ("STR_ADVSEC_plus_the_mp_ia_and" call ADVSEC_fnc_L), ("STR_ADVSEC_9_economy" call ADVSEC_fnc_L), [0, 10000, [["salaryBase"], 100] call _num, 0]] call _add;
+["salaryFromTreasury", "CHECKBOX", ("STR_ADVSEC_salaries_come_from_the_treasury" call ADVSEC_fnc_L), "", ("STR_ADVSEC_9_economy" call ADVSEC_fnc_L), ([["salaryFromTreasury"], 0] call _num) call _bool] call _add;
+["fineToTreasury", "CHECKBOX", ("STR_ADVSEC_fines_go_to_the_mp" call ADVSEC_fnc_L), "", ("STR_ADVSEC_9_economy" call ADVSEC_fnc_L), ([["fineToTreasury"], 1] call _num) call _bool] call _add;
+["shopToTreasury", "CHECKBOX", ("STR_ADVSEC_purchases_go_to_the_mp" call ADVSEC_fnc_L), "", ("STR_ADVSEC_9_economy" call ADVSEC_fnc_L), ([["shopToTreasury"], 0] call _num) call _bool] call _add;
+["sellFactor", "SLIDER", ("STR_ADVSEC_share_of_the_price_when" call ADVSEC_fnc_L), "", ("STR_ADVSEC_9_economy" call ADVSEC_fnc_L), [0, 1, [["sellFactor"], 0.5] call _num, 2]] call _add;
+["atmAnywhere", "CHECKBOX", ("STR_ADVSEC_bank_without_atm" call ADVSEC_fnc_L), ("STR_ADVSEC_deposit_withdraw_and_transfer_from" call ADVSEC_fnc_L), ("STR_ADVSEC_9_economy" call ADVSEC_fnc_L), ([["atmAnywhere"], 0] call _num) call _bool] call _add;
+["thudCompat", "CHECKBOX", ("STR_ADVSEC_thud_hud_compatibility" call ADVSEC_fnc_L), ("STR_ADVSEC_publishes_treasury_officers_and_boss" call ADVSEC_fnc_L), ("STR_ADVSEC_9_economy" call ADVSEC_fnc_L), ([["thudCompat"], 1] call _num) call _bool] call _add;
+["a3aTreasury", "CHECKBOX", ("STR_ADVSEC_antistasi_the_treasury_is_the" call ADVSEC_fnc_L), ("STR_ADVSEC_in_an_antistasi_mission_fines" call ADVSEC_fnc_L), ("STR_ADVSEC_9_economy" call ADVSEC_fnc_L), ([["a3aTreasury"], 1] call _num) call _bool] call _add;
+
+// --- Patrullas
+["patrolOrdered", "CHECKBOX", ("STR_ADVSEC_patrol_points_in_order" call ADVSEC_fnc_L), ("STR_ADVSEC_if_enabled_the_patrol_must" call ADVSEC_fnc_L), ("STR_ADVSEC_11_patrols" call ADVSEC_fnc_L), ([["patrolOrdered"], 1] call _num) call _bool] call _add;
+["patrolNeedDuty", "CHECKBOX", ("STR_ADVSEC_only_on_duty_officers_count" call ADVSEC_fnc_L), "", ("STR_ADVSEC_11_patrols" call ADVSEC_fnc_L), ([["patrolNeedDuty"], 1] call _num) call _bool] call _add;
+["patrolBonus", "SLIDER", ("STR_ADVSEC_bonus_per_completed_patrol" call ADVSEC_fnc_L), ("STR_ADVSEC_paid_into_the_bank_of" call ADVSEC_fnc_L), ("STR_ADVSEC_11_patrols" call ADVSEC_fnc_L), [0, 5000, ([["patrolBonus"], 0] call _num), 0]] call _add;
 
 // --- Taquillas (TS_Lockers)
-["lockerAccess", "LIST", "Quién puede reclamar una taquilla", "", "10 · Taquillas", [[0, 1, 2], ["Todos", "Solo Policía Militar", "PM o Asuntos Internos"], ([["lockerAccess"], 0] call _num) max 0 min 2]] call _add;
-["lockerJailBlock", "CHECKBOX", "Los detenidos no pueden usar su taquilla", "", "10 · Taquillas", ([["lockerJailBlock"], 1] call _num) call _bool] call _add;
-["lockerPersist", "LIST", "Recrear las taquillas colocadas con Zeus", "Al reiniciar el servidor vuelven a aparecer donde estaban. Antistasi no guarda los objetos de Zeus.", "10 · Taquillas", [[0, 1, 2], ["Nunca", "Siempre", "Solo en Antistasi"], ([["lockerPersist"], 2] call _num) max 0 min 2]] call _add;
+["lockerAccess", "LIST", ("STR_ADVSEC_who_can_claim_a_locker" call ADVSEC_fnc_L), "", ("STR_ADVSEC_10_lockers" call ADVSEC_fnc_L), [[0, 1, 2], [("STR_ADVSEC_all" call ADVSEC_fnc_L), ("STR_ADVSEC_military_police_only" call ADVSEC_fnc_L), ("STR_ADVSEC_mp_or_internal_affairs" call ADVSEC_fnc_L)], ([["lockerAccess"], 0] call _num) max 0 min 2]] call _add;
+["lockerJailBlock", "CHECKBOX", ("STR_ADVSEC_detainees_cannot_use_their_locker" call ADVSEC_fnc_L), "", ("STR_ADVSEC_10_lockers" call ADVSEC_fnc_L), ([["lockerJailBlock"], 1] call _num) call _bool] call _add;
+["lockerPersist", "LIST", ("STR_ADVSEC_recreate_lockers_placed_with_zeus" call ADVSEC_fnc_L), ("STR_ADVSEC_they_reappear_where_they_were" call ADVSEC_fnc_L), ("STR_ADVSEC_10_lockers" call ADVSEC_fnc_L), [[0, 1, 2], [("STR_ADVSEC_never" call ADVSEC_fnc_L), ("STR_ADVSEC_always" call ADVSEC_fnc_L), ("STR_ADVSEC_antistasi_only" call ADVSEC_fnc_L)], ([["lockerPersist"], 2] call _num) max 0 min 2]] call _add;
 
 // --- Control de carretera
-["checkpointFine", "SLIDER", "Multa por ir sin documentación", "", "8 · Control de carretera", [0, 10000, [["checkpointFine"], 150] call _num, 0]] call _add;
-["checkpointSearchChance", "SLIDER", "Prob. de registrar el vehículo", "", "8 · Control de carretera", [0, 1, [["checkpointSearchChance"], 1] call _num, 2]] call _add;
-["checkpointPapersTime", "SLIDER", "Tiempo revisando documentación (s)", "", "8 · Control de carretera", [2, 60, [["checkpointPapersTime"], 8] call _num, 0]] call _add;
-["checkpointVehicleTime", "SLIDER", "Tiempo registrando el vehículo (s)", "", "8 · Control de carretera", [2, 120, [["checkpointVehicleTime"], 15] call _num, 0]] call _add;
-["checkpointUnits", "SLIDER", "Agentes que crea un control", "", "8 · Control de carretera", [0, 8, [["checkpointUnits"], 2] call _num, 0]] call _add;
-["checkpointSide", "LIST", "Bando de los agentes creados", "", "8 · Control de carretera", [["west", "east", "independent", "civilian"], ["BLUFOR", "OPFOR", "Independiente", "Civil"], (["west", "east", "independent", "civilian"] find toLower ([["checkpointSide"], "west"] call _num)) max 0]] call _add;
-["checkpointExemptPM", "CHECKBOX", "No parar a la PM / admins / Zeus", "", "8 · Control de carretera", ([["checkpointExemptPM"], 0] call _num) call _bool] call _add;
+["checkpointFine", "SLIDER", ("STR_ADVSEC_fine_for_having_no_documents" call ADVSEC_fnc_L), "", ("STR_ADVSEC_8_road_checkpoint" call ADVSEC_fnc_L), [0, 10000, [["checkpointFine"], 150] call _num, 0]] call _add;
+["checkpointSearchChance", "SLIDER", ("STR_ADVSEC_chance_to_search_the_vehicle" call ADVSEC_fnc_L), "", ("STR_ADVSEC_8_road_checkpoint" call ADVSEC_fnc_L), [0, 1, [["checkpointSearchChance"], 1] call _num, 2]] call _add;
+["checkpointPapersTime", "SLIDER", ("STR_ADVSEC_time_checking_documents_s" call ADVSEC_fnc_L), "", ("STR_ADVSEC_8_road_checkpoint" call ADVSEC_fnc_L), [2, 60, [["checkpointPapersTime"], 8] call _num, 0]] call _add;
+["checkpointVehicleTime", "SLIDER", ("STR_ADVSEC_time_searching_the_vehicle_s" call ADVSEC_fnc_L), "", ("STR_ADVSEC_8_road_checkpoint" call ADVSEC_fnc_L), [2, 120, [["checkpointVehicleTime"], 15] call _num, 0]] call _add;
+["checkpointUnits", "SLIDER", ("STR_ADVSEC_officers_a_checkpoint_creates" call ADVSEC_fnc_L), "", ("STR_ADVSEC_8_road_checkpoint" call ADVSEC_fnc_L), [0, 8, [["checkpointUnits"], 2] call _num, 0]] call _add;
+["checkpointSide", "LIST", ("STR_ADVSEC_side_of_the_created_officers" call ADVSEC_fnc_L), "", ("STR_ADVSEC_8_road_checkpoint" call ADVSEC_fnc_L), [["west", "east", "independent", "civilian"], ["BLUFOR", "OPFOR", ("STR_ADVSEC_independent" call ADVSEC_fnc_L), "Civil"], (["west", "east", "independent", "civilian"] find toLower ([["checkpointSide"], "west"] call _num)) max 0]] call _add;
+["checkpointExemptPM", "CHECKBOX", ("STR_ADVSEC_do_not_stop_mp_admins" call ADVSEC_fnc_L), "", ("STR_ADVSEC_8_road_checkpoint" call ADVSEC_fnc_L), ([["checkpointExemptPM"], 0] call _num) call _bool] call _add;

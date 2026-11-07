@@ -4,7 +4,7 @@ if (!_activated || {!isServer} || {!isNull (_logic getVariable ["ADVSEC_cpAnchor
 private _officers = (synchronizedObjects _logic) select {_x isKindOf "CAManBase"};
 {_officers append units group _x} forEach +_officers;
 _officers = _officers arrayIntersect _officers;
-private _anchor = [getPosATL _logic, _logic getVariable ["Name", "Control PM"], _logic getVariable ["Radius", 20], _officers, objNull, getDir _logic, [0, _logic getVariable ["SpawnUnits", 2]] select (_officers isEqualTo [])] call ADVSEC_fnc_checkpointInit;
+private _anchor = [getPosATL _logic, _logic getVariable ["Name", ("STR_ADVSEC_mp_checkpoint" call ADVSEC_fnc_L)], _logic getVariable ["Radius", 20], _officers, objNull, getDir _logic, [0, _logic getVariable ["SpawnUnits", 2]] select (_officers isEqualTo [])] call ADVSEC_fnc_checkpointInit;
 _logic setVariable ["ADVSEC_cpAnchor", _anchor];
 _logic addEventHandler ["Deleted", {
     params ["_l"];

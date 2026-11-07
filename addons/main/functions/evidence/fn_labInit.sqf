@@ -1,5 +1,5 @@
 // [objeto, nombre] — laboratorio forense (en todas las máquinas)
-params ["_obj", ["_name", "Laboratorio forense"]];
+params ["_obj", ["_name", ("STR_ADVSEC_forensic_lab_2" call ADVSEC_fnc_L)]];
 if (isServer && {!(call ADVSEC_fnc_trustedInit)}) exitWith {};
 if (isNull _obj) exitWith {};
 if (isServer) then {

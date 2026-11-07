@@ -8,7 +8,7 @@ if (call ADVSEC_fnc_fromClient) then {
         [_caller] call ADVSEC_fnc_isZeus
         || {[_caller, _building getVariable [format ["ADVSEC_doorReq_%1", _idx], []]] call ADVSEC_fnc_accessCheck}
         || {_locked && {[_caller, "PM"] call ADVSEC_fnc_repAccess}}
-    ) then {[_caller, format ["cambiar la puerta %1 de %2", _idx, typeOf _building]] call ADVSEC_fnc_deny; _locked = nil};
+    ) then {[_caller, format [("STR_ADVSEC_change_door_of" call ADVSEC_fnc_L), _idx, typeOf _building]] call ADVSEC_fnc_deny; _locked = nil};
 };
 if (isNil "_locked") exitWith {};
 if (!isNull _caller && {isPlayer _caller}) then {["print", _caller, [_building]] call ADVSEC_fnc_evidenceServer};

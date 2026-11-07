@@ -9,11 +9,11 @@ private _cam = curatorCamera;
         switch (_kind) do {
             case "alarm": {
                 _state = ["desarmada", "armada"] select (_obj getVariable ["ADVSEC_armed", false]);
-                if (_obj getVariable ["ADVSEC_active", false]) then {_col = [1, 0.302, 0.302, 1]; _state = "¡DISPARADA!"};
+                if (_obj getVariable ["ADVSEC_active", false]) then {_col = [1, 0.302, 0.302, 1]; _state = ("STR_ADVSEC_triggered" call ADVSEC_fnc_L)};
             };
             case "door": {
                 private _n = {_obj getVariable [format ["ADVSEC_locked_%1", _x], false]} count _data;
-                _state = format ["%1/%2 cerradas", _n, count _data];
+                _state = format [("STR_ADVSEC_locked_2" call ADVSEC_fnc_L), _n, count _data];
                 if (_n == 0) then {_col = [0.4, 1, 0.4, 1]};
             };
             case "keypad": {
@@ -27,7 +27,7 @@ private _cam = curatorCamera;
                 if (_obj getVariable ["ADVSEC_kpLockout", 0] > time) then {_col = [1, 0.302, 0.302, 1]; _state = "BLOQUEADO"};
             };
             case "camera": {_state = format ["[%1]", _data]};
-            case "jail": {_state = format ["%1 detenidos", {(_x getVariable ["ADVSEC_jailObj", objNull]) isEqualTo _obj} count allPlayers]};
+            case "jail": {_state = format [("STR_ADVSEC_detained_2" call ADVSEC_fnc_L), {(_x getVariable ["ADVSEC_jailObj", objNull]) isEqualTo _obj} count allPlayers]};
         };
         drawIcon3D [
             ADVSEC_kindIcons getOrDefault [_kind, ADVSEC_icPad], _col,

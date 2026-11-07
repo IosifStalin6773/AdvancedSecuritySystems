@@ -4,7 +4,7 @@ if (!_state) exitWith {
     if ((attachedTo _unit) isEqualTo player) then {detach _unit};
     player setVariable ["ADVSEC_escorting", objNull, true];
 };
-if (!isNull (player getVariable ["ADVSEC_escorting", objNull])) exitWith {hint "Ya estás escoltando a alguien."};
+if (!isNull (player getVariable ["ADVSEC_escorting", objNull])) exitWith {hint ("STR_ADVSEC_you_are_already_escorting_someone" call ADVSEC_fnc_L)};
 _unit attachTo [player, [0.35, 1.0, 0]];
 player setVariable ["ADVSEC_escorting", _unit, true];
 [_unit] spawn {

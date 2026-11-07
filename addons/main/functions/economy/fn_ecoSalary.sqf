@@ -20,12 +20,12 @@ private _cur = ["currency", "€"] call ADVSEC_fnc_setting;
         if ((["salaryDutyOnly", 1] call ADVSEC_fnc_setting) isEqualTo 1 && {!(_x getVariable ["ADVSEC_onDuty", false])}) then {_plus = 0};
         private _amt = round (_base + _plus + _g * _gStep);
         if (_amt > 0 && {!_fromT || {([] call ADVSEC_fnc_ecoTreasuryNow) >= _amt}}) then {
-            if (_fromT) then {[-_amt, format ["Nómina · %1", name _x]] call ADVSEC_fnc_ecoTreasury};
+            if (_fromT) then {[-_amt, format [("STR_ADVSEC_payroll" call ADVSEC_fnc_L), name _x]] call ADVSEC_fnc_ecoTreasury};
             private _a = [_uid, name _x] call ADVSEC_fnc_ecoAcc;
             _a set [1, (_a select 1) + _amt];
             _x setVariable ["ADVSEC_bank", _a select 1, true];
-            [_a, "Nómina", _amt] call ADVSEC_fnc_ecoHist;
-            (format ["Nómina ingresada: +%1 %2", _amt, _cur]) remoteExecCall ["hintSilent", _x];
+            [_a, ("STR_ADVSEC_payroll_2" call ADVSEC_fnc_L), _amt] call ADVSEC_fnc_ecoHist;
+            (format [("STR_ADVSEC_salary_paid_in" call ADVSEC_fnc_L), _amt, _cur]) remoteExecCall ["hintSilent", _x];
         };
     };
 } forEach (allPlayers - entities "HeadlessClient_F");

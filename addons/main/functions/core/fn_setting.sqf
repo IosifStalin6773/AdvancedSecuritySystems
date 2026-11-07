@@ -15,8 +15,8 @@ private _c = [missionConfigFile] call _get;
 if (isNull _c) then {_c = [configFile] call _get};
 if (isNull _c) exitWith {_default};
 switch (true) do {
-    case (isArray _c): {getArray _c};
+    case (isArray _c): {(getArray _c) call ADVSEC_fnc_Lc};
     case (isNumber _c): {getNumber _c};
-    case (isText _c): {getText _c};
+    case (isText _c): {(getTextRaw _c) call ADVSEC_fnc_Lc};
     default {_default};
 }

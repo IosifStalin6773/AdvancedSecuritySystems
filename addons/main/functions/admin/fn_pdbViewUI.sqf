@@ -3,7 +3,7 @@ params ["_action", ["_arg", 0]];
 private _disp = findDisplay 87850;
 if (isNull _disp) exitWith {};
 
-private _tabNames = ["Resumen", "Documentos", "Sanciones", "Informes", "Sospecha", "Evidencias", "Economía", "Especialidades", "Registro"];
+private _tabNames = [("STR_ADVSEC_summary" call ADVSEC_fnc_L), ("STR_ADVSEC_documents" call ADVSEC_fnc_L), ("STR_ADVSEC_sanctions" call ADVSEC_fnc_L), ("STR_ADVSEC_reports" call ADVSEC_fnc_L), ("STR_ADVSEC_suspicion" call ADVSEC_fnc_L), ("STR_ADVSEC_evidence" call ADVSEC_fnc_L), ("STR_ADVSEC_economy" call ADVSEC_fnc_L), ("STR_ADVSEC_specialties" call ADVSEC_fnc_L), ("STR_ADVSEC_log" call ADVSEC_fnc_L)];
 private _tabPos = [
     [0, 0.3], [0, 0.3, 0.55, 0.75], [0, 0.09, 0.26, 0.38, 0.86], [0, 0.2, 0.42, 0.8], [0, 0.35, 0.9],
     [0, 0.16, 0.34, 0.56, 0.78], [0, 0.34, 0.8], [0, 0.4, 0.7], [0, 0.3, 0.6]
@@ -36,14 +36,14 @@ switch (_action) do {
         private _c = _disp displayCtrl 87859;
         lnbClear _c;
         _c lnbSetColumnsPos [0, 0.46, 0.64, 0.82];
-        _c lnbAddRow ["NOMBRE", "PM", "AA.II.", "GLOBAL"];
+        _c lnbAddRow ["NOMBRE", "PM", ("STR_ADVSEC_ia" call ADVSEC_fnc_L), "GLOBAL"];
         {
             private _r = _c lnbAddRow (_x select 1);
             _c lnbSetData [[_r, 0], _x select 0];
         } forEach _shown;
         private _at = _shown findIf {(_x select 0) == ADVSEC_pdbSel};
         if (_at >= 0) then {_c lnbSetCurSelRow (_at + 1)};
-        (_disp displayCtrl 87864) ctrlSetStructuredText parseText format ["<t color='#8C8C8C'>%1 jugadores · %2 mostrados</t>", count ADVSEC_pdbList, count _shown];
+        (_disp displayCtrl 87864) ctrlSetStructuredText parseText format [("STR_ADVSEC_players_shown" call ADVSEC_fnc_L), count ADVSEC_pdbList, count _shown];
     };
 
     // Selección de un jugador en la lista: pide su ficha completa al servidor
@@ -56,7 +56,7 @@ switch (_action) do {
         ADVSEC_pdbSel = _uid;
         ADVSEC_pdbSections = [];
         ADVSEC_pdbCur = [];
-        (_disp displayCtrl 87864) ctrlSetStructuredText parseText "<t color='#8C8C8C'>Cargando ficha...</t>";
+        (_disp displayCtrl 87864) ctrlSetStructuredText parseText ("STR_ADVSEC_loading_record" call ADVSEC_fnc_L);
         ["render"] call ADVSEC_fnc_pdbViewUI;
         ["player", player, [_uid]] remoteExecCall ["ADVSEC_fnc_pdbViewServer", 2];
     };
@@ -81,12 +81,12 @@ switch (_action) do {
                 "<t size='0.8' color='#8C8C8C'>%1</t><br/><t size='1.5' font='RobotoCondensedBold'>%2</t>", _label, _value];
         };
         [87860, "CONEXIONES", _conn] call _tile;
-        [87861, "TIEMPO JUGADO", _play] call _tile;
+        [87861, ("STR_ADVSEC_time_played" call ADVSEC_fnc_L), _play] call _tile;
         [87862, "EFECTIVO", _cash] call _tile;
         [87863, "BANCO", _bank] call _tile;
         private _flags = [];
-        if (_on) then {_flags pushBack "<t color='#66FF66'>EN LÍNEA</t>"};
-        if (_adm) then {_flags pushBack "<t color='#D0A330'>SUPERADMINISTRADOR</t>"};
+        if (_on) then {_flags pushBack ("STR_ADVSEC_online" call ADVSEC_fnc_L)};
+        if (_adm) then {_flags pushBack ("STR_ADVSEC_superadmin" call ADVSEC_fnc_L)};
         (_disp displayCtrl 87864) ctrlSetStructuredText parseText format [
             "<t size='1.25' font='RobotoCondensedBold'>%1</t>  %2<br/><t color='#8C8C8C'>SteamID</t> %3",
             _name call _esc, _flags joinString " · ", _uid call _esc];
@@ -115,14 +115,14 @@ switch (_action) do {
         if (_heads isNotEqualTo []) then {_c lnbAddRow _heads};
         if (_rows isEqualTo []) then {
             private _e = _c lnbAddRow (_heads apply {""});
-            _c lnbSetText [[_e, 0], "Sin registros en esta sección"];
+            _c lnbSetText [[_e, 0], ("STR_ADVSEC_no_entries_in_this_section" call ADVSEC_fnc_L)];
         };
         {
             _x params ["_cells", "_det"];
             private _r = _c lnbAddRow _cells;
             _c lnbSetData [[_r, 0], _det];
         } forEach _rows;
-        (_disp displayCtrl 87891) ctrlSetStructuredText parseText "<t color='#8C8C8C'>Selecciona una fila para ver su detalle y los botones para editarla.</t>";
+        (_disp displayCtrl 87891) ctrlSetStructuredText parseText ("STR_ADVSEC_select_a_row_to_see" call ADVSEC_fnc_L);
         ["acts"] call ADVSEC_fnc_pdbViewUI;
     };
 
@@ -130,7 +130,7 @@ switch (_action) do {
     case "row": {
         private _c = _disp displayCtrl 87890;
         private _r = lnbCurSelRow _c;
-        private _txt = if (_r < 1) then {"<t color='#8C8C8C'>Selecciona una fila para ver su detalle y los botones para editarla.</t>"} else {(_c lnbData [_r, 0]) call _esc};
+        private _txt = if (_r < 1) then {("STR_ADVSEC_select_a_row_to_see" call ADVSEC_fnc_L)} else {(_c lnbData [_r, 0]) call _esc};
         private _d = _disp displayCtrl 87891;
         _d ctrlSetStructuredText parseText _txt;
         private _p = ctrlPosition _d;
@@ -151,66 +151,66 @@ switch (_action) do {
             private _who = toUpper _name;
             private _lists = configFile >> "ADVSEC_ReportLists";
             private _opt = {
-                private _o = [["Según la misión", -1], ["Sin rango", 0]];
+                private _o = [[("STR_ADVSEC_as_set_by_the_mission" call ADVSEC_fnc_L), -1], [("STR_ADVSEC_no_rank" call ADVSEC_fnc_L), 0]];
                 {_o pushBack [_x, _forEachIndex + 1]} forEach _this;
                 _o
             };
             private _gO = [];
             {_gO pushBack [_x, _forEachIndex]} forEach (["ranksGlobal", []] call ADVSEC_fnc_setting);
-            private _profile = ["Editar rangos y notas", "profile", "", false, [format ["EDITAR FICHA · %1", _who], [
-                ["Rango PM", _pm, (["ranksPM", []] call ADVSEC_fnc_setting) call _opt],
-                ["Rango AA.II.", _ai, (["ranksAI", []] call ADVSEC_fnc_setting) call _opt],
-                ["Rango global", _glob, _gO],
-                ["Notas", _notes, "text"]]]];
-            private _moneySet = ["Fijar saldo", "moneySet", "", false, [format ["SALDO · %1", _who], [["Efectivo", str _cash], ["Banco", str _bank]]]];
-            private _money = ["Sumar / restar dinero", "money", "", false, ["SUMAR O RESTAR DINERO", [["Dónde", "bank", [["Banco", "bank"], ["Efectivo", "cash"]]], ["Importe (negativo para restar)", "1000"]]]];
-            private _wanted = ["Declarar / editar buscado", "wantedSet", "", false, [format ["REQUISITORIA · %1", _who], [["Motivo", "", "text"], ["Peligrosidad", "Media", ["Baja", "Media", "Alta", "Extrema"]]]]];
-            private _fineNew = ["Poner multa", "fineAdd", "", false, [format ["MULTA · %1", _who], [["Importe", "100"], ["Motivo", "Sanción de la administración", "text"]]]];
+            private _profile = [("STR_ADVSEC_edit_ranks_and_notes" call ADVSEC_fnc_L), "profile", "", false, [format [("STR_ADVSEC_edit_record" call ADVSEC_fnc_L), _who], [
+                [("STR_ADVSEC_mp_rank" call ADVSEC_fnc_L), _pm, (["ranksPM", []] call ADVSEC_fnc_setting) call _opt],
+                [("STR_ADVSEC_ia_rank" call ADVSEC_fnc_L), _ai, (["ranksAI", []] call ADVSEC_fnc_setting) call _opt],
+                [("STR_ADVSEC_global_rank" call ADVSEC_fnc_L), _glob, _gO],
+                [("STR_ADVSEC_notes" call ADVSEC_fnc_L), _notes, "text"]]]];
+            private _moneySet = [("STR_ADVSEC_set_balance" call ADVSEC_fnc_L), "moneySet", "", false, [format [("STR_ADVSEC_balance" call ADVSEC_fnc_L), _who], [[("STR_ADVSEC_cash" call ADVSEC_fnc_L), str _cash], [("STR_ADVSEC_bank" call ADVSEC_fnc_L), str _bank]]]];
+            private _money = [("STR_ADVSEC_add_subtract_money" call ADVSEC_fnc_L), "money", "", false, [("STR_ADVSEC_add_or_subtract_money" call ADVSEC_fnc_L), [[("STR_ADVSEC_where" call ADVSEC_fnc_L), "bank", [[("STR_ADVSEC_bank" call ADVSEC_fnc_L), "bank"], [("STR_ADVSEC_cash" call ADVSEC_fnc_L), "cash"]]], [("STR_ADVSEC_amount_negative_to_subtract" call ADVSEC_fnc_L), "1000"]]]];
+            private _wanted = [("STR_ADVSEC_declare_edit_wanted" call ADVSEC_fnc_L), "wantedSet", "", false, [format [("STR_ADVSEC_warrant" call ADVSEC_fnc_L), _who], [[("STR_ADVSEC_reason" call ADVSEC_fnc_L), "", "text"], [("STR_ADVSEC_danger_level" call ADVSEC_fnc_L), "Media", ["Baja", "Media", "Alta", "Extrema"]]]]];
+            private _fineNew = [("STR_ADVSEC_issue_fine" call ADVSEC_fnc_L), "fineAdd", "", false, [format [("STR_ADVSEC_fine" call ADVSEC_fnc_L), _who], [[("STR_ADVSEC_amount" call ADVSEC_fnc_L), "100"], [("STR_ADVSEC_reason" call ADVSEC_fnc_L), ("STR_ADVSEC_administrative_sanction" call ADVSEC_fnc_L), "text"]]]];
             switch (ADVSEC_pdbTab) do {
                 case 0: {
                     switch (_key param [1, ""]) do {
                         case "money": {_acts append [_moneySet, _money]};
-                        case "admin": {_acts pushBack [["Dar superadmin", "Quitar superadmin"] select _adm, "admin", [], true, []]};
+                        case "admin": {_acts pushBack [[("STR_ADVSEC_grant_superadmin" call ADVSEC_fnc_L), ("STR_ADVSEC_remove_superadmin" call ADVSEC_fnc_L)] select _adm, "admin", [], true, []]};
                         case "wanted": {_acts pushBack _wanted};
                         case "fines": {_acts pushBack _fineNew};
                         case "locker": {
-                            _acts pushBack ["Liberar taquilla", "lockerFree", [], true, []];
-                            _acts pushBack ["Vaciar taquilla (borra su equipo)", "lockerWipe", [], true, []];
+                            _acts pushBack [("STR_ADVSEC_free_locker" call ADVSEC_fnc_L), "lockerFree", [], true, []];
+                            _acts pushBack [("STR_ADVSEC_empty_locker_deletes_its_gear" call ADVSEC_fnc_L), "lockerWipe", [], true, []];
                         };
                         default {_acts pushBack _profile};
                     };
                     {if !((_x select 1) in (_acts apply {_x select 1})) then {_acts pushBack _x}} forEach [_profile, _moneySet];
-                    _acts pushBack ["Borrar ficha", "delete", [], true, []];
+                    _acts pushBack [("STR_ADVSEC_delete_record" call ADVSEC_fnc_L), "delete", [], true, []];
                 };
                 case 1: {
                     if (_kt == "doc") then {
                         _key params ["", "_i", "_num", "_lvl", "_exp", "_t"];
-                        _acts pushBack ["Editar documento", "docEdit", _i, false, [format ["%1 · %2", toUpper _t, _who], [["Número", _num], ["Nivel de acceso", str _lvl], ["Caducidad (vacío = nunca)", _exp]]]];
-                        _acts pushBack ["Retirar este documento", "docDelOne", _i, true, []];
+                        _acts pushBack [("STR_ADVSEC_edit_document" call ADVSEC_fnc_L), "docEdit", _i, false, [format ["%1 · %2", toUpper _t, _who], [[("STR_ADVSEC_number" call ADVSEC_fnc_L), _num], [("STR_ADVSEC_access_level" call ADVSEC_fnc_L), str _lvl], [("STR_ADVSEC_expiry_empty_never" call ADVSEC_fnc_L), _exp]]]];
+                        _acts pushBack [("STR_ADVSEC_revoke_this_document" call ADVSEC_fnc_L), "docDelOne", _i, true, []];
                     };
                     if (_kt == "plate") then {
-                        _acts pushBack [["Denunciar robo", "Quitar denuncia de robo"] select (_key select 2), "plateStolen", _key select 1, false, []];
-                        _acts pushBack ["Borrar matrícula", "plateDel", _key select 1, true, []];
+                        _acts pushBack [[("STR_ADVSEC_report_as_stolen" call ADVSEC_fnc_L), ("STR_ADVSEC_withdraw_stolen_report" call ADVSEC_fnc_L)] select (_key select 2), "plateStolen", _key select 1, false, []];
+                        _acts pushBack [("STR_ADVSEC_delete_plate" call ADVSEC_fnc_L), "plateDel", _key select 1, true, []];
                     };
-                    if (_kt == "wpn") then {_acts pushBack ["Borrar arma del registro", "wpnDel", _key select 1, true, []]};
-                    _acts pushBack ["Emitir documento", "docAdd", "", false, [format ["EMITIR DOCUMENTO · %1", _who], [["Tipo", "", [] call ADVSEC_fnc_docTypes], ["Número (vacío = automático)", ""], ["Nivel (vacío = el del tipo)", ""], ["Caducidad (vacío = nunca)", ""]]]];
-                    _acts pushBack ["Retirar todos", "docsOff", [], true, []];
+                    if (_kt == "wpn") then {_acts pushBack [("STR_ADVSEC_delete_weapon_from_registry" call ADVSEC_fnc_L), "wpnDel", _key select 1, true, []]};
+                    _acts pushBack [("STR_ADVSEC_issue_document" call ADVSEC_fnc_L), "docAdd", "", false, [format [("STR_ADVSEC_issue_document_2" call ADVSEC_fnc_L), _who], [[("STR_ADVSEC_type" call ADVSEC_fnc_L), "", [] call ADVSEC_fnc_docTypes], [("STR_ADVSEC_number_empty_automatic" call ADVSEC_fnc_L), ""], [("STR_ADVSEC_level_empty_the_type_s" call ADVSEC_fnc_L), ""], [("STR_ADVSEC_expiry_empty_never" call ADVSEC_fnc_L), ""]]]];
+                    _acts pushBack [("STR_ADVSEC_revoke_all" call ADVSEC_fnc_L), "docsOff", [], true, []];
                 };
                 case 2: {
                     if (_kt == "fine") then {
                         _key params ["", "_id", "_st", "_amt", "_why"];
-                        _acts pushBack ["Editar multa", "fineEdit", _id, false, [format ["MULTA %1", _id], [["Importe", str _amt], ["Motivo", _why, "text"], ["Estado", _st, ["Pendiente", "Pagada", "Anulada"]]]]];
-                        _acts pushBack ["Borrar multa", "fineDel", _id, true, []];
+                        _acts pushBack [("STR_ADVSEC_edit_fine" call ADVSEC_fnc_L), "fineEdit", _id, false, [format [("STR_ADVSEC_fine_2" call ADVSEC_fnc_L), _id], [[("STR_ADVSEC_amount" call ADVSEC_fnc_L), str _amt], [("STR_ADVSEC_reason" call ADVSEC_fnc_L), _why, "text"], [("STR_ADVSEC_status" call ADVSEC_fnc_L), _st, ["Pendiente", "Pagada", "Anulada"]]]]];
+                        _acts pushBack [("STR_ADVSEC_delete_fine" call ADVSEC_fnc_L), "fineDel", _id, true, []];
                     };
                     if (_kt == "wanted") then {
                         _key params ["", "_why", "_lvl"];
-                        _acts pushBack ["Editar requisitoria", "wantedSet", "", false, [format ["REQUISITORIA · %1", _who], [["Motivo", _why, "text"], ["Peligrosidad", _lvl, ["Baja", "Media", "Alta", "Extrema"]]]]];
-                        _acts pushBack ["Retirar requisitoria", "wantedDel", [], true, []];
+                        _acts pushBack [("STR_ADVSEC_edit_warrant" call ADVSEC_fnc_L), "wantedSet", "", false, [format [("STR_ADVSEC_warrant" call ADVSEC_fnc_L), _who], [[("STR_ADVSEC_reason" call ADVSEC_fnc_L), _why, "text"], [("STR_ADVSEC_danger_level" call ADVSEC_fnc_L), _lvl, ["Baja", "Media", "Alta", "Extrema"]]]]];
+                        _acts pushBack [("STR_ADVSEC_withdraw_warrant" call ADVSEC_fnc_L), "wantedDel", [], true, []];
                     };
                     if (_kt == "jail") then {
                         _key params ["", "_min", "_why"];
-                        _acts pushBack ["Editar detención", "jailEdit", "", false, [format ["DETENCIÓN · %1", _who], [["Minutos restantes (-1 = hasta nueva orden)", str _min], ["Motivo", _why, "text"]]]];
-                        _acts pushBack ["Liberar", "jailDel", [], true, []];
+                        _acts pushBack [("STR_ADVSEC_edit_detention" call ADVSEC_fnc_L), "jailEdit", "", false, [format [("STR_ADVSEC_detention" call ADVSEC_fnc_L), _who], [[("STR_ADVSEC_minutes_left_1_until_further" call ADVSEC_fnc_L), str _min], [("STR_ADVSEC_reason" call ADVSEC_fnc_L), _why, "text"]]]];
+                        _acts pushBack [("STR_ADVSEC_release" call ADVSEC_fnc_L), "jailDel", [], true, []];
                     };
                     _acts pushBack _fineNew;
                     if (_kt != "wanted") then {_acts pushBack _wanted};
@@ -218,26 +218,26 @@ switch (_action) do {
                 case 3: {
                     if (_kt == "rep") then {
                         _key params ["", "_id", "_t", "_st", "_g"];
-                        _acts pushBack ["Editar informe", "repEdit", _id, false, [format ["INFORME %1", _id], [["Título", _t], ["Estado", _st, getArray (_lists >> "status")], ["Gravedad", _g, getArray (_lists >> "gravity")]]]];
-                        _acts pushBack ["Borrar informe", "repDel", _id, true, []];
+                        _acts pushBack [("STR_ADVSEC_edit_report" call ADVSEC_fnc_L), "repEdit", _id, false, [format [("STR_ADVSEC_report" call ADVSEC_fnc_L), _id], [[("STR_ADVSEC_title" call ADVSEC_fnc_L), _t], [("STR_ADVSEC_status" call ADVSEC_fnc_L), _st, getArray (_lists >> "status")], [("STR_ADVSEC_severity" call ADVSEC_fnc_L), _g, getArray (_lists >> "gravity")]]]];
+                        _acts pushBack [("STR_ADVSEC_delete_report" call ADVSEC_fnc_L), "repDel", _id, true, []];
                     };
                 };
                 case 4: {
-                    _acts pushBack ["Fijar índice", "heatSet", "", false, [format ["SOSPECHA · %1", _who], [["Puntos", str (_key param [1, 0])]]]];
-                    if (_kt == "heat") then {_acts pushBack ["Archivar índice", "heatDel", [], true, []]};
+                    _acts pushBack [("STR_ADVSEC_set_index" call ADVSEC_fnc_L), "heatSet", "", false, [format [("STR_ADVSEC_suspicion_2" call ADVSEC_fnc_L), _who], [[("STR_ADVSEC_points" call ADVSEC_fnc_L), str (_key param [1, 0])]]]];
+                    if (_kt == "heat") then {_acts pushBack [("STR_ADVSEC_archive_index" call ADVSEC_fnc_L), "heatDel", [], true, []]};
                 };
                 case 5: {
                     if (_kt == "ev") then {
                         _key params ["", "_id", "_st", "_res"];
-                        _acts pushBack ["Editar prueba", "evEdit", _id, false, [format ["PRUEBA %1", _id], [["Estado", _st, [["En la escena", "field"], ["Embolsada", "bagged"], ["En análisis", "analyzing"], ["Analizada", "analyzed"]]], ["Resultado", _res, "text"]]]];
-                        _acts pushBack ["Borrar prueba", "evDel", _id, true, []];
+                        _acts pushBack [("STR_ADVSEC_edit_evidence" call ADVSEC_fnc_L), "evEdit", _id, false, [format [("STR_ADVSEC_evidence_2" call ADVSEC_fnc_L), _id], [[("STR_ADVSEC_status" call ADVSEC_fnc_L), _st, [[("STR_ADVSEC_at_the_scene" call ADVSEC_fnc_L), "field"], [("STR_ADVSEC_bagged" call ADVSEC_fnc_L), "bagged"], [("STR_ADVSEC_being_analysed" call ADVSEC_fnc_L), "analyzing"], [("STR_ADVSEC_analysed" call ADVSEC_fnc_L), "analyzed"]]], [("STR_ADVSEC_result" call ADVSEC_fnc_L), _res, "text"]]]];
+                        _acts pushBack [("STR_ADVSEC_delete_evidence" call ADVSEC_fnc_L), "evDel", _id, true, []];
                     };
                 };
-                case 6: {_acts append [_moneySet, _money, ["Poner saldo a cero", "zero", [], true, []]]};
+                case 6: {_acts append [_moneySet, _money, [("STR_ADVSEC_reset_balance_to_zero" call ADVSEC_fnc_L), "zero", [], true, []]]};
                 case 7: {
-                    if (_kt == "spec") then {_acts pushBack [["Quitar de la especialidad", "Quitar como encargado", "Rechazar solicitud"] select (_key select 2), "specDel", [_key select 1, _key select 2], true, []]};
+                    if (_kt == "spec") then {_acts pushBack [[("STR_ADVSEC_remove_from_specialty" call ADVSEC_fnc_L), ("STR_ADVSEC_remove_as_manager" call ADVSEC_fnc_L), ("STR_ADVSEC_reject_request" call ADVSEC_fnc_L)] select (_key select 2), "specDel", [_key select 1, _key select 2], true, []]};
                     private _sO = ("true" configClasses (configFile >> "ADVSEC_Specialties")) apply {[[configName _x] call ADVSEC_fnc_specName, configName _x]};
-                    _acts pushBack ["Añadir a especialidad", "specAdd", "", false, [format ["ESPECIALIDAD · %1", _who], [["Especialidad", (_sO param [0, ["", ""]]) select 1, _sO], ["Como", 0, [["Miembro", 0], ["Encargado", 1]]]]]];
+                    _acts pushBack [("STR_ADVSEC_add_to_specialty" call ADVSEC_fnc_L), "specAdd", "", false, [format [("STR_ADVSEC_specialty" call ADVSEC_fnc_L), _who], [[("STR_ADVSEC_specialty_2" call ADVSEC_fnc_L), (_sO param [0, ["", ""]]) select 1, _sO], [("STR_ADVSEC_as" call ADVSEC_fnc_L), 0, [[("STR_ADVSEC_member" call ADVSEC_fnc_L), 0], [("STR_ADVSEC_manager" call ADVSEC_fnc_L), 1]]]]]];
                 };
                 default {};
             };
@@ -260,7 +260,7 @@ switch (_action) do {
         private _b = _disp displayCtrl (87880 + _arg);
         if (_confirm && {(ADVSEC_pdbConfirm select 0) != _arg || {time - (ADVSEC_pdbConfirm select 1) > 4}}) exitWith {
             ADVSEC_pdbConfirm = [_arg, time];
-            _b ctrlSetText "¿Seguro? Pulsa otra vez";
+            _b ctrlSetText ("STR_ADVSEC_sure_press_again" call ADVSEC_fnc_L);
             [_b, _arg, _text] spawn {
                 params ["_b", "_i", "_text"];
                 sleep 4;

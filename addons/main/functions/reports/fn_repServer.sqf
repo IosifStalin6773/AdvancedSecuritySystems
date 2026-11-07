@@ -60,7 +60,7 @@ switch (_action) do {
     };
     case "get": {
         private _r = _data call _get;
-        if (count _r == 0) exitWith {["msg", "No tienes acceso a ese informe."] call _reply};
+        if (count _r == 0) exitWith {["msg", ("STR_ADVSEC_you_have_no_access_to" call ADVSEC_fnc_L)] call _reply};
         if ((_r get "dept") == "AI" || {_r getOrDefault ["confidential", false]}) then {
             if (((_r getOrDefault ["subjects", []]) joinString " ") find getPlayerUID _caller > -1) then {
                 [_caller, "ownCaseAccess", _r get "id"] call ADVSEC_fnc_heatAdd;
@@ -73,9 +73,9 @@ switch (_action) do {
     case "create": {
         private _r = createHashMapFromArray _data;
         private _cfg = [_r getOrDefault ["type", ""]] call ADVSEC_fnc_repTypeCfg;
-        if (!isClass _cfg) exitWith {["msg", "Formato de informe no válido."] call _reply};
+        if (!isClass _cfg) exitWith {["msg", ("STR_ADVSEC_invalid_report_form" call ADVSEC_fnc_L)] call _reply};
         private _dept = getText (_cfg >> "dept");
-        if !([_canPM || _canAI, _canAI] select (_dept == "AI")) exitWith {["msg", "No tienes acreditación para ese formato."] call _reply};
+        if !([_canPM || _canAI, _canAI] select (_dept == "AI")) exitWith {["msg", ("STR_ADVSEC_you_are_not_accredited_for" call ADVSEC_fnc_L)] call _reply};
 
         private _year = systemTimeUTC select 0;
         private _code = getText (_cfg >> "code");
@@ -105,7 +105,7 @@ switch (_action) do {
     case "note": {
         _data params ["_id", "_text"];
         private _r = _id call _get;
-        if (count _r == 0 || {_text isEqualTo ""}) exitWith {["msg", "No se pudo añadir la anotación."] call _reply};
+        if (count _r == 0 || {_text isEqualTo ""}) exitWith {["msg", ("STR_ADVSEC_the_note_could_not_be" call ADVSEC_fnc_L)] call _reply};
         (_r get "notes") pushBack [call _now, name _caller, getPlayerUID _caller, _text];
         _r set ["updated", call _now];
         [] call ADVSEC_fnc_repSave;
@@ -114,14 +114,14 @@ switch (_action) do {
     case "status": {
         _data params ["_id", "_status", "_sanction", ["_reason", ""]];
         private _r = _id call _get;
-        if (count _r == 0) exitWith {["msg", "No tienes acceso a ese informe."] call _reply};
+        if (count _r == 0) exitWith {["msg", ("STR_ADVSEC_you_have_no_access_to" call ADVSEC_fnc_L)] call _reply};
         private _need = ["reportStatus", "caseClose"] select ((_r get "dept") == "AI" && {_status in ["Resuelto", "Archivado"]});
-        if !([_caller, _need] call ADVSEC_fnc_perm) exitWith {["msg", "Tu rango no permite cambiar el estado de este informe."] call _reply};
+        if !([_caller, _need] call ADVSEC_fnc_perm) exitWith {["msg", ("STR_ADVSEC_your_rank_does_not_allow_10" call ADVSEC_fnc_L)] call _reply};
         ["reportStatus", _caller, [_id, _status, _sanction]] call ADVSEC_fnc_logEvent;
         _r set ["status", _status];
         _r set ["sanction", _sanction];
         _r set ["updated", call _now];
-        (_r get "notes") pushBack [call _now, name _caller, getPlayerUID _caller, format ["Estado: %1. Sanción: %2. %3", _status, _sanction, _reason]];
+        (_r get "notes") pushBack [call _now, name _caller, getPlayerUID _caller, format [("STR_ADVSEC_status_sanction" call ADVSEC_fnc_L), _status, _sanction, _reason]];
         [] call ADVSEC_fnc_repSave;
         ["report", [_r] call ADVSEC_fnc_docPairs] call _reply;
     };

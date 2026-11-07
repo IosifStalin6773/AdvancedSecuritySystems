@@ -8,16 +8,16 @@ if (isNull _p) exitWith {false};
 private _why = "";
 if !([_p] call ADVSEC_fnc_adminIs) then {
     if ((["lockerJailBlock", 1] call ADVSEC_fnc_setting) isEqualTo 1 && {(_p getVariable ["ADVSEC_jailUntil", 0]) > serverTime}) then {
-        _why = "Estás detenido: no puedes usar tu taquilla.";
+        _why = ("STR_ADVSEC_you_are_detained_you_cannot" call ADVSEC_fnc_L);
     };
     if (_why isEqualTo "" && {_op in ["claim", "open"]} && {(_l getVariable ["TSL_owner", ""]) isEqualTo ""}) then {
         private _acc = ["lockerAccess", 0] call ADVSEC_fnc_setting;
         private _pm = [_p, "PM"] call ADVSEC_fnc_rankLevel;
         private _ai = [_p, "AI"] call ADVSEC_fnc_rankLevel;
-        if (_acc isEqualTo 1 && {_pm < 1}) then {_why = "Solo la Policía Militar puede tener taquilla."};
-        if (_acc isEqualTo 2 && {_pm < 1} && {_ai < 1}) then {_why = "Solo la Policía Militar o Asuntos Internos pueden tener taquilla."};
+        if (_acc isEqualTo 1 && {_pm < 1}) then {_why = ("STR_ADVSEC_only_the_military_police_can_3" call ADVSEC_fnc_L)};
+        if (_acc isEqualTo 2 && {_pm < 1} && {_ai < 1}) then {_why = ("STR_ADVSEC_only_the_military_police_or" call ADVSEC_fnc_L)};
         private _req = _l getVariable ["ADVSEC_req", []];
-        if (_why isEqualTo "" && {_req isNotEqualTo []} && {!([_p, _req] call ADVSEC_fnc_accessCheck)}) then {_why = "No tienes la autorización que pide esta taquilla."};
+        if (_why isEqualTo "" && {_req isNotEqualTo []} && {!([_p, _req] call ADVSEC_fnc_accessCheck)}) then {_why = ("STR_ADVSEC_you_lack_the_authorisation_this" call ADVSEC_fnc_L)};
     };
 };
 if (_why isNotEqualTo "") exitWith {

@@ -8,7 +8,7 @@ if (!isServer) exitWith {};
 _args params [["_veh", objNull]];
 if (isNull _veh || {!([_caller, _veh, 10] call ADVSEC_fnc_srvCaller)}) exitWith {};
 private _say = {_this remoteExecCall ["hint", _caller]};
-private _zones = createHashMapFromArray [["glove", ["Guantera", 3]], ["seats", ["Bajo los asientos", 4]], ["trunk", ["Maletero", 5]], ["stash", ["Bajos y rueda de repuesto", 10]]];
+private _zones = createHashMapFromArray [["glove", [("STR_ADVSEC_glovebox" call ADVSEC_fnc_L), 3]], ["seats", [("STR_ADVSEC_under_the_seats" call ADVSEC_fnc_L), 4]], ["trunk", [("STR_ADVSEC_trunk" call ADVSEC_fnc_L), 5]], ["stash", [("STR_ADVSEC_underside_and_spare_wheel" call ADVSEC_fnc_L), 10]]];
 private _scanKey = netId _veh + getPlayerUID _caller;
 private _scans = localNamespace getVariable ["ADVSEC_vehScan", createHashMap];
 localNamespace setVariable ["ADVSEC_vehScan", _scans];
@@ -45,39 +45,39 @@ switch (_action) do {
             private _z = _x;
             (_zones get _z) params ["_label"];
             if !(_z in _done) then {
-                _rows pushBack [format ["▸ %1 (sin registrar)", toUpper _label], [_z], "<t color='#8C8C8C'>Usa el botón de la zona para registrarla.</t>", [0.6, 0.6, 0.6, 1], ADVSEC_icSearch];
+                _rows pushBack [format [("STR_ADVSEC_not_searched" call ADVSEC_fnc_L), toUpper _label], [_z], ("STR_ADVSEC_use_the_zone_button_to" call ADVSEC_fnc_L), [0.6, 0.6, 0.6, 1], ADVSEC_icSearch];
                 continue;
             };
             _rows pushBack [format ["▾ %1", toUpper _label], [_z], "", [0.4, 0.8, 1, 1], ADVSEC_icSearch];
             private _c = [_z] call _content;
             if (_z == "stash") then {_c = _c select {(_x param [3, false])}};
-            if (_c isEqualTo []) then {_rows pushBack ["    vacío", [_z], "", [], ""]};
+            if (_c isEqualTo []) then {_rows pushBack [("STR_ADVSEC_empty_2" call ADVSEC_fnc_L), [_z], "", [], ""]};
             {
                 _x params ["_k", "_class", "_n"];
                 private _cfg = [_class] call _cfgOf;
                 private _name = [_class, getText (_cfg >> "displayName")] select !isNull _cfg;
                 private _illegal = _class in (["illegalItems", []] call ADVSEC_fnc_setting);
-                _rows pushBack [format ["    %1 x%2%3", _name, _n, [" ", " · ILEGAL"] select _illegal], [_z, _k, _class],
-                    format ["<t size='1.1' font='RobotoCondensedBold'>%1</t><br/>Compartimento: %2<br/>Clase: %3<br/>Cantidad: %4", _name, _label, _class, _n],
+                _rows pushBack [format ["    %1 x%2%3", _name, _n, [" ", ("STR_ADVSEC_illegal" call ADVSEC_fnc_L)] select _illegal], [_z, _k, _class],
+                    format [("STR_ADVSEC_compartment_class_quantity" call ADVSEC_fnc_L), _name, _label, _class, _n],
                     [[], [1, 0.3, 0.3, 1]] select _illegal, getText (_cfg >> "picture")];
             } forEach _c;
         } forEach ["glove", "seats", "trunk", "stash"];
         private _plate = getPlateNumber _veh;
-        ["veh", format ["<t font='RobotoCondensedBold'>%1</t> · matrícula %2 · cuadrícula %3", getText (configOf _veh >> "displayName"), [_plate, "—"] select (_plate isEqualTo ""), mapGridPosition _veh], _rows] remoteExecCall ["ADVSEC_fnc_panelSet", _caller];
+        ["veh", format [("STR_ADVSEC_plate_grid" call ADVSEC_fnc_L), getText (configOf _veh >> "displayName"), [_plate, "—"] select (_plate isEqualTo ""), mapGridPosition _veh], _rows] remoteExecCall ["ADVSEC_fnc_panelSet", _caller];
     };
     case "scan": {
         _args params ["", ["_z", ""]];
         if !(_z in _zones) exitWith {};
-        if !([_caller, "vehicleSearch"] call ADVSEC_fnc_perm) exitWith {[_caller, "registrar un vehículo"] call ADVSEC_fnc_deny};
-        if (_caller getVariable ["ADVSEC_vehBusy", false]) exitWith {"Ya estás registrando." call _say};
-        if ((speed _veh) > 3) exitWith {"El vehículo debe estar detenido." call _say};
+        if !([_caller, "vehicleSearch"] call ADVSEC_fnc_perm) exitWith {[_caller, ("STR_ADVSEC_search_a_vehicle" call ADVSEC_fnc_L)] call ADVSEC_fnc_deny};
+        if (_caller getVariable ["ADVSEC_vehBusy", false]) exitWith {("STR_ADVSEC_you_are_already_searching" call ADVSEC_fnc_L) call _say};
+        if ((speed _veh) > 3) exitWith {("STR_ADVSEC_the_vehicle_must_be_stopped" call ADVSEC_fnc_L) call _say};
         _caller setVariable ["ADVSEC_vehBusy", true];
-        (format ["Registrando: %1...", (_zones get _z) select 0]) call _say;
+        (format [("STR_ADVSEC_searching" call ADVSEC_fnc_L), (_zones get _z) select 0]) call _say;
         [_caller, _veh, _z, (_zones get _z) select 1, _scanKey, _scans] spawn {
             params ["_caller", "_veh", "_z", "_secs", "_scanKey", "_scans"];
             sleep _secs;
             _caller setVariable ["ADVSEC_vehBusy", false];
-            if (!alive _caller || {(_caller distance _veh) > 10}) exitWith {"Registro interrumpido." remoteExecCall ["hint", _caller]};
+            if (!alive _caller || {(_caller distance _veh) > 10}) exitWith {("STR_ADVSEC_search_interrupted" call ADVSEC_fnc_L) remoteExecCall ["hint", _caller]};
             if (_z == "stash") then {
                 private _p = ["stashFindChance", 0.5] call ADVSEC_fnc_setting;
                 {if (random 1 < _p) then {_x set [3, true]}} forEach (_veh getVariable ["ADVSEC_stash", []]);
@@ -87,14 +87,14 @@ switch (_action) do {
             _scans set [_scanKey, _done];
             ["print", _caller, [_veh]] call ADVSEC_fnc_evidenceServer;
             ["vehSearch", _caller, [typeOf _veh, getPlateNumber _veh, _z]] call ADVSEC_fnc_logEvent;
-            "Compartimento registrado." remoteExecCall ["hint", _caller];
+            ("STR_ADVSEC_compartment_searched" call ADVSEC_fnc_L) remoteExecCall ["hint", _caller];
             ["list", _caller, [_veh]] call ADVSEC_fnc_vehServer;
         };
     };
     case "seize": {
         _args params ["", "_z", "_k", "_class"];
-        if !([_caller, "seize"] call ADVSEC_fnc_perm) exitWith {[_caller, "incautar de un vehículo"] call ADVSEC_fnc_deny};
-        if !(_z in (_scans getOrDefault [_scanKey, []])) exitWith {"Registra antes ese compartimento." call _say};
+        if !([_caller, "seize"] call ADVSEC_fnc_perm) exitWith {[_caller, ("STR_ADVSEC_seize_from_a_vehicle" call ADVSEC_fnc_L)] call ADVSEC_fnc_deny};
+        if !(_z in (_scans getOrDefault [_scanKey, []])) exitWith {("STR_ADVSEC_search_that_compartment_first" call ADVSEC_fnc_L) call _say};
         private _ok = false;
         if (_z == "stash") then {
             private _s = _veh getVariable ["ADVSEC_stash", []];
@@ -120,7 +120,7 @@ switch (_action) do {
             };
             _ok = true;
         };
-        if (!_ok) exitWith {"Ese objeto ya no está." call _say};
+        if (!_ok) exitWith {("STR_ADVSEC_that_object_is_no_longer" call ADVSEC_fnc_L) call _say};
         private _holder = (nearestObjects [_caller, ["GroundWeaponHolder"], 2]) param [0, objNull];
         if (isNull _holder) then {_holder = createVehicle ["GroundWeaponHolder", getPosATL _caller, [], 0.5, "CAN_COLLIDE"]};
         switch (_k) do {
@@ -130,7 +130,7 @@ switch (_action) do {
             default {_holder addItemCargoGlobal [_class, 1]};
         };
         ["vehSeize", _caller, [typeOf _veh, getPlateNumber _veh, _z, _class]] call ADVSEC_fnc_logEvent;
-        "Incautado: depositado en el suelo junto a ti." call _say;
+        ("STR_ADVSEC_seized_placed_on_the_ground" call ADVSEC_fnc_L) call _say;
         ["list", _caller, [_veh]] call ADVSEC_fnc_vehServer;
     };
     case "stash": {
@@ -139,22 +139,22 @@ switch (_action) do {
         private _mag = _class in magazines _caller;
         if (!_mag && {!(_class in items _caller)}) exitWith {};
         private _s = _veh getVariable ["ADVSEC_stash", []];
-        if ((count _s) >= 4) exitWith {"El doble fondo está lleno." call _say};
+        if ((count _s) >= 4) exitWith {("STR_ADVSEC_the_hidden_compartment_is_full" call ADVSEC_fnc_L) call _say};
         [_caller, _class] remoteExecCall [["removeItem", "removeMagazine"] select _mag, _caller];
         private _i = _s findIf {(_x select 1) == _class};
         if (_i > -1) then {(_s select _i) set [2, ((_s select _i) select 2) + 1]} else {_s pushBack [["I", "M"] select _mag, _class, 1, false]};
         _veh setVariable ["ADVSEC_stash", _s];
-        "Objeto escondido en los bajos del vehículo." call _say;
+        ("STR_ADVSEC_object_hidden_under_the_vehicle" call ADVSEC_fnc_L) call _say;
     };
     case "unstash": {
         if ((_caller distance _veh) > 5) exitWith {};
         private _s = _veh getVariable ["ADVSEC_stash", []];
-        if (_s isEqualTo []) exitWith {"No hay nada escondido." call _say};
+        if (_s isEqualTo []) exitWith {("STR_ADVSEC_nothing_is_hidden" call ADVSEC_fnc_L) call _say};
         {
             _x params ["_k", "_class", "_n"];
             for "_j" from 1 to _n do {[_caller, _class] remoteExecCall [["addItem", "addMagazine"] select (_k == "M"), _caller]};
         } forEach _s;
         _veh setVariable ["ADVSEC_stash", []];
-        "Recuperas lo que había escondido." call _say;
+        ("STR_ADVSEC_you_recover_what_you_had" call ADVSEC_fnc_L) call _say;
     };
 };

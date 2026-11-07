@@ -1,6 +1,6 @@
 # Advanced Security Systems (ADVSEC)
 
-**Versión 1.16.0** · Addon de Arma 3 para servidores con **Policía Militar (PM)** y **Asuntos Internos (AA.II.)**.
+**Versión 1.17.0** · Addon de Arma 3 para servidores con **Policía Militar (PM)** y **Asuntos Internos (AA.II.)**.
 
 ADVSEC reúne en un solo mod:
 - documentación de identidad;
@@ -11,7 +11,10 @@ ADVSEC reúne en un solo mod:
 - una base de datos de jugadores con gestión de rangos;
 - un terminal de superadministrador para borrar datos y retirar rangos;
 - una economía (efectivo, banco, nóminas, cajeros, tiendas y tesorería de la PM) compatible con el HUD THUD;
-- sistemas de rol militar: rangos ORBAT, especialidades, servicio, despacho, alerta de base, matrículas, licencias, corrupción, K9, radar y cámara corporal.
+- sistemas de rol militar: rangos ORBAT, especialidades, servicio, despacho, patrullas con ruta, alerta de base, matrículas, licencias, corrupción, K9, radar y cámara corporal;
+- textos en **inglés y español** (stringtable), con el idioma elegible por servidor.
+
+> **English:** ADVSEC is fully translated into English (and Spanish). See [docs/WORKSHOP_EN.md](docs/WORKSHOP_EN.md) for an English overview.
 
 Todo es configurable desde el editor (Eden), desde Zeus durante la partida, desde `description.ext` o desde las opciones de CBA.
 
@@ -79,13 +82,13 @@ La carpeta contiene:
 - `addons\advsec_buildings.pbo`: el edificio de la PM.
 - `addons\advsec_lockers.pbo`: taquillas personales TS_Lockers integradas (necesita ACE y CBA; si no están, no se carga). **Quita el `TS_Lockers.pbo` suelto de tu lista de mods**: ya va dentro. Pesa 400 MB y GitHub no admite archivos de más de 100 MB en el repositorio: está en la rama **`binarios`** dividido en partes: descarga esa rama, ejecuta `lockers\UNIR.bat` y copia el `advsec_lockers.pbo` resultante en `addons\` junto a su `.bisign`.
 - Las firmas `.bisign` de los PBO.
-- `keys\advsec_1.16.0.bikey`.
+- `keys\advsec_1.17.0.bikey`.
 - `mod.cpp`.
 
 ### Servidor dedicado
 
 1. Carga el mod con `-mod=@AdvancedSecuritySystems`. No uses `-serverMod`, porque los clientes también lo necesitan.
-2. Copia `keys\advsec_1.16.0.bikey` a la carpeta `keys` del servidor y borra las claves `advsec_*` antiguas. Todos los PBO están firmados, así que funciona con `verifySignatures = 2`.
+2. Copia `keys\advsec_1.17.0.bikey` a la carpeta `keys` del servidor y borra las claves `advsec_*` antiguas. Todos los PBO están firmados, así que funciona con `verifySignatures = 2`.
 3. Si la misión usa `CfgRemoteExec` en modo lista blanca, copia las clases `ADVSEC_fnc_*` del `description.ext` de ejemplo.
 
 ### Dependencias
@@ -418,6 +421,12 @@ Sin ACE, cada entrada abre una lista con todo («Grupo · acción»).
 - Fichar entrada y salida (menú PM o módulo «Terminal de fichaje»; `dutyAnywhere`). Se guardan las horas; el plus PM/AA.II. de la nómina solo se cobra de servicio (`salaryDutyOnly`). De servicio se enciende la **cámara corporal**.
 - **112**: cualquiera llama (acción propia). El aviso va a la patrulla de servicio más cercana (o a toda la PM) con marca en el mapa. **Botón de pánico**: **Alt + Supr**. **Central de despacho**: **Ctrl + Alt + Insert**.
 
+**Patrullas con ruta**
+- Quien tenga el permiso `patrolPlan` (PM nivel 3 por defecto) abre **Policía Militar › Servicio › Patrullas con ruta › Nueva patrulla**: nombre, agentes asignados, radio de cada punto y tiempo máximo. Después marca la ruta con clics en el mapa (Alt + clic borra el último punto; hasta 30) y cierra el mapa para enviarla.
+- Los asignados reciben un aviso y la ruta en su mapa. El cronómetro empieza al llegar al primer punto; cada punto alcanzado se avisa al grupo y se pone en verde.
+- Resultado: **Cumplida** (todos los puntos), **Incompleta** (se pasó el tiempo máximo) o **Cancelada** (por el mando o por fin de misión). Queda en el panel de patrullas (puntos, hora y agente de cada uno, tiempo empleado) y en el registro de eventos.
+- Ajustes: `patrolOrdered` (puntos en orden), `patrolNeedDuty` (solo cuentan los agentes de servicio) y `patrolBonus` (prima en el banco de quienes pasaron por algún punto).
+
 **AA.II.**
 - **Suspensión temporal**: retira rangos PM, AA.II. y global durante X horas de reloj real y los devuelve solos.
 - **Auditoría bancaria**: movimientos sospechosos (agentes implicados o ≥ `suspiciousAmount`), historial de cualquier cuenta y **congelación** (la cuenta congelada solo usa efectivo).
@@ -642,6 +651,10 @@ Con CBA se cambian en *Opciones › Controles › Configurar complementos › Ad
 ### Prioridad
 
 **CBA (en partida) > `description.ext` de la misión > valores del addon.** Solo hace falta escribir lo que quieras cambiar.
+
+### Idioma
+
+ADVSEC trae todos sus textos en inglés y español (`stringtable.xml`). El ajuste `language` (CBA: General › Idioma / Language, o `ADVSEC_Settings >> language`) elige: 0 automático (idioma del juego), 1 English, 2 Español. Cada máquina genera sus mensajes en su idioma: en un servidor dedicado «automático» es inglés, así que en un servidor en español pon el ajuste en Español. Los datos guardados (estados de informes y multas, gravedad, peligrosidad...) se guardan siempre en español y se traducen al mostrarlos. Para cambiar un texto edita `stringtable.xml` y ejecuta `python3 tools/stringtable_to_cfglang.py`.
 
 ### Variables de misión (`description.ext`)
 

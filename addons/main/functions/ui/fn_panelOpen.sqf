@@ -11,7 +11,7 @@ ADVSEC_panelButtons = _buttons;
 ADVSEC_panelRefresh = _refresh;
 ADVSEC_panelRows = [];
 (_disp displayCtrl 87501) ctrlSetText (" " + toUpper _title);
-(_disp displayCtrl 87502) ctrlSetStructuredText parseText "<t color='#8C8C8C'>Consultando el archivo central...</t>";
+(_disp displayCtrl 87502) ctrlSetStructuredText parseText ("STR_ADVSEC_querying_the_central_archive" call ADVSEC_fnc_L);
 (_disp displayCtrl 87505) ctrlSetStructuredText parseText "";
 lbClear (_disp displayCtrl 87503);
 for "_i" from 0 to 4 do {

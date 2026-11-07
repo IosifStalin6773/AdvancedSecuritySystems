@@ -78,7 +78,7 @@ class RscTitles {
                 x = "safeZoneX"; y = "safeZoneY"; w = "safeZoneW"; h = "safeZoneH";
                 style = 2;
                 sizeEx = 0.08;
-                text = "SIN SEÑAL";
+                text = "$STR_ADVSEC_no_signal";
                 colorBackground[] = {0, 0, 0, 1};
                 colorText[] = {0.8, 0.8, 0.8, 1};
             };
@@ -112,7 +112,7 @@ class RscTitles {
                 x = "safeZoneX"; y = "safeZoneY + safeZoneH - 0.07"; w = "safeZoneW"; h = 0.05;
                 style = 2;
                 sizeEx = 0.032;
-                text = "Flechas izq./der.: cambiar cámara  -  N: visión nocturna/térmica  -  Retroceso: salir";
+                text = "$STR_ADVSEC_left_right_arrows_switch_camera";
                 colorText[] = {1, 1, 1, 0.8};
             };
         };

@@ -15,7 +15,7 @@ _log pushBack _e;
 private _max = (["logMax", 5000] call ADVSEC_fnc_cfg);
 if (count _log > _max) then {_log deleteRange [0, count _log - _max]};
 ["log"] call ADVSEC_fnc_dbDirty;
-diag_log (["[ADVSEC] EVENTO"] + _e);
+diag_log ([("STR_ADVSEC_advsec_event" call ADVSEC_fnc_L)] + _e);
 // Cámara corporal: todo lo que hace un agente con la cámara encendida queda en su grabación
 if (!isNull _actor && {_actor getVariable ["ADVSEC_bodycam", false]}) then {
     private _bdb = [] call ADVSEC_fnc_bodyDB;
@@ -30,7 +30,7 @@ if (_type in (["discordEvents", []] call ADVSEC_fnc_setting)) then {
     [_type, format ["%1%2", ["", (_e select 3) + ": "] select ((_e select 3) isNotEqualTo ""), ((if (_data isEqualType []) then {_data} else {[_data]}) apply {[str _x, _x] select (_x isEqualType "")}) joinString " · "],
         [13672496, 15158332] select (_type in ["jail", "wantedAdd", "panic", "plateStolen"])] spawn {
         params ["_t", "_d", "_c"];
-        private _titles = createHashMapFromArray [["jail", "Detención"], ["wantedAdd", "Busca y captura"], ["bail", "Fianza pagada"], ["suspend", "Suspensión de AA.II."], ["alertLevel", "Nivel de alerta"], ["panic", "Botón de pánico"], ["plateStolen", "Vehículo robado"]];
+        private _titles = createHashMapFromArray [["jail", ("STR_ADVSEC_arrest" call ADVSEC_fnc_L)], ["wantedAdd", ("STR_ADVSEC_wanted" call ADVSEC_fnc_L)], ["bail", ("STR_ADVSEC_bail_paid" call ADVSEC_fnc_L)], ["suspend", ("STR_ADVSEC_ia_suspension" call ADVSEC_fnc_L)], ["alertLevel", ("STR_ADVSEC_alert_level" call ADVSEC_fnc_L)], ["panic", ("STR_ADVSEC_panic_button" call ADVSEC_fnc_L)], ["plateStolen", ("STR_ADVSEC_stolen_vehicle" call ADVSEC_fnc_L)]];
         [_titles getOrDefault [_t, _t], _d, _c] call ADVSEC_fnc_discord;
     };
 };

@@ -13,7 +13,7 @@ if (_force || {((["autoMilitaryID", 1] call ADVSEC_fnc_cfg)) isEqualTo 1}) then 
         ["unit", groupId group _unit],
         ["uid", _uid],
         ["number", "MIL-" + _short],
-        ["issuer", (["militaryIssuer", "Estado Mayor"] call ADVSEC_fnc_cfg)],
+        ["issuer", (["militaryIssuer", ("STR_ADVSEC_general_staff" call ADVSEC_fnc_L)] call ADVSEC_fnc_cfg)],
         ["clearance", (["militaryClearance", 1] call ADVSEC_fnc_cfg)]
     ], true, true, true] call ADVSEC_fnc_docCreate;
 };
@@ -24,7 +24,7 @@ if (_force || {((["autoMilitaryID", 1] call ADVSEC_fnc_cfg)) isEqualTo 1}) then 
     private _e = (getMissionConfigValue [_list, []]) select {(_x isEqualTo _uid) || {_x isEqualType [] && {(_x param [0, ""]) isEqualTo _uid}}};
     if (_e isNotEqualTo []) then {
         private _lvl = [1, (_e select 0) param [1, 1]] select ((_e select 0) isEqualType []);
-        [_unit, _type, [["name", name _unit], ["uid", _uid], ["number", _prefix + _short], ["clearance", _lvl], ["issuer", "Estado Mayor"]], true, true, true] call ADVSEC_fnc_docCreate;
+        [_unit, _type, [["name", name _unit], ["uid", _uid], ["number", _prefix + _short], ["clearance", _lvl], ["issuer", ("STR_ADVSEC_general_staff" call ADVSEC_fnc_L)]], true, true, true] call ADVSEC_fnc_docCreate;
     };
 } forEach [["ADVSEC_pmUIDs", "MPBadge", "PM-"], ["ADVSEC_iaUIDs", "IABadge", "AI-"]];
 // La base de datos de jugadores manda sobre las listas de la misión

@@ -2,5 +2,5 @@
 if !(call ADVSEC_fnc_fromClient) exitWith {true};
 private _o = remoteExecutedOwner;
 private _ok = (allPlayers findIf {owner _x == _o && {[_x] call ADVSEC_fnc_isZeus}}) > -1;
-if (!_ok) then {diag_log format ["[ADVSEC] Init de objeto rechazado: el cliente %1 no es Zeus ni administrador", _o]};
+if (!_ok) then {diag_log format [("STR_ADVSEC_advsec_object_init_rejected_client" call ADVSEC_fnc_L), _o]};
 _ok

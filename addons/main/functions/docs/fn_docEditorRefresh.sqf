@@ -23,9 +23,9 @@ _clr lbSetCurSel (((getNumber (_cfg >> "clearance")) max 0) min ((lbSize _clr) -
 
 private _uidBound = "uid" in _fields;
 (_disp displayCtrl 2003) ctrlSetStructuredText parseText format [
-    "<img image='%1'/> <t font='RobotoCondensedBold'>%2</t><br/><t color='#8C8C8C' size='0.9'>Objeto: %3%4</t>",
+    ("STR_ADVSEC_item_2" call ADVSEC_fnc_L),
     getText (_cfg >> "icon"),
     getText (_cfg >> "displayName"),
     getText (configFile >> "CfgWeapons" >> getText (_cfg >> "item") >> "displayName"),
-    ["", "<br/>Vinculado al SteamID del destinatario: solo es válido para él."] select _uidBound
+    ["", ("STR_ADVSEC_tied_to_the_recipient_s" call ADVSEC_fnc_L)] select _uidBound
 ];

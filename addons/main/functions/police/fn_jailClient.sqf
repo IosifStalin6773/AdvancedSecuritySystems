@@ -10,8 +10,8 @@ ADVSEC_jailHudH = [] spawn {
         if (!isNull _disp) then {
             private _s = floor (_left % 60);
             (_disp displayCtrl 4201) ctrlSetStructuredText parseText format [
-                "<t align='center' font='RobotoCondensedBold' color='#D96600'>DETENIDO · %1</t><br/><t align='center' size='0.85' color='#AAAAAA'>%2</t>",
-                [format ["%1:%2%3 restantes", floor (_left / 60), ["", "0"] select (_s < 10), _s], "a disposición de la PM"] select (_left > 1e6),
+                ("STR_ADVSEC_detained_3" call ADVSEC_fnc_L),
+                [format [("STR_ADVSEC_left_2" call ADVSEC_fnc_L), floor (_left / 60), ["", "0"] select (_s < 10), _s], ("STR_ADVSEC_at_the_mp_s_disposal" call ADVSEC_fnc_L)] select (_left > 1e6),
                 [player getVariable ["ADVSEC_jailReason", ""]] call ADVSEC_fnc_repEsc
             ];
         };

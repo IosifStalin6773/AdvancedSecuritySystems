@@ -16,7 +16,7 @@ ADVSEC_repDB set [_id, createHashMapFromArray [
     ["id", _id], ["type", _type], ["dept", getText (_cfg >> "dept")], ["code", _code], ["typeName", getText (_cfg >> "displayName")],
     ["title", _title], ["subjects", _subjects], ["body", _body], ["gravity", _gravity], ["confidential", _conf],
     ["place", worldName], ["witnesses", ""], ["sanction", "Ninguna"], ["status", "Registrado"],
-    ["author", "Sistema ADVSEC"], ["authorUid", ""], ["created", _ts], ["updated", _ts],
+    ["author", ("STR_ADVSEC_advsec_system" call ADVSEC_fnc_L)], ["authorUid", ""], ["created", _ts], ["updated", _ts],
     ["mission", format ["%1 (%2)", briefingName, worldName]], ["notes", []], ["access", []]
 ]];
 [] call ADVSEC_fnc_repSave;

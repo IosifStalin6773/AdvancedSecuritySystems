@@ -16,7 +16,7 @@ params ["_owner", "_mode"];
                 case "inspect": {[_pairs, name _owner, _owner] call ADVSEC_fnc_docView};
                 case "show": {
                     [_pairs, name _player, _player] remoteExecCall ["ADVSEC_fnc_docView", _target];
-                    hint format ["Has mostrado tu documento a %1.", name _target];
+                    hint format [("STR_ADVSEC_you_have_shown_your_document" call ADVSEC_fnc_L), name _target];
                 };
             };
         },

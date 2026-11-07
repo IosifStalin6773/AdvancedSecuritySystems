@@ -2,7 +2,7 @@
 params ["_id", "_lab", "_secs"];
 closeDialog 0;
 player playMoveNow "AinvPknlMstpSnonWnonDnon_medic_1";
-[format ["Auditoría forense · %1", _id], _secs,
+[format [("STR_ADVSEC_forensic_audit_2" call ADVSEC_fnc_L), _id], _secs,
     {params ["", "_lab"]; (player distance _lab) < 6 && {lifeState player in ["HEALTHY", "INJURED"]}},
     {
         params ["_id", "_lab"];
@@ -10,5 +10,5 @@ player playMoveNow "AinvPknlMstpSnonWnonDnon_medic_1";
         [] spawn {sleep 0.6; ["refresh"] call ADVSEC_fnc_panelAction};
     },
     [_id, _lab],
-    {hint "Auditoría interrumpida: no te alejes del laboratorio."}
+    {hint ("STR_ADVSEC_audit_interrupted_do_not_leave" call ADVSEC_fnc_L)}
 ] call ADVSEC_fnc_progress;

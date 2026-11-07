@@ -3,6 +3,9 @@ class CfgFunctions {
         tag = "ADVSEC";
         class core {
             file = "\x\advsec\addons\main\functions\core";
+            class L {};
+            class Lc {};
+            class Lv {};
             class srvCaller {};
             class deny {};
             class fromClient {};
@@ -259,6 +262,14 @@ class CfgFunctions {
             class dutyTermInit {};
             class moduleDuty {};
             class dutyOpen {};
+        };
+        class patrol {
+            file = "\x\advsec\addons\main\functions\patrol";
+            class patrolDB {};
+            class patrolServer {};
+            class patrolMarkers {};
+            class patrolPlan {};
+            class patrolOpen {};
         };
         class dispatch {
             file = "\x\advsec\addons\main\functions\dispatch";

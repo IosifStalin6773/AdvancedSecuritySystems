@@ -13,10 +13,10 @@ while {true} do {
                     private _pos = _jail getPos [random (_r * 0.5), random 360];
                     _pos set [2, (getPosATL _jail) select 2];
                     [_x, "teleport", [_pos]] call ADVSEC_fnc_policeLocal;
-                    (format ["PM: intento de fuga de %1 en %2.", name _x, _jail getVariable ["ADVSEC_jailName", ""]]) remoteExecCall ["systemChat", 0];
+                    (format [("STR_ADVSEC_mp_escape_attempt_by_at" call ADVSEC_fnc_L), name _x, _jail getVariable ["ADVSEC_jailName", ""]]) remoteExecCall ["systemChat", 0];
                     private _jx = _jail;
                     {
-                        if ((_x distance _jx) < 100) then {[_x, "trigger", "fuga del calabozo"] call ADVSEC_fnc_alarmSet};
+                        if ((_x distance _jx) < 100) then {[_x, "trigger", ("STR_ADVSEC_escape_from_the_cell" call ADVSEC_fnc_L)] call ADVSEC_fnc_alarmSet};
                     } forEach (ADVSEC_alarms select {!isNull _x});
                 };
             };

@@ -15,7 +15,7 @@ private _ok = (_caller distance _kp < 6) && {
 };
 // Alerta roja: además del PIN o la tarjeta hace falta un documento de identidad válido
 if (_ok && {(missionNamespace getVariable ["ADVSEC_alertLevel", 0]) >= 2} && {!([_caller] call ADVSEC_fnc_isZeus)} && {!([_caller, [0, ["alertRedIdTypes", []] call ADVSEC_fnc_setting, ""]] call ADVSEC_fnc_accessCheck)}) exitWith {
-    ["ALERTA ROJA: IDENTIFÍQUESE", false] remoteExecCall ["ADVSEC_fnc_keypadFeedback", _caller];
+    [("STR_ADVSEC_red_alert_identify_yourself" call ADVSEC_fnc_L), false] remoteExecCall ["ADVSEC_fnc_keypadFeedback", _caller];
 };
 private _alarm = _kp getVariable ["ADVSEC_kpAlarm", objNull];
 if (_alarm isEqualType "") then {
@@ -29,9 +29,9 @@ if (!_ok) exitWith {
     if (_fails >= 3) then {
         _kp setVariable ["ADVSEC_kpFails", 0];
         _kp setVariable ["ADVSEC_kpLockout", time + 30, true];
-        if (!isNull _alarm) then {[_alarm, "trigger", format ["keypad forzado por %1", name _caller]] call ADVSEC_fnc_alarmSet};
+        if (!isNull _alarm) then {[_alarm, "trigger", format [("STR_ADVSEC_keypad_forced_by" call ADVSEC_fnc_L), name _caller]] call ADVSEC_fnc_alarmSet};
     };
-    ["ACCESO DENEGADO", false] remoteExecCall ["ADVSEC_fnc_keypadFeedback", _caller];
+    [("STR_ADVSEC_access_denied" call ADVSEC_fnc_L), false] remoteExecCall ["ADVSEC_fnc_keypadFeedback", _caller];
 };
 _kp setVariable ["ADVSEC_kpFails", 0];
 
@@ -51,4 +51,4 @@ if (!isNull _alarm) then {
         [_alarm, "disarm"] call ADVSEC_fnc_alarmSet;
     };
 };
-[["ACCESO CONCEDIDO - ABIERTO", "ACCESO CONCEDIDO - CERRADO"] select _lock, true] remoteExecCall ["ADVSEC_fnc_keypadFeedback", _caller];
+[[("STR_ADVSEC_access_granted_unlocked" call ADVSEC_fnc_L), ("STR_ADVSEC_access_granted_locked" call ADVSEC_fnc_L)] select _lock, true] remoteExecCall ["ADVSEC_fnc_keypadFeedback", _caller];

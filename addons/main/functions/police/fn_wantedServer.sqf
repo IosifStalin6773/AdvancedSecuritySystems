@@ -4,7 +4,7 @@ if (!isServer || {isNull _caller}) exitWith {};
 if (isMultiplayer && {remoteExecutedOwner != 0} && {remoteExecutedOwner != owner _caller}) exitWith {};
 if (isNil "ADVSEC_wantedDB") then {[] call ADVSEC_fnc_policeDBLoad};
 if !([_caller, "wanted"] call ADVSEC_fnc_perm) exitWith {
-    "Tu rango no permite gestionar la lista de buscados." remoteExecCall ["hint", _caller];
+    ("STR_ADVSEC_your_rank_does_not_allow_5" call ADVSEC_fnc_L) remoteExecCall ["hint", _caller];
 };
 
 switch (_action) do {
@@ -14,7 +14,7 @@ switch (_action) do {
         ADVSEC_wantedDB set [_uid, [_name, _reason, _level, name _caller, call ADVSEC_fnc_now, getPlayerUID _caller]];
         ["wanted"] call ADVSEC_fnc_policeDBSave;
         ["wantedAdd", _caller, [_name, _uid, _level, _reason]] call ADVSEC_fnc_logEvent;
-        (format ["PM: %1 declarado BUSCADO (peligrosidad %2).", _name, toLower _level]) remoteExecCall ["systemChat", 0];
+        (format [("STR_ADVSEC_mp_declared_wanted_danger_level" call ADVSEC_fnc_L), _name, toLower _level]) remoteExecCall ["systemChat", 0];
     };
     case "del": {
         _args params ["_uid"];
@@ -24,6 +24,6 @@ switch (_action) do {
         };
         ["wantedDel", _caller, [_uid]] call ADVSEC_fnc_logEvent;
         ["wanted"] call ADVSEC_fnc_policeDBSave;
-        if (!isNil "_e") then {(format ["PM: %1 retirado de la lista de buscados.", _e select 0]) remoteExecCall ["systemChat", 0]};
+        if (!isNil "_e") then {(format [("STR_ADVSEC_mp_removed_from_the_wanted" call ADVSEC_fnc_L), _e select 0]) remoteExecCall ["systemChat", 0]};
     };
 };

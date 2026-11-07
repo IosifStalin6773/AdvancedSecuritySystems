@@ -1,6 +1,6 @@
 // (servidor) Sistemas de rol: cierre de turno al desconectar y carga de bases de datos
 if (!isServer) exitWith {};
-{call _x} forEach [ADVSEC_fnc_specDB, ADVSEC_fnc_dutyDB, ADVSEC_fnc_plateDB, ADVSEC_fnc_wpnDB, ADVSEC_fnc_bodyDB];
+{call _x} forEach [ADVSEC_fnc_specDB, ADVSEC_fnc_dutyDB, ADVSEC_fnc_plateDB, ADVSEC_fnc_wpnDB, ADVSEC_fnc_bodyDB, ADVSEC_fnc_patrolDB];
 ["check"] call ADVSEC_fnc_susServer;
 // Taquillas TS_Lockers colocadas con Zeus: se guardan y se recrean (Antistasi no conserva los objetos de Zeus)
 [] call ADVSEC_fnc_lockerPersist;

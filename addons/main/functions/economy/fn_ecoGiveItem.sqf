@@ -31,4 +31,4 @@ for "_i" from 1 to _n do {
         _ground = _ground + 1;
     };
 };
-hint parseText format ["Comprado: %1 × %2%3", _n, [_c] call ADVSEC_fnc_ecoItemName, ["", format ["<br/>%1 no cabían y están en el suelo.", _ground]] select (_ground > 0)];
+hint parseText format [("STR_ADVSEC_bought" call ADVSEC_fnc_L), _n, [_c] call ADVSEC_fnc_ecoItemName, ["", format [("STR_ADVSEC_did_not_fit_and_are" call ADVSEC_fnc_L), _ground]] select (_ground > 0)];

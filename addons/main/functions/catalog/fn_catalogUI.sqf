@@ -36,7 +36,7 @@ switch (_a) do {
         if (lbCurSel _cb < 0) exitWith {};
         private _c = _cb lbData (lbCurSel _cb);
         private _p = round parseNumber ctrlText (_d displayCtrl 88104);
-        if (_p <= 0) exitWith {(_d displayCtrl 88110) ctrlSetStructuredText parseText "<t color='#FF6655'>Pon un precio mayor que 0.</t>"};
+        if (_p <= 0) exitWith {(_d displayCtrl 88110) ctrlSetStructuredText parseText ("STR_ADVSEC_set_a_price_above_0" call ADVSEC_fnc_L)};
         // Si ya estaba, se actualiza el precio
         private _i = _entries findIf {(_x select 0) == _c};
         if (_i >= 0) then {(_entries select _i) set [1, _p]} else {_entries pushBack [_c, _p]};
@@ -64,7 +64,7 @@ switch (_a) do {
             _lb lbSetTooltip [_i, _c];
             _lb lbSetPicture [_i, [[_c] call ADVSEC_fnc_ecoItemPic, getText (configFile >> "CfgVehicles" >> _c >> "picture")] select (_kind == "vehicles")];
         } forEach _entries;
-        (_d displayCtrl 88110) ctrlSetStructuredText parseText format ["<t color='#8C8C8C' size='0.9'>%1 en venta. %2</t>", count _entries, ["Elige categoría y artículo, pon el precio y pulsa Añadir. Si lo dejas vacío se usa la lista por defecto.", "Selecciona uno de la lista para cambiar su precio o quitarlo."] select (_entries isNotEqualTo [])];
+        (_d displayCtrl 88110) ctrlSetStructuredText parseText format [("STR_ADVSEC_for_sale" call ADVSEC_fnc_L), count _entries, [("STR_ADVSEC_pick_a_category_and_item" call ADVSEC_fnc_L), ("STR_ADVSEC_select_one_from_the_list" call ADVSEC_fnc_L)] select (_entries isNotEqualTo [])];
         if (lbSize (_d displayCtrl 88103) == 0) then {[_d, "cat"] call ADVSEC_fnc_catalogUI};
     };
     case "ok": {

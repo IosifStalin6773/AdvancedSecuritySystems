@@ -7,4 +7,4 @@ ADVSEC_repDB = createHashMap;
     ADVSEC_repDB set [_r get "id", _r];
 } forEach (profileNamespace getVariable [ADVSEC_repKey, []]);
 ADVSEC_repSeq = createHashMapFromArray (profileNamespace getVariable [ADVSEC_repKey + "_seq", []]);
-diag_log format ["[ADVSEC] Archivo de informes '%1' cargado: %2 informes", ADVSEC_repKey, count ADVSEC_repDB];
+diag_log format [("STR_ADVSEC_advsec_report_archive_loaded_reports" call ADVSEC_fnc_L), ADVSEC_repKey, count ADVSEC_repDB];

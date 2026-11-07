@@ -2,7 +2,7 @@ class CfgPatches {
     class AdvancedSecuritySystems {
         name = "Advanced Security Systems";
         author = "oscar";
-        version = "1.16.0";
+        version = "1.17.0";
         requiredVersion = 2.14;
         requiredAddons[] = {"A3_Functions_F", "A3_UI_F", "A3_Weapons_F", "A3_Characters_F", "A3_Modules_F", "A3_Modules_F_Curator", "3DEN"};
         units[] = {
@@ -28,6 +28,7 @@ class Extended_PreInit_EventHandlers {
     };
 };
 
+#include "CfgLang.hpp"
 #include "CfgFunctions.hpp"
 #include "CfgWeapons.hpp"
 #include "CfgDocuments.hpp"

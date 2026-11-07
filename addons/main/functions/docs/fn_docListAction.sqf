@@ -18,9 +18,9 @@ switch (_mode) do {
             _t = ((player nearEntities ["CAManBase", 4]) select {_x != player && {isPlayer _x}}) param [0, objNull];
         };
         ADVSEC_showTarget = objNull;
-        if (isNull _t) exitWith {hint "No hay nadie cerca a quien mostrar el documento."};
+        if (isNull _t) exitWith {hint ("STR_ADVSEC_there_is_nobody_nearby_to" call ADVSEC_fnc_L)};
         closeDialog 0;
         [_pairs, name player, player] remoteExecCall ["ADVSEC_fnc_docView", _t];
-        hint format ["Has mostrado tu documento a %1.", name _t];
+        hint format [("STR_ADVSEC_you_have_shown_your_document" call ADVSEC_fnc_L), name _t];
     };
 };

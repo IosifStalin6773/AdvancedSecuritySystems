@@ -10,7 +10,7 @@ private _pic = {
 };
 private _out = [];
 if (_kind == "vehicles") then {
-    private _cats = [["Motocicletas", []], ["Coches", []], ["Camiones", []], ["Blindados de ruedas", []], ["Orugas y carros de combate", []], ["Helicópteros", []], ["Aviones", []], ["Barcos", []], ["Drones", []]];
+    private _cats = [[("STR_ADVSEC_motorcycles" call ADVSEC_fnc_L), []], [("STR_ADVSEC_cars" call ADVSEC_fnc_L), []], [("STR_ADVSEC_trucks" call ADVSEC_fnc_L), []], [("STR_ADVSEC_wheeled_armour" call ADVSEC_fnc_L), []], [("STR_ADVSEC_tracked_vehicles_and_tanks" call ADVSEC_fnc_L), []], [("STR_ADVSEC_helicopters" call ADVSEC_fnc_L), []], [("STR_ADVSEC_planes" call ADVSEC_fnc_L), []], [("STR_ADVSEC_boats" call ADVSEC_fnc_L), []], ["Drones", []]];
     {
         private _c = configName _x;
         private _i = switch (true) do {
@@ -34,10 +34,10 @@ if (_kind == "vehicles") then {
 } else {
     if (isNil "ADVSEC_shopTabs") then {
         ADVSEC_shopTabs = [
-            ["Arma principal", "primaryWeapon"], ["Lanzador", "secondaryWeapon"], ["Pistola", "handgun"], ["Uniforme", "uniform"], ["Chaleco", "vest"], ["Mochila", "backpack"],
-            ["Casco y gorra", "headgear"], ["Gafas", "goggles"], ["Visión nocturna", "nvgs"], ["Prismáticos", "binoculars"], ["Mapa", "map"], ["GPS y terminal", "gps"],
-            ["Radio", "radio"], ["Brújula", "compass"], ["Reloj", "watch"], ["Mira", "itemOptic"], ["Accesorio de raíl", "itemAcc"], ["Bocacha", "itemMuzzle"],
-            ["Bípode", "itemBipod"], ["Cargadores", "cargoMag"], ["Granadas", "cargoThrow"], ["Explosivos", "cargoPut"], ["Varios", "cargoMisc"]
+            [("STR_ADVSEC_primary_weapon" call ADVSEC_fnc_L), "primaryWeapon"], [("STR_ADVSEC_launcher" call ADVSEC_fnc_L), "secondaryWeapon"], [("STR_ADVSEC_handgun" call ADVSEC_fnc_L), "handgun"], [("STR_ADVSEC_uniform" call ADVSEC_fnc_L), "uniform"], [("STR_ADVSEC_vest" call ADVSEC_fnc_L), "vest"], [("STR_ADVSEC_backpack" call ADVSEC_fnc_L), "backpack"],
+            [("STR_ADVSEC_helmet_and_cap" call ADVSEC_fnc_L), "headgear"], [("STR_ADVSEC_glasses" call ADVSEC_fnc_L), "goggles"], [("STR_ADVSEC_night_vision" call ADVSEC_fnc_L), "nvgs"], [("STR_ADVSEC_binoculars" call ADVSEC_fnc_L), "binoculars"], [("STR_ADVSEC_map" call ADVSEC_fnc_L), "map"], [("STR_ADVSEC_gps_and_terminal" call ADVSEC_fnc_L), "gps"],
+            [("STR_ADVSEC_radius" call ADVSEC_fnc_L), "radio"], [("STR_ADVSEC_compass" call ADVSEC_fnc_L), "compass"], [("STR_ADVSEC_watch" call ADVSEC_fnc_L), "watch"], [("STR_ADVSEC_optic" call ADVSEC_fnc_L), "itemOptic"], [("STR_ADVSEC_rail_attachment" call ADVSEC_fnc_L), "itemAcc"], [("STR_ADVSEC_muzzle" call ADVSEC_fnc_L), "itemMuzzle"],
+            [("STR_ADVSEC_bipod" call ADVSEC_fnc_L), "itemBipod"], [("STR_ADVSEC_magazines" call ADVSEC_fnc_L), "cargoMag"], [("STR_ADVSEC_grenades" call ADVSEC_fnc_L), "cargoThrow"], [("STR_ADVSEC_explosives" call ADVSEC_fnc_L), "cargoPut"], [("STR_ADVSEC_miscellaneous" call ADVSEC_fnc_L), "cargoMisc"]
         ];
     };
     _out = ADVSEC_shopTabs apply {[_x select 0, []]};

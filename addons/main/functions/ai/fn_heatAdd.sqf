@@ -27,15 +27,15 @@ private _thr = ["heatThreshold", 30] call ADVSEC_fnc_setting;
 if ((_e select 0) >= _thr && {(_e select 4) isEqualTo ""}) then {
     private _lines = (_e select 2) apply {format ["- %1 · %2 (+%3)", _x select 0, _x select 1, _x select 2]};
     private _id = ["FAI01",
-        format ["Expediente automático: índice de sospecha de %1", _name],
+        format [("STR_ADVSEC_automatic_case_file_suspicion_index" call ADVSEC_fnc_L), _name],
         [format ["%1 [%2]", _name, _uid]],
-        format ["Apertura automática por el sistema al alcanzar %1 puntos de sospecha (umbral %2).%3%3Eventos registrados:%3%4", round (_e select 0), _thr, endl, _lines joinString endl],
+        format [("STR_ADVSEC_opened_automatically_by_the_system" call ADVSEC_fnc_L), round (_e select 0), _thr, endl, _lines joinString endl],
         "Grave", true
     ] call ADVSEC_fnc_repSystem;
     _e set [4, _id];
     {
         if ([_x, "AI"] call ADVSEC_fnc_repAccess) then {
-            (format ["AA.II.: expediente automático %1 abierto sobre %2.", _id, _name]) remoteExecCall ["systemChat", _x];
+            (format [("STR_ADVSEC_ia_automatic_case_file_opened" call ADVSEC_fnc_L), _id, _name]) remoteExecCall ["systemChat", _x];
         };
     } forEach allPlayers;
 };

@@ -26,9 +26,9 @@ switch (_action) do {
         if (isNull findDisplay 87200) exitWith {};
         private _row = {params ["_n", "_t", ["_c", "#EBEBEB"]]; format ["<t size='1.6' font='RobotoCondensedBold' color='%3'>%1</t>  <t color='#8C8C8C'>%2</t><br/>", _n, _t, _c]};
         private _rows = if (ADVSEC_pdaMode == "AI") then {
-            [[_sent, "denuncias remitidas a AA.II. pendientes", "#D0A330"], [_cases, "expedientes abiertos"], [_open, "denuncias sin resolver (total)"], [_mine, "registros firmados por ti"]]
+            [[_sent, ("STR_ADVSEC_complaints_referred_to_ia_pending" call ADVSEC_fnc_L), "#D0A330"], [_cases, ("STR_ADVSEC_open_case_files" call ADVSEC_fnc_L)], [_open, ("STR_ADVSEC_unresolved_complaints_total" call ADVSEC_fnc_L)], [_mine, ("STR_ADVSEC_records_signed_by_you" call ADVSEC_fnc_L)]]
         } else {
-            [[_open, "denuncias pendientes", "#D0A330"], [_reports, "informes de Policía Militar"], [_jailed, "detenidos en calabozo"], [count ADVSEC_wanted, "personas en busca y captura", "#FF4D4D"], [_mine, "registros firmados por ti"]]
+            [[_open, ("STR_ADVSEC_pending_complaints" call ADVSEC_fnc_L), "#D0A330"], [_reports, ("STR_ADVSEC_military_police_reports" call ADVSEC_fnc_L)], [_jailed, ("STR_ADVSEC_detainees_in_the_cell" call ADVSEC_fnc_L)], [count ADVSEC_wanted, ("STR_ADVSEC_wanted_people" call ADVSEC_fnc_L), "#FF4D4D"], [_mine, ("STR_ADVSEC_records_signed_by_you" call ADVSEC_fnc_L)]]
         };
         ((findDisplay 87200) displayCtrl 87232) ctrlSetStructuredText parseText ((_rows apply {_x call _row}) joinString "");
     };
@@ -37,7 +37,7 @@ switch (_action) do {
         if (!isNull _disp) then {[ADVSEC_repCurrent] call ADVSEC_fnc_repRender};
     };
     case "created": {
-        hint format ["Informe registrado: %1", _data];
+        hint format [("STR_ADVSEC_report_logged" call ADVSEC_fnc_L), _data];
         ADVSEC_repSelect = _data;
         if (!isNull _disp) then {["refresh"] call ADVSEC_fnc_repAction};
     };

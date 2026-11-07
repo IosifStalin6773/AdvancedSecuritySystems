@@ -3,9 +3,9 @@ params ["_obj", ["_dept", "PM"], ["_req", []]];
 if (isServer && {!(call ADVSEC_fnc_trustedInit)}) exitWith {};
 if (isNull _obj) exitWith {};
 private _label = switch (_dept) do {
-    case "AI": {"Terminal de Asuntos Internos"};
-    case "BOTH": {"Terminal de informes PM / AA.II."};
-    default {"Terminal de Policía Militar"};
+    case "AI": {("STR_ADVSEC_internal_affairs_terminal" call ADVSEC_fnc_L)};
+    case "BOTH": {("STR_ADVSEC_mp_ia_reports_terminal" call ADVSEC_fnc_L)};
+    default {("STR_ADVSEC_military_police_terminal" call ADVSEC_fnc_L)};
 };
 if (isServer) then {[_obj, "reports", _label] call ADVSEC_fnc_register};
 [_obj, "advsec_reports", _label, ADVSEC_icDoc,

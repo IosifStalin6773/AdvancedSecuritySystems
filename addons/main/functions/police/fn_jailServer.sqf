@@ -23,21 +23,21 @@ private _jailFor = {
 
 switch (_action) do {
     case "jail": {
-        if !(["arrest"] call _auth) exitWith {"No tienes autoridad para detener." call _say};
+        if !(["arrest"] call _auth) exitWith {("STR_ADVSEC_you_have_no_authority_to" call ADVSEC_fnc_L) call _say};
         _args params ["_unit", ["_min", 10], ["_reason", ""], ["_jail", objNull], ["_report", true]];
         if (isNull _unit || {!alive _unit}) exitWith {};
         if (isNull _jail) then {
             _jail = ([ADVSEC_jails select {!isNull _x}, [], {_x distance _unit}, "ASCEND"] call BIS_fnc_sortBy) param [0, objNull];
         };
-        if (isNull _jail) exitWith {"No hay ningún centro de detención." call _say};
-        if (_reason isEqualTo "") then {_reason = "Sin especificar"};
+        if (isNull _jail) exitWith {("STR_ADVSEC_there_is_no_detention_centre_2" call ADVSEC_fnc_L) call _say};
+        if (_reason isEqualTo "") then {_reason = ("STR_ADVSEC_unspecified" call ADVSEC_fnc_L)};
         private _secs = [_min * 60, 1e7] select (_min < 0);
-        private _jname = _jail getVariable ["ADVSEC_jailName", "Calabozo"];
+        private _jname = _jail getVariable ["ADVSEC_jailName", ("STR_ADVSEC_cell" call ADVSEC_fnc_L)];
         ADVSEC_jailDB set [[_unit] call _key, [_secs, _reason, name _unit, name _caller, _jname]];
         ["jail"] call ADVSEC_fnc_policeDBSave;
         [_unit, _jail, _secs, _reason] call _jailFor;
-        private _time = ["hasta nueva orden", format ["%1 min", _min]] select (_min > 0);
-        (format ["%1 ingresa en %2 (%3).", name _unit, _jname, _time]) call _say;
+        private _time = [("STR_ADVSEC_until_further_notice" call ADVSEC_fnc_L), format ["%1 min", _min]] select (_min > 0);
+        (format [("STR_ADVSEC_is_taken_to" call ADVSEC_fnc_L), name _unit, _jname, _time]) call _say;
         ["jail", _caller, [name _unit, getPlayerUID _unit, _jname, _min, _reason]] call ADVSEC_fnc_logEvent;
         if (!_sys && {isPlayer _unit}) then {
             if !([getPlayerUID _unit] call ADVSEC_fnc_causeFor) then {[_caller, "arrestNoCause", name _unit] call ADVSEC_fnc_heatAdd};
@@ -49,16 +49,16 @@ switch (_action) do {
                 ["gravity", "Grave"],
                 ["confidential", false],
                 ["subjects", [format ["%1 [%2]", name _unit, getPlayerUID _unit]]],
-                ["title", format ["Detención e ingreso en %1", _jname]],
-                ["place", format ["%1 · cuadrícula %2", worldName, mapGridPosition _unit]],
+                ["title", format [("STR_ADVSEC_arrest_and_admission_to" call ADVSEC_fnc_L), _jname]],
+                ["place", format [("STR_ADVSEC_grid_3" call ADVSEC_fnc_L), worldName, mapGridPosition _unit]],
                 ["witnesses", ""],
-                ["body", format ["Detenido por %1 (%2). Motivo: %3. Tiempo de arresto: %4.", name _caller, getPlayerUID _caller, _reason, _time]],
+                ["body", format [("STR_ADVSEC_arrested_by_reason_arrest_time" call ADVSEC_fnc_L), name _caller, getPlayerUID _caller, _reason, _time]],
                 ["sanction", "Ninguna"]
             ]] call ADVSEC_fnc_repServer;
         };
     };
     case "release": {
-        if !(["release"] call _auth) exitWith {"No tienes autoridad para liberar." call _say};
+        if !(["release"] call _auth) exitWith {("STR_ADVSEC_you_have_no_authority_to_2" call ADVSEC_fnc_L) call _say};
         _args params ["_unit"];
         if (isNull _unit) exitWith {};
         if (!_sys && {((_unit getVariable ["ADVSEC_jailUntil", 0]) - serverTime) > 60} && {(_unit getVariable ["ADVSEC_jailUntil", 0]) < 1e6} && {!([_caller] call ADVSEC_fnc_isZeus)}) then {
@@ -66,7 +66,7 @@ switch (_action) do {
         };
         [_unit] call ADVSEC_fnc_jailRelease;
         ["release", _caller, [name _unit, getPlayerUID _unit]] call ADVSEC_fnc_logEvent;
-        (format ["%1 puesto en libertad.", name _unit]) call _say;
+        (format [("STR_ADVSEC_released" call ADVSEC_fnc_L), name _unit]) call _say;
     };
     case "check": {
         private _e = ADVSEC_jailDB getOrDefault [[_caller] call _key, []];
@@ -77,6 +77,6 @@ switch (_action) do {
         private _jail = (_jails select {(_x getVariable ["ADVSEC_jailName", ""]) isEqualTo _jname}) param [0, _jails param [0, objNull]];
         if (isNull _jail) exitWith {};
         [_caller, _jail, _secs, _reason] call _jailFor;
-        "Tienes un arresto pendiente: vuelves al calabozo." remoteExecCall ["hint", _caller];
+        ("STR_ADVSEC_you_have_a_pending_arrest" call ADVSEC_fnc_L) remoteExecCall ["hint", _caller];
     };
 };

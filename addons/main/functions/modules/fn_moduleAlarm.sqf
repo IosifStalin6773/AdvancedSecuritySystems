@@ -13,7 +13,7 @@ private _args = [
     [_logic] call ADVSEC_fnc_moduleReq,
     _doors,
     _logic getVariable ["Armed", true],
-    _logic getVariable ["Name", "Alarma"],
+    _logic getVariable ["Name", ("STR_ADVSEC_alarm" call ADVSEC_fnc_L)],
     _logic getVariable ["Zone", ""]
 ];
 // Sin emisor sincronizado: altavoces en la posición del módulo (como en Zeus)

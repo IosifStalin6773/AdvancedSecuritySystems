@@ -1,4 +1,4 @@
-if !(([player, "PM"] call ADVSEC_fnc_repAccess) || {[player] call ADVSEC_fnc_isZeus}) exitWith {hint "Necesitas placa de Policía Militar."};
+if !(([player, "PM"] call ADVSEC_fnc_repAccess) || {[player] call ADVSEC_fnc_isZeus}) exitWith {hint ("STR_ADVSEC_you_need_a_military_police" call ADVSEC_fnc_L)};
 if (isNull findDisplay 86900 && {!createDialog "ADVSEC_Wanted"}) exitWith {};
 ["fill"] call ADVSEC_fnc_wantedAction;
 [] spawn {

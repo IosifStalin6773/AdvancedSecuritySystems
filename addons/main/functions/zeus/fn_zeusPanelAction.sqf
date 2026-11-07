@@ -17,12 +17,12 @@ private _goto = {
 };
 private _needObj = {
     params ["_kinds"];
-    if (isNull _obj) exitWith {"Selecciona un objeto de la lista." call _msg; false};
-    if !(_kind in _kinds) exitWith {format ["Esta acción no se aplica a: %1.", ADVSEC_kindNames getOrDefault [_kind, _kind]] call _msg; false};
+    if (isNull _obj) exitWith {("STR_ADVSEC_select_an_object_from_the" call ADVSEC_fnc_L) call _msg; false};
+    if !(_kind in _kinds) exitWith {format [("STR_ADVSEC_this_action_does_not_apply" call ADVSEC_fnc_L), ADVSEC_kindNames getOrDefault [_kind, _kind]] call _msg; false};
     true
 };
 private _needUnit = {
-    if (isNull _unit) exitWith {"Selecciona un jugador." call _msg; false};
+    if (isNull _unit) exitWith {("STR_ADVSEC_select_a_player" call ADVSEC_fnc_L) call _msg; false};
     true
 };
 
@@ -59,19 +59,19 @@ switch (_action) do {
         private _lines = [format ["<t font='RobotoCondensedBold' color='#D0A330'>%1</t> · %2 · %3", ADVSEC_kindNames getOrDefault [_kind, _kind], [_label] call ADVSEC_fnc_repEsc, mapGridPosition _obj]];
         switch (_kind) do {
             case "door": {
-                _lines pushBack ((_data apply {format ["Puerta %1: %2", _x, ["abierta", "<t color='#ff7777'>cerrada</t>"] select (_obj getVariable [format ["ADVSEC_locked_%1", _x], false])]}) joinString " · ");
+                _lines pushBack ((_data apply {format [("STR_ADVSEC_door" call ADVSEC_fnc_L), _x, ["abierta", ("STR_ADVSEC_locked_3" call ADVSEC_fnc_L)] select (_obj getVariable [format ["ADVSEC_locked_%1", _x], false])]}) joinString " · ");
             };
             case "keypad": {
                 private _d = _obj getVariable ["ADVSEC_kpDoors", []];
-                _lines pushBack format ["%1 puertas · alarma: %2 · tarjeta: %3", count _d, [_obj getVariable ["ADVSEC_kpAlarm", ""]] param [0, ""], str (_obj getVariable ["ADVSEC_kpReq", []])];
+                _lines pushBack format [("STR_ADVSEC_doors_alarm_card" call ADVSEC_fnc_L), count _d, [_obj getVariable ["ADVSEC_kpAlarm", ""]] param [0, ""], str (_obj getVariable ["ADVSEC_kpReq", []])];
             };
             case "alarm": {
-                _lines pushBack format ["Zona: %1 · %2%3", _data, ["desarmada", "armada"] select (_obj getVariable ["ADVSEC_armed", false]),
-                    ["", format [" · <t color='#FF4D4D'>DISPARADA: %1</t>", _obj getVariable ["ADVSEC_reason", ""]]] select (_obj getVariable ["ADVSEC_active", false])];
+                _lines pushBack format [("STR_ADVSEC_zone" call ADVSEC_fnc_L), _data, ["desarmada", "armada"] select (_obj getVariable ["ADVSEC_armed", false]),
+                    ["", format [("STR_ADVSEC_triggered_2" call ADVSEC_fnc_L), _obj getVariable ["ADVSEC_reason", ""]]] select (_obj getVariable ["ADVSEC_active", false])];
             };
-            case "camera": {_lines pushBack format ["Red: %1", _data]};
-            case "monitor": {_lines pushBack format ["Red: %1", _data]};
-            case "jail": {_lines pushBack format ["Radio %1 m · detenidos: %2", _obj getVariable ["ADVSEC_jailRadius", 0], ({(_x getVariable ["ADVSEC_jailObj", objNull]) isEqualTo _obj} count allPlayers)]};
+            case "camera": {_lines pushBack format [("STR_ADVSEC_network" call ADVSEC_fnc_L), _data]};
+            case "monitor": {_lines pushBack format [("STR_ADVSEC_network" call ADVSEC_fnc_L), _data]};
+            case "jail": {_lines pushBack format [("STR_ADVSEC_radius_m_detained" call ADVSEC_fnc_L), _obj getVariable ["ADVSEC_jailRadius", 0], ({(_x getVariable ["ADVSEC_jailObj", objNull]) isEqualTo _obj} count allPlayers)]};
         };
         (_disp displayCtrl 87011) ctrlSetStructuredText parseText (_lines joinString "<br/>");
     };
@@ -80,10 +80,10 @@ switch (_action) do {
         private _docs = ([_unit] call ADVSEC_fnc_docGetAll) apply {getText (([_x get "type"] call ADVSEC_fnc_docTypeCfg) >> "displayName")};
         private _w = (missionNamespace getVariable ["ADVSEC_wanted", []]) select {(_x select 0) == getPlayerUID _unit};
         private _jail = (_unit getVariable ["ADVSEC_jailUntil", 0]) - serverTime;
-        private _txt = format ["<t font='RobotoCondensedBold' color='#D0A330'>%1</t> · %2 · %3<br/><t color='#8C8C8C'>Documentos:</t> %4",
+        private _txt = format [("STR_ADVSEC_documents_2" call ADVSEC_fnc_L),
             [name _unit] call ADVSEC_fnc_repEsc, getPlayerUID _unit, groupId group _unit, ["ninguno", _docs joinString ", "] select (_docs isNotEqualTo [])];
-        if (_w isNotEqualTo []) then {_txt = _txt + format ["<br/><t color='#FF4D4D'>BUSCADO (%1): %2</t>", (_w select 0) select 3, [(_w select 0) select 2] call ADVSEC_fnc_repEsc]};
-        if (_jail > 0) then {_txt = _txt + format ["<br/><t color='#D96600'>Detenido: %1 min restantes</t>", ceil (_jail / 60)]};
+        if (_w isNotEqualTo []) then {_txt = _txt + format [("STR_ADVSEC_wanted_4" call ADVSEC_fnc_L), (_w select 0) select 3, [(_w select 0) select 2] call ADVSEC_fnc_repEsc]};
+        if (_jail > 0) then {_txt = _txt + format [("STR_ADVSEC_detained_min_left" call ADVSEC_fnc_L), ceil (_jail / 60)]};
         (_disp displayCtrl 87013) ctrlSetStructuredText parseText _txt;
     };
     case "goto": {[_obj] call _goto};
@@ -91,19 +91,19 @@ switch (_action) do {
     case "doors": {
         if !([["door", "keypad"]] call _needObj) exitWith {};
         private _pairs = if (_kind == "door") then {_data apply {[_obj, _x]}} else {_obj getVariable ["ADVSEC_kpDoors", []]};
-        if (_pairs isEqualTo []) exitWith {"No tiene puertas asignadas." call _msg};
+        if (_pairs isEqualTo []) exitWith {("STR_ADVSEC_it_has_no_doors_assigned" call ADVSEC_fnc_L) call _msg};
         (_pairs select 0) params ["_b", "_i"];
         private _lock = !(_b getVariable [format ["ADVSEC_locked_%1", _i], false]);
         {_x params ["_b", "_i"]; [_b, _i, _lock] call ADVSEC_fnc_doorSet} forEach _pairs;
-        (["Puertas abiertas.", "Puertas cerradas."] select _lock) call _msg;
+        ([("STR_ADVSEC_doors_unlocked" call ADVSEC_fnc_L), ("STR_ADVSEC_doors_locked" call ADVSEC_fnc_L)] select _lock) call _msg;
         [] spawn {sleep 0.3; ["selObj"] call ADVSEC_fnc_zeusPanelAction};
     };
     case "pin": {
         if !([["keypad"]] call _needObj) exitWith {};
-        [format ["CAMBIAR PIN · %1", _label], [["Nuevo PIN (solo cifras)", ""]], {
+        [format [("STR_ADVSEC_change_pin" call ADVSEC_fnc_L), _label], [[("STR_ADVSEC_new_pin_digits_only" call ADVSEC_fnc_L), ""]], {
             params ["_v", "_kp"];
             private _pin = (_v select 0) select [0, 8];
-            if (_pin isEqualTo "" || {(_pin splitString "0123456789") isNotEqualTo []}) exitWith {hint "PIN no válido."};
+            if (_pin isEqualTo "" || {(_pin splitString "0123456789") isNotEqualTo []}) exitWith {hint ("STR_ADVSEC_invalid_pin" call ADVSEC_fnc_L)};
             ["pin", player, [_kp, _pin]] remoteExecCall ["ADVSEC_fnc_zeusServer", 2];
         }, _obj] call ADVSEC_fnc_zeusPrompt;
     };
@@ -120,7 +120,7 @@ switch (_action) do {
     case "trigger";
     case "silence": {
         if !([["alarm"]] call _needObj) exitWith {};
-        [_obj, _action, "orden de Zeus"] call ADVSEC_fnc_alarmSet;
+        [_obj, _action, ("STR_ADVSEC_zeus_order" call ADVSEC_fnc_L)] call ADVSEC_fnc_alarmSet;
         [] spawn {sleep 0.3; ["selObj"] call ADVSEC_fnc_zeusPanelAction};
     };
     case "police": {
@@ -138,14 +138,14 @@ switch (_action) do {
         [_unit, _t, [
             ["name", name _unit], ["uid", _uid],
             ["number", (["AI-", "PM-"] select (_action == "giveMP")) + (_uid select [(count _uid - 8) max 0])],
-            ["issuer", "Mando (Zeus)"]
+            ["issuer", ("STR_ADVSEC_command_zeus" call ADVSEC_fnc_L)]
         ]] call ADVSEC_fnc_docCreate;
-        format ["%1 entregada a %2.", getText (([_t] call ADVSEC_fnc_docTypeCfg) >> "displayName"), name _unit] call _msg;
+        format [("STR_ADVSEC_handed_to" call ADVSEC_fnc_L), getText (([_t] call ADVSEC_fnc_docTypeCfg) >> "displayName"), name _unit] call _msg;
     };
     case "giveMil": {
         if !(call _needUnit) exitWith {};
         [_unit, true] call ADVSEC_fnc_docAutoIssue;
-        format ["ID militar emitido a %1.", name _unit] call _msg;
+        format [("STR_ADVSEC_military_id_issued_to" call ADVSEC_fnc_L), name _unit] call _msg;
     };
     case "docs": {
         if !(call _needUnit) exitWith {};

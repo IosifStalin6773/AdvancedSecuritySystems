@@ -16,10 +16,10 @@ if (isNil "ADVSEC_evDrawEH") then {
 private _rows = _list apply {
     _x params ["_id", "_type", "_pos", "_sum"];
     [format ["%1 · %2 m", _sum, round (player distance _pos)], _id,
-        format ["<t font='RobotoCondensedBold'>%1</t><br/><t color='#8C8C8C'>Distancia:</t> %2 m<br/><br/>Acércate a menos de 4 m y pulsa Recoger.", [_sum] call ADVSEC_fnc_repEsc, round (player distance _pos)]]
+        format [("STR_ADVSEC_distance_mget_within_4_m" call ADVSEC_fnc_L), [_sum] call ADVSEC_fnc_repEsc, round (player distance _pos)]]
 };
-["scene", "Inspección de escena", [
-    ["Recoger", {params ["_id"]; if (!isNil "_id") then {["collect", player, [_id]] remoteExecCall ["ADVSEC_fnc_evidenceServer", 2]; [] spawn {sleep 0.6; ["scene", player] remoteExecCall ["ADVSEC_fnc_evidenceServer", 2]}}}],
-    ["Mis pruebas", {closeDialog 0; [objNull] call ADVSEC_fnc_evOpen}]
+["scene", ("STR_ADVSEC_scene_inspection" call ADVSEC_fnc_L), [
+    [("STR_ADVSEC_collect" call ADVSEC_fnc_L), {params ["_id"]; if (!isNil "_id") then {["collect", player, [_id]] remoteExecCall ["ADVSEC_fnc_evidenceServer", 2]; [] spawn {sleep 0.6; ["scene", player] remoteExecCall ["ADVSEC_fnc_evidenceServer", 2]}}}],
+    [("STR_ADVSEC_my_evidence" call ADVSEC_fnc_L), {closeDialog 0; [objNull] call ADVSEC_fnc_evOpen}]
 ]] call ADVSEC_fnc_panelOpen;
-["scene", format ["<t font='RobotoCondensedBold'>%1 indicios en %2 m</t><br/><t color='#8C8C8C'>Marcados en dorado durante 2 minutos.</t>", count _list, ["sceneRadius", 15] call ADVSEC_fnc_setting], _rows] call ADVSEC_fnc_panelSet;
+["scene", format [("STR_ADVSEC_traces_within_mmarked_in_gold" call ADVSEC_fnc_L), count _list, ["sceneRadius", 15] call ADVSEC_fnc_setting], _rows] call ADVSEC_fnc_panelSet;

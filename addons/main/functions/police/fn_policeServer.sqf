@@ -11,7 +11,7 @@ private _ok = switch (_mode) do {
     case "seize": {[_caller, "seize"] call ADVSEC_fnc_perm && {_zeus || {[_unit] call ADVSEC_fnc_isRestrained} || {_unit getVariable ["ace_captives_isSurrendering", false]}}};
     default {_zeus};
 };
-if (!_ok) exitWith {[_caller, format ["%1 a %2", _mode, name _unit]] call ADVSEC_fnc_deny};
+if (!_ok) exitWith {[_caller, format [("STR_ADVSEC_to" call ADVSEC_fnc_L), _mode, name _unit]] call ADVSEC_fnc_deny};
 if (_mode == "restrain" && {_args param [0, false]} && {isPlayer _unit} && {!([getPlayerUID _unit] call ADVSEC_fnc_causeFor)}) then {
     [_caller, "restrainNoCause", name _unit] call ADVSEC_fnc_heatAdd;
 };

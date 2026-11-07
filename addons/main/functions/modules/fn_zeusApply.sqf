@@ -32,13 +32,13 @@ switch (_kind) do {
     case "keypad": {
         if (isNull _target) then {_target = ["Land_Tablet_01_F"] call _spawn};
         private _b = [_target] call ADVSEC_fnc_findBuilding;
-        if (isNull _b) then {"Aviso: no hay ningún edificio con puertas a menos de 50 m." call _msg};
+        if (isNull _b) then {("STR_ADVSEC_warning_no_building_with_doors" call ADVSEC_fnc_L) call _msg};
         private _doors = if (isNull _b) then {[]} else {([_b, _v#1] call ADVSEC_fnc_doorList) apply {[_b, _x]}};
         [_target, _v#0, _doors, _v#2, [_v#4, _v#5, _v#6] call ADVSEC_fnc_buildReq, _v#3] remoteExecCall ["ADVSEC_fnc_keypadInit", 0, ["ADVSEC_fnc_keypadInit", _target] call _jip];
     };
     case "door": {
         private _b = [[_pos] call ADVSEC_fnc_findBuilding, _target] select ([_target] call ADVSEC_fnc_hasDoors);
-        if (isNull _b) exitWith {_done = false; "No hay ningún edificio con puertas cerca." call _msg};
+        if (isNull _b) exitWith {_done = false; ("STR_ADVSEC_no_building_with_doors_nearby" call ADVSEC_fnc_L) call _msg};
         [_b, _v#0, [_v#2, _v#3, _v#4] call ADVSEC_fnc_buildReq, _v#1] remoteExecCall ["ADVSEC_fnc_doorInit", 0, ["ADVSEC_fnc_doorInit", _b] call _jip];
     };
     case "alarm": {
@@ -97,4 +97,4 @@ switch (_kind) do {
         [_pos, _v#0, _v#1, _off, player, _dir, _n] call ADVSEC_fnc_checkpointInit;
     };
 };
-if (_done) then {format ["%1 configurado.", toUpper _kind] call _msg};
+if (_done) then {format [("STR_ADVSEC_configured" call ADVSEC_fnc_L), toUpper _kind] call _msg};

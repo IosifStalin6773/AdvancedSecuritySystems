@@ -11,18 +11,18 @@ if (isServer) then {
     [_obj, "speedcam", _name] call ADVSEC_fnc_register;
     ["start"] call ADVSEC_fnc_speedCamServer;
 };
-[_obj, "advsec_speedcam_cfg", "Radar: configurar", ADVSEC_icCar,
+[_obj, "advsec_speedcam_cfg", ("STR_ADVSEC_speed_camera_configure" call ADVSEC_fnc_L), ADVSEC_icCar,
     {["open", _target] call ADVSEC_fnc_radarDlg},
     {[_player, "radar"] call ADVSEC_fnc_perm},
     "main", [], 3
 ] call ADVSEC_fnc_addInteraction;
-[_obj, "advsec_speedcam_pick", "Radar: recoger", ADVSEC_icCar,
+[_obj, "advsec_speedcam_pick", ("STR_ADVSEC_speed_camera_pick_up" call ADVSEC_fnc_L), ADVSEC_icCar,
     {["pickup", _player, [_target]] remoteExecCall ["ADVSEC_fnc_speedCamServer", 2]},
     {[_player, "radar"] call ADVSEC_fnc_perm && {(_target getVariable ["ADVSEC_speedCamPortable", []]) isNotEqualTo []}},
     "main", [], 3
 ] call ADVSEC_fnc_addInteraction;
-[_obj, "advsec_speedcam_log", "Radar: últimas capturas", ADVSEC_icDoc,
-    {ADVSEC_panelSpeedCam = _target; ["radarLog", "Radar · capturas", [], {["log", player, [ADVSEC_panelSpeedCam]] remoteExecCall ["ADVSEC_fnc_speedCamServer", 2]}] call ADVSEC_fnc_panelOpen},
+[_obj, "advsec_speedcam_log", ("STR_ADVSEC_speed_camera_latest_captures" call ADVSEC_fnc_L), ADVSEC_icDoc,
+    {ADVSEC_panelSpeedCam = _target; ["radarLog", ("STR_ADVSEC_speed_camera_captures" call ADVSEC_fnc_L), [], {["log", player, [ADVSEC_panelSpeedCam]] remoteExecCall ["ADVSEC_fnc_speedCamServer", 2]}] call ADVSEC_fnc_panelOpen},
     {[_player, "radar"] call ADVSEC_fnc_perm},
     "main", [], 3
 ] call ADVSEC_fnc_addInteraction;

@@ -5,5 +5,5 @@ deleteMarkerLocal _m;
 createMarkerLocal [_m, _pos];
 _m setMarkerTypeLocal (["mil_warning", "mil_objective"] select _panic);
 _m setMarkerColorLocal (["ColorOrange", "ColorRed"] select _panic);
-_m setMarkerTextLocal format ["%1 %2", ["112", "PÁNICO"] select _panic, _id];
+_m setMarkerTextLocal format ["%1 %2", ["112", ("STR_ADVSEC_panic_2" call ADVSEC_fnc_L)] select _panic, _id];
 [_m] spawn {sleep 600; deleteMarkerLocal (_this select 0)};

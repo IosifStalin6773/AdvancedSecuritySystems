@@ -57,16 +57,16 @@ private _release = {
     [_off] call _goHome;
     _state deleteAt _k;
     _cleared set [_k, serverTime + _secs];
-    if (_txt isNotEqualTo "") then {[_veh, "PUEDE CONTINUAR", _txt] call _popup};
+    if (_txt isNotEqualTo "") then {[_veh, ("STR_ADVSEC_you_may_proceed" call ADVSEC_fnc_L), _txt] call _popup};
 };
 private _fled = {
     params ["_k", "_veh", "_off"];
     private _d = driver _veh;
     {
-        if (isPlayer _x) then {[getPlayerUID _x, name _x, format ["Saltarse el %1", _name], "Alta"] call ADVSEC_fnc_wantedSys};
+        if (isPlayer _x) then {[getPlayerUID _x, name _x, format [("STR_ADVSEC_running_the" call ADVSEC_fnc_L), _name], "Alta"] call ADVSEC_fnc_wantedSys};
     } forEach ([crew _veh, [_d]] select (!isNull _d));
     ["checkpointFlee", _d, [_name, typeOf _veh, getPlateNumber _veh]] call ADVSEC_fnc_logEvent;
-    (format ["%1: un %2 (matrícula %3) se ha saltado el control.", _name, getText (configOf _veh >> "displayName"), getPlateNumber _veh]) remoteExecCall ["systemChat", 0];
+    (format [("STR_ADVSEC_a_plate_has_run_the" call ADVSEC_fnc_L), _name, getText (configOf _veh >> "displayName"), getPlateNumber _veh]) remoteExecCall ["systemChat", 0];
     [_k, _veh, _off, "", 45] call _release;
 };
 
@@ -85,7 +85,7 @@ while {!isNull _anchor} do {
         if !(netId _veh in _state) then {
             _state set [netId _veh, ["stop", serverTime, _veh, objNull, [], [], 0, false, owner _veh, serverTime]];
             [_veh, true] call _hold;
-            [_veh, "ALTO", format ["<t font='RobotoCondensedBold'>%1</t><br/>Detenga el vehículo y prepare la documentación.", _name]] call _popup;
+            [_veh, "ALTO", format [("STR_ADVSEC_stop_the_vehicle_and_have" call ADVSEC_fnc_L), _name]] call _popup;
             {
                 if (alive _x) then {[_x, "doWatch", _veh] call _cmd; [_x, "playActionNow", "gestureFreeze"] call _cmd};
             } forEach (_officers select {!(_x getVariable ["ADVSEC_cpBusy", false])});
@@ -157,7 +157,7 @@ while {!isNull _anchor} do {
                     continue;
                 };
                 {
-                    if !(getPlayerUID _x in _shown) then {_arrest pushBackUnique [_x, "Negarse a identificarse"]};
+                    if !(getPlayerUID _x in _shown) then {_arrest pushBackUnique [_x, ("STR_ADVSEC_refusing_to_identify" call ADVSEC_fnc_L)]};
                 } forEach _players;
                 _veh setVariable ["ADVSEC_cpRefused", nil];
                 private _papers = ["checkpointPapersTime", 8] call ADVSEC_fnc_setting;
@@ -166,7 +166,7 @@ while {!isNull _anchor} do {
                 _e set [6, serverTime + _total];
                 _e set [7, _search];
                 {
-                    if (isPlayer _x) then {[[ "Revisando documentación", "Revisando documentación y vehículo"] select _search, _total, _veh] remoteExecCall ["ADVSEC_fnc_cpProgress", _x]};
+                    if (isPlayer _x) then {[[ ("STR_ADVSEC_checking_documents" call ADVSEC_fnc_L), ("STR_ADVSEC_checking_documents_and_vehicle" call ADVSEC_fnc_L)] select _search, _total, _veh] remoteExecCall ["ADVSEC_fnc_cpProgress", _x]};
                 } forEach crew _veh;
                 [_off, "papers"] call _anim;
                 _e set [0, "papers"]; _e set [1, serverTime];
@@ -176,11 +176,11 @@ while {!isNull _anchor} do {
                 {
                     private _u = _x;
                     private _uid = getPlayerUID _u;
-                    if (_uid isNotEqualTo "" && {_uid in (missionNamespace getVariable ["ADVSEC_wantedUIDs", []])}) then {_arrest pushBack [_u, "Requisitoria en vigor"]; continue};
+                    if (_uid isNotEqualTo "" && {_uid in (missionNamespace getVariable ["ADVSEC_wantedUIDs", []])}) then {_arrest pushBack [_u, ("STR_ADVSEC_active_warrant" call ADVSEC_fnc_L)]; continue};
                     if !([_u, -1, _idTypes] call ADVSEC_fnc_docCheck) then {
                         private _amt = ["checkpointFine", 150] call ADVSEC_fnc_setting;
-                        private _fid = [_u, _amt, format ["Circular sin documentación (%1)", _name], _name, ""] call ADVSEC_fnc_fineAdd;
-                        _out pushBack format ["%1: sin documentación, multa %2.", name _u, _fid];
+                        private _fid = [_u, _amt, format [("STR_ADVSEC_driving_without_documents_2" call ADVSEC_fnc_L), _name], _name, ""] call ADVSEC_fnc_fineAdd;
+                        _out pushBack format [("STR_ADVSEC_no_documents_fine" call ADVSEC_fnc_L), name _u, _fid];
                     };
                 } forEach ((crew _veh) select {alive _x});
                 if (_e param [7, false] && {_arrest isEqualTo []} && {_offOk}) then {
@@ -204,15 +204,15 @@ while {!isNull _anchor} do {
                     if ((round (serverTime - _t)) mod 4 == 0) then {[_off, "search"] call _anim};
                     continue;
                 };
-                _out pushBack "Vehículo registrado.";
+                _out pushBack ("STR_ADVSEC_vehicle_searched" call ADVSEC_fnc_L);
                 private _ill = ["illegalItems", []] call ADVSEC_fnc_setting;
                 if (_ill isNotEqualTo []) then {
                     private _cargo = (getItemCargo _veh select 0) + (getWeaponCargo _veh select 0) + (getMagazineCargo _veh select 0);
                     {
                         private _u = _x;
-                        if (((items _u + weapons _u + magazines _u + assignedItems _u) findIf {_x in _ill}) > -1) then {_arrest pushBackUnique [_u, "Material ilegal"]};
+                        if (((items _u + weapons _u + magazines _u + assignedItems _u) findIf {_x in _ill}) > -1) then {_arrest pushBackUnique [_u, ("STR_ADVSEC_illegal_material" call ADVSEC_fnc_L)]};
                     } forEach crew _veh;
-                    if ((_cargo findIf {_x in _ill}) > -1 && {!isNull _d} && {(_arrest findIf {(_x select 0) isEqualTo _d}) < 0}) then {_arrest pushBack [_d, "Material ilegal en el vehículo"]};
+                    if ((_cargo findIf {_x in _ill}) > -1 && {!isNull _d} && {(_arrest findIf {(_x select 0) isEqualTo _d}) < 0}) then {_arrest pushBack [_d, ("STR_ADVSEC_illegal_material_in_the_vehicle" call ADVSEC_fnc_L)]};
                 };
                 _e set [0, "decide"]; _e set [1, serverTime];
             };
@@ -222,18 +222,18 @@ while {!isNull _anchor} do {
                     _x params ["_u", "_why"];
                     if (!isNull _boss && {(missionNamespace getVariable ["ADVSEC_jails", []]) isNotEqualTo []}) then {
                         ["jail", _boss, [_u, 15, format ["%1 (%2)", _why, _name], objNull, false]] call ADVSEC_fnc_jailServer;
-                        ["FPM04", format ["Detención en %1", _name], [format ["%1 [%2]", name _u, getPlayerUID _u]],
-                            format ["Detención automática en %1 (cuadrícula %2) por %3. Motivo: %4. Vehículo: %5, matrícula %6.", _name, mapGridPosition _pos, name _boss, _why, getText (configOf _veh >> "displayName"), getPlateNumber _veh],
+                        ["FPM04", format [("STR_ADVSEC_arrest_at" call ADVSEC_fnc_L), _name], [format ["%1 [%2]", name _u, getPlayerUID _u]],
+                            format [("STR_ADVSEC_automatic_arrest_at_grid_by" call ADVSEC_fnc_L), _name, mapGridPosition _pos, name _boss, _why, getText (configOf _veh >> "displayName"), getPlateNumber _veh],
                             "Grave", false] call ADVSEC_fnc_repSystem;
-                        _out pushBack format ["%1: detenido (%2).", name _u, _why];
+                        _out pushBack format [("STR_ADVSEC_arrested" call ADVSEC_fnc_L), name _u, _why];
                     } else {
                         if (isPlayer _u) then {[getPlayerUID _u, name _u, format ["%1 (%2)", _why, _name], "Alta"] call ADVSEC_fnc_wantedSys};
-                        (format ["%1: %2 retenido (%3). Se requiere una patrulla.", _name, name _u, _why]) remoteExecCall ["systemChat", 0];
-                        _out pushBack format ["%1: retenido (%2).", name _u, _why];
+                        (format [("STR_ADVSEC_held_a_patrol_is_required" call ADVSEC_fnc_L), _name, name _u, _why]) remoteExecCall ["systemChat", 0];
+                        _out pushBack format [("STR_ADVSEC_held" call ADVSEC_fnc_L), name _u, _why];
                     };
                 } forEach _arrest;
                 ["checkpointCheck", _d, [_name, typeOf _veh, getPlateNumber _veh, _out]] call ADVSEC_fnc_logEvent;
-                [_k, _veh, _off, [_out joinString "<br/>", "Todo en orden. Buen viaje."] select (_out isEqualTo [])] call _release;
+                [_k, _veh, _off, [_out joinString "<br/>", ("STR_ADVSEC_all_in_order_have_a" call ADVSEC_fnc_L)] select (_out isEqualTo [])] call _release;
             };
         };
     } forEach (keys _state);

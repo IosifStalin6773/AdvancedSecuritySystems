@@ -19,11 +19,11 @@ switch (_action) do {
         {
             _x params ["_uid", "_name", "_reason", "_level"];
             private _online = allPlayers findIf {getPlayerUID _x == _uid} > -1;
-            private _i = _lb lbAdd format ["%1 · %2 · %3%4", toUpper _level, _name, _reason, ["", "  (conectado)"] select _online];
+            private _i = _lb lbAdd format ["%1 · %2 · %3%4", toUpper _level, _name, _reason, ["", ("STR_ADVSEC_online_6" call ADVSEC_fnc_L)] select _online];
             _lb lbSetColor [_i, _level call _lvlCol];
         } forEach ADVSEC_wantedRows;
         if (ADVSEC_wantedRows isEqualTo []) then {
-            (_disp displayCtrl 86902) ctrlSetStructuredText parseText "<t color='#8C8C8C'>No hay nadie en la lista de buscados.</t>";
+            (_disp displayCtrl 86902) ctrlSetStructuredText parseText ("STR_ADVSEC_there_is_nobody_on_the" call ADVSEC_fnc_L);
         } else {
             _lb lbSetCurSel 0;
         };
@@ -33,19 +33,19 @@ switch (_action) do {
         _e params ["_uid", "_name", "_reason", "_level", "_by", "_date"];
         private _u = allPlayers select {getPlayerUID _x == _uid};
         (_disp displayCtrl 86902) ctrlSetStructuredText parseText format [
-            "<t font='RobotoCondensedBold' size='1.1'>%1</t> <t color='#8C8C8C'>[%2]</t><br/><t color='#8C8C8C'>Motivo:</t> %3<br/><t color='#8C8C8C'>Peligrosidad:</t> %4 · <t color='#8C8C8C'>Alta:</t> %5 por %6<br/>%7",
+            ("STR_ADVSEC_reason_danger_level_added_by" call ADVSEC_fnc_L),
             [_name] call ADVSEC_fnc_repEsc, _uid, [_reason] call ADVSEC_fnc_repEsc, _level, _date, [_by] call ADVSEC_fnc_repEsc,
-            if (_u isEqualTo []) then {"<t color='#8C8C8C'>No conectado.</t>"} else {format ["<t color='#D96600'>Conectado · última posición: cuadrícula %1</t>", mapGridPosition (_u select 0)]}
+            if (_u isEqualTo []) then {("STR_ADVSEC_not_connected" call ADVSEC_fnc_L)} else {format [("STR_ADVSEC_connected_last_position_grid" call ADVSEC_fnc_L), mapGridPosition (_u select 0)]}
         ];
     };
     case "add": {[] call ADVSEC_fnc_wantedPrompt};
     case "del": {
-        if (_e isEqualTo []) exitWith {hint "Selecciona una entrada."};
+        if (_e isEqualTo []) exitWith {hint ("STR_ADVSEC_select_an_entry" call ADVSEC_fnc_L)};
         ["del", player, [_e select 0]] remoteExecCall ["ADVSEC_fnc_wantedServer", 2];
     };
     case "report": {
-        if (_e isEqualTo []) exitWith {hint "Selecciona una entrada."};
+        if (_e isEqualTo []) exitWith {hint ("STR_ADVSEC_select_an_entry" call ADVSEC_fnc_L)};
         closeDialog 0;
-        ["PM", format ["%1 [%2]", _e select 1, _e select 0], format ["Requisitoria · %1", _e select 1], format ["Motivo de la requisitoria: %1", _e select 2]] call ADVSEC_fnc_repEditorOpen;
+        ["PM", format ["%1 [%2]", _e select 1, _e select 0], format [("STR_ADVSEC_warrant_3" call ADVSEC_fnc_L), _e select 1], format [("STR_ADVSEC_reason_for_the_warrant" call ADVSEC_fnc_L), _e select 2]] call ADVSEC_fnc_repEditorOpen;
     };
 };

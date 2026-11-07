@@ -19,18 +19,18 @@ switch (_action) do {
     };
     case "new": {[["PM", _dept] select (_dept in ["PM", "AI"])] call ADVSEC_fnc_repEditorOpen};
     case "note": {
-        if (_id isEqualTo "") exitWith {hint "Selecciona un informe."};
-        [format ["ANOTACIÓN · %1", _id], [["Texto", ""]], {
+        if (_id isEqualTo "") exitWith {hint ("STR_ADVSEC_select_a_report" call ADVSEC_fnc_L)};
+        [format [("STR_ADVSEC_note_2" call ADVSEC_fnc_L), _id], [[("STR_ADVSEC_text" call ADVSEC_fnc_L), ""]], {
             params ["_v", "_id"];
             ["note", player, [_id, _v select 0]] remoteExecCall ["ADVSEC_fnc_repServer", 2];
         }, _id] call ADVSEC_fnc_zeusPrompt;
     };
     case "status": {
-        if (_id isEqualTo "") exitWith {hint "Selecciona un informe."};
-        [format ["ESTADO · %1", _id], [
-            ["Estado", ADVSEC_repCurrent get "status", getArray (_lists >> "status")],
-            ["Sanción", ADVSEC_repCurrent getOrDefault ["sanction", "Ninguna"], getArray (_lists >> "sanction")],
-            ["Motivo", ""]
+        if (_id isEqualTo "") exitWith {hint ("STR_ADVSEC_select_a_report" call ADVSEC_fnc_L)};
+        [format [("STR_ADVSEC_status_2" call ADVSEC_fnc_L), _id], [
+            [("STR_ADVSEC_status" call ADVSEC_fnc_L), ADVSEC_repCurrent get "status", getArray (_lists >> "status")],
+            [("STR_ADVSEC_sanction" call ADVSEC_fnc_L), ADVSEC_repCurrent getOrDefault ["sanction", "Ninguna"], getArray (_lists >> "sanction")],
+            [("STR_ADVSEC_reason" call ADVSEC_fnc_L), ""]
         ], {
             params ["_v", "_id"];
             ["status", player, [_id, _v select 0, _v select 1, _v select 2]] remoteExecCall ["ADVSEC_fnc_repServer", 2];

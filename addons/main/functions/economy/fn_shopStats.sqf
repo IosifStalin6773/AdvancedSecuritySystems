@@ -13,19 +13,19 @@ private _mass = switch (true) do {
     case (isClass _g): {getNumber (_g >> "mass")};
     default {0};
 };
-if (_mass > 0) then {_r pushBack [format ["Peso: %1 kg", (_mass * 0.045359) toFixed 1], _mass / 250]};
+if (_mass > 0) then {_r pushBack [format [("STR_ADVSEC_weight_kg" call ADVSEC_fnc_L), (_mass * 0.045359) toFixed 1], _mass / 250]};
 // Armas: cadencia del primer modo de fuego
 if (_cat in [0, 1, 2]) then {
     private _modes = getArray (_w >> "modes");
     if (_modes isNotEqualTo []) then {
         private _mode = [_w >> (_modes select 0), _w] select ((_modes select 0) == "this");
         private _rt = getNumber (_mode >> "reloadTime");
-        if (_rt > 0) then {_r pushBack [format ["Cadencia: %1 disparos/min", round (60 / _rt)], (60 / _rt) / 1200]};
+        if (_rt > 0) then {_r pushBack [format [("STR_ADVSEC_rate_of_fire_rounds_min" call ADVSEC_fnc_L), round (60 / _rt)], (60 / _rt) / 1200]};
     };
     private _mags = [_c] call BIS_fnc_compatibleMagazines;
     if (_mags isNotEqualTo []) then {
         private _n = getNumber (configFile >> "CfgMagazines" >> (_mags select 0) >> "count");
-        _r pushBack [format ["Cargador: %1 cartuchos", _n], _n / 200];
+        _r pushBack [format [("STR_ADVSEC_magazine_rounds" call ADVSEC_fnc_L), _n], _n / 200];
     };
 };
 // Ropa y mochilas: capacidad y protección
@@ -36,15 +36,15 @@ private _cont = switch (true) do {
 };
 if (_cont isNotEqualTo "") then {
     private _load = getNumber (configFile >> "CfgVehicles" >> _cont >> "maximumLoad");
-    _r pushBack [format ["Capacidad: %1", _load], _load / 400];
+    _r pushBack [format [("STR_ADVSEC_capacity" call ADVSEC_fnc_L), _load], _load / 400];
 };
 if (_cat in [3, 4, 6]) then {
     private _arm = 0;
     {_arm = _arm max getNumber (_x >> "armor")} forEach ("true" configClasses (_w >> "ItemInfo" >> "HitpointsProtectionInfo"));
-    if (_arm > 0) then {_r pushBack [format ["Protección: %1", _arm], _arm / 30]};
+    if (_arm > 0) then {_r pushBack [format [("STR_ADVSEC_protection" call ADVSEC_fnc_L), _arm], _arm / 30]};
 };
 if (_cat >= 19 && {isClass _m}) then {
     private _n = getNumber (_m >> "count");
-    if (_n > 1) then {_r pushBack [format ["Munición: %1", _n], _n / 200]};
+    if (_n > 1) then {_r pushBack [format [("STR_ADVSEC_ammo" call ADVSEC_fnc_L), _n], _n / 200]};
 };
 (_r select [0, 3]) apply {[_x select 0, ((_x select 1) max 0.02) min 1]}

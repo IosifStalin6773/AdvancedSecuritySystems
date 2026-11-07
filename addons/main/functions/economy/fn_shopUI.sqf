@@ -29,10 +29,10 @@ switch (_a) do {
     case "init": {
         if (isNil "ADVSEC_shopTabs") then {
             ADVSEC_shopTabs = [
-                ["Arma principal", "primaryWeapon"], ["Lanzador", "secondaryWeapon"], ["Pistola", "handgun"], ["Uniforme", "uniform"], ["Chaleco", "vest"], ["Mochila", "backpack"],
-                ["Casco y gorra", "headgear"], ["Gafas", "goggles"], ["Visión nocturna", "nvgs"], ["Prismáticos", "binoculars"], ["Mapa", "map"], ["GPS y terminal", "gps"],
-                ["Radio", "radio"], ["Brújula", "compass"], ["Reloj", "watch"], ["Mira", "itemOptic"], ["Accesorio de raíl", "itemAcc"], ["Bocacha", "itemMuzzle"],
-                ["Bípode", "itemBipod"], ["Cargadores", "cargoMag"], ["Granadas", "cargoThrow"], ["Explosivos", "cargoPut"], ["Varios", "cargoMisc"]
+                [("STR_ADVSEC_primary_weapon" call ADVSEC_fnc_L), "primaryWeapon"], [("STR_ADVSEC_launcher" call ADVSEC_fnc_L), "secondaryWeapon"], [("STR_ADVSEC_handgun" call ADVSEC_fnc_L), "handgun"], [("STR_ADVSEC_uniform" call ADVSEC_fnc_L), "uniform"], [("STR_ADVSEC_vest" call ADVSEC_fnc_L), "vest"], [("STR_ADVSEC_backpack" call ADVSEC_fnc_L), "backpack"],
+                [("STR_ADVSEC_helmet_and_cap" call ADVSEC_fnc_L), "headgear"], [("STR_ADVSEC_glasses" call ADVSEC_fnc_L), "goggles"], [("STR_ADVSEC_night_vision" call ADVSEC_fnc_L), "nvgs"], [("STR_ADVSEC_binoculars" call ADVSEC_fnc_L), "binoculars"], [("STR_ADVSEC_map" call ADVSEC_fnc_L), "map"], [("STR_ADVSEC_gps_and_terminal" call ADVSEC_fnc_L), "gps"],
+                [("STR_ADVSEC_radius" call ADVSEC_fnc_L), "radio"], [("STR_ADVSEC_compass" call ADVSEC_fnc_L), "compass"], [("STR_ADVSEC_watch" call ADVSEC_fnc_L), "watch"], [("STR_ADVSEC_optic" call ADVSEC_fnc_L), "itemOptic"], [("STR_ADVSEC_rail_attachment" call ADVSEC_fnc_L), "itemAcc"], [("STR_ADVSEC_muzzle" call ADVSEC_fnc_L), "itemMuzzle"],
+                [("STR_ADVSEC_bipod" call ADVSEC_fnc_L), "itemBipod"], [("STR_ADVSEC_magazines" call ADVSEC_fnc_L), "cargoMag"], [("STR_ADVSEC_grenades" call ADVSEC_fnc_L), "cargoThrow"], [("STR_ADVSEC_explosives" call ADVSEC_fnc_L), "cargoPut"], [("STR_ADVSEC_miscellaneous" call ADVSEC_fnc_L), "cargoMisc"]
             ];
         };
         // Solo las pestañas que tienen algo a la venta, en el orden del arsenal
@@ -72,10 +72,10 @@ switch (_a) do {
         ["list"] call ADVSEC_fnc_shopUI;
     };
     case "list": {
-        (_d displayCtrl 87930) ctrlSetStructuredText parseText format ["Efectivo: <t font='RobotoCondensedBold' color='#D0A330'>%1</t>   ·   Banco: <t font='RobotoCondensedBold'>%2</t><br/><t color='#8C8C8C'>%3</t>",
-            _cash call _fmt, _bank call _fmt, ["Se paga en efectivo y, si no llega, con el banco. Doble clic en un artículo para comprarlo.", "Mercado negro: nada de esto queda registrado a tu nombre."] select _ill];
+        (_d displayCtrl 87930) ctrlSetStructuredText parseText format [("STR_ADVSEC_cash_bank_4" call ADVSEC_fnc_L),
+            _cash call _fmt, _bank call _fmt, [("STR_ADVSEC_paid_in_cash_and_if" call ADVSEC_fnc_L), ("STR_ADVSEC_black_market_none_of_this" call ADVSEC_fnc_L)] select _ill];
         if (ADVSEC_shopCats isEqualTo []) exitWith {
-            (_d displayCtrl 87902) ctrlSetText "ESTA TIENDA NO TIENE ARTÍCULOS";
+            (_d displayCtrl 87902) ctrlSetText ("STR_ADVSEC_this_shop_has_no_items" call ADVSEC_fnc_L);
             lbClear _list;
             ["select"] call ADVSEC_fnc_shopUI;
         };
@@ -89,7 +89,7 @@ switch (_a) do {
             private _n = [_c] call ADVSEC_fnc_ecoItemName;
             if ([([_c] call ADVSEC_fnc_shopCat) == _cat, (toLower _n) find _q >= 0 || {(toLower _c) find _q >= 0}] select (_q isNotEqualTo "")) then {_rows pushBack [_n, _p, _c, _forEachIndex]};
         } forEach _items;
-        if (_q isNotEqualTo "") then {(_d displayCtrl 87902) ctrlSetText format ["BÚSQUEDA: %1 RESULTADO(S)", count _rows]};
+        if (_q isNotEqualTo "") then {(_d displayCtrl 87902) ctrlSetText format [("STR_ADVSEC_search_result_s" call ADVSEC_fnc_L), count _rows]};
         private _s = lbCurSel (_d displayCtrl 87905);
         private _keyed = _rows apply {[[toLower (_x select 0), _x select 1, -(_x select 1)] select (_s max 0), _x]};
         _keyed sort true;
@@ -104,7 +104,7 @@ switch (_a) do {
             _list lbSetTextRight [_r, _p call _fmt];
             _list lbSetData [_r, _c];
             _list lbSetValue [_r, _i];
-            _list lbSetTooltip [_r, format ["%1 (%2)%3", _n, _c, ["", format [" · llevas %1", _carried]] select (_carried > 0)]];
+            _list lbSetTooltip [_r, format ["%1 (%2)%3", _n, _c, ["", format [("STR_ADVSEC_you_carry" call ADVSEC_fnc_L), _carried]] select (_carried > 0)]];
             if (_carried > 0) then {_list lbSetColor [_r, [0.816, 0.639, 0.188, 1]]};
             if (_c == ADVSEC_shopSel) then {_sel = _r};
         } forEach _rows;
@@ -119,7 +119,7 @@ switch (_a) do {
         lbClear _compat;
         if (_c isEqualTo "") exitWith {
             (_d displayCtrl 87910) ctrlSetText "";
-            (_d displayCtrl 87911) ctrlSetStructuredText parseText "<t color='#8C8C8C'>Elige un artículo de la lista.</t>";
+            (_d displayCtrl 87911) ctrlSetStructuredText parseText ("STR_ADVSEC_choose_an_item_from_the" call ADVSEC_fnc_L);
             {(_d displayCtrl (87940 + _x)) ctrlSetText ""; (_d displayCtrl (87950 + _x)) progressSetPosition 0} forEach [0, 1, 2];
         };
         ADVSEC_shopSel = _c;
@@ -131,9 +131,9 @@ switch (_a) do {
         if (!isClass _cfg) then {_cfg = configFile >> "CfgGlasses" >> _c};
         private _desc = getText (_cfg >> "descriptionShort");
         (_d displayCtrl 87910) ctrlSetText ([_c] call ADVSEC_fnc_ecoItemPic);
-        (_d displayCtrl 87911) ctrlSetStructuredText parseText format ["<t size='1.25' font='RobotoCondensedBold'>%1</t><br/>Precio: <t color='#D0A330' font='RobotoCondensedBold'>%2</t>   ·   Se recompra por: %3<br/>%4<t color='#8C8C8C'>%5</t><br/>%6",
+        (_d displayCtrl 87911) ctrlSetStructuredText parseText format [("STR_ADVSEC_price_buy_back_price_2" call ADVSEC_fnc_L),
             ([_c] call ADVSEC_fnc_ecoItemName) call ADVSEC_fnc_repEsc, _p call _fmt, (round (_p * _sellF)) call _fmt,
-            ["", format ["<t color='#D0A330'>Llevas %1 encima.</t><br/>", _carried]] select (_carried > 0), _c, _desc];
+            ["", format [("STR_ADVSEC_you_carry_2" call ADVSEC_fnc_L), _carried]] select (_carried > 0), _c, _desc];
         private _st = [_c] call ADVSEC_fnc_shopStats;
         {
             private _e = _st param [_x, []];
@@ -154,7 +154,7 @@ switch (_a) do {
                 };
             } forEach _items;
         };
-        (_d displayCtrl 87921) ctrlSetText (["", "COMPATIBLE EN ESTA TIENDA"] select (lbSize _compat > 0));
+        (_d displayCtrl 87921) ctrlSetText (["", ("STR_ADVSEC_compatible_in_this_shop" call ADVSEC_fnc_L)] select (lbSize _compat > 0));
     };
     case "compat": {
         private _r = lbCurSel (_d displayCtrl 87920);

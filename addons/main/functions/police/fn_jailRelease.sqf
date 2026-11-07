@@ -12,4 +12,4 @@ if (!isNull _jail && {alive _unit}) then {
     _pos set [2, 0];
     [_unit, "teleport", [_pos]] call ADVSEC_fnc_policeLocal;
 };
-"Has sido puesto en libertad." remoteExecCall ["hint", _unit];
+("STR_ADVSEC_you_have_been_released" call ADVSEC_fnc_L) remoteExecCall ["hint", _unit];

@@ -1,10 +1,10 @@
 // [unidad] — imponer una multa
 params ["_unit"];
 private _cur = ["currency", "€"] call ADVSEC_fnc_setting;
-[format ["MULTA · %1", name _unit], [
-    ["Importe", 100, [50, 100, 150, 200, 300, 500, 1000, 2000] apply {[format ["%1 %2", _x, _cur], _x]}],
-    ["Motivo", "", ["Circular sin documentación", "Exceso de velocidad", "Conducción temeraria", "Desobediencia a la autoridad", "Alteración del orden", "Portar arma sin licencia", "Acceso a zona restringida", "Otro"]],
-    ["Detalle (opcional)", ""]
+[format [("STR_ADVSEC_fine" call ADVSEC_fnc_L), name _unit], [
+    [("STR_ADVSEC_amount" call ADVSEC_fnc_L), 100, [50, 100, 150, 200, 300, 500, 1000, 2000] apply {[format ["%1 %2", _x, _cur], _x]}],
+    [("STR_ADVSEC_reason" call ADVSEC_fnc_L), "", [("STR_ADVSEC_driving_without_documents" call ADVSEC_fnc_L), ("STR_ADVSEC_speeding" call ADVSEC_fnc_L), ("STR_ADVSEC_reckless_driving" call ADVSEC_fnc_L), ("STR_ADVSEC_disobeying_authority" call ADVSEC_fnc_L), ("STR_ADVSEC_disturbing_the_peace" call ADVSEC_fnc_L), ("STR_ADVSEC_carrying_a_weapon_without_a" call ADVSEC_fnc_L), ("STR_ADVSEC_entering_a_restricted_area" call ADVSEC_fnc_L), ("STR_ADVSEC_other" call ADVSEC_fnc_L)]],
+    [("STR_ADVSEC_detail_optional" call ADVSEC_fnc_L), ""]
 ], {
     params ["_v", "_unit"];
     _v params ["_amt", "_reason", "_detail"];

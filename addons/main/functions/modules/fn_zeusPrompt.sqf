@@ -22,7 +22,7 @@ private _rows = _fields apply {
     private _h = 0.045;
     switch (true) do {
         case (_type isEqualTo "text"): {_kind = "text"; _h = 0.13};
-        case (_type isEqualTo "bool"): {_kind = "combo"; _opts = [["Sí", true], ["No", false]]};
+        case (_type isEqualTo "bool"): {_kind = "combo"; _opts = [[("STR_ADVSEC_yes" call ADVSEC_fnc_L), true], ["No", false]]};
         case (_type isEqualTo "players"): {
             _kind = "combo";
             private _ref = [player, curatorCamera] select (!isNull findDisplay 312 && {!isNull curatorCamera});
@@ -37,7 +37,7 @@ private _rows = _fields apply {
         };
         case (_type isEqualType [] && {_type isNotEqualTo []} && {(_type select 0) isEqualTo "catalog"}): {_kind = "catalog"; _opts = [[_type select 1, _type select 1]]};
         case (_type isEqualType [] && {_type isNotEqualTo []} && {(_type select 0) isEqualType []}): {_kind = "combo"; _opts = _type};
-        case (_type isEqualType [] && {_type isNotEqualTo []}): {_kind = "combo"; _opts = _type apply {[_x, _x]}};
+        case (_type isEqualType [] && {_type isNotEqualTo []}): {_kind = "combo"; _opts = _type apply {[_x call ADVSEC_fnc_Lv, _x]}};
     };
     [_label, _default, _kind, _opts, _h]
 };
@@ -83,14 +83,14 @@ private _ctrls = [];
             _c setVariable ["ADVSEC_val", _default];
             _c setVariable ["ADVSEC_kind", (_opts select 0) select 0];
             _c setVariable ["ADVSEC_title", _label];
-            _c ctrlSetText format ["Elegir del catálogo (%1)", count ((_default splitString ",") select {_x find ":" > 0})];
+            _c ctrlSetText format [("STR_ADVSEC_choose_from_catalog" call ADVSEC_fnc_L), count ((_default splitString ",") select {_x find ":" > 0})];
             _c ctrlAddEventHandler ["ButtonClick", {
                 params ["_b"];
                 [_b getVariable "ADVSEC_kind", _b getVariable ["ADVSEC_val", ""], {
                     params ["_txt", "_b"];
                     _b setVariable ["ADVSEC_val", _txt];
-                    _b ctrlSetText format ["Elegir del catálogo (%1)", count ((_txt splitString ",") select {_x find ":" > 0})];
-                }, _b, toUpper (_b getVariable ["ADVSEC_title", "CATÁLOGO"])] call ADVSEC_fnc_catalogOpen;
+                    _b ctrlSetText format [("STR_ADVSEC_choose_from_catalog" call ADVSEC_fnc_L), count ((_txt splitString ",") select {_x find ":" > 0})];
+                }, _b, toUpper (_b getVariable ["ADVSEC_title", ("STR_ADVSEC_catalog" call ADVSEC_fnc_L)])] call ADVSEC_fnc_catalogOpen;
             }];
         };
         case "multi": {
@@ -99,7 +99,7 @@ private _ctrls = [];
                 private _i = _c lbAdd (_x select 0);
                 if ((_x select 1) in _default) then {_c lbSetSelected [_i, true]};
             } forEach _opts;
-            _c ctrlSetTooltip "Ctrl + clic para seleccionar varios (ninguno = cualquiera)";
+            _c ctrlSetTooltip ("STR_ADVSEC_ctrl_click_to_select_several" call ADVSEC_fnc_L);
         };
     };
     _c ctrlSetPosition [0.45, _y, 0.27, _hh];

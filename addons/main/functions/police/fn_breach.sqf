@@ -8,7 +8,7 @@ private _done = {
 };
 
 if (!isNil "ace_common_fnc_progressBar") exitWith {
-    [_time, [_b, _i, _done], {(_this select 0) params ["_b", "_i", "_done"]; [_b, _i] call _done}, {hint "Forzado interrumpido."}, "Forzando cerradura..."] call ace_common_fnc_progressBar;
+    [_time, [_b, _i, _done], {(_this select 0) params ["_b", "_i", "_done"]; [_b, _i] call _done}, {hint ("STR_ADVSEC_lockpicking_interrupted" call ADVSEC_fnc_L)}, ("STR_ADVSEC_picking_the_lock" call ADVSEC_fnc_L)] call ace_common_fnc_progressBar;
 };
 
 private _start = getPosATL player;
@@ -20,9 +20,9 @@ while {time < _end} do {
     private _p = 1 - (_end - time) / _time;
     private _bar = "";
     for "_k" from 1 to 20 do {_bar = _bar + (["·", "|"] select (_k / 20 <= _p))};
-    hintSilent parseText format ["<t font='RobotoCondensedBold'>Forzando cerradura</t><br/>%1<br/>%2 %3", _bar, round (_p * 100), "%"];
+    hintSilent parseText format [("STR_ADVSEC_picking_the_lock_2" call ADVSEC_fnc_L), _bar, round (_p * 100), "%"];
     sleep 0.25;
 };
 [player, ""] remoteExecCall ["switchMove", 0];
 hintSilent "";
-if (_ok) then {[_b, _i] call _done} else {hint "Forzado interrumpido."};
+if (_ok) then {[_b, _i] call _done} else {hint ("STR_ADVSEC_lockpicking_interrupted" call ADVSEC_fnc_L)};
