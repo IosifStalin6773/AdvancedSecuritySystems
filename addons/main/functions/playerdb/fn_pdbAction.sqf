@@ -64,7 +64,7 @@ switch (_action) do {
             [7, _glob] call ADVSEC_fnc_pdbRankName, [_pm, _effPM, 5] call _lvl, [_ai, _effAI, 6] call _lvl,
             [(_h apply {format ["<t color='#8C8C8C'>%1 · %2:</t> %3", _x select 0, (_x select 1) call _esc, (_x select 2) call _esc]}) joinString "<br/>", ("STR_ADVSEC_no_recorded_changes" call ADVSEC_fnc_L)] select (_h isEqualTo [])
         ];
-        _view ctrlSetPositionH ((ctrlTextHeight _view) max 0.39);
+        _view ctrlSetPositionH ((ctrlTextHeight _view) max (0.39 * safezoneH));
         _view ctrlCommit 0;
         {
             _x params ["_idc", "_val"];

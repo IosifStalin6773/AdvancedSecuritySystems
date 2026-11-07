@@ -427,6 +427,18 @@ class CfgVehicles {
                 statement = "";
                 insertChildren = "[_target,_player,['caseSettings']] call TSL_fnc_menu";
             };
+            // ADVSEC: guardar o equiparse todo el equipo de una vez
+            class ADVSEC_FullKit {
+                displayName = "$STR_ADVSEC_lkit_menu";
+                distance = 3;
+                position = "[-0.0971396416425705,-0.54,1.20]";
+                doNotCheckLOS = 1;
+                enableInside = 1;
+                condition = "alive _player && {!isNil 'ADVSEC_fnc_lockerKitMenu'} && {(_target getVariable ['TSL_owner',''])==getPlayerUID _player}";
+                statement = "";
+                icon = "\A3\ui_f\data\igui\cfg\actions\gear_ca.paa";
+                insertChildren = "['children',_target,_player] call ADVSEC_fnc_lockerKitMenu";
+            };
             class LockerMenu {
                 displayName = "Locker";
                 modifierFunction = "_this call TSL_fnc_modifyAction";

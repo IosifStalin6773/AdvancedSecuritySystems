@@ -11,7 +11,7 @@ ADVSEC_progId = (missionNamespace getVariable ["ADVSEC_progId", 0]) + 1;
     private _d = uiNamespace getVariable ["ADVSEC_progDisplay", displayNull];
     (_d displayCtrl 86451) ctrlSetText toUpper _title;
     private _bar = _d displayCtrl 86453;
-    private _w = 0.38;
+    private _w = ([[0, 0, 0.38, 0]] call ADVSEC_fnc_uiRect) select 2;
     private _end = time + _secs;
     private _ok = true;
     while {time < _end} do {

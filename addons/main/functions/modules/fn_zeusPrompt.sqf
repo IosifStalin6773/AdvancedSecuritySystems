@@ -50,7 +50,8 @@ private _top = (0.5 - _h / 2) max 0.01;
     _x params ["_idc", "_y", "_hh"];
     private _c = _disp displayCtrl _idc;
     private _p = ctrlPosition _c;
-    _c ctrlSetPosition [_p select 0, _top + _y, _p select 2, [_p select 3, _hh] select (_hh > 0)];
+    private _q = [[0, _top + _y, 0, _hh]] call ADVSEC_fnc_uiRect;
+    _c ctrlSetPosition [_p select 0, _q select 1, _p select 2, [_p select 3, _q select 3] select (_hh > 0)];
     _c ctrlCommit 0;
 } forEach [[86502, 0, _h], [86506, 0, _h], [86501, 0, 0], [86505, 0.045, 0], [86503, _h - 0.058, 0], [86504, _h - 0.058, 0], [86507, 0, 0]];
 
@@ -59,7 +60,7 @@ private _ctrls = [];
 {
     _x params ["_label", "_default", "_kind", "_opts", "_hh"];
     private _lbl = _disp ctrlCreate ["ADVSEC_Label", -1];
-    _lbl ctrlSetPosition [0.28, _y, 0.16, 0.045];
+    _lbl ctrlSetPosition ([[0.28, _y, 0.16, 0.045]] call ADVSEC_fnc_uiRect);
     _lbl ctrlSetText _label;
     _lbl ctrlCommit 0;
 
@@ -102,7 +103,7 @@ private _ctrls = [];
             _c ctrlSetTooltip ("STR_ADVSEC_ctrl_click_to_select_several" call ADVSEC_fnc_L);
         };
     };
-    _c ctrlSetPosition [0.45, _y, 0.27, _hh];
+    _c ctrlSetPosition ([[0.45, _y, 0.27, _hh]] call ADVSEC_fnc_uiRect);
     _c ctrlCommit 0;
     _ctrls pushBack [_c, _kind, _opts apply {_x select 1}, _default];
     _y = _y + _hh + 0.012;

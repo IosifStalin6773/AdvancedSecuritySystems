@@ -199,6 +199,86 @@ switch (_action) do {
         _logRows = [_logRows, [], {(_x select 0) select 0}, "DESCEND"] call BIS_fnc_sortBy;
         if (count _logRows > 150) then {_logRows resize 150};
 
+        // 10. PMC: célula, QRF, deuda y material de la armería, contratos, equipo de taquilla y alertas ciber
+        private _pmcRows = [];
+        private _cell = ([] call ADVSEC_fnc_cellDB) getOrDefault [_uid, []];
+        private _qrf = (localNamespace getVariable ["ADVSEC_qrfStats", createHashMap]) getOrDefault [_uid, []];
+        private _roleTxt = {[(format ["STR_ADVSEC_pmc_role_%1", _this]) call ADVSEC_fnc_L, ("STR_ADVSEC_pmc_role_none" call ADVSEC_fnc_L)] select (_this isEqualTo "")};
+        if (_cell isEqualTo []) then {
+            _pmcRows pushBack [[("STR_ADVSEC_pdb_cell" call ADVSEC_fnc_L), "" call _roleTxt, "—", ""], ("STR_ADVSEC_pdb_cell_none" call ADVSEC_fnc_L), ["cell", "", ""]];
+        } else {
+            _cell params ["_cr", "", "_cs", ["_cav", 0], ["_cdt", 0]];
+            private _pct = round (100 * _cav / (_cdt max 1));
+            _pmcRows pushBack [[("STR_ADVSEC_pdb_cell" call ADVSEC_fnc_L), _cr call _roleTxt, _cs call ADVSEC_fnc_Lv, (str _pct) + " %"],
+                format [("STR_ADVSEC_pdb_cell_det" call ADVSEC_fnc_L), _cr call _roleTxt, _cs call ADVSEC_fnc_Lv, _pct], ["cell", _cr, _cs]];
+        };
+        if (_qrf isNotEqualTo []) then {
+            _qrf params [["_qn", 0], ["_qs", 0], ["_qb", 0], ["_qi", 0]];
+            private _avg = [[_qs / (_qn max 1), "MM:SS"] call BIS_fnc_secondsToString, "—"] select (_qn == 0);
+            _pmcRows pushBack [["QRF", format [("STR_ADVSEC_pdb_qrf_n" call ADVSEC_fnc_L), _qn], _avg, format ["%1 %2", _qb, _currency]],
+                format [("STR_ADVSEC_pdb_qrf_det" call ADVSEC_fnc_L), _qn, _avg, _qb, _currency, _qi], ["qrf"]];
+        };
+        private _adebt = (localNamespace getVariable ["ADVSEC_armDebts", createHashMap]) getOrDefault [_uid, [0, []]];
+        _pmcRows pushBack [[("STR_ADVSEC_pdb_debt" call ADVSEC_fnc_L), format ["%1 %2", _adebt select 0, _currency], "", (_adebt select 1) joinString ", "],
+            format [("STR_ADVSEC_pdb_debt_det" call ADVSEC_fnc_L), _adebt select 0, _currency, [(_adebt select 1) joinString ", ", "—"] select ((_adebt select 1) isEqualTo [])], ["debt", _adebt select 0]];
+        {
+            private _we = _y;
+            if ((_we param [4, ""]) == "CORP" && {(_we select 1) == _uid || {((_we select 6) param [0, ""]) == _uid}}) then {
+                private _wn = getText (configFile >> "CfgWeapons" >> (_we select 0) >> "displayName");
+                _pmcRows pushBack [[("STR_ADVSEC_pdb_corp" call ADVSEC_fnc_L), format ["%1 · %2", _x, _wn], (_we select 5) call ADVSEC_fnc_Lv, (str round ((_we select 7) * 100)) + " %"],
+                    format [("STR_ADVSEC_pdb_corp_det" call ADVSEC_fnc_L), _x, _wn, (_we select 5) call ADVSEC_fnc_Lv, round ((_we select 7) * 100), (_we select 6) param [1, "—"], (_we select 6) param [2, "—"], (_we select 8), _currency,
+                        ((_we select 9) apply {format ["%1 · %2", _x select 0, _x select 1]}) joinString "<br/>"], ["corp", _x, _we select 5, round ((_we select 7) * 100)]];
+            };
+        } forEach _wpns;
+        {
+            private _cc = _y;
+            private _isSig = ((_cc get "signer") param [0, ""]) == _uid;
+            if (_isSig || {((_cc get "assigned") findIf {(_x select 0) == _uid}) >= 0}) then {
+                _pmcRows pushBack [[("STR_ADVSEC_pdb_ctr" call ADVSEC_fnc_L), format ["%1 · %2", _x, _cc get "title"], (_cc get "state") call ADVSEC_fnc_Lv, [("STR_ADVSEC_pdb_assigned" call ADVSEC_fnc_L), ("STR_ADVSEC_pdb_signer" call ADVSEC_fnc_L)] select _isSig],
+                    format [("STR_ADVSEC_pdb_ctr_det" call ADVSEC_fnc_L), _x, _cc get "title", (_cc get "state") call ADVSEC_fnc_Lv, _cc get "created", [_cc get "end", "—"] select ((_cc get "end") isEqualTo ""), _cc get "result"],
+                    ["ctr", _x, _cc get "state", _cc get "title"]];
+            };
+        } forEach ([] call ADVSEC_fnc_ctrDB);
+        private _lk = (localNamespace getVariable ["ADVSEC_lkitDB", createHashMap]) getOrDefault [_uid, []];
+        if (_lk isEqualTo [] && {isNil {localNamespace getVariable "ADVSEC_lkitDB"}}) then {
+            _lk = ((profileNamespace getVariable [ADVSEC_repKey + "_lkit", []]) select {(_x select 0) == _uid}) apply {_x select 1};
+            _lk = _lk param [0, []];
+        };
+        if (_lk isNotEqualTo []) then {
+            _pmcRows pushBack [[("STR_ADVSEC_pdb_lkit" call ADVSEC_fnc_L), _lk select 0, "", ""], format [("STR_ADVSEC_pdb_lkit_det" call ADVSEC_fnc_L), _lk select 0], ["lkit"]];
+        };
+        {
+            _x params ["_ad", "", "_at", "_an", "_au", "_ag", "_atx", "_ast"];
+            if (_au == _uid) then {
+                _pmcRows pushBack [[("STR_ADVSEC_pdb_cy" call ADVSEC_fnc_L), _ad, _ast call ADVSEC_fnc_Lv, _atx], format ["%1 · %2 · %3<br/>%4", _ad, _at, _ag, _atx], ["cy", _forEachIndex, _ast]];
+            };
+        } forEach (localNamespace getVariable ["ADVSEC_cyAlerts", profileNamespace getVariable [ADVSEC_repKey + "_cyber", []]]);
+
+        // 11. Servicio: horas, suspensión y patrullas
+        private _srvRows = [];
+        private _duty = ([] call ADVSEC_fnc_dutyDB) getOrDefault [_uid, [0, _name, []]];
+        private _onDuty = _on && {_u getVariable ["ADVSEC_onDuty", false]};
+        _srvRows pushBack [[("STR_ADVSEC_pdb_duty" call ADVSEC_fnc_L), format ["%1 h %2 min", floor ((_duty select 0) / 60), round ((_duty select 0) mod 60)], [("STR_ADVSEC_pdb_off" call ADVSEC_fnc_L), ("STR_ADVSEC_pdb_on" call ADVSEC_fnc_L)] select _onDuty, format [("STR_ADVSEC_pdb_shifts" call ADVSEC_fnc_L), count (_duty select 2)]],
+            format [("STR_ADVSEC_pdb_duty_det" call ADVSEC_fnc_L), round (_duty select 0), (((_duty select 2) select [((count (_duty select 2)) - 10) max 0]) apply {format ["%1 → %2 (%3 min)", _x select 0, _x select 1, round (_x select 2)]}) joinString "<br/>"],
+            ["duty", round (_duty select 0)]];
+        ["check"] call ADVSEC_fnc_susServer;
+        private _sus = (localNamespace getVariable ["ADVSEC_susDB", createHashMap]) getOrDefault [_uid, []];
+        if (_sus isNotEqualTo []) then {
+            _sus params ["_su", "", "_sw", "_sb", "", "_sd", "_sh"];
+            private _left = (_su - (call ADVSEC_fnc_utcMin)) max 0;
+            _srvRows pushBack [[("STR_ADVSEC_pdb_susp" call ADVSEC_fnc_L), _sd, format ["%1 h %2 min", floor (_left / 60), round (_left mod 60)], _sw],
+                format [("STR_ADVSEC_steamid_suspended_by_h_reason" call ADVSEC_fnc_L), _name, _uid, _sd, _sb, _sh, _sw], ["susp"]];
+        };
+        {
+            private _pp = _y;
+            if (((_pp select 6) findIf {(_x select 0) == _uid}) >= 0 || {(_pp select 1) == _uid}) then {
+                private _pst = switch (_pp select 8) do {case "assigned": {("STR_ADVSEC_assigned" call ADVSEC_fnc_L)}; case "active": {("STR_ADVSEC_in_progress" call ADVSEC_fnc_L)}; case "done": {("STR_ADVSEC_completed" call ADVSEC_fnc_L)}; case "failed": {("STR_ADVSEC_incomplete" call ADVSEC_fnc_L)}; default {("STR_ADVSEC_cancelled" call ADVSEC_fnc_L)}};
+                _srvRows pushBack [[("STR_ADVSEC_pdb_patrol" call ADVSEC_fnc_L), format ["%1 · %2", _x, _pp select 0], _pst, _pp select 7],
+                    format [("STR_ADVSEC_pdb_patrol_det" call ADVSEC_fnc_L), _x, _pp select 0, _pp select 2, _pst, _pp select 7, count (_pp select 3), {_x isNotEqualTo []} count (_pp select 9)],
+                    ["pat", _x, _pp select 8]];
+            };
+        } forEach ([] call ADVSEC_fnc_patrolDB);
+
         private _sections = [
             [[("STR_ADVSEC_field" call ADVSEC_fnc_L), ("STR_ADVSEC_value" call ADVSEC_fnc_L)], _resRows],
             [[("STR_ADVSEC_type" call ADVSEC_fnc_L), ("STR_ADVSEC_number" call ADVSEC_fnc_L), ("STR_ADVSEC_level_2" call ADVSEC_fnc_L), ("STR_ADVSEC_expiry" call ADVSEC_fnc_L)], _docRows],
@@ -208,7 +288,9 @@ switch (_action) do {
             [["Id", ("STR_ADVSEC_type" call ADVSEC_fnc_L), ("STR_ADVSEC_status" call ADVSEC_fnc_L), ("STR_ADVSEC_custody" call ADVSEC_fnc_L), ("STR_ADVSEC_result" call ADVSEC_fnc_L)], _evRows],
             [[("STR_ADVSEC_date" call ADVSEC_fnc_L), ("STR_ADVSEC_item" call ADVSEC_fnc_L), ("STR_ADVSEC_amount" call ADVSEC_fnc_L)], _ecoRows],
             [[("STR_ADVSEC_specialty_2" call ADVSEC_fnc_L), ("STR_ADVSEC_role" call ADVSEC_fnc_L), ("STR_ADVSEC_date" call ADVSEC_fnc_L)], _specRows],
-            [[("STR_ADVSEC_date" call ADVSEC_fnc_L), ("STR_ADVSEC_type" call ADVSEC_fnc_L), ("STR_ADVSEC_detail" call ADVSEC_fnc_L)], _logRows]
+            [[("STR_ADVSEC_date" call ADVSEC_fnc_L), ("STR_ADVSEC_type" call ADVSEC_fnc_L), ("STR_ADVSEC_detail" call ADVSEC_fnc_L)], _logRows],
+            [[("STR_ADVSEC_type" call ADVSEC_fnc_L), ("STR_ADVSEC_pdb_element" call ADVSEC_fnc_L), ("STR_ADVSEC_status" call ADVSEC_fnc_L), ("STR_ADVSEC_detail" call ADVSEC_fnc_L)], _pmcRows],
+            [[("STR_ADVSEC_type" call ADVSEC_fnc_L), ("STR_ADVSEC_pdb_element" call ADVSEC_fnc_L), ("STR_ADVSEC_status" call ADVSEC_fnc_L), ("STR_ADVSEC_detail" call ADVSEC_fnc_L)], _srvRows]
         ];
 
         // Cabecera: nombre, estado, cuatro tarjetas (conexiones, tiempo, efectivo, banco)
@@ -474,6 +556,143 @@ switch (_action) do {
                     ["spec"] call ADVSEC_fnc_dbDirty;
                     if (!isNull _u) then {[_u] call ADVSEC_fnc_specApply};
                     (format [("STR_ADVSEC_specialty_added" call ADVSEC_fnc_L), _sid]) call _log;
+                };
+                // --- PMC
+                // [rol ("" | CP | QRF | SEC), estado]
+                case "cellSet": {
+                    _data params [["_role", ""], ["_st", "Disponible"]];
+                    private _cdb = [] call ADVSEC_fnc_cellDB;
+                    if (_role isEqualTo "") then {_cdb deleteAt _uid} else {
+                        if !(_role in ["CP", "QRF", "SEC"]) exitWith {};
+                        private _ce = _cdb getOrDefault [_uid, [_role, _e select 0, "Disponible", 0, 0]];
+                        _ce set [0, _role];
+                        _ce set [1, _e select 0];
+                        if (_st in ["Disponible", "Movilizado", "Descanso"]) then {_ce set [2, _st]};
+                        _cdb set [_uid, _ce];
+                    };
+                    missionNamespace setVariable ["ADVSEC_cellRoles", (keys _cdb) apply {[_x, (_cdb get _x) select 0, (_cdb get _x) select 2]}, true];
+                    ["cells"] call ADVSEC_fnc_dbDirty;
+                    (format [("STR_ADVSEC_pdb_log_cell" call ADVSEC_fnc_L), [_role, "-"] select (_role isEqualTo ""), _st]) call _log;
+                    if (!isNull _u) then {(format [("STR_ADVSEC_pmc_cell_assigned" call ADVSEC_fnc_L), [(format ["STR_ADVSEC_pmc_role_%1", _role]) call ADVSEC_fnc_L, ("STR_ADVSEC_pmc_role_none" call ADVSEC_fnc_L)] select (_role isEqualTo "")]) remoteExecCall ["hint", _u]};
+                };
+                case "qrfReset": {
+                    (localNamespace getVariable ["ADVSEC_qrfStats", createHashMap]) deleteAt _uid;
+                    ["qrf"] call ADVSEC_fnc_dbDirty;
+                    ("STR_ADVSEC_pdb_log_qrf" call ADVSEC_fnc_L) call _log;
+                };
+                // [importe]: 0 perdona la deuda
+                case "debtSet": {
+                    [] call ADVSEC_fnc_armDB;
+                    private _debts = localNamespace getVariable ["ADVSEC_armDebts", createHashMap];
+                    private _n = (round parseNumber (_data param [0, "0"])) max 0;
+                    if (_n == 0) then {_debts deleteAt _uid} else {
+                        private _dd = _debts getOrDefault [_uid, [0, []]];
+                        _dd set [0, _n];
+                        _debts set [_uid, _dd];
+                    };
+                    ["armory"] call ADVSEC_fnc_dbDirty;
+                    (format [("STR_ADVSEC_pdb_log_debt" call ADVSEC_fnc_L), _n]) call _log;
+                };
+                // [serie, [estado, desgaste %]]
+                case "corpEdit": {
+                    _data params ["_sn", ["_v", []]];
+                    _v params [["_st", ""], ["_wear", ""]];
+                    private _we = ([] call ADVSEC_fnc_wpnDB) getOrDefault [_sn, []];
+                    if (_we isEqualTo [] || {(_we param [4, ""]) != "CORP"}) exitWith {};
+                    if (_st in ["Armería", "Firmada", "Perdida", "Incautada", "Destruida", "Retirada"] && {_st != (_we select 5)}) then {
+                        _we set [5, _st];
+                        if (_st == "Armería") then {_we set [1, ""]; _we set [2, ("STR_ADVSEC_pmc_company" call ADVSEC_fnc_L)]};
+                        if (_st == "Firmada") then {_we set [1, _uid]; _we set [2, format [("STR_ADVSEC_pmc_company_signed" call ADVSEC_fnc_L), _e select 0]]; _we set [6, [_uid, _e select 0, call ADVSEC_fnc_now]]};
+                    };
+                    if (_wear isNotEqualTo "") then {_we set [7, ((parseNumber _wear) / 100) max 0 min 1]};
+                    (_we select 9) pushBack [call ADVSEC_fnc_now, format [("STR_ADVSEC_pdb_corp_hist" call ADVSEC_fnc_L), name _caller, (_we select 5) call ADVSEC_fnc_Lv, round ((_we select 7) * 100)]];
+                    ["weapons"] call ADVSEC_fnc_dbDirty;
+                    ["armory"] call ADVSEC_fnc_dbDirty;
+                    [_uid] call ADVSEC_fnc_armSigned;
+                    (format [("STR_ADVSEC_pdb_log_corp" call ADVSEC_fnc_L), _sn, _we select 5]) call _log;
+                };
+                // [id]: quita al jugador del contrato
+                case "ctrDrop": {
+                    private _cc = ([] call ADVSEC_fnc_ctrDB) getOrDefault [_data, createHashMap];
+                    if (count _cc == 0) exitWith {};
+                    _cc set ["assigned", (_cc get "assigned") select {(_x select 0) != _uid}];
+                    if (((_cc get "signer") param [0, ""]) == _uid && {!((_cc get "state") in ["Firmado", "En curso"])}) then {_cc set ["signer", []]};
+                    ["contracts"] call ADVSEC_fnc_dbDirty;
+                    (format [("STR_ADVSEC_pdb_log_ctrdrop" call ADVSEC_fnc_L), _data]) call _log;
+                };
+                // [id, [título, estado]]: el estado se cambia sin liquidar el contrato
+                case "ctrEdit": {
+                    _data params ["_cid", ["_v", []]];
+                    _v params [["_t", ""], ["_st", ""]];
+                    private _cc = ([] call ADVSEC_fnc_ctrDB) getOrDefault [_cid, createHashMap];
+                    if (count _cc == 0) exitWith {};
+                    if (_t isNotEqualTo "") then {_cc set ["title", _t select [0, 60]]};
+                    if (_st in ["Ofertado", "Firmado", "En curso", "Revisión", "Cumplido", "Parcial", "Fallido", "Rescindido", "Retirado"] && {_st != (_cc get "state")}) then {
+                        if ((_cc get "state") == "En curso" && {!(_st in ["Firmado", "En curso"])}) then {["end", _cid] call ADVSEC_fnc_ctrHostiles};
+                        _cc set ["state", _st];
+                        if (_st in ["Cumplido", "Parcial", "Fallido", "Rescindido", "Retirado"] && {(_cc get "end") isEqualTo ""}) then {_cc set ["end", call ADVSEC_fnc_now]};
+                        _cc set ["result", format [("STR_ADVSEC_pdb_ctr_byadmin" call ADVSEC_fnc_L), name _caller]];
+                    };
+                    ["contracts"] call ADVSEC_fnc_dbDirty;
+                    (format [("STR_ADVSEC_pdb_log_ctredit" call ADVSEC_fnc_L), _cid, _cc get "state"]) call _log;
+                };
+                case "lkitDel": {
+                    private _ldb = localNamespace getVariable ["ADVSEC_lkitDB", createHashMap];
+                    if (isNil {localNamespace getVariable "ADVSEC_lkitDB"}) then {
+                        {if (_x isEqualType [] && {count _x == 2}) then {_ldb set [_x select 0, +(_x select 1)]}} forEach (profileNamespace getVariable [ADVSEC_repKey + "_lkit", []]);
+                        localNamespace setVariable ["ADVSEC_lkitDB", _ldb];
+                    };
+                    _ldb deleteAt _uid;
+                    ["lkit"] call ADVSEC_fnc_dbDirty;
+                    ("STR_ADVSEC_pdb_log_lkit" call ADVSEC_fnc_L) call _log;
+                };
+                // [índice]: alerta ciber revisada / borrada
+                case "cyAck";
+                case "cyDel": {
+                    if (isNil {localNamespace getVariable "ADVSEC_cyAlerts"}) then {localNamespace setVariable ["ADVSEC_cyAlerts", +(profileNamespace getVariable [ADVSEC_repKey + "_cyber", []])]};
+                    private _al = localNamespace getVariable ["ADVSEC_cyAlerts", []];
+                    private _a = _al param [_data, []];
+                    if (_a isEqualTo [] || {(_a select 4) != _uid}) exitWith {};
+                    if (_op == "cyDel") then {_al deleteAt _data} else {_a set [7, "Revisada"]};
+                    ["cyber"] call ADVSEC_fnc_dbDirty;
+                    (format [("STR_ADVSEC_pdb_log_cy" call ADVSEC_fnc_L), _a select 0]) call _log;
+                };
+                // --- Servicio
+                // [minutos totales]
+                case "dutySet": {
+                    private _ddb = [] call ADVSEC_fnc_dutyDB;
+                    private _n = (round parseNumber (_data param [0, "0"])) max 0;
+                    private _de = _ddb getOrDefault [_uid, [0, _e select 0, []]];
+                    _de set [0, _n];
+                    _ddb set [_uid, _de];
+                    ["duty"] call ADVSEC_fnc_dbDirty;
+                    (format [("STR_ADVSEC_pdb_log_duty" call ADVSEC_fnc_L), _n]) call _log;
+                };
+                case "dutyReset": {
+                    ([] call ADVSEC_fnc_dutyDB) deleteAt _uid;
+                    ["duty"] call ADVSEC_fnc_dbDirty;
+                    (format [("STR_ADVSEC_pdb_log_duty" call ADVSEC_fnc_L), 0]) call _log;
+                };
+                case "suspLift": {
+                    ["check"] call ADVSEC_fnc_susServer;
+                    private _sdb = localNamespace getVariable ["ADVSEC_susDB", createHashMap];
+                    private _ss = _sdb deleteAt _uid;
+                    if (isNil "_ss") exitWith {};
+                    (_ss select 1) params ["_spm", "_sai", "_sg"];
+                    _e set [5, _spm]; _e set [6, _sai]; _e set [7, _sg];
+                    format [("STR_ADVSEC_lifted_by" call ADVSEC_fnc_L), name _caller] call _hist;
+                    ["players"] call ADVSEC_fnc_dbDirty;
+                    ["susp"] call ADVSEC_fnc_dbDirty;
+                    if (!isNull _u) then {[_u] call ADVSEC_fnc_pdbApply; ("STR_ADVSEC_your_suspension_has_ended_ranks" call ADVSEC_fnc_L) remoteExecCall ["hint", _u]};
+                    ("STR_ADVSEC_pdb_log_susp" call ADVSEC_fnc_L) call _log;
+                };
+                // [id]: quita al jugador de la patrulla
+                case "patDrop": {
+                    private _pp = ([] call ADVSEC_fnc_patrolDB) getOrDefault [_data, []];
+                    if (_pp isEqualTo []) exitWith {};
+                    _pp set [6, (_pp select 6) select {(_x select 0) != _uid}];
+                    ["patrols"] call ADVSEC_fnc_dbDirty;
+                    (format [("STR_ADVSEC_pdb_log_pat" call ADVSEC_fnc_L), _data]) call _log;
                 };
                 default {};
             };

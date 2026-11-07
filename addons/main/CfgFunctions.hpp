@@ -202,6 +202,8 @@ class CfgFunctions {
         class lockers {
             file = "\x\advsec\addons\main\functions\lockers";
             class lockerGate {};
+            class lockerKit {};
+            class lockerKitMenu {};
             class lockerPersist {};
         };
         class economy {
@@ -283,6 +285,7 @@ class CfgFunctions {
             class ctrServer {};
             class ctrSettle {};
             class ctrTick {};
+            class ctrHostiles {};
             class moduleContract {};
             class pmcClasses {};
             class pmcLoop {};
@@ -355,6 +358,7 @@ class CfgFunctions {
         class licenses {
             file = "\x\advsec\addons\main\functions\licenses";
             class wpnSerial {};
+            class wpnArsenal {};
             class wpnDB {};
             class wpnRegister {};
             class licServer {};
@@ -415,6 +419,7 @@ class CfgFunctions {
             class panelSet {};
             class progress {};
             class panelAction {};
+            class uiRect {};
         };
         class ai {
             file = "\x\advsec\addons\main\functions\ai";

@@ -76,7 +76,7 @@ private _push = {
 };
 private _newMetrics = {
     createHashMapFromArray [["incidents", []], ["costs", []], ["exposure", 0], ["vipDmg", 0], ["advance", false], ["advT", 0], ["presence", 0], ["ticks", 0],
-        ["actions", 0], ["responses", []], ["penal", []], ["deviation", false], ["vehDmg", 0]]
+        ["actions", 0], ["responses", []], ["penal", []], ["deviation", false], ["vehDmg", 0], ["host", 0], ["hostDown", 0]]
 };
 private _offer = {
     // [tipo, cliente, pos, radio, pago, minutos, ruta, título] -> id
@@ -146,6 +146,9 @@ private _sheet = {
     if ((_m get "responses") isNotEqualTo []) then {
         _t = _t + "<br/>" + ("STR_ADVSEC_pmc_qrf_responses" call ADVSEC_fnc_L) + ((_m get "responses") apply {format [" %1 (%2)", [(_x select 1) / 60, "MM:SS"] call BIS_fnc_secondsToString, _x select 0]} joinString ",");
     };
+    if ((_m getOrDefault ["host", 0]) > 0) then {
+        _t = _t + format [("STR_ADVSEC_pmc_host_sheet" call ADVSEC_fnc_L), _m get "host", _m getOrDefault ["hostDown", 0]];
+    };
     if ((_c get "type") == "vip") then {
         _t = _t + format [("STR_ADVSEC_pmc_vip_metrics" call ADVSEC_fnc_L), round (_m get "exposure"), round ((_m get "vipDmg") * 100), [("STR_ADVSEC_no" call ADVSEC_fnc_L), ("STR_ADVSEC_yes" call ADVSEC_fnc_L)] select (_m get "advance")];
     };
@@ -163,6 +166,7 @@ private _finish = {
     private _tmp = localNamespace getVariable ["ADVSEC_ctrObjs", createHashMap];
     {if (!isNull _x && {!isPlayer _x}) then {[_x] spawn {params ["_o"]; sleep 60; if (!isNull _o) then {deleteVehicle _o}}}} forEach (_tmp getOrDefault [_id, []]);
     _tmp deleteAt _id;
+    ["end", _id] call ADVSEC_fnc_ctrHostiles;
     // Nóminas de los asignados mientras duró
     private _every = ["salaryInterval", 30] call ADVSEC_fnc_setting;
     if (_every > 0 && {(_c get "t0") >= 0}) then {
@@ -234,7 +238,7 @@ switch (_action) do {
     };
     case "offer": {
         if !([_caller] call ADVSEC_fnc_isZeus) exitWith {[_caller, ("STR_ADVSEC_pmc_perm_offer" call ADVSEC_fnc_L)] call ADVSEC_fnc_deny};
-        _args params [["_type", "escort"], ["_client", ""], ["_pos", [0, 0, 0]], ["_rad", 150], ["_pay", 0], ["_min", 0], ["_route", []], ["_obj", objNull], ["_title", ""]];
+        _args params [["_type", "escort"], ["_client", ""], ["_pos", [0, 0, 0]], ["_rad", 150], ["_pay", 0], ["_min", 0], ["_route", []], ["_obj", objNull], ["_title", ""], ["_hMode", -1], ["_hN", -1]];
         if (isNull (["ContractTypes", _type] call _cfgOf)) exitWith {("STR_ADVSEC_invalid_data" call ADVSEC_fnc_L) call _say};
         if (isNull (["Clients", _client] call _cfgOf)) then {_client = configName ((["Clients"] call ADVSEC_fnc_pmcClasses) select 0)};
         private _tc = ["ContractTypes", _type] call _cfgOf;
@@ -248,6 +252,8 @@ switch (_action) do {
         };
         private _id = [_type, _client, _pos, (_rad max 30) min 1000, _pay, _min, _route, _title] call _offer;
         if (!isNull _obj) then {(_db get _id) set ["objNet", netId _obj]};
+        if (_hMode isEqualType 0 && {_hMode >= 0}) then {(_db get _id) set ["hostileMode", _hMode min 3]};
+        if (_hN isEqualType 0 && {_hN >= 0}) then {(_db get _id) set ["hostileN", _hN min 12]};
         (format [("STR_ADVSEC_pmc_offer_published" call ADVSEC_fnc_L), _id]) call _say;
         ["contractOffer", _caller, [_id, _type, _client, _pay]] call ADVSEC_fnc_logEvent;
     };
@@ -433,6 +439,9 @@ switch (_action) do {
         private _tmp = localNamespace getVariable ["ADVSEC_ctrObjs", createHashMap];
         _tmp set [_id, _objs];
         localNamespace setVariable ["ADVSEC_ctrObjs", _tmp];
+        // Enemigos: los ya colocados en la zona y/o generados (contractHostiles)
+        (["start", _id, _c] call ADVSEC_fnc_ctrHostiles) params [["_hN", 0]];
+        if (_hN > 0) then {[_c, format [("STR_ADVSEC_pmc_host_intel" call ADVSEC_fnc_L), _id, _hN]] call _notify};
         // Disparos de los asignados (para atribuir daños a edificios)
         {
             private _u = [_x select 0] call ADVSEC_fnc_uidUnit;

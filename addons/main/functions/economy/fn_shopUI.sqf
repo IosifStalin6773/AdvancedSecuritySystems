@@ -47,14 +47,14 @@ switch (_a) do {
             private _t = ADVSEC_shopTabs select _x;
             private _y = _forEachIndex * (_h + 0.005);
             private _bg = _d ctrlCreate ["RscText", -1, _grp];
-            _bg ctrlSetPosition [0, _y, 0.055, _h];
+            _bg ctrlSetPosition ([[0, _y, 0.055, _h], 3] call ADVSEC_fnc_uiRect);
             _bg ctrlCommit 0;
             private _p = _d ctrlCreate ["RscPictureKeepAspect", -1, _grp];
-            _p ctrlSetPosition [0.006, _y + 0.006, 0.043, _h - 0.012];
+            _p ctrlSetPosition ([[0.006, _y + 0.006, 0.043, _h - 0.012], 3] call ADVSEC_fnc_uiRect);
             _p ctrlSetText format ["\A3\ui_f\data\gui\Rsc\RscDisplayArsenal\%1_ca.paa", _t select 1];
             _p ctrlCommit 0;
             private _b = _d ctrlCreate ["ADVSEC_ShopTab", -1, _grp];
-            _b ctrlSetPosition [0, _y, 0.055, _h];
+            _b ctrlSetPosition ([[0, _y, 0.055, _h], 3] call ADVSEC_fnc_uiRect);
             _b ctrlSetTooltip (_t select 0);
             _b setVariable ["ADVSEC_i", _forEachIndex];
             _b ctrlAddEventHandler ["ButtonClick", {["tab", (_this select 0) getVariable ["ADVSEC_i", 0]] call ADVSEC_fnc_shopUI}];

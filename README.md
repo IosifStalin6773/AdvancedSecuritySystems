@@ -1,6 +1,6 @@
 # Advanced Security Systems (ADVSEC)
 
-**Versión 1.18.0** · Addon de Arma 3 para servidores con **Policía Militar (PM)** y **Asuntos Internos (AA.II.)**.
+**Versión 1.19.0** · Addon de Arma 3 para servidores con **Policía Militar (PM)** y **Asuntos Internos (AA.II.)**.
 
 ADVSEC reúne en un solo mod:
 - documentación de identidad;
@@ -82,13 +82,13 @@ La carpeta contiene:
 - `addons\advsec_buildings.pbo`: el edificio de la PM.
 - `addons\advsec_lockers.pbo`: taquillas personales TS_Lockers integradas (necesita ACE y CBA; si no están, no se carga). **Quita el `TS_Lockers.pbo` suelto de tu lista de mods**: ya va dentro. Pesa 400 MB y GitHub no admite archivos de más de 100 MB en el repositorio: está en la rama **`binarios`** dividido en partes: descarga esa rama, ejecuta `lockers\UNIR.bat` y copia el `advsec_lockers.pbo` resultante en `addons\` junto a su `.bisign`.
 - Las firmas `.bisign` de los PBO.
-- `keys\advsec_1.18.0.bikey`.
+- `keys\advsec_1.19.0.bikey`.
 - `mod.cpp`.
 
 ### Servidor dedicado
 
 1. Carga el mod con `-mod=@AdvancedSecuritySystems`. No uses `-serverMod`, porque los clientes también lo necesitan.
-2. Copia `keys\advsec_1.18.0.bikey` a la carpeta `keys` del servidor y borra las claves `advsec_*` antiguas. Todos los PBO están firmados, así que funciona con `verifySignatures = 2`.
+2. Copia `keys\advsec_1.19.0.bikey` a la carpeta `keys` del servidor y borra las claves `advsec_*` antiguas. Todos los PBO están firmados, así que funciona con `verifySignatures = 2`.
 3. Si la misión usa `CfgRemoteExec` en modo lista blanca, copia las clases `ADVSEC_fnc_*` del `description.ext` de ejemplo.
 
 ### Dependencias
@@ -481,6 +481,10 @@ Sin ACE, cada entrada abre una lista con todo («Grupo · acción»).
 ### Compañía militar privada (PMC, 1.18)
 
 Contratos con clientes y reputación, daños colaterales, armería corporativa con números de serie y desgaste, contrabando, células CP/QRF/SEC y terminal ciber de Inteligencia/Compliance. Módulos: Terminal de contratos, Contrato PMC a medida (Zeus), Armería corporativa y Terminal ciber. Menú ACE › Policía Militar › PMC. Detalle completo, ajustes y permisos en [docs/CHANGELOG_1.18.0.md](docs/CHANGELOG_1.18.0.md).
+
+### Novedades 1.19
+
+Enemigos en los contratos (generados o los ya colocados en la zona) y nuevo contrato «Limpieza de zona», nº de serie para las armas del Arsenal, equipo completo en la taquilla (guardar/equiparse con ACE), pestañas PMC y Servicio editables en la base de datos de jugadores, avisos de control completos e interfaz escalada a la pantalla. Ver [docs/CHANGELOG_1.19.0.md](docs/CHANGELOG_1.19.0.md).
 
 ## 11. Base de datos de jugadores y rangos
 

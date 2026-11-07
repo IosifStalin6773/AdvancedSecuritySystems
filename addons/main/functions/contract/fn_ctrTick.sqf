@@ -37,6 +37,7 @@ private _enemies = {
         private _over = (_c get "minutes") > 0 && {_el > (_c get "minutes")};
         private _route = _c get "route";
         private _rch = _c get "reached";
+        (["tick", _id, _c] call ADVSEC_fnc_ctrHostiles) params [["_hAlive", 0], ["_hDown", 0], ["_hTotal", 0], ["_hWaves", 0]];
         private _reach = {
             // [quién (unidades), radio] marca en orden el siguiente punto de la ruta
             params ["_who", "_rad"];
@@ -129,6 +130,12 @@ private _enemies = {
                 if (isNull _box || {!alive _box}) exitWith {[_id, _c, "Fallido", ("STR_ADVSEC_pmc_cargo_lost" call ADVSEC_fnc_L)] call _finish};
                 if ((_box distance2D (_c get "home")) < 50) exitWith {[_id, _c, "Cumplido"] call _finish};
                 if (_over) then {[_id, _c, "Fallido", ("STR_ADVSEC_pmc_time_out" call ADVSEC_fnc_L)] call _finish};
+            };
+            case "clear": {
+                // Limpieza de zona: cumplido cuando no queda ningún enemigo del contrato con vida
+                if (_hTotal > 0 && {_hAlive == 0} && {_hWaves == 0}) exitWith {[_id, _c, "Cumplido", format [("STR_ADVSEC_pmc_host_cleared" call ADVSEC_fnc_L), _hDown]] call _finish};
+                if (_hTotal == 0 && {_hWaves == 0} && {_el > 2}) exitWith {[_id, _c, "Cumplido", ("STR_ADVSEC_pmc_host_none" call ADVSEC_fnc_L)] call _finish};
+                if (_over) then {[_id, _c, ["Fallido", "Parcial"] select (_hDown * 2 >= _hTotal), format [("STR_ADVSEC_pmc_host_cleared" call ADVSEC_fnc_L), _hDown]] call _finish};
             };
             default {if (_over) then {[_id, _c, "Parcial"] call _finish}};
         };

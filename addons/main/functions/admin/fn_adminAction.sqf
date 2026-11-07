@@ -25,7 +25,7 @@ switch (_action) do {
     case "refresh": {["list", player, [_key]] remoteExecCall ["ADVSEC_fnc_adminServer", 2]};
     case "select": {
         _view ctrlSetStructuredText parseText (_row param [2, ("STR_ADVSEC_nothing_selected" call ADVSEC_fnc_L)]);
-        _view ctrlSetPositionH ((ctrlTextHeight _view) max 0.6);
+        _view ctrlSetPositionH ((ctrlTextHeight _view) max (0.6 * safezoneH));
         _view ctrlCommit 0;
     };
     case "btn": {

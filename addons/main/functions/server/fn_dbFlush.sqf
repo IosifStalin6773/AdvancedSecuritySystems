@@ -47,7 +47,7 @@ if ("eco" in _d) then {
         profileNamespace setVariable [ADVSEC_repKey + "_" + _k, _out];
     };
 } forEach [["spec", "ADVSEC_specDB"], ["duty", "ADVSEC_dutyDB"], ["susp", "ADVSEC_susDB"], ["plates", "ADVSEC_plateDB"], ["weapons", "ADVSEC_wpnDB"], ["bodycam", "ADVSEC_bodyDB"], ["patrols", "ADVSEC_patrolDB"],
-    ["clients", "ADVSEC_ctrClients"], ["armory", "ADVSEC_armDebts"], ["cells", "ADVSEC_cellDB"], ["qrf", "ADVSEC_qrfStats"]];
+    ["clients", "ADVSEC_ctrClients"], ["armory", "ADVSEC_armDebts"], ["cells", "ADVSEC_cellDB"], ["qrf", "ADVSEC_qrfStats"], ["lkit", "ADVSEC_lkitDB"]];
 // PMC: contratos (hashmaps con métricas anidadas), contador de series y alertas ciber
 if ("contracts" in _d) then {
     private _out = [];

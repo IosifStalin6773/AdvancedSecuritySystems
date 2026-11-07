@@ -6,7 +6,7 @@ private _ai = ADVSEC_pdaMode == "AI";
 private _mark = {
     params ["_i"];
     private _m = _disp displayCtrl 87219;
-    _m ctrlSetPositionX (0.03 + 0.145 * _i);
+    _m ctrlSetPositionX (([[0.03 + 0.145 * _i, 0, 0, 0], 2] call ADVSEC_fnc_uiRect) select 0);
     _m ctrlCommit 0.1;
     {(_disp displayCtrl (87210 + _x)) ctrlSetTextColor ([[0.667, 0.667, 0.667, 1], [0.922, 0.922, 0.922, 1]] select (_x == _i))} forEach [0, 1, 2, 3];
 };

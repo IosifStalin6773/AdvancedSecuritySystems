@@ -134,6 +134,9 @@ class CfgRemoteExec {
         class ADVSEC_fnc_bribeAsk { allowedTargets = 0; };
         class ADVSEC_fnc_cellVipMark { allowedTargets = 0; };
         class ADVSEC_fnc_cyReplay { allowedTargets = 0; };
+        class ADVSEC_fnc_lockerKit { allowedTargets = 2; };
+        class ADVSEC_fnc_lockerKitMenu { allowedTargets = 0; };
+        class ADVSEC_fnc_wpnArsenal { allowedTargets = 2; };
         // Inicialización de objetos en todas las máquinas (cola JIP)
         class ADVSEC_fnc_alarmInit { allowedTargets = 0; jip = 1; };
         class ADVSEC_fnc_cameraInit { allowedTargets = 0; jip = 1; };

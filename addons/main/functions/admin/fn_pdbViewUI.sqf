@@ -3,10 +3,10 @@ params ["_action", ["_arg", 0]];
 private _disp = findDisplay 87850;
 if (isNull _disp) exitWith {};
 
-private _tabNames = [("STR_ADVSEC_summary" call ADVSEC_fnc_L), ("STR_ADVSEC_documents" call ADVSEC_fnc_L), ("STR_ADVSEC_sanctions" call ADVSEC_fnc_L), ("STR_ADVSEC_reports" call ADVSEC_fnc_L), ("STR_ADVSEC_suspicion" call ADVSEC_fnc_L), ("STR_ADVSEC_evidence" call ADVSEC_fnc_L), ("STR_ADVSEC_economy" call ADVSEC_fnc_L), ("STR_ADVSEC_specialties" call ADVSEC_fnc_L), ("STR_ADVSEC_log" call ADVSEC_fnc_L)];
+private _tabNames = [("STR_ADVSEC_summary" call ADVSEC_fnc_L), ("STR_ADVSEC_documents" call ADVSEC_fnc_L), ("STR_ADVSEC_sanctions" call ADVSEC_fnc_L), ("STR_ADVSEC_reports" call ADVSEC_fnc_L), ("STR_ADVSEC_suspicion" call ADVSEC_fnc_L), ("STR_ADVSEC_evidence" call ADVSEC_fnc_L), ("STR_ADVSEC_economy" call ADVSEC_fnc_L), ("STR_ADVSEC_specialties" call ADVSEC_fnc_L), ("STR_ADVSEC_log" call ADVSEC_fnc_L), "PMC", ("STR_ADVSEC_pdb_tab_service" call ADVSEC_fnc_L)];
 private _tabPos = [
     [0, 0.3], [0, 0.3, 0.55, 0.75], [0, 0.09, 0.26, 0.38, 0.86], [0, 0.2, 0.42, 0.8], [0, 0.35, 0.9],
-    [0, 0.16, 0.34, 0.56, 0.78], [0, 0.34, 0.8], [0, 0.4, 0.7], [0, 0.3, 0.6]
+    [0, 0.16, 0.34, 0.56, 0.78], [0, 0.34, 0.8], [0, 0.4, 0.7], [0, 0.3, 0.6], [0, 0.17, 0.52, 0.68], [0, 0.17, 0.52, 0.68]
 ];
 private _esc = {[_this] call ADVSEC_fnc_repEsc};
 private _rowKey = {
@@ -94,10 +94,10 @@ switch (_action) do {
 
     // Pinta la tabla de la pestaña activa y las etiquetas de las pestañas con su número de filas
     case "render": {
-        for "_i" from 0 to 8 do {
+        for "_i" from 0 to 10 do {
             private _sec = ADVSEC_pdbSections param [_i, [[], []]];
             private _n = count (_sec select 1);
-            private _b = _disp displayCtrl (87870 + _i);
+            private _b = _disp displayCtrl ([87870, 87871, 87872, 87873, 87874, 87875, 87876, 87877, 87878, 87865, 87866] select _i);
             _b ctrlSetText format ["%1%2", _tabNames select _i, [format [" (%1)", _n], ""] select (_n == 0)];
             if (_i == ADVSEC_pdbTab) then {
                 _b ctrlSetBackgroundColor [0.816, 0.639, 0.188, 1];
@@ -238,6 +238,50 @@ switch (_action) do {
                     if (_kt == "spec") then {_acts pushBack [[("STR_ADVSEC_remove_from_specialty" call ADVSEC_fnc_L), ("STR_ADVSEC_remove_as_manager" call ADVSEC_fnc_L), ("STR_ADVSEC_reject_request" call ADVSEC_fnc_L)] select (_key select 2), "specDel", [_key select 1, _key select 2], true, []]};
                     private _sO = ("true" configClasses (configFile >> "ADVSEC_Specialties")) apply {[[configName _x] call ADVSEC_fnc_specName, configName _x]};
                     _acts pushBack [("STR_ADVSEC_add_to_specialty" call ADVSEC_fnc_L), "specAdd", "", false, [format [("STR_ADVSEC_specialty" call ADVSEC_fnc_L), _who], [[("STR_ADVSEC_specialty_2" call ADVSEC_fnc_L), (_sO param [0, ["", ""]]) select 1, _sO], [("STR_ADVSEC_as" call ADVSEC_fnc_L), 0, [[("STR_ADVSEC_member" call ADVSEC_fnc_L), 0], [("STR_ADVSEC_manager" call ADVSEC_fnc_L), 1]]]]]];
+                };
+                case 9: {
+                    private _states = ["Armería", "Firmada", "Perdida", "Incautada", "Destruida", "Retirada"];
+                    switch (_kt) do {
+                        case "cell": {
+                            _key params ["", "_r", "_st"];
+                            _acts pushBack [("STR_ADVSEC_pdb_act_cell" call ADVSEC_fnc_L), "cellSet", "", false, [format [("STR_ADVSEC_pdb_cell_title" call ADVSEC_fnc_L), _who], [
+                                [("STR_ADVSEC_role" call ADVSEC_fnc_L), _r, [[("STR_ADVSEC_pmc_role_none" call ADVSEC_fnc_L), ""], [("STR_ADVSEC_pmc_role_CP" call ADVSEC_fnc_L), "CP"], [("STR_ADVSEC_pmc_role_QRF" call ADVSEC_fnc_L), "QRF"], [("STR_ADVSEC_pmc_role_SEC" call ADVSEC_fnc_L), "SEC"]]],
+                                [("STR_ADVSEC_status" call ADVSEC_fnc_L), [_st, "Disponible"] select (_st in ["", "—"]), ["Disponible", "Movilizado", "Descanso"]]]]];
+                            if (_r isNotEqualTo "") then {_acts pushBack [("STR_ADVSEC_pdb_act_cell_out" call ADVSEC_fnc_L), "cellSet", [""], true, []]};
+                        };
+                        case "qrf": {_acts pushBack [("STR_ADVSEC_pdb_act_qrf" call ADVSEC_fnc_L), "qrfReset", [], true, []]};
+                        case "debt": {
+                            _acts pushBack [("STR_ADVSEC_pdb_act_debt" call ADVSEC_fnc_L), "debtSet", "", false, [format [("STR_ADVSEC_pdb_debt_title" call ADVSEC_fnc_L), _who], [[("STR_ADVSEC_amount" call ADVSEC_fnc_L), str (_key select 1)]]]];
+                            if ((_key select 1) > 0) then {_acts pushBack [("STR_ADVSEC_pdb_act_forgive" call ADVSEC_fnc_L), "debtSet", ["0"], true, []]};
+                        };
+                        case "corp": {
+                            _key params ["", "_sn", "_st", "_wear"];
+                            _acts pushBack [("STR_ADVSEC_pdb_act_corp" call ADVSEC_fnc_L), "corpEdit", _sn, false, [_sn, [[("STR_ADVSEC_status" call ADVSEC_fnc_L), _st, _states], [("STR_ADVSEC_pdb_wear" call ADVSEC_fnc_L), str _wear]]]];
+                            if (_st != "Armería") then {_acts pushBack [("STR_ADVSEC_pdb_act_corp_back" call ADVSEC_fnc_L), "corpEdit", [_sn, ["Armería", ""]], true, []]};
+                        };
+                        case "ctr": {
+                            _key params ["", "_cid", "_st", "_t"];
+                            _acts pushBack [("STR_ADVSEC_pdb_act_ctr" call ADVSEC_fnc_L), "ctrEdit", _cid, false, [_cid, [[("STR_ADVSEC_title" call ADVSEC_fnc_L), _t], [("STR_ADVSEC_status" call ADVSEC_fnc_L), _st, ["Ofertado", "Firmado", "En curso", "Revisión", "Cumplido", "Parcial", "Fallido", "Rescindido", "Retirado"]]]]];
+                            _acts pushBack [("STR_ADVSEC_pdb_act_ctr_drop" call ADVSEC_fnc_L), "ctrDrop", _cid, true, []];
+                        };
+                        case "lkit": {_acts pushBack [("STR_ADVSEC_pdb_act_lkit" call ADVSEC_fnc_L), "lkitDel", [], true, []]};
+                        case "cy": {
+                            if ((_key select 2) != "Revisada") then {_acts pushBack [("STR_ADVSEC_pdb_act_cy_ack" call ADVSEC_fnc_L), "cyAck", _key select 1, false, []]};
+                            _acts pushBack [("STR_ADVSEC_pdb_act_cy_del" call ADVSEC_fnc_L), "cyDel", _key select 1, true, []];
+                        };
+                        default {};
+                    };
+                };
+                case 10: {
+                    switch (_kt) do {
+                        case "duty": {
+                            _acts pushBack [("STR_ADVSEC_pdb_act_duty" call ADVSEC_fnc_L), "dutySet", "", false, [format [("STR_ADVSEC_pdb_duty_title" call ADVSEC_fnc_L), _who], [[("STR_ADVSEC_pdb_minutes" call ADVSEC_fnc_L), str (_key select 1)]]]];
+                            _acts pushBack [("STR_ADVSEC_pdb_act_duty_reset" call ADVSEC_fnc_L), "dutyReset", [], true, []];
+                        };
+                        case "susp": {_acts pushBack [("STR_ADVSEC_pdb_act_susp" call ADVSEC_fnc_L), "suspLift", [], true, []]};
+                        case "pat": {_acts pushBack [("STR_ADVSEC_pdb_act_pat" call ADVSEC_fnc_L), "patDrop", _key select 1, true, []]};
+                        default {};
+                    };
                 };
                 default {};
             };

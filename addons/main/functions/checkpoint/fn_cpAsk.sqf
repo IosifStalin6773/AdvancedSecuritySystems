@@ -28,6 +28,28 @@ ADVSEC_cpAskH = [_veh] spawn {
                 ("STR_ADVSEC_good_morning_police_checkpoint_documents" call ADVSEC_fnc_L),
                 [_officer] call ADVSEC_fnc_repEsc, [_cp] call ADVSEC_fnc_repEsc, (ceil (_deadline - serverTime)) max 0
             ];
+            // El cuadro crece con el texto: los botones bajan y el fondo se alarga
+            private _d = findDisplay 87600;
+            private _p = ctrlPosition _ctrl;
+            private _h = (ctrlTextHeight _ctrl) max ((_p select 3) min 0.05);
+            if (abs (_h - (_p select 3)) > 0.002) then {
+                _ctrl ctrlSetPosition [_p select 0, _p select 1, _p select 2, _h];
+                _ctrl ctrlCommit 0;
+                private _by = (_p select 1) + _h + 0.015 * safezoneH;
+                {
+                    private _b = _d displayCtrl _x;
+                    private _bp = ctrlPosition _b;
+                    _b ctrlSetPosition [_bp select 0, _by, _bp select 2, _bp select 3];
+                    _b ctrlCommit 0;
+                } forEach [87603, 87604];
+                private _bh = (ctrlPosition (_d displayCtrl 87603)) select 3;
+                {
+                    private _c = _d displayCtrl _x;
+                    private _cp0 = ctrlPosition _c;
+                    _c ctrlSetPosition [_cp0 select 0, _cp0 select 1, _cp0 select 2, (_by + _bh + 0.015 * safezoneH) - (_cp0 select 1)];
+                    _c ctrlCommit 0;
+                } forEach [87605, 87606, 87607];
+            };
         };
         sleep 0.5;
     };

@@ -25,9 +25,20 @@ addMissionEventHandler ["Draw3D", {call ADVSEC_fnc_zeusDraw}];
     [] call ADVSEC_fnc_docLoad;
     ["check", player] remoteExecCall ["ADVSEC_fnc_jailServer", 2];
 
-    [missionNamespace, "arsenalClosed", {[] spawn {sleep 0.5; [] call ADVSEC_fnc_docRestore}}] call BIS_fnc_addScriptedEventHandler;
+    // Al cerrar el Arsenal: documentos que falten y nº de serie de las armas sacadas
+    ADVSEC_arsClosed = {
+        [] spawn {
+            sleep 0.5;
+            [] call ADVSEC_fnc_docRestore;
+            private _ws = [primaryWeapon player, secondaryWeapon player, handgunWeapon player] select {_x isNotEqualTo ""};
+            {if (!isNull _x) then {_ws append ((getWeaponCargo _x) select 0)}} forEach [uniformContainer player, vestContainer player, backpackContainer player];
+            _ws = _ws apply {[_x] call BIS_fnc_baseWeapon};
+            if (_ws isNotEqualTo []) then {[player, _ws] remoteExecCall ["ADVSEC_fnc_wpnArsenal", 2]};
+        };
+    };
+    [missionNamespace, "arsenalClosed", {call ADVSEC_arsClosed}] call BIS_fnc_addScriptedEventHandler;
     if (isClass (configFile >> "CfgPatches" >> "cba_events")) then {
-        ["ace_arsenal_displayClosed", {[] spawn {sleep 0.5; [] call ADVSEC_fnc_docRestore}}] call CBA_fnc_addEventHandler;
+        ["ace_arsenal_displayClosed", {call ADVSEC_arsClosed}] call CBA_fnc_addEventHandler;
         ["loadout", {[] spawn {sleep 0.5; [] call ADVSEC_fnc_docRestore}}] call CBA_fnc_addPlayerEventHandler;
     };
 

@@ -202,7 +202,11 @@ class ADVSEC_Settings {
     contractRepLoss = 20;        // reputación perdida por contrato fallido o rescindido
     contractRivalLoss = 4;       // reputación que pierden los rivales del cliente al cumplir
     contractRepDecay = 3;        // días para que la reputación baje/suba 1 punto hacia 0 (0 = nunca)
-    contractGreyHeat = 15;       // sospecha de AA.II. al firmar un contrato de zona gris
+    contractGreyHeat = 15;
+    contractHostiles = 3;        // enemigos: 0 ninguno, 1 solo generados, 2 solo los ya colocados en la zona, 3 ambos (genera los que falten)
+    contractHostileSide = "east"; // bando de los generados: east, independent o west
+    contractHostileScale = 1;    // multiplicador de los grupos de cada tipo de contrato
+    contractHostileClasses[] = {"O_Soldier_F", "O_Soldier_AR_F", "O_Soldier_GL_F", "O_Soldier_LAT_F", "O_Soldier_TL_F", "O_medic_F", "O_soldier_M_F"};       // sospecha de AA.II. al firmar un contrato de zona gris
     collateralCaseAt = 2;        // incidentes graves que dejan el contrato en revisión de Compliance (F-AI-01)
     // Protección cercana (contratos VIP)
     cpCloseRadius = 5;           // distancia máxima escolta-VIP para no contar como exposición
@@ -217,12 +221,14 @@ class ADVSEC_Settings {
     qrfStandbyMin = 0.8;         // fracción mínima del servicio en estado Disponible para cobrar el plus
 
     class ContractTypes {
-        class escort { name = "$STR_ADVSEC_pmc_type_escort"; base = 6000; risk = 1; minutes = 45; minOps = 3; };
-        class vip { name = "$STR_ADVSEC_pmc_type_vip"; base = 9000; risk = 2; minutes = 60; minOps = 3; specs[] = {}; };
-        class guard { name = "$STR_ADVSEC_pmc_type_guard"; base = 4000; risk = 1; minutes = 40; minOps = 2; };
-        class checkpoint { name = "$STR_ADVSEC_pmc_type_checkpoint"; base = 3500; risk = 0; minutes = 30; minOps = 2; };
-        class qrf { name = "$STR_ADVSEC_pmc_type_qrf"; base = 5000; risk = 2; minutes = 45; minOps = 3; };
-        class recovery { name = "$STR_ADVSEC_pmc_type_recovery"; base = 7000; risk = 2; minutes = 50; minOps = 3; };
+        // hostiles = grupos enemigos que se generan (× contractHostileScale) si no hay bastantes ya colocados en la zona
+        class escort { name = "$STR_ADVSEC_pmc_type_escort"; base = 6000; risk = 1; minutes = 45; minOps = 3; hostiles = 1; };
+        class vip { name = "$STR_ADVSEC_pmc_type_vip"; base = 9000; risk = 2; minutes = 60; minOps = 3; specs[] = {}; hostiles = 2; };
+        class guard { name = "$STR_ADVSEC_pmc_type_guard"; base = 4000; risk = 1; minutes = 40; minOps = 2; hostiles = 2; };
+        class checkpoint { name = "$STR_ADVSEC_pmc_type_checkpoint"; base = 3500; risk = 0; minutes = 30; minOps = 2; hostiles = 0; };
+        class qrf { name = "$STR_ADVSEC_pmc_type_qrf"; base = 5000; risk = 2; minutes = 45; minOps = 3; hostiles = 1; };
+        class recovery { name = "$STR_ADVSEC_pmc_type_recovery"; base = 7000; risk = 2; minutes = 50; minOps = 3; hostiles = 2; };
+        class clear { name = "$STR_ADVSEC_pmc_type_clear"; base = 6500; risk = 2; minutes = 50; minOps = 3; hostiles = 3; };
     };
     // kind: gov, corp, ngo o grey (zona gris: más pago, sospecha y permiso contractGrey)
     class Clients {
@@ -243,6 +249,7 @@ class ADVSEC_Settings {
     };
 
     // Armería corporativa (cajas con el módulo Armería PMC)
+    arsenalSerial = 1;           // 1 = las armas sacadas del Arsenal (ACE o vanilla) reciben nº de serie y quedan registradas a nombre del jugador
     armoryNeedDuty = 1;          // 1 = solo se saca material estando de servicio
     armoryLossFactor = 1.5;      // deuda por material no devuelto (× valor)
     armoryDefaultValue = 1000;   // valor de un arma que no está en ninguna lista de precios

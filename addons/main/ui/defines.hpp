@@ -1,3 +1,17 @@
+// Escala de la interfaz (1.19.0): todo se mide respecto a la zona segura, así que ocupa lo mismo con cualquier
+// tamaño de interfaz del juego, y a lo ancho se estira hasta un 25 % para que quepan los textos.
+// UIX/UIY/UIW/UIH: diálogos centrados · UIF: tamaños sin estirar (letra, filas, imágenes) · UIXP: imagen centrada sin deformar
+#define ADVSEC_UQ(V) #V
+#define UIX(V) ADVSEC_UQ(0.5 + ((V) - 0.5) * (safezoneH * (1.25 min ((safezoneW / safezoneH) * 0.98))))
+#define UIY(V) ADVSEC_UQ(0.5 + ((V) - 0.5) * safezoneH)
+#define UIW(V) ADVSEC_UQ((V) * (safezoneH * (1.25 min ((safezoneW / safezoneH) * 0.98))))
+#define UIH(V) ADVSEC_UQ((V) * safezoneH)
+#define UIF(V) ADVSEC_UQ((V) * safezoneH)
+#define UIXA(V) ADVSEC_UQ(0.5 + ((V) - 0.5) * safezoneH)
+#define UIYA(V) ADVSEC_UQ(0.5 + ((V) - 0.5) * safezoneH)
+#define UIXP(V,W) ADVSEC_UQ(0.5 + (((V) + (W) / 2) - 0.5) * (safezoneH * (1.25 min ((safezoneW / safezoneH) * 0.98))) - (W) * safezoneH / 2)
+#define UIXPL(V,W) ADVSEC_UQ(((V) + (W) / 2) * (safezoneH * (1.25 min ((safezoneW / safezoneH) * 0.98))) - (W) * safezoneH / 2)
+
 class RscText;
 class RscStructuredText;
 class RscPicture;
@@ -35,7 +49,7 @@ class ADVSEC_Border: RscText {
 };
 class ADVSEC_Header: RscText {
     font = "RobotoCondensedBold";
-    sizeEx = 0.036;
+    sizeEx = UIF(0.036);
     colorText[] = ADVSEC_COL_TEXT;
     colorBackground[] = ADVSEC_COL_HEADER;
     shadow = 0;
@@ -48,12 +62,12 @@ class ADVSEC_Line: RscText {
 };
 class ADVSEC_Label: RscText {
     font = "RobotoCondensed";
-    sizeEx = 0.031;
+    sizeEx = UIF(0.031);
     colorText[] = ADVSEC_COL_DIM;
     shadow = 0;
 };
 class ADVSEC_Struct: RscStructuredText {
-    size = 0.031;
+    size = UIF(0.031);
     colorBackground[] = {0, 0, 0, 0};
     shadow = 0;
     class Attributes {
@@ -67,7 +81,7 @@ class ADVSEC_Struct: RscStructuredText {
 class ADVSEC_Btn: RscButton {
     style = 2;
     font = "RobotoCondensedBold";
-    sizeEx = 0.031;
+    sizeEx = UIF(0.031);
     shadow = 0;
     colorText[] = ADVSEC_COL_TEXTD;
     colorDisabled[] = {0.667, 0.667, 0.667, 0.35};
@@ -99,13 +113,13 @@ class ADVSEC_BtnDanger: ADVSEC_Btn {
 };
 class ADVSEC_BtnX: ADVSEC_Btn {
     font = "RobotoCondensed";
-    sizeEx = 0.042;
+    sizeEx = UIF(0.042);
     text = "×";
     action = "closeDialog 0";
 };
 class ADVSEC_Edit: RscEdit {
     font = "RobotoCondensed";
-    sizeEx = 0.031;
+    sizeEx = UIF(0.031);
     shadow = 0;
     colorText[] = ADVSEC_COL_TEXT;
     colorDisabled[] = {0.5, 0.5, 0.5, 1};
@@ -118,7 +132,7 @@ class ADVSEC_EditMulti: ADVSEC_Edit {
 };
 class ADVSEC_Combo: RscCombo {
     font = "RobotoCondensed";
-    sizeEx = 0.031;
+    sizeEx = UIF(0.031);
     shadow = 0;
     colorText[] = ADVSEC_COL_TEXT;
     colorBackground[] = ADVSEC_COL_ROW;
@@ -138,8 +152,8 @@ class ADVSEC_Combo: RscCombo {
 };
 class ADVSEC_List: RscListBox {
     font = "RobotoCondensed";
-    sizeEx = 0.031;
-    rowHeight = 0.042;
+    sizeEx = UIF(0.031);
+    rowHeight = UIF(0.042);
     shadow = 0;
     colorText[] = ADVSEC_COL_TEXT;
     colorBackground[] = ADVSEC_COL_FIELD;
@@ -166,8 +180,8 @@ class ADVSEC_ListMulti: ADVSEC_List {
 // Tabla de varias columnas (base de datos): misma paleta que ADVSEC_List, sin flechas laterales
 class ADVSEC_NBox: RscListNBox {
     font = "RobotoCondensed";
-    sizeEx = 0.029;
-    rowHeight = 0.04;
+    sizeEx = UIF(0.029);
+    rowHeight = UIF(0.04);
     shadow = 0;
     drawSideArrows = 0;
     idcLeft = -1;
@@ -193,9 +207,9 @@ class ADVSEC_NBox: RscListNBox {
 };
 
 class ADVSEC_KpBtn: ADVSEC_Btn {
-    w = 0.0634;
-    h = 0.075;
-    sizeEx = 0.05;
+    w = UIW(0.0634);
+    h = UIH(0.075);
+    sizeEx = UIF(0.05);
     font = "RobotoCondensedBold";
     colorText[] = ADVSEC_COL_TEXT;
     colorBackground[] = ADVSEC_COL_ROW;

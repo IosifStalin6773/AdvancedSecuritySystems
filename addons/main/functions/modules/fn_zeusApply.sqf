@@ -93,7 +93,7 @@ switch (_kind) do {
     };
     case "contractOffer": {
         // Oferta a medida: zona donde se soltó el módulo; si cae sobre un objeto, es el objeto a proteger/recuperar
-        ["offer", player, [_v#0, _v#1, _pos, _v#3, parseNumber (_v#4), parseNumber (_v#5), [], _target, _v#2]] remoteExecCall ["ADVSEC_fnc_ctrServer", 2];
+        ["offer", player, [_v#0, _v#1, _pos, _v#3, parseNumber (_v#4), parseNumber (_v#5), [], _target, _v#2, _v param [6, -1], _v param [7, -1]]] remoteExecCall ["ADVSEC_fnc_ctrServer", 2];
     };
     case "admin": {
         if (isNull _target) then {_target = ["Land_Laptop_unfolded_F"] call _spawn};

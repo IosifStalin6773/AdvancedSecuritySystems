@@ -10822,6 +10822,482 @@ Posición del VIP en vivo: %1</Spanish>
                 <English>order material for the armory</English>
                 <Spanish>pedir material para la armería</Spanish>
             </Key>
+            <Key ID="STR_ADVSEC_pmc_host_wave">
+                <Original>%1: enemy wave inbound to the zone.</Original>
+                <English>%1: enemy wave inbound to the zone.</English>
+                <Spanish>%1: oleada enemiga en camino a la zona.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_host_intel">
+                <Original>%1: intelligence reports %2 hostiles in the operation area.</Original>
+                <English>%1: intelligence reports %2 hostiles in the operation area.</English>
+                <Spanish>%1: Inteligencia informa de %2 enemigos en la zona de operaciones.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_host_sheet">
+                <Original>&lt;br/&gt;Hostiles: %1 tracked · %2 down</Original>
+                <English>&lt;br/&gt;Hostiles: %1 tracked · %2 down</English>
+                <Spanish>&lt;br/&gt;Enemigos: %1 localizados · %2 abatidos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_host_cleared">
+                <Original>Hostiles down: %1</Original>
+                <English>Hostiles down: %1</English>
+                <Spanish>Enemigos abatidos: %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_host_none">
+                <Original>No hostiles found in the zone</Original>
+                <English>No hostiles found in the zone</English>
+                <Spanish>No se encontraron enemigos en la zona</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_type_clear">
+                <Original>Area clearance</Original>
+                <English>Area clearance</English>
+                <Spanish>Limpieza de zona</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_host_mode">
+                <Original>Hostiles</Original>
+                <English>Hostiles</English>
+                <Spanish>Enemigos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_host_m_def">
+                <Original>As set in the settings</Original>
+                <English>As set in the settings</English>
+                <Spanish>Según el ajuste</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_host_m0">
+                <Original>None</Original>
+                <English>None</English>
+                <Spanish>Ninguno</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_host_m1">
+                <Original>Spawn them</Original>
+                <English>Spawn them</English>
+                <Spanish>Generarlos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_host_m2">
+                <Original>Only those already placed</Original>
+                <English>Only those already placed</English>
+                <Spanish>Solo los ya colocados</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_host_m3">
+                <Original>Placed + spawn the rest</Original>
+                <English>Placed + spawn the rest</English>
+                <Spanish>Colocados + generar los que falten</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_host_groups">
+                <Original>Hostile groups</Original>
+                <English>Hostile groups</English>
+                <Spanish>Grupos enemigos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_host_g_auto">
+                <Original>Automatic (contract type)</Original>
+                <English>Automatic (contract type)</English>
+                <Spanish>Automático (tipo de contrato)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_s_contractHostiles">
+                <Original>Contract hostiles</Original>
+                <English>Contract hostiles</English>
+                <Spanish>Enemigos de los contratos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_s_contractHostileScale">
+                <Original>Hostile groups multiplier</Original>
+                <English>Hostile groups multiplier</English>
+                <Spanish>Multiplicador de grupos enemigos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_s_contractHostileSide">
+                <Original>Side of spawned hostiles (east, independent, west)</Original>
+                <English>Side of spawned hostiles (east, independent, west)</English>
+                <Spanish>Bando de los enemigos generados (east, independent, west)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_ars_serial_reg">
+                <Original>Arsenal: weapons registered in your name
+%1</Original>
+                <English>Arsenal: weapons registered in your name
+%1</English>
+                <Spanish>Arsenal: armas registradas a tu nombre
+%1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_s_arsenalSerial">
+                <Original>Serial numbers for Arsenal weapons</Original>
+                <English>Serial numbers for Arsenal weapons</English>
+                <Spanish>Nº de serie para las armas del Arsenal</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_s_arsenalSerial_tip">
+                <Original>Weapons taken from the ACE or vanilla Arsenal get their serial number and are registered to the player.</Original>
+                <English>Weapons taken from the ACE or vanilla Arsenal get their serial number and are registered to the player.</English>
+                <Spanish>Las armas sacadas del Arsenal de ACE o vanilla reciben su nº de serie y quedan registradas a nombre del jugador.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_lkit_menu">
+                <Original>Full kit</Original>
+                <English>Full kit</English>
+                <Spanish>Equipo completo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_lkit_act_save">
+                <Original>Store all my gear</Original>
+                <English>Store all my gear</English>
+                <Spanish>Guardar todo mi equipo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_lkit_act_load">
+                <Original>Equip stored gear (swap)</Original>
+                <English>Equip stored gear (swap)</English>
+                <Spanish>Equiparme lo guardado (intercambiar)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_lkit_act_info">
+                <Original>What is stored?</Original>
+                <English>What is stored?</English>
+                <Spanish>¿Qué tengo guardado?</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_lkit_already">
+                <Original>You already have a kit stored in your locker. Use «Equip stored gear» to swap it with what you are wearing.</Original>
+                <English>You already have a kit stored in your locker. Use «Equip stored gear» to swap it with what you are wearing.</English>
+                <Spanish>Ya tienes un equipo guardado en la taquilla. Usa «Equiparme lo guardado» para intercambiarlo por lo que llevas puesto.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_lkit_closer">
+                <Original>Stand next to your locker, on foot.</Original>
+                <English>Stand next to your locker, on foot.</English>
+                <Spanish>Ponte junto a tu taquilla, a pie.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_lkit_not_yours">
+                <Original>This is not your locker.</Original>
+                <English>This is not your locker.</English>
+                <Spanish>Esta no es tu taquilla.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_lkit_nothing">
+                <Original>You are not carrying anything to store.</Original>
+                <English>You are not carrying anything to store.</English>
+                <Spanish>No llevas nada que guardar.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_lkit_none">
+                <Original>You have no gear stored in your locker.</Original>
+                <English>You have no gear stored in your locker.</English>
+                <Spanish>No tienes equipo guardado en la taquilla.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_lkit_saved">
+                <Original>Gear stored in your locker. You keep your uniform and your documents.
+%1</Original>
+                <English>Gear stored in your locker. You keep your uniform and your documents.
+%1</English>
+                <Spanish>Equipo guardado en la taquilla. Te quedas con el uniforme y tu documentación.
+%1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_lkit_loaded">
+                <Original>You have put on the gear stored in your locker.</Original>
+                <English>You have put on the gear stored in your locker.</English>
+                <Spanish>Te has equipado lo guardado en la taquilla.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_lkit_swapped">
+                <Original>Gear swapped: you are wearing the stored kit and what you had on is now in your locker.</Original>
+                <English>Gear swapped: you are wearing the stored kit and what you had on is now in your locker.</English>
+                <Spanish>Equipo intercambiado: llevas lo que estaba guardado y lo que tenías puesto queda en la taquilla.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_lkit_summary">
+                <Original>%1 · %2 items</Original>
+                <English>%1 · %2 items</English>
+                <Spanish>%1 · %2 objetos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_lkit_info">
+                <Original>&lt;t font='RobotoCondensedBold'&gt;Gear stored in your locker&lt;/t&gt;&lt;br/&gt;%1&lt;br/&gt;%2</Original>
+                <English>&lt;t font='RobotoCondensedBold'&gt;Gear stored in your locker&lt;/t&gt;&lt;br/&gt;%1&lt;br/&gt;%2</English>
+                <Spanish>&lt;t font='RobotoCondensedBold'&gt;Equipo guardado en tu taquilla&lt;/t&gt;&lt;br/&gt;%1&lt;br/&gt;%2</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_tab_service">
+                <Original>Service</Original>
+                <English>Service</English>
+                <Spanish>Servicio</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_element">
+                <Original>Item</Original>
+                <English>Item</English>
+                <Spanish>Elemento</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_cell">
+                <Original>PMC cell</Original>
+                <English>PMC cell</English>
+                <Spanish>Célula PMC</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_cell_none">
+                <Original>Not in any cell. Use «Assign cell» to add them to CP, QRF or SEC.</Original>
+                <English>Not in any cell. Use «Assign cell» to add them to CP, QRF or SEC.</English>
+                <Spanish>No pertenece a ninguna célula. Usa «Asignar célula» para meterle en CP, QRF o SEC.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_cell_det">
+                <Original>Cell: %1&lt;br/&gt;Status: %2&lt;br/&gt;Available while on duty: %3 per cent of the time</Original>
+                <English>Cell: %1&lt;br/&gt;Status: %2&lt;br/&gt;Available while on duty: %3 per cent of the time</English>
+                <Spanish>Célula: %1&lt;br/&gt;Estado: %2&lt;br/&gt;Disponible estando de servicio: %3 por ciento del tiempo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_cell_title">
+                <Original>PMC CELL · %1</Original>
+                <English>PMC CELL · %1</English>
+                <Spanish>CÉLULA PMC · %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_qrf_n">
+                <Original>%1 responses</Original>
+                <English>%1 responses</English>
+                <Spanish>%1 respuestas</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_qrf_det">
+                <Original>QRF: %1 responses · average time %2 · bonuses %3 %4 · ignored calls %5</Original>
+                <English>QRF: %1 responses · average time %2 · bonuses %3 %4 · ignored calls %5</English>
+                <Spanish>QRF: %1 respuestas · tiempo medio %2 · primas %3 %4 · avisos ignorados %5</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_debt">
+                <Original>Armory debt</Original>
+                <English>Armory debt</English>
+                <Spanish>Deuda con la armería</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_debt_det">
+                <Original>Debt for corporate equipment not returned: %1 %2&lt;br/&gt;Serials: %3&lt;br/&gt;It is charged as a fine when they next connect.</Original>
+                <English>Debt for corporate equipment not returned: %1 %2&lt;br/&gt;Serials: %3&lt;br/&gt;It is charged as a fine when they next connect.</English>
+                <Spanish>Deuda por material corporativo no devuelto: %1 %2&lt;br/&gt;Series: %3&lt;br/&gt;Se cobra como multa la próxima vez que se conecte.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_debt_title">
+                <Original>ARMORY DEBT · %1</Original>
+                <English>ARMORY DEBT · %1</English>
+                <Spanish>DEUDA CON LA ARMERÍA · %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_corp">
+                <Original>Corporate weapon</Original>
+                <English>Corporate weapon</English>
+                <Spanish>Arma corporativa</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_corp_det">
+                <Original>%1 · %2&lt;br/&gt;Status: %3 · wear %4 per cent&lt;br/&gt;Signed by %5 on %6 · value %7 %8&lt;br/&gt;&lt;br/&gt;%9</Original>
+                <English>%1 · %2&lt;br/&gt;Status: %3 · wear %4 per cent&lt;br/&gt;Signed by %5 on %6 · value %7 %8&lt;br/&gt;&lt;br/&gt;%9</English>
+                <Spanish>%1 · %2&lt;br/&gt;Estado: %3 · desgaste %4 por ciento&lt;br/&gt;Firmada por %5 el %6 · valor %7 %8&lt;br/&gt;&lt;br/&gt;%9</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_corp_hist">
+                <Original>Administration (%1): %2, wear %3 per cent</Original>
+                <English>Administration (%1): %2, wear %3 per cent</English>
+                <Spanish>Administración (%1): %2, desgaste %3 por ciento</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_ctr">
+                <Original>Contract</Original>
+                <English>Contract</English>
+                <Spanish>Contrato</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_ctr_det">
+                <Original>%1 · %2&lt;br/&gt;Status: %3&lt;br/&gt;Created %4 · closed %5&lt;br/&gt;%6</Original>
+                <English>%1 · %2&lt;br/&gt;Status: %3&lt;br/&gt;Created %4 · closed %5&lt;br/&gt;%6</English>
+                <Spanish>%1 · %2&lt;br/&gt;Estado: %3&lt;br/&gt;Creado %4 · cerrado %5&lt;br/&gt;%6</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_ctr_byadmin">
+                <Original>Status changed by the administration (%1)</Original>
+                <English>Status changed by the administration (%1)</English>
+                <Spanish>Estado cambiado por la administración (%1)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_assigned">
+                <Original>Assigned</Original>
+                <English>Assigned</English>
+                <Spanish>Asignado</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_signer">
+                <Original>Signer</Original>
+                <English>Signer</English>
+                <Spanish>Firmante</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_lkit">
+                <Original>Locker: full kit</Original>
+                <English>Locker: full kit</English>
+                <Spanish>Taquilla: equipo completo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_lkit_det">
+                <Original>Full kit stored in the locker on %1.</Original>
+                <English>Full kit stored in the locker on %1.</English>
+                <Spanish>Equipo completo guardado en la taquilla el %1.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_cy">
+                <Original>Cyber alert</Original>
+                <English>Cyber alert</English>
+                <Spanish>Alerta ciber</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_duty">
+                <Original>Service time</Original>
+                <English>Service time</English>
+                <Spanish>Tiempo de servicio</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_duty_det">
+                <Original>Total: %1 min&lt;br/&gt;Last shifts:&lt;br/&gt;%2</Original>
+                <English>Total: %1 min&lt;br/&gt;Last shifts:&lt;br/&gt;%2</English>
+                <Spanish>Total: %1 min&lt;br/&gt;Últimos turnos:&lt;br/&gt;%2</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_duty_title">
+                <Original>SERVICE TIME · %1</Original>
+                <English>SERVICE TIME · %1</English>
+                <Spanish>TIEMPO DE SERVICIO · %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_minutes">
+                <Original>Total minutes</Original>
+                <English>Total minutes</English>
+                <Spanish>Minutos totales</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_on">
+                <Original>On duty</Original>
+                <English>On duty</English>
+                <Spanish>De servicio</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_off">
+                <Original>Off duty</Original>
+                <English>Off duty</English>
+                <Spanish>Fuera de servicio</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_shifts">
+                <Original>%1 shifts</Original>
+                <English>%1 shifts</English>
+                <Spanish>%1 turnos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_susp">
+                <Original>Suspension</Original>
+                <English>Suspension</English>
+                <Spanish>Suspensión</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_patrol">
+                <Original>Patrol</Original>
+                <English>Patrol</English>
+                <Spanish>Patrulla</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_patrol_det">
+                <Original>%1 · %2&lt;br/&gt;Commander: %3&lt;br/&gt;Status: %4 · created %5&lt;br/&gt;Points reached: %7 of %6</Original>
+                <English>%1 · %2&lt;br/&gt;Commander: %3&lt;br/&gt;Status: %4 · created %5&lt;br/&gt;Points reached: %7 of %6</English>
+                <Spanish>%1 · %2&lt;br/&gt;Mando: %3&lt;br/&gt;Estado: %4 · creada %5&lt;br/&gt;Puntos alcanzados: %7 de %6</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_wear">
+                <Original>Wear (0-100)</Original>
+                <English>Wear (0-100)</English>
+                <Spanish>Desgaste (0-100)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_act_cell">
+                <Original>Assign cell</Original>
+                <English>Assign cell</English>
+                <Spanish>Asignar célula</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_act_cell_out">
+                <Original>Remove from cell</Original>
+                <English>Remove from cell</English>
+                <Spanish>Sacar de la célula</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_act_qrf">
+                <Original>Reset QRF stats</Original>
+                <English>Reset QRF stats</English>
+                <Spanish>Reiniciar estadísticas QRF</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_act_debt">
+                <Original>Set debt</Original>
+                <English>Set debt</English>
+                <Spanish>Fijar deuda</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_act_forgive">
+                <Original>Forgive debt</Original>
+                <English>Forgive debt</English>
+                <Spanish>Perdonar deuda</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_act_corp">
+                <Original>Edit weapon</Original>
+                <English>Edit weapon</English>
+                <Spanish>Editar arma</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_act_corp_back">
+                <Original>Back to the armory</Original>
+                <English>Back to the armory</English>
+                <Spanish>Devolver a la armería</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_act_ctr">
+                <Original>Edit contract</Original>
+                <English>Edit contract</English>
+                <Spanish>Editar contrato</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_act_ctr_drop">
+                <Original>Remove from contract</Original>
+                <English>Remove from contract</English>
+                <Spanish>Quitar del contrato</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_act_lkit">
+                <Original>Delete stored kit</Original>
+                <English>Delete stored kit</English>
+                <Spanish>Borrar equipo guardado</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_act_cy_ack">
+                <Original>Mark as reviewed</Original>
+                <English>Mark as reviewed</English>
+                <Spanish>Marcar revisada</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_act_cy_del">
+                <Original>Delete alert</Original>
+                <English>Delete alert</English>
+                <Spanish>Borrar alerta</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_act_duty">
+                <Original>Set service time</Original>
+                <English>Set service time</English>
+                <Spanish>Fijar tiempo de servicio</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_act_duty_reset">
+                <Original>Reset service time</Original>
+                <English>Reset service time</English>
+                <Spanish>Poner a cero el servicio</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_act_susp">
+                <Original>Lift suspension</Original>
+                <English>Lift suspension</English>
+                <Spanish>Levantar suspensión</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_act_pat">
+                <Original>Remove from patrol</Original>
+                <English>Remove from patrol</English>
+                <Spanish>Quitar de la patrulla</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_log_cell">
+                <Original>PMC cell: %1 (%2)</Original>
+                <English>PMC cell: %1 (%2)</English>
+                <Spanish>Célula PMC: %1 (%2)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_log_qrf">
+                <Original>QRF stats reset</Original>
+                <English>QRF stats reset</English>
+                <Spanish>Estadísticas QRF reiniciadas</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_log_debt">
+                <Original>Armory debt set to %1</Original>
+                <English>Armory debt set to %1</English>
+                <Spanish>Deuda con la armería fijada en %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_log_corp">
+                <Original>Corporate weapon %1: %2</Original>
+                <English>Corporate weapon %1: %2</English>
+                <Spanish>Arma corporativa %1: %2</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_log_ctrdrop">
+                <Original>Removed from contract %1</Original>
+                <English>Removed from contract %1</English>
+                <Spanish>Quitado del contrato %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_log_ctredit">
+                <Original>Contract %1 edited (%2)</Original>
+                <English>Contract %1 edited (%2)</English>
+                <Spanish>Contrato %1 editado (%2)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_log_lkit">
+                <Original>Locker kit deleted</Original>
+                <English>Locker kit deleted</English>
+                <Spanish>Equipo de taquilla borrado</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_log_cy">
+                <Original>Cyber alert of %1 updated</Original>
+                <English>Cyber alert of %1 updated</English>
+                <Spanish>Alerta ciber del %1 actualizada</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_log_duty">
+                <Original>Service time set to %1 min</Original>
+                <English>Service time set to %1 min</English>
+                <Spanish>Tiempo de servicio fijado en %1 min</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_log_susp">
+                <Original>Suspension lifted</Original>
+                <English>Suspension lifted</English>
+                <Spanish>Suspensión levantada</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pdb_log_pat">
+                <Original>Removed from patrol %1</Original>
+                <English>Removed from patrol %1</English>
+                <Spanish>Quitado de la patrulla %1</Spanish>
+            </Key>
         </Container>
     </Package>
 </Project>

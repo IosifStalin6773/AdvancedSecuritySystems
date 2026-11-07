@@ -95,7 +95,9 @@ private _def = switch (_kind) do {
         [("STR_ADVSEC_pmc_title" call ADVSEC_fnc_L), ""],
         [("STR_ADVSEC_radius" call ADVSEC_fnc_L), 150, [["50 m", 50], ["150 m", 150], ["300 m", 300], ["600 m", 600]]],
         [("STR_ADVSEC_pmc_pay0" call ADVSEC_fnc_L), "0"],
-        [("STR_ADVSEC_pmc_minutes0" call ADVSEC_fnc_L), "0"]
+        [("STR_ADVSEC_pmc_minutes0" call ADVSEC_fnc_L), "0"],
+        [("STR_ADVSEC_pmc_host_mode" call ADVSEC_fnc_L), -1, [[("STR_ADVSEC_pmc_host_m_def" call ADVSEC_fnc_L), -1], [("STR_ADVSEC_pmc_host_m0" call ADVSEC_fnc_L), 0], [("STR_ADVSEC_pmc_host_m1" call ADVSEC_fnc_L), 1], [("STR_ADVSEC_pmc_host_m2" call ADVSEC_fnc_L), 2], [("STR_ADVSEC_pmc_host_m3" call ADVSEC_fnc_L), 3]]],
+        [("STR_ADVSEC_pmc_host_groups" call ADVSEC_fnc_L), -1, [[("STR_ADVSEC_pmc_host_g_auto" call ADVSEC_fnc_L), -1], ["0", 0], ["1", 1], ["2", 2], ["3", 3], ["4", 4], ["6", 6], ["8", 8]]]
     ]]};
     default {[]};
 };
