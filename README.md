@@ -77,7 +77,7 @@ Cada compilación genera una clave nueva (`keys/advsec_<versión>.bikey`), que e
 La carpeta contiene:
 - `addons\advsec_main.pbo`: todo el sistema.
 - `addons\advsec_buildings.pbo`: el edificio de la PM.
-- `addons\advsec_lockers.pbo`: taquillas personales TS_Lockers integradas (necesita ACE y CBA; si no están, no se carga). **Quita el `TS_Lockers.pbo` suelto de tu lista de mods**: ya va dentro. Pesa 400 MB y GitHub no admite archivos de más de 100 MB en el repositorio: descárgalo de la página **Releases** (versión v1.16.0) y cópialo en `addons\` junto a su `.bisign`.
+- `addons\advsec_lockers.pbo`: taquillas personales TS_Lockers integradas (necesita ACE y CBA; si no están, no se carga). **Quita el `TS_Lockers.pbo` suelto de tu lista de mods**: ya va dentro. Pesa 400 MB y GitHub no admite archivos de más de 100 MB en el repositorio: está en la rama **`binarios`** dividido en partes: descarga esa rama, ejecuta `lockers\UNIR.bat` y copia el `advsec_lockers.pbo` resultante en `addons\` junto a su `.bisign`.
 - Las firmas `.bisign` de los PBO.
 - `keys\advsec_1.16.0.bikey`.
 - `mod.cpp`.
