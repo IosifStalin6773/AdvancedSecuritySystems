@@ -45,7 +45,7 @@ class ADVSEC_Lang {
     class STR_ADVSEC_level { en = "Level %1"; es = "Nivel %1"; };
     class STR_ADVSEC_reports_terminal { en = "REPORTS TERMINAL"; es = "TERMINAL DE INFORMES"; };
     class STR_ADVSEC_department { en = "Department"; es = "Departamento"; };
-    class STR_ADVSEC_military_police { en = "Military Police"; es = "Policía Militar"; };
+    class STR_ADVSEC_military_police { en = "PMC · Military Police"; es = "PMC · Policía Militar"; };
     class STR_ADVSEC_internal_affairs { en = "Internal Affairs"; es = "Asuntos Internos"; };
     class STR_ADVSEC_both { en = "Both"; es = "Ambos"; };
     class STR_ADVSEC_detention_centre { en = "DETENTION CENTRE"; es = "CENTRO DE DETENCIÓN"; };

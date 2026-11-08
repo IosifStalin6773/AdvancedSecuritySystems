@@ -229,8 +229,8 @@
             </Key>
             <Key ID="STR_ADVSEC_military_police">
                 <Original>Military Police</Original>
-                <English>Military Police</English>
-                <Spanish>Policía Militar</Spanish>
+                <English>PMC · Military Police</English>
+                <Spanish>PMC · Policía Militar</Spanish>
             </Key>
             <Key ID="STR_ADVSEC_internal_affairs">
                 <Original>Internal Affairs</Original>
