@@ -46,21 +46,29 @@ private _total = 0;
 {_total = _total + (_x select 4) + 0.012} forEach _rows;
 private _h = 0.045 + 0.02 + _total + 0.065;
 private _top = (0.5 - _h / 2) max 0.01;
+// Una sola caja de referencia (centrada, sin estirar) para el marco, las etiquetas, los campos y los botones
+private _W = 0.56;
+private _x0 = 0.5 - _W / 2;
 {
-    _x params ["_idc", "_y", "_hh"];
+    _x params ["_idc", "_r"];
     private _c = _disp displayCtrl _idc;
-    private _p = ctrlPosition _c;
-    private _q = [[0, _top + _y, 0, _hh]] call ADVSEC_fnc_uiRect;
-    _c ctrlSetPosition [_p select 0, _q select 1, _p select 2, [_p select 3, _q select 3] select (_hh > 0)];
+    _c ctrlSetPosition ([_r, 2] call ADVSEC_fnc_uiRect);
     _c ctrlCommit 0;
-} forEach [[86502, 0, _h], [86506, 0, _h], [86501, 0, 0], [86505, 0.045, 0], [86503, _h - 0.058, 0], [86504, _h - 0.058, 0], [86507, 0, 0]];
+} forEach [
+    [86502, [_x0, _top, _W, _h] ],
+    [86506, [_x0, _top, _W, _h] ],
+    [86501, [_x0, _top, _W, 0.045] ],
+    [86505, [_x0, _top + 0.045, _W, 0.003] ],
+    [86503, [_x0 + _W - 0.28, _top + _h - 0.058, 0.13, 0.045] ],
+    [86504, [_x0 + _W - 0.14, _top + _h - 0.058, 0.13, 0.045] ]
+];
 
 private _y = _top + 0.065;
 private _ctrls = [];
 {
     _x params ["_label", "_default", "_kind", "_opts", "_hh"];
     private _lbl = _disp ctrlCreate ["ADVSEC_Label", -1];
-    _lbl ctrlSetPosition ([[0.28, _y, 0.16, 0.045]] call ADVSEC_fnc_uiRect);
+    _lbl ctrlSetPosition ([[_x0 + 0.02, _y, 0.17, 0.045], 2] call ADVSEC_fnc_uiRect);
     _lbl ctrlSetText _label;
     _lbl ctrlCommit 0;
 
@@ -103,7 +111,7 @@ private _ctrls = [];
             _c ctrlSetTooltip ("STR_ADVSEC_ctrl_click_to_select_several" call ADVSEC_fnc_L);
         };
     };
-    _c ctrlSetPosition ([[0.45, _y, 0.27, _hh]] call ADVSEC_fnc_uiRect);
+    _c ctrlSetPosition ([[_x0 + 0.20, _y, _W - 0.22, _hh], 2] call ADVSEC_fnc_uiRect);
     _c ctrlCommit 0;
     _ctrls pushBack [_c, _kind, _opts apply {_x select 1}, _default];
     _y = _y + _hh + 0.012;
