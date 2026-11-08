@@ -129,8 +129,40 @@ switch (_action) do {
                 if (!isNull _g) then {_units append units _g};
             };
         };
+        // 4. Tráfico y civiles para guardia y control: sin ellos no hay nada que registrar ni con quién actuar
+        private _civ = [];
+        if (_type in ["guard", "checkpoint"]) then {
+            private _rd = (_c get "pos") nearRoads ((_c get "radius") max 100);
+            private _nv = [0, 2 + _risk] select (_type == "checkpoint" && {_rd isNotEqualTo []});
+            private _np = [0, 3 + _risk] select (_type == "guard");
+            for "_v" from 1 to _nv do {
+                private _p = getPos selectRandom _rd;
+                private _veh = createVehicle [selectRandom ["C_Offroad_01_F", "C_Hatchback_01_F", "C_SUV_01_F"], _p, [], 0, "NONE"];
+                private _g = createGroup [civilian, true];
+                private _dr = _g createUnit ["C_man_1", _p, [], 0, "NONE"];
+                _dr moveInDriver _veh;
+                _g setBehaviour "SAFE";
+                _g setSpeedMode "LIMITED";
+                for "_w" from 1 to 4 do {
+                    private _wp = _g addWaypoint [getPos selectRandom _rd, 0];
+                    _wp setWaypointType "MOVE";
+                };
+                (waypoints _g select (count waypoints _g - 1)) setWaypointType "CYCLE";
+                _veh setVariable ["ADVSEC_ctrSpawned", true];
+                _civ pushBack _veh;
+                { _x setVariable ["ADVSEC_ctrSpawned", true]; _civ pushBack _x } forEach units _g;
+            };
+            for "_i" from 1 to _np do {
+                private _p = (_c get "pos") getPos [random ((_c get "radius") max 30), random 360];
+                private _g = createGroup [civilian, true];
+                _g createUnit ["C_man_1", _p, [], 0, "NONE"];
+                _g setBehaviour "SAFE";
+                [_g, _p, (_c get "radius") max 30] call BIS_fnc_taskPatrol;
+                { _x setVariable ["ADVSEC_ctrSpawned", true]; _civ pushBack _x } forEach units _g;
+            };
+        };
         {if (isNil {_x getVariable "ADVSEC_ctrHostile"}) then {_x setVariable ["ADVSEC_ctrHostile", _id, true]}} forEach _units;
-        _reg set [_id, [_units, _waves, []]];
+        _reg set [_id, [_units, _waves, _civ]];
         private _m = _c get "metrics";
         _m set ["host", count _units];
         _m set ["hostDown", 0];
@@ -162,7 +194,7 @@ switch (_action) do {
         private _e = _reg getOrDefault [_id, []];
         _reg deleteAt _id;
         if (_e isEqualTo []) exitWith {};
-        private _spawned = (_e select 0) select {_x getVariable ["ADVSEC_ctrSpawned", false]};
+        private _spawned = ((_e select 0) + (_e select 2)) select {_x getVariable ["ADVSEC_ctrSpawned", false]};
         if (_spawned isEqualTo []) exitWith {};
         [_spawned] spawn {
             params ["_us"];
