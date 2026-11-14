@@ -61,7 +61,7 @@ switch (_action) do {
         if (_i < 0) exitWith {};
         private _e = _l select _i;
         if ((_e select 5) != "Pendiente") exitWith {};
-        _e set [5, ["Denegada", "Aprobada"] select _ok];
+        _e set [5, if (_ok) then {"Aprobada"} else {"Denegada"}];
         _l set [_i, _e];
         _db set ["leave", _l];
         ["hr"] call ADVSEC_fnc_dbDirty;
