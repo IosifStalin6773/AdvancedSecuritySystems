@@ -9840,6 +9840,31 @@
                 <English>PMC contract terminal: offers, negotiation, signing, assignment and settlement. Sync it with a laptop or leave it alone to create one.</English>
                 <Spanish>Terminal de contratos de la PMC: ofertas, negociación, firma, asignación y liquidación. Sincronízalo con un portátil o déjalo solo para crear uno.</Spanish>
             </Key>
+            <Key ID="STR_ADVSEC_pmc_mod_zone">
+                <Original>Contract zone</Original>
+                <English>Contract zone</English>
+                <Spanish>Zona de encargos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_mod_zone_desc">
+                <Original>Marks an area where automatic contract offers take place (marker advsec_ctr_*). Remove it to delete the zone.</Original>
+                <English>Marks an area where automatic contract offers take place (marker advsec_ctr_*). Remove it to delete the zone.</English>
+                <Spanish>Marca una zona donde se generan los encargos automáticos (marcador advsec_ctr_*). Bórralo para quitar la zona.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_mod_hostile">
+                <Original>Contract enemies</Original>
+                <English>Contract enemies</English>
+                <Spanish>Enemigos de encargo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_mod_hostile_desc">
+                <Original>Synced units count as enemies of the contracts, wherever they are. Use it to place enemies by hand without a zone.</Original>
+                <English>Synced units count as enemies of the contracts, wherever they are. Use it to place enemies by hand without a zone.</English>
+                <Spanish>Las unidades sincronizadas cuentan como enemigas de los encargos, estén donde estén. Úsalo para colocar enemigos a mano sin zona.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_zone_name">
+                <Original>Contract zone</Original>
+                <English>Contract zone</English>
+                <Spanish>Zona de encargos</Spanish>
+            </Key>
             <Key ID="STR_ADVSEC_pmc_mod_armory_desc">
                 <Original>Corporate armory: everything taken out is signed with a serial number and must be returned. Sync it with a crate or locker.</Original>
                 <English>Corporate armory: everything taken out is signed with a serial number and must be returned. Sync it with a crate or locker.</English>
@@ -10582,6 +10607,621 @@ Posición del VIP en vivo: %1</Spanish>
                 <English>Minimum PM operators per contract (-1 = by type)</English>
                 <Spanish>Operadores PM mínimos por contrato (-1 = según tipo)</Spanish>
             </Key>
+            <Key ID="STR_ADVSEC_pmc_s_contractMinOps_tip">
+                <Original>Operators online (to sign) and assigned (to start) required by every contract, including open offers. -1 = the value of each contract type; 0 or 1 to test alone.</Original>
+                <English>Operators online (to sign) and assigned (to start) required by every contract, including open offers. -1 = the value of each contract type; 0 or 1 to test alone.</English>
+                <Spanish>Operadores conectados (para firmar) y asignados (para iniciar) que exige cada contrato, también las ofertas abiertas. -1 = el valor de cada tipo; 0 o 1 para probar en solitario.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_s_contractCheckRep">
+                <Original>Require client reputation</Original>
+                <English>Require client reputation</English>
+                <Spanish>Exigir reputación del cliente</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_s_contractCheckRep_tip">
+                <Original>If off, any contract can be signed whatever the reputation and offers of every risk level are generated.</Original>
+                <English>If off, any contract can be signed whatever the reputation and offers of every risk level are generated.</English>
+                <Spanish>Si se desactiva, se puede firmar cualquier contrato sea cual sea la reputación y se generan ofertas de todos los niveles de riesgo.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_s_contractCheckSpecs">
+                <Original>Require specialties</Original>
+                <English>Require specialties</English>
+                <Spanish>Exigir especialidades</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_s_contractCheckSpecs_tip">
+                <Original>If off, signing does not require operators with the specialties of the contract type.</Original>
+                <English>If off, signing does not require operators with the specialties of the contract type.</English>
+                <Spanish>Si se desactiva, firmar no exige operadores con las especialidades del tipo de contrato.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_s_contractCivilians">
+                <Original>Life in contracts</Original>
+                <English>Life in contracts</English>
+                <Spanish>Vida en los encargos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_s_contractCivilians_tip">
+                <Original>Traffic that stops at the access control, visitors at the facility, a cargo truck in escorts and a 112 call in QRF contracts. Civilians carry ID; some are suspects.</Original>
+                <English>Traffic that stops at the access control, visitors at the facility, a cargo truck in escorts and a 112 call in QRF contracts. Civilians carry ID; some are suspects.</English>
+                <Spanish>Tráfico que para en el control de acceso, visitantes en la vigilancia, camión de carga en la escolta y una llamada al 112 en la QRF. Los civiles llevan documentación y algunos son sospechosos.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_s_contractCivSuspect">
+                <Original>Share of suspect civilians (0-1)</Original>
+                <English>Share of suspect civilians (0-1)</English>
+                <Spanish>Fracción de civiles sospechosos (0-1)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_s_contractCivEvery">
+                <Original>Seconds between new civilians</Original>
+                <English>Seconds between new civilians</English>
+                <Spanish>Segundos entre civiles nuevos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_civ_issuer">
+                <Original>Civil Registry</Original>
+                <English>Civil Registry</English>
+                <Spanish>Registro Civil</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_civ_notes">
+                <Original>Civilian</Original>
+                <English>Civilian</English>
+                <Spanish>Civil</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_civ_w1">
+                <Original>Armed robbery</Original>
+                <English>Armed robbery</English>
+                <Spanish>Robo con violencia</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_civ_w2">
+                <Original>Drug trafficking</Original>
+                <English>Drug trafficking</English>
+                <Spanish>Tráfico de drogas</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_civ_w3">
+                <Original>Failure to appear in court</Original>
+                <English>Failure to appear in court</English>
+                <Spanish>No comparecencia ante el juez</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_civ_truck">
+                <Original>%1: the client cargo truck is waiting at %2. Take it to the destination; if it is lost, the contract fails.</Original>
+                <English>%1: the client cargo truck is waiting at %2. Take it to the destination; if it is lost, the contract fails.</English>
+                <Spanish>%1: el camión de carga del cliente espera en %2. Llévalo hasta el destino; si se pierde, el contrato falla.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_civ_caught">
+                <Original>%1: suspect held (%2).</Original>
+                <English>%1: suspect held (%2).</English>
+                <Spanish>%1: sospechoso retenido (%2).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_civ_call1">
+                <Original>Shots heard near my house.</Original>
+                <English>Shots heard near my house.</English>
+                <Spanish>Se oyen disparos cerca de mi casa.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_civ_call2">
+                <Original>Armed men are threatening people in the street.</Original>
+                <English>Armed men are threatening people in the street.</English>
+                <Spanish>Hay hombres armados amenazando a la gente en la calle.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_civ_call3">
+                <Original>Someone has broken into a warehouse, please come quickly.</Original>
+                <English>Someone has broken into a warehouse, please come quickly.</English>
+                <Spanish>Alguien ha entrado en un almacén, vengan rápido.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_s_pmcProfile">
+                <Original>PMC profile (the company before the MP)</Original>
+                <English>PMC profile (the company before the MP)</English>
+                <Spanish>Perfil PMC (la compañía por delante de la PM)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_s_pmcProfile_tip">
+                <Original>Anyone with a rank in the ORBAT is a company operator: contracts, cells, duty, dispatch and patrols, with permissions by rank (Troops 1, Corporals 2, Sergeants 3, Warrant/Lieutenant 4, Captain 5). The MP and IA keep everything they have. Off = only MP/IA badges, as before.</Original>
+                <English>Anyone with a rank in the ORBAT is a company operator: contracts, cells, duty, dispatch and patrols, with permissions by rank (Troops 1, Corporals 2, Sergeants 3, Warrant/Lieutenant 4, Captain 5). The MP and IA keep everything they have. Off = only MP/IA badges, as before.</English>
+                <Spanish>Quien tenga rango en el ORBAT es operador de la compañía: contratos, células, servicio, central y patrullas, con permisos por rango (Tropa 1, Cabos 2, Sargentos 3, Brigada/Teniente 4, Capitán 5). La PM y AA.II. conservan todo lo que tienen. Desactivado = solo placas PM/AA.II., como antes.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_s_companyName">
+                <Original>Company name</Original>
+                <English>Company name</English>
+                <Spanish>Nombre de la compañía</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_orbat">
+                <Original>ORBAT and player database</Original>
+                <English>ORBAT and player database</English>
+                <Spanish>ORBAT y base de datos de jugadores</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_treasury">
+                <Original>Company treasury</Original>
+                <English>Company treasury</English>
+                <Spanish>Tesorería de la compañía</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_checks">
+                <Original>Checks</Original>
+                <English>Checks</English>
+                <Spanish>Controles</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_order_out">
+                <Original>Order out of the vehicle</Original>
+                <English>Order out of the vehicle</English>
+                <Spanish>Ordenar que baje del vehículo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_side_civ">
+                <Original>Civilians</Original>
+                <English>Civilians</English>
+                <Spanish>Civiles</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_npc_selected">
+                <Original>&lt;t color='#8C8C8C' size='0.9'&gt;%1 NPC types chosen. %2&lt;/t&gt;</Original>
+                <English>&lt;t color='#8C8C8C' size='0.9'&gt;%1 NPC types chosen. %2&lt;/t&gt;</English>
+                <Spanish>&lt;t color='#8C8C8C' size='0.9'&gt;%1 tipos de NPC elegidos. %2&lt;/t&gt;</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_npc_weight">
+                <Original>Weight</Original>
+                <English>Weight</English>
+                <Spanish>Peso</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_npc_list">
+                <Original>Chosen NPCs</Original>
+                <English>Chosen NPCs</English>
+                <Spanish>NPC elegidos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_npc_add">
+                <Original>Add / change weight</Original>
+                <English>Add / change weight</English>
+                <Spanish>Añadir / cambiar peso</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_npc_title">
+                <Original>Contract NPCs</Original>
+                <English>Contract NPCs</English>
+                <Spanish>NPC del encargo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_npc_label">
+                <Original>Choose NPCs (%1 types)</Original>
+                <English>Choose NPCs (%1 types)</English>
+                <Spanish>Elegir NPC (%1 tipos)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_npc_label0">
+                <Original>Choose NPCs (empty = settings)</Original>
+                <English>Choose NPCs (empty = settings)</English>
+                <Spanish>Elegir NPC (vacío = según el ajuste)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_mod_custom">
+                <Original>Custom contract (PMC)</Original>
+                <English>Custom contract (PMC)</English>
+                <Spanish>Encargo a medida (PMC)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_mod_custom_desc">
+                <Original>Creates a contract offer at mission start, configured here: type, client, side and NPC classes, number of NPCs, area (resize the module area), pay and minutes. Sync it with an object to make it the VIP or the cargo. Empty fields use the settings.</Original>
+                <English>Creates a contract offer at mission start, configured here: type, client, side and NPC classes, number of NPCs, area (resize the module area), pay and minutes. Sync it with an object to make it the VIP or the cargo. Empty fields use the settings.</English>
+                <Spanish>Crea al empezar la misión una oferta de encargo configurada aquí: tipo, cliente, bando y clases de NPC, número de NPC, área (cambia el tamaño del área del módulo), pago y minutos. Sincronízalo con un objeto para que sea el VIP o la carga. Lo que quede vacío usa los ajustes.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cc_clientname">
+                <Original>Client name</Original>
+                <English>Client name</English>
+                <Spanish>Nombre del cliente</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cc_clientname_tip">
+                <Original>Shown in the offer title (empty = client type name).</Original>
+                <English>Shown in the offer title (empty = client type name).</English>
+                <Spanish>Se muestra en el título de la oferta (vacío = nombre del tipo de cliente).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cc_client">
+                <Original>Client type (reputation)</Original>
+                <English>Client type (reputation)</English>
+                <Spanish>Tipo de cliente (reputación)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cc_client_tip">
+                <Original>Whose reputation this contract raises or lowers.</Original>
+                <English>Whose reputation this contract raises or lowers.</English>
+                <Spanish>Con quién sube o baja la reputación este encargo.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cc_side">
+                <Original>Faction / side of the NPCs</Original>
+                <English>Faction / side of the NPCs</English>
+                <Spanish>Facción / bando de los NPC</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cc_side_tip">
+                <Original>Civilians = no enemies; the chosen classes become the contract civilians.</Original>
+                <English>Civilians = no enemies; the chosen classes become the contract civilians.</English>
+                <Spanish>Civiles = sin enemigos; las clases elegidas pasan a ser los civiles del encargo.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cc_units">
+                <Original>NPCs</Original>
+                <English>NPCs</English>
+                <Spanish>NPC</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cc_units_tip">
+                <Original>Pick the NPC classes (by faction). The weight sets how often each one appears.</Original>
+                <English>Pick the NPC classes (by faction). The weight sets how often each one appears.</English>
+                <Spanish>Elige las clases de NPC (por facción). El peso indica con qué frecuencia sale cada una.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cc_count">
+                <Original>Number of NPCs</Original>
+                <English>Number of NPCs</English>
+                <Spanish>Nº de NPC</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cc_count_tip">
+                <Original>Total NPCs spawned (-1 = by contract type).</Original>
+                <English>Total NPCs spawned (-1 = by contract type).</English>
+                <Spanish>NPC que se generan en total (-1 = según el tipo de encargo).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_cat">
+                <Original>Dialogue (ADVSEC)</Original>
+                <English>Dialogue (ADVSEC)</English>
+                <Spanish>Diálogo (ADVSEC)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_attr">
+                <Original>Dialogue tree</Original>
+                <English>Dialogue tree</English>
+                <Spanish>Árbol de diálogo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_attr_tip">
+                <Original>Opens the node editor. In game the object gets a «Talk» action.</Original>
+                <English>Opens the node editor. In game the object gets a «Talk» action.</English>
+                <Spanish>Abre el editor por nodos. En partida el objeto tendrá la acción «Hablar».</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_attr_none">
+                <Original>Create dialogue (node editor)</Original>
+                <English>Create dialogue (node editor)</English>
+                <Spanish>Crear diálogo (editor por nodos)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_attr_n">
+                <Original>Edit dialogue (%1 nodes)</Original>
+                <English>Edit dialogue (%1 nodes)</English>
+                <Spanish>Editar diálogo (%1 nodos)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_editor_title">
+                <Original>Dialogue editor</Original>
+                <English>Dialogue editor</English>
+                <Spanish>Editor de diálogos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_editor_hint">
+                <Original>Drag the nodes · double click on empty space = new node · arrows = replies (★ = first node)</Original>
+                <English>Drag the nodes · double click on empty space = new node · arrows = replies (★ = first node)</English>
+                <Spanish>Arrastra los nodos · doble clic en vacío = nodo nuevo · flechas = respuestas (★ = nodo inicial)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_new_node">
+                <Original>New node</Original>
+                <English>New node</English>
+                <Spanish>Nuevo nodo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_del_node">
+                <Original>Delete node</Original>
+                <English>Delete node</English>
+                <Spanish>Borrar nodo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_set_start">
+                <Original>Make first</Original>
+                <English>Make first</English>
+                <Spanish>Hacer inicial</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_speaker">
+                <Original>Speaker</Original>
+                <English>Speaker</English>
+                <Spanish>Habla</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_sp_npc">
+                <Original>NPC</Original>
+                <English>NPC</English>
+                <Spanish>NPC</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_sp_player">
+                <Original>Player</Original>
+                <English>Player</English>
+                <Spanish>Jugador</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_sp_narrator">
+                <Original>Narrator</Original>
+                <English>Narrator</English>
+                <Spanish>Narrador</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_name">
+                <Original>Name shown (empty = unit name)</Original>
+                <English>Name shown (empty = unit name)</English>
+                <Spanish>Nombre que se muestra (vacío = el de la unidad)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_text">
+                <Original>Text (%npc% and %player% are replaced)</Original>
+                <English>Text (%npc% and %player% are replaced)</English>
+                <Spanish>Texto (%npc% y %player% se sustituyen)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_options">
+                <Original>Replies</Original>
+                <English>Replies</English>
+                <Spanish>Respuestas</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_opt_text">
+                <Original>Reply text</Original>
+                <English>Reply text</English>
+                <Spanish>Texto de la respuesta</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_opt_target">
+                <Original>Goes to</Original>
+                <English>Goes to</English>
+                <Spanish>Lleva a</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_opt_action">
+                <Original>Action · parameter</Original>
+                <English>Action · parameter</English>
+                <Spanish>Acción · parámetro</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_opt_param">
+                <Original>Parameter of the action (code, name=value, item class or text)</Original>
+                <English>Parameter of the action (code, name=value, item class or text)</English>
+                <Spanish>Parámetro de la acción (código, nombre=valor, clase de objeto o texto)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_opt_cond">
+                <Original>Condition (optional)</Original>
+                <English>Condition (optional)</English>
+                <Spanish>Condición (opcional)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_opt_cond_tip">
+                <Original>SQF code that returns true to show the reply. Uses _player and _npc. E.g. missionNamespace getVariable ["metPedro", false]</Original>
+                <English>SQF code that returns true to show the reply. Uses _player and _npc. E.g. missionNamespace getVariable ["metPedro", false]</English>
+                <Spanish>Código SQF que devuelve true para mostrar la respuesta. Usa _player y _npc. Ej.: missionNamespace getVariable ["conocePedro", false]</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_opt_add">
+                <Original>Add reply</Original>
+                <English>Add reply</English>
+                <Spanish>Añadir respuesta</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_opt_apply">
+                <Original>Apply</Original>
+                <English>Apply</English>
+                <Spanish>Aplicar</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_opt_del">
+                <Original>Delete reply</Original>
+                <English>Delete reply</English>
+                <Spanish>Borrar respuesta</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_save">
+                <Original>Save and close</Original>
+                <English>Save and close</English>
+                <Spanish>Guardar y cerrar</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_end">
+                <Original>(end)</Original>
+                <English>(end)</English>
+                <Spanish>(terminar)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_new_target">
+                <Original>+ new node</Original>
+                <English>+ new node</English>
+                <Spanish>+ nodo nuevo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_n_opts">
+                <Original>%1 replies</Original>
+                <English>%1 replies</English>
+                <Spanish>%1 respuestas</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_no_sel">
+                <Original>Select a node or double click on the canvas.</Original>
+                <English>Select a node or double click on the canvas.</English>
+                <Spanish>Elige un nodo o haz doble clic en el lienzo.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_is_start">
+                <Original>first node</Original>
+                <English>first node</English>
+                <Spanish>nodo inicial</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_default_text">
+                <Original>Hello, %player%.</Original>
+                <English>Hello, %player%.</English>
+                <Spanish>Hola, %player%.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_default_opt">
+                <Original>Goodbye.</Original>
+                <English>Goodbye.</English>
+                <Spanish>Adiós.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_ac_none">
+                <Original>Nothing</Original>
+                <English>Nothing</English>
+                <Spanish>Nada</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_ac_code">
+                <Original>Run code</Original>
+                <English>Run code</English>
+                <Spanish>Ejecutar código</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_ac_code_tip">
+                <Original>SQF code with _player and _npc.</Original>
+                <English>SQF code with _player and _npc.</English>
+                <Spanish>Código SQF con _player y _npc.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_ac_setvar">
+                <Original>Set variable</Original>
+                <English>Set variable</English>
+                <Spanish>Fijar variable</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_ac_setvar_tip">
+                <Original>name=value (shared mission variable; true/false/number/text).</Original>
+                <English>name=value (shared mission variable; true/false/number/text).</English>
+                <Spanish>nombre=valor (variable de misión compartida; true/false/número/texto).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_ac_give">
+                <Original>Give item</Original>
+                <English>Give item</English>
+                <Spanish>Dar objeto</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_ac_give_tip">
+                <Original>Item class given to the player.</Original>
+                <English>Item class given to the player.</English>
+                <Spanish>Clase del objeto que recibe el jugador.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_ac_take">
+                <Original>Take item</Original>
+                <English>Take item</English>
+                <Spanish>Quitar objeto</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_ac_take_tip">
+                <Original>Item class removed from the player.</Original>
+                <English>Item class removed from the player.</English>
+                <Spanish>Clase del objeto que se le quita al jugador.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_ac_join">
+                <Original>NPC joins the group</Original>
+                <English>NPC joins the group</English>
+                <Spanish>El NPC se une al grupo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_ac_join_tip">
+                <Original>The NPC joins the player's group.</Original>
+                <English>The NPC joins the player's group.</English>
+                <Spanish>El NPC se une al grupo del jugador.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_ac_contracts">
+                <Original>Open contracts</Original>
+                <English>Open contracts</English>
+                <Spanish>Abrir contratos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_ac_contracts_tip">
+                <Original>Opens the PMC contract terminal.</Original>
+                <English>Opens the PMC contract terminal.</English>
+                <Spanish>Abre el terminal de contratos de la PMC.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_ac_hint">
+                <Original>Show message</Original>
+                <English>Show message</English>
+                <Spanish>Mostrar mensaje</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_ac_hint_tip">
+                <Original>Text shown on screen.</Original>
+                <English>Text shown on screen.</English>
+                <Spanish>Texto que se muestra en pantalla.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_talk">
+                <Original>Talk</Original>
+                <English>Talk</English>
+                <Spanish>Hablar</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_reply">
+                <Original>Reply</Original>
+                <English>Reply</English>
+                <Spanish>Responder</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_finish">
+                <Original>(End the conversation)</Original>
+                <English>(End the conversation)</English>
+                <Spanish>(Terminar la conversación)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_man_menu">
+                <Original>Mission content (dialogues and attributes)…</Original>
+                <English>Mission content (dialogues and attributes)…</English>
+                <Spanish>Contenido de la misión (diálogos y atributos)…</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_man_menu_sel">
+                <Original>Edit dialogue of the selected object</Original>
+                <English>Edit dialogue of the selected object</English>
+                <Spanish>Editar diálogo del objeto seleccionado</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_man_title">
+                <Original>ADVSEC · Mission content</Original>
+                <English>ADVSEC · Mission content</English>
+                <Spanish>ADVSEC · Contenido de la misión</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_man_f_all">
+                <Original>Everything</Original>
+                <English>Everything</English>
+                <Spanish>Todo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_man_f_units">
+                <Original>Units</Original>
+                <English>Units</English>
+                <Spanish>Unidades</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_man_f_vehicles">
+                <Original>Vehicles</Original>
+                <English>Vehicles</English>
+                <Spanish>Vehículos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_man_f_objects">
+                <Original>Objects</Original>
+                <English>Objects</English>
+                <Spanish>Objetos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_man_f_modules">
+                <Original>Modules</Original>
+                <English>Modules</English>
+                <Spanish>Módulos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_man_f_triggers">
+                <Original>Triggers</Original>
+                <English>Triggers</English>
+                <Spanish>Disparadores</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_man_f_markers">
+                <Original>Markers</Original>
+                <English>Markers</English>
+                <Spanish>Marcadores</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_man_f_dialog">
+                <Original>With dialogue</Original>
+                <English>With dialogue</English>
+                <Spanish>Con diálogo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_man_f_advsec">
+                <Original>ADVSEC (modules and dialogues)</Original>
+                <English>ADVSEC (modules and dialogues)</English>
+                <Spanish>ADVSEC (módulos y diálogos)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_man_edit_dlg">
+                <Original>Edit dialogue</Original>
+                <English>Edit dialogue</English>
+                <Spanish>Editar diálogo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_man_del_dlg">
+                <Original>Remove dialogue</Original>
+                <English>Remove dialogue</English>
+                <Spanish>Quitar diálogo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_man_attrs">
+                <Original>Attributes</Original>
+                <English>Attributes</English>
+                <Spanish>Atributos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_man_goto">
+                <Original>Go to</Original>
+                <English>Go to</English>
+                <Spanish>Ir a</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_man_close">
+                <Original>Close</Original>
+                <English>Close</English>
+                <Spanish>Cerrar</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_man_n_nodes">
+                <Original>%1 nodes</Original>
+                <English>%1 nodes</English>
+                <Spanish>%1 nodos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_man_empty">
+                <Original>Nothing matches the filter.</Original>
+                <English>Nothing matches the filter.</English>
+                <Spanish>Nada coincide con el filtro.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_man_hint_dlg">
+                <Original>Double click or «Edit dialogue» opens the node editor. «Attributes» opens the Eden attributes.</Original>
+                <English>Double click or «Edit dialogue» opens the node editor. «Attributes» opens the Eden attributes.</English>
+                <Spanish>Doble clic o «Editar diálogo» abre el editor por nodos. «Atributos» abre los atributos de Eden.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_man_hint_nodlg">
+                <Original>Modules, triggers and markers have no dialogue: use «Attributes» to edit them.</Original>
+                <English>Modules, triggers and markers have no dialogue: use «Attributes» to edit them.</English>
+                <Spanish>Los módulos, disparadores y marcadores no llevan diálogo: usa «Atributos» para editarlos.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_name_s">
+                <Original>Name</Original>
+                <English>Name</English>
+                <Spanish>Nombre</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_opt_text_s">
+                <Original>Reply</Original>
+                <English>Reply</English>
+                <Spanish>Respuesta</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_opt_action_s">
+                <Original>Action</Original>
+                <English>Action</English>
+                <Spanish>Acción</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_node_action">
+                <Original>On showing</Original>
+                <English>On showing</English>
+                <Spanish>Al mostrarse</Spanish>
+            </Key>
             <Key ID="STR_ADVSEC_pmc_s_contractAdvance">
                 <Original>Default advance (0-1)</Original>
                 <English>Default advance (0-1)</English>
@@ -11302,6 +11942,1278 @@ Posición del VIP en vivo: %1</Spanish>
                 <Original>Removed from patrol %1</Original>
                 <English>Removed from patrol %1</English>
                 <Spanish>Quitado de la patrulla %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_acc_body">
+                <Original>Accident at %1. Vehicles involved: %3.
+Recorded by %2.
+%4</Original>
+                <English>Accident at %1. Vehicles involved: %3.
+Recorded by %2.
+%4</English>
+                <Spanish>Accidente en %1. Vehículos implicados: %3.
+Registrado por %2.
+%4</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_acc_do">
+                <Original>You are not allowed to record accidents.</Original>
+                <English>You are not allowed to record accidents.</English>
+                <Spanish>No tienes permiso para registrar accidentes.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_acc_done">
+                <Original>Accident report %1 created (%2 vehicles).</Original>
+                <English>Accident report %1 created (%2 vehicles).</English>
+                <Spanish>Informe de accidente %1 creado (%2 vehículos).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_acc_menu">
+                <Original>Record accident</Original>
+                <English>Record accident</English>
+                <Spanish>Registrar accidente</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_acc_nocrew">
+                <Original>no occupants</Original>
+                <English>no occupants</English>
+                <Spanish>sin ocupantes</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_acc_none">
+                <Original>No damaged vehicles nearby.</Original>
+                <English>No damaged vehicles nearby.</English>
+                <Spanish>No hay vehículos dañados cerca.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_acc_title">
+                <Original>Traffic accident at %1</Original>
+                <English>Traffic accident at %1</English>
+                <Spanish>Accidente de tráfico en %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_anpr_hit">
+                <Original>PLATE READ at %1: %2 · %3</Original>
+                <English>PLATE READ at %1: %2 · %3</English>
+                <Spanish>LECTURA DE MATRÍCULA en %1: %2 · %3</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_anpr_itv">
+                <Original>Expired inspection</Original>
+                <English>Expired inspection</English>
+                <Spanish>ITV caducada</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_anpr_stolen">
+                <Original>vehicle reported stolen</Original>
+                <English>vehicle reported stolen</English>
+                <Spanish>vehículo denunciado como robado</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_anpr_wanted">
+                <Original>owner wanted: %1</Original>
+                <English>owner wanted: %1</English>
+                <Spanish>titular con requisitoria: %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_book_det">
+                <Original>Time: %1
+Plate: %2
+Vehicle: %3
+Occupants: %4
+Result: %5</Original>
+                <English>Time: %1
+Plate: %2
+Vehicle: %3
+Occupants: %4
+Result: %5</English>
+                <Spanish>Hora: %1
+Matrícula: %2
+Vehículo: %3
+Ocupantes: %4
+Resultado: %5</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_book_head">
+                <Original>Checkpoint log · %1 (%2 entries)</Original>
+                <English>Checkpoint log · %1 (%2 entries)</English>
+                <Spanish>Libro de paso · %1 (%2 registros)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_book_menu">
+                <Original>Checkpoint log</Original>
+                <English>Checkpoint log</English>
+                <Spanish>Libro de paso del control</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_book_none">
+                <Original>No road checkpoint nearby.</Original>
+                <English>No road checkpoint nearby.</English>
+                <Spanish>No hay ningún control de carretera cerca.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_breath_body">
+                <Original>Positive breath test: %1 (limit %2) at %3. Recorded by %4. Fine %5.</Original>
+                <English>Positive breath test: %1 (limit %2) at %3. Recorded by %4. Fine %5.</English>
+                <Spanish>Test de alcoholemia positivo: %1 g/l (límite %2) en %3. Registrado por %4. Multa %5.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_breath_do">
+                <Original>You are not allowed to run breath tests.</Original>
+                <English>You are not allowed to run breath tests.</English>
+                <Spanish>No tienes permiso para hacer test de alcoholemia.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_breath_doing">
+                <Original>Running breath test...</Original>
+                <English>Running breath test...</English>
+                <Spanish>Realizando test de alcoholemia...</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_breath_menu">
+                <Original>Breath test</Original>
+                <English>Breath test</English>
+                <Spanish>Test de alcoholemia</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_breath_neg">
+                <Original>%1: negative (%2, limit %3).</Original>
+                <English>%1: negative (%2, limit %3).</English>
+                <Spanish>%1: negativo (%2 g/l, límite %3).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_breath_pos">
+                <Original>%1: POSITIVE %2 (limit %3). Fine of %4 %5.</Original>
+                <English>%1: POSITIVE %2 (limit %3). Fine of %4 %5.</English>
+                <Spanish>%1: POSITIVO %2 g/l (límite %3). Multa de %4 %5.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_breath_pos_you">
+                <Original>Positive test: %1. Fine of %2 %3.</Original>
+                <English>Positive test: %1. Fine of %2 %3.</English>
+                <Spanish>Test positivo: %1 g/l. Multa de %2 %3.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_breath_reason">
+                <Original>Driving under the influence (%1)</Original>
+                <English>Driving under the influence (%1)</English>
+                <Spanish>Conducir con alcohol (%1 g/l)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_breath_rep">
+                <Original>Positive breath test: %1</Original>
+                <English>Positive breath test: %1</English>
+                <Spanish>Test de alcoholemia positivo: %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_convoy_bad">
+                <Original>Invalid convoy: pick vehicles and a destination on the map.</Original>
+                <English>Invalid convoy: pick vehicles and a destination on the map.</English>
+                <Spanish>Convoy no válido: elige vehículos y un destino en el mapa.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_convoy_bonus">
+                <Original>Convoy escort bonus %1</Original>
+                <English>Convoy escort bonus %1</English>
+                <Spanish>Prima de escolta de convoy %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_convoy_click">
+                <Original>Mark the convoy destination on the map (left click).</Original>
+                <English>Mark the convoy destination on the map (left click).</English>
+                <Spanish>Marca el destino del convoy en el mapa (clic izquierdo).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_convoy_do">
+                <Original>You are not allowed to escort convoys.</Original>
+                <English>You are not allowed to escort convoys.</English>
+                <Spanish>No tienes permiso para escoltar convoyes.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_convoy_done">
+                <Original>Convoy "%1" reached its destination.</Original>
+                <English>Convoy "%1" reached its destination.</English>
+                <Spanish>Convoy «%1» llegó al destino.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_convoy_lost">
+                <Original>Convoy "%1" lost: a vehicle was destroyed.</Original>
+                <English>Convoy "%1" lost: a vehicle was destroyed.</English>
+                <Spanish>Convoy «%1» perdido: un vehículo fue destruido.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_convoy_name">
+                <Original>Convoy %1</Original>
+                <English>Convoy %1</English>
+                <Spanish>Convoy %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_convoy_new">
+                <Original>Convoy escort</Original>
+                <English>Convoy escort</English>
+                <Spanish>Escolta de convoy</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_convoy_novehs">
+                <Original>No vehicles nearby for the convoy.</Original>
+                <English>No vehicles nearby for the convoy.</English>
+                <Spanish>No hay vehículos cerca para el convoy.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_convoy_ok">
+                <Original>Convoy %1 under way with %2 vehicles.</Original>
+                <English>Convoy %1 under way with %2 vehicles.</English>
+                <Spanish>Convoy %1 en marcha con %2 vehículos.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_convoy_vehs">
+                <Original>Convoy vehicles</Original>
+                <English>Convoy vehicles</English>
+                <Spanish>Vehículos del convoy</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_div_do">
+                <Original>You are not allowed to divert traffic.</Original>
+                <English>You are not allowed to divert traffic.</English>
+                <Spanish>No tienes permiso para desviar el tráfico.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_div_menu">
+                <Original>Divert traffic here</Original>
+                <English>Divert traffic here</English>
+                <Spanish>Desviar tráfico aquí</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_div_menu_off">
+                <Original>Remove nearest diversion</Original>
+                <English>Remove nearest diversion</English>
+                <Spanish>Quitar el desvío más cercano</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_div_none">
+                <Original>No diversions nearby.</Original>
+                <English>No diversions nearby.</English>
+                <Spanish>No hay desvíos cerca.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_div_off">
+                <Original>Diversion removed.</Original>
+                <English>Diversion removed.</English>
+                <Spanish>Desvío retirado.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_div_ok">
+                <Original>Diversion active: civilians move away from the area.</Original>
+                <English>Diversion active: civilians move away from the area.</English>
+                <Spanish>Desvío activo: los civiles se alejan de la zona.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_drunk_menu">
+                <Original>Mark: impaired driver (Zeus)</Original>
+                <English>Mark: impaired driver (Zeus)</English>
+                <Spanish>Marcar: conducción bajo alcohol (Zeus)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_drunk_set">
+                <Original>%1 marked at %2.</Original>
+                <English>%1 marked at %2.</English>
+                <Spanish>%1 marcado con %2 g/l.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_imp_det">
+                <Original>Plate: %1
+Vehicle: %2
+Impounded: %3
+Fee: %4 %5
+Status: %6</Original>
+                <English>Plate: %1
+Vehicle: %2
+Impounded: %3
+Fee: %4 %5
+Status: %6</English>
+                <Spanish>Matrícula: %1
+Vehículo: %2
+Depositado: %3
+Tasa: %4 %5
+Estado: %6</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_imp_gone">
+                <Original>removed</Original>
+                <English>removed</English>
+                <Spanish>retirado</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_imp_head">
+                <Original>Vehicle pound (%1)</Original>
+                <English>Vehicle pound (%1)</English>
+                <Spanish>Depósito de vehículos (%1)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_imp_kept">
+                <Original>in the pound</Original>
+                <English>in the pound</English>
+                <Spanish>en el depósito</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_imp_paid">
+                <Original>%1: fee of %2 %3 paid. Vehicle recovered.</Original>
+                <English>%1: fee of %2 %3 paid. Vehicle recovered.</English>
+                <Spanish>%1: tasa de %2 %3 pagada. Vehículo recuperado.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_imp_pay">
+                <Original>Recover %1 from the pound</Original>
+                <English>Recover %1 from the pound</English>
+                <Spanish>Recuperar %1 del depósito</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_imp_payBtn">
+                <Original>Pay and recover</Original>
+                <English>Pay and recover</English>
+                <Spanish>Pagar y recuperar</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_imp_title">
+                <Original>Vehicle pound</Original>
+                <English>Vehicle pound</English>
+                <Spanish>Depósito de vehículos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_itv_fine">
+                <Original>Fine for expired inspection (%1)</Original>
+                <English>Fine for expired inspection (%1)</English>
+                <Spanish>Multa por ITV caducada (%1)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_itv_menu">
+                <Original>Renew inspection of %1</Original>
+                <English>Renew inspection of %1</English>
+                <Spanish>Renovar ITV de %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_itv_ok">
+                <Original>Inspection of %1 renewed for %2 days.</Original>
+                <English>Inspection of %1 renewed for %2 days.</English>
+                <Spanish>ITV de %1 renovada por %2 días.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_itv_pay">
+                <Original>Inspection of %1</Original>
+                <English>Inspection of %1</English>
+                <Spanish>ITV de %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_lane_do">
+                <Original>You are not allowed to close lanes.</Original>
+                <English>You are not allowed to close lanes.</English>
+                <Spanish>No tienes permiso para cerrar carriles.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_lane_menu">
+                <Original>Close lane here (cones)</Original>
+                <English>Close lane here (cones)</English>
+                <Spanish>Cerrar carril aquí (conos)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_lane_menu_off">
+                <Original>Remove nearest lane closure</Original>
+                <English>Remove nearest lane closure</English>
+                <Spanish>Quitar el cierre más cercano</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_lane_none">
+                <Original>No closures nearby.</Original>
+                <English>No closures nearby.</English>
+                <Spanish>No hay cierres cerca.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_lane_off">
+                <Original>Closure removed.</Original>
+                <English>Closure removed.</English>
+                <Spanish>Cierre retirado.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_lane_ok">
+                <Original>Lane closed: vehicles slow to 25 km/h.</Original>
+                <English>Lane closed: vehicles slow to 25 km/h.</English>
+                <Spanish>Carril cerrado: los vehículos reducen a 25 km/h.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_patrol_handed">
+                <Original>Patrol %1 handed over to: %2.</Original>
+                <English>Patrol %1 handed over to: %2.</English>
+                <Spanish>Patrulla %1 traspasada a: %2.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_patrol_handover">
+                <Original>Hand over patrol</Original>
+                <English>Hand over patrol</English>
+                <Spanish>Traspasar patrulla</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_patrol_handover_btn">
+                <Original>Hand over to other officers</Original>
+                <English>Hand over to other officers</English>
+                <Spanish>Traspasar a otros agentes</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_patrol_lap">
+                <Original>Patrol %1: lap %2 of %3.</Original>
+                <English>Patrol %1: lap %2 of %3.</English>
+                <Spanish>Patrulla %1: vuelta %2 de %3.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_patrol_laps">
+                <Original>Laps (round)</Original>
+                <English>Laps (round)</English>
+                <Spanish>Vueltas (ronda)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_patrol_route">
+                <Original>Point route</Original>
+                <English>Point route</English>
+                <Spanish>Ruta de puntos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_patrol_type">
+                <Original>Patrol type</Original>
+                <English>Patrol type</English>
+                <Spanish>Tipo de patrulla</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_patrol_zone">
+                <Original>Zone watch (time in area)</Original>
+                <English>Zone watch (time in area)</English>
+                <Spanish>Vigilancia de zona (tiempo en el área)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_tow_do">
+                <Original>You are not allowed to tow vehicles.</Original>
+                <English>You are not allowed to tow vehicles.</English>
+                <Spanish>No tienes permiso para retirar vehículos.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_tow_doing">
+                <Original>Towing vehicle...</Original>
+                <English>Towing vehicle...</English>
+                <Spanish>Retirando vehículo...</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_tow_done">
+                <Original>Vehicle %1 sent to the pound.</Original>
+                <English>Vehicle %1 sent to the pound.</English>
+                <Spanish>Vehículo %1 enviado al depósito.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_tow_menu">
+                <Original>Tow %1 to the pound</Original>
+                <English>Tow %1 to the pound</English>
+                <Spanish>Retirar %1 al depósito</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_tow_no">
+                <Original>Cannot tow: vehicle occupied or too far.</Original>
+                <English>Cannot tow: vehicle occupied or too far.</English>
+                <Spanish>No se puede retirar: vehículo ocupado o demasiado lejos.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_tow_owner">
+                <Original>Your vehicle %1 is in the pound.</Original>
+                <English>Your vehicle %1 is in the pound.</English>
+                <Spanish>Tu vehículo %1 está en el depósito.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_zone_unwatched">
+                <Original>Zone "%1" unpatrolled for %2 min.</Original>
+                <English>Zone "%1" unpatrolled for %2 min.</English>
+                <Spanish>Zona «%1» sin patrulla desde hace %2 min.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_points_now">
+                <Original>Licence points: %1 (total %2).</Original>
+                <English>Licence points: %1 (total %2).</English>
+                <Spanish>Puntos de carnet: %1 (total %2).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_points_lost">
+                <Original>%1 lost their licence after reaching 0 points.</Original>
+                <English>%1 lost their licence after reaching 0 points.</English>
+                <Spanish>%1 ha perdido la licencia por llegar a 0 puntos.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_case_btn_ev">
+                <Original>Add evidence</Original>
+                <English>Add evidence</English>
+                <Spanish>Añadir prueba</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_case_btn_links">
+                <Original>Show links between cases</Original>
+                <English>Show links between cases</English>
+                <Spanish>Ver vínculos entre casos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_case_btn_new">
+                <Original>New case</Original>
+                <English>New case</English>
+                <Spanish>Nuevo caso</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_case_do">
+                <Original>You are not allowed to manage cases.</Original>
+                <English>You are not allowed to manage cases.</English>
+                <Spanish>No tienes permiso para gestionar casos.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_case_ev">
+                <Original>Evidence id (EV-n)</Original>
+                <English>Evidence id (EV-n)</English>
+                <Spanish>Id. de la prueba (EV-n)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_case_ev_title">
+                <Original>Link evidence to case</Original>
+                <English>Link evidence to case</English>
+                <Spanish>Vincular prueba al caso</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_case_new">
+                <Original>Case %1 created.</Original>
+                <English>Case %1 created.</English>
+                <Spanish>Caso %1 creado.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_case_new_title">
+                <Original>New case</Original>
+                <English>New case</English>
+                <Spanish>Nuevo caso</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_case_none">
+                <Original>That case does not exist.</Original>
+                <English>That case does not exist.</English>
+                <Spanish>Ese caso no existe.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_case_title">
+                <Original>Case title</Original>
+                <English>Case title</English>
+                <Spanish>Título del caso</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_case_title_panel">
+                <Original>Case files</Original>
+                <English>Case files</English>
+                <Spanish>Expedientes de caso</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_lineup_saved">
+                <Original>Identification lineup recorded in the case.</Original>
+                <English>Identification lineup recorded in the case.</English>
+                <Spanish>Rueda de reconocimiento registrada en el caso.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_links_head">
+                <Original>Links between cases (%1 people)</Original>
+                <English>Links between cases (%1 people)</English>
+                <Spanish>Vínculos entre casos (%1 personas)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_warrant_ok">
+                <Original>Search warrant for %1 valid %2 h.</Original>
+                <English>Search warrant for %1 valid %2 h.</English>
+                <Spanish>Orden de registro para %1 válida %2 h.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_clip_title">
+                <Original>Body camera clip of %1</Original>
+                <English>Body camera clip of %1</English>
+                <Spanish>Clip de cámara corporal de %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_clip_body">
+                <Original>Entry: %1 %2 · %3
+Data: %4
+Integrity seal: %5
+Marked by: %6</Original>
+                <English>Entry: %1 %2 · %3
+Data: %4
+Integrity seal: %5
+Marked by: %6</English>
+                <Spanish>Registro: %1 %2 · %3
+Datos: %4
+Sello de integridad: %5
+Marcado por: %6</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_clip_done">
+                <Original>Clip marked as evidence in report %1 (seal %2).</Original>
+                <English>Clip marked as evidence in report %1 (seal %2).</English>
+                <Spanish>Clip marcado como prueba en el informe %1 (sello %2).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_clip_btn">
+                <Original>Mark latest entry as evidence</Original>
+                <English>Mark latest entry as evidence</English>
+                <Spanish>Marcar último registro como prueba</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_care_do">
+                <Original>You are not allowed to care for detainees.</Original>
+                <English>You are not allowed to care for detainees.</English>
+                <Spanish>No tienes permiso para atender a detenidos.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_care_done">
+                <Original>%1 treated: injuries removed.</Original>
+                <English>%1 treated: injuries removed.</English>
+                <Spanish>%1 atendido: daños retirados.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_care_you">
+                <Original>Military Police medics treated you.</Original>
+                <English>Military Police medics treated you.</English>
+                <Spanish>Has sido atendido por la PM.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_care_fed">
+                <Original>%1 has been fed.</Original>
+                <English>%1 has been fed.</English>
+                <Spanish>%1 ha recibido comida.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_care_fed_no">
+                <Original>not fed</Original>
+                <English>not fed</English>
+                <Spanish>sin comer</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_care_fed_yes">
+                <Original>fed</Original>
+                <English>fed</English>
+                <Spanish>comió</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_care_none">
+                <Original>No detainees in the cell.</Original>
+                <English>No detainees in the cell.</English>
+                <Spanish>No hay detenidos en el calabozo.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_care_reg_title">
+                <Original>Cell custody register</Original>
+                <English>Cell custody register</English>
+                <Spanish>Registro de custodia del calabozo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_care_reg_body">
+                <Original>Recorded by %1.
+Detainees:
+%2</Original>
+                <English>Recorded by %1.
+Detainees:
+%2</English>
+                <Spanish>Registrado por %1.
+Detenidos:
+%2</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_care_reg_done">
+                <Original>Custody register saved in report %1.</Original>
+                <English>Custody register saved in report %1.</English>
+                <Spanish>Registro de custodia guardado en el informe %1.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_care_treat">
+                <Original>Treat detainee (medical)</Original>
+                <English>Treat detainee (medical)</English>
+                <Spanish>Atender al detenido (médico)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_care_feed">
+                <Original>Feed detainee</Original>
+                <English>Feed detainee</English>
+                <Spanish>Dar de comer al detenido</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_care_register">
+                <Original>Cell custody register</Original>
+                <English>Cell custody register</English>
+                <Spanish>Registro de custodia del calabozo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_escape_ok_you">
+                <Original>You escaped. You now have a warrant.</Original>
+                <English>You escaped. You now have a warrant.</English>
+                <Spanish>Te has escapado. Tienes una requisitoria.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_escape_rep">
+                <Original>Detainee escape: %1</Original>
+                <English>Detainee escape: %1</English>
+                <Spanish>Fuga de detenido: %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_escape_body">
+                <Original>Detainee %2 escaped at %1.</Original>
+                <English>Detainee %2 escaped at %1.</English>
+                <Spanish>Detenido %2 se ha fugado en %1.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_escape_fail_rep">
+                <Original>Failed escape attempt: %1</Original>
+                <English>Failed escape attempt: %1</English>
+                <Spanish>Intento de fuga frustrado: %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_escape_fail_body">
+                <Original>Detainee %2 tried to flee at %1 and was subdued (light injuries).</Original>
+                <English>Detainee %2 tried to flee at %1 and was subdued (light injuries).</English>
+                <Spanish>Detenido %2 intentó huir en %1 y fue reducido (heridas leves).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_tac_received">
+                <Original>Tactical mark: %1</Original>
+                <English>Tactical mark: %1</English>
+                <Spanish>Marca táctica: %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_tac_menu">
+                <Original>Tactical mark here</Original>
+                <English>Tactical mark here</English>
+                <Spanish>Marca táctica aquí</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_tac_text">
+                <Original>Mark text</Original>
+                <English>Mark text</English>
+                <Spanish>Texto de la marca</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_msg_menu">
+                <Original>Message to PM channel</Original>
+                <English>Message to PM channel</English>
+                <Spanish>Mensaje al canal PM</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_msg_text">
+                <Original>Message</Original>
+                <English>Message</English>
+                <Spanish>Mensaje</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_cal_done">
+                <Original>Radar calibrated. It can fine again.</Original>
+                <English>Radar calibrated. It can fine again.</English>
+                <Spanish>Radar calibrado. Vuelve a multar.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_bat_low">
+                <Original>Body camera battery ran out.</Original>
+                <English>Body camera battery ran out.</English>
+                <Spanish>La cámara corporal se ha quedado sin batería.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_s_contractMilestones">
+                <Original>Milestone payments</Original>
+                <English>Milestone payments</English>
+                <Spanish>Pagos por hitos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_s_contractMilestones_tip">
+                <Original>If the contract ends partial or failed, the part of the route completed is paid.</Original>
+                <English>If the contract ends partial or failed, the part of the route completed is paid.</English>
+                <Spanish>Si el contrato queda parcial o fallido, se paga la parte de la ruta cumplida.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_settle_milestones">
+                <Original>+ Milestones reached: %1 of %2</Original>
+                <English>+ Milestones reached: %1 of %2</English>
+                <Spanish>+ Hitos cumplidos: %1 de %2</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_s_contractAuctionMin">
+                <Original>Auction minutes per contract</Original>
+                <English>Auction minutes per contract</English>
+                <Spanish>Minutos de subasta por encargo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_s_contractAuctionMin_tip">
+                <Original>0 = no auction. Companies bid the percentage of the pay they ask; the lowest bid wins when it closes.</Original>
+                <English>0 = no auction. Companies bid the percentage of the pay they ask; the lowest bid wins when it closes.</English>
+                <Spanish>0 = sin subasta. Las compañías pujan el porcentaje del pago que piden; gana la puja más baja al cerrar.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_auction_open">
+                <Original>The auction is still open: it cannot be signed yet.</Original>
+                <English>The auction is still open: it cannot be signed yet.</English>
+                <Spanish>La subasta sigue abierta: no se puede firmar todavía.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_auction_closed">
+                <Original>The auction has already closed.</Original>
+                <English>The auction has already closed.</English>
+                <Spanish>La subasta ya ha cerrado.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_bid_ok">
+                <Original>Bid registered: %1%% of the pay (%2).</Original>
+                <English>Bid registered: %1%% of the pay (%2).</English>
+                <Spanish>Puja registrada: %1 %% del pago (%2).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_auction_lost">
+                <Original>Another company won the auction (%1).</Original>
+                <English>Another company won the auction (%1).</English>
+                <Spanish>Otra compañía ganó la subasta (%1).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_act_bid">
+                <Original>Bid</Original>
+                <English>Bid</English>
+                <Spanish>Pujar</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_bid_title">
+                <Original>Bid for contract %1</Original>
+                <English>Bid for contract %1</English>
+                <Spanish>Puja por el encargo %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_bid_pct">
+                <Original>Percentage of the pay you ask</Original>
+                <English>Percentage of the pay you ask</English>
+                <Spanish>Porcentaje del pago que pides</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_act_sub">
+                <Original>Subcontract</Original>
+                <English>Subcontract</English>
+                <Spanish>Subcontratar</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_sub_to">
+                <Original>Company taking the contract</Original>
+                <English>Company taking the contract</English>
+                <Spanish>Compañía que recibe el encargo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_sub_done">
+                <Original>Contract %1 handed to %2 (subcontract).</Original>
+                <English>Contract %1 handed to %2 (subcontract).</English>
+                <Spanish>Encargo %1 cedido a %2 (subcontrata).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_sub_received">
+                <Original>Contract %1 was subcontracted to you by %2.</Original>
+                <English>Contract %1 was subcontracted to you by %2.</English>
+                <Spanish>Te han cedido el encargo %1 por subcontrata de %2.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_sub_started">
+                <Original>Only a signed contract that has not started can be subcontracted.</Original>
+                <English>Only a signed contract that has not started can be subcontracted.</English>
+                <Spanish>Solo se puede subcontratar un encargo firmado y sin iniciar.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_sub_not_signer">
+                <Original>Only the signer can subcontract the contract.</Original>
+                <English>Only the signer can subcontract the contract.</English>
+                <Spanish>Solo quien firmó el encargo puede subcontratarlo.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_sub_already">
+                <Original>This contract is already a subcontract.</Original>
+                <English>This contract is already a subcontract.</English>
+                <Spanish>Este encargo ya es una subcontrata.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_sub_bad_target">
+                <Original>That officer cannot sign PMC contracts.</Original>
+                <English>That officer cannot sign PMC contracts.</English>
+                <Spanish>Ese agente no puede firmar encargos PMC.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_sub_paid">
+                <Original>Subcontract fee for contract %1</Original>
+                <English>Subcontract fee for contract %1</English>
+                <Spanish>Comisión de subcontrata del encargo %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_treasury_sub">
+                <Original>Subcontract fee for contract %1</Original>
+                <English>Subcontract fee for contract %1</English>
+                <Spanish>Comisión de subcontrata del encargo %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cost_subfee">
+                <Original>Subcontract fee</Original>
+                <English>Subcontract fee</English>
+                <Spanish>Comisión de subcontrata</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_s_contractSubFee">
+                <Original>Subcontract fee</Original>
+                <English>Subcontract fee</English>
+                <Spanish>Comisión de subcontrata</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_s_contractSubFee_tip">
+                <Original>Share of the pay the original signer keeps when subcontracting a contract.</Original>
+                <English>Share of the pay the original signer keeps when subcontracting a contract.</English>
+                <Spanish>Fracción del pago que cobra el firmante original cuando subcontrata un encargo.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_audit_export">
+                <Original>Export log to RPT</Original>
+                <English>Export log to RPT</English>
+                <Spanish>Exportar registro al RPT</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_audit_export_no">
+                <Original>You cannot export the audit log.</Original>
+                <English>You cannot export the audit log.</English>
+                <Spanish>No puedes exportar el registro de auditoría.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_audit_export_done">
+                <Original>Log exported: %1 entries (search AUDITORIA in the RPT).</Original>
+                <English>Log exported: %1 entries (search AUDITORIA in the RPT).</English>
+                <Spanish>Registro exportado: %1 entradas (busca AUDITORIA en el RPT).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_s_auditExportN">
+                <Original>Audit entries to export</Original>
+                <English>Audit entries to export</English>
+                <Spanish>Entradas de auditoría a exportar</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_s_backupMin">
+                <Original>Backup interval (minutes, 0 = off)</Original>
+                <English>Backup interval (minutes, 0 = off)</English>
+                <Spanish>Copia de seguridad (minutos, 0 = no)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_btn_intel">
+                <Original>Cell and intel</Original>
+                <English>Cell and intel</English>
+                <Spanish>Célula e inteligencia</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_resting">
+                <Original>These officers are resting: %1.</Original>
+                <English>These officers are resting: %1.</English>
+                <Spanish>Estos agentes están de descanso: %1.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cell_status">
+                <Original>Cell morale: %1/100 · Level: %2 (up every 5 completed contracts)
+Recent intel:</Original>
+                <English>Cell morale: %1/100 · Level: %2 (up every 5 completed contracts)
+Recent intel:</English>
+                <Spanish>Moral de la célula: %1/100 · Nivel: %2 (sube cada 5 encargos cumplidos)
+Inteligencia reciente:</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_s_contractRestMin">
+                <Original>Rest after a contract (minutes, 0 = off)</Original>
+                <English>Rest after a contract (minutes, 0 = off)</English>
+                <Spanish>Descanso tras un encargo (minutos, 0 = no)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_act_roe">
+                <Original>Change ROE</Original>
+                <English>Change ROE</English>
+                <Spanish>Cambiar ROE</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_roe_title">
+                <Original>Rules of engagement: %1</Original>
+                <English>Rules of engagement: %1</English>
+                <Spanish>Reglas de enfrentamiento: %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_roe_changed">
+                <Original>Contract %1: ROE changed to %2.</Original>
+                <English>Contract %1: ROE changed to %2.</English>
+                <Spanish>Encargo %1: las ROE pasan a %2.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_not_active">
+                <Original>The contract is not in progress.</Original>
+                <English>The contract is not in progress.</English>
+                <Spanish>El encargo no está en curso.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_s_contractFranchise">
+                <Original>Insurance deductible for gear (€)</Original>
+                <English>Insurance deductible for gear (€)</English>
+                <Spanish>Franquicia del seguro de material (€)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cy_fw_on">
+                <Original>Firewall enabled on network %1: hacks are harder.</Original>
+                <English>Firewall enabled on network %1: hacks are harder.</English>
+                <Spanish>Cortafuegos activado en la red %1: los hackeos son más difíciles.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cy_scan_res">
+                <Original>Scan: %1 cameras and %2 keypad locks within 300 m. Networks: %3</Original>
+                <English>Scan: %1 cameras and %2 keypad locks within 300 m. Networks: %3</English>
+                <Spanish>Escaneo: %1 cámaras y %2 cerraduras de teclado en 300 m. Redes: %3</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_s_cyberBlackoutMin">
+                <Original>CCTV blackout after sabotage (minutes, 0 = manual)</Original>
+                <English>CCTV blackout after sabotage (minutes, 0 = manual)</English>
+                <Spanish>Apagón de CCTV por sabotaje (minutos, 0 = manual)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_s_cyberFirewallMin">
+                <Original>Network firewall (minutes)</Original>
+                <English>Network firewall (minutes)</English>
+                <Spanish>Cortafuegos de red (minutos)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_treasury_bm">
+                <Original>Black-market tax: %1</Original>
+                <English>Black-market tax: %1</English>
+                <Spanish>Impuesto de mercado negro: %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_s_priceInflationPct">
+                <Original>Price inflation (% per period, 0 = off)</Original>
+                <English>Price inflation (% per period, 0 = off)</English>
+                <Spanish>Inflación de precios (% por periodo, 0 = no)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_s_priceInflationMin">
+                <Original>Inflation period (mission minutes)</Original>
+                <English>Inflation period (mission minutes)</English>
+                <Spanish>Periodo de inflación (minutos de misión)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_s_blackMarketTax">
+                <Original>Black-market tax (fraction of the sale)</Original>
+                <English>Black-market tax (fraction of the sale)</English>
+                <Spanish>Impuesto de mercado negro (fracción de la venta)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_s_salaryArrestBonus">
+                <Original>Payroll bonus per arrest (€)</Original>
+                <English>Payroll bonus per arrest (€)</English>
+                <Spanish>Incentivo por arresto en la nómina (€)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_order_delayed">
+                <Original>The gear will arrive in %1 minutes.</Original>
+                <English>The gear will arrive in %1 minutes.</English>
+                <Spanish>El material llegará en %1 minutos.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_s_armoryDelayMin">
+                <Original>Armory order delivery delay (minutes)</Original>
+                <English>Armory order delivery delay (minutes)</English>
+                <Spanish>Entrega retardada de pedidos de armería (minutos)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_s_budgetPMC">
+                <Original>PMC daily budget for orders (0 = no limit)</Original>
+                <English>PMC daily budget for orders (0 = no limit)</English>
+                <Spanish>Presupuesto diario PMC para pedidos (0 = sin límite)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_s_vehMaintMin">
+                <Original>PM vehicle maintenance every (minutes, 0 = off)</Original>
+                <English>PM vehicle maintenance every (minutes, 0 = off)</English>
+                <Spanish>Mantenimiento de vehículos PM cada (minutos, 0 = no)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_s_vehMaintFee">
+                <Original>Maintenance cost per vehicle (€)</Original>
+                <English>Maintenance cost per vehicle (€)</English>
+                <Spanish>Coste de mantenimiento por vehículo (€)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_menu">
+                <Original>Human resources</Original>
+                <English>Human resources</English>
+                <Spanish>Recursos humanos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_no">
+                <Original>You do not have HR permission.</Original>
+                <English>You do not have HR permission.</English>
+                <Spanish>No tienes permiso para RRHH.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_b_certs">
+                <Original>My certificates and medals</Original>
+                <English>My certificates and medals</English>
+                <Spanish>Mis certificados y medallas</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_b_leave">
+                <Original>Request leave</Original>
+                <English>Request leave</English>
+                <Spanish>Solicitar permiso</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_b_leaves">
+                <Original>View pending requests</Original>
+                <English>View pending requests</English>
+                <Spanish>Ver solicitudes pendientes</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_b_decide">
+                <Original>Decide request</Original>
+                <English>Decide request</English>
+                <Spanish>Resolver solicitud</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_b_cert">
+                <Original>Grant course or medal</Original>
+                <English>Grant course or medal</English>
+                <Spanish>Conceder curso o medalla</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_b_medleave">
+                <Original>Medical leave</Original>
+                <English>Medical leave</English>
+                <Spanish>Baja médica</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_b_rota">
+                <Original>View roster</Original>
+                <English>View roster</English>
+                <Spanish>Ver cuadrante</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_b_eval">
+                <Original>Evaluate officer</Original>
+                <English>Evaluate officer</English>
+                <Spanish>Evaluar agente</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_b_pass">
+                <Original>Visitor pass</Original>
+                <English>Visitor pass</English>
+                <Spanish>Pase de visita</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_b_access">
+                <Original>Zone access</Original>
+                <English>Zone access</English>
+                <Spanish>Acceso por zona</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_b_tpl">
+                <Original>Contract template</Original>
+                <English>Contract template</English>
+                <Spanish>Plantilla de encargo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_b_scen">
+                <Original>Training scenario</Original>
+                <English>Training scenario</English>
+                <Spanish>Escenario de entrenamiento</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_b_airlock">
+                <Original>Airlock</Original>
+                <English>Airlock</English>
+                <Spanish>Esclusa</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_f_type">
+                <Original>Type</Original>
+                <English>Type</English>
+                <Spanish>Tipo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_f_days">
+                <Original>Days</Original>
+                <English>Days</English>
+                <Spanish>Días</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_f_id">
+                <Original>Request number</Original>
+                <English>Request number</English>
+                <Spanish>Número de solicitud</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_f_ok">
+                <Original>Approve</Original>
+                <English>Approve</English>
+                <Spanish>Aprobar</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_f_uid">
+                <Original>Officer SteamID</Original>
+                <English>Officer SteamID</English>
+                <Spanish>SteamID del agente</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_f_name">
+                <Original>Name</Original>
+                <English>Name</English>
+                <Spanish>Nombre</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_f_kind">
+                <Original>Recognition type</Original>
+                <English>Recognition type</English>
+                <Spanish>Tipo de reconocimiento</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_f_min">
+                <Original>Minutes</Original>
+                <English>Minutes</English>
+                <Spanish>Minutos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_f_zone">
+                <Original>Zone</Original>
+                <English>Zone</English>
+                <Spanish>Zona</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_f_client">
+                <Original>Client</Original>
+                <English>Client</English>
+                <Spanish>Cliente</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_f_pay">
+                <Original>Pay (€)</Original>
+                <English>Pay (€)</English>
+                <Spanish>Pago (€)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_f_tpls">
+                <Original>Templates separated by commas</Original>
+                <English>Templates separated by commas</English>
+                <Spanish>Plantillas separadas por comas</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_f_side">
+                <Original>Side (in = inside, out = outside, empty = free)</Original>
+                <English>Side (in = inside, out = outside, empty = free)</English>
+                <Spanish>Lado (in = dentro, out = fuera, vacío = libre)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_cert_done">
+                <Original>Recognition recorded: %1</Original>
+                <English>Recognition recorded: %1</English>
+                <Spanish>Reconocimiento registrado: %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_cert_you">
+                <Original>You received %1: %2</Original>
+                <English>You received %1: %2</English>
+                <Spanish>Has recibido %1: %2</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_none">
+                <Original>Nothing to show.</Original>
+                <English>Nothing to show.</English>
+                <Spanish>Nada que mostrar.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_leave_sent">
+                <Original>Request #%1 sent.</Original>
+                <English>Request #%1 sent.</English>
+                <Spanish>Solicitud #%1 enviada.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_leave_result">
+                <Original>Your request #%1 was: %2.</Original>
+                <English>Your request #%1 was: %2.</English>
+                <Spanish>Tu solicitud #%1 ha sido: %2.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_medleave_you">
+                <Original>A medical leave is recorded in your file.</Original>
+                <English>A medical leave is recorded in your file.</English>
+                <Spanish>Tienes baja médica registrada en tu expediente.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_medleave_done">
+                <Original>Medical leave recorded for %1.</Original>
+                <English>Medical leave recorded for %1.</English>
+                <Spanish>Baja médica registrada para %1.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_day_0">
+                <Original>Monday</Original>
+                <English>Monday</English>
+                <Spanish>Lunes</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_day_1">
+                <Original>Tuesday</Original>
+                <English>Tuesday</English>
+                <Spanish>Martes</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_day_2">
+                <Original>Wednesday</Original>
+                <English>Wednesday</English>
+                <Spanish>Miércoles</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_day_3">
+                <Original>Thursday</Original>
+                <English>Thursday</English>
+                <Spanish>Jueves</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_day_4">
+                <Original>Friday</Original>
+                <English>Friday</English>
+                <Spanish>Viernes</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_day_5">
+                <Original>Saturday</Original>
+                <English>Saturday</English>
+                <Spanish>Sábado</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_day_6">
+                <Original>Sunday</Original>
+                <English>Sunday</English>
+                <Spanish>Domingo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_eval_done">
+                <Original>%1: activity in the last 7 days = %2 records.</Original>
+                <English>%1: activity in the last 7 days = %2 records.</English>
+                <Spanish>%1: actividad de los últimos 7 días = %2 registros.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_tpl_saved">
+                <Original>Template %1 saved.</Original>
+                <English>Template %1 saved.</English>
+                <Spanish>Plantilla %1 guardada.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_tpl_none">
+                <Original>That template does not exist.</Original>
+                <English>That template does not exist.</English>
+                <Spanish>No existe esa plantilla.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_zeus_only">
+                <Original>Only Zeus can do this.</Original>
+                <English>Only Zeus can do this.</English>
+                <Spanish>Solo Zeus puede hacer esto.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_scen_saved">
+                <Original>Scenario %1 saved.</Original>
+                <English>Scenario %1 saved.</English>
+                <Spanish>Escenario %1 guardado.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_pass_done">
+                <Original>Pass for %1 valid for %2 minutes.</Original>
+                <English>Pass for %1 valid for %2 minutes.</English>
+                <Spanish>Pase de %1 válido %2 minutos.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_pass_none">
+                <Original>No pass on record.</Original>
+                <English>No pass on record.</English>
+                <Spanish>Sin pase registrado.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_pass_valid">
+                <Original>Pass valid for %1 (%2 min left).</Original>
+                <English>Pass valid for %1 (%2 min left).</English>
+                <Spanish>Pase válido en %1 (quedan %2 min).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_pass_expired">
+                <Original>Pass expired.</Original>
+                <English>Pass expired.</English>
+                <Spanish>Pase caducado.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_detect_hit">
+                <Original>DETECTOR: weapon found on a non-PM. Recorded.</Original>
+                <English>DETECTOR: weapon found on a non-PM. Recorded.</English>
+                <Spanish>DETECTOR: arma detectada en un no PM. Registrado.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_detect_ok">
+                <Original>Detector: no weapons.</Original>
+                <English>Detector: no weapons.</English>
+                <Spanish>Detector: sin armas.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_airlock_busy">
+                <Original>The other airlock door is open.</Original>
+                <English>The other airlock door is open.</English>
+                <Spanish>La otra puerta de la esclusa está abierta.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_budget_over">
+                <Original>The department daily budget is used up.</Original>
+                <English>The department daily budget is used up.</English>
+                <Spanish>El presupuesto diario del departamento está agotado.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_maint_treasury">
+                <Original>Vehicle maintenance: %1</Original>
+                <English>Vehicle maintenance: %1</English>
+                <Spanish>Mantenimiento de vehículo: %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cy_phish_ok">
+                <Original>Phishing worked: %1 at %2 (on duty: %3).</Original>
+                <English>Phishing worked: %1 at %2 (on duty: %3).</English>
+                <Spanish>Phishing exitoso: %1 en %2 (de servicio: %3).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cy_phish_fail">
+                <Original>The officer did not take the bait.</Original>
+                <English>The officer did not take the bait.</English>
+                <Spanish>El agente no ha picado.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_postop_title">
+                <Original>Post-operation report: %1</Original>
+                <English>Post-operation report: %1</English>
+                <Spanish>Informe post-operación: %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_postop_body">
+                <Original>Contract %1 · %2
+Verdict: %3
+Incidents: %4
+Profit: %5 €</Original>
+                <English>Contract %1 · %2
+Verdict: %3
+Incidents: %4
+Profit: %5 €</English>
+                <Spanish>Encargo %1 · %2
+Valoración: %3
+Incidentes: %4
+Beneficio: %5 €</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cy_tools">
+                <Original>Cyber tools</Original>
+                <English>Cyber tools</English>
+                <Spanish>Herramientas de ciber</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cy_tool">
+                <Original>Tool</Original>
+                <English>Tool</English>
+                <Spanish>Herramienta</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cy_arg">
+                <Original>CCTV network or officer SteamID</Original>
+                <English>CCTV network or officer SteamID</English>
+                <Spanish>Red CCTV o SteamID del agente</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cy_t_scan">
+                <Original>Scan network</Original>
+                <English>Scan network</English>
+                <Spanish>Escanear red</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cy_t_fw">
+                <Original>Firewall on CCTV network</Original>
+                <English>Firewall on CCTV network</English>
+                <Spanish>Cortafuegos en red CCTV</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cy_t_phish">
+                <Original>Phish an officer</Original>
+                <English>Phish an officer</English>
+                <Spanish>Phishing a agente</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_s_pdaMarkMin">
+                <Original>PDA tactical mark duration (minutes)</Original>
+                <English>PDA tactical mark duration (minutes)</English>
+                <Spanish>Duración de las marcas tácticas de la PDA (minutos)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_tac_cleared">
+                <Original>Tactical marks cleared.</Original>
+                <English>Tactical marks cleared.</English>
+                <Spanish>Marcas tácticas borradas.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_tac_clear">
+                <Original>Clear tactical marks</Original>
+                <English>Clear tactical marks</English>
+                <Spanish>Borrar marcas tácticas</Spanish>
             </Key>
         </Container>
     </Package>

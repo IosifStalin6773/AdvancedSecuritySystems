@@ -21,6 +21,7 @@ private _short = _uid select [(count _uid - 8) max 0];
 private _names = ["ranksGlobal", []] call ADVSEC_fnc_setting;
 private _title = ["", _names param [_glob, ""]] select (_glob > 0);
 _unit setVariable ["ADVSEC_globalRank", _title, true];
+_unit setVariable ["ADVSEC_globalRankIdx", _glob max 0, true];
 // En Antistasi el rango de Arma lo lleva su sistema de ascensos
 if (_glob > 0 && {(["globalRankSetUnit", 1] call ADVSEC_fnc_setting) isEqualTo 1} && {!([] call ADVSEC_fnc_isA3A)}) then {
     private _arma = (["ranksGlobalArma", []] call ADVSEC_fnc_setting) param [_glob, ""];

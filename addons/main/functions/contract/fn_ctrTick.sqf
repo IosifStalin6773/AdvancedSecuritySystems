@@ -38,6 +38,7 @@ private _enemies = {
         private _route = _c get "route";
         private _rch = _c get "reached";
         (["tick", _id, _c] call ADVSEC_fnc_ctrHostiles) params [["_hAlive", 0], ["_hDown", 0], ["_hTotal", 0], ["_hWaves", 0]];
+        ["tick", _id, _c] call ADVSEC_fnc_ctrCivil;
         private _reach = {
             // [quién (unidades), radio] marca en orden el siguiente punto de la ruta
             params ["_who", "_rad"];
@@ -53,12 +54,16 @@ private _enemies = {
         };
         switch (_type) do {
             case "escort": {
-                [_us, 60] call _reach;
+                // Con camión de carga (1.19.5) lo que cuenta es el camión: si se pierde, fallido
+                private _tk = _c getOrDefault ["truckNet", ""];
+                private _truck = (_tk call BIS_fnc_objectFromNetId);
+                if (_tk isNotEqualTo "" && {isNull _truck || {!alive _truck}}) exitWith {[_id, _c, "Fallido", ("STR_ADVSEC_pmc_cargo_lost" call ADVSEC_fnc_L)] call _finish};
+                [[_us, [_truck]] select (_tk isNotEqualTo ""), 60] call _reach;
                 if ((_rch find false) < 0) exitWith {[_id, _c, "Cumplido"] call _finish};
                 if (_over) then {[_id, _c, ["Fallido", "Parcial"] select (({_x} count _rch) * 2 >= count _rch)] call _finish};
             };
             case "vip": {
-                private _vip = objectFromNetId (_c getOrDefault ["vipNet", ""]);
+                private _vip = ((_c getOrDefault ["vipNet", ""]) call BIS_fnc_objectFromNetId);
                 if (isNull _vip || {!alive _vip}) exitWith {
                     _m set ["vipDmg", 1];
                     if (((_m get "incidents") findIf {(_x select 0) == "vip"}) < 0) then {
@@ -68,7 +73,7 @@ private _enemies = {
                 };
                 _m set ["vipDmg", (_m get "vipDmg") max (damage _vip)];
                 private _veh = objectParent _vip;
-                if (!isNull _veh && {_veh getVariable ["ADVSEC_corpVehicle", false]}) then {_c set ["vipVeh", netId _veh]};
+                if (!isNull _veh && {_veh getVariable ["ADVSEC_corpVehicle", false]}) then {_c set ["vipVeh", (_veh call BIS_fnc_netId)]};
                 private _close = ["cpCloseRadius", 5] call ADVSEC_fnc_setting;
                 if (isNull _veh && {(_us findIf {(_x distance _vip) <= _close}) < 0}) then {_m set ["exposure", (_m get "exposure") + 3]};
                 // Desvío de la ruta sin evacuación: -5 % una vez por desvío
@@ -100,7 +105,7 @@ private _enemies = {
                 _m set ["ticks", (_m get "ticks") + 1];
                 if ((_us findIf {(_x distance2D (_c get "pos")) <= (_c get "radius")}) >= 0) then {_m set ["presence", (_m get "presence") + 1]};
                 if (_over || {(_c get "minutes") <= 0 && {_el > 60}}) then {
-                    private _r = (_m get "presence") / ((_m get "ticks") max 1);
+                    private _r = ((_m get "presence") / ((_m get "ticks") max 1)) - 0.05 * (_m getOrDefault ["civMissed", 0]);
                     [_id, _c, switch (true) do {case (_r >= 0.7): {"Cumplido"}; case (_r >= 0.4): {"Parcial"}; default {"Fallido"}}, format [("STR_ADVSEC_pmc_presence" call ADVSEC_fnc_L), round (_r * 100)]] call _finish;
                 };
             };
@@ -126,7 +131,7 @@ private _enemies = {
                 };
             };
             case "recovery": {
-                private _box = objectFromNetId (_c getOrDefault ["cargoNet", ""]);
+                private _box = ((_c getOrDefault ["cargoNet", ""]) call BIS_fnc_objectFromNetId);
                 if (isNull _box || {!alive _box}) exitWith {[_id, _c, "Fallido", ("STR_ADVSEC_pmc_cargo_lost" call ADVSEC_fnc_L)] call _finish};
                 if ((_box distance2D (_c get "home")) < 50) exitWith {[_id, _c, "Cumplido"] call _finish};
                 if (_over) then {[_id, _c, "Fallido", ("STR_ADVSEC_pmc_time_out" call ADVSEC_fnc_L)] call _finish};

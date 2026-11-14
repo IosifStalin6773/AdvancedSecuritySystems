@@ -1,18 +1,20 @@
 // (cliente, mando) Nueva patrulla: datos en un formulario y ruta marcada con clics en el mapa
 if !([player, "patrolPlan"] call ADVSEC_fnc_perm) exitWith {hint ("STR_ADVSEC_you_are_not_allowed_to" call ADVSEC_fnc_L)};
-private _pm = ((allPlayers - entities "HeadlessClient_F") select {alive _x && {[_x, "PM"] call ADVSEC_fnc_repAccess}}) apply {[name _x, getPlayerUID _x]};
+private _pm = ((allPlayers - entities "HeadlessClient_F") select {alive _x && {[_x, "PMC"] call ADVSEC_fnc_repAccess}}) apply {[name _x, getPlayerUID _x]};
 if (_pm isEqualTo []) exitWith {hint ("STR_ADVSEC_there_are_no_mp_officers" call ADVSEC_fnc_L)};
 [("STR_ADVSEC_new_route_patrol" call ADVSEC_fnc_L), [
     [("STR_ADVSEC_name" call ADVSEC_fnc_L), format [("STR_ADVSEC_patrol_2" call ADVSEC_fnc_L), groupId group player]],
     [("STR_ADVSEC_assigned_officers" call ADVSEC_fnc_L), [], ["multi", _pm]],
     [("STR_ADVSEC_radius_of_each_point_m" call ADVSEC_fnc_L), "50"],
-    [("STR_ADVSEC_time_limit_min_0_no" call ADVSEC_fnc_L), "30"]
+    [("STR_ADVSEC_time_limit_min_0_no" call ADVSEC_fnc_L), "30"],
+    [("STR_ADVSEC_m_patrol_type" call ADVSEC_fnc_L), ("STR_ADVSEC_m_patrol_route" call ADVSEC_fnc_L), [[("STR_ADVSEC_m_patrol_route" call ADVSEC_fnc_L), "route"], [("STR_ADVSEC_m_patrol_zone" call ADVSEC_fnc_L), "zone"]]],
+    [("STR_ADVSEC_m_patrol_laps" call ADVSEC_fnc_L), "1"]
 ], {
     params ["_v"];
-    _v params ["_name", "_uids", "_rad", "_min"];
+    _v params ["_name", "_uids", "_rad", "_min", "_type", "_laps"];
     if (_uids isEqualTo []) exitWith {hint ("STR_ADVSEC_assign_at_least_one_officer" call ADVSEC_fnc_L)};
-    [_name, _uids, parseNumber _rad, parseNumber _min] spawn {
-        params ["_name", "_uids", "_rad", "_min"];
+    [_name, _uids, parseNumber _rad, parseNumber _min, _type, parseNumber _laps] spawn {
+        params ["_name", "_uids", "_rad", "_min", "_type", "_laps"];
         ADVSEC_patPts = [];
         private _draw = {
             {if ((_x find "advsec_patplan_") == 0) then {deleteMarkerLocal _x}} forEach allMapMarkers;
@@ -47,7 +49,7 @@ if (_pm isEqualTo []) exitWith {hint ("STR_ADVSEC_there_are_no_mp_officers" call
         removeMissionEventHandler ["MapSingleClick", _eh];
         {if ((_x find "advsec_patplan_") == 0) then {deleteMarkerLocal _x}} forEach allMapMarkers;
         if (ADVSEC_patPts isEqualTo []) exitWith {hint ("STR_ADVSEC_patrol_discarded_the_route_has" call ADVSEC_fnc_L)};
-        ["create", player, [_name, +ADVSEC_patPts, _rad, _min, _uids]] remoteExecCall ["ADVSEC_fnc_patrolServer", 2];
+        ["create", player, [_name, +ADVSEC_patPts, _rad, _min, _uids, _type, _laps]] remoteExecCall ["ADVSEC_fnc_patrolServer", 2];
         ADVSEC_patPts = nil;
     };
 }] call ADVSEC_fnc_zeusPrompt;

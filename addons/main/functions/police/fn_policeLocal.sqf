@@ -38,6 +38,7 @@ switch (_mode) do {
         _unit assignAsCargo _veh;
         _unit moveInCargo _veh;
     };
+    case "orderOut";
     case "unload": {
         unassignVehicle _unit;
         moveOut _unit;

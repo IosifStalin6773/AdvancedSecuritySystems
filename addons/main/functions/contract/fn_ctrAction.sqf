@@ -5,7 +5,7 @@ private _can = {[player, _this] call ADVSEC_fnc_perm};
 switch (_state) do {
     case "Ofertado": {
         if ("contractSign" call _can) then {
-            _opts append [[("STR_ADVSEC_pmc_act_counter" call ADVSEC_fnc_L), "counter"], [("STR_ADVSEC_pmc_act_sign" call ADVSEC_fnc_L), "sign"], [("STR_ADVSEC_pmc_act_sign_ins" call ADVSEC_fnc_L), "signIns"]];
+            _opts append [[("STR_ADVSEC_pmc_act_counter" call ADVSEC_fnc_L), "counter"], [("STR_ADVSEC_pmc_act_bid" call ADVSEC_fnc_L), "bid"], [("STR_ADVSEC_pmc_act_sign" call ADVSEC_fnc_L), "sign"], [("STR_ADVSEC_pmc_act_sign_ins" call ADVSEC_fnc_L), "signIns"]];
         };
     };
     case "Firmado": {
@@ -14,11 +14,11 @@ switch (_state) do {
             if (_type in ["escort", "vip"]) then {_opts pushBack [("STR_ADVSEC_pmc_act_route" call ADVSEC_fnc_L), "route"]};
             _opts pushBack [("STR_ADVSEC_pmc_act_start" call ADVSEC_fnc_L), "start"];
         };
-        if ("contractSign" call _can) then {_opts pushBack [("STR_ADVSEC_pmc_act_cancel" call ADVSEC_fnc_L), "cancel"]};
+        if ("contractSign" call _can) then {_opts pushBack [("STR_ADVSEC_pmc_act_sub" call ADVSEC_fnc_L), "sub"]; _opts pushBack [("STR_ADVSEC_pmc_act_cancel" call ADVSEC_fnc_L), "cancel"]};
     };
     case "En curso": {
         if ("contractAssign" call _can && {_type in ["escort", "vip"]}) then {_opts pushBack [("STR_ADVSEC_pmc_act_evac" call ADVSEC_fnc_L), "evac"]};
-        if ("contractAssign" call _can) then {_opts pushBack [("STR_ADVSEC_pmc_act_assign" call ADVSEC_fnc_L), "assign"]};
+        if ("contractAssign" call _can) then {_opts pushBack [("STR_ADVSEC_pmc_act_assign" call ADVSEC_fnc_L), "assign"]; _opts pushBack [("STR_ADVSEC_pmc_act_roe" call ADVSEC_fnc_L), "roe"]};
         if ("contractSign" call _can) then {_opts pushBack [("STR_ADVSEC_pmc_act_cancel" call ADVSEC_fnc_L), "cancel"]};
     };
     case "Revisión": {
@@ -42,13 +42,39 @@ _opts pushBack [("STR_ADVSEC_show_route_on_the_map" call ADVSEC_fnc_L), "show"];
                 ], {params ["_v", "_id"]; ["counter", player, [_id] + _v] remoteExecCall ["ADVSEC_fnc_ctrServer", 2]}, _id] call ADVSEC_fnc_zeusPrompt;
             };
         };
+        case "bid": {
+            [_id] spawn {
+                params ["_id"];
+                sleep 0.1;
+                [format [("STR_ADVSEC_pmc_bid_title" call ADVSEC_fnc_L), _id], [
+                    [("STR_ADVSEC_pmc_bid_pct" call ADVSEC_fnc_L), 100, [["50 %", 50], ["60 %", 60], ["70 %", 70], ["80 %", 80], ["90 %", 90], ["100 %", 100]]]
+                ], {params ["_v", "_id"]; ["bid", player, [_id, _v select 0]] remoteExecCall ["ADVSEC_fnc_ctrServer", 2]}, _id] call ADVSEC_fnc_zeusPrompt;
+            };
+        };
+        case "sub": {
+            private _pm = ((allPlayers - entities "HeadlessClient_F") select {alive _x && {[_x, "PMC"] call ADVSEC_fnc_repAccess}}) apply {[name _x, getPlayerUID _x]};
+            [("STR_ADVSEC_pmc_act_sub" call ADVSEC_fnc_L), [[("STR_ADVSEC_pmc_sub_to" call ADVSEC_fnc_L), [], ["multi", _pm]]], {
+                params ["_v", "_id"];
+                if (_v isEqualTo [] || {(_v select 0) isEqualTo ""}) exitWith {};
+                ["sub", player, [_id, _v select 0]] remoteExecCall ["ADVSEC_fnc_ctrServer", 2];
+            }, _id] call ADVSEC_fnc_zeusPrompt;
+        };
         case "sign": {["sign", player, [_id, false]] remoteExecCall ["ADVSEC_fnc_ctrServer", 2]};
         case "signIns": {["sign", player, [_id, true]] remoteExecCall ["ADVSEC_fnc_ctrServer", 2]};
+        case "roe": {
+            [_id] spawn {
+                params ["_id"];
+                sleep 0.1;
+                [format [("STR_ADVSEC_pmc_roe_title" call ADVSEC_fnc_L), _id], [
+                    [("STR_ADVSEC_pmc_roe" call ADVSEC_fnc_L), "Ámbar", ["Verde", "Ámbar", "Rojo"]]
+                ], {params ["_v", "_id"]; ["roe", player, [_id, _v select 0]] remoteExecCall ["ADVSEC_fnc_ctrServer", 2]}, _id] call ADVSEC_fnc_zeusPrompt;
+            };
+        };
         case "assign": {
             [_id] spawn {
                 params ["_id"];
                 sleep 0.1;
-                private _pm = ((allPlayers - entities "HeadlessClient_F") select {alive _x && {[_x, "PM"] call ADVSEC_fnc_repAccess}}) apply {[format ["%1%2", name _x, ["", " ●"] select (_x getVariable ["ADVSEC_onDuty", false])], getPlayerUID _x]};
+                private _pm = ((allPlayers - entities "HeadlessClient_F") select {alive _x && {[_x, "PMC"] call ADVSEC_fnc_repAccess}}) apply {[format ["%1%2", name _x, ["", " ●"] select (_x getVariable ["ADVSEC_onDuty", false])], getPlayerUID _x]};
                 [format [("STR_ADVSEC_pmc_assign_title" call ADVSEC_fnc_L), _id], [
                     [("STR_ADVSEC_assigned_officers" call ADVSEC_fnc_L), [], ["multi", _pm]],
                     [("STR_ADVSEC_pmc_roe" call ADVSEC_fnc_L), "Ámbar", ["Verde", "Ámbar", "Rojo"]]

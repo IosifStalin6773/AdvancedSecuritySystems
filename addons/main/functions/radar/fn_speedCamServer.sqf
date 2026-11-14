@@ -15,7 +15,10 @@ switch (_a) do {
                 {
                     private _cam = _x;
                     (_cam getVariable ["ADVSEC_speedCam", []]) params [["_name", "Radar"], ["_lim", 90], ["_range", 40], ["_base", 100], ["_per", 5], ["_on", false], ["_mode", 0], ["_exempt", (["speedCamExemptDuty", 1] call ADVSEC_fnc_setting) isEqualTo 1]];
-                    if (_on && {alive _cam}) then {
+                    // 1.22: un radar sin calibrar en plazo no multa (radarCalibrationMin, 0 = nunca caduca)
+                    private _calMin = ["radarCalibrationMin", 0] call ADVSEC_fnc_setting;
+                    private _calOk = _calMin <= 0 || {serverTime - (_cam getVariable ["ADVSEC_calAt", serverTime]) < _calMin * 60};
+                    if (_on && {alive _cam} && _calOk) then {
                         {
                             private _veh = _x;
                             private _drv = driver _veh;
@@ -39,6 +42,36 @@ switch (_a) do {
                                 [_cam, format [("STR_ADVSEC_speed_camera_km_h_limit_2" call ADVSEC_fnc_L), toUpper _name, _s, _lim, _amt, _cur]] remoteExecCall ["ADVSEC_fnc_speedCamFlash", _drv];
                             };
                         } forEach (_cam nearEntities [["LandVehicle"], _range]);
+                        // 1.22: radar de tramo. ADVSEC_tramo = [id, "start" | "end", metros]: se mide el tiempo entre dos radares con el mismo id.
+                        // Velocidad media = metros / segundos. Si supera el límite, multa como un radar normal.
+                        private _tr = _cam getVariable ["ADVSEC_tramo", []];
+                        if (count _tr == 3) then {
+                            _tr params ["_tid", "_rol", "_m"];
+                            {
+                                private _veh = _x;
+                                private _drv = driver _veh;
+                                private _k = "ADVSEC_tr_" + str _tid + netId _veh;
+                                private _t0 = missionNamespace getVariable [_k, -1];
+                                if (_rol == "start") then {
+                                    if (_t0 < 0 || {time - _t0 > 600}) then {missionNamespace setVariable [_k, time]};
+                                } else {
+                                    if (_t0 >= 0 && {time - _t0 > 0.5} && {!isNull _drv} && {isPlayer _drv}) then {
+                                        missionNamespace setVariable [_k, -1];
+                                        private _kmh = round (_m / (time - _t0) * 3.6);
+                                        if (_kmh > _lim && {!(_exempt && {_drv getVariable ["ADVSEC_onDuty", false]})}) then {
+                                            private _amt = _base + (_kmh - _lim) * _per;
+                                            private _plate = getPlateNumber _veh;
+                                            [_drv, _amt, format [("STR_ADVSEC_speed_camera_km_h_limit" call ADVSEC_fnc_L), _name, _kmh, _lim, _plate], ("STR_ADVSEC_automatic_speed_camera" call ADVSEC_fnc_L) + _name, ""] call ADVSEC_fnc_fineAdd;
+                                            ["radarFine", _drv, [name _drv, _kmh, _amt, _name]] call ADVSEC_fnc_logEvent;
+                                            private _log = _cam getVariable ["ADVSEC_speedCamLog", []];
+                                            _log pushBack [[dayTime, "HH:MM"] call BIS_fnc_timeToString, _plate, _kmh, name _drv, _amt, typeOf _veh];
+                                            _cam setVariable ["ADVSEC_speedCamLog", _log select [((count _log) - 30) max 0], true];
+                                            [_cam, format [("STR_ADVSEC_speed_camera_km_h_limit_2" call ADVSEC_fnc_L), toUpper _name, _kmh, _lim, _amt, _cur]] remoteExecCall ["ADVSEC_fnc_speedCamFlash", _drv];
+                                        };
+                                    };
+                                };
+                            } forEach (_cam nearEntities [["LandVehicle"], _range]);
+                        };
                     };
                 } forEach (((missionNamespace getVariable ["ADVSEC_secObjects", []]) select {(_x select 1) == "speedcam" && {!isNull (_x select 0)}}) apply {_x select 0});
                 sleep 0.5;
@@ -87,6 +120,14 @@ switch (_a) do {
             _h addItemCargoGlobal ["ADVSEC_SpeedCamKit", 1];
         };
         ("STR_ADVSEC_speed_camera_picked_up" call ADVSEC_fnc_L) call _say;
+    };
+    case "calibrate": {
+        // 1.22: calibración del radar (permiso radar)
+        _args params [["_cam", objNull]];
+        if (isNull _cam || {!([_caller, "radar"] call ADVSEC_fnc_perm)} || {(_caller distance _cam) > 10}) exitWith {};
+        _cam setVariable ["ADVSEC_calAt", serverTime, true];
+        ["radarCalibrate", _caller, [_cam getVariable ["ADVSEC_speedCam", ["Radar"]] select 0]] call ADVSEC_fnc_logEvent;
+        ("STR_ADVSEC_m_cal_done" call ADVSEC_fnc_L) call _say;
     };
     case "log": {
         _args params [["_cam", objNull]];

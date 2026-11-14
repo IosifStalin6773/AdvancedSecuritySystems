@@ -48,7 +48,7 @@ private _finish = {
     [_id, _p] call _push;
     ["patrol", objNull, [_id, _p select 0, _state, _done, count (_p select 3), _p select 13]] call ADVSEC_fnc_logEvent;
     // Prima a los agentes que pasaron por algún punto
-    private _bonus = round (["patrolBonus", 0] call ADVSEC_fnc_setting);
+    private _bonus = round ((["patrolBonus", 0] call ADVSEC_fnc_setting) * ([1, ["patrolNightFactor", 1.5] call ADVSEC_fnc_setting] select (sunOrMoon < 0.5)));
     if (_state == "done" && {_bonus > 0} && {[] call ADVSEC_fnc_ecoOn}) then {
         private _cur = ["currency", "€"] call ADVSEC_fnc_setting;
         private _who = (_p select 9) apply {_x param [1, ""]};
@@ -68,9 +68,11 @@ private _finish = {
 switch (_action) do {
     case "create": {
         if !([_caller, "patrolPlan"] call ADVSEC_fnc_perm) exitWith {[_caller, ("STR_ADVSEC_plan_patrols" call ADVSEC_fnc_L)] call ADVSEC_fnc_deny};
-        _args params [["_name", ""], ["_pts", []], ["_rad", 50], ["_min", 0], ["_uids", []]];
+        _args params [["_name", ""], ["_pts", []], ["_rad", 50], ["_min", 0], ["_uids", []], ["_type", "route"], ["_laps", 1]];
+        if !(_type in ["route", "zone"]) then {_type = "route"};
         _pts = (_pts select {_x isEqualTypeArray [0, 0] || {_x isEqualTypeArray [0, 0, 0]}}) apply {[_x select 0, _x select 1]};
         _pts = _pts select [0, 30];
+        if (_type == "zone") then {_pts = _pts select [0, 1]; if (_min <= 0) then {_min = 15}};
         if (_pts isEqualTo []) exitWith {("STR_ADVSEC_the_route_has_no_points" call ADVSEC_fnc_L) call _say};
         _name = (_name select [0, 40]);
         if (_name isEqualTo "") then {_name = ("STR_ADVSEC_patrol" call ADVSEC_fnc_L)};
@@ -79,13 +81,13 @@ switch (_action) do {
         private _as = [];
         {
             private _u = [_x] call ADVSEC_fnc_uidUnit;
-            if (!isNull _u && {[_u, "PM"] call ADVSEC_fnc_repAccess}) then {_as pushBackUnique [_x, name _u]};
+            if (!isNull _u && {[_u, "PMC"] call ADVSEC_fnc_repAccess}) then {_as pushBackUnique [_x, name _u]};
         } forEach (_uids select {_x isEqualType ""});
         if (_as isEqualTo []) exitWith {("STR_ADVSEC_assign_at_least_one_connected" call ADVSEC_fnc_L) call _say};
         private _n = (localNamespace getVariable ["ADVSEC_patrolSeq", 0]) + 1;
         localNamespace setVariable ["ADVSEC_patrolSeq", _n];
         private _id = format ["P-%1", _n];
-        private _p = [_name, getPlayerUID _caller, name _caller, _pts, _rad, _min, _as, call ADVSEC_fnc_now, "assigned", _pts apply {[]}, -1, "", "", 0];
+        private _p = [_name, getPlayerUID _caller, name _caller, _pts, _rad, _min, _as, call ADVSEC_fnc_now, "assigned", _pts apply {[]}, -1, "", "", 0, _type, 0, [(_laps max 1) min 20, 0]];
         _db set [_id, _p];
         // Solo se guardan las 60 últimas
         private _ids = keys _db;
@@ -110,6 +112,23 @@ switch (_action) do {
             };
         };
     };
+    case "handover": {
+        _args params [["_id", ""], ["_uids", []]];
+        private _p = _db getOrDefault [_id, []];
+        if (_p isEqualTo [] || {!((_p select 8) in ["assigned", "active"])}) exitWith {("STR_ADVSEC_that_patrol_has_already_ended" call ADVSEC_fnc_L) call _say};
+        if !(([_caller, "patrolPlan"] call ADVSEC_fnc_perm) || {((_p select 6) findIf {(_x select 0) == getPlayerUID _caller}) >= 0}) exitWith {[_caller, ("STR_ADVSEC_m_patrol_handover" call ADVSEC_fnc_L)] call ADVSEC_fnc_deny};
+        private _as = [];
+        {
+            private _u = [_x] call ADVSEC_fnc_uidUnit;
+            if (!isNull _u && {[_u, "PMC"] call ADVSEC_fnc_repAccess}) then {_as pushBackUnique [_x, name _u]};
+        } forEach (_uids select {_x isEqualType ""});
+        if (_as isEqualTo []) exitWith {("STR_ADVSEC_assign_at_least_one_connected" call ADVSEC_fnc_L) call _say};
+        _p set [6, _as];
+        [_id, _p] call _push;
+        (format [("STR_ADVSEC_m_patrol_handed" call ADVSEC_fnc_L), _id, (_as apply {_x select 1}) joinString ", "]) remoteExecCall ["hint", ([_p] call _all)];
+        ["patrols"] call ADVSEC_fnc_dbDirty;
+        ["list", _caller] call ADVSEC_fnc_patrolServer;
+    };
     case "cancel": {
         if !([_caller, "patrolPlan"] call ADVSEC_fnc_perm) exitWith {[_caller, ("STR_ADVSEC_cancel_patrols" call ADVSEC_fnc_L)] call ADVSEC_fnc_deny};
         _args params [["_id", ""]];
@@ -132,6 +151,20 @@ switch (_action) do {
             private _p = _db get _x;
             if ((_p select 8) in ["assigned", "active"]) then {
                 private _us = [_p] call _units;
+                // 1.22: patrulla de zona (presencia acumulada en el área)
+                if ((_p param [14, "route"]) == "zone") then {
+                    private _pt = (_p select 3) param [0, [0, 0]];
+                    if ((_us findIf {(_x distance2D _pt) <= (_p select 4)}) >= 0) then {
+                        if ((_p select 8) == "assigned") then {_p set [8, "active"]; _p set [10, serverTime]; _p set [11, call ADVSEC_fnc_now]};
+                        _p set [15, (_p param [15, 0]) + 3];
+                        if ((_p param [15, 0]) / 60 >= (_p select 5)) then {
+                            (_p select 9) set [0, [[daytime, "HH:MM"] call BIS_fnc_timeToString, name (_us select 0)]];
+                            [_id, _p, "done"] call _finish;
+                        };
+                        ["patrols"] call ADVSEC_fnc_dbDirty;
+                    };
+                    continue;
+                };
                 private _reached = _p select 9;
                 private _pts = _p select 3;
                 private _todo = [];
@@ -156,7 +189,18 @@ switch (_action) do {
                     };
                 } forEach _todo;
                 if ((_p select 8) == "active") then {
-                    if (_reached findIf {_x isEqualTo []} < 0) then {[_id, _p, "done"] call _finish} else {
+                    if (_reached findIf {_x isEqualTo []} < 0) then {
+                        // 1.22: vueltas de ronda
+                        private _lp = _p param [16, [1, 0]];
+                        if ((_lp select 1) + 1 < (_lp select 0)) then {
+                            _lp set [1, (_lp select 1) + 1];
+                            _p set [16, _lp];
+                            _p set [9, (_p select 3) apply {[]}];
+                            (format [("STR_ADVSEC_m_patrol_lap" call ADVSEC_fnc_L), _id, (_lp select 1) + 1, _lp select 0]) remoteExecCall ["hintSilent", [_p] call _all];
+                            [_id, _p] call _push;
+                            ["patrols"] call ADVSEC_fnc_dbDirty;
+                        } else {[_id, _p, "done"] call _finish};
+                    } else {
                         if ((_p select 5) > 0 && {(serverTime - (_p select 10)) / 60 > (_p select 5)}) then {[_id, _p, "failed"] call _finish};
                     };
                 };
@@ -166,7 +210,7 @@ switch (_action) do {
     case "list": {
         private _uid = getPlayerUID _caller;
         private _plan = [_caller, "patrolPlan"] call ADVSEC_fnc_perm;
-        if !(_plan || {[_caller, "PM"] call ADVSEC_fnc_repAccess}) exitWith {("STR_ADVSEC_only_the_military_police_can" call ADVSEC_fnc_L) call _say};
+        if !(_plan || {[_caller, "PMC"] call ADVSEC_fnc_repAccess}) exitWith {("STR_ADVSEC_only_the_military_police_can" call ADVSEC_fnc_L) call _say};
         private _rows = [];
         private _ids = [keys _db, [], {parseNumber (_x select [2])}, "DESCEND"] call BIS_fnc_sortBy;
         {
