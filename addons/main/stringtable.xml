@@ -13205,6 +13205,16 @@ Beneficio: %5 €</Spanish>
                 <English>PDA tactical mark duration (minutes)</English>
                 <Spanish>Duración de las marcas tácticas de la PDA (minutos)</Spanish>
             </Key>
+            <Key ID="STR_ADVSEC_m_tac_cleared">
+                <Original>Tactical marks cleared.</Original>
+                <English>Tactical marks cleared.</English>
+                <Spanish>Marcas tácticas borradas.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_tac_clear">
+                <Original>Clear tactical marks</Original>
+                <English>Clear tactical marks</English>
+                <Spanish>Borrar marcas tácticas</Spanish>
+            </Key>
         </Container>
     </Package>
 </Project>

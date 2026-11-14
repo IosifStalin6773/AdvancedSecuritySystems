@@ -82,6 +82,9 @@ if (_mode in ["self", "company"]) exitWith {
             }] call ADVSEC_fnc_zeusPrompt;
         };
     }, []];
+    _po pushBack ["advsec_pm_tacclear", ("STR_ADVSEC_m_tac_clear" call ADVSEC_fnc_L), ADVSEC_icCar, {
+        ["clear", player, ["PM"]] remoteExecCall ["ADVSEC_fnc_pdaComms", 2];
+    }, []];
     _po pushBack ["advsec_pm_chanmsg", ("STR_ADVSEC_m_msg_menu" call ADVSEC_fnc_L), ADVSEC_icDoc, {
         [("STR_ADVSEC_m_msg_menu" call ADVSEC_fnc_L), [[("STR_ADVSEC_m_msg_text" call ADVSEC_fnc_L), ""]], {
             params ["_v"];

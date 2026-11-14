@@ -54,4 +54,11 @@ switch (_action) do {
             };
         } forEach _q;
     };
+    case "clear": {
+        // 1.22: borra las marcas tácticas de todo el canal (solo quien tiene acceso al canal)
+        _args params [["_ch", "PM"]];
+        if (!([_caller, _ch] call ADVSEC_fnc_repAccess)) exitWith {};
+        ["clear", [0, 0, 0], ""] remoteExecCall ["ADVSEC_fnc_pdaMarkShow", [_ch] call _members];
+        ["pdaMarkClear", _caller, [_ch]] call ADVSEC_fnc_logEvent;
+    };
 };

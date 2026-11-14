@@ -1,6 +1,8 @@
 # Textos de 1.22.0 (mecánicas nuevas). Se añaden a stringtable.xml con: python3 tools/m122_strings.py
 import os, re, xml.sax.saxutils as X
 S = {
+"STR_ADVSEC_m_tac_cleared": ("Marcas tácticas borradas.", "Tactical marks cleared."),
+"STR_ADVSEC_m_tac_clear": ("Borrar marcas tácticas", "Clear tactical marks"),
 "STR_ADVSEC_s_pdaMarkMin": ("Duración de las marcas tácticas de la PDA (minutos)", "PDA tactical mark duration (minutes)"),
 "STR_ADVSEC_pmc_cy_tools": ("Herramientas de ciber", "Cyber tools"),
 "STR_ADVSEC_pmc_cy_tool": ("Herramienta", "Tool"),
