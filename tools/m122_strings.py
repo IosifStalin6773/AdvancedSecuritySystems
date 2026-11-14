@@ -1,6 +1,9 @@
 # Textos de 1.22.0 (mecánicas nuevas). Se añaden a stringtable.xml con: python3 tools/m122_strings.py
 import os, re, xml.sax.saxutils as X
 S = {
+"STR_ADVSEC_pmc_s_contractMilestones": ("Pagos por hitos", "Milestone payments"),
+"STR_ADVSEC_pmc_s_contractMilestones_tip": ("Si el contrato queda parcial o fallido, se paga la parte de la ruta cumplida.", "If the contract ends partial or failed, the part of the route completed is paid."),
+"STR_ADVSEC_pmc_settle_milestones": ("+ Hitos cumplidos: %1 de %2", "+ Milestones reached: %1 of %2"),
 "STR_ADVSEC_m_acc_body": ("Accidente en %1. Vehículos implicados: %3.\nRegistrado por %2.\n%4", "Accident at %1. Vehicles involved: %3.\nRecorded by %2.\n%4"),
 "STR_ADVSEC_m_acc_do": ("No tienes permiso para registrar accidentes.", "You are not allowed to record accidents."),
 "STR_ADVSEC_m_acc_done": ("Informe de accidente %1 creado (%2 vehículos).", "Accident report %1 created (%2 vehicles)."),

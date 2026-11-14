@@ -8,6 +8,11 @@ _c set ["state", _res];
 private _pay = _c get "pay";
 private _adv = round (_pay * (_c get "adv"));
 private _factor = switch (_res) do {case "Cumplido": {1}; case "Parcial": {0.5}; default {0}};
+// 1.22: pagos por hitos. Con la ruta dividida en puntos, un contrato parcial o fallido cobra la parte de la ruta cumplida.
+private _rch = _c get "reached";
+private _ms = (["contractMilestones", 0] call ADVSEC_fnc_setting) isEqualTo 1;
+private _hit = count (_rch select {_x});
+if (_ms && {_res in ["Parcial", "Fallido"]} && {_rch isNotEqualTo []}) then {_factor = _hit / (count _rch)};
 private _final = round ((_pay - _adv) * _factor);
 private _pen = 0; {_pen = _pen + (_x select 1)} forEach (_m get "penal");
 if (_res in ["Fallido", "Rescindido"]) then {_pen = _pen + round (_pay * (_c get "penal"))};
@@ -72,6 +77,7 @@ private _lines = [
     format [("STR_ADVSEC_pmc_settle_advance" call ADVSEC_fnc_L), _adv call _fmt],
     format [("STR_ADVSEC_pmc_settle_final" call ADVSEC_fnc_L), _final call _fmt, round (_factor * 100)]
 ];
+if (_ms && {_rch isNotEqualTo []} && {_res in ["Parcial", "Fallido"]}) then {_lines pushBack format [("STR_ADVSEC_pmc_settle_milestones" call ADVSEC_fnc_L), _hit, count _rch]};
 if (_bonus > 0) then {_lines pushBack format [("STR_ADVSEC_pmc_settle_bonus" call ADVSEC_fnc_L), _bonus call _fmt]};
 if (_ins > 0) then {_lines pushBack format [("STR_ADVSEC_pmc_settle_insurance" call ADVSEC_fnc_L), _ins call _fmt]};
 {_lines pushBack format ["− %1: %2", (format ["STR_ADVSEC_pmc_inc_%1", _x select 0]) call ADVSEC_fnc_L, (_x select 1) call _fmt]} forEach (_m get "penal");

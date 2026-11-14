@@ -12593,6 +12593,21 @@ Detenidos:
                 <English>Body camera battery ran out.</English>
                 <Spanish>La cámara corporal se ha quedado sin batería.</Spanish>
             </Key>
+            <Key ID="STR_ADVSEC_pmc_s_contractMilestones">
+                <Original>Milestone payments</Original>
+                <English>Milestone payments</English>
+                <Spanish>Pagos por hitos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_s_contractMilestones_tip">
+                <Original>If the contract ends partial or failed, the part of the route completed is paid.</Original>
+                <English>If the contract ends partial or failed, the part of the route completed is paid.</English>
+                <Spanish>Si el contrato queda parcial o fallido, se paga la parte de la ruta cumplida.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_settle_milestones">
+                <Original>+ Milestones reached: %1 of %2</Original>
+                <English>+ Milestones reached: %1 of %2</English>
+                <Spanish>+ Hitos cumplidos: %1 de %2</Spanish>
+            </Key>
         </Container>
     </Package>
 </Project>
