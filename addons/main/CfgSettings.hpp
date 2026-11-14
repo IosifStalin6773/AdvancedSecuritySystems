@@ -220,6 +220,13 @@ class ADVSEC_Settings {
     auditExportN = 200;  // Entradas de auditoría a exportar
     contractRestMin = 0;  // Descanso tras un encargo (minutos, 0 = no)
     contractFranchise = 0;  // Franquicia del seguro de material (€)
+    cyberBlackoutMin = 10;  // Apagón de CCTV por sabotaje (minutos, 0 = manual)
+    cyberFirewallMin = 30;  // Cortafuegos de red (minutos)
+    priceInflationPct = 0;  // Inflación de precios (% por periodo, 0 = no)
+    priceInflationMin = 60;  // Periodo de inflación (minutos de misión)
+    blackMarketTax = 0;  // Impuesto de mercado negro (fracción de la venta)
+    salaryArrestBonus = 0;  // Incentivo por arresto en la nómina (€)
+    armoryDelayMin = 0;  // Entrega retardada de pedidos de armería (minutos)
     contractRepDecay = 3;        // días para que la reputación baje/suba 1 punto hacia 0 (0 = nunca)
     contractGreyHeat = 15;
     contractHostiles = 3;        // enemigos: 0 ninguno, 1 solo generados, 2 solo los ya colocados en la zona, 3 ambos (genera los que falten)

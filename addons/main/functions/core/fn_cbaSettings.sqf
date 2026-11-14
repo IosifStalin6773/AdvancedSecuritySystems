@@ -135,6 +135,13 @@ _rules insert [
 ["auditExportN", "SLIDER", ("STR_ADVSEC_s_auditExportN" call ADVSEC_fnc_L), "", "1 · General", [20, 2000, [["auditExportN"], 200] call _num, 0]] call _add;
 ["contractRestMin", "SLIDER", ("STR_ADVSEC_s_contractRestMin" call ADVSEC_fnc_L), "", "1 · General", [0, 480, [["contractRestMin"], 0] call _num, 0]] call _add;
 ["contractFranchise", "SLIDER", ("STR_ADVSEC_s_contractFranchise" call ADVSEC_fnc_L), "", "1 · General", [0, 50000, [["contractFranchise"], 0] call _num, 0]] call _add;
+["cyberBlackoutMin", "SLIDER", ("STR_ADVSEC_s_cyberBlackoutMin" call ADVSEC_fnc_L), "", "1 · General", [0, 120, [["cyberBlackoutMin"], 10] call _num, 0]] call _add;
+["cyberFirewallMin", "SLIDER", ("STR_ADVSEC_s_cyberFirewallMin" call ADVSEC_fnc_L), "", "1 · General", [1, 240, [["cyberFirewallMin"], 30] call _num, 0]] call _add;
+["priceInflationPct", "SLIDER", ("STR_ADVSEC_s_priceInflationPct" call ADVSEC_fnc_L), "", "1 · General", [0, 20, [["priceInflationPct"], 0] call _num, 0]] call _add;
+["priceInflationMin", "SLIDER", ("STR_ADVSEC_s_priceInflationMin" call ADVSEC_fnc_L), "", "1 · General", [5, 1440, [["priceInflationMin"], 60] call _num, 0]] call _add;
+["blackMarketTax", "SLIDER", ("STR_ADVSEC_s_blackMarketTax" call ADVSEC_fnc_L), "", "1 · General", [0, 1, [["blackMarketTax"], 0] call _num, 2]] call _add;
+["salaryArrestBonus", "SLIDER", ("STR_ADVSEC_s_salaryArrestBonus" call ADVSEC_fnc_L), "", "1 · General", [0, 5000, [["salaryArrestBonus"], 0] call _num, 0]] call _add;
+["armoryDelayMin", "SLIDER", ("STR_ADVSEC_s_armoryDelayMin" call ADVSEC_fnc_L), "", "1 · General", [0, 240, [["armoryDelayMin"], 0] call _num, 0]] call _add;
 ["contractRepDecay", "SLIDER", ("STR_ADVSEC_pmc_s_contractRepDecay" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec12" call ADVSEC_fnc_L), [0, 30, [["contractRepDecay"], 3] call _num, 0]] call _add;
 ["contractHostiles", "LIST", ("STR_ADVSEC_pmc_s_contractHostiles" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec12" call ADVSEC_fnc_L), [[0, 1, 2, 3], [("STR_ADVSEC_pmc_host_m0" call ADVSEC_fnc_L), ("STR_ADVSEC_pmc_host_m1" call ADVSEC_fnc_L), ("STR_ADVSEC_pmc_host_m2" call ADVSEC_fnc_L), ("STR_ADVSEC_pmc_host_m3" call ADVSEC_fnc_L)], ([["contractHostiles"], 3] call _num) max 0 min 3]] call _add;
 ["contractHostileScale", "SLIDER", ("STR_ADVSEC_pmc_s_contractHostileScale" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec12" call ADVSEC_fnc_L), [0, 4, [["contractHostileScale"], 1] call _num, 1]] call _add;

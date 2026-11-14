@@ -12791,6 +12791,61 @@ Inteligencia reciente:</Spanish>
                 <English>Insurance deductible for gear (€)</English>
                 <Spanish>Franquicia del seguro de material (€)</Spanish>
             </Key>
+            <Key ID="STR_ADVSEC_pmc_cy_fw_on">
+                <Original>Firewall enabled on network %1: hacks are harder.</Original>
+                <English>Firewall enabled on network %1: hacks are harder.</English>
+                <Spanish>Cortafuegos activado en la red %1: los hackeos son más difíciles.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cy_scan_res">
+                <Original>Scan: %1 cameras and %2 keypad locks within 300 m. Networks: %3</Original>
+                <English>Scan: %1 cameras and %2 keypad locks within 300 m. Networks: %3</English>
+                <Spanish>Escaneo: %1 cámaras y %2 cerraduras de teclado en 300 m. Redes: %3</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_s_cyberBlackoutMin">
+                <Original>CCTV blackout after sabotage (minutes, 0 = manual)</Original>
+                <English>CCTV blackout after sabotage (minutes, 0 = manual)</English>
+                <Spanish>Apagón de CCTV por sabotaje (minutos, 0 = manual)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_s_cyberFirewallMin">
+                <Original>Network firewall (minutes)</Original>
+                <English>Network firewall (minutes)</English>
+                <Spanish>Cortafuegos de red (minutos)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_treasury_bm">
+                <Original>Black-market tax: %1</Original>
+                <English>Black-market tax: %1</English>
+                <Spanish>Impuesto de mercado negro: %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_s_priceInflationPct">
+                <Original>Price inflation (% per period, 0 = off)</Original>
+                <English>Price inflation (% per period, 0 = off)</English>
+                <Spanish>Inflación de precios (% por periodo, 0 = no)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_s_priceInflationMin">
+                <Original>Inflation period (mission minutes)</Original>
+                <English>Inflation period (mission minutes)</English>
+                <Spanish>Periodo de inflación (minutos de misión)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_s_blackMarketTax">
+                <Original>Black-market tax (fraction of the sale)</Original>
+                <English>Black-market tax (fraction of the sale)</English>
+                <Spanish>Impuesto de mercado negro (fracción de la venta)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_s_salaryArrestBonus">
+                <Original>Payroll bonus per arrest (€)</Original>
+                <English>Payroll bonus per arrest (€)</English>
+                <Spanish>Incentivo por arresto en la nómina (€)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_order_delayed">
+                <Original>The gear will arrive in %1 minutes.</Original>
+                <English>The gear will arrive in %1 minutes.</English>
+                <Spanish>El material llegará en %1 minutos.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_s_armoryDelayMin">
+                <Original>Armory order delivery delay (minutes)</Original>
+                <English>Armory order delivery delay (minutes)</English>
+                <Spanish>Entrega retardada de pedidos de armería (minutos)</Spanish>
+            </Key>
         </Container>
     </Package>
 </Project>

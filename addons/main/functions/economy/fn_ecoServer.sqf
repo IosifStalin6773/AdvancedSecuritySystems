@@ -133,7 +133,11 @@ switch (_action) do {
         private _it = ((_s getVariable "ADVSEC_shop") select 1) param [_i, []];
         if (_it isEqualTo [] || {!(_n in [1, 5])}) exitWith {};
         _it params ["_c", "_p"];
-        private _total = _p * _n;
+        // 1.22: inflación de precios: cada priceInflationMin minutos de misión suben los precios un priceInflationPct %
+        private _infl = 1;
+        private _ip = ["priceInflationPct", 0] call ADVSEC_fnc_setting;
+        if (_ip > 0) then {_infl = (1 + _ip / 100) ^ floor (serverTime / (60 * ((["priceInflationMin", 60] call ADVSEC_fnc_setting) max 1)))};
+        private _total = round (_p * _n * _infl);
         private _illegal = _s getVariable ["ADVSEC_shopIllegal", false];
         if !([_caller, _total, format [("STR_ADVSEC_purchase" call ADVSEC_fnc_L), _n, [_c] call ADVSEC_fnc_ecoItemName], !_illegal && {(["shopToTreasury", 0] call ADVSEC_fnc_setting) isEqualTo 1}] call ADVSEC_fnc_ecoCharge) exitWith {
             (format [("STR_ADVSEC_not_enough_money_it_costs" call ADVSEC_fnc_L), _total call _fmt]) call _say;
@@ -152,6 +156,14 @@ switch (_action) do {
         private _has = _c in ((itemsWithMagazines _caller) + (weapons _caller) + (assignedItems _caller) + [uniform _caller, vest _caller, backpack _caller, headgear _caller, goggles _caller]);
         if (!_has) exitWith {("STR_ADVSEC_you_are_not_carrying_that" call ADVSEC_fnc_L) call _say};
         private _v = round (_p * (["sellFactor", 0.5] call ADVSEC_fnc_setting));
+        // 1.22: impuesto de mercado negro: en tiendas ilegales una parte de cada venta va a la tesorería
+        if (_s getVariable ["ADVSEC_shopIllegal", false]) then {
+            private _tax = round (_v * (["blackMarketTax", 0] call ADVSEC_fnc_setting));
+            if (_tax > 0) then {
+                [_tax, format [("STR_ADVSEC_pmc_treasury_bm" call ADVSEC_fnc_L), [_c] call ADVSEC_fnc_ecoItemName]] call ADVSEC_fnc_ecoTreasury;
+                _v = _v - _tax;
+            };
+        };
         [_c] remoteExecCall ["ADVSEC_fnc_ecoTakeItem", _caller];
         [_caller, ([_caller] call ADVSEC_fnc_ecoCash) + _v] call ADVSEC_fnc_ecoSetCash;
         [_a, format [("STR_ADVSEC_sale" call ADVSEC_fnc_L), [_c] call ADVSEC_fnc_ecoItemName], _v] call ADVSEC_fnc_ecoHist;

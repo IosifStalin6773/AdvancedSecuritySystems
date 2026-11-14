@@ -129,15 +129,23 @@ switch (_action) do {
         if (([] call ADVSEC_fnc_ecoTreasuryNow) < _tot) exitWith {(format [("STR_ADVSEC_pmc_treasury_short" call ADVSEC_fnc_L), _tot call _fmt]) call _say};
         [-_tot, format [("STR_ADVSEC_pmc_treasury_order" call ADVSEC_fnc_L), _n, [_c] call ADVSEC_fnc_ecoItemName, name _caller]] call ADVSEC_fnc_ecoTreasury;
         private _isW = isClass (configFile >> "CfgWeapons" >> _c) && {getNumber (configFile >> "CfgWeapons" >> _c >> "type") in [1, 2, 4]};
-        switch (true) do {
-            case _isW: {_box addWeaponCargoGlobal [_c, _n]; for "_k" from 1 to _n do {[_c, _box] call _newSerial}};
-            case (isClass (configFile >> "CfgMagazines" >> _c)): {_box addMagazineCargoGlobal [_c, _n]};
-            case (isClass (configFile >> "CfgVehicles" >> _c)): {_box addBackpackCargoGlobal [_c, _n]};
-            default {_box addItemCargoGlobal [_c, _n]};
+        // 1.22: pedidos con entrega retardada (armoryDelayMin minutos; 0 = inmediata). Se paga al pedir.
+        private _dl = ["armoryDelayMin", 0] call ADVSEC_fnc_setting;
+        [_box, _c, _n, _isW, _dl, _newSerial] spawn {
+            params ["_box", "_c", "_n", "_isW", "_dl", "_ns"];
+            if (_dl > 0) then {sleep (_dl * 60)};
+            if (isNull _box) exitWith {};
+            switch (true) do {
+                case _isW: {_box addWeaponCargoGlobal [_c, _n]; for "_k" from 1 to _n do {[_c, _box] call _ns}};
+                case (isClass (configFile >> "CfgMagazines" >> _c)): {_box addMagazineCargoGlobal [_c, _n]};
+                case (isClass (configFile >> "CfgVehicles" >> _c)): {_box addBackpackCargoGlobal [_c, _n]};
+                default {_box addItemCargoGlobal [_c, _n]};
+            };
         };
         ["armoryOrder", _caller, [_c, _n, _tot]] call ADVSEC_fnc_logEvent;
         ["weapons"] call ADVSEC_fnc_dbDirty;
         (format [("STR_ADVSEC_pmc_order_done" call ADVSEC_fnc_L), _n, [_c] call ADVSEC_fnc_ecoItemName, _tot call _fmt]) call _say;
+        if (_dl > 0) then {(format [("STR_ADVSEC_pmc_order_delayed" call ADVSEC_fnc_L), _dl]) call _say};
         ["list", _caller, [_box]] call ADVSEC_fnc_armServer;
     };
     case "audit": {

@@ -1,6 +1,17 @@
 # Textos de 1.22.0 (mecánicas nuevas). Se añaden a stringtable.xml con: python3 tools/m122_strings.py
 import os, re, xml.sax.saxutils as X
 S = {
+"STR_ADVSEC_pmc_order_delayed": ("El material llegará en %1 minutos.", "The gear will arrive in %1 minutes."),
+"STR_ADVSEC_s_armoryDelayMin": ("Entrega retardada de pedidos de armería (minutos)", "Armory order delivery delay (minutes)"),
+"STR_ADVSEC_pmc_treasury_bm": ("Impuesto de mercado negro: %1", "Black-market tax: %1"),
+"STR_ADVSEC_s_priceInflationPct": ("Inflación de precios (% por periodo, 0 = no)", "Price inflation (% per period, 0 = off)"),
+"STR_ADVSEC_s_priceInflationMin": ("Periodo de inflación (minutos de misión)", "Inflation period (mission minutes)"),
+"STR_ADVSEC_s_blackMarketTax": ("Impuesto de mercado negro (fracción de la venta)", "Black-market tax (fraction of the sale)"),
+"STR_ADVSEC_s_salaryArrestBonus": ("Incentivo por arresto en la nómina (€)", "Payroll bonus per arrest (€)"),
+"STR_ADVSEC_pmc_cy_fw_on": ("Cortafuegos activado en la red %1: los hackeos son más difíciles.", "Firewall enabled on network %1: hacks are harder."),
+"STR_ADVSEC_pmc_cy_scan_res": ("Escaneo: %1 cámaras y %2 cerraduras de teclado en 300 m. Redes: %3", "Scan: %1 cameras and %2 keypad locks within 300 m. Networks: %3"),
+"STR_ADVSEC_s_cyberBlackoutMin": ("Apagón de CCTV por sabotaje (minutos, 0 = manual)", "CCTV blackout after sabotage (minutes, 0 = manual)"),
+"STR_ADVSEC_s_cyberFirewallMin": ("Cortafuegos de red (minutos)", "Network firewall (minutes)"),
 "STR_ADVSEC_pmc_act_roe": ("Cambiar ROE", "Change ROE"),
 "STR_ADVSEC_pmc_roe_title": ("Reglas de enfrentamiento: %1", "Rules of engagement: %1"),
 "STR_ADVSEC_pmc_roe_changed": ("Encargo %1: las ROE pasan a %2.", "Contract %1: ROE changed to %2."),

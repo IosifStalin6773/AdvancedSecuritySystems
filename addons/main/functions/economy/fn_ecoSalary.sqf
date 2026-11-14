@@ -18,7 +18,13 @@ private _cur = ["currency", "€"] call ADVSEC_fnc_setting;
         // Plus PM/AA.II. solo de servicio (salaryDutyOnly)
         private _plus = (_pmT param [[_x, "PM"] call ADVSEC_fnc_rankLevel, 0]) + (_aiT param [[_x, "AI"] call ADVSEC_fnc_rankLevel, 0]);
         if ((["salaryDutyOnly", 1] call ADVSEC_fnc_setting) isEqualTo 1 && {!(_x getVariable ["ADVSEC_onDuty", false])}) then {_plus = 0};
-        private _amt = round (_base + _plus + _g * _gStep);
+        // 1.22: incentivo por rendimiento: salaryArrestBonus por cada arresto registrado en las últimas 24 h
+        private _arr = 0;
+        private _bonusArr = ["salaryArrestBonus", 0] call ADVSEC_fnc_setting;
+        if (_bonusArr > 0) then {
+            {if ((_x select 4) == _uid && {(_x select 2) == "jail"} && {serverTime - (_x select 1) < 86400}) then {_arr = _arr + 1}} forEach (localNamespace getVariable ["ADVSEC_eventLog", []]);
+        };
+        private _amt = round (_base + _plus + _g * _gStep + _arr * _bonusArr);
         // Plus de guardia de la QRF de la PMC (disponible al menos qrfStandbyMin del tiempo de servicio)
         _amt = _amt + ([_uid] call ADVSEC_fnc_cellStandby);
         if (_amt > 0 && {!_fromT || {([] call ADVSEC_fnc_ecoTreasuryNow) >= _amt}}) then {
