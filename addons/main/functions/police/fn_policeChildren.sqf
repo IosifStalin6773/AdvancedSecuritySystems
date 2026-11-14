@@ -73,6 +73,7 @@ if (_mode in ["self", "company"]) exitWith {
     _po pushBack ["advsec_pm_evidence", ("STR_ADVSEC_evidence_log" call ADVSEC_fnc_L), ADVSEC_icDoc, {[] call ADVSEC_fnc_evOpen}, []];
     if ([_player, "cyberView"] call ADVSEC_fnc_perm || {(([_player] call ADVSEC_fnc_cellRole) select 0) == "SEC"}) then {_po pushBack ["advsec_pmc_cy", ("STR_ADVSEC_pmc_cy_terminal" call ADVSEC_fnc_L), ADVSEC_icCam, {[] call ADVSEC_fnc_cyOpen}, []]};
     if ([_player, "suspicionView"] call ADVSEC_fnc_perm) then {_po pushBack ["advsec_ai_heat", ("STR_ADVSEC_suspicion_index_2" call ADVSEC_fnc_L), ADVSEC_icPol, {[] call ADVSEC_fnc_heatOpen}, []]};
+    if ([_player, "restrain"] call ADVSEC_fnc_perm) then {_po pushBack ["advsec_pm_custody", ("STR_ADVSEC_m_care_register" call ADVSEC_fnc_L), ADVSEC_icDoc, {["register", _player] remoteExecCall ["ADVSEC_fnc_jailCare", 2]}, []]};
     if ([_player, "caseClose"] call ADVSEC_fnc_perm) then {_po pushBack ["advsec_ai_cases", ("STR_ADVSEC_m_case_title_panel" call ADVSEC_fnc_L), ADVSEC_icDoc, {[] call ADVSEC_fnc_caseOpen}, []]};
     if ([_player, "bodycamView"] call ADVSEC_fnc_perm) then {
         _po pushBack ["advsec_ai_live", ("STR_ADVSEC_live_body_cameras" call ADVSEC_fnc_L), ADVSEC_icCam, {["open"] call ADVSEC_fnc_bodyLive}, []];
@@ -112,6 +113,8 @@ if ((_r || {_surr} || {_mode == "zeus"}) && {[_player, "search"] call ADVSEC_fnc
     ["advsec_pm_search", ("STR_ADVSEC_search_frisk" call ADVSEC_fnc_L), ADVSEC_icSearch, {[_target] call ADVSEC_fnc_searchOpen}, []] call _add;
 };
 if ((_target getVariable ["ADVSEC_jailUntil", 0]) > serverTime) then {
+    ["advsec_pm_treat", ("STR_ADVSEC_m_care_treat" call ADVSEC_fnc_L), ADVSEC_icAlarm, {["treat", _player, [_target]] remoteExecCall ["ADVSEC_fnc_jailCare", 2]}, []] call _add;
+    ["advsec_pm_feed", ("STR_ADVSEC_m_care_feed" call ADVSEC_fnc_L), ADVSEC_icDoc, {["feed", _player, [_target]] remoteExecCall ["ADVSEC_fnc_jailCare", 2]}, []] call _add;
     ["advsec_pm_release", ("STR_ADVSEC_release_2" call ADVSEC_fnc_L), ADVSEC_icRun, {["release", _player, [_target]] remoteExecCall ["ADVSEC_fnc_jailServer", 2]}, []] call _add;
 } else {
     if ((_r || {_mode == "zeus"}) && {(missionNamespace getVariable ["ADVSEC_jails", []]) isNotEqualTo []}) then {

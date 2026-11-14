@@ -97,6 +97,19 @@ S = {
 "STR_ADVSEC_m_clip_body": ("Registro: %1 %2 · %3\nDatos: %4\nSello de integridad: %5\nMarcado por: %6", "Entry: %1 %2 · %3\nData: %4\nIntegrity seal: %5\nMarked by: %6"),
 "STR_ADVSEC_m_clip_done": ("Clip marcado como prueba en el informe %1 (sello %2).", "Clip marked as evidence in report %1 (seal %2)."),
 "STR_ADVSEC_m_clip_btn": ("Marcar último registro como prueba", "Mark latest entry as evidence"),
+"STR_ADVSEC_m_care_do": ("No tienes permiso para atender a detenidos.", "You are not allowed to care for detainees."),
+"STR_ADVSEC_m_care_done": ("%1 atendido: daños retirados.", "%1 treated: injuries removed."),
+"STR_ADVSEC_m_care_you": ("Has sido atendido por la PM.", "Military Police medics treated you."),
+"STR_ADVSEC_m_care_fed": ("%1 ha recibido comida.", "%1 has been fed."),
+"STR_ADVSEC_m_care_fed_no": ("sin comer", "not fed"),
+"STR_ADVSEC_m_care_fed_yes": ("comió", "fed"),
+"STR_ADVSEC_m_care_none": ("No hay detenidos en el calabozo.", "No detainees in the cell."),
+"STR_ADVSEC_m_care_reg_title": ("Registro de custodia del calabozo", "Cell custody register"),
+"STR_ADVSEC_m_care_reg_body": ("Registrado por %1.\nDetenidos:\n%2", "Recorded by %1.\nDetainees:\n%2"),
+"STR_ADVSEC_m_care_reg_done": ("Registro de custodia guardado en el informe %1.", "Custody register saved in report %1."),
+"STR_ADVSEC_m_care_treat": ("Atender al detenido (médico)", "Treat detainee (medical)"),
+"STR_ADVSEC_m_care_feed": ("Dar de comer al detenido", "Feed detainee"),
+"STR_ADVSEC_m_care_register": ("Registro de custodia del calabozo", "Cell custody register"),
 }
 root = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'addons', 'main')
 p = os.path.join(root, 'stringtable.xml')

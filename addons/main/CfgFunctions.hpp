@@ -530,6 +530,10 @@ class CfgFunctions {
             class caseOpen {};
             class warrantValid {};
         };
+        class policeCare {
+            file = "\x\advsec\addons\main\functions\police";
+            class jailCare {};
+        };
         class serverMapDB {
             file = "\x\advsec\addons\main\functions\server";
             class mapDB {};

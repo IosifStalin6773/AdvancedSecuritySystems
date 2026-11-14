@@ -12462,6 +12462,77 @@ Marcado por: %6</Spanish>
                 <English>Mark latest entry as evidence</English>
                 <Spanish>Marcar último registro como prueba</Spanish>
             </Key>
+            <Key ID="STR_ADVSEC_m_care_do">
+                <Original>You are not allowed to care for detainees.</Original>
+                <English>You are not allowed to care for detainees.</English>
+                <Spanish>No tienes permiso para atender a detenidos.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_care_done">
+                <Original>%1 treated: injuries removed.</Original>
+                <English>%1 treated: injuries removed.</English>
+                <Spanish>%1 atendido: daños retirados.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_care_you">
+                <Original>Military Police medics treated you.</Original>
+                <English>Military Police medics treated you.</English>
+                <Spanish>Has sido atendido por la PM.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_care_fed">
+                <Original>%1 has been fed.</Original>
+                <English>%1 has been fed.</English>
+                <Spanish>%1 ha recibido comida.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_care_fed_no">
+                <Original>not fed</Original>
+                <English>not fed</English>
+                <Spanish>sin comer</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_care_fed_yes">
+                <Original>fed</Original>
+                <English>fed</English>
+                <Spanish>comió</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_care_none">
+                <Original>No detainees in the cell.</Original>
+                <English>No detainees in the cell.</English>
+                <Spanish>No hay detenidos en el calabozo.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_care_reg_title">
+                <Original>Cell custody register</Original>
+                <English>Cell custody register</English>
+                <Spanish>Registro de custodia del calabozo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_care_reg_body">
+                <Original>Recorded by %1.
+Detainees:
+%2</Original>
+                <English>Recorded by %1.
+Detainees:
+%2</English>
+                <Spanish>Registrado por %1.
+Detenidos:
+%2</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_care_reg_done">
+                <Original>Custody register saved in report %1.</Original>
+                <English>Custody register saved in report %1.</English>
+                <Spanish>Registro de custodia guardado en el informe %1.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_care_treat">
+                <Original>Treat detainee (medical)</Original>
+                <English>Treat detainee (medical)</English>
+                <Spanish>Atender al detenido (médico)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_care_feed">
+                <Original>Feed detainee</Original>
+                <English>Feed detainee</English>
+                <Spanish>Dar de comer al detenido</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_care_register">
+                <Original>Cell custody register</Original>
+                <English>Cell custody register</English>
+                <Spanish>Registro de custodia del calabozo</Spanish>
+            </Key>
         </Container>
     </Package>
 </Project>

@@ -125,6 +125,11 @@ class CfgRemoteExec {
         class ADVSEC_fnc_armServer { allowedTargets = 2; };
         class ADVSEC_fnc_cellServer { allowedTargets = 2; };
         class ADVSEC_fnc_cyServer { allowedTargets = 2; };
+        // 1.22: tráfico, custodia, expedientes de caso y progreso de acciones
+        class ADVSEC_fnc_trafficServer { allowedTargets = 2; };
+        class ADVSEC_fnc_jailCare { allowedTargets = 2; };
+        class ADVSEC_fnc_caseServer { allowedTargets = 2; };
+        class ADVSEC_fnc_progress { allowedTargets = 0; };
         class ADVSEC_fnc_ecoTakeItem { allowedTargets = 0; };
         class ADVSEC_fnc_specLocal { allowedTargets = 0; };
         class ADVSEC_fnc_dspNotify { allowedTargets = 0; };
