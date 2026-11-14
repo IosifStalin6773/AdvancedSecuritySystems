@@ -214,6 +214,7 @@ class ADVSEC_Settings {
     contractRepLoss = 20;        // reputación perdida por contrato fallido o rescindido
     contractRivalLoss = 4;       // reputación que pierden los rivales del cliente al cumplir
     contractMilestones = 0;      // 1 = pagos por hitos: si el contrato es parcial o fallido se paga la parte de la ruta cumplida
+    contractAuctionMin = 0;      // minutos de subasta por encargo ofertado (0 = sin subasta; las compañías pujan el % del pago)
     contractRepDecay = 3;        // días para que la reputación baje/suba 1 punto hacia 0 (0 = nunca)
     contractGreyHeat = 15;
     contractHostiles = 3;        // enemigos: 0 ninguno, 1 solo generados, 2 solo los ya colocados en la zona, 3 ambos (genera los que falten)

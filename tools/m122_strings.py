@@ -1,6 +1,15 @@
 # Textos de 1.22.0 (mecánicas nuevas). Se añaden a stringtable.xml con: python3 tools/m122_strings.py
 import os, re, xml.sax.saxutils as X
 S = {
+"STR_ADVSEC_pmc_act_bid": ("Pujar", "Bid"),
+"STR_ADVSEC_pmc_bid_title": ("Puja por el encargo %1", "Bid for contract %1"),
+"STR_ADVSEC_pmc_bid_pct": ("Porcentaje del pago que pides", "Percentage of the pay you ask"),
+"STR_ADVSEC_pmc_s_contractAuctionMin": ("Minutos de subasta por encargo", "Auction minutes per contract"),
+"STR_ADVSEC_pmc_s_contractAuctionMin_tip": ("0 = sin subasta. Las compañías pujan el porcentaje del pago que piden; gana la puja más baja al cerrar.", "0 = no auction. Companies bid the percentage of the pay they ask; the lowest bid wins when it closes."),
+"STR_ADVSEC_pmc_auction_open": ("La subasta sigue abierta: no se puede firmar todavía.", "The auction is still open: it cannot be signed yet."),
+"STR_ADVSEC_pmc_auction_closed": ("La subasta ya ha cerrado.", "The auction has already closed."),
+"STR_ADVSEC_pmc_bid_ok": ("Puja registrada: %1 %% del pago (%2).", "Bid registered: %1%% of the pay (%2)."),
+"STR_ADVSEC_pmc_auction_lost": ("Otra compañía ganó la subasta (%1).", "Another company won the auction (%1)."),
 "STR_ADVSEC_pmc_s_contractMilestones": ("Pagos por hitos", "Milestone payments"),
 "STR_ADVSEC_pmc_s_contractMilestones_tip": ("Si el contrato queda parcial o fallido, se paga la parte de la ruta cumplida.", "If the contract ends partial or failed, the part of the route completed is paid."),
 "STR_ADVSEC_pmc_settle_milestones": ("+ Hitos cumplidos: %1 de %2", "+ Milestones reached: %1 of %2"),

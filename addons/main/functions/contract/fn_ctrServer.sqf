@@ -271,6 +271,9 @@ switch (_action) do {
         if (_hUnits isEqualType 0 && {_hUnits >= 0}) then {(_db get _id) set ["hostileUnits", _hUnits min 60]};
         if (_clLabel isEqualType "" && {_clLabel isNotEqualTo ""}) then {(_db get _id) set ["clientName", _clLabel select [0, 40]]};
         if (_edenKey isEqualType "" && {_edenKey isNotEqualTo ""}) then {(_db get _id) set ["edenKey", _edenKey]; (_db get _id) set ["expires", serverTime + 1e7]};
+        // 1.22: subasta. Con contractAuctionMin > 0 las compañías pujan (% del pago) hasta que cierra el plazo
+        private _aMin = ["contractAuctionMin", 0] call ADVSEC_fnc_setting;
+        if (_aMin > 0) then {(_db get _id) set ["auctionEnd", serverTime + _aMin * 60]; (_db get _id) set ["bids", []]};
         (format [("STR_ADVSEC_pmc_offer_published" call ADVSEC_fnc_L), _id]) call _say;
         ["contractOffer", _caller, [_id, _type, _client, _pay]] call ADVSEC_fnc_logEvent;
     };
@@ -351,6 +354,23 @@ switch (_action) do {
         ["contracts"] call ADVSEC_fnc_dbDirty;
         ["list", _caller] call ADVSEC_fnc_ctrServer;
     };
+    case "bid": {
+        // 1.22: puja de una compañía (grupo) con el % del pago que pide (50-100). Gana la puja más baja al cerrar.
+        if !([_caller, "contractSign"] call ADVSEC_fnc_perm) exitWith {[_caller, ("STR_ADVSEC_pmc_perm_sign" call ADVSEC_fnc_L)] call ADVSEC_fnc_deny};
+        _args params [["_id", ""], ["_pct", 100]];
+        private _c = _db getOrDefault [_id, createHashMap];
+        if (count _c == 0 || {(_c get "state") != "Ofertado"}) exitWith {("STR_ADVSEC_pmc_not_an_offer" call ADVSEC_fnc_L) call _say};
+        private _end = _c getOrDefault ["auctionEnd", 0];
+        if (_end <= 0 || {_end <= serverTime}) exitWith {("STR_ADVSEC_pmc_auction_closed" call ADVSEC_fnc_L) call _say};
+        _pct = (round _pct) max 50 min 100;
+        private _g = groupId group _caller;
+        private _bids = (_c getOrDefault ["bids", []]) select {(_x select 0) != _g};
+        _bids pushBack [_g, _pct, name _caller];
+        _c set ["bids", _bids];
+        (format [("STR_ADVSEC_pmc_bid_ok" call ADVSEC_fnc_L), _pct, _g]) call _say;
+        ["contracts"] call ADVSEC_fnc_dbDirty;
+        ["list", _caller] call ADVSEC_fnc_ctrServer;
+    };
     case "sign": {
         _args params [["_id", ""], ["_ins", false]];
         private _c = _db getOrDefault [_id, createHashMap];
@@ -367,6 +387,15 @@ switch (_action) do {
         private _miss = [[], _c get "specs"] select _chkSpecs;
         _miss = _miss select {(((_sdb getOrDefault [_x, [[]]]) select 0) arrayIntersect _uids) isEqualTo []};
         if (_miss isNotEqualTo []) exitWith {(format [("STR_ADVSEC_pmc_need_specs" call ADVSEC_fnc_L), (_miss apply {[_x] call ADVSEC_fnc_specName}) joinString ", "]) call _say};
+        // 1.22: subasta. Mientras esté abierta no se firma; después firma solo la puja más baja, al precio que pujó.
+        if ((_c getOrDefault ["auctionEnd", 0]) > serverTime) exitWith {("STR_ADVSEC_pmc_auction_open" call ADVSEC_fnc_L) call _say};
+        private _w = [];
+        {if (_w isEqualTo [] || {(_x select 1) < (_w select 1)}) then {_w = _x}} forEach (_c getOrDefault ["bids", []]);
+        if (_w isNotEqualTo [] && {(groupId group _caller) != (_w select 0)}) exitWith {(format [("STR_ADVSEC_pmc_auction_lost" call ADVSEC_fnc_L), _w select 0]) call _say};
+        if (_w isNotEqualTo [] && {!(_c getOrDefault ["auctionPaid", false])}) then {
+            _c set ["pay", round ((_c get "pay") * (_w select 1) / 100)];
+            _c set ["auctionPaid", true];
+        };
         private _adv = round ((_c get "pay") * (_c get "adv"));
         _c set ["state", "Firmado"];
         _c set ["signer", [getPlayerUID _caller, name _caller]];

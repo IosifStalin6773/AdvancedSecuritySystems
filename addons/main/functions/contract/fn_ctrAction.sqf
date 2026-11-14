@@ -5,7 +5,7 @@ private _can = {[player, _this] call ADVSEC_fnc_perm};
 switch (_state) do {
     case "Ofertado": {
         if ("contractSign" call _can) then {
-            _opts append [[("STR_ADVSEC_pmc_act_counter" call ADVSEC_fnc_L), "counter"], [("STR_ADVSEC_pmc_act_sign" call ADVSEC_fnc_L), "sign"], [("STR_ADVSEC_pmc_act_sign_ins" call ADVSEC_fnc_L), "signIns"]];
+            _opts append [[("STR_ADVSEC_pmc_act_counter" call ADVSEC_fnc_L), "counter"], [("STR_ADVSEC_pmc_act_bid" call ADVSEC_fnc_L), "bid"], [("STR_ADVSEC_pmc_act_sign" call ADVSEC_fnc_L), "sign"], [("STR_ADVSEC_pmc_act_sign_ins" call ADVSEC_fnc_L), "signIns"]];
         };
     };
     case "Firmado": {
@@ -40,6 +40,15 @@ _opts pushBack [("STR_ADVSEC_show_route_on_the_map" call ADVSEC_fnc_L), "show"];
                     [("STR_ADVSEC_pmc_counter_adv" call ADVSEC_fnc_L), 30, [["10 %", 10], ["20 %", 20], ["30 %", 30], ["40 %", 40], ["50 %", 50]]],
                     [("STR_ADVSEC_pmc_counter_pen" call ADVSEC_fnc_L), 50, [["0 %", 0], ["25 %", 25], ["50 %", 50], ["75 %", 75], ["100 %", 100]]]
                 ], {params ["_v", "_id"]; ["counter", player, [_id] + _v] remoteExecCall ["ADVSEC_fnc_ctrServer", 2]}, _id] call ADVSEC_fnc_zeusPrompt;
+            };
+        };
+        case "bid": {
+            [_id] spawn {
+                params ["_id"];
+                sleep 0.1;
+                [format [("STR_ADVSEC_pmc_bid_title" call ADVSEC_fnc_L), _id], [
+                    [("STR_ADVSEC_pmc_bid_pct" call ADVSEC_fnc_L), 100, [["50 %", 50], ["60 %", 60], ["70 %", 70], ["80 %", 80], ["90 %", 90], ["100 %", 100]]]
+                ], {params ["_v", "_id"]; ["bid", player, [_id, _v select 0]] remoteExecCall ["ADVSEC_fnc_ctrServer", 2]}, _id] call ADVSEC_fnc_zeusPrompt;
             };
         };
         case "sign": {["sign", player, [_id, false]] remoteExecCall ["ADVSEC_fnc_ctrServer", 2]};
