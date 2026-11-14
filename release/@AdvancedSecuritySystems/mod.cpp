@@ -1,6 +1,6 @@
 name = "Advanced Security Systems";
 author = "oscar";
-tooltip = "Advanced Security Systems (ADVSEC) 1.22.0";
+tooltip = "Advanced Security Systems (ADVSEC) 1.22.1";
 overview = "Security, Military Police and Internal Affairs: documents, locks, keypads, alarms, CCTV, reports, arrests, forensic evidence, fines, AI road checkpoints, route patrols and PDA. English and Spanish. ACE and CBA optional.";
 picture = "x\advsec\addons\main\data\overview_ca.paa";
 logo = "x\advsec\addons\main\data\logo_ca.paa";

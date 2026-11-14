@@ -11576,14 +11576,14 @@ Posición del VIP en vivo: %1</Spanish>
                 <Spanish>Equipo completo</Spanish>
             </Key>
             <Key ID="STR_ADVSEC_lkit_act_save">
-                <Original>Store all my gear</Original>
-                <English>Store all my gear</English>
-                <Spanish>Guardar todo mi equipo</Spanish>
+                <Original>Store all my gear in its slots</Original>
+                <English>Store all my gear in its slots</English>
+                <Spanish>Guardar todo mi equipo en su hueco</Spanish>
             </Key>
             <Key ID="STR_ADVSEC_lkit_act_load">
-                <Original>Equip stored gear (swap)</Original>
-                <English>Equip stored gear (swap)</English>
-                <Spanish>Equiparme lo guardado (intercambiar)</Spanish>
+                <Original>Equip my gear from the slots</Original>
+                <English>Equip my gear from the slots</English>
+                <Spanish>Equiparme lo de los huecos</Spanish>
             </Key>
             <Key ID="STR_ADVSEC_lkit_act_info">
                 <Original>What is stored?</Original>
@@ -11642,6 +11642,41 @@ Posición del VIP en vivo: %1</Spanish>
                 <Original>&lt;t font='RobotoCondensedBold'&gt;Gear stored in your locker&lt;/t&gt;&lt;br/&gt;%1&lt;br/&gt;%2</Original>
                 <English>&lt;t font='RobotoCondensedBold'&gt;Gear stored in your locker&lt;/t&gt;&lt;br/&gt;%1&lt;br/&gt;%2</English>
                 <Spanish>&lt;t font='RobotoCondensedBold'&gt;Equipo guardado en tu taquilla&lt;/t&gt;&lt;br/&gt;%1&lt;br/&gt;%2</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_lkit_slots_saved">
+                <Original>%1 pieces placed in their locker slots. You keep your uniform and your documents.</Original>
+                <English>%1 pieces placed in their locker slots. You keep your uniform and your documents.</English>
+                <Spanish>%1 piezas colocadas en su hueco de la taquilla. Te quedas con el uniforme y tu documentación.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_lkit_slots_loaded">
+                <Original>%1 pieces taken from the locker slots.</Original>
+                <English>%1 pieces taken from the locker slots.</English>
+                <Spanish>%1 piezas sacadas de los huecos de la taquilla.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_lkit_slots_left">
+                <Original>%1 pieces stay with you: their slot is occupied.</Original>
+                <English>%1 pieces stay with you: their slot is occupied.</English>
+                <Spanish>%1 piezas se quedan contigo: su hueco está ocupado.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_lkit_slots_full">
+                <Original>The locker slots for your gear are occupied.</Original>
+                <English>The locker slots for your gear are occupied.</English>
+                <Spanish>Los huecos de la taquilla para tu equipo están ocupados.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_lkit_slots_empty">
+                <Original>Nothing to take: the slots are empty or you already wear those pieces.</Original>
+                <English>Nothing to take: the slots are empty or you already wear those pieces.</English>
+                <Spanish>Nada que sacar: los huecos están vacíos o ya llevas puestas esas piezas.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_lkit_slots_info">
+                <Original>In the slots: %1</Original>
+                <English>In the slots: %1</English>
+                <Spanish>En los huecos: %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_lkit_legacy_first">
+                <Original>You have an old full kit stored apart. Store what you are wearing first (it goes to the locker slots) and then equip it.</Original>
+                <English>You have an old full kit stored apart. Store what you are wearing first (it goes to the locker slots) and then equip it.</English>
+                <Spanish>Tienes un equipo completo antiguo guardado aparte. Guarda primero lo que llevas (irá a los huecos de la taquilla) y después equípatelo.</Spanish>
             </Key>
             <Key ID="STR_ADVSEC_pdb_tab_service">
                 <Original>Service</Original>

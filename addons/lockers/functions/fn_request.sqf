@@ -57,7 +57,7 @@ private _capture=_l getVariable ['TSL_requestSnapshot',[]];
 private _captured=count _capture==4 && {(_capture select 0)==_p} && {(_capture select 1)==_op} && {(_capture select 2)isEqualTo _a};
 if (_captured) then {_requestLoadout=_capture select 3;_l setVariable ['TSL_requestSnapshot',nil];};
 if (!_captured && {(_l getVariable ['TSL_capturePending',[]])isNotEqualTo []} && {_op!='save'}) exitWith {['Inventory synchronisation is pending. Please wait. / Ожидается ответ инвентаря.']call _msg;};
-if (_op in ['put','take','putBackpack','editorGear','editorReturn','stackTransfer'] && {!_captured}) exitWith {[_l,_p,_op,_a]call TSL_fnc_beginCapture;};
+if (_op in ['put','take','putBackpack','putAll','takeAll','editorGear','editorReturn','stackTransfer'] && {!_captured}) exitWith {[_l,_p,_op,_a]call TSL_fnc_beginCapture;};
 
 if (_op=='stackTransfer') exitWith {
  if !(_a isEqualType [] && {count _a==2}) exitWith {};
@@ -180,6 +180,60 @@ if (_op=='holder') exitWith {
 if (_op=='adjust') exitWith {
  _a params ['_slot','_axis','_delta'];if (_slot<0 || {_slot>=count TSL_slots} || {_axis<0} || {_axis>3} || {abs _delta>15}) exitWith {};
  private _list=+(_l getVariable ['TSL_adjust',[]]);private _v=+(_list select _slot);_v set [_axis,((_v select _axis)+_delta) max (if (_axis==3) then {-180} else {-.3}) min (if (_axis==3) then {180} else {.3})];_list set [_slot,_v];_l setVariable ['TSL_adjust',_list,true];[_l] call TSL_fnc_render;[_l] call TSL_fnc_save;
+};
+if (_op in ['putAll','takeAll']) exitWith {
+ // ADVSEC: equipo completo. Cada pieza entra en su hueco de la taquilla (o sale de él) en un solo traspaso.
+ private _L={params ['_key','_en'];if (isNil 'ADVSEC_fnc_L') then {_en} else {_key call ADVSEC_fnc_L}};
+ private _loadout=parseSimpleArray str _requestLoadout;if (count _loadout!=10) exitWith {['Inventory snapshot unavailable. Retry.']call _msg;};
+ private _before=parseSimpleArray str _loadout;
+ private _stored=+(_l getVariable ['TSL_gear',[]]);while {count _stored<count TSL_slots} do {_stored pushBack [];};
+ private _free={count (_stored select _this)==0};
+ private _has={if (_this isEqualType '') then {_this!=''} else {count _this>0 && {(_this select 0)!=''}}};
+ private _moved=0;private _left=0;
+ if (_op=='putAll') then {
+  // La documentación ADVSEC del chaleco y la mochila pasa al uniforme, que se queda puesto.
+  private _u=_loadout select 3;
+  if (count _u==2 && {(_u select 0)!=''}) then {
+   {
+    private _c=_loadout select _x;
+    if (count _c==2) then {
+     private _keep=(_c select 1) select {private _v=_x select 0;private _n=if (_v isEqualType '') then {_v} else {_v param [0,'']};(_n isEqualType '') && {(toUpper (_n select [0,7]))=='ADVSEC_'}};
+     if (_keep isNotEqualTo []) then {(_u select 1) append _keep;_c set [1,(_c select 1) select {!(_x in _keep)}];};
+    };
+   } forEach [4,5];
+  };
+  // [índice del equipo, huecos posibles por orden]; el tercer hueco de mochila es solo para la Eagle
+  private _bagCls=(_loadout select 5) param [0,''];
+  private _bags=TSL_backpackSlots select {_x!=17 || {((toLower getText (configFile>>'CfgVehicles'>>_bagCls>>'model')) find 'eagle')>=0}};
+  {
+   _x params ['_idx','_slots'];private _piece=_loadout select _idx;
+   if (_piece call _has) then {
+    private _i=_slots findIf {_x call _free};
+    if (_i<0) then {_left=_left+1;} else {_stored set [_slots select _i,[_piece]];_loadout set [_idx,['',[]] select (_piece isEqualType [])];_moved=_moved+1;};
+   };
+  } forEach [[6,[0]],[0,TSL_rifleSlots],[1,[11]],[2,[3,4]],[4,[5]],[5,_bags],[7,[10]],[8,[12]]];
+  // Las gafas de visión nocturna van sobre el casco (hueco NVG 1) o, si está ocupado, al NVG 2
+  private _hmd=(_loadout select 9) select 5;
+  if (_hmd!='') then {private _i=[8,9] findIf {_x call _free};if (_i<0) then {_left=_left+1;} else {_stored set [[8,9] select _i,[_hmd]];(_loadout select 9) set [5,''];_moved=_moved+1;};};
+ } else {
+  {
+   _x params ['_idx','_slots'];
+   if !((_loadout select _idx) call _has) then {
+    private _i=_slots findIf {!(_x call _free)};
+    if (_i>=0) then {private _s=_slots select _i;_loadout set [_idx,(_stored select _s) select 0];_stored set [_s,[]];_moved=_moved+1;};
+   };
+  } forEach [[6,[0]],[0,TSL_rifleSlots],[1,[11]],[2,[3,4]],[3,[7]],[4,[5]],[5,TSL_backpackSlots],[7,[10]],[8,[12]]];
+  if (((_loadout select 9) select 5)=='') then {private _i=[8,9] findIf {!(_x call _free)};if (_i>=0) then {private _s=[8,9] select _i;(_loadout select 9) set [5,(_stored select _s) select 0];_stored set [_s,[]];_moved=_moved+1;};};
+ };
+ if (_moved==0) exitWith {
+  [(if (_op=='takeAll') then {['STR_ADVSEC_lkit_slots_empty','Nothing to take: the slots are empty or you already wear those pieces.']} else {if (_left>0) then {['STR_ADVSEC_lkit_slots_full','The locker slots for your gear are occupied.']} else {['STR_ADVSEC_lkit_nothing','You are not carrying anything to store.']}}) call _L] call _msg;
+ };
+ private _token=(_l getVariable ['TSL_token',0])+1;_l setVariable ['TSL_token',_token];_l setVariable ['TSL_busy',true,true];_l setVariable ['TSL_pending',[_token,_p,_stored]];
+ [_l,_p,_token,_before,_loadout] remoteExecCall ['TSL_fnc_applyTransfer',owner _p];
+ [_l,_p,_token,_before,_loadout] call TSL_fnc_watchTransfer;
+ private _text=format [(if (_op=='putAll') then {['STR_ADVSEC_lkit_slots_saved','%1 pieces placed in their locker slots. You keep your uniform and your documents.']} else {['STR_ADVSEC_lkit_slots_loaded','%1 pieces taken from the locker slots.']}) call _L,_moved];
+ if (_left>0) then {_text=_text+' '+format [(['STR_ADVSEC_lkit_slots_left','%1 pieces stay with you: their slot is occupied.'] call _L),_left];};
+ [_text] call _msg;
 };
 if (_op=='putBackpack') then {private _bags=_l getVariable ['TSL_gear',[]];private _free=TSL_backpackSlots select {count (_bags param [_x,[]])==0};if (count _free>0) then {_op='put';_a=[_free select 0];};};
 if (_op=='putBackpack') exitWith {['All backpack slots are occupied'] call _msg;};
