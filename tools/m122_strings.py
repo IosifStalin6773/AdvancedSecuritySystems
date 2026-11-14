@@ -1,6 +1,19 @@
 # Textos de 1.22.0 (mecánicas nuevas). Se añaden a stringtable.xml con: python3 tools/m122_strings.py
 import os, re, xml.sax.saxutils as X
 S = {
+"STR_ADVSEC_pmc_act_sub": ("Subcontratar", "Subcontract"),
+"STR_ADVSEC_pmc_sub_to": ("Compañía que recibe el encargo", "Company taking the contract"),
+"STR_ADVSEC_pmc_sub_done": ("Encargo %1 cedido a %2 (subcontrata).", "Contract %1 handed to %2 (subcontract)."),
+"STR_ADVSEC_pmc_sub_received": ("Te han cedido el encargo %1 por subcontrata de %2.", "Contract %1 was subcontracted to you by %2."),
+"STR_ADVSEC_pmc_sub_started": ("Solo se puede subcontratar un encargo firmado y sin iniciar.", "Only a signed contract that has not started can be subcontracted."),
+"STR_ADVSEC_pmc_sub_not_signer": ("Solo quien firmó el encargo puede subcontratarlo.", "Only the signer can subcontract the contract."),
+"STR_ADVSEC_pmc_sub_already": ("Este encargo ya es una subcontrata.", "This contract is already a subcontract."),
+"STR_ADVSEC_pmc_sub_bad_target": ("Ese agente no puede firmar encargos PMC.", "That officer cannot sign PMC contracts."),
+"STR_ADVSEC_pmc_sub_paid": ("Comisión de subcontrata del encargo %1", "Subcontract fee for contract %1"),
+"STR_ADVSEC_pmc_treasury_sub": ("Comisión de subcontrata del encargo %1", "Subcontract fee for contract %1"),
+"STR_ADVSEC_pmc_cost_subfee": ("Comisión de subcontrata", "Subcontract fee"),
+"STR_ADVSEC_pmc_s_contractSubFee": ("Comisión de subcontrata", "Subcontract fee"),
+"STR_ADVSEC_pmc_s_contractSubFee_tip": ("Fracción del pago que cobra el firmante original cuando subcontrata un encargo.", "Share of the pay the original signer keeps when subcontracting a contract."),
 "STR_ADVSEC_pmc_act_bid": ("Pujar", "Bid"),
 "STR_ADVSEC_pmc_bid_title": ("Puja por el encargo %1", "Bid for contract %1"),
 "STR_ADVSEC_pmc_bid_pct": ("Porcentaje del pago que pides", "Percentage of the pay you ask"),

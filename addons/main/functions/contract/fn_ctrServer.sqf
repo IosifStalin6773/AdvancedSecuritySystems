@@ -413,6 +413,24 @@ switch (_action) do {
         ["contracts"] call ADVSEC_fnc_dbDirty;
         ["list", _caller] call ADVSEC_fnc_ctrServer;
     };
+    case "sub": {
+        // 1.22: subcontrata. El firmante cede un encargo firmado (sin iniciar) a otro agente PMC y cobra una comisión al cerrarlo.
+        _args params [["_id", ""], ["_uid", ""]];
+        private _c = _db getOrDefault [_id, createHashMap];
+        if (count _c == 0 || {(_c get "state") != "Firmado"}) exitWith {("STR_ADVSEC_pmc_sub_started" call ADVSEC_fnc_L) call _say};
+        if ((getPlayerUID _caller) != ((_c get "signer") param [0, ""])) exitWith {("STR_ADVSEC_pmc_sub_not_signer" call ADVSEC_fnc_L) call _say};
+        if (_c getOrDefault ["subFrom", []] isNotEqualTo []) exitWith {("STR_ADVSEC_pmc_sub_already" call ADVSEC_fnc_L) call _say};
+        private _t = [_uid] call ADVSEC_fnc_uidUnit;
+        if (isNull _t || {!([_t, "PMC"] call ADVSEC_fnc_repAccess)} || {!([_t, "contractSign"] call ADVSEC_fnc_perm)}) exitWith {("STR_ADVSEC_pmc_sub_bad_target" call ADVSEC_fnc_L) call _say};
+        _c set ["subFrom", [getPlayerUID _caller, name _caller, ["contractSubFee", 0.25] call ADVSEC_fnc_setting]];
+        _c set ["signer", [_uid, name _t]];
+        _c set ["assigned", []];
+        (format [("STR_ADVSEC_pmc_sub_done" call ADVSEC_fnc_L), _id, name _t]) call _say;
+        (format [("STR_ADVSEC_pmc_sub_received" call ADVSEC_fnc_L), _id, name _caller]) remoteExecCall ["hint", _t];
+        ["contractSub", _caller, [_id, name _t]] call ADVSEC_fnc_logEvent;
+        ["contracts"] call ADVSEC_fnc_dbDirty;
+        ["list", _caller] call ADVSEC_fnc_ctrServer;
+    };
     case "assign": {
         _args params [["_id", ""], ["_uids", []], ["_roe", "Ámbar"]];
         private _c = _db getOrDefault [_id, createHashMap];

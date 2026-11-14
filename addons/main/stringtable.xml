@@ -12653,6 +12653,71 @@ Detenidos:
                 <English>Percentage of the pay you ask</English>
                 <Spanish>Porcentaje del pago que pides</Spanish>
             </Key>
+            <Key ID="STR_ADVSEC_pmc_act_sub">
+                <Original>Subcontract</Original>
+                <English>Subcontract</English>
+                <Spanish>Subcontratar</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_sub_to">
+                <Original>Company taking the contract</Original>
+                <English>Company taking the contract</English>
+                <Spanish>Compañía que recibe el encargo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_sub_done">
+                <Original>Contract %1 handed to %2 (subcontract).</Original>
+                <English>Contract %1 handed to %2 (subcontract).</English>
+                <Spanish>Encargo %1 cedido a %2 (subcontrata).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_sub_received">
+                <Original>Contract %1 was subcontracted to you by %2.</Original>
+                <English>Contract %1 was subcontracted to you by %2.</English>
+                <Spanish>Te han cedido el encargo %1 por subcontrata de %2.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_sub_started">
+                <Original>Only a signed contract that has not started can be subcontracted.</Original>
+                <English>Only a signed contract that has not started can be subcontracted.</English>
+                <Spanish>Solo se puede subcontratar un encargo firmado y sin iniciar.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_sub_not_signer">
+                <Original>Only the signer can subcontract the contract.</Original>
+                <English>Only the signer can subcontract the contract.</English>
+                <Spanish>Solo quien firmó el encargo puede subcontratarlo.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_sub_already">
+                <Original>This contract is already a subcontract.</Original>
+                <English>This contract is already a subcontract.</English>
+                <Spanish>Este encargo ya es una subcontrata.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_sub_bad_target">
+                <Original>That officer cannot sign PMC contracts.</Original>
+                <English>That officer cannot sign PMC contracts.</English>
+                <Spanish>Ese agente no puede firmar encargos PMC.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_sub_paid">
+                <Original>Subcontract fee for contract %1</Original>
+                <English>Subcontract fee for contract %1</English>
+                <Spanish>Comisión de subcontrata del encargo %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_treasury_sub">
+                <Original>Subcontract fee for contract %1</Original>
+                <English>Subcontract fee for contract %1</English>
+                <Spanish>Comisión de subcontrata del encargo %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cost_subfee">
+                <Original>Subcontract fee</Original>
+                <English>Subcontract fee</English>
+                <Spanish>Comisión de subcontrata</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_s_contractSubFee">
+                <Original>Subcontract fee</Original>
+                <English>Subcontract fee</English>
+                <Spanish>Comisión de subcontrata</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_s_contractSubFee_tip">
+                <Original>Share of the pay the original signer keeps when subcontracting a contract.</Original>
+                <English>Share of the pay the original signer keeps when subcontracting a contract.</English>
+                <Spanish>Fracción del pago que cobra el firmante original cuando subcontrata un encargo.</Spanish>
+            </Key>
         </Container>
     </Package>
 </Project>

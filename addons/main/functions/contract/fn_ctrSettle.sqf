@@ -30,6 +30,16 @@ if (!isNull _veh) then {
     if (!alive _veh) then {_cost = _val};
     if (_cost > 0) then {(_m get "costs") pushBack [("STR_ADVSEC_pmc_cost_vehicle" call ADVSEC_fnc_L), _cost]};
 };
+// 1.22: comisión de la subcontrata, que cobra el firmante original
+private _sf = _c getOrDefault ["subFrom", []];
+if (_sf isNotEqualTo []) then {
+    private _fee = round (_pay * (_sf select 2));
+    if (_fee > 0) then {
+        (_m get "costs") pushBack [("STR_ADVSEC_pmc_cost_subfee" call ADVSEC_fnc_L), _fee];
+        [-_fee, format [("STR_ADVSEC_pmc_treasury_sub" call ADVSEC_fnc_L), _id]] call ADVSEC_fnc_ecoTreasury;
+        [_sf select 0, _sf select 1, _fee, format [("STR_ADVSEC_pmc_sub_paid" call ADVSEC_fnc_L), _id]] call ADVSEC_fnc_pmcPay;
+    };
+};
 private _costs = 0; {_costs = _costs + (_x select 1)} forEach (_m get "costs");
 // Material perdido con seguro: se recupera la mitad
 private _lost = 0; {if ((_x select 0) == ("STR_ADVSEC_pmc_cost_lost" call ADVSEC_fnc_L)) then {_lost = _lost + (_x select 1)}} forEach (_m get "costs");

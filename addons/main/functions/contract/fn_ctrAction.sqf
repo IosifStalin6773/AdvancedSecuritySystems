@@ -14,7 +14,7 @@ switch (_state) do {
             if (_type in ["escort", "vip"]) then {_opts pushBack [("STR_ADVSEC_pmc_act_route" call ADVSEC_fnc_L), "route"]};
             _opts pushBack [("STR_ADVSEC_pmc_act_start" call ADVSEC_fnc_L), "start"];
         };
-        if ("contractSign" call _can) then {_opts pushBack [("STR_ADVSEC_pmc_act_cancel" call ADVSEC_fnc_L), "cancel"]};
+        if ("contractSign" call _can) then {_opts pushBack [("STR_ADVSEC_pmc_act_sub" call ADVSEC_fnc_L), "sub"]; _opts pushBack [("STR_ADVSEC_pmc_act_cancel" call ADVSEC_fnc_L), "cancel"]};
     };
     case "En curso": {
         if ("contractAssign" call _can && {_type in ["escort", "vip"]}) then {_opts pushBack [("STR_ADVSEC_pmc_act_evac" call ADVSEC_fnc_L), "evac"]};
@@ -50,6 +50,14 @@ _opts pushBack [("STR_ADVSEC_show_route_on_the_map" call ADVSEC_fnc_L), "show"];
                     [("STR_ADVSEC_pmc_bid_pct" call ADVSEC_fnc_L), 100, [["50 %", 50], ["60 %", 60], ["70 %", 70], ["80 %", 80], ["90 %", 90], ["100 %", 100]]]
                 ], {params ["_v", "_id"]; ["bid", player, [_id, _v select 0]] remoteExecCall ["ADVSEC_fnc_ctrServer", 2]}, _id] call ADVSEC_fnc_zeusPrompt;
             };
+        };
+        case "sub": {
+            private _pm = ((allPlayers - entities "HeadlessClient_F") select {alive _x && {[_x, "PMC"] call ADVSEC_fnc_repAccess}}) apply {[name _x, getPlayerUID _x]};
+            [("STR_ADVSEC_pmc_act_sub" call ADVSEC_fnc_L), [[("STR_ADVSEC_pmc_sub_to" call ADVSEC_fnc_L), [], ["multi", _pm]]], {
+                params ["_v", "_id"];
+                if (_v isEqualTo [] || {(_v select 0) isEqualTo ""}) exitWith {};
+                ["sub", player, [_id, _v select 0]] remoteExecCall ["ADVSEC_fnc_ctrServer", 2];
+            }, _id] call ADVSEC_fnc_zeusPrompt;
         };
         case "sign": {["sign", player, [_id, false]] remoteExecCall ["ADVSEC_fnc_ctrServer", 2]};
         case "signIns": {["sign", player, [_id, true]] remoteExecCall ["ADVSEC_fnc_ctrServer", 2]};
