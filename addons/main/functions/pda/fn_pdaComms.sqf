@@ -33,7 +33,25 @@ switch (_action) do {
             };
             _body = toString _codes;
         };
-        [_body, _enc] remoteExecCall ["ADVSEC_fnc_pdaMsgShow", [_ch] call _members];
+        private _online = [_ch] call _members;
+        [_body, _enc] remoteExecCall ["ADVSEC_fnc_pdaMsgShow", _online];
+        // 1.22: cola sin conexión: el mensaje queda guardado (máx. 50) para quien no estaba conectado
+        private _q = localNamespace getVariable ["ADVSEC_pdaQueue", []];
+        _q pushBack [_ch, _body, _enc, _online apply {getPlayerUID _x}];
+        if (count _q > 50) then {_q deleteAt 0};
+        localNamespace setVariable ["ADVSEC_pdaQueue", _q];
         ["pdaMsg", _caller, [_ch, _enc]] call ADVSEC_fnc_logEvent;
+    };
+    case "pull": {
+        // 1.22: entrega los mensajes de la cola a quien abre la PDA (si tiene acceso al canal y aún no los recibió)
+        private _q = localNamespace getVariable ["ADVSEC_pdaQueue", []];
+        private _uid = getPlayerUID _caller;
+        {
+            _x params ["_ch", "_body", "_enc", "_seen"];
+            if (!(_uid in _seen) && {[_caller, _ch] call ADVSEC_fnc_repAccess}) then {
+                [_body, _enc] remoteExecCall ["ADVSEC_fnc_pdaMsgShow", _caller];
+                _seen pushBack _uid;
+            };
+        } forEach _q;
     };
 };

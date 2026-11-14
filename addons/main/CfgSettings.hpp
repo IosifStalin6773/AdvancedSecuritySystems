@@ -231,6 +231,7 @@ class ADVSEC_Settings {
     budgetPMC = 0;  // Presupuesto diario PMC para pedidos (0 = sin límite)
     vehMaintMin = 0;  // Mantenimiento de vehículos PM cada (minutos, 0 = no)
     vehMaintFee = 0;  // Coste de mantenimiento por vehículo (€)
+    pdaMarkMin = 10;  // Duración de las marcas tácticas de la PDA (minutos)
     contractRepDecay = 3;        // días para que la reputación baje/suba 1 punto hacia 0 (0 = nunca)
     contractGreyHeat = 15;
     contractHostiles = 3;        // enemigos: 0 ninguno, 1 solo generados, 2 solo los ya colocados en la zona, 3 ambos (genera los que falten)

@@ -13200,6 +13200,11 @@ Beneficio: %5 €</Spanish>
                 <English>Phish an officer</English>
                 <Spanish>Phishing a agente</Spanish>
             </Key>
+            <Key ID="STR_ADVSEC_s_pdaMarkMin">
+                <Original>PDA tactical mark duration (minutes)</Original>
+                <English>PDA tactical mark duration (minutes)</English>
+                <Spanish>Duración de las marcas tácticas de la PDA (minutos)</Spanish>
+            </Key>
         </Container>
     </Package>
 </Project>
