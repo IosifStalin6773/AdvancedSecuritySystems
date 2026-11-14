@@ -12363,6 +12363,76 @@ Estado: %6</Spanish>
                 <English>%1 lost their licence after reaching 0 points.</English>
                 <Spanish>%1 ha perdido la licencia por llegar a 0 puntos.</Spanish>
             </Key>
+            <Key ID="STR_ADVSEC_m_case_btn_ev">
+                <Original>Add evidence</Original>
+                <English>Add evidence</English>
+                <Spanish>Añadir prueba</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_case_btn_links">
+                <Original>Show links between cases</Original>
+                <English>Show links between cases</English>
+                <Spanish>Ver vínculos entre casos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_case_btn_new">
+                <Original>New case</Original>
+                <English>New case</English>
+                <Spanish>Nuevo caso</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_case_do">
+                <Original>You are not allowed to manage cases.</Original>
+                <English>You are not allowed to manage cases.</English>
+                <Spanish>No tienes permiso para gestionar casos.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_case_ev">
+                <Original>Evidence id (EV-n)</Original>
+                <English>Evidence id (EV-n)</English>
+                <Spanish>Id. de la prueba (EV-n)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_case_ev_title">
+                <Original>Link evidence to case</Original>
+                <English>Link evidence to case</English>
+                <Spanish>Vincular prueba al caso</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_case_new">
+                <Original>Case %1 created.</Original>
+                <English>Case %1 created.</English>
+                <Spanish>Caso %1 creado.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_case_new_title">
+                <Original>New case</Original>
+                <English>New case</English>
+                <Spanish>Nuevo caso</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_case_none">
+                <Original>That case does not exist.</Original>
+                <English>That case does not exist.</English>
+                <Spanish>Ese caso no existe.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_case_title">
+                <Original>Case title</Original>
+                <English>Case title</English>
+                <Spanish>Título del caso</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_case_title_panel">
+                <Original>Case files</Original>
+                <English>Case files</English>
+                <Spanish>Expedientes de caso</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_lineup_saved">
+                <Original>Identification lineup recorded in the case.</Original>
+                <English>Identification lineup recorded in the case.</English>
+                <Spanish>Rueda de reconocimiento registrada en el caso.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_links_head">
+                <Original>Links between cases (%1 people)</Original>
+                <English>Links between cases (%1 people)</English>
+                <Spanish>Vínculos entre casos (%1 personas)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_warrant_ok">
+                <Original>Search warrant for %1 valid %2 h.</Original>
+                <English>Search warrant for %1 valid %2 h.</English>
+                <Spanish>Orden de registro para %1 válida %2 h.</Spanish>
+            </Key>
         </Container>
     </Package>
 </Project>

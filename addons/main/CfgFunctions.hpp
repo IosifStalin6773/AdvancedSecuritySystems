@@ -524,6 +524,12 @@ class CfgFunctions {
             file = "\x\advsec\addons\main\functions\fines";
             class pointsAdd {};
         };
+        class investigation {
+            file = "\x\advsec\addons\main\functions\investigation";
+            class caseServer {};
+            class caseOpen {};
+            class warrantValid {};
+        };
         class serverMapDB {
             file = "\x\advsec\addons\main\functions\server";
             class mapDB {};

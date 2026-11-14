@@ -79,6 +79,20 @@ S = {
 "STR_ADVSEC_m_zone_unwatched": ("Zona «%1» sin patrulla desde hace %2 min.", "Zone \"%1\" unpatrolled for %2 min."),
 "STR_ADVSEC_m_points_now": ("Puntos de carnet: %1 (total %2).", "Licence points: %1 (total %2)."),
 "STR_ADVSEC_m_points_lost": ("%1 ha perdido la licencia por llegar a 0 puntos.", "%1 lost their licence after reaching 0 points."),
+"STR_ADVSEC_m_case_btn_ev": ("Añadir prueba", "Add evidence"),
+"STR_ADVSEC_m_case_btn_links": ("Ver vínculos entre casos", "Show links between cases"),
+"STR_ADVSEC_m_case_btn_new": ("Nuevo caso", "New case"),
+"STR_ADVSEC_m_case_do": ("No tienes permiso para gestionar casos.", "You are not allowed to manage cases."),
+"STR_ADVSEC_m_case_ev": ("Id. de la prueba (EV-n)", "Evidence id (EV-n)"),
+"STR_ADVSEC_m_case_ev_title": ("Vincular prueba al caso", "Link evidence to case"),
+"STR_ADVSEC_m_case_new": ("Caso %1 creado.", "Case %1 created."),
+"STR_ADVSEC_m_case_new_title": ("Nuevo caso", "New case"),
+"STR_ADVSEC_m_case_none": ("Ese caso no existe.", "That case does not exist."),
+"STR_ADVSEC_m_case_title": ("Título del caso", "Case title"),
+"STR_ADVSEC_m_case_title_panel": ("Expedientes de caso", "Case files"),
+"STR_ADVSEC_m_lineup_saved": ("Rueda de reconocimiento registrada en el caso.", "Identification lineup recorded in the case."),
+"STR_ADVSEC_m_links_head": ("Vínculos entre casos (%1 personas)", "Links between cases (%1 people)"),
+"STR_ADVSEC_m_warrant_ok": ("Orden de registro para %1 válida %2 h.", "Search warrant for %1 valid %2 h."),
 }
 root = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'addons', 'main')
 p = os.path.join(root, 'stringtable.xml')
