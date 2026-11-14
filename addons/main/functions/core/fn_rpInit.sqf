@@ -9,6 +9,7 @@ if (!isServer) exitWith {};
 ["init"] call ADVSEC_fnc_ctrDamage;
 [] call ADVSEC_fnc_pmcLoop;
 [] call ADVSEC_fnc_trafficLoop;
+[] call ADVSEC_fnc_hrLoop;
 [] call ADVSEC_fnc_evDecayLoop;
 [] call ADVSEC_fnc_jailCareLoop;
 // Taquillas TS_Lockers colocadas con Zeus: se guardan y se recrean (Antistasi no conserva los objetos de Zeus)

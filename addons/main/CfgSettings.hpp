@@ -19,6 +19,7 @@ class ADVSEC_Settings {
     // Permisos: {cuerpo ("PMC" compañía: rango en el ORBAT o PM; "PM" admite también AA.II.; "AI" solo AA.II.), nivel mínimo}
     class Permissions {
         restrain[] = {"PMC", 1};
+        hr[] = {"PMC", 3};
         search[] = {"PMC", 1};
         seize[] = {"PM", 1};
         vehicleSearch[] = {"PMC", 1};
@@ -227,6 +228,9 @@ class ADVSEC_Settings {
     blackMarketTax = 0;  // Impuesto de mercado negro (fracción de la venta)
     salaryArrestBonus = 0;  // Incentivo por arresto en la nómina (€)
     armoryDelayMin = 0;  // Entrega retardada de pedidos de armería (minutos)
+    budgetPMC = 0;  // Presupuesto diario PMC para pedidos (0 = sin límite)
+    vehMaintMin = 0;  // Mantenimiento de vehículos PM cada (minutos, 0 = no)
+    vehMaintFee = 0;  // Coste de mantenimiento por vehículo (€)
     contractRepDecay = 3;        // días para que la reputación baje/suba 1 punto hacia 0 (0 = nunca)
     contractGreyHeat = 15;
     contractHostiles = 3;        // enemigos: 0 ninguno, 1 solo generados, 2 solo los ya colocados en la zona, 3 ambos (genera los que falten)

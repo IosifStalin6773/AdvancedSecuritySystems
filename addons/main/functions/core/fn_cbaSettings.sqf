@@ -142,6 +142,9 @@ _rules insert [
 ["blackMarketTax", "SLIDER", ("STR_ADVSEC_s_blackMarketTax" call ADVSEC_fnc_L), "", "1 · General", [0, 1, [["blackMarketTax"], 0] call _num, 2]] call _add;
 ["salaryArrestBonus", "SLIDER", ("STR_ADVSEC_s_salaryArrestBonus" call ADVSEC_fnc_L), "", "1 · General", [0, 5000, [["salaryArrestBonus"], 0] call _num, 0]] call _add;
 ["armoryDelayMin", "SLIDER", ("STR_ADVSEC_s_armoryDelayMin" call ADVSEC_fnc_L), "", "1 · General", [0, 240, [["armoryDelayMin"], 0] call _num, 0]] call _add;
+["budgetPMC", "SLIDER", ("STR_ADVSEC_s_budgetPMC" call ADVSEC_fnc_L), "", "1 · General", [0, 500000, [["budgetPMC"], 0] call _num, 0]] call _add;
+["vehMaintMin", "SLIDER", ("STR_ADVSEC_s_vehMaintMin" call ADVSEC_fnc_L), "", "1 · General", [0, 240, [["vehMaintMin"], 0] call _num, 0]] call _add;
+["vehMaintFee", "SLIDER", ("STR_ADVSEC_s_vehMaintFee" call ADVSEC_fnc_L), "", "1 · General", [0, 50000, [["vehMaintFee"], 0] call _num, 0]] call _add;
 ["contractRepDecay", "SLIDER", ("STR_ADVSEC_pmc_s_contractRepDecay" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec12" call ADVSEC_fnc_L), [0, 30, [["contractRepDecay"], 3] call _num, 0]] call _add;
 ["contractHostiles", "LIST", ("STR_ADVSEC_pmc_s_contractHostiles" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec12" call ADVSEC_fnc_L), [[0, 1, 2, 3], [("STR_ADVSEC_pmc_host_m0" call ADVSEC_fnc_L), ("STR_ADVSEC_pmc_host_m1" call ADVSEC_fnc_L), ("STR_ADVSEC_pmc_host_m2" call ADVSEC_fnc_L), ("STR_ADVSEC_pmc_host_m3" call ADVSEC_fnc_L)], ([["contractHostiles"], 3] call _num) max 0 min 3]] call _add;
 ["contractHostileScale", "SLIDER", ("STR_ADVSEC_pmc_s_contractHostileScale" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec12" call ADVSEC_fnc_L), [0, 4, [["contractHostileScale"], 1] call _num, 1]] call _add;

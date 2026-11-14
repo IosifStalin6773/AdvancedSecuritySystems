@@ -96,6 +96,7 @@ if (_mode in ["self", "company"]) exitWith {
     };
     if ([_player, "suspend"] call ADVSEC_fnc_perm) then {_po pushBack ["advsec_ai_susp", ("STR_ADVSEC_suspensions" call ADVSEC_fnc_L), ADVSEC_icPol, {[] call ADVSEC_fnc_susOpen}, []]};
     if ([_player, "bankAudit"] call ADVSEC_fnc_perm) then {_po pushBack ["advsec_ai_bank", ("STR_ADVSEC_bank_audit" call ADVSEC_fnc_L), ADVSEC_icSearch, {[] call ADVSEC_fnc_auditOpen}, []]};
+    if ([_player, "PM"] call ADVSEC_fnc_repAccess || {[_player, "PMC"] call ADVSEC_fnc_repAccess}) then {_po pushBack ["advsec_ai_hr", ("STR_ADVSEC_hr_menu" call ADVSEC_fnc_L), ADVSEC_icSearch, {[] call ADVSEC_fnc_hrOpen}, []]};
     _po
 };
 if (!alive _target) exitWith {_list};

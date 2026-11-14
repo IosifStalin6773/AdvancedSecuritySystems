@@ -175,6 +175,20 @@ switch (_action) do {
         missionNamespace setVariable ["ADVSEC_fw", _fw, true];
         (format [("STR_ADVSEC_pmc_cy_fw_on" call ADVSEC_fnc_L), _net]) call _say;
     };
+    case "phish": {
+        // 1.22: phishing a un agente: si engaña, el atacante ve su cuadrícula y si está de servicio (inteligencia, no acceso)
+        _args params [["_uid", ""]];
+        if !("ADVSEC_HackKit" in (items _caller)) exitWith {("STR_ADVSEC_pmc_cy_need_kit" call ADVSEC_fnc_L) call _say};
+        private _u = [_uid] call ADVSEC_fnc_uidUnit;
+        if (isNull _u) exitWith {};
+        if (random 1 < (["hackChance", 0.5] call ADVSEC_fnc_setting) - 0.2) then {
+            format [("STR_ADVSEC_pmc_cy_phish_ok" call ADVSEC_fnc_L), name _u, mapGridPosition _u, _u getVariable ["ADVSEC_onDuty", false]] call _say;
+            ["alert", _caller, ["phish", format ["%1 · %2", name _u, mapGridPosition _u]]] call ADVSEC_fnc_cyServer;
+        } else {
+            ["alert", _caller, ["phishFail", name _u]] call ADVSEC_fnc_cyServer;
+            ("STR_ADVSEC_pmc_cy_phish_fail" call ADVSEC_fnc_L) call _say;
+        };
+    };
     case "scan": {
         // 1.22: escaneo de red: cuenta cámaras y cerraduras de teclado en 300 m alrededor del terminal
         if !(call _view) exitWith {};

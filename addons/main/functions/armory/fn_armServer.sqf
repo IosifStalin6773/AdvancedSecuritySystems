@@ -127,6 +127,8 @@ switch (_action) do {
         _it params ["_c", "_p"];
         private _tot = _p * _n;
         if (([] call ADVSEC_fnc_ecoTreasuryNow) < _tot) exitWith {(format [("STR_ADVSEC_pmc_treasury_short" call ADVSEC_fnc_L), _tot call _fmt]) call _say};
+        // 1.22: presupuesto diario del departamento PMC (budgetPMC; 0 = sin límite)
+        if !(["PMC", _tot] call ADVSEC_fnc_budgetSpend) exitWith {("STR_ADVSEC_hr_budget_over" call ADVSEC_fnc_L) call _say};
         [-_tot, format [("STR_ADVSEC_pmc_treasury_order" call ADVSEC_fnc_L), _n, [_c] call ADVSEC_fnc_ecoItemName, name _caller]] call ADVSEC_fnc_ecoTreasury;
         private _isW = isClass (configFile >> "CfgWeapons" >> _c) && {getNumber (configFile >> "CfgWeapons" >> _c >> "type") in [1, 2, 4]};
         // 1.22: pedidos con entrega retardada (armoryDelayMin minutos; 0 = inmediata). Se paga al pedir.

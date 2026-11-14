@@ -531,6 +531,13 @@ class CfgFunctions {
             class caseOpen {};
             class warrantValid {};
         };
+        class hr {
+            file = "\x\advsec\addons\main\functions\hr";
+            class hrServer {};
+            class hrOpen {};
+            class budgetSpend {};
+            class hrLoop {};
+        };
         class policeCare {
             file = "\x\advsec\addons\main\functions\police";
             class jailCare {};

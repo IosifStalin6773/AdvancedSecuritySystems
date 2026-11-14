@@ -607,6 +607,9 @@ switch (_action) do {
         if (count _c == 0 || {(_c get "state") != "Revisión"}) exitWith {("STR_ADVSEC_pmc_not_in_review" call ADVSEC_fnc_L) call _say};
         if !([_caller, "caseClose"] call ADVSEC_fnc_perm) exitWith {[_caller, ("STR_ADVSEC_pmc_perm_review" call ADVSEC_fnc_L)] call ADVSEC_fnc_deny};
         private _m = _c get "metrics";
+        // 1.22: informe post-operación (F-PMC-01 con la valoración del cliente)
+        ["FPMC01", format [("STR_ADVSEC_pmc_postop_title" call ADVSEC_fnc_L), _id], [format ["%1 [%2]", name _caller, getPlayerUID _caller]],
+            format [("STR_ADVSEC_pmc_postop_body" call ADVSEC_fnc_L), _id, _c get "title", _verdict call ADVSEC_fnc_Lv, count (_m get "incidents"), round (_c getOrDefault ["profit", 0])], "Leve", false] call ADVSEC_fnc_repSystem;
         if (_verdict == "Justificado") then {
             // Se devuelve la mitad de la penalización de las bajas civiles
             {if ((_x select 0) in ["civKill", "civKillRoe"]) then {_x set [1, round ((_x select 1) / 2)]}} forEach (_m get "penal");

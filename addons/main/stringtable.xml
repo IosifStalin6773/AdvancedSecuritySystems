@@ -12846,6 +12846,360 @@ Inteligencia reciente:</Spanish>
                 <English>Armory order delivery delay (minutes)</English>
                 <Spanish>Entrega retardada de pedidos de armería (minutos)</Spanish>
             </Key>
+            <Key ID="STR_ADVSEC_s_budgetPMC">
+                <Original>PMC daily budget for orders (0 = no limit)</Original>
+                <English>PMC daily budget for orders (0 = no limit)</English>
+                <Spanish>Presupuesto diario PMC para pedidos (0 = sin límite)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_s_vehMaintMin">
+                <Original>PM vehicle maintenance every (minutes, 0 = off)</Original>
+                <English>PM vehicle maintenance every (minutes, 0 = off)</English>
+                <Spanish>Mantenimiento de vehículos PM cada (minutos, 0 = no)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_s_vehMaintFee">
+                <Original>Maintenance cost per vehicle (€)</Original>
+                <English>Maintenance cost per vehicle (€)</English>
+                <Spanish>Coste de mantenimiento por vehículo (€)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_menu">
+                <Original>Human resources</Original>
+                <English>Human resources</English>
+                <Spanish>Recursos humanos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_no">
+                <Original>You do not have HR permission.</Original>
+                <English>You do not have HR permission.</English>
+                <Spanish>No tienes permiso para RRHH.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_b_certs">
+                <Original>My certificates and medals</Original>
+                <English>My certificates and medals</English>
+                <Spanish>Mis certificados y medallas</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_b_leave">
+                <Original>Request leave</Original>
+                <English>Request leave</English>
+                <Spanish>Solicitar permiso</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_b_leaves">
+                <Original>View pending requests</Original>
+                <English>View pending requests</English>
+                <Spanish>Ver solicitudes pendientes</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_b_decide">
+                <Original>Decide request</Original>
+                <English>Decide request</English>
+                <Spanish>Resolver solicitud</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_b_cert">
+                <Original>Grant course or medal</Original>
+                <English>Grant course or medal</English>
+                <Spanish>Conceder curso o medalla</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_b_medleave">
+                <Original>Medical leave</Original>
+                <English>Medical leave</English>
+                <Spanish>Baja médica</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_b_rota">
+                <Original>View roster</Original>
+                <English>View roster</English>
+                <Spanish>Ver cuadrante</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_b_eval">
+                <Original>Evaluate officer</Original>
+                <English>Evaluate officer</English>
+                <Spanish>Evaluar agente</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_b_pass">
+                <Original>Visitor pass</Original>
+                <English>Visitor pass</English>
+                <Spanish>Pase de visita</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_b_access">
+                <Original>Zone access</Original>
+                <English>Zone access</English>
+                <Spanish>Acceso por zona</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_b_tpl">
+                <Original>Contract template</Original>
+                <English>Contract template</English>
+                <Spanish>Plantilla de encargo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_b_scen">
+                <Original>Training scenario</Original>
+                <English>Training scenario</English>
+                <Spanish>Escenario de entrenamiento</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_b_airlock">
+                <Original>Airlock</Original>
+                <English>Airlock</English>
+                <Spanish>Esclusa</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_f_type">
+                <Original>Type</Original>
+                <English>Type</English>
+                <Spanish>Tipo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_f_days">
+                <Original>Days</Original>
+                <English>Days</English>
+                <Spanish>Días</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_f_id">
+                <Original>Request number</Original>
+                <English>Request number</English>
+                <Spanish>Número de solicitud</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_f_ok">
+                <Original>Approve</Original>
+                <English>Approve</English>
+                <Spanish>Aprobar</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_f_uid">
+                <Original>Officer SteamID</Original>
+                <English>Officer SteamID</English>
+                <Spanish>SteamID del agente</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_f_name">
+                <Original>Name</Original>
+                <English>Name</English>
+                <Spanish>Nombre</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_f_kind">
+                <Original>Recognition type</Original>
+                <English>Recognition type</English>
+                <Spanish>Tipo de reconocimiento</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_f_min">
+                <Original>Minutes</Original>
+                <English>Minutes</English>
+                <Spanish>Minutos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_f_zone">
+                <Original>Zone</Original>
+                <English>Zone</English>
+                <Spanish>Zona</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_f_client">
+                <Original>Client</Original>
+                <English>Client</English>
+                <Spanish>Cliente</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_f_pay">
+                <Original>Pay (€)</Original>
+                <English>Pay (€)</English>
+                <Spanish>Pago (€)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_f_tpls">
+                <Original>Templates separated by commas</Original>
+                <English>Templates separated by commas</English>
+                <Spanish>Plantillas separadas por comas</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_f_side">
+                <Original>Side (in = inside, out = outside, empty = free)</Original>
+                <English>Side (in = inside, out = outside, empty = free)</English>
+                <Spanish>Lado (in = dentro, out = fuera, vacío = libre)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_cert_done">
+                <Original>Recognition recorded: %1</Original>
+                <English>Recognition recorded: %1</English>
+                <Spanish>Reconocimiento registrado: %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_cert_you">
+                <Original>You received %1: %2</Original>
+                <English>You received %1: %2</English>
+                <Spanish>Has recibido %1: %2</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_none">
+                <Original>Nothing to show.</Original>
+                <English>Nothing to show.</English>
+                <Spanish>Nada que mostrar.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_leave_sent">
+                <Original>Request #%1 sent.</Original>
+                <English>Request #%1 sent.</English>
+                <Spanish>Solicitud #%1 enviada.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_leave_result">
+                <Original>Your request #%1 was: %2.</Original>
+                <English>Your request #%1 was: %2.</English>
+                <Spanish>Tu solicitud #%1 ha sido: %2.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_medleave_you">
+                <Original>A medical leave is recorded in your file.</Original>
+                <English>A medical leave is recorded in your file.</English>
+                <Spanish>Tienes baja médica registrada en tu expediente.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_medleave_done">
+                <Original>Medical leave recorded for %1.</Original>
+                <English>Medical leave recorded for %1.</English>
+                <Spanish>Baja médica registrada para %1.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_day_0">
+                <Original>Monday</Original>
+                <English>Monday</English>
+                <Spanish>Lunes</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_day_1">
+                <Original>Tuesday</Original>
+                <English>Tuesday</English>
+                <Spanish>Martes</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_day_2">
+                <Original>Wednesday</Original>
+                <English>Wednesday</English>
+                <Spanish>Miércoles</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_day_3">
+                <Original>Thursday</Original>
+                <English>Thursday</English>
+                <Spanish>Jueves</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_day_4">
+                <Original>Friday</Original>
+                <English>Friday</English>
+                <Spanish>Viernes</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_day_5">
+                <Original>Saturday</Original>
+                <English>Saturday</English>
+                <Spanish>Sábado</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_day_6">
+                <Original>Sunday</Original>
+                <English>Sunday</English>
+                <Spanish>Domingo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_eval_done">
+                <Original>%1: activity in the last 7 days = %2 records.</Original>
+                <English>%1: activity in the last 7 days = %2 records.</English>
+                <Spanish>%1: actividad de los últimos 7 días = %2 registros.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_tpl_saved">
+                <Original>Template %1 saved.</Original>
+                <English>Template %1 saved.</English>
+                <Spanish>Plantilla %1 guardada.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_tpl_none">
+                <Original>That template does not exist.</Original>
+                <English>That template does not exist.</English>
+                <Spanish>No existe esa plantilla.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_zeus_only">
+                <Original>Only Zeus can do this.</Original>
+                <English>Only Zeus can do this.</English>
+                <Spanish>Solo Zeus puede hacer esto.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_scen_saved">
+                <Original>Scenario %1 saved.</Original>
+                <English>Scenario %1 saved.</English>
+                <Spanish>Escenario %1 guardado.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_pass_done">
+                <Original>Pass for %1 valid for %2 minutes.</Original>
+                <English>Pass for %1 valid for %2 minutes.</English>
+                <Spanish>Pase de %1 válido %2 minutos.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_pass_none">
+                <Original>No pass on record.</Original>
+                <English>No pass on record.</English>
+                <Spanish>Sin pase registrado.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_pass_valid">
+                <Original>Pass valid for %1 (%2 min left).</Original>
+                <English>Pass valid for %1 (%2 min left).</English>
+                <Spanish>Pase válido en %1 (quedan %2 min).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_pass_expired">
+                <Original>Pass expired.</Original>
+                <English>Pass expired.</English>
+                <Spanish>Pase caducado.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_detect_hit">
+                <Original>DETECTOR: weapon found on a non-PM. Recorded.</Original>
+                <English>DETECTOR: weapon found on a non-PM. Recorded.</English>
+                <Spanish>DETECTOR: arma detectada en un no PM. Registrado.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_detect_ok">
+                <Original>Detector: no weapons.</Original>
+                <English>Detector: no weapons.</English>
+                <Spanish>Detector: sin armas.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_airlock_busy">
+                <Original>The other airlock door is open.</Original>
+                <English>The other airlock door is open.</English>
+                <Spanish>La otra puerta de la esclusa está abierta.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_budget_over">
+                <Original>The department daily budget is used up.</Original>
+                <English>The department daily budget is used up.</English>
+                <Spanish>El presupuesto diario del departamento está agotado.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hr_maint_treasury">
+                <Original>Vehicle maintenance: %1</Original>
+                <English>Vehicle maintenance: %1</English>
+                <Spanish>Mantenimiento de vehículo: %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cy_phish_ok">
+                <Original>Phishing worked: %1 at %2 (on duty: %3).</Original>
+                <English>Phishing worked: %1 at %2 (on duty: %3).</English>
+                <Spanish>Phishing exitoso: %1 en %2 (de servicio: %3).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cy_phish_fail">
+                <Original>The officer did not take the bait.</Original>
+                <English>The officer did not take the bait.</English>
+                <Spanish>El agente no ha picado.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_postop_title">
+                <Original>Post-operation report: %1</Original>
+                <English>Post-operation report: %1</English>
+                <Spanish>Informe post-operación: %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_postop_body">
+                <Original>Contract %1 · %2
+Verdict: %3
+Incidents: %4
+Profit: %5 €</Original>
+                <English>Contract %1 · %2
+Verdict: %3
+Incidents: %4
+Profit: %5 €</English>
+                <Spanish>Encargo %1 · %2
+Valoración: %3
+Incidentes: %4
+Beneficio: %5 €</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cy_tools">
+                <Original>Cyber tools</Original>
+                <English>Cyber tools</English>
+                <Spanish>Herramientas de ciber</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cy_tool">
+                <Original>Tool</Original>
+                <English>Tool</English>
+                <Spanish>Herramienta</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cy_arg">
+                <Original>CCTV network or officer SteamID</Original>
+                <English>CCTV network or officer SteamID</English>
+                <Spanish>Red CCTV o SteamID del agente</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cy_t_scan">
+                <Original>Scan network</Original>
+                <English>Scan network</English>
+                <Spanish>Escanear red</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cy_t_fw">
+                <Original>Firewall on CCTV network</Original>
+                <English>Firewall on CCTV network</English>
+                <Spanish>Cortafuegos en red CCTV</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cy_t_phish">
+                <Original>Phish an officer</Original>
+                <English>Phish an officer</English>
+                <Spanish>Phishing a agente</Spanish>
+            </Key>
         </Container>
     </Package>
 </Project>

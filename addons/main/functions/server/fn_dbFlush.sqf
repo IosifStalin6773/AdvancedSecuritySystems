@@ -73,5 +73,5 @@ if ("cyber" in _d) then {profileNamespace setVariable [ADVSEC_repKey + "_cyber",
         {_out pushBack [_x, _y]} forEach (localNamespace getVariable [_var, createHashMap]);
         profileNamespace setVariable [ADVSEC_repKey + "_" + _k, _out];
     };
-} forEach [["cases", "ADVSEC_caseDB"], ["warrants", "ADVSEC_warrantDB"], ["impound", "ADVSEC_impoundDB"], ["itv", "ADVSEC_itvDB"], ["points", "ADVSEC_pointsDB"]];
+} forEach [["cases", "ADVSEC_caseDB"], ["warrants", "ADVSEC_warrantDB"], ["impound", "ADVSEC_impoundDB"], ["itv", "ADVSEC_itvDB"], ["points", "ADVSEC_pointsDB"], ["hr", "ADVSEC_hrDB"]];
 saveProfileNamespace;
