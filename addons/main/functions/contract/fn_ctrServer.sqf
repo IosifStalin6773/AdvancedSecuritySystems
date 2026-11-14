@@ -199,6 +199,27 @@ private _finish = {
     [_id, _c] call _push;
 };
 switch (_action) do {
+    case "roe": {
+        // 1.22: cambio de ROE durante el encargo (escalonadas). Avisa a los asignados.
+        _args params [["_id", ""], ["_roe", "Ámbar"]];
+        private _c = _db getOrDefault [_id, createHashMap];
+        if (count _c == 0 || {(_c get "state") != "En curso"}) exitWith {("STR_ADVSEC_pmc_not_active" call ADVSEC_fnc_L) call _say};
+        if !([_caller, "contractAssign"] call ADVSEC_fnc_perm) exitWith {[_caller, ("STR_ADVSEC_pmc_perm_assign" call ADVSEC_fnc_L)] call ADVSEC_fnc_deny};
+        if !(_roe in ["Verde", "Ámbar", "Rojo"]) exitWith {};
+        _c set ["roe", _roe];
+        [_c, format [("STR_ADVSEC_pmc_roe_changed" call ADVSEC_fnc_L), _id, _roe call ADVSEC_fnc_Lv]] call _notify;
+        ["contractRoe", _caller, [_id, _roe]] call ADVSEC_fnc_logEvent;
+        ["contracts"] call ADVSEC_fnc_dbDirty;
+        ["list", _caller] call ADVSEC_fnc_ctrServer;
+    };
+    case "intel": {
+        // 1.22: resumen de célula (moral, nivel, descansos) e inteligencia compartida de los últimos encargos
+        private _lvl = (floor ((localNamespace getVariable ["ADVSEC_cellWins", 0]) / 5)) min 5;
+        private _txt = format [("STR_ADVSEC_pmc_cell_status" call ADVSEC_fnc_L), localNamespace getVariable ["ADVSEC_morale", 60], _lvl];
+        private _intel = (localNamespace getVariable ["ADVSEC_intel", []]) select [(count (localNamespace getVariable ["ADVSEC_intel", []]) - 5) max 0];
+        {_txt = _txt + endl + format ["%1 · %2 · %3", _x select 2, _x select 3, _x select 4]} forEach _intel;
+        _txt call _say;
+    };
     case "list": {
         if !([_caller, "contractView"] call ADVSEC_fnc_perm) exitWith {[_caller, ("STR_ADVSEC_pmc_perm_view" call ADVSEC_fnc_L)] call ADVSEC_fnc_deny};
         private _uid = getPlayerUID _caller;
@@ -396,6 +417,12 @@ switch (_action) do {
             _c set ["pay", round ((_c get "pay") * (_w select 1) / 100)];
             _c set ["auctionPaid", true];
         };
+        // 1.22: ascenso de célula. Cada 5 contratos cumplidos sube un nivel y el pago sube un 5 % (máximo 25 %).
+        if !(_c getOrDefault ["cellBonus", false]) then {
+            private _lvl = (floor ((localNamespace getVariable ["ADVSEC_cellWins", 0]) / 5)) min 5;
+            _c set ["pay", round ((_c get "pay") * (1 + 0.05 * _lvl))];
+            _c set ["cellBonus", true];
+        };
         private _adv = round ((_c get "pay") * (_c get "adv"));
         _c set ["state", "Firmado"];
         _c set ["signer", [getPlayerUID _caller, name _caller]];
@@ -441,6 +468,9 @@ switch (_action) do {
             private _u = [_x] call ADVSEC_fnc_uidUnit;
             if (!isNull _u && {[_u, "PMC"] call ADVSEC_fnc_repAccess}) then {_as pushBackUnique [_x, name _u]};
         } forEach (_uids select {_x isEqualType ""});
+        private _rdb = localNamespace getVariable ["ADVSEC_rest", createHashMap];
+        private _resting = _as select {(_rdb getOrDefault [_x select 0, 0]) > serverTime};
+        if (_resting isNotEqualTo []) exitWith {(format [("STR_ADVSEC_pmc_resting" call ADVSEC_fnc_L), _resting apply {_x select 1} joinString ", "]) call _say};
         if (count _as < (_c call _minOps)) exitWith {(format [("STR_ADVSEC_pmc_need_ops" call ADVSEC_fnc_L), _c call _minOps, count _as]) call _say};
         if !(_roe in ["Verde", "Ámbar", "Rojo"]) then {_roe = "Ámbar"};
         _c set ["assigned", _as];

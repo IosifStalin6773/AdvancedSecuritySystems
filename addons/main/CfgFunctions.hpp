@@ -178,6 +178,7 @@ class CfgFunctions {
             class dbFlush {};
             class dbLoop {};
             class logEvent {};
+            class auditExport {};
         };
         class playerdb {
             file = "\x\advsec\addons\main\functions\playerdb";

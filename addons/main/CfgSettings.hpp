@@ -216,6 +216,10 @@ class ADVSEC_Settings {
     contractMilestones = 0;      // 1 = pagos por hitos: si el contrato es parcial o fallido se paga la parte de la ruta cumplida
     contractAuctionMin = 0;      // minutos de subasta por encargo ofertado (0 = sin subasta; las compañías pujan el % del pago)
     contractSubFee = 0.25;       // fracción del pago que cobra el firmante original al subcontratar un encargo
+    backupMin = 0;  // Copia de seguridad (minutos, 0 = no)
+    auditExportN = 200;  // Entradas de auditoría a exportar
+    contractRestMin = 0;  // Descanso tras un encargo (minutos, 0 = no)
+    contractFranchise = 0;  // Franquicia del seguro de material (€)
     contractRepDecay = 3;        // días para que la reputación baje/suba 1 punto hacia 0 (0 = nunca)
     contractGreyHeat = 15;
     contractHostiles = 3;        // enemigos: 0 ninguno, 1 solo generados, 2 solo los ya colocados en la zona, 3 ambos (genera los que falten)

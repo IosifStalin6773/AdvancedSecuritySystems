@@ -12718,6 +12718,79 @@ Detenidos:
                 <English>Share of the pay the original signer keeps when subcontracting a contract.</English>
                 <Spanish>Fracción del pago que cobra el firmante original cuando subcontrata un encargo.</Spanish>
             </Key>
+            <Key ID="STR_ADVSEC_m_audit_export">
+                <Original>Export log to RPT</Original>
+                <English>Export log to RPT</English>
+                <Spanish>Exportar registro al RPT</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_audit_export_no">
+                <Original>You cannot export the audit log.</Original>
+                <English>You cannot export the audit log.</English>
+                <Spanish>No puedes exportar el registro de auditoría.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_audit_export_done">
+                <Original>Log exported: %1 entries (search AUDITORIA in the RPT).</Original>
+                <English>Log exported: %1 entries (search AUDITORIA in the RPT).</English>
+                <Spanish>Registro exportado: %1 entradas (busca AUDITORIA en el RPT).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_s_auditExportN">
+                <Original>Audit entries to export</Original>
+                <English>Audit entries to export</English>
+                <Spanish>Entradas de auditoría a exportar</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_s_backupMin">
+                <Original>Backup interval (minutes, 0 = off)</Original>
+                <English>Backup interval (minutes, 0 = off)</English>
+                <Spanish>Copia de seguridad (minutos, 0 = no)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_btn_intel">
+                <Original>Cell and intel</Original>
+                <English>Cell and intel</English>
+                <Spanish>Célula e inteligencia</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_resting">
+                <Original>These officers are resting: %1.</Original>
+                <English>These officers are resting: %1.</English>
+                <Spanish>Estos agentes están de descanso: %1.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cell_status">
+                <Original>Cell morale: %1/100 · Level: %2 (up every 5 completed contracts)
+Recent intel:</Original>
+                <English>Cell morale: %1/100 · Level: %2 (up every 5 completed contracts)
+Recent intel:</English>
+                <Spanish>Moral de la célula: %1/100 · Nivel: %2 (sube cada 5 encargos cumplidos)
+Inteligencia reciente:</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_s_contractRestMin">
+                <Original>Rest after a contract (minutes, 0 = off)</Original>
+                <English>Rest after a contract (minutes, 0 = off)</English>
+                <Spanish>Descanso tras un encargo (minutos, 0 = no)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_act_roe">
+                <Original>Change ROE</Original>
+                <English>Change ROE</English>
+                <Spanish>Cambiar ROE</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_roe_title">
+                <Original>Rules of engagement: %1</Original>
+                <English>Rules of engagement: %1</English>
+                <Spanish>Reglas de enfrentamiento: %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_roe_changed">
+                <Original>Contract %1: ROE changed to %2.</Original>
+                <English>Contract %1: ROE changed to %2.</English>
+                <Spanish>Encargo %1: las ROE pasan a %2.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_not_active">
+                <Original>The contract is not in progress.</Original>
+                <English>The contract is not in progress.</English>
+                <Spanish>El encargo no está en curso.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_s_contractFranchise">
+                <Original>Insurance deductible for gear (€)</Original>
+                <English>Insurance deductible for gear (€)</English>
+                <Spanish>Franquicia del seguro de material (€)</Spanish>
+            </Key>
         </Container>
     </Package>
 </Project>

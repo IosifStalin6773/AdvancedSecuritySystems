@@ -98,6 +98,7 @@ class CfgRemoteExec {
         class ADVSEC_fnc_k9Server { allowedTargets = 2; };
         class ADVSEC_fnc_bodyServer { allowedTargets = 2; };
         class ADVSEC_fnc_ecoAI { allowedTargets = 2; };
+        class ADVSEC_fnc_auditExport { allowedTargets = 2; };
         // Respuestas del servidor a un cliente concreto
         class ADVSEC_fnc_docGive { allowedTargets = 0; };
         class ADVSEC_fnc_docView { allowedTargets = 0; };

@@ -6,6 +6,7 @@ private _b = [
     [("STR_ADVSEC_pmc_btn_contracts" call ADVSEC_fnc_L), {ADVSEC_ctrTab = "list"; ["refresh"] call ADVSEC_fnc_panelAction}],
     [("STR_ADVSEC_pmc_btn_clients" call ADVSEC_fnc_L), {ADVSEC_ctrTab = "clients"; ["refresh"] call ADVSEC_fnc_panelAction}],
     [("STR_ADVSEC_pmc_btn_declare" call ADVSEC_fnc_L), {["declare", player] remoteExecCall ["ADVSEC_fnc_ctrServer", 2]}],
+    [("STR_ADVSEC_pmc_btn_intel" call ADVSEC_fnc_L), {["intel", player] remoteExecCall ["ADVSEC_fnc_ctrServer", 2]}],
     [("STR_ADVSEC_refresh" call ADVSEC_fnc_L), {["refresh"] call ADVSEC_fnc_panelAction}]
 ];
 ["contract", ("STR_ADVSEC_pmc_terminal" call ADVSEC_fnc_L), _b, {[ADVSEC_ctrTab, player] remoteExecCall ["ADVSEC_fnc_ctrServer", 2]}] call ADVSEC_fnc_panelOpen;

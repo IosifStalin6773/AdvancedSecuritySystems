@@ -18,7 +18,7 @@ switch (_state) do {
     };
     case "En curso": {
         if ("contractAssign" call _can && {_type in ["escort", "vip"]}) then {_opts pushBack [("STR_ADVSEC_pmc_act_evac" call ADVSEC_fnc_L), "evac"]};
-        if ("contractAssign" call _can) then {_opts pushBack [("STR_ADVSEC_pmc_act_assign" call ADVSEC_fnc_L), "assign"]};
+        if ("contractAssign" call _can) then {_opts pushBack [("STR_ADVSEC_pmc_act_assign" call ADVSEC_fnc_L), "assign"]; _opts pushBack [("STR_ADVSEC_pmc_act_roe" call ADVSEC_fnc_L), "roe"]};
         if ("contractSign" call _can) then {_opts pushBack [("STR_ADVSEC_pmc_act_cancel" call ADVSEC_fnc_L), "cancel"]};
     };
     case "Revisión": {
@@ -61,6 +61,15 @@ _opts pushBack [("STR_ADVSEC_show_route_on_the_map" call ADVSEC_fnc_L), "show"];
         };
         case "sign": {["sign", player, [_id, false]] remoteExecCall ["ADVSEC_fnc_ctrServer", 2]};
         case "signIns": {["sign", player, [_id, true]] remoteExecCall ["ADVSEC_fnc_ctrServer", 2]};
+        case "roe": {
+            [_id] spawn {
+                params ["_id"];
+                sleep 0.1;
+                [format [("STR_ADVSEC_pmc_roe_title" call ADVSEC_fnc_L), _id], [
+                    [("STR_ADVSEC_pmc_roe" call ADVSEC_fnc_L), "Ámbar", ["Verde", "Ámbar", "Rojo"]]
+                ], {params ["_v", "_id"]; ["roe", player, [_id, _v select 0]] remoteExecCall ["ADVSEC_fnc_ctrServer", 2]}, _id] call ADVSEC_fnc_zeusPrompt;
+            };
+        };
         case "assign": {
             [_id] spawn {
                 params ["_id"];

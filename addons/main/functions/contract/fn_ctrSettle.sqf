@@ -43,7 +43,7 @@ if (_sf isNotEqualTo []) then {
 private _costs = 0; {_costs = _costs + (_x select 1)} forEach (_m get "costs");
 // Material perdido con seguro: se recupera la mitad
 private _lost = 0; {if ((_x select 0) == ("STR_ADVSEC_pmc_cost_lost" call ADVSEC_fnc_L)) then {_lost = _lost + (_x select 1)}} forEach (_m get "costs");
-private _ins = [0, round (_lost * 0.5)] select (_c get "insured");
+private _ins = [0, (round (_lost * 0.5) - (["contractFranchise", 0] call ADVSEC_fnc_setting)) max 0] select (_c get "insured"); // 1.22: el seguro descuenta una franquicia
 // Tesorería: el anticipo ya entró al firmar
 [_final + _bonus + _ins - _pen, format [("STR_ADVSEC_pmc_treasury_settle" call ADVSEC_fnc_L), _id, _res call ADVSEC_fnc_Lv]] call ADVSEC_fnc_ecoTreasury;
 private _profit = _adv + _final + _bonus + _ins - _pen - _costs;
@@ -99,6 +99,23 @@ if (_share > 0) then {_lines pushBack format [("STR_ADVSEC_pmc_settle_share" cal
 if ((_c get "result") isNotEqualTo "" && {(_c get "result") isNotEqualTo _res}) then {_lines pushBack ((_c get "result") call ADVSEC_fnc_repEsc)};
 _c set ["sheet", (_lines joinString "<br/>") + ([ "", "<br/>" + ((_c get "sheet") call ADVSEC_fnc_repEsc)] select ((_c get "sheet") isNotEqualTo ""))];
 _c set ["profit", _profit];
+// 1.22: célula. Moral (sube con éxitos, baja con fallos y bajas), victorias para el ascenso,
+// descanso obligatorio para los asignados y registro de inteligencia compartida.
+private _mor = localNamespace getVariable ["ADVSEC_morale", 60];
+private _dm = switch (_res) do {case "Cumplido": {5}; case "Parcial": {0}; default {-10}};
+_dm = _dm - 3 * count (_m get "incidents");
+localNamespace setVariable ["ADVSEC_morale", (_mor + _dm) max 0 min 100];
+if (_res == "Cumplido") then {localNamespace setVariable ["ADVSEC_cellWins", (localNamespace getVariable ["ADVSEC_cellWins", 0]) + 1]};
+private _rest = ["contractRestMin", 0] call ADVSEC_fnc_setting;
+if (_rest > 0) then {
+    private _rdb = localNamespace getVariable ["ADVSEC_rest", createHashMap];
+    {_rdb set [_x select 0, serverTime + _rest * 60]} forEach (_c get "assigned");
+    localNamespace setVariable ["ADVSEC_rest", _rdb];
+};
+private _intel = localNamespace getVariable ["ADVSEC_intel", []];
+_intel pushBack [call ADVSEC_fnc_now, _id, _c get "title", _res, count (_m get "incidents")];
+if (count _intel > 30) then {_intel deleteAt 0};
+localNamespace setVariable ["ADVSEC_intel", _intel];
 // Informe F-PMC-01
 private _rid = ["FPMC01", format [("STR_ADVSEC_pmc_report_title" call ADVSEC_fnc_L), _id, _c get "title"], (_c get "assigned") apply {format ["%1 [%2]", _x select 1, _x select 0]},
     format [("STR_ADVSEC_pmc_report_body" call ADVSEC_fnc_L), _id, _client call _clName, _c get "type", _c get "start", _c get "end", (_c get "roe") call ADVSEC_fnc_Lv, endl,

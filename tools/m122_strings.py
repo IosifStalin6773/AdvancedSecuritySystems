@@ -1,6 +1,20 @@
 # Textos de 1.22.0 (mecánicas nuevas). Se añaden a stringtable.xml con: python3 tools/m122_strings.py
 import os, re, xml.sax.saxutils as X
 S = {
+"STR_ADVSEC_pmc_act_roe": ("Cambiar ROE", "Change ROE"),
+"STR_ADVSEC_pmc_roe_title": ("Reglas de enfrentamiento: %1", "Rules of engagement: %1"),
+"STR_ADVSEC_pmc_roe_changed": ("Encargo %1: las ROE pasan a %2.", "Contract %1: ROE changed to %2."),
+"STR_ADVSEC_pmc_not_active": ("El encargo no está en curso.", "The contract is not in progress."),
+"STR_ADVSEC_s_contractFranchise": ("Franquicia del seguro de material (€)", "Insurance deductible for gear (€)"),
+"STR_ADVSEC_pmc_btn_intel": ("Célula e inteligencia", "Cell and intel"),
+"STR_ADVSEC_pmc_resting": ("Estos agentes están de descanso: %1.", "These officers are resting: %1."),
+"STR_ADVSEC_pmc_cell_status": ("Moral de la célula: %1/100 · Nivel: %2 (sube cada 5 encargos cumplidos)\nInteligencia reciente:", "Cell morale: %1/100 · Level: %2 (up every 5 completed contracts)\nRecent intel:"),
+"STR_ADVSEC_s_contractRestMin": ("Descanso tras un encargo (minutos, 0 = no)", "Rest after a contract (minutes, 0 = off)"),
+"STR_ADVSEC_m_audit_export": ("Exportar registro al RPT", "Export log to RPT"),
+"STR_ADVSEC_m_audit_export_no": ("No puedes exportar el registro de auditoría.", "You cannot export the audit log."),
+"STR_ADVSEC_m_audit_export_done": ("Registro exportado: %1 entradas (busca AUDITORIA en el RPT).", "Log exported: %1 entries (search AUDITORIA in the RPT)."),
+"STR_ADVSEC_s_auditExportN": ("Entradas de auditoría a exportar", "Audit entries to export"),
+"STR_ADVSEC_s_backupMin": ("Copia de seguridad (minutos, 0 = no)", "Backup interval (minutes, 0 = off)"),
 "STR_ADVSEC_pmc_act_sub": ("Subcontratar", "Subcontract"),
 "STR_ADVSEC_pmc_sub_to": ("Compañía que recibe el encargo", "Company taking the contract"),
 "STR_ADVSEC_pmc_sub_done": ("Encargo %1 cedido a %2 (subcontrata).", "Contract %1 handed to %2 (subcontract)."),
