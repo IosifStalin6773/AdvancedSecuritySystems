@@ -25,10 +25,17 @@ if (_eco) then {
     private _l = (_player getVariable ["ADVSEC_jailUntil", 0]) - serverTime;
     if (_l > 0 && {_l < 1e6}) then {_money pushBack ["advsec_me_bail", ("STR_ADVSEC_pay_bail" call ADVSEC_fnc_L), ADVSEC_icJail, {["bail", _player] remoteExecCall ["ADVSEC_fnc_licServer", 2]}, []]};
     _money pushBack ["advsec_me_veh", ("STR_ADVSEC_my_vehicles" call ADVSEC_fnc_L), ADVSEC_icCar, {[] call ADVSEC_fnc_plateMine}, []];
+    _money pushBack ["advsec_me_imp", ("STR_ADVSEC_m_imp_title" call ADVSEC_fnc_L), ADVSEC_icCar, {[] call ADVSEC_fnc_impoundOpen}, []];
 };
 private _mine = (nearestObjects [_player, ["LandVehicle", "Air", "Ship"], 10]) select {(_x getVariable ["ADVSEC_plateOwner", ""]) isEqualTo getPlayerUID _player};
 if (_mine isNotEqualTo []) then {
     _money pushBack ["advsec_me_lock", ("STR_ADVSEC_lock_unlock_my_vehicle" call ADVSEC_fnc_L), ADVSEC_icKey, {["lock", _player, [_args select 0]] remoteExecCall ["ADVSEC_fnc_plateServer", 2]}, [_mine select 0]];
+    if ((["itvDays", 30] call ADVSEC_fnc_setting) > 0) then {
+        private _pl = (_mine select 0) getVariable ["ADVSEC_plate", ""];
+        if (_pl isNotEqualTo "") then {
+            _money pushBack ["advsec_me_itv", format [("STR_ADVSEC_m_itv_menu" call ADVSEC_fnc_L), _pl], ADVSEC_icCar, {["itvRenew", _player, [_args select 0]] remoteExecCall ["ADVSEC_fnc_trafficServer", 2]}, [_pl]];
+        };
+    };
 };
 ["advsec_me_money", [("STR_ADVSEC_money_and_fines" call ADVSEC_fnc_L), ("STR_ADVSEC_money_fines_and_vehicles" call ADVSEC_fnc_L)] select _eco, ADVSEC_icDoc, _money] call _grp;
 

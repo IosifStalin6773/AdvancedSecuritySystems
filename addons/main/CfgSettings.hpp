@@ -65,6 +65,8 @@ class ADVSEC_Settings {
         cellManage[] = {"PMC", 4};     // asignar roles de célula
         cyberView[] = {"AI", 2};      // terminal ciber: alertas, registros, cronologías y CCTV
         cyberManage[] = {"AI", 3};    // restaurar sistemas comprometidos
+        traffic[] = {"PM", 2};        // 1.22: desvíos, carriles, grúa, depósito, accidentes, ITV y libro de paso
+        breath[] = {"PM", 1};         // 1.22: test de alcoholemia
     };
 
     // Evidencias
@@ -356,4 +358,22 @@ class ADVSEC_Ranks {
     class R10 { abbr = "Brig."; name = "$STR_ADVSEC_warrant_officer"; category = "Oficial"; arma = "LIEUTENANT"; };
     class R11 { abbr = "Tte."; name = "$STR_ADVSEC_lieutenant"; category = "Oficial"; arma = "CAPTAIN"; };
     class R12 { abbr = "Cap."; name = "$STR_ADVSEC_captain"; category = "Oficial"; arma = "MAJOR"; };
+
+    // 1.22: mecánicas de tráfico, control de carretera y patrullas
+    itvDays = 30;                 // días de validez de la ITV (0 = sin ITV)
+    itvFee = 120;
+    itvFine = 100;                // multa por ITV caducada detectada en el control
+    breathLimit = 0.25;           // g/l admitidos en el test de alcoholemia
+    breathFine = 400;
+    breathAIChance = 0.15;        // probabilidad de que un conductor IA dé positivo
+    towFee = 300;                 // tasa del depósito
+    convoyRadius = 80;            // distancia al destino para considerar llegado el convoy
+    convoyBonus = 0;              // prima por convoy completado
+    divertRadius = 150;           // radio de un desvío
+    patrolUnwatchedMin = 0;       // minutos sin patrulla para avisar en una zona (0 = desactivado)
+    patrolNightFactor = 1.5;      // multiplicador de la prima de patrulla de noche
+    checkpointANPR = 1;           // lectura automática de matrícula en los controles
+    checkpointGate = 1;           // barrera física en los controles
+    checkpointAlertRigor = 1;     // más registros con la alerta de base alta
+    checkpointEveryN = 0;         // registrar cada N vehículos (0 = solo por sorteo)
 };

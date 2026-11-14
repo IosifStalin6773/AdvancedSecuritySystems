@@ -503,5 +503,22 @@ class CfgFunctions {
             class keyAction {};
             class keyHelp {};
         };
+        class traffic {
+            file = "\x\advsec\addons\main\functions\traffic";
+            class speedZone {};
+            class itvState {};
+            class trafficLoop {};
+            class trafficServer {};
+            class convoyPlan {};
+            class impoundOpen {};
+        };
+        class checkpointAnpr {
+            file = "\x\advsec\addons\main\functions\checkpoint";
+            class cpAnpr {};
+        };
+        class serverMapDB {
+            file = "\x\advsec\addons\main\functions\server";
+            class mapDB {};
+        };
     };
 };

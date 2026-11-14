@@ -41,6 +41,25 @@ if (_mode in ["self", "company"]) exitWith {
     };
     _po pushBack ["advsec_pm_unload", ("STR_ADVSEC_take_detainees_out_of_the" call ADVSEC_fnc_L), ADVSEC_icCar, {[_player] call ADVSEC_fnc_policeUnload}, []];
     if ([_player, "radar"] call ADVSEC_fnc_perm) then {_po pushBack ["advsec_pm_radar", ("STR_ADVSEC_speed_gun_aim" call ADVSEC_fnc_L), ADVSEC_icCar, {[] call ADVSEC_fnc_radarUse}, []]};
+    // 1.22: tráfico y vía pública
+    if ([_player, "traffic"] call ADVSEC_fnc_perm) then {
+        private _tv = (nearestObjects [_player, ["LandVehicle"], 12]) param [0, objNull];
+        if (!isNull _tv) then {
+            _po pushBack ["advsec_pm_tow", format [("STR_ADVSEC_m_tow_menu" call ADVSEC_fnc_L), getText (configOf _tv >> "displayName")], ADVSEC_icCar, {["tow", _player, [_args select 0]] remoteExecCall ["ADVSEC_fnc_trafficServer", 2]}, [_tv]];
+        };
+        _po pushBack ["advsec_pm_acc", ("STR_ADVSEC_m_acc_menu" call ADVSEC_fnc_L), ADVSEC_icDoc, {["accident", _player] remoteExecCall ["ADVSEC_fnc_trafficServer", 2]}, []];
+        _po pushBack ["advsec_pm_lane", ("STR_ADVSEC_m_lane_menu" call ADVSEC_fnc_L), ADVSEC_icCar, {["lane", _player] remoteExecCall ["ADVSEC_fnc_trafficServer", 2]}, []];
+        _po pushBack ["advsec_pm_lane0", ("STR_ADVSEC_m_lane_menu_off" call ADVSEC_fnc_L), ADVSEC_icCar, {["laneEnd", _player] remoteExecCall ["ADVSEC_fnc_trafficServer", 2]}, []];
+        _po pushBack ["advsec_pm_div", ("STR_ADVSEC_m_div_menu" call ADVSEC_fnc_L), ADVSEC_icCar, {["divert", _player] remoteExecCall ["ADVSEC_fnc_trafficServer", 2]}, []];
+        _po pushBack ["advsec_pm_div0", ("STR_ADVSEC_m_div_menu_off" call ADVSEC_fnc_L), ADVSEC_icCar, {["divertEnd", _player] remoteExecCall ["ADVSEC_fnc_trafficServer", 2]}, []];
+        _po pushBack ["advsec_pm_imp", ("STR_ADVSEC_m_imp_title" call ADVSEC_fnc_L), ADVSEC_icCar, {[] call ADVSEC_fnc_impoundOpen}, []];
+    };
+    if ([_player, "patrolPlan"] call ADVSEC_fnc_perm) then {
+        _po pushBack ["advsec_pm_convoy", ("STR_ADVSEC_m_convoy_new" call ADVSEC_fnc_L), ADVSEC_icCar, {[] call ADVSEC_fnc_convoyPlan}, []];
+    };
+    if (((getPosATL _player) nearObjects ["Land_HelipadEmpty_F", 120]) findIf {(_x getVariable ["ADVSEC_cpId", -1]) > 0} >= 0) then {
+        _po pushBack ["advsec_pm_book", ("STR_ADVSEC_m_book_menu" call ADVSEC_fnc_L), ADVSEC_icDoc, {["cpBook", _player] remoteExecCall ["ADVSEC_fnc_trafficServer", 2]}, []];
+    };
     if ([_player, "k9"] call ADVSEC_fnc_perm) then {
         _po pushBack ["advsec_pm_k9", [("STR_ADVSEC_k9_call_the_dog" call ADVSEC_fnc_L), ("STR_ADVSEC_k9_dismiss_the_dog" call ADVSEC_fnc_L)] select !isNull (_player getVariable ["ADVSEC_k9", objNull]), ADVSEC_icSearch, {["toggle", _player] remoteExecCall ["ADVSEC_fnc_k9Server", 2]}, []];
         if (!isNull (_player getVariable ["ADVSEC_k9", objNull])) then {
@@ -110,6 +129,12 @@ if (isPlayer _target && {[_player, "licenseRevoke"] call ADVSEC_fnc_perm}) then 
 };
 if ([_player, "fine"] call ADVSEC_fnc_perm) then {
     ["advsec_pm_fine", ("STR_ADVSEC_fine_5" call ADVSEC_fnc_L), ADVSEC_icDoc, {[_target] call ADVSEC_fnc_finePrompt}, []] call _add;
+};
+if ([_player, "breath"] call ADVSEC_fnc_perm) then {
+    ["advsec_pm_breath", ("STR_ADVSEC_m_breath_menu" call ADVSEC_fnc_L), ADVSEC_icSearch, {["breath", _player, [_target]] remoteExecCall ["ADVSEC_fnc_trafficServer", 2]}, []] call _add;
+};
+if ([_player] call ADVSEC_fnc_isZeus) then {
+    ["advsec_pm_drunk", ("STR_ADVSEC_m_drunk_menu" call ADVSEC_fnc_L), ADVSEC_icSearch, {["setDrunk", _player, [_target, 0.4 + random 0.8]] remoteExecCall ["ADVSEC_fnc_trafficServer", 2]}, []] call _add;
 };
 ["advsec_pm_qry", ("STR_ADVSEC_check_record" call ADVSEC_fnc_L), ADVSEC_icSearch, {[_target] call ADVSEC_fnc_queryOpen}, []] call _add;
 ["advsec_pm_docs", ("STR_ADVSEC_request_documents" call ADVSEC_fnc_L), ADVSEC_icDoc, {[_target] call ADVSEC_fnc_docListOpen}, []] call _add;

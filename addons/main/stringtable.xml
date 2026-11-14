@@ -11943,6 +11943,416 @@ Posición del VIP en vivo: %1</Spanish>
                 <English>Removed from patrol %1</English>
                 <Spanish>Quitado de la patrulla %1</Spanish>
             </Key>
+            <Key ID="STR_ADVSEC_m_acc_body">
+                <Original>Accident at %1. Vehicles involved: %3.
+Recorded by %2.
+%4</Original>
+                <English>Accident at %1. Vehicles involved: %3.
+Recorded by %2.
+%4</English>
+                <Spanish>Accidente en %1. Vehículos implicados: %3.
+Registrado por %2.
+%4</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_acc_do">
+                <Original>You are not allowed to record accidents.</Original>
+                <English>You are not allowed to record accidents.</English>
+                <Spanish>No tienes permiso para registrar accidentes.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_acc_done">
+                <Original>Accident report %1 created (%2 vehicles).</Original>
+                <English>Accident report %1 created (%2 vehicles).</English>
+                <Spanish>Informe de accidente %1 creado (%2 vehículos).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_acc_menu">
+                <Original>Record accident</Original>
+                <English>Record accident</English>
+                <Spanish>Registrar accidente</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_acc_nocrew">
+                <Original>no occupants</Original>
+                <English>no occupants</English>
+                <Spanish>sin ocupantes</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_acc_none">
+                <Original>No damaged vehicles nearby.</Original>
+                <English>No damaged vehicles nearby.</English>
+                <Spanish>No hay vehículos dañados cerca.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_acc_title">
+                <Original>Traffic accident at %1</Original>
+                <English>Traffic accident at %1</English>
+                <Spanish>Accidente de tráfico en %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_anpr_hit">
+                <Original>PLATE READ at %1: %2 · %3</Original>
+                <English>PLATE READ at %1: %2 · %3</English>
+                <Spanish>LECTURA DE MATRÍCULA en %1: %2 · %3</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_anpr_itv">
+                <Original>Expired inspection</Original>
+                <English>Expired inspection</English>
+                <Spanish>ITV caducada</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_anpr_stolen">
+                <Original>vehicle reported stolen</Original>
+                <English>vehicle reported stolen</English>
+                <Spanish>vehículo denunciado como robado</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_anpr_wanted">
+                <Original>owner wanted: %1</Original>
+                <English>owner wanted: %1</English>
+                <Spanish>titular con requisitoria: %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_book_det">
+                <Original>Time: %1
+Plate: %2
+Vehicle: %3
+Occupants: %4
+Result: %5</Original>
+                <English>Time: %1
+Plate: %2
+Vehicle: %3
+Occupants: %4
+Result: %5</English>
+                <Spanish>Hora: %1
+Matrícula: %2
+Vehículo: %3
+Ocupantes: %4
+Resultado: %5</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_book_head">
+                <Original>Checkpoint log · %1 (%2 entries)</Original>
+                <English>Checkpoint log · %1 (%2 entries)</English>
+                <Spanish>Libro de paso · %1 (%2 registros)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_book_menu">
+                <Original>Checkpoint log</Original>
+                <English>Checkpoint log</English>
+                <Spanish>Libro de paso del control</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_book_none">
+                <Original>No road checkpoint nearby.</Original>
+                <English>No road checkpoint nearby.</English>
+                <Spanish>No hay ningún control de carretera cerca.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_breath_body">
+                <Original>Positive breath test: %1 (limit %2) at %3. Recorded by %4. Fine %5.</Original>
+                <English>Positive breath test: %1 (limit %2) at %3. Recorded by %4. Fine %5.</English>
+                <Spanish>Test de alcoholemia positivo: %1 g/l (límite %2) en %3. Registrado por %4. Multa %5.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_breath_do">
+                <Original>You are not allowed to run breath tests.</Original>
+                <English>You are not allowed to run breath tests.</English>
+                <Spanish>No tienes permiso para hacer test de alcoholemia.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_breath_doing">
+                <Original>Running breath test...</Original>
+                <English>Running breath test...</English>
+                <Spanish>Realizando test de alcoholemia...</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_breath_menu">
+                <Original>Breath test</Original>
+                <English>Breath test</English>
+                <Spanish>Test de alcoholemia</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_breath_neg">
+                <Original>%1: negative (%2, limit %3).</Original>
+                <English>%1: negative (%2, limit %3).</English>
+                <Spanish>%1: negativo (%2 g/l, límite %3).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_breath_pos">
+                <Original>%1: POSITIVE %2 (limit %3). Fine of %4 %5.</Original>
+                <English>%1: POSITIVE %2 (limit %3). Fine of %4 %5.</English>
+                <Spanish>%1: POSITIVO %2 g/l (límite %3). Multa de %4 %5.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_breath_pos_you">
+                <Original>Positive test: %1. Fine of %2 %3.</Original>
+                <English>Positive test: %1. Fine of %2 %3.</English>
+                <Spanish>Test positivo: %1 g/l. Multa de %2 %3.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_breath_reason">
+                <Original>Driving under the influence (%1)</Original>
+                <English>Driving under the influence (%1)</English>
+                <Spanish>Conducir con alcohol (%1 g/l)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_breath_rep">
+                <Original>Positive breath test: %1</Original>
+                <English>Positive breath test: %1</English>
+                <Spanish>Test de alcoholemia positivo: %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_convoy_bad">
+                <Original>Invalid convoy: pick vehicles and a destination on the map.</Original>
+                <English>Invalid convoy: pick vehicles and a destination on the map.</English>
+                <Spanish>Convoy no válido: elige vehículos y un destino en el mapa.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_convoy_bonus">
+                <Original>Convoy escort bonus %1</Original>
+                <English>Convoy escort bonus %1</English>
+                <Spanish>Prima de escolta de convoy %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_convoy_click">
+                <Original>Mark the convoy destination on the map (left click).</Original>
+                <English>Mark the convoy destination on the map (left click).</English>
+                <Spanish>Marca el destino del convoy en el mapa (clic izquierdo).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_convoy_do">
+                <Original>You are not allowed to escort convoys.</Original>
+                <English>You are not allowed to escort convoys.</English>
+                <Spanish>No tienes permiso para escoltar convoyes.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_convoy_done">
+                <Original>Convoy "%1" reached its destination.</Original>
+                <English>Convoy "%1" reached its destination.</English>
+                <Spanish>Convoy «%1» llegó al destino.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_convoy_lost">
+                <Original>Convoy "%1" lost: a vehicle was destroyed.</Original>
+                <English>Convoy "%1" lost: a vehicle was destroyed.</English>
+                <Spanish>Convoy «%1» perdido: un vehículo fue destruido.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_convoy_name">
+                <Original>Convoy %1</Original>
+                <English>Convoy %1</English>
+                <Spanish>Convoy %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_convoy_new">
+                <Original>Convoy escort</Original>
+                <English>Convoy escort</English>
+                <Spanish>Escolta de convoy</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_convoy_novehs">
+                <Original>No vehicles nearby for the convoy.</Original>
+                <English>No vehicles nearby for the convoy.</English>
+                <Spanish>No hay vehículos cerca para el convoy.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_convoy_ok">
+                <Original>Convoy %1 under way with %2 vehicles.</Original>
+                <English>Convoy %1 under way with %2 vehicles.</English>
+                <Spanish>Convoy %1 en marcha con %2 vehículos.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_convoy_vehs">
+                <Original>Convoy vehicles</Original>
+                <English>Convoy vehicles</English>
+                <Spanish>Vehículos del convoy</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_div_do">
+                <Original>You are not allowed to divert traffic.</Original>
+                <English>You are not allowed to divert traffic.</English>
+                <Spanish>No tienes permiso para desviar el tráfico.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_div_menu">
+                <Original>Divert traffic here</Original>
+                <English>Divert traffic here</English>
+                <Spanish>Desviar tráfico aquí</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_div_menu_off">
+                <Original>Remove nearest diversion</Original>
+                <English>Remove nearest diversion</English>
+                <Spanish>Quitar el desvío más cercano</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_div_none">
+                <Original>No diversions nearby.</Original>
+                <English>No diversions nearby.</English>
+                <Spanish>No hay desvíos cerca.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_div_off">
+                <Original>Diversion removed.</Original>
+                <English>Diversion removed.</English>
+                <Spanish>Desvío retirado.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_div_ok">
+                <Original>Diversion active: civilians move away from the area.</Original>
+                <English>Diversion active: civilians move away from the area.</English>
+                <Spanish>Desvío activo: los civiles se alejan de la zona.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_drunk_menu">
+                <Original>Mark: impaired driver (Zeus)</Original>
+                <English>Mark: impaired driver (Zeus)</English>
+                <Spanish>Marcar: conducción bajo alcohol (Zeus)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_drunk_set">
+                <Original>%1 marked at %2.</Original>
+                <English>%1 marked at %2.</English>
+                <Spanish>%1 marcado con %2 g/l.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_imp_det">
+                <Original>Plate: %1
+Vehicle: %2
+Impounded: %3
+Fee: %4 %5
+Status: %6</Original>
+                <English>Plate: %1
+Vehicle: %2
+Impounded: %3
+Fee: %4 %5
+Status: %6</English>
+                <Spanish>Matrícula: %1
+Vehículo: %2
+Depositado: %3
+Tasa: %4 %5
+Estado: %6</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_imp_gone">
+                <Original>removed</Original>
+                <English>removed</English>
+                <Spanish>retirado</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_imp_head">
+                <Original>Vehicle pound (%1)</Original>
+                <English>Vehicle pound (%1)</English>
+                <Spanish>Depósito de vehículos (%1)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_imp_kept">
+                <Original>in the pound</Original>
+                <English>in the pound</English>
+                <Spanish>en el depósito</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_imp_paid">
+                <Original>%1: fee of %2 %3 paid. Vehicle recovered.</Original>
+                <English>%1: fee of %2 %3 paid. Vehicle recovered.</English>
+                <Spanish>%1: tasa de %2 %3 pagada. Vehículo recuperado.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_imp_pay">
+                <Original>Recover %1 from the pound</Original>
+                <English>Recover %1 from the pound</English>
+                <Spanish>Recuperar %1 del depósito</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_imp_payBtn">
+                <Original>Pay and recover</Original>
+                <English>Pay and recover</English>
+                <Spanish>Pagar y recuperar</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_imp_title">
+                <Original>Vehicle pound</Original>
+                <English>Vehicle pound</English>
+                <Spanish>Depósito de vehículos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_itv_fine">
+                <Original>Fine for expired inspection (%1)</Original>
+                <English>Fine for expired inspection (%1)</English>
+                <Spanish>Multa por ITV caducada (%1)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_itv_menu">
+                <Original>Renew inspection of %1</Original>
+                <English>Renew inspection of %1</English>
+                <Spanish>Renovar ITV de %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_itv_ok">
+                <Original>Inspection of %1 renewed for %2 days.</Original>
+                <English>Inspection of %1 renewed for %2 days.</English>
+                <Spanish>ITV de %1 renovada por %2 días.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_itv_pay">
+                <Original>Inspection of %1</Original>
+                <English>Inspection of %1</English>
+                <Spanish>ITV de %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_lane_do">
+                <Original>You are not allowed to close lanes.</Original>
+                <English>You are not allowed to close lanes.</English>
+                <Spanish>No tienes permiso para cerrar carriles.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_lane_menu">
+                <Original>Close lane here (cones)</Original>
+                <English>Close lane here (cones)</English>
+                <Spanish>Cerrar carril aquí (conos)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_lane_menu_off">
+                <Original>Remove nearest lane closure</Original>
+                <English>Remove nearest lane closure</English>
+                <Spanish>Quitar el cierre más cercano</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_lane_none">
+                <Original>No closures nearby.</Original>
+                <English>No closures nearby.</English>
+                <Spanish>No hay cierres cerca.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_lane_off">
+                <Original>Closure removed.</Original>
+                <English>Closure removed.</English>
+                <Spanish>Cierre retirado.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_lane_ok">
+                <Original>Lane closed: vehicles slow to 25 km/h.</Original>
+                <English>Lane closed: vehicles slow to 25 km/h.</English>
+                <Spanish>Carril cerrado: los vehículos reducen a 25 km/h.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_patrol_handed">
+                <Original>Patrol %1 handed over to: %2.</Original>
+                <English>Patrol %1 handed over to: %2.</English>
+                <Spanish>Patrulla %1 traspasada a: %2.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_patrol_handover">
+                <Original>Hand over patrol</Original>
+                <English>Hand over patrol</English>
+                <Spanish>Traspasar patrulla</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_patrol_handover_btn">
+                <Original>Hand over to other officers</Original>
+                <English>Hand over to other officers</English>
+                <Spanish>Traspasar a otros agentes</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_patrol_lap">
+                <Original>Patrol %1: lap %2 of %3.</Original>
+                <English>Patrol %1: lap %2 of %3.</English>
+                <Spanish>Patrulla %1: vuelta %2 de %3.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_patrol_laps">
+                <Original>Laps (round)</Original>
+                <English>Laps (round)</English>
+                <Spanish>Vueltas (ronda)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_patrol_route">
+                <Original>Point route</Original>
+                <English>Point route</English>
+                <Spanish>Ruta de puntos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_patrol_type">
+                <Original>Patrol type</Original>
+                <English>Patrol type</English>
+                <Spanish>Tipo de patrulla</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_patrol_zone">
+                <Original>Zone watch (time in area)</Original>
+                <English>Zone watch (time in area)</English>
+                <Spanish>Vigilancia de zona (tiempo en el área)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_tow_do">
+                <Original>You are not allowed to tow vehicles.</Original>
+                <English>You are not allowed to tow vehicles.</English>
+                <Spanish>No tienes permiso para retirar vehículos.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_tow_doing">
+                <Original>Towing vehicle...</Original>
+                <English>Towing vehicle...</English>
+                <Spanish>Retirando vehículo...</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_tow_done">
+                <Original>Vehicle %1 sent to the pound.</Original>
+                <English>Vehicle %1 sent to the pound.</English>
+                <Spanish>Vehículo %1 enviado al depósito.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_tow_menu">
+                <Original>Tow %1 to the pound</Original>
+                <English>Tow %1 to the pound</English>
+                <Spanish>Retirar %1 al depósito</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_tow_no">
+                <Original>Cannot tow: vehicle occupied or too far.</Original>
+                <English>Cannot tow: vehicle occupied or too far.</English>
+                <Spanish>No se puede retirar: vehículo ocupado o demasiado lejos.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_tow_owner">
+                <Original>Your vehicle %1 is in the pound.</Original>
+                <English>Your vehicle %1 is in the pound.</English>
+                <Spanish>Tu vehículo %1 está en el depósito.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_zone_unwatched">
+                <Original>Zone "%1" unpatrolled for %2 min.</Original>
+                <English>Zone "%1" unpatrolled for %2 min.</English>
+                <Spanish>Zona «%1» sin patrulla desde hace %2 min.</Spanish>
+            </Key>
         </Container>
     </Package>
 </Project>

@@ -6,6 +6,11 @@
 params ["_anchor", "_pos", "_name", "_radius", "_officers", ["_owned", []]];
 private _state = createHashMap;     // netId vehículo -> [fase, tiempo, vehículo, agente, resultados, detenciones]
 private _cleared = createHashMap;   // netId vehículo -> serverTime hasta el que puede pasar
+// 1.22: libro de paso, inspección por sorteo y barrera
+private _book = [];
+_anchor setVariable ["ADVSEC_cpBook", _book];
+private _nth = 0;
+private _gate = _anchor getVariable ["ADVSEC_cpGate", objNull];
 private _idTypes = ["checkpointDocs", ["IDCard", "Passport", "MilitaryID", "MPBadge", "IABadge"]] call ADVSEC_fnc_setting;
 private _say = {params ["_veh", "_txt"]; {if (isPlayer _x) then {_txt remoteExecCall ["hint", _x]}} forEach crew _veh};
 private _popup = {params ["_veh", "_t", "_txt"]; {if (isPlayer _x) then {[_t, _txt] remoteExecCall ["ADVSEC_fnc_cpAlert", _x]}} forEach crew _veh};
@@ -57,6 +62,12 @@ private _release = {
     [_off] call _goHome;
     _state deleteAt _k;
     _cleared set [_k, serverTime + _secs];
+    _book pushBack [call ADVSEC_fnc_now, _veh getVariable ["ADVSEC_plate", getPlateNumber _veh], getText (configOf _veh >> "displayName"), ((crew _veh) apply {name _x}) joinString ", ", [_txt regexReplace ["<[^>]+>", ""], "—"] select (_txt isEqualTo "")];
+    if (count _book > 80) then {_book deleteAt 0};
+    if (!isNull _gate) then {
+        _gate animate ["Door_1_rot", 1];
+        [_gate] spawn {params ["_g"]; sleep 10; if (!isNull _g) then {_g animate ["Door_1_rot", 0]}};
+    };
     if (_txt isNotEqualTo "") then {[_veh, ("STR_ADVSEC_you_may_proceed" call ADVSEC_fnc_L), _txt] call _popup};
 };
 private _fled = {
@@ -85,6 +96,7 @@ while {!isNull _anchor} do {
         if !(netId _veh in _state) then {
             _state set [netId _veh, ["stop", serverTime, _veh, objNull, [], [], 0, false, owner _veh, serverTime]];
             [_veh, true] call _hold;
+            [_veh, _name] call ADVSEC_fnc_cpAnpr;
             [_veh, "ALTO", format [("STR_ADVSEC_stop_the_vehicle_and_have" call ADVSEC_fnc_L), _name]] call _popup;
             {
                 if (alive _x) then {[_x, "doWatch", _veh] call _cmd; [_x, "playActionNow", "gestureFreeze"] call _cmd};
@@ -161,7 +173,13 @@ while {!isNull _anchor} do {
                 } forEach _players;
                 _veh setVariable ["ADVSEC_cpRefused", nil];
                 private _papers = ["checkpointPapersTime", 8] call ADVSEC_fnc_setting;
-                private _search = _arrest isEqualTo [] && {random 1 < (["checkpointSearchChance", 1] call ADVSEC_fnc_setting)} && {_offOk};
+                // 1.22: sorteo cada N vehículos, rigor según la alerta de base y registro forzado si la matrícula dio aviso
+                _nth = _nth + 1;
+                private _chance = ["checkpointSearchChance", 1] call ADVSEC_fnc_setting;
+                if ((["checkpointAlertRigor", 1] call ADVSEC_fnc_setting) isEqualTo 1) then {_chance = _chance + 0.35 * (missionNamespace getVariable ["ADVSEC_alertLevel", 0])};
+                private _everyN = ["checkpointEveryN", 0] call ADVSEC_fnc_setting;
+                private _forced = (_everyN > 0 && {_nth mod _everyN == 0}) || {(_veh getVariable ["ADVSEC_cpFlags", []]) isNotEqualTo []};
+                private _search = _arrest isEqualTo [] && {_forced || {random 1 < _chance}} && {_offOk};
                 private _total = _papers + ([0, ["checkpointVehicleTime", 15] call ADVSEC_fnc_setting] select _search);
                 _e set [6, serverTime + _total];
                 _e set [7, _search];
@@ -183,6 +201,20 @@ while {!isNull _anchor} do {
                         _out pushBack format [("STR_ADVSEC_no_documents_fine" call ADVSEC_fnc_L), name _u, _fid];
                     };
                 } forEach ((crew _veh) select {alive _x});
+                // 1.22: avisos de la lectura automática de matrícula
+                {
+                    switch (_x select 0) do {
+                        case "stolen": {if (!isNull _d) then {_arrest pushBackUnique [_d, ("STR_ADVSEC_m_anpr_stolen" call ADVSEC_fnc_L)]}};
+                        case "wantedOwner": {_out pushBack format [("STR_ADVSEC_m_anpr_wanted" call ADVSEC_fnc_L), _x param [1, ""]]};
+                        case "itv": {
+                            if (!isNull _d && {isPlayer _d}) then {
+                                private _fid = [_d, ["itvFine", 100] call ADVSEC_fnc_setting, ("STR_ADVSEC_m_anpr_itv" call ADVSEC_fnc_L), _name, ""] call ADVSEC_fnc_fineAdd;
+                                _out pushBack format [("STR_ADVSEC_m_itv_fine" call ADVSEC_fnc_L), _fid];
+                            };
+                        };
+                    };
+                } forEach (_veh getVariable ["ADVSEC_cpFlags", []]);
+                _veh setVariable ["ADVSEC_cpFlags", nil];
                 if (_e param [7, false] && {_arrest isEqualTo []} && {_offOk}) then {
                     private _bb = boundingBoxReal _veh;
                     [_off, "doWatch", objNull] call _cmd;
