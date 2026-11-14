@@ -39,6 +39,7 @@ switch (_action) do {
             if (_bac > _lim) then {
                 private _amt = ["breathFine", 400] call ADVSEC_fnc_setting;
                 private _fid = [_t, _amt, format [("STR_ADVSEC_m_breath_reason" call ADVSEC_fnc_L), _bac], name _caller, getPlayerUID _caller] call ADVSEC_fnc_fineAdd;
+                [_t, -4, format [("STR_ADVSEC_m_breath_reason" call ADVSEC_fnc_L), _bac]] call ADVSEC_fnc_pointsAdd;
                 ["FPM01", format [("STR_ADVSEC_m_breath_rep" call ADVSEC_fnc_L), name _t], [format ["%1 [%2]", name _t, getPlayerUID _t]],
                     format [("STR_ADVSEC_m_breath_body" call ADVSEC_fnc_L), _bac, _lim, mapGridPosition _t, name _caller, _fid], "Grave", false] call ADVSEC_fnc_repSystem;
                 (format [("STR_ADVSEC_m_breath_pos" call ADVSEC_fnc_L), name _t, _bac, _lim, _amt, _cur]) remoteExecCall ["hint", _caller];

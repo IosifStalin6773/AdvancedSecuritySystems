@@ -516,6 +516,14 @@ class CfgFunctions {
             file = "\x\advsec\addons\main\functions\checkpoint";
             class cpAnpr {};
         };
+        class evidenceDecay {
+            file = "\x\advsec\addons\main\functions\evidence";
+            class evDecayLoop {};
+        };
+        class finesPoints {
+            file = "\x\advsec\addons\main\functions\fines";
+            class pointsAdd {};
+        };
         class serverMapDB {
             file = "\x\advsec\addons\main\functions\server";
             class mapDB {};

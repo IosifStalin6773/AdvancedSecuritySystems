@@ -77,6 +77,8 @@ S = {
 "STR_ADVSEC_m_tow_no": ("No se puede retirar: vehículo ocupado o demasiado lejos.", "Cannot tow: vehicle occupied or too far."),
 "STR_ADVSEC_m_tow_owner": ("Tu vehículo %1 está en el depósito.", "Your vehicle %1 is in the pound."),
 "STR_ADVSEC_m_zone_unwatched": ("Zona «%1» sin patrulla desde hace %2 min.", "Zone \"%1\" unpatrolled for %2 min."),
+"STR_ADVSEC_m_points_now": ("Puntos de carnet: %1 (total %2).", "Licence points: %1 (total %2)."),
+"STR_ADVSEC_m_points_lost": ("%1 ha perdido la licencia por llegar a 0 puntos.", "%1 lost their licence after reaching 0 points."),
 }
 root = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'addons', 'main')
 p = os.path.join(root, 'stringtable.xml')

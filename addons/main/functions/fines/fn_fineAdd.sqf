@@ -8,6 +8,9 @@ private _sn = str _n;
 while {count _sn < 4} do {_sn = "0" + _sn};
 private _id = format ["M-%1-%2", (date select 0), _sn];
 private _list = _db getOrDefault [_key, []];
+// 1.22: reincidencia (cada multa anterior sube el importe, con tope)
+private _rec = ["fineRecidivism", 0] call ADVSEC_fnc_setting;
+if (_rec > 0) then {_amount = round (_amount * (1 + (_rec * ((count _list) min 3))))};
 _list pushBack [_id, call ADVSEC_fnc_now, _amount, _reason, _by, _byUid, "Pendiente", name _unit, ""];
 _db set [_key, _list];
 ["fines"] call ADVSEC_fnc_dbDirty;

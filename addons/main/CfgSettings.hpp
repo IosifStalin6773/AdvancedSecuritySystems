@@ -376,4 +376,9 @@ class ADVSEC_Ranks {
     checkpointGate = 1;           // barrera física en los controles
     checkpointAlertRigor = 1;     // más registros con la alerta de base alta
     checkpointEveryN = 0;         // registrar cada N vehículos (0 = solo por sorteo)
+    evBloodDecayMin = 0;          // minutos hasta que la sangre del suelo desaparece (0 = nunca)
+    evDestroyMin = 0;             // minutos en bolsa hasta destruir la prueba con auditoría (0 = nunca)
+    fineRecidivism = 0;           // recargo por multa anterior (0.5 = +50 % por cada anterior, tope 3)
+    pointsStart = 0;              // puntos de carnet iniciales (0 = sin puntos)
+    pointsLicenseType = "";       // tipo de licencia que se retira al llegar a 0 puntos ("" = ninguna)
 };

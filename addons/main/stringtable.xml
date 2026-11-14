@@ -12353,6 +12353,16 @@ Estado: %6</Spanish>
                 <English>Zone "%1" unpatrolled for %2 min.</English>
                 <Spanish>Zona «%1» sin patrulla desde hace %2 min.</Spanish>
             </Key>
+            <Key ID="STR_ADVSEC_m_points_now">
+                <Original>Licence points: %1 (total %2).</Original>
+                <English>Licence points: %1 (total %2).</English>
+                <Spanish>Puntos de carnet: %1 (total %2).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_points_lost">
+                <Original>%1 lost their licence after reaching 0 points.</Original>
+                <English>%1 lost their licence after reaching 0 points.</English>
+                <Spanish>%1 ha perdido la licencia por llegar a 0 puntos.</Spanish>
+            </Key>
         </Container>
     </Package>
 </Project>
