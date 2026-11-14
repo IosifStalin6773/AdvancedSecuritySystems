@@ -79,7 +79,7 @@ switch (_action) do {
         private _as = [];
         {
             private _u = [_x] call ADVSEC_fnc_uidUnit;
-            if (!isNull _u && {[_u, "PM"] call ADVSEC_fnc_repAccess}) then {_as pushBackUnique [_x, name _u]};
+            if (!isNull _u && {[_u, "PMC"] call ADVSEC_fnc_repAccess}) then {_as pushBackUnique [_x, name _u]};
         } forEach (_uids select {_x isEqualType ""});
         if (_as isEqualTo []) exitWith {("STR_ADVSEC_assign_at_least_one_connected" call ADVSEC_fnc_L) call _say};
         private _n = (localNamespace getVariable ["ADVSEC_patrolSeq", 0]) + 1;
@@ -166,7 +166,7 @@ switch (_action) do {
     case "list": {
         private _uid = getPlayerUID _caller;
         private _plan = [_caller, "patrolPlan"] call ADVSEC_fnc_perm;
-        if !(_plan || {[_caller, "PM"] call ADVSEC_fnc_repAccess}) exitWith {("STR_ADVSEC_only_the_military_police_can" call ADVSEC_fnc_L) call _say};
+        if !(_plan || {[_caller, "PMC"] call ADVSEC_fnc_repAccess}) exitWith {("STR_ADVSEC_only_the_military_police_can" call ADVSEC_fnc_L) call _say};
         private _rows = [];
         private _ids = [keys _db, [], {parseNumber (_x select [2])}, "DESCEND"] call BIS_fnc_sortBy;
         {

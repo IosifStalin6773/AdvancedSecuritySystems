@@ -5,7 +5,8 @@
 params ["_player"];
 private _list = [];
 private _add = {_list pushBack _this};
-private _grp = {params ["_id", "_t", "_i", "_sub"]; if (_sub isNotEqualTo []) then {_list pushBack [_id, _t, _i, {}, [], _sub]}};
+// 1.20.1: sin submenús (máximo dos niveles); los grupos se vuelcan como acciones directas
+private _grp = {params ["_id", "_t", "_i", "_sub"]; {_list pushBack _x} forEach _sub};
 private _eco = [] call ADVSEC_fnc_ecoOn;
 private _free = isNull objectParent _player && {!([_player] call ADVSEC_fnc_isRestrained)};
 
@@ -13,7 +14,7 @@ private _free = isNull objectParent _player && {!([_player] call ADVSEC_fnc_isRe
 
 private _docs = [_player, "review"] call ADVSEC_fnc_docChildren;
 if (_docs isNotEqualTo []) then {
-    ["advsec_me_docs", ("STR_ADVSEC_my_documents" call ADVSEC_fnc_L), ADVSEC_icDoc, [["advsec_me_docall", ("STR_ADVSEC_view_all" call ADVSEC_fnc_L), ADVSEC_icDoc, {[_player] call ADVSEC_fnc_docListOpen}, []]] + _docs] call _grp;
+    ["advsec_me_docs", ("STR_ADVSEC_my_documents" call ADVSEC_fnc_L), ADVSEC_icDoc, [["advsec_me_docall", ("STR_ADVSEC_my_documents" call ADVSEC_fnc_L), ADVSEC_icDoc, {[_player] call ADVSEC_fnc_docListOpen}, []]]] call _grp;
 };
 
 // Dinero y vehículos

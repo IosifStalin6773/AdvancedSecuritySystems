@@ -6,7 +6,7 @@ private _say = {_this remoteExecCall ["hint", _caller]};
 switch (_action) do {
     case "toggle": {
         _args params [["_term", objNull]];
-        if !([_caller, "PM"] call ADVSEC_fnc_repAccess || {[_caller, "AI"] call ADVSEC_fnc_repAccess}) exitWith {("STR_ADVSEC_you_need_an_mp_badge" call ADVSEC_fnc_L) call _say};
+        if !([_caller, "PMC"] call ADVSEC_fnc_repAccess || {[_caller, "AI"] call ADVSEC_fnc_repAccess}) exitWith {("STR_ADVSEC_you_need_an_mp_badge" call ADVSEC_fnc_L) call _say};
         if ((["dutyAnywhere", 1] call ADVSEC_fnc_setting) isNotEqualTo 1 && {isNull _term || {!(_term getVariable ["ADVSEC_dutyTerm", false])} || {(_caller distance _term) > 6}}) exitWith {("STR_ADVSEC_clock_in_at_a_duty" call ADVSEC_fnc_L) call _say};
         private _on = !(_caller getVariable ["ADVSEC_onDuty", false]);
         [_caller, _on] call ADVSEC_fnc_dutySet;

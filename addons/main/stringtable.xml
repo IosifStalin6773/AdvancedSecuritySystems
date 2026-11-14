@@ -9840,6 +9840,31 @@
                 <English>PMC contract terminal: offers, negotiation, signing, assignment and settlement. Sync it with a laptop or leave it alone to create one.</English>
                 <Spanish>Terminal de contratos de la PMC: ofertas, negociación, firma, asignación y liquidación. Sincronízalo con un portátil o déjalo solo para crear uno.</Spanish>
             </Key>
+            <Key ID="STR_ADVSEC_pmc_mod_zone">
+                <Original>Contract zone</Original>
+                <English>Contract zone</English>
+                <Spanish>Zona de encargos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_mod_zone_desc">
+                <Original>Marks an area where automatic contract offers take place (marker advsec_ctr_*). Remove it to delete the zone.</Original>
+                <English>Marks an area where automatic contract offers take place (marker advsec_ctr_*). Remove it to delete the zone.</English>
+                <Spanish>Marca una zona donde se generan los encargos automáticos (marcador advsec_ctr_*). Bórralo para quitar la zona.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_mod_hostile">
+                <Original>Contract enemies</Original>
+                <English>Contract enemies</English>
+                <Spanish>Enemigos de encargo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_mod_hostile_desc">
+                <Original>Synced units count as enemies of the contracts, wherever they are. Use it to place enemies by hand without a zone.</Original>
+                <English>Synced units count as enemies of the contracts, wherever they are. Use it to place enemies by hand without a zone.</English>
+                <Spanish>Las unidades sincronizadas cuentan como enemigas de los encargos, estén donde estén. Úsalo para colocar enemigos a mano sin zona.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_zone_name">
+                <Original>Contract zone</Original>
+                <English>Contract zone</English>
+                <Spanish>Zona de encargos</Spanish>
+            </Key>
             <Key ID="STR_ADVSEC_pmc_mod_armory_desc">
                 <Original>Corporate armory: everything taken out is signed with a serial number and must be returned. Sync it with a crate or locker.</Original>
                 <English>Corporate armory: everything taken out is signed with a serial number and must be returned. Sync it with a crate or locker.</English>
@@ -10581,6 +10606,621 @@ Posición del VIP en vivo: %1</Spanish>
                 <Original>Minimum PM operators per contract (-1 = by type)</Original>
                 <English>Minimum PM operators per contract (-1 = by type)</English>
                 <Spanish>Operadores PM mínimos por contrato (-1 = según tipo)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_s_contractMinOps_tip">
+                <Original>Operators online (to sign) and assigned (to start) required by every contract, including open offers. -1 = the value of each contract type; 0 or 1 to test alone.</Original>
+                <English>Operators online (to sign) and assigned (to start) required by every contract, including open offers. -1 = the value of each contract type; 0 or 1 to test alone.</English>
+                <Spanish>Operadores conectados (para firmar) y asignados (para iniciar) que exige cada contrato, también las ofertas abiertas. -1 = el valor de cada tipo; 0 o 1 para probar en solitario.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_s_contractCheckRep">
+                <Original>Require client reputation</Original>
+                <English>Require client reputation</English>
+                <Spanish>Exigir reputación del cliente</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_s_contractCheckRep_tip">
+                <Original>If off, any contract can be signed whatever the reputation and offers of every risk level are generated.</Original>
+                <English>If off, any contract can be signed whatever the reputation and offers of every risk level are generated.</English>
+                <Spanish>Si se desactiva, se puede firmar cualquier contrato sea cual sea la reputación y se generan ofertas de todos los niveles de riesgo.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_s_contractCheckSpecs">
+                <Original>Require specialties</Original>
+                <English>Require specialties</English>
+                <Spanish>Exigir especialidades</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_s_contractCheckSpecs_tip">
+                <Original>If off, signing does not require operators with the specialties of the contract type.</Original>
+                <English>If off, signing does not require operators with the specialties of the contract type.</English>
+                <Spanish>Si se desactiva, firmar no exige operadores con las especialidades del tipo de contrato.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_s_contractCivilians">
+                <Original>Life in contracts</Original>
+                <English>Life in contracts</English>
+                <Spanish>Vida en los encargos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_s_contractCivilians_tip">
+                <Original>Traffic that stops at the access control, visitors at the facility, a cargo truck in escorts and a 112 call in QRF contracts. Civilians carry ID; some are suspects.</Original>
+                <English>Traffic that stops at the access control, visitors at the facility, a cargo truck in escorts and a 112 call in QRF contracts. Civilians carry ID; some are suspects.</English>
+                <Spanish>Tráfico que para en el control de acceso, visitantes en la vigilancia, camión de carga en la escolta y una llamada al 112 en la QRF. Los civiles llevan documentación y algunos son sospechosos.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_s_contractCivSuspect">
+                <Original>Share of suspect civilians (0-1)</Original>
+                <English>Share of suspect civilians (0-1)</English>
+                <Spanish>Fracción de civiles sospechosos (0-1)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_s_contractCivEvery">
+                <Original>Seconds between new civilians</Original>
+                <English>Seconds between new civilians</English>
+                <Spanish>Segundos entre civiles nuevos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_civ_issuer">
+                <Original>Civil Registry</Original>
+                <English>Civil Registry</English>
+                <Spanish>Registro Civil</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_civ_notes">
+                <Original>Civilian</Original>
+                <English>Civilian</English>
+                <Spanish>Civil</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_civ_w1">
+                <Original>Armed robbery</Original>
+                <English>Armed robbery</English>
+                <Spanish>Robo con violencia</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_civ_w2">
+                <Original>Drug trafficking</Original>
+                <English>Drug trafficking</English>
+                <Spanish>Tráfico de drogas</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_civ_w3">
+                <Original>Failure to appear in court</Original>
+                <English>Failure to appear in court</English>
+                <Spanish>No comparecencia ante el juez</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_civ_truck">
+                <Original>%1: the client cargo truck is waiting at %2. Take it to the destination; if it is lost, the contract fails.</Original>
+                <English>%1: the client cargo truck is waiting at %2. Take it to the destination; if it is lost, the contract fails.</English>
+                <Spanish>%1: el camión de carga del cliente espera en %2. Llévalo hasta el destino; si se pierde, el contrato falla.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_civ_caught">
+                <Original>%1: suspect held (%2).</Original>
+                <English>%1: suspect held (%2).</English>
+                <Spanish>%1: sospechoso retenido (%2).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_civ_call1">
+                <Original>Shots heard near my house.</Original>
+                <English>Shots heard near my house.</English>
+                <Spanish>Se oyen disparos cerca de mi casa.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_civ_call2">
+                <Original>Armed men are threatening people in the street.</Original>
+                <English>Armed men are threatening people in the street.</English>
+                <Spanish>Hay hombres armados amenazando a la gente en la calle.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_civ_call3">
+                <Original>Someone has broken into a warehouse, please come quickly.</Original>
+                <English>Someone has broken into a warehouse, please come quickly.</English>
+                <Spanish>Alguien ha entrado en un almacén, vengan rápido.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_s_pmcProfile">
+                <Original>PMC profile (the company before the MP)</Original>
+                <English>PMC profile (the company before the MP)</English>
+                <Spanish>Perfil PMC (la compañía por delante de la PM)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_s_pmcProfile_tip">
+                <Original>Anyone with a rank in the ORBAT is a company operator: contracts, cells, duty, dispatch and patrols, with permissions by rank (Troops 1, Corporals 2, Sergeants 3, Warrant/Lieutenant 4, Captain 5). The MP and IA keep everything they have. Off = only MP/IA badges, as before.</Original>
+                <English>Anyone with a rank in the ORBAT is a company operator: contracts, cells, duty, dispatch and patrols, with permissions by rank (Troops 1, Corporals 2, Sergeants 3, Warrant/Lieutenant 4, Captain 5). The MP and IA keep everything they have. Off = only MP/IA badges, as before.</English>
+                <Spanish>Quien tenga rango en el ORBAT es operador de la compañía: contratos, células, servicio, central y patrullas, con permisos por rango (Tropa 1, Cabos 2, Sargentos 3, Brigada/Teniente 4, Capitán 5). La PM y AA.II. conservan todo lo que tienen. Desactivado = solo placas PM/AA.II., como antes.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_s_companyName">
+                <Original>Company name</Original>
+                <English>Company name</English>
+                <Spanish>Nombre de la compañía</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_orbat">
+                <Original>ORBAT and player database</Original>
+                <English>ORBAT and player database</English>
+                <Spanish>ORBAT y base de datos de jugadores</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_treasury">
+                <Original>Company treasury</Original>
+                <English>Company treasury</English>
+                <Spanish>Tesorería de la compañía</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_checks">
+                <Original>Checks</Original>
+                <English>Checks</English>
+                <Spanish>Controles</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_order_out">
+                <Original>Order out of the vehicle</Original>
+                <English>Order out of the vehicle</English>
+                <Spanish>Ordenar que baje del vehículo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_side_civ">
+                <Original>Civilians</Original>
+                <English>Civilians</English>
+                <Spanish>Civiles</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_npc_selected">
+                <Original>&lt;t color='#8C8C8C' size='0.9'&gt;%1 NPC types chosen. %2&lt;/t&gt;</Original>
+                <English>&lt;t color='#8C8C8C' size='0.9'&gt;%1 NPC types chosen. %2&lt;/t&gt;</English>
+                <Spanish>&lt;t color='#8C8C8C' size='0.9'&gt;%1 tipos de NPC elegidos. %2&lt;/t&gt;</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_npc_weight">
+                <Original>Weight</Original>
+                <English>Weight</English>
+                <Spanish>Peso</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_npc_list">
+                <Original>Chosen NPCs</Original>
+                <English>Chosen NPCs</English>
+                <Spanish>NPC elegidos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_npc_add">
+                <Original>Add / change weight</Original>
+                <English>Add / change weight</English>
+                <Spanish>Añadir / cambiar peso</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_npc_title">
+                <Original>Contract NPCs</Original>
+                <English>Contract NPCs</English>
+                <Spanish>NPC del encargo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_npc_label">
+                <Original>Choose NPCs (%1 types)</Original>
+                <English>Choose NPCs (%1 types)</English>
+                <Spanish>Elegir NPC (%1 tipos)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_npc_label0">
+                <Original>Choose NPCs (empty = settings)</Original>
+                <English>Choose NPCs (empty = settings)</English>
+                <Spanish>Elegir NPC (vacío = según el ajuste)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_mod_custom">
+                <Original>Custom contract (PMC)</Original>
+                <English>Custom contract (PMC)</English>
+                <Spanish>Encargo a medida (PMC)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_mod_custom_desc">
+                <Original>Creates a contract offer at mission start, configured here: type, client, side and NPC classes, number of NPCs, area (resize the module area), pay and minutes. Sync it with an object to make it the VIP or the cargo. Empty fields use the settings.</Original>
+                <English>Creates a contract offer at mission start, configured here: type, client, side and NPC classes, number of NPCs, area (resize the module area), pay and minutes. Sync it with an object to make it the VIP or the cargo. Empty fields use the settings.</English>
+                <Spanish>Crea al empezar la misión una oferta de encargo configurada aquí: tipo, cliente, bando y clases de NPC, número de NPC, área (cambia el tamaño del área del módulo), pago y minutos. Sincronízalo con un objeto para que sea el VIP o la carga. Lo que quede vacío usa los ajustes.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cc_clientname">
+                <Original>Client name</Original>
+                <English>Client name</English>
+                <Spanish>Nombre del cliente</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cc_clientname_tip">
+                <Original>Shown in the offer title (empty = client type name).</Original>
+                <English>Shown in the offer title (empty = client type name).</English>
+                <Spanish>Se muestra en el título de la oferta (vacío = nombre del tipo de cliente).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cc_client">
+                <Original>Client type (reputation)</Original>
+                <English>Client type (reputation)</English>
+                <Spanish>Tipo de cliente (reputación)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cc_client_tip">
+                <Original>Whose reputation this contract raises or lowers.</Original>
+                <English>Whose reputation this contract raises or lowers.</English>
+                <Spanish>Con quién sube o baja la reputación este encargo.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cc_side">
+                <Original>Faction / side of the NPCs</Original>
+                <English>Faction / side of the NPCs</English>
+                <Spanish>Facción / bando de los NPC</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cc_side_tip">
+                <Original>Civilians = no enemies; the chosen classes become the contract civilians.</Original>
+                <English>Civilians = no enemies; the chosen classes become the contract civilians.</English>
+                <Spanish>Civiles = sin enemigos; las clases elegidas pasan a ser los civiles del encargo.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cc_units">
+                <Original>NPCs</Original>
+                <English>NPCs</English>
+                <Spanish>NPC</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cc_units_tip">
+                <Original>Pick the NPC classes (by faction). The weight sets how often each one appears.</Original>
+                <English>Pick the NPC classes (by faction). The weight sets how often each one appears.</English>
+                <Spanish>Elige las clases de NPC (por facción). El peso indica con qué frecuencia sale cada una.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cc_count">
+                <Original>Number of NPCs</Original>
+                <English>Number of NPCs</English>
+                <Spanish>Nº de NPC</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pmc_cc_count_tip">
+                <Original>Total NPCs spawned (-1 = by contract type).</Original>
+                <English>Total NPCs spawned (-1 = by contract type).</English>
+                <Spanish>NPC que se generan en total (-1 = según el tipo de encargo).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_cat">
+                <Original>Dialogue (ADVSEC)</Original>
+                <English>Dialogue (ADVSEC)</English>
+                <Spanish>Diálogo (ADVSEC)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_attr">
+                <Original>Dialogue tree</Original>
+                <English>Dialogue tree</English>
+                <Spanish>Árbol de diálogo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_attr_tip">
+                <Original>Opens the node editor. In game the object gets a «Talk» action.</Original>
+                <English>Opens the node editor. In game the object gets a «Talk» action.</English>
+                <Spanish>Abre el editor por nodos. En partida el objeto tendrá la acción «Hablar».</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_attr_none">
+                <Original>Create dialogue (node editor)</Original>
+                <English>Create dialogue (node editor)</English>
+                <Spanish>Crear diálogo (editor por nodos)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_attr_n">
+                <Original>Edit dialogue (%1 nodes)</Original>
+                <English>Edit dialogue (%1 nodes)</English>
+                <Spanish>Editar diálogo (%1 nodos)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_editor_title">
+                <Original>Dialogue editor</Original>
+                <English>Dialogue editor</English>
+                <Spanish>Editor de diálogos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_editor_hint">
+                <Original>Drag the nodes · double click on empty space = new node · arrows = replies (★ = first node)</Original>
+                <English>Drag the nodes · double click on empty space = new node · arrows = replies (★ = first node)</English>
+                <Spanish>Arrastra los nodos · doble clic en vacío = nodo nuevo · flechas = respuestas (★ = nodo inicial)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_new_node">
+                <Original>New node</Original>
+                <English>New node</English>
+                <Spanish>Nuevo nodo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_del_node">
+                <Original>Delete node</Original>
+                <English>Delete node</English>
+                <Spanish>Borrar nodo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_set_start">
+                <Original>Make first</Original>
+                <English>Make first</English>
+                <Spanish>Hacer inicial</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_speaker">
+                <Original>Speaker</Original>
+                <English>Speaker</English>
+                <Spanish>Habla</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_sp_npc">
+                <Original>NPC</Original>
+                <English>NPC</English>
+                <Spanish>NPC</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_sp_player">
+                <Original>Player</Original>
+                <English>Player</English>
+                <Spanish>Jugador</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_sp_narrator">
+                <Original>Narrator</Original>
+                <English>Narrator</English>
+                <Spanish>Narrador</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_name">
+                <Original>Name shown (empty = unit name)</Original>
+                <English>Name shown (empty = unit name)</English>
+                <Spanish>Nombre que se muestra (vacío = el de la unidad)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_text">
+                <Original>Text (%npc% and %player% are replaced)</Original>
+                <English>Text (%npc% and %player% are replaced)</English>
+                <Spanish>Texto (%npc% y %player% se sustituyen)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_options">
+                <Original>Replies</Original>
+                <English>Replies</English>
+                <Spanish>Respuestas</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_opt_text">
+                <Original>Reply text</Original>
+                <English>Reply text</English>
+                <Spanish>Texto de la respuesta</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_opt_target">
+                <Original>Goes to</Original>
+                <English>Goes to</English>
+                <Spanish>Lleva a</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_opt_action">
+                <Original>Action · parameter</Original>
+                <English>Action · parameter</English>
+                <Spanish>Acción · parámetro</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_opt_param">
+                <Original>Parameter of the action (code, name=value, item class or text)</Original>
+                <English>Parameter of the action (code, name=value, item class or text)</English>
+                <Spanish>Parámetro de la acción (código, nombre=valor, clase de objeto o texto)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_opt_cond">
+                <Original>Condition (optional)</Original>
+                <English>Condition (optional)</English>
+                <Spanish>Condición (opcional)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_opt_cond_tip">
+                <Original>SQF code that returns true to show the reply. Uses _player and _npc. E.g. missionNamespace getVariable ["metPedro", false]</Original>
+                <English>SQF code that returns true to show the reply. Uses _player and _npc. E.g. missionNamespace getVariable ["metPedro", false]</English>
+                <Spanish>Código SQF que devuelve true para mostrar la respuesta. Usa _player y _npc. Ej.: missionNamespace getVariable ["conocePedro", false]</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_opt_add">
+                <Original>Add reply</Original>
+                <English>Add reply</English>
+                <Spanish>Añadir respuesta</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_opt_apply">
+                <Original>Apply</Original>
+                <English>Apply</English>
+                <Spanish>Aplicar</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_opt_del">
+                <Original>Delete reply</Original>
+                <English>Delete reply</English>
+                <Spanish>Borrar respuesta</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_save">
+                <Original>Save and close</Original>
+                <English>Save and close</English>
+                <Spanish>Guardar y cerrar</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_end">
+                <Original>(end)</Original>
+                <English>(end)</English>
+                <Spanish>(terminar)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_new_target">
+                <Original>+ new node</Original>
+                <English>+ new node</English>
+                <Spanish>+ nodo nuevo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_n_opts">
+                <Original>%1 replies</Original>
+                <English>%1 replies</English>
+                <Spanish>%1 respuestas</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_no_sel">
+                <Original>Select a node or double click on the canvas.</Original>
+                <English>Select a node or double click on the canvas.</English>
+                <Spanish>Elige un nodo o haz doble clic en el lienzo.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_is_start">
+                <Original>first node</Original>
+                <English>first node</English>
+                <Spanish>nodo inicial</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_default_text">
+                <Original>Hello, %player%.</Original>
+                <English>Hello, %player%.</English>
+                <Spanish>Hola, %player%.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_default_opt">
+                <Original>Goodbye.</Original>
+                <English>Goodbye.</English>
+                <Spanish>Adiós.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_ac_none">
+                <Original>Nothing</Original>
+                <English>Nothing</English>
+                <Spanish>Nada</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_ac_code">
+                <Original>Run code</Original>
+                <English>Run code</English>
+                <Spanish>Ejecutar código</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_ac_code_tip">
+                <Original>SQF code with _player and _npc.</Original>
+                <English>SQF code with _player and _npc.</English>
+                <Spanish>Código SQF con _player y _npc.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_ac_setvar">
+                <Original>Set variable</Original>
+                <English>Set variable</English>
+                <Spanish>Fijar variable</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_ac_setvar_tip">
+                <Original>name=value (shared mission variable; true/false/number/text).</Original>
+                <English>name=value (shared mission variable; true/false/number/text).</English>
+                <Spanish>nombre=valor (variable de misión compartida; true/false/número/texto).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_ac_give">
+                <Original>Give item</Original>
+                <English>Give item</English>
+                <Spanish>Dar objeto</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_ac_give_tip">
+                <Original>Item class given to the player.</Original>
+                <English>Item class given to the player.</English>
+                <Spanish>Clase del objeto que recibe el jugador.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_ac_take">
+                <Original>Take item</Original>
+                <English>Take item</English>
+                <Spanish>Quitar objeto</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_ac_take_tip">
+                <Original>Item class removed from the player.</Original>
+                <English>Item class removed from the player.</English>
+                <Spanish>Clase del objeto que se le quita al jugador.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_ac_join">
+                <Original>NPC joins the group</Original>
+                <English>NPC joins the group</English>
+                <Spanish>El NPC se une al grupo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_ac_join_tip">
+                <Original>The NPC joins the player's group.</Original>
+                <English>The NPC joins the player's group.</English>
+                <Spanish>El NPC se une al grupo del jugador.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_ac_contracts">
+                <Original>Open contracts</Original>
+                <English>Open contracts</English>
+                <Spanish>Abrir contratos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_ac_contracts_tip">
+                <Original>Opens the PMC contract terminal.</Original>
+                <English>Opens the PMC contract terminal.</English>
+                <Spanish>Abre el terminal de contratos de la PMC.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_ac_hint">
+                <Original>Show message</Original>
+                <English>Show message</English>
+                <Spanish>Mostrar mensaje</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_ac_hint_tip">
+                <Original>Text shown on screen.</Original>
+                <English>Text shown on screen.</English>
+                <Spanish>Texto que se muestra en pantalla.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_talk">
+                <Original>Talk</Original>
+                <English>Talk</English>
+                <Spanish>Hablar</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_reply">
+                <Original>Reply</Original>
+                <English>Reply</English>
+                <Spanish>Responder</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_finish">
+                <Original>(End the conversation)</Original>
+                <English>(End the conversation)</English>
+                <Spanish>(Terminar la conversación)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_man_menu">
+                <Original>Mission content (dialogues and attributes)…</Original>
+                <English>Mission content (dialogues and attributes)…</English>
+                <Spanish>Contenido de la misión (diálogos y atributos)…</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_man_menu_sel">
+                <Original>Edit dialogue of the selected object</Original>
+                <English>Edit dialogue of the selected object</English>
+                <Spanish>Editar diálogo del objeto seleccionado</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_man_title">
+                <Original>ADVSEC · Mission content</Original>
+                <English>ADVSEC · Mission content</English>
+                <Spanish>ADVSEC · Contenido de la misión</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_man_f_all">
+                <Original>Everything</Original>
+                <English>Everything</English>
+                <Spanish>Todo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_man_f_units">
+                <Original>Units</Original>
+                <English>Units</English>
+                <Spanish>Unidades</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_man_f_vehicles">
+                <Original>Vehicles</Original>
+                <English>Vehicles</English>
+                <Spanish>Vehículos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_man_f_objects">
+                <Original>Objects</Original>
+                <English>Objects</English>
+                <Spanish>Objetos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_man_f_modules">
+                <Original>Modules</Original>
+                <English>Modules</English>
+                <Spanish>Módulos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_man_f_triggers">
+                <Original>Triggers</Original>
+                <English>Triggers</English>
+                <Spanish>Disparadores</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_man_f_markers">
+                <Original>Markers</Original>
+                <English>Markers</English>
+                <Spanish>Marcadores</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_man_f_dialog">
+                <Original>With dialogue</Original>
+                <English>With dialogue</English>
+                <Spanish>Con diálogo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_man_f_advsec">
+                <Original>ADVSEC (modules and dialogues)</Original>
+                <English>ADVSEC (modules and dialogues)</English>
+                <Spanish>ADVSEC (módulos y diálogos)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_man_edit_dlg">
+                <Original>Edit dialogue</Original>
+                <English>Edit dialogue</English>
+                <Spanish>Editar diálogo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_man_del_dlg">
+                <Original>Remove dialogue</Original>
+                <English>Remove dialogue</English>
+                <Spanish>Quitar diálogo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_man_attrs">
+                <Original>Attributes</Original>
+                <English>Attributes</English>
+                <Spanish>Atributos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_man_goto">
+                <Original>Go to</Original>
+                <English>Go to</English>
+                <Spanish>Ir a</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_man_close">
+                <Original>Close</Original>
+                <English>Close</English>
+                <Spanish>Cerrar</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_man_n_nodes">
+                <Original>%1 nodes</Original>
+                <English>%1 nodes</English>
+                <Spanish>%1 nodos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_man_empty">
+                <Original>Nothing matches the filter.</Original>
+                <English>Nothing matches the filter.</English>
+                <Spanish>Nada coincide con el filtro.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_man_hint_dlg">
+                <Original>Double click or «Edit dialogue» opens the node editor. «Attributes» opens the Eden attributes.</Original>
+                <English>Double click or «Edit dialogue» opens the node editor. «Attributes» opens the Eden attributes.</English>
+                <Spanish>Doble clic o «Editar diálogo» abre el editor por nodos. «Atributos» abre los atributos de Eden.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_man_hint_nodlg">
+                <Original>Modules, triggers and markers have no dialogue: use «Attributes» to edit them.</Original>
+                <English>Modules, triggers and markers have no dialogue: use «Attributes» to edit them.</English>
+                <Spanish>Los módulos, disparadores y marcadores no llevan diálogo: usa «Atributos» para editarlos.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_name_s">
+                <Original>Name</Original>
+                <English>Name</English>
+                <Spanish>Nombre</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_opt_text_s">
+                <Original>Reply</Original>
+                <English>Reply</English>
+                <Spanish>Respuesta</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_opt_action_s">
+                <Original>Action</Original>
+                <English>Action</English>
+                <Spanish>Acción</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dlg_node_action">
+                <Original>On showing</Original>
+                <English>On showing</English>
+                <Spanish>Al mostrarse</Spanish>
             </Key>
             <Key ID="STR_ADVSEC_pmc_s_contractAdvance">
                 <Original>Default advance (0-1)</Original>

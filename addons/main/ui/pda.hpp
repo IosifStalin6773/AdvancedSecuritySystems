@@ -4,7 +4,7 @@ class RscControlsGroupNoScrollbars;
     class TileBG##N: RscText { idc = 8726##N; x = UIF(X); y = UIH(Y); w = UIF(0.30); h = UIH(0.17); colorBackground[] = ADVSEC_COL_BTN; }; \
     class TileBar##N: ADVSEC_Accent { x = UIF(X); y = UIH(Y); w = UIF(0.004); h = UIH(0.17); }; \
     class TileIc##N: RscPicture { idc = 8727##N; x = UIF(X + 0.125); y = UIH(Y + 0.025); w = UIF(0.05); h = UIH(0.066); colorText[] = ADVSEC_COL_ACCENT; }; \
-    class TileLbl##N: RscText { idc = 8728##N; style = 2; x = UIF(X); y = UIH(Y + 0.105); w = UIF(0.30); h = UIH(0.045); font = "RobotoCondensedBold"; sizeEx = UIF(0.034); colorText[] = ADVSEC_COL_TEXT; shadow = 0; }; \
+    class TileLbl##N: RscText { idc = 8728##N; style = 2; x = UIF(X); y = UIH(Y + 0.105); w = UIF(0.30); h = UIH(0.045); font = "RobotoCondensedBold"; sizeEx = UIT(0.034); colorText[] = ADVSEC_COL_TEXT; shadow = 0; }; \
     class TileBtn##N: ADVSEC_Btn { idc = 8729##N; x = UIF(X); y = UIH(Y); w = UIF(0.30); h = UIH(0.17); colorBackground[] = {0, 0, 0, 0}; colorBackgroundActive[] = {1, 1, 1, 0.07}; colorFocused[] = {0, 0, 0, 0}; onButtonClick = "['tile', ctrlIDC (_this select 0) - 87290] call ADVSEC_fnc_pdaAction"; }
 
 #define PDA_TAB(N,X) \
@@ -22,8 +22,8 @@ class ADVSEC_PDA {
         class TabLine: ADVSEC_Line { x = UIXA(0.02); y = UIY(0.128); w = UIF(0.96); h = UIH(0.002); };
     };
     class controls {
-        class Title: ADVSEC_Label { idc = 87201; x = UIXA(0.03); y = UIY(0.04); w = UIF(0.6); h = UIH(0.035); sizeEx = UIF(0.028); colorText[] = ADVSEC_COL_TEXTD; };
-        class Clock: ADVSEC_Label { idc = 87202; style = 1; x = UIXA(0.62); y = UIY(0.04); w = UIF(0.35); h = UIH(0.035); sizeEx = UIF(0.028); colorText[] = ADVSEC_COL_TEXTD; };
+        class Title: ADVSEC_Label { idc = 87201; x = UIXA(0.03); y = UIY(0.04); w = UIF(0.6); h = UIH(0.035); sizeEx = UIT(0.028); colorText[] = ADVSEC_COL_TEXTD; };
+        class Clock: ADVSEC_Label { idc = 87202; style = 1; x = UIXA(0.62); y = UIY(0.04); w = UIF(0.35); h = UIH(0.035); sizeEx = UIT(0.028); colorText[] = ADVSEC_COL_TEXTD; };
         PDA_TAB(0,0.03);
         PDA_TAB(1,0.175);
         PDA_TAB(2,0.32);
@@ -55,8 +55,8 @@ class ADVSEC_PDA {
             class controls {
                 class Search: ADVSEC_Edit { idc = 86611; x = UIF(0.01); y = UIH(0.01); w = UIF(0.25); h = UIH(0.04); tooltip = "$STR_ADVSEC_search_by_id_name_steamid"; };
                 class BtnSearch: ADVSEC_BtnPrimary { text = "$STR_ADVSEC_search_5"; x = UIF(0.265); y = UIH(0.01); w = UIF(0.085); h = UIH(0.04); action = "['refresh'] call ADVSEC_fnc_repAction"; };
-                class Count: ADVSEC_Label { idc = 87241; x = UIF(0.01); y = UIH(0.055); w = UIF(0.34); h = UIH(0.035); sizeEx = UIF(0.027); };
-                class List: ADVSEC_List { idc = 86602; x = UIF(0.01); y = UIH(0.09); w = UIF(0.34); h = UIH(0.64); sizeEx = UIF(0.027); rowHeight = UIF(0.034); onLBSelChanged = "['select'] call ADVSEC_fnc_repAction"; };
+                class Count: ADVSEC_Label { idc = 87241; x = UIF(0.01); y = UIH(0.055); w = UIF(0.34); h = UIH(0.035); sizeEx = UIT(0.027); };
+                class List: ADVSEC_List { idc = 86602; x = UIF(0.01); y = UIH(0.09); w = UIF(0.34); h = UIH(0.64); sizeEx = UIT(0.027); rowHeight = UIT(0.034); onLBSelChanged = "['select'] call ADVSEC_fnc_repAction"; };
                 class ViewBG: RscText { x = UIF(0.36); y = UIH(0.01); w = UIF(0.59); h = UIH(0.72); colorBackground[] = ADVSEC_COL_FIELD; };
                 class ViewBar: ADVSEC_Accent { x = UIF(0.36); y = UIH(0.01); w = UIF(0.004); h = UIH(0.72); };
                 class ViewGroup: RscControlsGroup {

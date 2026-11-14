@@ -1,6 +1,6 @@
 // (cliente, mando) Nueva patrulla: datos en un formulario y ruta marcada con clics en el mapa
 if !([player, "patrolPlan"] call ADVSEC_fnc_perm) exitWith {hint ("STR_ADVSEC_you_are_not_allowed_to" call ADVSEC_fnc_L)};
-private _pm = ((allPlayers - entities "HeadlessClient_F") select {alive _x && {[_x, "PM"] call ADVSEC_fnc_repAccess}}) apply {[name _x, getPlayerUID _x]};
+private _pm = ((allPlayers - entities "HeadlessClient_F") select {alive _x && {[_x, "PMC"] call ADVSEC_fnc_repAccess}}) apply {[name _x, getPlayerUID _x]};
 if (_pm isEqualTo []) exitWith {hint ("STR_ADVSEC_there_are_no_mp_officers" call ADVSEC_fnc_L)};
 [("STR_ADVSEC_new_route_patrol" call ADVSEC_fnc_L), [
     [("STR_ADVSEC_name" call ADVSEC_fnc_L), format [("STR_ADVSEC_patrol_2" call ADVSEC_fnc_L), groupId group player]],

@@ -347,6 +347,101 @@ class CfgVehicles {
     };
 
     // ===== Zeus =====
+    class ADVSEC_ModuleContractZone: ADVSEC_Module_Base {
+        scope = 2;
+        isGlobal = 0;
+        displayName = "$STR_ADVSEC_pmc_mod_zone";
+        icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\interact_ca.paa";
+        function = "ADVSEC_fnc_moduleContractZone";
+        class Attributes: AttributesBase {
+            class Name: Edit { property = "ADVSEC_CtrZone_Name"; displayName = "$STR_ADVSEC_name"; typeName = "STRING"; defaultValue = """Zona de encargos"""; };
+            class Radius: Combo {
+                property = "ADVSEC_CtrZone_Radius"; displayName = "$STR_ADVSEC_radius"; typeName = "NUMBER"; defaultValue = "300";
+                class Values {
+                    class R150 { name = "150 m"; value = 150; };
+                    class R300 { name = "300 m"; value = 300; };
+                    class R600 { name = "600 m"; value = 600; };
+                    class R1000 { name = "1000 m"; value = 1000; };
+                };
+            };
+            class ModuleDescription: ModuleDescription {};
+        };
+        class ModuleDescription: ModuleDescription {
+            description = "$STR_ADVSEC_pmc_mod_zone_desc";
+        };
+    };
+
+    class ADVSEC_ModuleContractHostile: ADVSEC_Module_Base {
+        scope = 2;
+        isGlobal = 0;
+        displayName = "$STR_ADVSEC_pmc_mod_hostile";
+        icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\interact_ca.paa";
+        function = "ADVSEC_fnc_moduleContractHostile";
+        class Attributes: AttributesBase {
+            class ModuleDescription: ModuleDescription {};
+        };
+        class ModuleDescription: ModuleDescription {
+            description = "$STR_ADVSEC_pmc_mod_hostile_desc";
+        };
+    };
+
+    class ADVSEC_ModuleContractCustom: ADVSEC_Module_Base {
+        scope = 2;
+        isGlobal = 0;            // solo servidor: crea la oferta del encargo al empezar la misión
+        displayName = "$STR_ADVSEC_pmc_mod_custom";
+        icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\documents_ca.paa";
+        function = "ADVSEC_fnc_moduleContractCustom";
+        canSetArea = 1;
+        canSetAreaShape = 0;
+        class AttributeValues {
+            size3[] = {150, 150, -1};
+            isRectangle = 0;
+        };
+        class Attributes: AttributesBase {
+            class Type: Combo {
+                property = "ADVSEC_CC_Type"; displayName = "$STR_ADVSEC_pmc_type"; typeName = "STRING"; defaultValue = """checkpoint""";
+                class Values {
+                    class escort { name = "$STR_ADVSEC_pmc_type_escort"; value = "escort"; };
+                    class vip { name = "$STR_ADVSEC_pmc_type_vip"; value = "vip"; };
+                    class guard { name = "$STR_ADVSEC_pmc_type_guard"; value = "guard"; };
+                    class checkpoint { name = "$STR_ADVSEC_pmc_type_checkpoint"; value = "checkpoint"; };
+                    class qrf { name = "$STR_ADVSEC_pmc_type_qrf"; value = "qrf"; };
+                    class recovery { name = "$STR_ADVSEC_pmc_type_recovery"; value = "recovery"; };
+                    class clear { name = "$STR_ADVSEC_pmc_type_clear"; value = "clear"; };
+                };
+            };
+            class ClientName: Edit { property = "ADVSEC_CC_ClientName"; displayName = "$STR_ADVSEC_pmc_cc_clientname"; tooltip = "$STR_ADVSEC_pmc_cc_clientname_tip"; typeName = "STRING"; defaultValue = """"""; };
+            class Client: Combo {
+                property = "ADVSEC_CC_Client"; displayName = "$STR_ADVSEC_pmc_cc_client"; tooltip = "$STR_ADVSEC_pmc_cc_client_tip"; typeName = "STRING"; defaultValue = """Corp""";
+                class Values {
+                    class Gov { name = "$STR_ADVSEC_pmc_cl_gov"; value = "Gov"; };
+                    class Corp { name = "$STR_ADVSEC_pmc_cl_corp"; value = "Corp"; };
+                    class NGO { name = "$STR_ADVSEC_pmc_cl_ngo"; value = "NGO"; };
+                    class Cartel { name = "$STR_ADVSEC_pmc_cl_cartel"; value = "Cartel"; };
+                };
+            };
+            class Side: Combo {
+                property = "ADVSEC_CC_Side"; displayName = "$STR_ADVSEC_pmc_cc_side"; tooltip = "$STR_ADVSEC_pmc_cc_side_tip"; typeName = "STRING"; defaultValue = """""";
+                class Values {
+                    class Def { name = "$STR_ADVSEC_pmc_host_m_def"; value = ""; };
+                    class East { name = "OPFOR (East)"; value = "east"; };
+                    class West { name = "BLUFOR (West)"; value = "west"; };
+                    class Indep { name = "INDEP (Independent)"; value = "independent"; };
+                    class Civ { name = "$STR_ADVSEC_pmc_side_civ"; value = "civilian"; };
+                };
+            };
+            class Units: Edit { property = "ADVSEC_CC_Units"; displayName = "$STR_ADVSEC_pmc_cc_units"; tooltip = "$STR_ADVSEC_pmc_cc_units_tip"; typeName = "STRING"; control = "ADVSEC_CatalogUnits"; defaultValue = """"""; };
+            class Count: Edit { property = "ADVSEC_CC_Count"; displayName = "$STR_ADVSEC_pmc_cc_count"; tooltip = "$STR_ADVSEC_pmc_cc_count_tip"; typeName = "NUMBER"; defaultValue = "-1"; };
+            class Pay: Edit { property = "ADVSEC_CC_Pay"; displayName = "$STR_ADVSEC_pmc_pay0"; typeName = "NUMBER"; defaultValue = "0"; };
+            class Minutes: Edit { property = "ADVSEC_CC_Minutes"; displayName = "$STR_ADVSEC_pmc_minutes0"; typeName = "NUMBER"; defaultValue = "0"; };
+            class Title: Edit { property = "ADVSEC_CC_Title"; displayName = "$STR_ADVSEC_pmc_title"; typeName = "STRING"; defaultValue = """"""; };
+            class ModuleDescription: ModuleDescription {};
+        };
+        class ModuleDescription: ModuleDescription {
+            description = "$STR_ADVSEC_pmc_mod_custom_desc";
+        };
+    };
+
     class ADVSEC_ModuleContract: ADVSEC_Module_Base {
         scope = 2;
         displayName = "$STR_ADVSEC_pmc_terminal";

@@ -18,7 +18,7 @@ if ((_c get "type") == "vip" && {_res == "Cumplido"} && {_m get "advance"}) then
 private _expo = round (_pay * (["cpExposurePenalty", 0.01] call ADVSEC_fnc_setting) * floor ((_m get "exposure") / 10));
 _pen = _pen + _expo;
 // Vehículo corporativo dañado (el del VIP)
-private _veh = objectFromNetId (_c getOrDefault ["vipVeh", ""]);
+private _veh = ((_c getOrDefault ["vipVeh", ""]) call BIS_fnc_objectFromNetId);
 if (!isNull _veh) then {
     private _val = _veh getVariable ["ADVSEC_vehValue", 20000];
     private _cost = round ((damage _veh) * _val * 0.5);

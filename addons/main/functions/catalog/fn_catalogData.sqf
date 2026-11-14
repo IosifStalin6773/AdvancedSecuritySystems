@@ -1,4 +1,4 @@
-// ["items"|"vehicles"] -> [[categoría, [[clase, nombre, icono], ...]], ...] de todo lo que hay cargado (se cachea)
+// ["items"|"vehicles"|"units"] -> [[categoría, [[clase, nombre, icono], ...]], ...] de todo lo que hay cargado (se cachea)
 params [["_kind", "items"]];
 private _key = "ADVSEC_catalog_" + _kind;
 private _cached = uiNamespace getVariable _key;
@@ -31,7 +31,27 @@ if (_kind == "vehicles") then {
         };
     } forEach ("getNumber (_x >> 'scope') == 2 && {getText (_x >> 'displayName') != ''} && {configName _x isKindOf 'AllVehicles'} && {!(configName _x isKindOf 'Man')} && {!(configName _x isKindOf 'StaticWeapon')} && {!(configName _x isKindOf 'ParachuteBase')}" configClasses (configFile >> "CfgVehicles"));
     _out = _cats;
-} else {
+};
+if (_kind == "units") then {
+    // NPC para los encargos (1.20.1): todas las unidades a pie, agrupadas por bando y facción
+    private _sides = ["OPFOR", "BLUFOR", "INDEP", ("STR_ADVSEC_pmc_side_civ" call ADVSEC_fnc_L)];
+    private _cats = createHashMap;
+    {
+        private _sd = getNumber (_x >> "side");
+        if (_sd in [0, 1, 2, 3]) then {
+            private _fac = getText (configFile >> "CfgFactionClasses" >> getText (_x >> "faction") >> "displayName");
+            if (_fac isEqualTo "") then {_fac = getText (_x >> "faction")};
+            private _k = format ["%1 · %2", _sides select _sd, _fac];
+            private _l = _cats getOrDefault [_k, []];
+            _l pushBack [configName _x, getText (_x >> "displayName"), [getText (_x >> "icon")] call _pic];
+            _cats set [_k, _l];
+        };
+    } forEach ("getNumber (_x >> 'scope') == 2 && {getText (_x >> 'displayName') != ''} && {configName _x isKindOf 'CAManBase'}" configClasses (configFile >> "CfgVehicles"));
+    private _ks = keys _cats;
+    _ks sort true;
+    _out = _ks apply {[_x, _cats get _x]};
+};
+if (_kind == "items") then {
     if (isNil "ADVSEC_shopTabs") then {
         ADVSEC_shopTabs = [
             [("STR_ADVSEC_primary_weapon" call ADVSEC_fnc_L), "primaryWeapon"], [("STR_ADVSEC_launcher" call ADVSEC_fnc_L), "secondaryWeapon"], [("STR_ADVSEC_handgun" call ADVSEC_fnc_L), "handgun"], [("STR_ADVSEC_uniform" call ADVSEC_fnc_L), "uniform"], [("STR_ADVSEC_vest" call ADVSEC_fnc_L), "vest"], [("STR_ADVSEC_backpack" call ADVSEC_fnc_L), "backpack"],

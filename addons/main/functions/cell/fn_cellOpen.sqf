@@ -3,7 +3,7 @@ if !([player, "cellView"] call ADVSEC_fnc_perm) exitWith {hint ("STR_ADVSEC_pmc_
 private _b = [
     [("STR_ADVSEC_pmc_btn_setrole" call ADVSEC_fnc_L), {
         if !([player, "cellManage"] call ADVSEC_fnc_perm) exitWith {hint ("STR_ADVSEC_pmc_perm_cellmanage" call ADVSEC_fnc_L)};
-        private _pl = ((allPlayers - entities "HeadlessClient_F") select {[_x, "PM"] call ADVSEC_fnc_repAccess}) apply {[name _x, getPlayerUID _x]};
+        private _pl = ((allPlayers - entities "HeadlessClient_F") select {[_x, "PMC"] call ADVSEC_fnc_repAccess}) apply {[name _x, getPlayerUID _x]};
         if (_pl isEqualTo []) exitWith {hint ("STR_ADVSEC_no_results" call ADVSEC_fnc_L)};
         [("STR_ADVSEC_pmc_btn_setrole" call ADVSEC_fnc_L), [
             [("STR_ADVSEC_pmc_member" call ADVSEC_fnc_L), 0, _pl],

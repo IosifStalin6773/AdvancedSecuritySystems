@@ -273,6 +273,16 @@ class CfgFunctions {
             class patrolPlan {};
             class patrolOpen {};
         };
+        class dialog {
+            file = "\x\advsec\addons\main\functions\dialog";
+            class dlgAction {};
+            class dlgAttach {};
+            class dlgAttr {};
+            class dlgData {};
+            class dlgEditor {};
+            class dlgManager {};
+            class dlgTalk {};
+        };
         class contract {
             file = "\x\advsec\addons\main\functions\contract";
             class ctrAction {};
@@ -286,7 +296,11 @@ class CfgFunctions {
             class ctrSettle {};
             class ctrTick {};
             class ctrHostiles {};
+            class ctrCivil {};
             class moduleContract {};
+            class moduleContractZone {};
+            class moduleContractHostile {};
+            class moduleContractCustom {};
             class pmcClasses {};
             class pmcLoop {};
             class pmcPay {};

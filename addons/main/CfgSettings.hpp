@@ -12,14 +12,18 @@ class ADVSEC_Settings {
     superAdmins[] = {};          // UIDs con acceso al terminal de superadministrador (además de Zeus y los añadidos en partida)
     globalRankSetUnit = 1;       // 1 = aplica setUnitRank según ranksGlobalArma
 
-    // Permisos: {cuerpo ("PM" admite también AA.II.; "AI" solo AA.II.), nivel mínimo}
+    // Perfil PMC (1.20): la compañía va por delante de la PM. Con 0 todo funciona como antes (solo PM/AA.II.)
+    pmcProfile = 1;
+    companyName = "I.V.M.";      // nombre de la compañía en los menús
+    pmcRankLevels[] = {1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 5};   // nivel de compañía (1-5) de cada rango global: Tropa 1, Cabos 2, Sargentos 3, Brigada/Teniente 4, Capitán 5
+    // Permisos: {cuerpo ("PMC" compañía: rango en el ORBAT o PM; "PM" admite también AA.II.; "AI" solo AA.II.), nivel mínimo}
     class Permissions {
-        restrain[] = {"PM", 1};
-        search[] = {"PM", 1};
+        restrain[] = {"PMC", 1};
+        search[] = {"PMC", 1};
         seize[] = {"PM", 1};
-        vehicleSearch[] = {"PM", 1};
+        vehicleSearch[] = {"PMC", 1};
         evidenceCollect[] = {"PM", 1};
-        query[] = {"PM", 1};
+        query[] = {"PMC", 1};
         fine[] = {"PM", 2};
         fineCancel[] = {"PM", 4};
         wanted[] = {"PM", 2};
@@ -32,33 +36,33 @@ class ADVSEC_Settings {
         suspicionView[] = {"AI", 1};
         evidenceTamper[] = {"AI", 1};
         evidenceAudit[] = {"AI", 3};
-        playerDB[] = {"PM", 4};      // abrir la base de datos de jugadores
+        playerDB[] = {"PMC", 4};      // abrir la base de datos de jugadores
         rankPM[] = {"PM", 5};        // asignar rangos PM (solo inferiores al propio)
         rankAI[] = {"AI", 5};        // asignar rangos AA.II. (solo inferiores al propio)
-        rankGlobal[] = {"PM", 5};
-        treasury[] = {"PM", 5};     // ver la tesorería de la PM y pagar primas
-        dutyView[] = {"PM", 3};     // ver agentes de servicio y horas
-        dispatch[] = {"PM", 1};     // central de despacho: aceptar y cerrar avisos
+        rankGlobal[] = {"PMC", 5};
+        treasury[] = {"PMC", 5};     // ver la tesorería de la PM y pagar primas
+        dutyView[] = {"PMC", 3};     // ver agentes de servicio y horas
+        dispatch[] = {"PMC", 1};     // central de despacho: aceptar y cerrar avisos
         suspend[] = {"AI", 4};      // suspender agentes temporalmente
-        alertLevel[] = {"PM", 4};   // cambiar el nivel de alerta de la base
-        plateQuery[] = {"PM", 1};   // consultar matrículas
+        alertLevel[] = {"PMC", 4};   // cambiar el nivel de alerta de la base
+        plateQuery[] = {"PMC", 1};   // consultar matrículas
         licenseRevoke[] = {"PM", 2}; // retirar licencias
         bankAudit[] = {"AI", 3};    // auditar cuentas y movimientos sospechosos
         bankFreeze[] = {"AI", 4};   // congelar cuentas
         k9[] = {"PM", 2};           // unidad canina
         radar[] = {"PM", 1};        // radar de velocidad
         bodycamView[] = {"AI", 2};  // revisar cámaras corporales
-        patrolPlan[] = {"PM", 3};   // planificar y cancelar patrullas con ruta
+        patrolPlan[] = {"PMC", 3};   // planificar y cancelar patrullas con ruta
         // PMC (1.18)
-        contractView[] = {"PM", 1};   // terminal de contratos: ver ofertas y contratos
-        contractAssign[] = {"PM", 3}; // asignar operadores, ruta y ROE; iniciar contratos
-        contractSign[] = {"PM", 4};   // negociar, firmar y rescindir contratos
-        contractGrey[] = {"PM", 5};   // aceptar contratos de clientes de zona gris
-        armoryCheckout[] = {"PM", 1}; // sacar material de la armería corporativa
-        armoryManage[] = {"PM", 3};   // intendencia: auditorías, bajas y avisos de desgaste
-        logisticsOrder[] = {"PM", 4}; // pedir material a la tesorería
-        cellView[] = {"PM", 1};       // ver las células operativas (CP, QRF, SEC)
-        cellManage[] = {"PM", 4};     // asignar roles de célula
+        contractView[] = {"PMC", 1};   // terminal de contratos: ver ofertas y contratos
+        contractAssign[] = {"PMC", 3}; // asignar operadores, ruta y ROE; iniciar contratos
+        contractSign[] = {"PMC", 4};   // negociar, firmar y rescindir contratos
+        contractGrey[] = {"PMC", 5};   // aceptar contratos de clientes de zona gris
+        armoryCheckout[] = {"PMC", 1}; // sacar material de la armería corporativa
+        armoryManage[] = {"PMC", 3};   // intendencia: auditorías, bajas y avisos de desgaste
+        logisticsOrder[] = {"PMC", 4}; // pedir material a la tesorería
+        cellView[] = {"PMC", 1};       // ver las células operativas (CP, QRF, SEC)
+        cellManage[] = {"PMC", 4};     // asignar roles de célula
         cyberView[] = {"AI", 2};      // terminal ciber: alertas, registros, cronologías y CCTV
         cyberManage[] = {"AI", 3};    // restaurar sistemas comprometidos
     };
@@ -193,6 +197,11 @@ class ADVSEC_Settings {
     contractEvery = 20;          // minutos entre ofertas automáticas (las ofertas caducan a 2× este tiempo)
     contractMax = 6;             // ofertas abiertas a la vez como máximo
     contractMaxActive = 3;       // contratos en curso a la vez como máximo
+    contractCivilians = 1;       // 1 = vida en los encargos: tráfico que para en el control, visitantes en la vigilancia, camión en la escolta, llamada 112 en la QRF
+    contractCivSuspect = 0.3;    // fracción de civiles sospechosos (sin documentación, con requisitoria o con contrabando)
+    contractCivEvery = 45;       // segundos entre civiles nuevos (la vigilancia, el doble)
+    contractCheckRep = 1;        // 1 = exigir reputación mínima y limitar el riesgo de las ofertas por reputación; 0 = sin límite
+    contractCheckSpecs = 1;      // 1 = exigir las especialidades del tipo de contrato; 0 = no
     contractMinOps = -1;         // operadores PM mínimos por contrato; -1 = el de cada tipo (0 = ninguno, para probar en local)
     contractRounds = 2;          // contraofertas que admite un cliente
     contractAdvance = 0.3;       // anticipo por defecto (0-1) al iniciar el contrato

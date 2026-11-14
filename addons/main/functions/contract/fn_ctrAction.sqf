@@ -48,7 +48,7 @@ _opts pushBack [("STR_ADVSEC_show_route_on_the_map" call ADVSEC_fnc_L), "show"];
             [_id] spawn {
                 params ["_id"];
                 sleep 0.1;
-                private _pm = ((allPlayers - entities "HeadlessClient_F") select {alive _x && {[_x, "PM"] call ADVSEC_fnc_repAccess}}) apply {[format ["%1%2", name _x, ["", " ●"] select (_x getVariable ["ADVSEC_onDuty", false])], getPlayerUID _x]};
+                private _pm = ((allPlayers - entities "HeadlessClient_F") select {alive _x && {[_x, "PMC"] call ADVSEC_fnc_repAccess}}) apply {[format ["%1%2", name _x, ["", " ●"] select (_x getVariable ["ADVSEC_onDuty", false])], getPlayerUID _x]};
                 [format [("STR_ADVSEC_pmc_assign_title" call ADVSEC_fnc_L), _id], [
                     [("STR_ADVSEC_assigned_officers" call ADVSEC_fnc_L), [], ["multi", _pm]],
                     [("STR_ADVSEC_pmc_roe" call ADVSEC_fnc_L), "Ámbar", ["Verde", "Ámbar", "Rojo"]]

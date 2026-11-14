@@ -16,6 +16,8 @@ private _bool = {(_this isEqualTo 1) || {_this isEqualTo true}};
 
 // --- General
 ["language", "LIST", "Idioma / Language", "Automático: idioma del juego (un servidor dedicado usa inglés para sus mensajes). / Automatic: game language (a dedicated server uses English for its messages).", "1 · General", [[0, 1, 2], ["Automático / Automatic", "English", "Español"], ((["language", 0] call _mis) max 0 min 2)], false, {ADVSEC_Lmap = nil}] call _add;
+["pmcProfile", "CHECKBOX", ("STR_ADVSEC_pmc_s_pmcProfile" call ADVSEC_fnc_L), ("STR_ADVSEC_pmc_s_pmcProfile_tip" call ADVSEC_fnc_L), "1 · General", ([["pmcProfile"], 1] call _num) call _bool, true] call _add;
+["companyName", "EDITBOX", ("STR_ADVSEC_pmc_s_companyName" call ADVSEC_fnc_L), "", "1 · General", [["companyName"], "I.V.M."] call _num, true] call _add;
 ["saveInterval", "SLIDER", ("STR_ADVSEC_save_to_disk_s" call ADVSEC_fnc_L), ("STR_ADVSEC_how_often_in_seconds_server" call ADVSEC_fnc_L), "1 · General", [15, 600, ["saveInterval", 60] call _mis, 0]] call _add;
 ["logMax", "SLIDER", ("STR_ADVSEC_event_log_size" call ADVSEC_fnc_L), ("STR_ADVSEC_maximum_stored_events_audit" call ADVSEC_fnc_L), "1 · General", [500, 50000, ["logMax", 5000] call _mis, 0]] call _add;
 ["uiBlur", "CHECKBOX", ("STR_ADVSEC_blur_behind_menus" call ADVSEC_fnc_L), ("STR_ADVSEC_blurs_the_background_when_the" call ADVSEC_fnc_L), "1 · General", (["uiBlur", 1] call _mis) call _bool] call _add;
@@ -114,7 +116,12 @@ _rules insert [
 ["contractEvery", "SLIDER", ("STR_ADVSEC_pmc_s_contractEvery" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec12" call ADVSEC_fnc_L), [5, 180, [["contractEvery"], 20] call _num, 0]] call _add;
 ["contractMax", "SLIDER", ("STR_ADVSEC_pmc_s_contractMax" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec12" call ADVSEC_fnc_L), [1, 20, [["contractMax"], 6] call _num, 0]] call _add;
 ["contractMaxActive", "SLIDER", ("STR_ADVSEC_pmc_s_contractMaxActive" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec12" call ADVSEC_fnc_L), [1, 10, [["contractMaxActive"], 3] call _num, 0]] call _add;
-["contractMinOps", "SLIDER", ("STR_ADVSEC_pmc_s_contractMinOps" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec12" call ADVSEC_fnc_L), [-1, 10, [["contractMinOps"], -1] call _num, 0]] call _add;
+["contractMinOps", "SLIDER", ("STR_ADVSEC_pmc_s_contractMinOps" call ADVSEC_fnc_L), ("STR_ADVSEC_pmc_s_contractMinOps_tip" call ADVSEC_fnc_L), ("STR_ADVSEC_pmc_s_sec12" call ADVSEC_fnc_L), [-1, 10, [["contractMinOps"], -1] call _num, 0]] call _add;
+["contractCivilians", "CHECKBOX", ("STR_ADVSEC_pmc_s_contractCivilians" call ADVSEC_fnc_L), ("STR_ADVSEC_pmc_s_contractCivilians_tip" call ADVSEC_fnc_L), ("STR_ADVSEC_pmc_s_sec12" call ADVSEC_fnc_L), ([["contractCivilians"], 1] call _num) call _bool] call _add;
+["contractCivSuspect", "SLIDER", ("STR_ADVSEC_pmc_s_contractCivSuspect" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec12" call ADVSEC_fnc_L), [0, 1, [["contractCivSuspect"], 0.3] call _num, 2]] call _add;
+["contractCivEvery", "SLIDER", ("STR_ADVSEC_pmc_s_contractCivEvery" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec12" call ADVSEC_fnc_L), [15, 300, [["contractCivEvery"], 45] call _num, 0]] call _add;
+["contractCheckRep", "CHECKBOX", ("STR_ADVSEC_pmc_s_contractCheckRep" call ADVSEC_fnc_L), ("STR_ADVSEC_pmc_s_contractCheckRep_tip" call ADVSEC_fnc_L), ("STR_ADVSEC_pmc_s_sec12" call ADVSEC_fnc_L), ([["contractCheckRep"], 1] call _num) call _bool] call _add;
+["contractCheckSpecs", "CHECKBOX", ("STR_ADVSEC_pmc_s_contractCheckSpecs" call ADVSEC_fnc_L), ("STR_ADVSEC_pmc_s_contractCheckSpecs_tip" call ADVSEC_fnc_L), ("STR_ADVSEC_pmc_s_sec12" call ADVSEC_fnc_L), ([["contractCheckSpecs"], 1] call _num) call _bool] call _add;
 ["contractAdvance", "SLIDER", ("STR_ADVSEC_pmc_s_contractAdvance" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec12" call ADVSEC_fnc_L), [0, 1, [["contractAdvance"], 0.3] call _num, 2]] call _add;
 ["contractInsurance", "SLIDER", ("STR_ADVSEC_pmc_s_contractInsurance" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec12" call ADVSEC_fnc_L), [0, 0.5, [["contractInsurance"], 0.05] call _num, 2]] call _add;
 ["contractOpShare", "SLIDER", ("STR_ADVSEC_pmc_s_contractOpShare" call ADVSEC_fnc_L), "", ("STR_ADVSEC_pmc_s_sec12" call ADVSEC_fnc_L), [0, 1, [["contractOpShare"], 0.4] call _num, 2]] call _add;

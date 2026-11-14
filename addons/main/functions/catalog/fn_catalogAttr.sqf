@@ -5,6 +5,10 @@ private _kind = _b getVariable ["ADVSEC_kind", "items"];
 switch (_a) do {
     case "label": {
         private _n = count ((_val splitString ",") select {_x find ":" > 0});
+        if (_kind == "units") exitWith {
+            _b ctrlSetText ([format [("STR_ADVSEC_pmc_npc_label" call ADVSEC_fnc_L), _n], ("STR_ADVSEC_pmc_npc_label0" call ADVSEC_fnc_L)] select (_n == 0));
+            _b ctrlSetTooltip ([_val, ("STR_ADVSEC_pmc_npc_label0" call ADVSEC_fnc_L)] select (_n == 0));
+        };
         _b ctrlSetText ([format [("STR_ADVSEC_choose_from_catalog_for_sale" call ADVSEC_fnc_L), _n], ("STR_ADVSEC_choose_from_catalog_empty_default" call ADVSEC_fnc_L)] select (_n == 0));
         _b ctrlSetTooltip ([_val, ("STR_ADVSEC_no_items_the_default_list" call ADVSEC_fnc_L)] select (_n == 0));
     };
@@ -13,6 +17,6 @@ switch (_a) do {
             params ["_txt", "_b"];
             _b setVariable ["ADVSEC_val", _txt];
             ["label", _b] call ADVSEC_fnc_catalogAttr;
-        }, _b, [("STR_ADVSEC_shop_catalog" call ADVSEC_fnc_L), ("STR_ADVSEC_dealer_vehicles" call ADVSEC_fnc_L)] select (_kind == "vehicles"), ctrlParent _b] call ADVSEC_fnc_catalogOpen;
+        }, _b, [("STR_ADVSEC_shop_catalog" call ADVSEC_fnc_L), ("STR_ADVSEC_dealer_vehicles" call ADVSEC_fnc_L), ("STR_ADVSEC_pmc_npc_title" call ADVSEC_fnc_L)] select ((["items", "vehicles", "units"] find _kind) max 0), ctrlParent _b] call ADVSEC_fnc_catalogOpen;
     };
 };

@@ -1,6 +1,7 @@
 #define ADVSEC_Q(V) #V
 #define DOC_X(N) ADVSEC_Q(safeZoneX + safeZoneW / 2 + ((N) - 0.4) * safezoneH)
 #define DOC_Y(N) ADVSEC_Q(safeZoneY + safeZoneH / 2 + ((N) - 0.29) * safezoneH)
+#define DOC_S(N) ADVSEC_Q((N) * safezoneH)
 
 class RscTitles {
     class ADVSEC_RscDocument {
@@ -13,54 +14,54 @@ class RscTitles {
         class controls {
             class BGColor: RscText {
                 idc = 4005;
-                x = DOC_X(0); y = DOC_Y(0); w = UIF(0.8); h = UIF(0.5333);
+                x = DOC_X(0); y = DOC_Y(0); w = DOC_S(0.8); h = DOC_S(0.5333);
                 colorBackground[] = {0.1, 0.2, 0.45, 0.97};
             };
             class BG: RscPicture {
                 idc = 4000;
-                x = DOC_X(0); y = DOC_Y(0); w = UIF(0.8); h = UIF(0.5333);
+                x = DOC_X(0); y = DOC_Y(0); w = DOC_S(0.8); h = DOC_S(0.5333);
                 text = "";
             };
             class Header: RscText {
                 idc = 4001;
-                x = DOC_X(0.03); y = DOC_Y(0.012); w = UIF(0.52); h = UIF(0.065);
-                sizeEx = UIF(0.052);
+                x = DOC_X(0.03); y = DOC_Y(0.012); w = DOC_S(0.52); h = DOC_S(0.065);
+                sizeEx = UIT(0.052);
                 font = "RobotoCondensedBold";
                 colorText[] = {1, 1, 1, 1};
                 shadow = 1;
             };
             class Stamp: RscStructuredText {
                 idc = 4008;
-                x = DOC_X(0.52); y = DOC_Y(0.018); w = UIF(0.26); h = UIF(0.06);
-                size = UIF(0.034);
+                x = DOC_X(0.52); y = DOC_Y(0.018); w = DOC_S(0.26); h = DOC_S(0.06);
+                size = UIT(0.034);
                 colorBackground[] = {0, 0, 0, 0};
             };
             class Photo: RscPicture {
                 idc = 4002;
-                x = DOC_X(0.0312); y = DOC_Y(0.1125); w = UIF(0.2031); h = UIF(0.3333);
+                x = DOC_X(0.0312); y = DOC_Y(0.1125); w = DOC_S(0.2031); h = DOC_S(0.3333);
                 text = "\x\advsec\addons\main\data\photo_placeholder_ca.paa";
             };
             class PhotoLive: RscPicture {
                 idc = 4006;
-                x = DOC_X(0.0312); y = DOC_Y(0.1125); w = UIF(0.2031); h = UIF(0.3333);
+                x = DOC_X(0.0312); y = DOC_Y(0.1125); w = DOC_S(0.2031); h = DOC_S(0.3333);
                 text = "";
             };
             class BodyL: RscStructuredText {
                 idc = 4003;
-                x = DOC_X(0.255); y = DOC_Y(0.11); w = UIF(0.255); h = UIF(0.34);
-                size = UIF(0.031);
+                x = DOC_X(0.255); y = DOC_Y(0.11); w = DOC_S(0.255); h = DOC_S(0.34);
+                size = UIT(0.031);
                 colorBackground[] = {0, 0, 0, 0};
             };
             class BodyR: RscStructuredText {
                 idc = 4009;
-                x = DOC_X(0.515); y = DOC_Y(0.11); w = UIF(0.27); h = UIF(0.34);
-                size = UIF(0.031);
+                x = DOC_X(0.515); y = DOC_Y(0.11); w = DOC_S(0.27); h = DOC_S(0.34);
+                size = UIT(0.031);
                 colorBackground[] = {0, 0, 0, 0};
             };
             class Footer: RscStructuredText {
                 idc = 4004;
-                x = DOC_X(0.025); y = DOC_Y(0.462); w = UIF(0.75); h = UIF(0.068);
-                size = UIF(0.026);
+                x = DOC_X(0.025); y = DOC_Y(0.462); w = DOC_S(0.75); h = DOC_S(0.068);
+                size = UIT(0.026);
                 colorBackground[] = {0, 0, 0, 0};
             };
         };
@@ -77,7 +78,7 @@ class RscTitles {
                 idc = 4104;
                 x = "safeZoneX"; y = "safeZoneY"; w = "safeZoneW"; h = "safeZoneH";
                 style = 2;
-                sizeEx = UIF(0.08);
+                sizeEx = UIT(0.08);
                 text = "$STR_ADVSEC_no_signal";
                 colorBackground[] = {0, 0, 0, 1};
                 colorText[] = {0.8, 0.8, 0.8, 1};
@@ -85,7 +86,7 @@ class RscTitles {
             class CamName: RscText {
                 idc = 4101;
                 x = "safeZoneX + (0.02 * (safezoneH))"; y = "safeZoneY + (0.02 * (safezoneH))"; w = UIF(0.7); h = UIF(0.05);
-                sizeEx = UIF(0.045);
+                sizeEx = UIT(0.045);
                 font = "EtelkaMonospacePro";
                 colorText[] = {1, 1, 1, 1};
                 colorBackground[] = {0, 0, 0, 0.4};
@@ -94,7 +95,7 @@ class RscTitles {
                 idc = 4102;
                 x = "safeZoneX + safeZoneW - (0.42 * (safezoneH))"; y = "safeZoneY + (0.02 * (safezoneH))"; w = UIF(0.4); h = UIF(0.05);
                 style = 1;
-                sizeEx = UIF(0.045);
+                sizeEx = UIT(0.045);
                 font = "EtelkaMonospacePro";
                 colorText[] = {1, 1, 1, 1};
                 colorBackground[] = {0, 0, 0, 0.4};
@@ -103,7 +104,7 @@ class RscTitles {
                 idc = 4103;
                 x = "safeZoneX"; y = "safeZoneY + safeZoneH - (0.14 * (safezoneH))"; w = "safeZoneW"; h = UIF(0.06);
                 style = 2;
-                sizeEx = UIF(0.05);
+                sizeEx = UIT(0.05);
                 font = "RobotoCondensedBold";
                 colorText[] = {1, 0.15, 0.15, 1};
             };
@@ -111,7 +112,7 @@ class RscTitles {
                 idc = 4105;
                 x = "safeZoneX"; y = "safeZoneY + safeZoneH - (0.07 * (safezoneH))"; w = "safeZoneW"; h = UIF(0.05);
                 style = 2;
-                sizeEx = UIF(0.032);
+                sizeEx = UIT(0.032);
                 text = "$STR_ADVSEC_left_right_arrows_switch_camera";
                 colorText[] = {1, 1, 1, 0.8};
             };
@@ -134,7 +135,7 @@ class RscTitles {
             class Text: RscStructuredText {
                 idc = 4201;
                 x = "safeZoneX + safeZoneW / 2 - (0.295 * (safezoneH))"; y = "safeZoneY + (0.03 * (safezoneH))"; w = UIF(0.595); h = UIF(0.075);
-                size = UIF(0.032);
+                size = UIT(0.032);
                 colorBackground[] = {0, 0, 0, 0.5};
                 class Attributes {
                     font = "RobotoCondensed";
@@ -157,11 +158,11 @@ class RscTitles {
             class Accent: RscText { idc = -1; x = UIX(0.3); y = UIY(0.78); w = UIW(0.004); h = UIH(0.075); colorBackground[] = ADVSEC_COL_ACCENT; };
             class Title: RscText {
                 idc = 86451; x = UIX(0.31); y = UIY(0.782); w = UIW(0.3); h = UIH(0.035);
-                sizeEx = UIF(0.03); font = "RobotoCondensedBold"; colorText[] = ADVSEC_COL_TEXT; text = "";
+                sizeEx = UIT(0.03); font = "RobotoCondensedBold"; colorText[] = ADVSEC_COL_TEXT; text = "";
             };
             class Time: RscText {
                 idc = 86452; x = UIX(0.6); y = UIY(0.782); w = UIW(0.095); h = UIH(0.035);
-                sizeEx = UIF(0.028); style = 1; colorText[] = {0.55, 0.55, 0.55, 1}; text = "";
+                sizeEx = UIT(0.028); style = 1; colorText[] = {0.55, 0.55, 0.55, 1}; text = "";
             };
             class Track: RscText { idc = -1; x = UIX(0.31); y = UIY(0.825); w = UIW(0.38); h = UIH(0.018); colorBackground[] = ADVSEC_COL_DARK; };
             class Fill: RscText { idc = 86453; x = UIX(0.31); y = UIY(0.825); w = UIW(0); h = UIH(0.018); colorBackground[] = ADVSEC_COL_ACCENT; };
@@ -182,11 +183,11 @@ class RscTitles {
             class Icon: RscPicture { idc = -1; x = UIXP(0.215,0.075); y = UIY(0.13); w = UIF(0.075); h = UIH(0.1); text = "\A3\ui_f\data\igui\cfg\simpleTasks\types\danger_ca.paa"; colorText[] = {1, 1, 1, 1}; };
             class Big: RscText {
                 idc = 86461; x = UIX(0.3); y = UIY(0.12); w = UIW(0.49); h = UIH(0.075);
-                sizeEx = UIF(0.065); font = "RobotoCondensedBold"; colorText[] = {1, 1, 1, 1}; text = "ALTO";
+                sizeEx = UIT(0.065); font = "RobotoCondensedBold"; colorText[] = {1, 1, 1, 1}; text = "ALTO";
             };
             class Sub: RscStructuredText {
                 idc = 86462; x = UIX(0.3); y = UIY(0.2); w = UIW(0.49); h = UIH(0.1);
-                size = UIF(0.034); colorText[] = {1, 1, 1, 1}; text = "";
+                size = UIT(0.034); colorText[] = {1, 1, 1, 1}; text = "";
             };
         };
     };

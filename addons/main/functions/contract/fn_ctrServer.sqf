@@ -43,7 +43,11 @@ private _repAdd = {
     ["clients"] call ADVSEC_fnc_dbDirty;
     missionNamespace setVariable ["ADVSEC_clientRep", (keys _cl) apply {[_x, (_cl get _x) select 0]}, true];
 };
-private _pm = {(allPlayers - entities "HeadlessClient_F") select {alive _x && {[_x, "PM"] call ADVSEC_fnc_repAccess}}};
+private _pm = {(allPlayers - entities "HeadlessClient_F") select {alive _x && {[_x, "PMC"] call ADVSEC_fnc_repAccess}}};
+// Requisitos ajustables (CBA, para probar en local). contractMinOps >= 0 se aplica también a las ofertas ya abiertas.
+private _minOps = {private _o = round (["contractMinOps", -1] call ADVSEC_fnc_setting); [_this get "minOps", _o] select (_o >= 0)};
+private _chkRep = (["contractCheckRep", 1] call ADVSEC_fnc_setting) isEqualTo 1;
+private _chkSpecs = (["contractCheckSpecs", 1] call ADVSEC_fnc_setting) isEqualTo 1;
 private _units = {
     params ["_c"];
     private _duty = (["patrolNeedDuty", 1] call ADVSEC_fnc_setting) isEqualTo 1;
@@ -134,7 +138,7 @@ private _sheet = {
         _c get "id", (_c get "title") call ADVSEC_fnc_repEsc, (_c get "client") call _clName, (_c get "type") call _tyName, (_c get "state") call ADVSEC_fnc_Lv,
         (_c get "pay") call _fmt, round ((_c get "adv") * 100), round ((_c get "penal") * 100), _c get "risk", _c get "repMin",
         [("STR_ADVSEC_pmc_no_limit" call ADVSEC_fnc_L), format ["%1 min", _c get "minutes"]] select ((_c get "minutes") > 0),
-        mapGridPosition (_c get "pos"), _c get "radius", count (_c get "route"), _c get "minOps",
+        mapGridPosition (_c get "pos"), _c get "radius", count (_c get "route"), _c call _minOps,
         [("STR_ADVSEC_pmc_none" call ADVSEC_fnc_L), ((_c get "specs") apply {[_x] call ADVSEC_fnc_specName}) joinString ", "] select ((_c get "specs") isNotEqualTo []),
         [("STR_ADVSEC_no" call ADVSEC_fnc_L), ("STR_ADVSEC_yes" call ADVSEC_fnc_L)] select (_c get "grey"),
         ((_c get "signer") param [1, "-"]) call ADVSEC_fnc_repEsc, (((_c get "assigned") apply {_x select 1}) joinString ", ") call ADVSEC_fnc_repEsc,
@@ -170,6 +174,7 @@ private _finish = {
     {if (!isNull _x && {!isPlayer _x}) then {[_x] spawn {params ["_o"]; sleep 60; if (!isNull _o) then {deleteVehicle _o}}}} forEach (_tmp getOrDefault [_id, []]);
     _tmp deleteAt _id;
     ["end", _id] call ADVSEC_fnc_ctrHostiles;
+    ["end", _id] call ADVSEC_fnc_ctrCivil;
     // Nóminas de los asignados mientras duró
     private _every = ["salaryInterval", 30] call ADVSEC_fnc_setting;
     if (_every > 0 && {(_c get "t0") >= 0}) then {
@@ -240,8 +245,11 @@ switch (_action) do {
         ["contract", ("STR_ADVSEC_pmc_clients_info" call ADVSEC_fnc_L), _rows] remoteExecCall ["ADVSEC_fnc_panelSet", _caller];
     };
     case "offer": {
-        if !([_caller] call ADVSEC_fnc_isZeus) exitWith {[_caller, ("STR_ADVSEC_pmc_perm_offer" call ADVSEC_fnc_L)] call ADVSEC_fnc_deny};
-        _args params [["_type", "escort"], ["_client", ""], ["_pos", [0, 0, 0]], ["_rad", 150], ["_pay", 0], ["_min", 0], ["_route", []], ["_obj", objNull], ["_title", ""], ["_hMode", -1], ["_hN", -1]];
+        // Zeus, o el propio servidor (módulo de Eden «Encargo a medida»)
+        if (!(isNull _caller && {!(call ADVSEC_fnc_fromClient)}) && {!([_caller] call ADVSEC_fnc_isZeus)}) exitWith {[_caller, ("STR_ADVSEC_pmc_perm_offer" call ADVSEC_fnc_L)] call ADVSEC_fnc_deny};
+        _args params [["_type", "escort"], ["_client", ""], ["_pos", [0, 0, 0]], ["_rad", 150], ["_pay", 0], ["_min", 0], ["_route", []], ["_obj", objNull], ["_title", ""], ["_hMode", -1], ["_hN", -1],
+            ["_hSide", ""], ["_hCls", []], ["_hUnits", -1], ["_clLabel", ""], ["_edenKey", ""]];
+        if (_title isEqualTo "" && {_clLabel isNotEqualTo ""}) then {_title = format ["%1 · %2", _clLabel select [0, 40], _type call _tyName]};
         if (isNull (["ContractTypes", _type] call _cfgOf)) exitWith {("STR_ADVSEC_invalid_data" call ADVSEC_fnc_L) call _say};
         if (isNull (["Clients", _client] call _cfgOf)) then {_client = configName ((["Clients"] call ADVSEC_fnc_pmcClasses) select 0)};
         private _tc = ["ContractTypes", _type] call _cfgOf;
@@ -254,9 +262,15 @@ switch (_action) do {
             _route = [_pos, _dst] call _routeFrom;
         };
         private _id = [_type, _client, _pos, (_rad max 30) min 1000, _pay, _min, _route, _title] call _offer;
-        if (!isNull _obj) then {(_db get _id) set ["objNet", netId _obj]};
+        if (!isNull _obj) then {(_db get _id) set ["objNet", (_obj call BIS_fnc_netId)]};
         if (_hMode isEqualType 0 && {_hMode >= 0}) then {(_db get _id) set ["hostileMode", _hMode min 3]};
         if (_hN isEqualType 0 && {_hN >= 0}) then {(_db get _id) set ["hostileN", _hN min 12]};
+        // Encargo a medida (1.20.1): bando, clases y número de NPC, nombre del cliente; las de Eden no caducan
+        if (_hSide isEqualType "" && {_hSide in ["east", "west", "independent", "civilian"]}) then {(_db get _id) set ["hostileSide", _hSide]};
+        if (_hCls isEqualType [] && {_hCls isNotEqualTo []}) then {(_db get _id) set ["hostileClasses", (_hCls select {_x isEqualType "" && {isClass (configFile >> "CfgVehicles" >> _x)}}) select [0, 60]]};
+        if (_hUnits isEqualType 0 && {_hUnits >= 0}) then {(_db get _id) set ["hostileUnits", _hUnits min 60]};
+        if (_clLabel isEqualType "" && {_clLabel isNotEqualTo ""}) then {(_db get _id) set ["clientName", _clLabel select [0, 40]]};
+        if (_edenKey isEqualType "" && {_edenKey isNotEqualTo ""}) then {(_db get _id) set ["edenKey", _edenKey]; (_db get _id) set ["expires", serverTime + 1e7]};
         (format [("STR_ADVSEC_pmc_offer_published" call ADVSEC_fnc_L), _id]) call _say;
         ["contractOffer", _caller, [_id, _type, _client, _pay]] call ADVSEC_fnc_logEvent;
     };
@@ -279,7 +293,7 @@ switch (_action) do {
         if (_clients isEqualTo []) exitWith {};
         private _cc = selectRandom _clients;
         private _key = configName _cc;
-        private _maxRisk = (((_key call _rep) call _tier) select 1) max 1;
+        private _maxRisk = [3, (((_key call _rep) call _tier) select 1) max 1] select _chkRep;
         private _types = (["ContractTypes"] call ADVSEC_fnc_pmcClasses) select {([_x, "risk", 1] call ADVSEC_fnc_pmcVal) <= _maxRisk};
         if (_types isEqualTo []) exitWith {};
         private _tc = selectRandom _types;
@@ -344,13 +358,14 @@ switch (_action) do {
         if !([_caller, "contractSign"] call ADVSEC_fnc_perm) exitWith {[_caller, ("STR_ADVSEC_pmc_perm_sign" call ADVSEC_fnc_L)] call ADVSEC_fnc_deny};
         if ((_c get "grey") && {!([_caller, "contractGrey"] call ADVSEC_fnc_perm)}) exitWith {[_caller, ("STR_ADVSEC_pmc_perm_grey" call ADVSEC_fnc_L)] call ADVSEC_fnc_deny};
         private _r = (_c get "client") call _rep;
-        if (_r < (_c get "repMin")) exitWith {(format [("STR_ADVSEC_pmc_rep_too_low" call ADVSEC_fnc_L), _r, _c get "repMin"]) call _say};
+        if (_chkRep && {_r < (_c get "repMin")}) exitWith {(format [("STR_ADVSEC_pmc_rep_too_low" call ADVSEC_fnc_L), _r, _c get "repMin"]) call _say};
         if ({(_x get "state") in ["Firmado", "En curso", "Revisión"]} count (values _db) >= (["contractMaxActive", 3] call ADVSEC_fnc_setting)) exitWith {("STR_ADVSEC_pmc_too_many_active" call ADVSEC_fnc_L) call _say};
         private _on = call _pm;
-        if (count _on < (_c get "minOps")) exitWith {(format [("STR_ADVSEC_pmc_need_ops" call ADVSEC_fnc_L), _c get "minOps", count _on]) call _say};
+        if (count _on < (_c call _minOps)) exitWith {(format [("STR_ADVSEC_pmc_need_ops" call ADVSEC_fnc_L), _c call _minOps, count _on]) call _say};
         private _sdb = [] call ADVSEC_fnc_specDB;
         private _uids = _on apply {getPlayerUID _x};
-        private _miss = (_c get "specs") select {(((_sdb getOrDefault [_x, [[]]]) select 0) arrayIntersect _uids) isEqualTo []};
+        private _miss = [[], _c get "specs"] select _chkSpecs;
+        _miss = _miss select {(((_sdb getOrDefault [_x, [[]]]) select 0) arrayIntersect _uids) isEqualTo []};
         if (_miss isNotEqualTo []) exitWith {(format [("STR_ADVSEC_pmc_need_specs" call ADVSEC_fnc_L), (_miss apply {[_x] call ADVSEC_fnc_specName}) joinString ", "]) call _say};
         private _adv = round ((_c get "pay") * (_c get "adv"));
         _c set ["state", "Firmado"];
@@ -377,9 +392,9 @@ switch (_action) do {
         private _as = [];
         {
             private _u = [_x] call ADVSEC_fnc_uidUnit;
-            if (!isNull _u && {[_u, "PM"] call ADVSEC_fnc_repAccess}) then {_as pushBackUnique [_x, name _u]};
+            if (!isNull _u && {[_u, "PMC"] call ADVSEC_fnc_repAccess}) then {_as pushBackUnique [_x, name _u]};
         } forEach (_uids select {_x isEqualType ""});
-        if (count _as < (_c get "minOps")) exitWith {(format [("STR_ADVSEC_pmc_need_ops" call ADVSEC_fnc_L), _c get "minOps", count _as]) call _say};
+        if (count _as < (_c call _minOps)) exitWith {(format [("STR_ADVSEC_pmc_need_ops" call ADVSEC_fnc_L), _c call _minOps, count _as]) call _say};
         if !(_roe in ["Verde", "Ámbar", "Rojo"]) then {_roe = "Ámbar"};
         _c set ["assigned", _as];
         _c set ["roe", _roe];
@@ -413,7 +428,7 @@ switch (_action) do {
         _c set ["reached", ([_c] call _ctrPts) apply {false}];
         private _objs = [];
         private _type = _c get "type";
-        private _given = objectFromNetId (_c getOrDefault ["objNet", ""]);
+        private _given = ((_c getOrDefault ["objNet", ""]) call BIS_fnc_objectFromNetId);
         if (_type == "vip") then {
             private _vip = _given;
             if (isNull _vip || {!alive _vip}) then {
@@ -428,7 +443,7 @@ switch (_action) do {
             private _lead = ([_c] call _units) param [0, objNull];
             if (!isNull _lead) then {[_vip] joinSilent group _lead};
             [_vip, "VIPPass", [["name", name _vip], ["number", _id], ["issuer", (_c get "client") call _clName], ["clearance", 2], ["notes", _c get "title"]], true, true, true] call ADVSEC_fnc_docCreate;
-            _c set ["vipNet", netId _vip];
+            _c set ["vipNet", (_vip call BIS_fnc_netId)];
         };
         if (_type == "recovery") then {
             private _box = _given;
@@ -437,13 +452,14 @@ switch (_action) do {
                 _objs pushBack _box;
             };
             _box setVariable ["ADVSEC_ctrCargo", _id, true];
-            _c set ["cargoNet", netId _box];
+            _c set ["cargoNet", (_box call BIS_fnc_netId)];
         };
         private _tmp = localNamespace getVariable ["ADVSEC_ctrObjs", createHashMap];
         _tmp set [_id, _objs];
         localNamespace setVariable ["ADVSEC_ctrObjs", _tmp];
         // Enemigos: los ya colocados en la zona y/o generados (contractHostiles)
         (["start", _id, _c] call ADVSEC_fnc_ctrHostiles) params [["_hN", 0]];
+        ["start", _id, _c] call ADVSEC_fnc_ctrCivil;
         if (_hN > 0) then {[_c, format [("STR_ADVSEC_pmc_host_intel" call ADVSEC_fnc_L), _id, _hN]] call _notify};
         // Disparos de los asignados (para atribuir daños a edificios)
         {
