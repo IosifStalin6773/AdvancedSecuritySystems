@@ -73,6 +73,21 @@ if (_mode in ["self", "company"]) exitWith {
     _po pushBack ["advsec_pm_evidence", ("STR_ADVSEC_evidence_log" call ADVSEC_fnc_L), ADVSEC_icDoc, {[] call ADVSEC_fnc_evOpen}, []];
     if ([_player, "cyberView"] call ADVSEC_fnc_perm || {(([_player] call ADVSEC_fnc_cellRole) select 0) == "SEC"}) then {_po pushBack ["advsec_pmc_cy", ("STR_ADVSEC_pmc_cy_terminal" call ADVSEC_fnc_L), ADVSEC_icCam, {[] call ADVSEC_fnc_cyOpen}, []]};
     if ([_player, "suspicionView"] call ADVSEC_fnc_perm) then {_po pushBack ["advsec_ai_heat", ("STR_ADVSEC_suspicion_index_2" call ADVSEC_fnc_L), ADVSEC_icPol, {[] call ADVSEC_fnc_heatOpen}, []]};
+    // 1.22: marca táctica y mensaje del canal (cifrado con pdaCipherKey si está configurada)
+    _po pushBack ["advsec_pm_tacmark", ("STR_ADVSEC_m_tac_menu" call ADVSEC_fnc_L), ADVSEC_icCar, {
+        [] spawn {
+            [("STR_ADVSEC_m_tac_menu" call ADVSEC_fnc_L), [[("STR_ADVSEC_m_tac_text" call ADVSEC_fnc_L), ""]], {
+                params ["_v"];
+                ["mark", player, [getPosATL player, _v select 0, "PM"]] remoteExecCall ["ADVSEC_fnc_pdaComms", 2];
+            }] call ADVSEC_fnc_zeusPrompt;
+        };
+    }, []];
+    _po pushBack ["advsec_pm_chanmsg", ("STR_ADVSEC_m_msg_menu" call ADVSEC_fnc_L), ADVSEC_icDoc, {
+        [("STR_ADVSEC_m_msg_menu" call ADVSEC_fnc_L), [[("STR_ADVSEC_m_msg_text" call ADVSEC_fnc_L), ""]], {
+            params ["_v"];
+            ["msg", player, [_v select 0, "PM", ["pdaCipherKey", ""] call ADVSEC_fnc_setting]] remoteExecCall ["ADVSEC_fnc_pdaComms", 2];
+        }] call ADVSEC_fnc_zeusPrompt;
+    }, []];
     if ([_player, "restrain"] call ADVSEC_fnc_perm) then {_po pushBack ["advsec_pm_custody", ("STR_ADVSEC_m_care_register" call ADVSEC_fnc_L), ADVSEC_icDoc, {["register", _player] remoteExecCall ["ADVSEC_fnc_jailCare", 2]}, []]};
     if ([_player, "caseClose"] call ADVSEC_fnc_perm) then {_po pushBack ["advsec_ai_cases", ("STR_ADVSEC_m_case_title_panel" call ADVSEC_fnc_L), ADVSEC_icDoc, {[] call ADVSEC_fnc_caseOpen}, []]};
     if ([_player, "bodycamView"] call ADVSEC_fnc_perm) then {

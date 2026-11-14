@@ -15,7 +15,10 @@ switch (_a) do {
                 {
                     private _cam = _x;
                     (_cam getVariable ["ADVSEC_speedCam", []]) params [["_name", "Radar"], ["_lim", 90], ["_range", 40], ["_base", 100], ["_per", 5], ["_on", false], ["_mode", 0], ["_exempt", (["speedCamExemptDuty", 1] call ADVSEC_fnc_setting) isEqualTo 1]];
-                    if (_on && {alive _cam}) then {
+                    // 1.22: un radar sin calibrar en plazo no multa (radarCalibrationMin, 0 = nunca caduca)
+                    private _calMin = ["radarCalibrationMin", 0] call ADVSEC_fnc_setting;
+                    private _calOk = _calMin <= 0 || {serverTime - (_cam getVariable ["ADVSEC_calAt", serverTime]) < _calMin * 60};
+                    if (_on && {alive _cam} && _calOk) then {
                         {
                             private _veh = _x;
                             private _drv = driver _veh;
@@ -87,6 +90,14 @@ switch (_a) do {
             _h addItemCargoGlobal ["ADVSEC_SpeedCamKit", 1];
         };
         ("STR_ADVSEC_speed_camera_picked_up" call ADVSEC_fnc_L) call _say;
+    };
+    case "calibrate": {
+        // 1.22: calibración del radar (permiso radar)
+        _args params [["_cam", objNull]];
+        if (isNull _cam || {!([_caller, "radar"] call ADVSEC_fnc_perm)} || {(_caller distance _cam) > 10}) exitWith {};
+        _cam setVariable ["ADVSEC_calAt", serverTime, true];
+        ["radarCalibrate", _caller, [_cam getVariable ["ADVSEC_speedCam", ["Radar"]] select 0]] call ADVSEC_fnc_logEvent;
+        ("STR_ADVSEC_m_cal_done" call ADVSEC_fnc_L) call _say;
     };
     case "log": {
         _args params [["_cam", objNull]];

@@ -533,6 +533,14 @@ class CfgFunctions {
         class policeCare {
             file = "\x\advsec\addons\main\functions\police";
             class jailCare {};
+            class jailCareLoop {};
+            class escapeAttempt {};
+        };
+        class pdaComms {
+            file = "\x\advsec\addons\main\functions\pda";
+            class pdaComms {};
+            class pdaMarkShow {};
+            class pdaMsgShow {};
         };
         class serverMapDB {
             file = "\x\advsec\addons\main\functions\server";

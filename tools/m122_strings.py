@@ -110,6 +110,18 @@ S = {
 "STR_ADVSEC_m_care_treat": ("Atender al detenido (médico)", "Treat detainee (medical)"),
 "STR_ADVSEC_m_care_feed": ("Dar de comer al detenido", "Feed detainee"),
 "STR_ADVSEC_m_care_register": ("Registro de custodia del calabozo", "Cell custody register"),
+"STR_ADVSEC_m_escape_ok_you": ("Te has escapado. Tienes una requisitoria.", "You escaped. You now have a warrant."),
+"STR_ADVSEC_m_escape_rep": ("Fuga de detenido: %1", "Detainee escape: %1"),
+"STR_ADVSEC_m_escape_body": ("Detenido %2 se ha fugado en %1.", "Detainee %2 escaped at %1."),
+"STR_ADVSEC_m_escape_fail_rep": ("Intento de fuga frustrado: %1", "Failed escape attempt: %1"),
+"STR_ADVSEC_m_escape_fail_body": ("Detenido %2 intentó huir en %1 y fue reducido (heridas leves).", "Detainee %2 tried to flee at %1 and was subdued (light injuries)."),
+"STR_ADVSEC_m_tac_received": ("Marca táctica: %1", "Tactical mark: %1"),
+"STR_ADVSEC_m_tac_menu": ("Marca táctica aquí", "Tactical mark here"),
+"STR_ADVSEC_m_tac_text": ("Texto de la marca", "Mark text"),
+"STR_ADVSEC_m_msg_menu": ("Mensaje al canal PM", "Message to PM channel"),
+"STR_ADVSEC_m_msg_text": ("Mensaje", "Message"),
+"STR_ADVSEC_m_cal_done": ("Radar calibrado. Vuelve a multar.", "Radar calibrated. It can fine again."),
+"STR_ADVSEC_m_bat_low": ("La cámara corporal se ha quedado sin batería.", "Body camera battery ran out."),
 }
 root = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'addons', 'main')
 p = os.path.join(root, 'stringtable.xml')

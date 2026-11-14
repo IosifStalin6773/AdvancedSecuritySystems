@@ -12533,6 +12533,66 @@ Detenidos:
                 <English>Cell custody register</English>
                 <Spanish>Registro de custodia del calabozo</Spanish>
             </Key>
+            <Key ID="STR_ADVSEC_m_escape_ok_you">
+                <Original>You escaped. You now have a warrant.</Original>
+                <English>You escaped. You now have a warrant.</English>
+                <Spanish>Te has escapado. Tienes una requisitoria.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_escape_rep">
+                <Original>Detainee escape: %1</Original>
+                <English>Detainee escape: %1</English>
+                <Spanish>Fuga de detenido: %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_escape_body">
+                <Original>Detainee %2 escaped at %1.</Original>
+                <English>Detainee %2 escaped at %1.</English>
+                <Spanish>Detenido %2 se ha fugado en %1.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_escape_fail_rep">
+                <Original>Failed escape attempt: %1</Original>
+                <English>Failed escape attempt: %1</English>
+                <Spanish>Intento de fuga frustrado: %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_escape_fail_body">
+                <Original>Detainee %2 tried to flee at %1 and was subdued (light injuries).</Original>
+                <English>Detainee %2 tried to flee at %1 and was subdued (light injuries).</English>
+                <Spanish>Detenido %2 intentó huir en %1 y fue reducido (heridas leves).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_tac_received">
+                <Original>Tactical mark: %1</Original>
+                <English>Tactical mark: %1</English>
+                <Spanish>Marca táctica: %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_tac_menu">
+                <Original>Tactical mark here</Original>
+                <English>Tactical mark here</English>
+                <Spanish>Marca táctica aquí</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_tac_text">
+                <Original>Mark text</Original>
+                <English>Mark text</English>
+                <Spanish>Texto de la marca</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_msg_menu">
+                <Original>Message to PM channel</Original>
+                <English>Message to PM channel</English>
+                <Spanish>Mensaje al canal PM</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_msg_text">
+                <Original>Message</Original>
+                <English>Message</English>
+                <Spanish>Mensaje</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_cal_done">
+                <Original>Radar calibrated. It can fine again.</Original>
+                <English>Radar calibrated. It can fine again.</English>
+                <Spanish>Radar calibrado. Vuelve a multar.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_bat_low">
+                <Original>Body camera battery ran out.</Original>
+                <English>Body camera battery ran out.</English>
+                <Spanish>La cámara corporal se ha quedado sin batería.</Spanish>
+            </Key>
         </Container>
     </Package>
 </Project>

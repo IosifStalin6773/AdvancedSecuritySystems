@@ -382,4 +382,9 @@ class ADVSEC_Ranks {
     pointsStart = 0;              // puntos de carnet iniciales (0 = sin puntos)
     pointsLicenseType = "";       // tipo de licencia que se retira al llegar a 0 puntos ("" = ninguna)
     finePrescriptionDays = 0;     // días de juego hasta anular una multa pendiente (0 = nunca)
+    transferEscapeChance = 0.02;  // probabilidad por cada 30 s de un detenido en vehículo de intentar la fuga (0 = nunca)
+    pdaCipherKey = "";            // clave de los mensajes cifrados del canal PM (vacía = sin cifrar)
+    bodycamAutoDraw = 0;          // 1 = la cámara corporal se enciende sola al desenfundar (agentes de servicio)
+    bodycamBatteryMin = 0;        // minutos de grabación por carga (0 = infinita)
+    radarCalibrationMin = 0;      // minutos entre calibraciones del radar (0 = nunca caduca)
 };

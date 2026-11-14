@@ -130,6 +130,9 @@ class CfgRemoteExec {
         class ADVSEC_fnc_jailCare { allowedTargets = 2; };
         class ADVSEC_fnc_caseServer { allowedTargets = 2; };
         class ADVSEC_fnc_progress { allowedTargets = 0; };
+        class ADVSEC_fnc_pdaMarkShow { allowedTargets = 0; };
+        class ADVSEC_fnc_pdaMsgShow { allowedTargets = 0; };
+        class ADVSEC_fnc_pdaComms { allowedTargets = 2; };
         class ADVSEC_fnc_ecoTakeItem { allowedTargets = 0; };
         class ADVSEC_fnc_specLocal { allowedTargets = 0; };
         class ADVSEC_fnc_dspNotify { allowedTargets = 0; };

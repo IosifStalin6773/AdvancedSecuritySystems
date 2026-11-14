@@ -13,7 +13,7 @@ switch (_action) do {
         if !([_caller, "restrain"] call ADVSEC_fnc_perm) exitWith {[_caller, ("STR_ADVSEC_m_care_do" call ADVSEC_fnc_L)] call ADVSEC_fnc_deny};
         _args params [["_u", objNull]];
         if (isNull _u || {!([_u] call _detained)} || {(_caller distance _u) > 6}) exitWith {};
-        [_u, 0] remoteExec ["setDamage", _u];
+        _u setDamage 0;
         _u setVariable ["ADVSEC_treated", serverTime, true];
         ["jailTreat", _caller, [name _u]] call ADVSEC_fnc_logEvent;
         (format [("STR_ADVSEC_m_care_done" call ADVSEC_fnc_L), name _u]) call _say;
