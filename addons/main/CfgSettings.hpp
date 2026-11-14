@@ -381,4 +381,5 @@ class ADVSEC_Ranks {
     fineRecidivism = 0;           // recargo por multa anterior (0.5 = +50 % por cada anterior, tope 3)
     pointsStart = 0;              // puntos de carnet iniciales (0 = sin puntos)
     pointsLicenseType = "";       // tipo de licencia que se retira al llegar a 0 puntos ("" = ninguna)
+    finePrescriptionDays = 0;     // días de juego hasta anular una multa pendiente (0 = nunca)
 };

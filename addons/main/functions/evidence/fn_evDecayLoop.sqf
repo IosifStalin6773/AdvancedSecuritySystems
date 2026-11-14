@@ -26,5 +26,21 @@ ADVSEC_evDecayOn = true;
                 };
             };
         } forEach +_db;
+        // 1.22: prescripción de multas pendientes (finePrescriptionDays días de juego; 0 = nunca)
+        private _presc = ["finePrescriptionDays", 0] call ADVSEC_fnc_setting;
+        if (_presc > 0) then {
+            private _changed = false;
+            {
+                {
+                    if ((_x select 6) == "Pendiente" && {_now - (_x param [9, _now]) > _presc * 86400}) then {
+                        _x set [6, "Anulada"];
+                        _x set [8, "prescrita"];
+                        _changed = true;
+                        ["finePrescribed", objNull, [_x select 0, _x select 2]] call ADVSEC_fnc_logEvent;
+                    };
+                } forEach _y;
+            } forEach ([] call ADVSEC_fnc_fineDB);
+            if (_changed) then {["fines"] call ADVSEC_fnc_dbDirty};
+        };
     };
 };
