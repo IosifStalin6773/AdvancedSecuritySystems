@@ -12433,6 +12433,35 @@ Estado: %6</Spanish>
                 <English>Search warrant for %1 valid %2 h.</English>
                 <Spanish>Orden de registro para %1 válida %2 h.</Spanish>
             </Key>
+            <Key ID="STR_ADVSEC_m_clip_title">
+                <Original>Body camera clip of %1</Original>
+                <English>Body camera clip of %1</English>
+                <Spanish>Clip de cámara corporal de %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_clip_body">
+                <Original>Entry: %1 %2 · %3
+Data: %4
+Integrity seal: %5
+Marked by: %6</Original>
+                <English>Entry: %1 %2 · %3
+Data: %4
+Integrity seal: %5
+Marked by: %6</English>
+                <Spanish>Registro: %1 %2 · %3
+Datos: %4
+Sello de integridad: %5
+Marcado por: %6</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_clip_done">
+                <Original>Clip marked as evidence in report %1 (seal %2).</Original>
+                <English>Clip marked as evidence in report %1 (seal %2).</English>
+                <Spanish>Clip marcado como prueba en el informe %1 (sello %2).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_m_clip_btn">
+                <Original>Mark latest entry as evidence</Original>
+                <English>Mark latest entry as evidence</English>
+                <Spanish>Marcar último registro como prueba</Spanish>
+            </Key>
         </Container>
     </Package>
 </Project>

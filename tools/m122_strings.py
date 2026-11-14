@@ -93,6 +93,10 @@ S = {
 "STR_ADVSEC_m_lineup_saved": ("Rueda de reconocimiento registrada en el caso.", "Identification lineup recorded in the case."),
 "STR_ADVSEC_m_links_head": ("Vínculos entre casos (%1 personas)", "Links between cases (%1 people)"),
 "STR_ADVSEC_m_warrant_ok": ("Orden de registro para %1 válida %2 h.", "Search warrant for %1 valid %2 h."),
+"STR_ADVSEC_m_clip_title": ("Clip de cámara corporal de %1", "Body camera clip of %1"),
+"STR_ADVSEC_m_clip_body": ("Registro: %1 %2 · %3\nDatos: %4\nSello de integridad: %5\nMarcado por: %6", "Entry: %1 %2 · %3\nData: %4\nIntegrity seal: %5\nMarked by: %6"),
+"STR_ADVSEC_m_clip_done": ("Clip marcado como prueba en el informe %1 (sello %2).", "Clip marked as evidence in report %1 (seal %2)."),
+"STR_ADVSEC_m_clip_btn": ("Marcar último registro como prueba", "Mark latest entry as evidence"),
 }
 root = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'addons', 'main')
 p = os.path.join(root, 'stringtable.xml')
