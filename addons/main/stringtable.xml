@@ -11678,6 +11678,51 @@ Posición del VIP en vivo: %1</Spanish>
                 <English>You have an old full kit stored apart. Store what you are wearing first (it goes to the locker slots) and then equip it.</English>
                 <Spanish>Tienes un equipo completo antiguo guardado aparte. Guarda primero lo que llevas (irá a los huecos de la taquilla) y después equípatelo.</Spanish>
             </Key>
+            <Key ID="STR_ADVSEC_grp_contracts">
+                <Original>Contracts and cells</Original>
+                <English>Contracts and cells</English>
+                <Spanish>Contratos y células</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_grp_dispatch">
+                <Original>Dispatch and patrols</Original>
+                <English>Dispatch and patrols</English>
+                <Spanish>Central y patrullas</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_grp_queries">
+                <Original>Queries</Original>
+                <English>Queries</English>
+                <Spanish>Consultas</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_grp_admin">
+                <Original>Administration</Original>
+                <English>Administration</English>
+                <Spanish>Administración</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_grp_traffic">
+                <Original>Traffic</Original>
+                <English>Traffic</English>
+                <Spanish>Tráfico</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_grp_detainees">
+                <Original>Detainees</Original>
+                <English>Detainees</English>
+                <Spanish>Detenidos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_grp_investigation">
+                <Original>Investigation</Original>
+                <English>Investigation</English>
+                <Spanish>Investigación</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_grp_comms">
+                <Original>Channel communications</Original>
+                <English>Channel communications</English>
+                <Spanish>Comunicaciones del canal</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_grp_internal">
+                <Original>Internal Affairs</Original>
+                <English>Internal Affairs</English>
+                <Spanish>Asuntos Internos</Spanish>
+            </Key>
             <Key ID="STR_ADVSEC_pdb_tab_service">
                 <Original>Service</Original>
                 <English>Service</English>
