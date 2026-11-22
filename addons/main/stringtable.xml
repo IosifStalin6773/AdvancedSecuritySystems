@@ -13295,6 +13295,161 @@ Beneficio: %5 €</Spanish>
                 <English>Clear tactical marks</English>
                 <Spanish>Borrar marcas tácticas</Spanish>
             </Key>
+            <Key ID="STR_ADVSEC_dr_cat">
+                <Original>Doors (ADVSEC)</Original>
+                <English>Doors (ADVSEC)</English>
+                <Spanish>Puertas (ADVSEC)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_attr">
+                <Original>Door setup</Original>
+                <English>Door setup</English>
+                <Spanish>Configuración de puertas</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_attr_tip">
+                <Original>One box per door of the building. Click a door to give it a lock or a keypad.</Original>
+                <English>One box per door of the building. Click a door to give it a lock or a keypad.</English>
+                <Spanish>Una casilla por puerta del edificio. Haz clic en una puerta para ponerle cerradura o keypad.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_no_doors">
+                <Original>This object has no doors.</Original>
+                <English>This object has no doors.</English>
+                <Spanish>Este objeto no tiene puertas.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_info">
+                <Original>%1 doors · %2 configured · C = lock, K = keypad</Original>
+                <English>%1 doors · %2 configured · C = lock, K = keypad</English>
+                <Spanish>%1 puertas · %2 configuradas · C = cerradura, K = keypad</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_tip_free">
+                <Original>Door %1: no ADVSEC setup. Click to configure.</Original>
+                <English>Door %1: no ADVSEC setup. Click to configure.</English>
+                <Spanish>Puerta %1: sin configurar. Clic para configurarla.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_tip_set">
+                <Original>Door %1: %2 · %3 · level %4 · docs %5 · key %6</Original>
+                <English>Door %1: %2 · %3 · level %4 · docs %5 · key %6</English>
+                <Spanish>Puerta %1: %2 · %3 · nivel %4 · documentos %5 · llave %6</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_none">
+                <Original>No setup</Original>
+                <English>No setup</English>
+                <Spanish>Sin configurar</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_lock">
+                <Original>Lock</Original>
+                <English>Lock</English>
+                <Spanish>Cerradura</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_keypad">
+                <Original>Keypad</Original>
+                <English>Keypad</English>
+                <Spanish>Keypad</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_open">
+                <Original>Open at start</Original>
+                <English>Open at start</English>
+                <Spanish>Abierta al inicio</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_closed">
+                <Original>Locked at start</Original>
+                <English>Locked at start</English>
+                <Spanish>Cerrada al inicio</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_title">
+                <Original>DOOR %1 · %2</Original>
+                <English>DOOR %1 · %2</English>
+                <Spanish>PUERTA %1 · %2</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_f_type">
+                <Original>Type</Original>
+                <English>Type</English>
+                <Spanish>Tipo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_f_state">
+                <Original>Initial state</Original>
+                <English>Initial state</English>
+                <Spanish>Estado inicial</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_f_pin">
+                <Original>PIN (keypad)</Original>
+                <English>PIN (keypad)</English>
+                <Spanish>PIN (keypad)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_f_zone">
+                <Original>Alarm zone (keypad)</Original>
+                <English>Alarm zone (keypad)</English>
+                <Spanish>Zona de alarma (keypad)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_f_docs">
+                <Original>Valid documents</Original>
+                <English>Valid documents</English>
+                <Spanish>Documentos válidos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_f_docs_tip">
+                <Original>Comma separated (empty = none): Passport, IDCard, Permit, Keycard, Key, MilitaryID, MPBadge, IABadge</Original>
+                <English>Comma separated (empty = none): Passport, IDCard, Permit, Keycard, Key, MilitaryID, MPBadge, IABadge</English>
+                <Spanish>Separados por coma (vacío = ninguno): Passport, IDCard, Permit, Keycard, Key, MilitaryID, MPBadge, IABadge</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_f_key">
+                <Original>Key ID</Original>
+                <English>Key ID</English>
+                <Spanish>ID de llave</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_f_key_tip">
+                <Original>Key or keycard that also opens it (empty = none)</Original>
+                <English>Key or keycard that also opens it (empty = none)</English>
+                <Spanish>Llave o tarjeta que también la abre (vacío = ninguna)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_ok">
+                <Original>Apply</Original>
+                <English>Apply</English>
+                <Spanish>Aplicar</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_all">
+                <Original>Apply to all</Original>
+                <English>Apply to all</English>
+                <Spanish>Aplicar a todas</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_clear">
+                <Original>Remove</Original>
+                <English>Remove</English>
+                <Spanish>Quitar</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_cancel">
+                <Original>Cancel</Original>
+                <English>Cancel</English>
+                <Spanish>Cancelar</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_hint_none">
+                <Original>The door works as normal (no ADVSEC lock).</Original>
+                <English>The door works as normal (no ADVSEC lock).</English>
+                <Spanish>La puerta funciona normal (sin cerradura ADVSEC).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_hint_lock">
+                <Original>Lock: whoever meets the level, documents or key can lock and unlock it at the door. With no requirement only Zeus and lockpicking open it.</Original>
+                <English>Lock: whoever meets the level, documents or key can lock and unlock it at the door. With no requirement only Zeus and lockpicking open it.</English>
+                <Spanish>Cerradura: quien cumpla el nivel, los documentos o la llave la abre y cierra en la propia puerta. Sin requisito solo la abren Zeus o forzándola.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_hint_keypad">
+                <Original>Keypad at the door: the PIN toggles it. Level, documents or key allow swiping a card instead. Wrong PIN 3 times triggers the alarm of that zone.</Original>
+                <English>Keypad at the door: the PIN toggles it. Level, documents or key allow swiping a card instead. Wrong PIN 3 times triggers the alarm of that zone.</English>
+                <Spanish>Keypad en la puerta: el PIN la abre y cierra. Nivel, documentos o llave permiten pasar tarjeta. 3 PIN fallidos disparan la alarma de esa zona.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_kp_label">
+                <Original>DOOR %1 · ENTER PIN</Original>
+                <English>DOOR %1 · ENTER PIN</English>
+                <Spanish>PUERTA %1 · INTRODUZCA PIN</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_use_kp">
+                <Original>Use keypad (door %1)</Original>
+                <English>Use keypad (door %1)</English>
+                <Spanish>Usar keypad (puerta %1)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_card_kp">
+                <Original>Swipe card (door %1)</Original>
+                <English>Swipe card (door %1)</English>
+                <Spanish>Pasar tarjeta (puerta %1)</Spanish>
+            </Key>
         </Container>
     </Package>
 </Project>

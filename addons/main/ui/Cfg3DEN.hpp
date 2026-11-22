@@ -25,10 +25,29 @@ class display3DEN {
 };
 // Atributo de Eden: botón que abre el selector de catálogo (categoría -> objeto) en vez de escribir «clase:precio»
 class ctrlButton;
+class ctrlControlsGroup;
+class ctrlStatic;
 class Cfg3DEN {
     // 1.21: sección «Diálogo (ADVSEC)» en los atributos de cualquier objeto o unidad de Eden
     class Object {
         class AttributeCategories {
+            // «Puertas (ADVSEC)»: rejilla por puerta del edificio para ponerle cerradura o keypad (ADVSEC_fnc_doorAttr / doorEden)
+            class ADVSEC_DoorsCat {
+                displayName = "$STR_ADVSEC_dr_cat";
+                collapsed = 0;
+                class Attributes {
+                    class ADVSEC_Doors {
+                        displayName = "$STR_ADVSEC_dr_attr";
+                        tooltip = "$STR_ADVSEC_dr_attr_tip";
+                        property = "ADVSEC_Doors";
+                        control = "ADVSEC_DoorGrid";
+                        expression = "if (_value isEqualType '' && {_value != ''}) then {[_this, _value] call ADVSEC_fnc_doorEden}";
+                        defaultValue = "''";
+                        typeName = "STRING";
+                        condition = "1";
+                    };
+                };
+            };
             class ADVSEC_DialogCat {
                 displayName = "$STR_ADVSEC_dlg_cat";
                 collapsed = 1;
@@ -79,6 +98,30 @@ class Cfg3DEN {
                 class Value: Value {
                     text = "$STR_ADVSEC_dlg_attr_none";
                     onButtonClick = "['edit', _this select 0] call ADVSEC_fnc_dlgAttr";
+                };
+            };
+        };
+        // Rejilla de puertas (1.23): una casilla por puerta; clic = ventana de configuración
+        class ADVSEC_DoorGrid: Title {
+            attributeLoad = "['load', _this, _value] call ADVSEC_fnc_doorAttr";
+            attributeSave = "_this getVariable ['ADVSEC_val', '']";
+            h = "37 * (pixelH * pixelGrid * 0.50)";
+            class Controls: Controls {
+                class Title: Title {};
+                class Grid: ctrlControlsGroup {
+                    idc = 100;
+                    x = "48 * (pixelW * pixelGrid * 0.50)";
+                    y = "0";
+                    w = "82 * (pixelW * pixelGrid * 0.50)";
+                    h = "31 * (pixelH * pixelGrid * 0.50)";
+                };
+                class Info: ctrlStatic {
+                    idc = 101;
+                    x = "48 * (pixelW * pixelGrid * 0.50)";
+                    y = "31.5 * (pixelH * pixelGrid * 0.50)";
+                    w = "82 * (pixelW * pixelGrid * 0.50)";
+                    h = "5 * (pixelH * pixelGrid * 0.50)";
+                    colorText[] = {1, 1, 1, 0.6};
                 };
             };
         };

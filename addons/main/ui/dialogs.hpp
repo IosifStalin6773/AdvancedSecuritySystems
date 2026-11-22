@@ -932,6 +932,13 @@ class ADVSEC_DlgEditor {
     class controlsBackground {};
     class controls {};
 };
+// Ventana de Eden para configurar una puerta (atributo «Puertas (ADVSEC)»); controles creados en ADVSEC_fnc_doorAttr
+class ADVSEC_DoorEditor {
+    idd = 88410;
+    movingEnable = 0;
+    class controlsBackground {};
+    class controls {};
+};
 class ADVSEC_DlgTalk {
     idd = 88300;
     movingEnable = 0;

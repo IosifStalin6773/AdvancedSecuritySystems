@@ -67,6 +67,8 @@ class CfgFunctions {
             class doorInit {};
             class hasDoors {};
             class doorList {};
+            class doorAttr {};
+            class doorEden {};
         };
         class keypad {
             file = "\x\advsec\addons\main\functions\keypad";
