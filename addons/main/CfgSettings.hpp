@@ -44,8 +44,27 @@ class ADVSEC_Settings {
     pmItemsRequired = 0;         // 1 = algunas acciones necesitan el objeto de la PM (pmItemUse)
     pmItemUse[] = {
         {"cuff", {"ADVSEC_Handcuffs", "ACE_CableTie"}}, {"release", {"ADVSEC_CellKeys"}}, {"fine", {"ADVSEC_CitationBook"}},
-        {"scene", {"ADVSEC_FPKit"}}, {"vehsearch", {"ADVSEC_InspMirror"}}, {"sniff", {"ADVSEC_ScentBag"}}
+        {"scene", {"ADVSEC_FPKit"}}, {"vehsearch", {"ADVSEC_InspMirror"}}, {"sniff", {"ADVSEC_ScentBag"}}, {"sketch", {"ADVSEC_MeasureTape"}}
     };
+    // 1.24 (fase 3): avisos generados por IA, tensión social, autotest
+    aiCalls = 1;                 // 1 = la central genera avisos IA mientras haya agentes de servicio
+    callMinDuty = 1;             // agentes de servicio necesarios para que se generen
+    callInterval = 12;           // minutos entre avisos (menos con tensión alta)
+    callMax = 2;                 // avisos IA a la vez
+    callRadius = 3000;           // radio desde la base (marcador advsec_base, sirena, calabozo o teléfono) donde se buscan pueblos
+    callSpecial = 0;             // 1 = la redada y el atrincherado también salen al azar (si no, solo los lanza el Zeus)
+    callTypes[] = {"awol", "speeding", "blackmarket", "apo", "boq", "sapper", "convoy", "ambush", "transfer", "accident", "raid", "barricade", "pow", "refugees", "asp", "port", "perimeter", "hospguard", "amnesty", "trophy", "follow", "wake", "mortar", "press", "down", "tire", "server"};
+    callMerit = 3;               // méritos para los agentes que resuelven un aviso
+    callGuardMin = 10;           // minutos de presencia que pide un servicio de guardia
+    callCivs[] = {"C_man_1", "C_man_polo_1_F", "C_man_polo_2_F", "C_man_polo_4_F", "C_man_p_beggar_F"};
+    callHostiles[] = {"O_G_Soldier_F", "O_G_Soldier_lite_F", "O_G_Soldier_AR_F", "O_G_Soldier_SL_F"};
+    callSoldier = "B_Soldier_unarmed_F";
+    callCars[] = {"C_Offroad_01_F", "C_Hatchback_01_F", "C_SUV_01_F"};
+    callConvoy[] = {"B_MRAP_01_F", "B_Truck_01_transport_F", "B_Truck_01_covered_F"};
+    callTrophyWeapon = "arifle_AKM_F";
+    vehSirenSound = "A3\Sounds_F\sfx\alarm_independent.wss";
+    selfTest = 1;                // autotest al arrancar el servidor (resultado en el menú Zeus y en el RPT)
+    selfTestCalls = 0;           // 1 = el autotest también monta y desmonta avisos de prueba
     // Rangos por nivel de placa (1-5). El nivel es el campo "clearance" de la placa/credencial.
     ranksPM[] = {"$STR_ADVSEC_officer", "$STR_ADVSEC_corporal", "$STR_ADVSEC_sergeant", "$STR_ADVSEC_lieutenant", "$STR_ADVSEC_captain"};
     ranksAI[] = {"Inspector", "$STR_ADVSEC_chief_inspector", "$STR_ADVSEC_superintendent", "$STR_ADVSEC_chief_superintendent", "Director"};
@@ -122,6 +141,7 @@ class ADVSEC_Settings {
         courtMartial[] = {"PM", 4};   // 1.24: consejo de guerra
         baseAlarm[] = {"PMC", 2};    // 1.24: alarma de base y sirena de toque de queda
         mpCrate[] = {"PMC", 1};      // 1.24: reponer cajas de equipo de la PM
+        callLaunch[] = {"PM", 4};    // 1.24: lanzar y cancelar avisos IA (el Zeus siempre puede)
         trial[] = {"PM", 3};          // 1.24: instruir juicios
     };
 
@@ -400,6 +420,10 @@ class ADVSEC_Keys {
     class justice { name = "$STR_ADVSEC_jus_menu"; tooltip = "$STR_ADVSEC_jus_key_tip"; category = "$STR_ADVSEC_military_police"; key[] = {0, 0, 0, 0}; };
     class payslip { name = "$STR_ADVSEC_pay_slip"; tooltip = "$STR_ADVSEC_pay_slip_tip"; category = "$STR_ADVSEC_citizen"; key[] = {0, 0, 0, 0}; };
     class baseAlarm { name = "$STR_ADVSEC_siren_alarm"; tooltip = "$STR_ADVSEC_siren_alarm_tip"; category = "$STR_ADVSEC_military_police"; key[] = {0, 0, 0, 0}; };
+    class aiCalls { name = "$STR_ADVSEC_call_menu"; tooltip = "$STR_ADVSEC_call_key_tip"; category = "$STR_ADVSEC_military_police"; key[] = {0, 0, 0, 0}; };
+    class halt { name = "$STR_ADVSEC_hk_halt"; tooltip = "$STR_ADVSEC_hk_halt_tip"; category = "$STR_ADVSEC_military_police"; key[] = {0, 0, 0, 0}; };
+    class vehSiren { name = "$STR_ADVSEC_hk_siren"; tooltip = "$STR_ADVSEC_hk_siren_tip"; category = "$STR_ADVSEC_military_police"; key[] = {0, 0, 0, 0}; };
+    class megaphone { name = "$STR_ADVSEC_hk_megaphone"; tooltip = "$STR_ADVSEC_hk_megaphone_tip"; category = "$STR_ADVSEC_military_police"; key[] = {0, 0, 0, 0}; };
     class zeusPanel { name = "$STR_ADVSEC_security_panel_zeus"; tooltip = "$STR_ADVSEC_zeus_admin_only"; category = "Zeus"; key[] = {210, 1, 1, 0}; };
 };
 

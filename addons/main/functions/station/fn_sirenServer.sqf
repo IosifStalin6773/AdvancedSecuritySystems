@@ -20,7 +20,7 @@ switch (_action) do {
         if (_set isEqualTo []) exitWith {("STR_ADVSEC_siren_none" call ADVSEC_fnc_L) remoteExecCall ["hint", _caller]};
         private _on = !((_set select 0) getVariable ["ADVSEC_sirenOn", false]);
         {_x setVariable ["ADVSEC_sirenOn", _on, true]} forEach _set;
-        (format [(["STR_ADVSEC_siren_off", "STR_ADVSEC_siren_on"] select _on) call ADVSEC_fnc_L, name _caller, mapGridPosition (_set select 0)]) remoteExecCall ["systemChat", 0];
+        (format [(["STR_ADVSEC_siren_off", "STR_ADVSEC_siren_on"] select _on) call ADVSEC_fnc_L, [name _caller, "STR_ADVSEC_siren_auto" call ADVSEC_fnc_L] select isNull _caller, mapGridPosition (_set select 0)]) remoteExecCall ["systemChat", 0];
         ["baseAlarm", _caller, [_on, mapGridPosition (_set select 0)]] call ADVSEC_fnc_logEvent;
         if (_on) then {
             {

@@ -51,6 +51,7 @@ switch (_action) do {
         [_id, format [("STR_ADVSEC_phone_title" call ADVSEC_fnc_L), _from], _text, _pos, false] remoteExecCall ["ADVSEC_fnc_dspNotify", [_pm, _onDuty] select (_onDuty isNotEqualTo [])];
         ["call112", _caller, [_id, _text]] call ADVSEC_fnc_logEvent;
         [_id] call ADVSEC_fnc_phoneRing;
+        _id
     };
     case "panic": {
         if !([_caller, "PMC"] call ADVSEC_fnc_repAccess) exitWith {};

@@ -571,6 +571,20 @@ class CfgFunctions {
             class jusOpen {};
             class jusPlea {};
         };
+        class calls {
+            file = "\x\advsec\addons\main\functions\calls";
+            class callAction {};
+            class callBase {};
+            class callCheck {};
+            class callOpen {};
+            class callServer {};
+            class callSpawn {};
+            class callUnrest {};
+            class callZeus {};
+            class hotkey {};
+            class selfTest {};
+            class selfTestShow {};
+        };
         class station {
             file = "\x\advsec\addons\main\functions\station";
             class bmServer {};

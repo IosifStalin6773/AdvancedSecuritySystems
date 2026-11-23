@@ -10,6 +10,9 @@ if (isServer) then {
     [] call ADVSEC_fnc_ecoDB;
     if (isNil "ADVSEC_ecoLoopH") then {ADVSEC_ecoLoopH = [] spawn ADVSEC_fnc_ecoLoop};
     [] call ADVSEC_fnc_rpInit;
+    // 1.24: motor de avisos IA y autotest
+    ["start", objNull] call ADVSEC_fnc_callServer;
+    if ((["selfTest", 1] call ADVSEC_fnc_setting) isEqualTo 1) then {[] spawn {sleep 20; [] call ADVSEC_fnc_selfTest}};
 };
 if (!hasInterface) exitWith {};
 

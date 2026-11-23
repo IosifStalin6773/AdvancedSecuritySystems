@@ -24,6 +24,10 @@ switch (_id) do {
     case "justice": {if (call _needPM) then {[] call ADVSEC_fnc_jusOpen}};
     case "payslip": {[] call ADVSEC_fnc_payslipShow};
     case "baseAlarm": {if ([player, "baseAlarm"] call ADVSEC_fnc_perm) then {["alarm", player, [player]] remoteExecCall ["ADVSEC_fnc_sirenServer", 2]}};
+    case "aiCalls": {if (call _needPM) then {[] call ADVSEC_fnc_callOpen}};
+    case "halt": {["halt"] call ADVSEC_fnc_hotkey};
+    case "vehSiren": {["siren"] call ADVSEC_fnc_hotkey};
+    case "megaphone": {["megaphone"] call ADVSEC_fnc_hotkey};
     case "hide": {[] call ADVSEC_fnc_hideItem};
     case "pmMenu": {if (call _needPM) then {[player, "self"] call ADVSEC_fnc_policeMenu}};
     case "targetMenu": {

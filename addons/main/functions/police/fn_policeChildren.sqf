@@ -98,6 +98,11 @@ if (_mode in ["self", "company"]) exitWith {
         ["pm_com", ["advsec_pm_basealarm", ("STR_ADVSEC_siren_alarm" call ADVSEC_fnc_L), ADVSEC_icAlarm, {["alarm", _player, [_player]] remoteExecCall ["ADVSEC_fnc_sirenServer", 2]}, []]] call _put;
         ["pm_com", ["advsec_pm_curfew", [("STR_ADVSEC_curfew_sound" call ADVSEC_fnc_L), ("STR_ADVSEC_curfew_lift" call ADVSEC_fnc_L)] select (missionNamespace getVariable ["ADVSEC_curfew", false]), ADVSEC_icAlarm, {["curfew", _player, [!(missionNamespace getVariable ["ADVSEC_curfew", false])]] remoteExecCall ["ADVSEC_fnc_sirenServer", 2]}, []]] call _put;
     };
+    ["pm_com", ["advsec_pm_aicalls", ("STR_ADVSEC_call_menu" call ADVSEC_fnc_L), ADVSEC_icAlarm, {[] call ADVSEC_fnc_callOpen}, []]] call _put;
+    ["pm_com", ["advsec_pm_halt", ("STR_ADVSEC_hk_halt" call ADVSEC_fnc_L), ADVSEC_icPol, {["halt"] call ADVSEC_fnc_hotkey}, []]] call _put;
+    ["pm_com", ["advsec_pm_mega", ("STR_ADVSEC_hk_megaphone" call ADVSEC_fnc_L), ADVSEC_icPol, {["megaphone"] call ADVSEC_fnc_hotkey}, []]] call _put;
+    if (vehicle _player != _player) then {["pm_trf", ["advsec_pm_vsiren", ("STR_ADVSEC_hk_siren" call ADVSEC_fnc_L), ADVSEC_icCar, {["siren"] call ADVSEC_fnc_hotkey}, []]] call _put};
+    if ([_player] call ADVSEC_fnc_isZeus) then {["pm_com", ["advsec_pm_selftest", ("STR_ADVSEC_st_title" call ADVSEC_fnc_L), ADVSEC_icDoc, {[] call ADVSEC_fnc_selfTestShow}, []]] call _put};
     private _its = items _player;
     if ("ADVSEC_Flares" in _its) then {["pm_trf", ["advsec_pm_flare", ("STR_ADVSEC_it_flare" call ADVSEC_fnc_L), ADVSEC_icCar, {["flare"] call ADVSEC_fnc_itemAction}, []]] call _put};
     if ("ADVSEC_MeasureTape" in _its) then {["pm_trf", ["advsec_pm_tape", ("STR_ADVSEC_it_tape" call ADVSEC_fnc_L), ADVSEC_icSearch, {["tape"] call ADVSEC_fnc_itemAction}, []]] call _put};
