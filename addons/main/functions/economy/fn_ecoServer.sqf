@@ -137,8 +137,10 @@ switch (_action) do {
         private _infl = 1;
         private _ip = ["priceInflationPct", 0] call ADVSEC_fnc_setting;
         if (_ip > 0) then {_infl = (1 + _ip / 100) ^ floor (serverTime / (60 * ((["priceInflationMin", 60] call ADVSEC_fnc_setting) max 1)))};
-        private _total = round (_p * _n * _infl);
         private _illegal = _s getVariable ["ADVSEC_shopIllegal", false];
+        // 1.24: descuento por medallas en tiendas legales
+        private _disc = [[_caller] call ADVSEC_fnc_carDiscount, 0] select _illegal;
+        private _total = round (_p * _n * _infl * (1 - _disc));
         if !([_caller, _total, format [("STR_ADVSEC_purchase" call ADVSEC_fnc_L), _n, [_c] call ADVSEC_fnc_ecoItemName], !_illegal && {(["shopToTreasury", 0] call ADVSEC_fnc_setting) isEqualTo 1}] call ADVSEC_fnc_ecoCharge) exitWith {
             (format [("STR_ADVSEC_not_enough_money_it_costs" call ADVSEC_fnc_L), _total call _fmt]) call _say;
         };

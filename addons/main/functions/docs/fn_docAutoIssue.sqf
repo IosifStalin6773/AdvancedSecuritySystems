@@ -29,4 +29,5 @@ if (_force || {((["autoMilitaryID", 1] call ADVSEC_fnc_cfg)) isEqualTo 1}) then 
 } forEach [["ADVSEC_pmUIDs", "MPBadge", "PM-"], ["ADVSEC_iaUIDs", "IABadge", "AI-"]];
 // La base de datos de jugadores manda sobre las listas de la misión
 [_unit] call ADVSEC_fnc_pdbApply;
+["sync", objNull, [_unit]] call ADVSEC_fnc_carServer;
 [_unit] call ADVSEC_fnc_specApply;

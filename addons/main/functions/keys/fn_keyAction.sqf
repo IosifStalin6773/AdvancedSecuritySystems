@@ -19,6 +19,17 @@ switch (_id) do {
         [player] call ADVSEC_fnc_docListOpen;
     };
     case "myFines": {[] call ADVSEC_fnc_fineOpen};
+    case "career": {if (call _needPM) then {[] call ADVSEC_fnc_carOpen}};
+    case "serviceRecord": {if (call _needPM) then {["record"] call ADVSEC_fnc_carOpen}};
+    case "justice": {if (call _needPM) then {[] call ADVSEC_fnc_jusOpen}};
+    case "payslip": {[] call ADVSEC_fnc_payslipShow};
+    case "baseAlarm": {if ([player, "baseAlarm"] call ADVSEC_fnc_perm) then {["alarm", player, [player]] remoteExecCall ["ADVSEC_fnc_sirenServer", 2]}};
+    case "aiCalls": {if (call _needPM) then {[] call ADVSEC_fnc_callOpen}};
+    case "halt": {["halt"] call ADVSEC_fnc_hotkey};
+    case "vehSiren": {["siren"] call ADVSEC_fnc_hotkey};
+    case "megaphone": {["megaphone"] call ADVSEC_fnc_hotkey};
+    case "radio": {[] call ADVSEC_fnc_radioOpen};
+    case "handUse": {[] call ADVSEC_fnc_handUse};
     case "hide": {[] call ADVSEC_fnc_hideItem};
     case "pmMenu": {if (call _needPM) then {[player, "self"] call ADVSEC_fnc_policeMenu}};
     case "targetMenu": {
@@ -51,7 +62,7 @@ switch (_id) do {
     case "query": {if (call _needPM) then {[_man] call ADVSEC_fnc_queryOpen}};
     case "fine": {if ((call _needPM) && {call _needMan}) then {[_man] call ADVSEC_fnc_finePrompt}};
     case "askDocs": {if ((call _needPM) && {call _needMan}) then {[_man] call ADVSEC_fnc_docListOpen}};
-    case "scene": {if (call _needPM) then {["scene", player] remoteExecCall ["ADVSEC_fnc_evidenceServer", 2]}};
+    case "scene": {if (call _needPM && {[player, "scene"] call ADVSEC_fnc_needItem}) then {["scene", player] remoteExecCall ["ADVSEC_fnc_evidenceServer", 2]}};
     case "evidence": {if (call _needPM) then {[] call ADVSEC_fnc_evOpen}};
     case "heat": {
         if !([player, "suspicionView"] call ADVSEC_fnc_perm) exitWith {hint ("STR_ADVSEC_only_internal_affairs_with_sufficient" call ADVSEC_fnc_L)};
