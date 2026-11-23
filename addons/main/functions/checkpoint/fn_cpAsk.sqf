@@ -35,7 +35,7 @@ ADVSEC_cpAskH = [_veh] spawn {
             if (abs (_h - (_p select 3)) > 0.002) then {
                 _ctrl ctrlSetPosition [_p select 0, _p select 1, _p select 2, _h];
                 _ctrl ctrlCommit 0;
-                private _by = (_p select 1) + _h + 0.015 * safezoneH;
+                private _by = (_p select 1) + _h + 0.015;
                 {
                     private _b = _d displayCtrl _x;
                     private _bp = ctrlPosition _b;
@@ -46,7 +46,7 @@ ADVSEC_cpAskH = [_veh] spawn {
                 {
                     private _c = _d displayCtrl _x;
                     private _cp0 = ctrlPosition _c;
-                    _c ctrlSetPosition [_cp0 select 0, _cp0 select 1, _cp0 select 2, (_by + _bh + 0.015 * safezoneH) - (_cp0 select 1)];
+                    _c ctrlSetPosition [_cp0 select 0, _cp0 select 1, _cp0 select 2, (_by + _bh + 0.015) - (_cp0 select 1)];
                     _c ctrlCommit 0;
                 } forEach [87605, 87606, 87607];
             };

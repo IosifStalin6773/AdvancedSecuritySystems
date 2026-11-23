@@ -38,6 +38,13 @@ if (_spawn > 0) then {
         _c setDir _dir;
         _owned pushBack _c;
     } forEach [[3, 7, 0], [-3, 7, 0], [3, -7, 0], [-3, -7, 0], [0, 9, 0], [0, -9, 0]];
+    if ((["checkpointGate", 1] call ADVSEC_fnc_setting) isEqualTo 1) then {
+        private _g = createVehicle ["Land_BarGate_F", _anchor modelToWorld [0, 0, 0], [], 0, "CAN_COLLIDE"];
+        _g setDir _dir;
+        _g animate ["Door_1_rot", 0];
+        _anchor setVariable ["ADVSEC_cpGate", _g];
+        _owned pushBack _g;
+    };
     _owned append _officers;
 };
 {

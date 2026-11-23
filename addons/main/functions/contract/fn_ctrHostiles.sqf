@@ -12,7 +12,7 @@ private _reg = localNamespace getVariable "ADVSEC_ctrHost";
 if (isNil "_reg") then {_reg = createHashMap; localNamespace setVariable ["ADVSEC_ctrHost", _reg]};
 
 private _sideOf = {
-    switch (toLower (["contractHostileSide", "east"] call ADVSEC_fnc_setting)) do {
+    switch (toLower (_c getOrDefault ["hostileSide", ["contractHostileSide", "east"] call ADVSEC_fnc_setting])) do {
         case "west": {west}; case "independent"; case "resistance"; case "guer": {independent}; default {east};
     }
 };
@@ -25,7 +25,8 @@ private _inZone = {
 private _spawnGroup = {
     // [posición, tamaño, comportamiento ("ambush" | "patrol" | "attack")] -> grupo
     params ["_p", "_n", "_how"];
-    private _cls = ["contractHostileClasses", ["O_Soldier_F"]] call ADVSEC_fnc_setting;
+    private _cls = _c getOrDefault ["hostileClasses", []];
+    if (_cls isEqualTo []) then {_cls = ["contractHostileClasses", ["O_Soldier_F"]] call ADVSEC_fnc_setting};
     _cls = _cls select {isClass (configFile >> "CfgVehicles" >> _x)};
     if (_cls isEqualTo []) exitWith {grpNull};
     private _safe = [_p, 0, 60, 2, 0, 0.6, 0, [], [_p, _p]] call BIS_fnc_findSafePos;
@@ -77,6 +78,10 @@ switch (_action) do {
         private _groups = _c getOrDefault ["hostileN", -1];
         if (_groups < 0) then {_groups = round (([_tc, "hostiles", 0] call ADVSEC_fnc_pmcVal) * (["contractHostileScale", 1] call ADVSEC_fnc_setting))};
         private _size = (3 + _risk) min 8;
+        // Encargo a medida: número total de NPC y bando civil (sin enemigos; las clases van a los civiles del encargo)
+        private _hu = _c getOrDefault ["hostileUnits", -1];
+        if (_hu >= 0) then {_groups = ceil (_hu / _size); if (_groups > 0) then {_size = ceil (_hu / _groups)}};
+        if ((_c getOrDefault ["hostileSide", ""]) == "civilian") then {_mode = 0};
         private _units = [];
         // 1. Enemigos ya colocados (editor o Zeus)
         if (_mode in [2, 3]) then {
@@ -115,7 +120,7 @@ switch (_action) do {
                         _waves pushBack [serverTime + 60 * _min * (_i / (_need + 1)), _size];
                     };
                     case "recovery": {
-                        private _box = objectFromNetId (_c getOrDefault ["cargoNet", ""]);
+                        private _box = ((_c getOrDefault ["cargoNet", ""]) call BIS_fnc_objectFromNetId);
                         private _p = [getPosATL _box, _c get "pos"] select (isNull _box);
                         _g = [_p getPos [30 + random 70, random 360], _size, "patrol"] call _spawnGroup;
                     };
@@ -129,8 +134,10 @@ switch (_action) do {
                 if (!isNull _g) then {_units append units _g};
             };
         };
+        // 4. Tráfico, civiles y camión de carga: ADVSEC_fnc_ctrCivil (1.19.5)
+        private _civ = [];
         {if (isNil {_x getVariable "ADVSEC_ctrHostile"}) then {_x setVariable ["ADVSEC_ctrHostile", _id, true]}} forEach _units;
-        _reg set [_id, [_units, _waves, []]];
+        _reg set [_id, [_units, _waves, _civ]];
         private _m = _c get "metrics";
         _m set ["host", count _units];
         _m set ["hostDown", 0];
@@ -162,7 +169,7 @@ switch (_action) do {
         private _e = _reg getOrDefault [_id, []];
         _reg deleteAt _id;
         if (_e isEqualTo []) exitWith {};
-        private _spawned = (_e select 0) select {_x getVariable ["ADVSEC_ctrSpawned", false]};
+        private _spawned = ((_e select 0) + (_e select 2)) select {_x getVariable ["ADVSEC_ctrSpawned", false]};
         if (_spawned isEqualTo []) exitWith {};
         [_spawned] spawn {
             params ["_us"];

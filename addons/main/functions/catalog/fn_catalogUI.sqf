@@ -62,9 +62,9 @@ switch (_a) do {
             private _i = _lb lbAdd ([_c] call _name);
             _lb lbSetTextRight [_i, str _p];
             _lb lbSetTooltip [_i, _c];
-            _lb lbSetPicture [_i, [[_c] call ADVSEC_fnc_ecoItemPic, getText (configFile >> "CfgVehicles" >> _c >> "picture")] select (_kind == "vehicles")];
+            _lb lbSetPicture [_i, [[_c] call ADVSEC_fnc_ecoItemPic, getText (configFile >> "CfgVehicles" >> _c >> "picture")] select (_kind in ["vehicles", "units"])];
         } forEach _entries;
-        (_d displayCtrl 88110) ctrlSetStructuredText parseText format [("STR_ADVSEC_for_sale" call ADVSEC_fnc_L), count _entries, [("STR_ADVSEC_pick_a_category_and_item" call ADVSEC_fnc_L), ("STR_ADVSEC_select_one_from_the_list" call ADVSEC_fnc_L)] select (_entries isNotEqualTo [])];
+        (_d displayCtrl 88110) ctrlSetStructuredText parseText format [([("STR_ADVSEC_for_sale" call ADVSEC_fnc_L), ("STR_ADVSEC_pmc_npc_selected" call ADVSEC_fnc_L)] select (_kind == "units")), count _entries, [("STR_ADVSEC_pick_a_category_and_item" call ADVSEC_fnc_L), ("STR_ADVSEC_select_one_from_the_list" call ADVSEC_fnc_L)] select (_entries isNotEqualTo [])];
         if (lbSize (_d displayCtrl 88103) == 0) then {[_d, "cat"] call ADVSEC_fnc_catalogUI};
     };
     case "ok": {

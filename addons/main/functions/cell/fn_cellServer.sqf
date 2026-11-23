@@ -88,7 +88,7 @@ switch (_action) do {
         ["cells"] call ADVSEC_fnc_dbDirty;
     };
     case "panic": {
-        if (!isNull _caller && {!([_caller, "PM"] call ADVSEC_fnc_repAccess)} && {call ADVSEC_fnc_fromClient} && {isNil {(localNamespace getVariable ["ADVSEC_dspCalls", createHashMap]) get (_args param [0, ""])}}) exitWith {};
+        if (!isNull _caller && {!([_caller, "PMC"] call ADVSEC_fnc_repAccess)} && {call ADVSEC_fnc_fromClient} && {isNil {(localNamespace getVariable ["ADVSEC_dspCalls", createHashMap]) get (_args param [0, ""])}}) exitWith {};
         if (!isNil {_runs get (_args param [0, ""])}) exitWith {};
         // Pánico o aviso dentro de un contrato: la QRF disponible recibe prioridad; en un contrato VIP sigue al VIP en vivo
         _args params [["_cid", ""], ["_who", objNull]];
@@ -98,10 +98,10 @@ switch (_action) do {
         private _uid = _call select 1;
         private _vip = objNull;
         {
-            if ((_x get "type") == "vip" && {((_x get "assigned") findIf {(_x select 0) == _uid}) >= 0}) exitWith {_vip = objectFromNetId (_x getOrDefault ["vipNet", ""])};
+            if ((_x get "type") == "vip" && {((_x get "assigned") findIf {(_x select 0) == _uid}) >= 0}) exitWith {_vip = ((_x getOrDefault ["vipNet", ""]) call BIS_fnc_objectFromNetId)};
         } forEach (["vip"] call _ctrs);
         private _tgt = [[_uid] call ADVSEC_fnc_uidUnit, _vip] select (!isNull _vip && {alive _vip});
-        _runs set [_cid, [_call select 3, serverTime, [], false, [netId _tgt, ""] select isNull _tgt, false]];
+        _runs set [_cid, [_call select 3, serverTime, [], false, [(_tgt call BIS_fnc_netId), ""] select isNull _tgt, false]];
         localNamespace setVariable ["ADVSEC_qrfRuns", _runs];
         private _q = ["QRF", true] call _members;
         if (_q isNotEqualTo []) then {
@@ -134,7 +134,7 @@ switch (_action) do {
             private _r = _runs get _cid;
             _r params ["_pos", "_t0", "_acc", "_done", "_tgtNet", ["_ign", false]];
             if (!_done) then {
-                private _tgt = objectFromNetId _tgtNet;
+                private _tgt = (_tgtNet call BIS_fnc_objectFromNetId);
                 if (!isNull _tgt && {alive _tgt}) then {_pos = getPosATL _tgt; _r set [0, _pos]};
                 private _here = (_acc apply {[_x] call ADVSEC_fnc_uidUnit}) select {!isNull _x && {alive _x} && {(_x distance2D _pos) <= _radius}};
                 if (_here isNotEqualTo []) then {
@@ -205,7 +205,7 @@ switch (_action) do {
         localNamespace setVariable ["ADVSEC_cpTick", _n];
         if (_n % 2 == 0) then {
             {
-                private _vip = objectFromNetId (_x getOrDefault ["vipNet", ""]);
+                private _vip = ((_x getOrDefault ["vipNet", ""]) call BIS_fnc_objectFromNetId);
                 if (!isNull _vip) then {
                     private _to = ((_x get "assigned") apply {[_x select 0] call ADVSEC_fnc_uidUnit}) select {!isNull _x && {(([_x] call ADVSEC_fnc_cellRole) select 0) in ["CP", "QRF"]}};
                     _to = _to + (["QRF", true] call _members);

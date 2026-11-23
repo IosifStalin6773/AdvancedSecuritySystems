@@ -3,6 +3,7 @@ params ["_target", ["_mode", "unit"]];
 if (isNull findDisplay 87100 && {!createDialog "ADVSEC_PoliceMenu"}) exitWith {};
 private _disp = findDisplay 87100;
 (_disp displayCtrl 87101) ctrlSetText ([format [("STR_ADVSEC_military_police_2" call ADVSEC_fnc_L), [toUpper name _target, "SERVICIO"] select (_mode == "self")], ("STR_ADVSEC_my_character" call ADVSEC_fnc_L)] select (_mode == "me"));
+if (_mode == "company") then {(_disp displayCtrl 87101) ctrlSetText toUpper (["companyName", "I.V.M."] call ADVSEC_fnc_setting)};
 private _acts = if (_mode == "me") then {[player] call ADVSEC_fnc_selfChildren} else {[_target, player, _mode] call ADVSEC_fnc_policeChildren};
 // Sin ACE no hay submenús: los grupos se aplanan como «Grupo · acción»
 private _flat = [];

@@ -1,6 +1,8 @@
 // ["PM"|"AI"|""] — abre la PDA que lleve el jugador (AA.II. tiene prioridad si lleva las dos)
 params [["_mode", ""]];
 if (!alive player || {!isNull findDisplay 87200}) exitWith {};
+// 1.22: pide los mensajes que llegaron mientras no estaba conectado
+["pull", player] remoteExecCall ["ADVSEC_fnc_pdaComms", 2];
 private _inv = items player + assignedItems player;
 if (_mode isEqualTo "") then {
     _mode = switch (true) do {

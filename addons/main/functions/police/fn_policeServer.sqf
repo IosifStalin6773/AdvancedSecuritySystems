@@ -1,13 +1,15 @@
 // [modo, llamador, unidad, args] (servidor). Valida las acciones policiales pedidas por un cliente y las reenvía a la máquina de la unidad.
 params ["_mode", "_caller", "_unit", ["_args", []]];
 if (!isServer || {isNull _unit}) exitWith {};
-private _dist = [5, 15] select (_mode in ["load", "unload"]);
+private _dist = [5, 15] select (_mode in ["load", "unload", "orderOut"]);
 if !([_caller, _unit, _dist] call ADVSEC_fnc_srvCaller) exitWith {};
 private _zeus = [_caller] call ADVSEC_fnc_isZeus;
 private _ok = switch (_mode) do {
     case "restrain": {[_caller, "restrain"] call ADVSEC_fnc_perm};
     case "load";
     case "unload": {[_caller, "restrain"] call ADVSEC_fnc_perm && {[_unit] call ADVSEC_fnc_isRestrained}};
+    // 1.20.1: ordenar a un civil IA (sin esposar) que baje del vehículo, p. ej. en un control
+    case "orderOut": {[_caller, "vehicleSearch"] call ADVSEC_fnc_perm && {!isPlayer _unit} && {!isNull objectParent _unit}};
     case "seize": {[_caller, "seize"] call ADVSEC_fnc_perm && {_zeus || {[_unit] call ADVSEC_fnc_isRestrained} || {_unit getVariable ["ace_captives_isSurrendering", false]}}};
     default {_zeus};
 };

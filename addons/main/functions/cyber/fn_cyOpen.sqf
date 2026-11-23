@@ -29,6 +29,20 @@ private _b = [
     [("STR_ADVSEC_pmc_cy_btn_timeline" call ADVSEC_fnc_L), {
         [("STR_ADVSEC_pmc_cy_btn_timeline" call ADVSEC_fnc_L), [[("STR_ADVSEC_pmc_cy_who" call ADVSEC_fnc_L), ""]], {params ["_v"]; if ((_v select 0) isNotEqualTo "") then {ADVSEC_cyTab = "timeline"; ADVSEC_cyArg = [_v select 0]; ["refresh"] call ADVSEC_fnc_panelAction}}] call ADVSEC_fnc_zeusPrompt;
     }],
-    [("STR_ADVSEC_pmc_cy_btn_cctv" call ADVSEC_fnc_L), {ADVSEC_cyTab = "cctv"; ADVSEC_cyArg = []; ["refresh"] call ADVSEC_fnc_panelAction}]
+    [("STR_ADVSEC_pmc_cy_btn_cctv" call ADVSEC_fnc_L), {ADVSEC_cyTab = "cctv"; ADVSEC_cyArg = []; ["refresh"] call ADVSEC_fnc_panelAction}],
+    [("STR_ADVSEC_pmc_cy_tools" call ADVSEC_fnc_L), {
+        // 1.22: herramientas: escaneo de red, cortafuegos en una red CCTV y phishing a un agente (SteamID)
+        [("STR_ADVSEC_pmc_cy_tools" call ADVSEC_fnc_L), [
+            [("STR_ADVSEC_pmc_cy_tool" call ADVSEC_fnc_L), "scan", [["scan", ("STR_ADVSEC_pmc_cy_t_scan" call ADVSEC_fnc_L)], ["firewall", ("STR_ADVSEC_pmc_cy_t_fw" call ADVSEC_fnc_L)], ["phish", ("STR_ADVSEC_pmc_cy_t_phish" call ADVSEC_fnc_L)]]],
+            [("STR_ADVSEC_pmc_cy_arg" call ADVSEC_fnc_L), ""]
+        ], {
+            params ["_v"];
+            switch (_v select 0) do {
+                case "scan": {["scan", player] remoteExecCall ["ADVSEC_fnc_cyServer", 2]};
+                case "firewall": {["firewall", player, [_v select 1]] remoteExecCall ["ADVSEC_fnc_cyServer", 2]};
+                case "phish": {["phish", player, [_v select 1]] remoteExecCall ["ADVSEC_fnc_cyServer", 2]};
+            };
+        }] call ADVSEC_fnc_zeusPrompt;
+    }]
 ];
 ["cyber", ("STR_ADVSEC_pmc_cy_terminal" call ADVSEC_fnc_L), _b, {[ADVSEC_cyTab, player, ADVSEC_cyArg] remoteExecCall ["ADVSEC_fnc_cyServer", 2]}] call ADVSEC_fnc_panelOpen;

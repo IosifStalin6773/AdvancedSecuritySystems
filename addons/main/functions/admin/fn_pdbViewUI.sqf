@@ -134,7 +134,7 @@ switch (_action) do {
         private _d = _disp displayCtrl 87891;
         _d ctrlSetStructuredText parseText _txt;
         private _p = ctrlPosition _d;
-        _d ctrlSetPosition [_p select 0, _p select 1, _p select 2, (ctrlTextHeight _d) max (safezoneH * 0.09)];
+        _d ctrlSetPosition [_p select 0, _p select 1, _p select 2, (ctrlTextHeight _d) max 0.09];
         _d ctrlCommit 0;
         ["acts"] call ADVSEC_fnc_pdbViewUI;
     };

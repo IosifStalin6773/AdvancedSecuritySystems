@@ -8,7 +8,7 @@ switch (_action) do {
     case "select": {
         private _v = _disp displayCtrl 87505;
         _v ctrlSetStructuredText parseText (_row param [2, ""]);
-        _v ctrlSetPositionH ((ctrlTextHeight _v) max (0.59 * safezoneH));
+        _v ctrlSetPositionH ((ctrlTextHeight _v) max 0.59);
         _v ctrlCommit 0;
     };
     case "btn": {

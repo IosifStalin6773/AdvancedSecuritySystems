@@ -14,9 +14,9 @@ params ["_unit"];
     {[_target, "inspect"] call ADVSEC_fnc_docChildren}
 ] call ADVSEC_fnc_addInteraction;
 
-[_unit, "advsec_police", ("STR_ADVSEC_military_police" call ADVSEC_fnc_L), ADVSEC_icPol,
+[_unit, "advsec_police", [("STR_ADVSEC_military_police" call ADVSEC_fnc_L), ["companyName", "I.V.M."] call ADVSEC_fnc_setting] select ((["pmcProfile", 1] call ADVSEC_fnc_setting) isEqualTo 1), ADVSEC_icPol,
     {[_target, "unit"] call ADVSEC_fnc_policeMenu},
-    {alive _target && {[_player, "PM"] call ADVSEC_fnc_repAccess}},
+    {alive _target && {[_player, "PMC"] call ADVSEC_fnc_repAccess}},
     "main", [], 3, [0, 0, 0],
     {[_target, _player, "unit"] call ADVSEC_fnc_policeChildren}
 ] call ADVSEC_fnc_addInteraction;

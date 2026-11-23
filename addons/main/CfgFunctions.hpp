@@ -178,6 +178,7 @@ class CfgFunctions {
             class dbFlush {};
             class dbLoop {};
             class logEvent {};
+            class auditExport {};
         };
         class playerdb {
             file = "\x\advsec\addons\main\functions\playerdb";
@@ -273,6 +274,16 @@ class CfgFunctions {
             class patrolPlan {};
             class patrolOpen {};
         };
+        class dialog {
+            file = "\x\advsec\addons\main\functions\dialog";
+            class dlgAction {};
+            class dlgAttach {};
+            class dlgAttr {};
+            class dlgData {};
+            class dlgEditor {};
+            class dlgManager {};
+            class dlgTalk {};
+        };
         class contract {
             file = "\x\advsec\addons\main\functions\contract";
             class ctrAction {};
@@ -286,7 +297,11 @@ class CfgFunctions {
             class ctrSettle {};
             class ctrTick {};
             class ctrHostiles {};
+            class ctrCivil {};
             class moduleContract {};
+            class moduleContractZone {};
+            class moduleContractHostile {};
+            class moduleContractCustom {};
             class pmcClasses {};
             class pmcLoop {};
             class pmcPay {};
@@ -488,6 +503,56 @@ class CfgFunctions {
             class keyInit {};
             class keyAction {};
             class keyHelp {};
+        };
+        class traffic {
+            file = "\x\advsec\addons\main\functions\traffic";
+            class speedZone {};
+            class itvState {};
+            class trafficLoop {};
+            class trafficServer {};
+            class convoyPlan {};
+            class impoundOpen {};
+        };
+        class checkpointAnpr {
+            file = "\x\advsec\addons\main\functions\checkpoint";
+            class cpAnpr {};
+        };
+        class evidenceDecay {
+            file = "\x\advsec\addons\main\functions\evidence";
+            class evDecayLoop {};
+        };
+        class finesPoints {
+            file = "\x\advsec\addons\main\functions\fines";
+            class pointsAdd {};
+        };
+        class investigation {
+            file = "\x\advsec\addons\main\functions\investigation";
+            class caseServer {};
+            class caseOpen {};
+            class warrantValid {};
+        };
+        class hr {
+            file = "\x\advsec\addons\main\functions\hr";
+            class hrServer {};
+            class hrOpen {};
+            class budgetSpend {};
+            class hrLoop {};
+        };
+        class policeCare {
+            file = "\x\advsec\addons\main\functions\police";
+            class jailCare {};
+            class jailCareLoop {};
+            class escapeAttempt {};
+        };
+        class pdaComms {
+            file = "\x\advsec\addons\main\functions\pda";
+            class pdaComms {};
+            class pdaMarkShow {};
+            class pdaMsgShow {};
+        };
+        class serverMapDB {
+            file = "\x\advsec\addons\main\functions\server";
+            class mapDB {};
         };
     };
 };

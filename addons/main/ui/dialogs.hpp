@@ -15,7 +15,7 @@ class ADVSEC_Keypad {
             idc = 1000;
             x = UIX(0.40); y = UIY(0.272); w = UIW(0.20); h = UIH(0.06);
             style = 2;
-            sizeEx = UIF(0.055);
+            sizeEx = UIT(0.055);
             font = "EtelkaMonospacePro";
             colorText[] = ADVSEC_COL_ACCENT;
             colorBackground[] = ADVSEC_COL_DARK;
@@ -24,7 +24,7 @@ class ADVSEC_Keypad {
             idc = 1001;
             x = UIX(0.40); y = UIY(0.338); w = UIW(0.20); h = UIH(0.035);
             style = 2;
-            sizeEx = UIF(0.027);
+            sizeEx = UIT(0.027);
             font = "RobotoCondensed";
             colorText[] = ADVSEC_COL_TEXTD;
         };
@@ -220,8 +220,8 @@ class ADVSEC_Reports {
         class List: ADVSEC_List {
             idc = 86602;
             x = UIX(0.01); y = UIY(0.115); w = UIW(0.40); h = UIH(0.80);
-            sizeEx = UIF(0.028);
-            rowHeight = UIF(0.036);
+            sizeEx = UIT(0.028);
+            rowHeight = UIT(0.036);
             onLBSelChanged = "['select'] call ADVSEC_fnc_repAction";
         };
         class ViewGroup: RscControlsGroup {
@@ -307,7 +307,7 @@ class ADVSEC_ReportEditor {
         class Hint: ADVSEC_Struct {
             idc = 86719;
             x = UIX(0.285); y = UIY(0.182); w = UIW(0.61); h = UIH(0.05);
-            size = UIF(0.027);
+            size = UIT(0.027);
         };
         class BtnAdd: ADVSEC_Btn {
             text = "$STR_ADVSEC_add";
@@ -457,7 +457,7 @@ class ADVSEC_PoliceMenu {
         class List: ADVSEC_List {
             idc = 87102;
             x = UIX(0.35); y = UIY(0.28); w = UIW(0.30); h = UIH(0.42);
-            rowHeight = UIF(0.045);
+            rowHeight = UIT(0.045);
             onLBDblClick = "[] call ADVSEC_fnc_policeMenuExec";
         };
         class BtnOk: ADVSEC_BtnOk {
@@ -576,7 +576,7 @@ class ADVSEC_PanelDlg {
     class controls {
         class Title: ADVSEC_Header { idc = 87501; x = UIX(0.05); y = UIY(0.08); w = UIW(0.90); h = UIH(0.045); };
         class Info: ADVSEC_Struct { idc = 87502; x = UIX(0.07); y = UIY(0.145); w = UIW(0.86); h = UIH(0.07); };
-        class List: ADVSEC_List { idc = 87503; x = UIX(0.06); y = UIY(0.235); w = UIW(0.40); h = UIH(0.605); sizeEx = UIF(0.03); rowHeight = UIF(0.036); onLBSelChanged = "['select'] call ADVSEC_fnc_panelAction"; onLBDblClick = "['btn', 0] call ADVSEC_fnc_panelAction"; };
+        class List: ADVSEC_List { idc = 87503; x = UIX(0.06); y = UIY(0.235); w = UIW(0.40); h = UIH(0.605); sizeEx = UIT(0.03); rowHeight = UIT(0.036); onLBSelChanged = "['select'] call ADVSEC_fnc_panelAction"; onLBDblClick = "['btn', 0] call ADVSEC_fnc_panelAction"; };
         class ViewGroup: RscControlsGroup {
             idc = 87504;
             x = UIX(0.47); y = UIY(0.235); w = UIW(0.47); h = UIH(0.605);
@@ -646,7 +646,7 @@ class ADVSEC_PlayerDB {
         class Title: ADVSEC_Header { idc = 87701; text = "$STR_ADVSEC_database_military_police"; x = UIX(0.03); y = UIY(0.04); w = UIW(0.94); h = UIH(0.045); };
         class Search: ADVSEC_Edit { idc = 87702; x = UIX(0.10); y = UIY(0.10); w = UIW(0.235); h = UIH(0.04); onKeyUp = "['filter'] call ADVSEC_fnc_pdbAction"; };
         class Filter: ADVSEC_Combo { idc = 87703; x = UIX(0.34); y = UIY(0.10); w = UIW(0.14); h = UIH(0.04); onLBSelChanged = "['filter'] call ADVSEC_fnc_pdbAction"; };
-        class List: ADVSEC_List { idc = 87704; x = UIX(0.04); y = UIY(0.15); w = UIW(0.44); h = UIH(0.72); sizeEx = UIF(0.03); rowHeight = UIF(0.036); onLBSelChanged = "['select'] call ADVSEC_fnc_pdbAction"; };
+        class List: ADVSEC_List { idc = 87704; x = UIX(0.04); y = UIY(0.15); w = UIW(0.44); h = UIH(0.72); sizeEx = UIT(0.03); rowHeight = UIT(0.036); onLBSelChanged = "['select'] call ADVSEC_fnc_pdbAction"; };
         class ViewGroup: RscControlsGroup {
             idc = 87707;
             x = UIX(0.49); y = UIY(0.10); w = UIW(0.47); h = UIH(0.44);
@@ -684,9 +684,9 @@ class ADVSEC_AdminDlg {
     };
     class controls {
         class Title: ADVSEC_Header { idc = 87801; text = "$STR_ADVSEC_superadmin_5"; x = UIX(0.02); y = UIY(0.04); w = UIW(0.96); h = UIH(0.045); };
-        class Cats: ADVSEC_List { idc = 87802; x = UIX(0.03); y = UIY(0.14); w = UIW(0.16); h = UIH(0.675); sizeEx = UIF(0.03); rowHeight = UIF(0.04); onLBSelChanged = "['cat'] call ADVSEC_fnc_adminAction"; };
+        class Cats: ADVSEC_List { idc = 87802; x = UIX(0.03); y = UIY(0.14); w = UIW(0.16); h = UIH(0.675); sizeEx = UIT(0.03); rowHeight = UIT(0.04); onLBSelChanged = "['cat'] call ADVSEC_fnc_adminAction"; };
         class Info: ADVSEC_Struct { idc = 87804; x = UIX(0.205); y = UIY(0.105); w = UIW(0.76); h = UIH(0.05); };
-        class List: ADVSEC_List { idc = 87803; x = UIX(0.20); y = UIY(0.17); w = UIW(0.38); h = UIH(0.70); sizeEx = UIF(0.028); rowHeight = UIF(0.034); onLBSelChanged = "['select'] call ADVSEC_fnc_adminAction"; };
+        class List: ADVSEC_List { idc = 87803; x = UIX(0.20); y = UIY(0.17); w = UIW(0.38); h = UIH(0.70); sizeEx = UIT(0.028); rowHeight = UIT(0.034); onLBSelChanged = "['select'] call ADVSEC_fnc_adminAction"; };
         class ViewGroup: RscControlsGroup {
             idc = 87806;
             x = UIX(0.59); y = UIY(0.17); w = UIW(0.38); h = UIH(0.70);
@@ -716,9 +716,9 @@ class ADVSEC_AdminDlg {
 #define PDB_TILET(N,X) \
     class Tile##N: RscStructuredText { idc = 8786##N; x = PX(X); y = PY(0.093); w = PW(0.1575); h = PH(0.065); colorBackground[] = {0, 0, 0, 0}; };
 #define PDB_TAB(N,IDC,X,Y) \
-    class Tab##N: ADVSEC_Btn { idc = IDC; x = PX(X); y = PY(Y); w = PW(0.108); h = PH(0.038); sizeEx = UIF(0.026); onButtonClick = "['tab', ([87870,87871,87872,87873,87874,87875,87876,87877,87878,87865,87866] find (ctrlIDC (_this select 0))) max 0] call ADVSEC_fnc_pdbViewUI"; };
+    class Tab##N: ADVSEC_Btn { idc = IDC; x = PX(X); y = PY(Y); w = PW(0.108); h = PH(0.038); sizeEx = UIT(0.026); onButtonClick = "['tab', ([87870,87871,87872,87873,87874,87875,87876,87877,87878,87865,87866] find (ctrlIDC (_this select 0))) max 0] call ADVSEC_fnc_pdbViewUI"; };
 #define PDB_ACT(N,X) \
-    class Act##N: ADVSEC_Btn { idc = 8788##N; x = PX(X); y = PY(0.87); w = PW(0.125); h = PH(0.04); sizeEx = UIF(0.027); onButtonClick = "['act', (ctrlIDC (_this select 0)) - 87880] call ADVSEC_fnc_pdbViewUI"; };
+    class Act##N: ADVSEC_Btn { idc = 8788##N; x = PX(X); y = PY(0.87); w = PW(0.125); h = PH(0.04); sizeEx = UIT(0.027); onButtonClick = "['act', (ctrlIDC (_this select 0)) - 87880] call ADVSEC_fnc_pdbViewUI"; };
 class ADVSEC_PlayerDBDlg {
     idd = 87850;
     movingEnable = 0;
@@ -741,7 +741,7 @@ class ADVSEC_PlayerDBDlg {
         class CloseX: ADVSEC_BtnX { x = PX(0.94); y = PY(0.03); w = PW(0.03); h = PH(0.045); action = "closeDialog 0"; };
         class Search: ADVSEC_Edit { idc = 87852; x = PX(0.04); y = PY(0.09); w = PW(0.26); h = PH(0.035); tooltip = "$STR_ADVSEC_search_by_name_or_steamid"; onKeyUp = "['filter'] call ADVSEC_fnc_pdbViewUI"; };
         class Mode: ADVSEC_Combo { idc = 87853; x = PX(0.04); y = PY(0.13); w = PW(0.26); h = PH(0.035); onLBSelChanged = "['filter'] call ADVSEC_fnc_pdbViewUI"; };
-        class Players: ADVSEC_NBox { idc = 87859; x = PX(0.04); y = PY(0.175); w = PW(0.26); h = PH(0.685); sizeEx = UIF(0.03); rowHeight = UIF(0.04); onLBSelChanged = "['select'] call ADVSEC_fnc_pdbViewUI"; };
+        class Players: ADVSEC_NBox { idc = 87859; x = PX(0.04); y = PY(0.175); w = PW(0.26); h = PH(0.685); sizeEx = UIT(0.03); rowHeight = UIT(0.04); onLBSelChanged = "['select'] call ADVSEC_fnc_pdbViewUI"; };
         PDB_TILET(0,0.31)
         PDB_TILET(1,0.4775)
         PDB_TILET(2,0.645)
@@ -758,7 +758,7 @@ class ADVSEC_PlayerDBDlg {
         PDB_TAB(8,87878,0.5300,0.274)
         PDB_TAB(9,87865,0.6400,0.274)
         PDB_TAB(10,87866,0.7500,0.274)
-        class Table: ADVSEC_NBox { idc = 87890; x = PX(0.31); y = PY(0.322); w = PW(0.66); h = PH(0.428); sizeEx = UIF(0.03); rowHeight = UIF(0.042); onLBSelChanged = "['row'] call ADVSEC_fnc_pdbViewUI"; };
+        class Table: ADVSEC_NBox { idc = 87890; x = PX(0.31); y = PY(0.322); w = PW(0.66); h = PH(0.428); sizeEx = UIT(0.03); rowHeight = UIT(0.042); onLBSelChanged = "['row'] call ADVSEC_fnc_pdbViewUI"; };
         class DetailGroup: RscControlsGroupNoHScrollbars {
             idc = 87892;
             x = PX(0.31); y = PY(0.76); w = PW(0.66); h = PH(0.1);
@@ -802,7 +802,7 @@ class ADVSEC_ShopDlg {
         class Search: ADVSEC_Edit { idc = 87906; x = "safezoneX + (0.085 * (safezoneH))"; y = "safezoneY + (0.065 * (safezoneH))"; w = UIF(0.29); h = UIF(0.04); tooltip = "$STR_ADVSEC_search_by_name_or_class"; onKeyUp = "['list'] call ADVSEC_fnc_shopUI"; };
         class Sort: ADVSEC_Combo { idc = 87905; x = "safezoneX + (0.38 * (safezoneH))"; y = "safezoneY + (0.065 * (safezoneH))"; w = UIF(0.155); h = UIF(0.04); onLBSelChanged = "['list'] call ADVSEC_fnc_shopUI"; };
         class Cat: ADVSEC_Label { idc = 87902; font = "RobotoCondensedBold"; colorText[] = ADVSEC_COL_ACCENT; x = "safezoneX + (0.085 * (safezoneH))"; y = "safezoneY + (0.11 * (safezoneH))"; w = UIF(0.45); h = UIF(0.035); };
-        class List: ADVSEC_List { idc = 87903; x = "safezoneX + (0.085 * (safezoneH))"; y = "safezoneY + (0.145 * (safezoneH))"; w = UIF(0.45); h = "safezoneH - (0.265 * (safezoneH))"; sizeEx = UIF(0.03); rowHeight = UIF(0.05); onLBSelChanged = "['select'] call ADVSEC_fnc_shopUI"; onLBDblClick = "['buy', 1] call ADVSEC_fnc_shopUI"; };
+        class List: ADVSEC_List { idc = 87903; x = "safezoneX + (0.085 * (safezoneH))"; y = "safezoneY + (0.145 * (safezoneH))"; w = UIF(0.45); h = "safezoneH - (0.265 * (safezoneH))"; sizeEx = UIT(0.03); rowHeight = UIT(0.05); onLBSelChanged = "['select'] call ADVSEC_fnc_shopUI"; onLBDblClick = "['buy', 1] call ADVSEC_fnc_shopUI"; };
         class Pic: RscPictureKeepAspect { idc = 87910; x = "safezoneX + safezoneW - (0.42 * (safezoneH))"; y = "safezoneY + (0.03 * (safezoneH))"; w = UIF(0.39); h = UIF(0.18); };
         class InfoGroup: RscControlsGroupNoHScrollbars {
             idc = 87919;
@@ -814,7 +814,7 @@ class ADVSEC_ShopDlg {
         SHOP_STAT(0,"safezoneY + (0.425 * safezoneH)","safezoneY + (0.457 * safezoneH)")
         SHOP_STAT(1,"safezoneY + (0.475 * safezoneH)","safezoneY + (0.507 * safezoneH)")
         SHOP_STAT(2,"safezoneY + (0.525 * safezoneH)","safezoneY + (0.557 * safezoneH)")
-        class Compat: ADVSEC_List { idc = 87920; x = "safezoneX + safezoneW - (0.43 * (safezoneH))"; y = "safezoneY + (0.605 * (safezoneH))"; w = UIF(0.41); h = "safezoneH - (0.725 * (safezoneH))"; sizeEx = UIF(0.028); rowHeight = UIF(0.042); onLBSelChanged = "['compat'] call ADVSEC_fnc_shopUI"; };
+        class Compat: ADVSEC_List { idc = 87920; x = "safezoneX + safezoneW - (0.43 * (safezoneH))"; y = "safezoneY + (0.605 * (safezoneH))"; w = UIF(0.41); h = "safezoneH - (0.725 * (safezoneH))"; sizeEx = UIT(0.028); rowHeight = UIT(0.042); onLBSelChanged = "['compat'] call ADVSEC_fnc_shopUI"; };
         class Money: ADVSEC_Struct { idc = 87930; x = "safezoneX + (0.025 * (safezoneH))"; y = "safezoneY + safezoneH - (0.095 * (safezoneH))"; w = "safezoneW - (0.72 * (safezoneH))"; h = UIF(0.08); };
         class BtnBuy: ADVSEC_BtnPrimary { idc = 87931; text = "$STR_ADVSEC_buy"; x = "safezoneX + safezoneW - (0.685 * (safezoneH))"; y = "safezoneY + safezoneH - (0.08 * (safezoneH))"; w = UIF(0.13); h = UIF(0.05); action = "['buy', 1] call ADVSEC_fnc_shopUI"; };
         class BtnBuy5: ADVSEC_Btn { idc = 87932; text = "$STR_ADVSEC_buy_5"; x = "safezoneX + safezoneW - (0.55 * (safezoneH))"; y = "safezoneY + safezoneH - (0.08 * (safezoneH))"; w = UIF(0.13); h = UIF(0.05); action = "['buy', 5] call ADVSEC_fnc_shopUI"; };
@@ -839,7 +839,7 @@ class ADVSEC_BodyLive {
     };
     class controls {
         class Title: ADVSEC_Header { idc = 88001; text = "$STR_ADVSEC_body_cameras_live"; x = UIX(0.02); y = UIY(0.04); w = UIW(0.96); h = UIH(0.045); };
-        class List: ADVSEC_List { idc = 88002; x = UIX(0.03); y = UIY(0.13); w = UIW(0.22); h = UIH(0.70); sizeEx = UIF(0.03); rowHeight = UIF(0.04); onLBSelChanged = "['select'] call ADVSEC_fnc_bodyLive"; };
+        class List: ADVSEC_List { idc = 88002; x = UIX(0.03); y = UIY(0.13); w = UIW(0.22); h = UIH(0.70); sizeEx = UIT(0.03); rowHeight = UIT(0.04); onLBSelChanged = "['select'] call ADVSEC_fnc_bodyLive"; };
         class Video: RscPicture { idc = 88003; x = UIXP(0.26,0.71); y = UIY(0.10); w = UIF(0.71); h = UIH(0.73); text = ""; };
         class Osd: ADVSEC_Struct { idc = 88004; x = UIX(0.27); y = UIY(0.105); w = UIW(0.69); h = UIH(0.05); colorBackground[] = {0, 0, 0, 0.35}; };
         class Lost: ADVSEC_Struct { idc = 88005; x = UIX(0.26); y = UIY(0.42); w = UIW(0.71); h = UIH(0.08); };
@@ -862,8 +862,8 @@ class ADVSEC_CatalogDlg {
         class Line: ADVSEC_Line { x = UIX(0.10); y = UIY(0.145); w = UIW(0.80); h = UIH(0.003); };
         class LCat: ADVSEC_Label { text = "$STR_ADVSEC_1_category"; x = UIX(0.12); y = UIY(0.16); w = UIW(0.36); h = UIH(0.035); };
         class LItem: ADVSEC_Label { text = "$STR_ADVSEC_2_item_or_vehicle"; x = UIX(0.12); y = UIY(0.255); w = UIW(0.36); h = UIH(0.035); };
-        class LPrice: ADVSEC_Label { text = "$STR_ADVSEC_price_2"; x = UIX(0.12); y = UIY(0.35); w = UIW(0.10); h = UIH(0.035); };
-        class LList: ADVSEC_Label { text = "$STR_ADVSEC_for_sale_2"; font = "RobotoCondensedBold"; x = UIX(0.50); y = UIY(0.16); w = UIW(0.38); h = UIH(0.035); };
+        class LPrice: ADVSEC_Label { idc = 88107; text = "$STR_ADVSEC_price_2"; x = UIX(0.12); y = UIY(0.35); w = UIW(0.10); h = UIH(0.035); };
+        class LList: ADVSEC_Label { idc = 88108; text = "$STR_ADVSEC_for_sale_2"; font = "RobotoCondensedBold"; x = UIX(0.50); y = UIY(0.16); w = UIW(0.38); h = UIH(0.035); };
     };
     class controls {
         class Title: ADVSEC_Header { idc = 88101; x = UIX(0.10); y = UIY(0.10); w = UIW(0.80); h = UIH(0.045); };
@@ -871,9 +871,9 @@ class ADVSEC_CatalogDlg {
         class Search: ADVSEC_Edit { idc = 88106; x = UIX(0.33); y = UIY(0.255); w = UIW(0.15); h = UIH(0.035); tooltip = "$STR_ADVSEC_filter_by_name_or_class"; onKeyUp = "[ctrlParent (_this select 0), 'search'] call ADVSEC_fnc_catalogUI"; };
         class Item: ADVSEC_Combo { idc = 88103; x = UIX(0.12); y = UIY(0.29); w = UIW(0.36); h = UIH(0.045); };
         class Price: ADVSEC_Edit { idc = 88104; x = UIX(0.22); y = UIY(0.35); w = UIW(0.12); h = UIH(0.04); };
-        class BtnAdd: ADVSEC_BtnPrimary { text = "$STR_ADVSEC_add_change_price"; x = UIX(0.12); y = UIY(0.41); w = UIW(0.36); h = UIH(0.05); onButtonClick = "[ctrlParent (_this select 0), 'add'] call ADVSEC_fnc_catalogUI"; };
+        class BtnAdd: ADVSEC_BtnPrimary { idc = 88109; text = "$STR_ADVSEC_add_change_price"; x = UIX(0.12); y = UIY(0.41); w = UIW(0.36); h = UIH(0.05); onButtonClick = "[ctrlParent (_this select 0), 'add'] call ADVSEC_fnc_catalogUI"; };
         class Info: ADVSEC_Struct { idc = 88110; x = UIX(0.12); y = UIY(0.48); w = UIW(0.36); h = UIH(0.30); };
-        class List: ADVSEC_List { idc = 88105; x = UIX(0.50); y = UIY(0.195); w = UIW(0.38); h = UIH(0.59); sizeEx = UIF(0.03); rowHeight = UIF(0.042); onLBSelChanged = "[ctrlParent (_this select 0), 'pick'] call ADVSEC_fnc_catalogUI"; };
+        class List: ADVSEC_List { idc = 88105; x = UIX(0.50); y = UIY(0.195); w = UIW(0.38); h = UIH(0.59); sizeEx = UIT(0.03); rowHeight = UIT(0.042); onLBSelChanged = "[ctrlParent (_this select 0), 'pick'] call ADVSEC_fnc_catalogUI"; };
         class BtnDel: ADVSEC_BtnDanger { text = "$STR_ADVSEC_remove_selected"; x = UIX(0.50); y = UIY(0.795); w = UIW(0.38); h = UIH(0.045); onButtonClick = "[ctrlParent (_this select 0), 'remove'] call ADVSEC_fnc_catalogUI"; };
         class BtnOk: ADVSEC_BtnOk { text = "$STR_ADVSEC_accept"; x = UIX(0.58); y = UIY(0.85); w = UIW(0.15); h = UIH(0.04); onButtonClick = "[ctrlParent (_this select 0), 'ok'] call ADVSEC_fnc_catalogUI"; };
         class BtnCancel: ADVSEC_BtnDanger { text = "$STR_ADVSEC_cancel_2"; x = UIX(0.74); y = UIY(0.85); w = UIW(0.14); h = UIH(0.04); onButtonClick = "[ctrlParent (_this select 0), 'cancel'] call ADVSEC_fnc_catalogUI"; };
@@ -922,5 +922,35 @@ class ADVSEC_RadarDlg {
         class BtnPick: ADVSEC_Btn { idc = 88221; text = "$STR_ADVSEC_collect"; x = UIX(0.504); y = UIY(0.835); w = UIW(0.125); h = UIH(0.045); action = "['pickup'] call ADVSEC_fnc_radarDlg"; };
         class BtnClose: ADVSEC_Btn { text = "$STR_ADVSEC_close"; x = UIX(0.636); y = UIY(0.835); w = UIW(0.124); h = UIH(0.045); action = "closeDialog 0"; };
         class CloseX: ADVSEC_BtnX { x = UIX(0.7462); y = UIY(0.10); w = UIW(0.0338); h = UIH(0.045); };
+    };
+};
+
+// ===== Diálogos por nodos (1.21): editor de Eden (los controles se crean por script) y ventana de conversación =====
+class ADVSEC_DlgEditor {
+    idd = 88400;
+    movingEnable = 0;
+    class controlsBackground {};
+    class controls {};
+};
+class ADVSEC_DlgTalk {
+    idd = 88300;
+    movingEnable = 0;
+    onLoad = "['on'] call ADVSEC_fnc_uiBlur";
+    onUnload = "['off'] call ADVSEC_fnc_uiBlur";
+    class controlsBackground {
+        class BG: ADVSEC_Panel { x = UIX(0.24); y = UIY(0.50); w = UIW(0.52); h = UIH(0.44); };
+        class Border: ADVSEC_Border { x = UIX(0.24); y = UIY(0.50); w = UIW(0.52); h = UIH(0.44); };
+        class Line: ADVSEC_Line { x = UIX(0.24); y = UIY(0.545); w = UIW(0.52); h = UIH(0.003); };
+    };
+    class controls {
+        class Who: ADVSEC_Header { idc = 88301; x = UIX(0.255); y = UIY(0.50); w = UIW(0.45); h = UIH(0.045); };
+        class Close: ADVSEC_BtnX { x = UIX(0.725); y = UIY(0.505); w = UIW(0.03); h = UIH(0.035); onButtonClick = "closeDialog 0"; };
+        class Text: ADVSEC_Struct { idc = 88302; x = UIX(0.255); y = UIY(0.56); w = UIW(0.49); h = UIH(0.15); };
+        class Opts: ADVSEC_List {
+            idc = 88303; x = UIX(0.255); y = UIY(0.72); w = UIW(0.49); h = UIH(0.15);
+            sizeEx = UIT(0.032); rowHeight = UIT(0.04);
+            onLBDblClick = "['pick'] call ADVSEC_fnc_dlgTalk";
+        };
+        class Reply: ADVSEC_BtnPrimary { text = "$STR_ADVSEC_dlg_reply"; x = UIX(0.585); y = UIY(0.88); w = UIW(0.16); h = UIH(0.045); onButtonClick = "['pick'] call ADVSEC_fnc_dlgTalk"; };
     };
 };

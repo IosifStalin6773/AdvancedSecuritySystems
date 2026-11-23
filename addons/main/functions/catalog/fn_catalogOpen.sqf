@@ -13,5 +13,11 @@ _d setVariable ["ADVSEC_cat", [_kind, _entries, _ok, _args]];
 private _cats = _d displayCtrl 88102;
 {_cats lbAdd format ["%1 (%2)", _x select 0, count (_x select 1)]} forEach ([_kind] call ADVSEC_fnc_catalogData);
 _cats lbSetCurSel 0;
-(_d displayCtrl 88104) ctrlSetText (["100", "5000"] select (_kind == "vehicles"));
+(_d displayCtrl 88104) ctrlSetText (["100", "5000", "1"] select ((["items", "vehicles", "units"] find _kind) max 0));
+if (_kind == "units") then {
+    // NPC: el «precio» es el peso relativo de esa clase al repartir los NPC del encargo
+    (_d displayCtrl 88107) ctrlSetText ("STR_ADVSEC_pmc_npc_weight" call ADVSEC_fnc_L);
+    (_d displayCtrl 88108) ctrlSetText ("STR_ADVSEC_pmc_npc_list" call ADVSEC_fnc_L);
+    (_d displayCtrl 88109) ctrlSetText ("STR_ADVSEC_pmc_npc_add" call ADVSEC_fnc_L);
+};
 [_d, "list"] call ADVSEC_fnc_catalogUI;

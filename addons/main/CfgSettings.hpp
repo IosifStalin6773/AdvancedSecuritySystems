@@ -12,14 +12,19 @@ class ADVSEC_Settings {
     superAdmins[] = {};          // UIDs con acceso al terminal de superadministrador (además de Zeus y los añadidos en partida)
     globalRankSetUnit = 1;       // 1 = aplica setUnitRank según ranksGlobalArma
 
-    // Permisos: {cuerpo ("PM" admite también AA.II.; "AI" solo AA.II.), nivel mínimo}
+    // Perfil PMC (1.20): la compañía va por delante de la PM. Con 0 todo funciona como antes (solo PM/AA.II.)
+    pmcProfile = 1;
+    companyName = "I.V.M.";      // nombre de la compañía en los menús
+    pmcRankLevels[] = {1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 5};   // nivel de compañía (1-5) de cada rango global: Tropa 1, Cabos 2, Sargentos 3, Brigada/Teniente 4, Capitán 5
+    // Permisos: {cuerpo ("PMC" compañía: rango en el ORBAT o PM; "PM" admite también AA.II.; "AI" solo AA.II.), nivel mínimo}
     class Permissions {
-        restrain[] = {"PM", 1};
-        search[] = {"PM", 1};
+        restrain[] = {"PMC", 1};
+        hr[] = {"PMC", 3};
+        search[] = {"PMC", 1};
         seize[] = {"PM", 1};
-        vehicleSearch[] = {"PM", 1};
+        vehicleSearch[] = {"PMC", 1};
         evidenceCollect[] = {"PM", 1};
-        query[] = {"PM", 1};
+        query[] = {"PMC", 1};
         fine[] = {"PM", 2};
         fineCancel[] = {"PM", 4};
         wanted[] = {"PM", 2};
@@ -32,35 +37,37 @@ class ADVSEC_Settings {
         suspicionView[] = {"AI", 1};
         evidenceTamper[] = {"AI", 1};
         evidenceAudit[] = {"AI", 3};
-        playerDB[] = {"PM", 4};      // abrir la base de datos de jugadores
+        playerDB[] = {"PMC", 4};      // abrir la base de datos de jugadores
         rankPM[] = {"PM", 5};        // asignar rangos PM (solo inferiores al propio)
         rankAI[] = {"AI", 5};        // asignar rangos AA.II. (solo inferiores al propio)
-        rankGlobal[] = {"PM", 5};
-        treasury[] = {"PM", 5};     // ver la tesorería de la PM y pagar primas
-        dutyView[] = {"PM", 3};     // ver agentes de servicio y horas
-        dispatch[] = {"PM", 1};     // central de despacho: aceptar y cerrar avisos
+        rankGlobal[] = {"PMC", 5};
+        treasury[] = {"PMC", 5};     // ver la tesorería de la PM y pagar primas
+        dutyView[] = {"PMC", 3};     // ver agentes de servicio y horas
+        dispatch[] = {"PMC", 1};     // central de despacho: aceptar y cerrar avisos
         suspend[] = {"AI", 4};      // suspender agentes temporalmente
-        alertLevel[] = {"PM", 4};   // cambiar el nivel de alerta de la base
-        plateQuery[] = {"PM", 1};   // consultar matrículas
+        alertLevel[] = {"PMC", 4};   // cambiar el nivel de alerta de la base
+        plateQuery[] = {"PMC", 1};   // consultar matrículas
         licenseRevoke[] = {"PM", 2}; // retirar licencias
         bankAudit[] = {"AI", 3};    // auditar cuentas y movimientos sospechosos
         bankFreeze[] = {"AI", 4};   // congelar cuentas
         k9[] = {"PM", 2};           // unidad canina
         radar[] = {"PM", 1};        // radar de velocidad
         bodycamView[] = {"AI", 2};  // revisar cámaras corporales
-        patrolPlan[] = {"PM", 3};   // planificar y cancelar patrullas con ruta
+        patrolPlan[] = {"PMC", 3};   // planificar y cancelar patrullas con ruta
         // PMC (1.18)
-        contractView[] = {"PM", 1};   // terminal de contratos: ver ofertas y contratos
-        contractAssign[] = {"PM", 3}; // asignar operadores, ruta y ROE; iniciar contratos
-        contractSign[] = {"PM", 4};   // negociar, firmar y rescindir contratos
-        contractGrey[] = {"PM", 5};   // aceptar contratos de clientes de zona gris
-        armoryCheckout[] = {"PM", 1}; // sacar material de la armería corporativa
-        armoryManage[] = {"PM", 3};   // intendencia: auditorías, bajas y avisos de desgaste
-        logisticsOrder[] = {"PM", 4}; // pedir material a la tesorería
-        cellView[] = {"PM", 1};       // ver las células operativas (CP, QRF, SEC)
-        cellManage[] = {"PM", 4};     // asignar roles de célula
+        contractView[] = {"PMC", 1};   // terminal de contratos: ver ofertas y contratos
+        contractAssign[] = {"PMC", 3}; // asignar operadores, ruta y ROE; iniciar contratos
+        contractSign[] = {"PMC", 4};   // negociar, firmar y rescindir contratos
+        contractGrey[] = {"PMC", 5};   // aceptar contratos de clientes de zona gris
+        armoryCheckout[] = {"PMC", 1}; // sacar material de la armería corporativa
+        armoryManage[] = {"PMC", 3};   // intendencia: auditorías, bajas y avisos de desgaste
+        logisticsOrder[] = {"PMC", 4}; // pedir material a la tesorería
+        cellView[] = {"PMC", 1};       // ver las células operativas (CP, QRF, SEC)
+        cellManage[] = {"PMC", 4};     // asignar roles de célula
         cyberView[] = {"AI", 2};      // terminal ciber: alertas, registros, cronologías y CCTV
         cyberManage[] = {"AI", 3};    // restaurar sistemas comprometidos
+        traffic[] = {"PM", 2};        // 1.22: desvíos, carriles, grúa, depósito, accidentes, ITV y libro de paso
+        breath[] = {"PM", 1};         // 1.22: test de alcoholemia
     };
 
     // Evidencias
@@ -193,6 +200,11 @@ class ADVSEC_Settings {
     contractEvery = 20;          // minutos entre ofertas automáticas (las ofertas caducan a 2× este tiempo)
     contractMax = 6;             // ofertas abiertas a la vez como máximo
     contractMaxActive = 3;       // contratos en curso a la vez como máximo
+    contractCivilians = 1;       // 1 = vida en los encargos: tráfico que para en el control, visitantes en la vigilancia, camión en la escolta, llamada 112 en la QRF
+    contractCivSuspect = 0.3;    // fracción de civiles sospechosos (sin documentación, con requisitoria o con contrabando)
+    contractCivEvery = 45;       // segundos entre civiles nuevos (la vigilancia, el doble)
+    contractCheckRep = 1;        // 1 = exigir reputación mínima y limitar el riesgo de las ofertas por reputación; 0 = sin límite
+    contractCheckSpecs = 1;      // 1 = exigir las especialidades del tipo de contrato; 0 = no
     contractMinOps = -1;         // operadores PM mínimos por contrato; -1 = el de cada tipo (0 = ninguno, para probar en local)
     contractRounds = 2;          // contraofertas que admite un cliente
     contractAdvance = 0.3;       // anticipo por defecto (0-1) al iniciar el contrato
@@ -202,6 +214,24 @@ class ADVSEC_Settings {
     contractRepGain = 10;        // reputación por contrato cumplido
     contractRepLoss = 20;        // reputación perdida por contrato fallido o rescindido
     contractRivalLoss = 4;       // reputación que pierden los rivales del cliente al cumplir
+    contractMilestones = 0;      // 1 = pagos por hitos: si el contrato es parcial o fallido se paga la parte de la ruta cumplida
+    contractAuctionMin = 0;      // minutos de subasta por encargo ofertado (0 = sin subasta; las compañías pujan el % del pago)
+    contractSubFee = 0.25;       // fracción del pago que cobra el firmante original al subcontratar un encargo
+    backupMin = 0;  // Copia de seguridad (minutos, 0 = no)
+    auditExportN = 200;  // Entradas de auditoría a exportar
+    contractRestMin = 0;  // Descanso tras un encargo (minutos, 0 = no)
+    contractFranchise = 0;  // Franquicia del seguro de material (€)
+    cyberBlackoutMin = 10;  // Apagón de CCTV por sabotaje (minutos, 0 = manual)
+    cyberFirewallMin = 30;  // Cortafuegos de red (minutos)
+    priceInflationPct = 0;  // Inflación de precios (% por periodo, 0 = no)
+    priceInflationMin = 60;  // Periodo de inflación (minutos de misión)
+    blackMarketTax = 0;  // Impuesto de mercado negro (fracción de la venta)
+    salaryArrestBonus = 0;  // Incentivo por arresto en la nómina (€)
+    armoryDelayMin = 0;  // Entrega retardada de pedidos de armería (minutos)
+    budgetPMC = 0;  // Presupuesto diario PMC para pedidos (0 = sin límite)
+    vehMaintMin = 0;  // Mantenimiento de vehículos PM cada (minutos, 0 = no)
+    vehMaintFee = 0;  // Coste de mantenimiento por vehículo (€)
+    pdaMarkMin = 10;  // Duración de las marcas tácticas de la PDA (minutos)
     contractRepDecay = 3;        // días para que la reputación baje/suba 1 punto hacia 0 (0 = nunca)
     contractGreyHeat = 15;
     contractHostiles = 3;        // enemigos: 0 ninguno, 1 solo generados, 2 solo los ya colocados en la zona, 3 ambos (genera los que falten)
@@ -347,4 +377,33 @@ class ADVSEC_Ranks {
     class R10 { abbr = "Brig."; name = "$STR_ADVSEC_warrant_officer"; category = "Oficial"; arma = "LIEUTENANT"; };
     class R11 { abbr = "Tte."; name = "$STR_ADVSEC_lieutenant"; category = "Oficial"; arma = "CAPTAIN"; };
     class R12 { abbr = "Cap."; name = "$STR_ADVSEC_captain"; category = "Oficial"; arma = "MAJOR"; };
+
+    // 1.22: mecánicas de tráfico, control de carretera y patrullas
+    itvDays = 30;                 // días de validez de la ITV (0 = sin ITV)
+    itvFee = 120;
+    itvFine = 100;                // multa por ITV caducada detectada en el control
+    breathLimit = 0.25;           // g/l admitidos en el test de alcoholemia
+    breathFine = 400;
+    breathAIChance = 0.15;        // probabilidad de que un conductor IA dé positivo
+    towFee = 300;                 // tasa del depósito
+    convoyRadius = 80;            // distancia al destino para considerar llegado el convoy
+    convoyBonus = 0;              // prima por convoy completado
+    divertRadius = 150;           // radio de un desvío
+    patrolUnwatchedMin = 0;       // minutos sin patrulla para avisar en una zona (0 = desactivado)
+    patrolNightFactor = 1.5;      // multiplicador de la prima de patrulla de noche
+    checkpointANPR = 1;           // lectura automática de matrícula en los controles
+    checkpointGate = 1;           // barrera física en los controles
+    checkpointAlertRigor = 1;     // más registros con la alerta de base alta
+    checkpointEveryN = 0;         // registrar cada N vehículos (0 = solo por sorteo)
+    evBloodDecayMin = 0;          // minutos hasta que la sangre del suelo desaparece (0 = nunca)
+    evDestroyMin = 0;             // minutos en bolsa hasta destruir la prueba con auditoría (0 = nunca)
+    fineRecidivism = 0;           // recargo por multa anterior (0.5 = +50 % por cada anterior, tope 3)
+    pointsStart = 0;              // puntos de carnet iniciales (0 = sin puntos)
+    pointsLicenseType = "";       // tipo de licencia que se retira al llegar a 0 puntos ("" = ninguna)
+    finePrescriptionDays = 0;     // días de juego hasta anular una multa pendiente (0 = nunca)
+    transferEscapeChance = 0.02;  // probabilidad por cada 30 s de un detenido en vehículo de intentar la fuga (0 = nunca)
+    pdaCipherKey = "";            // clave de los mensajes cifrados del canal PM (vacía = sin cifrar)
+    bodycamAutoDraw = 0;          // 1 = la cámara corporal se enciende sola al desenfundar (agentes de servicio)
+    bodycamBatteryMin = 0;        // minutos de grabación por carga (0 = infinita)
+    radarCalibrationMin = 0;      // minutos entre calibraciones del radar (0 = nunca caduca)
 };

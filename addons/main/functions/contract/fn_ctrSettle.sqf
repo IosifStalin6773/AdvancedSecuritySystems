@@ -8,6 +8,11 @@ _c set ["state", _res];
 private _pay = _c get "pay";
 private _adv = round (_pay * (_c get "adv"));
 private _factor = switch (_res) do {case "Cumplido": {1}; case "Parcial": {0.5}; default {0}};
+// 1.22: pagos por hitos. Con la ruta dividida en puntos, un contrato parcial o fallido cobra la parte de la ruta cumplida.
+private _rch = _c get "reached";
+private _ms = (["contractMilestones", 0] call ADVSEC_fnc_setting) isEqualTo 1;
+private _hit = count (_rch select {_x});
+if (_ms && {_res in ["Parcial", "Fallido"]} && {_rch isNotEqualTo []}) then {_factor = _hit / (count _rch)};
 private _final = round ((_pay - _adv) * _factor);
 private _pen = 0; {_pen = _pen + (_x select 1)} forEach (_m get "penal");
 if (_res in ["Fallido", "Rescindido"]) then {_pen = _pen + round (_pay * (_c get "penal"))};
@@ -18,17 +23,27 @@ if ((_c get "type") == "vip" && {_res == "Cumplido"} && {_m get "advance"}) then
 private _expo = round (_pay * (["cpExposurePenalty", 0.01] call ADVSEC_fnc_setting) * floor ((_m get "exposure") / 10));
 _pen = _pen + _expo;
 // Vehículo corporativo dañado (el del VIP)
-private _veh = objectFromNetId (_c getOrDefault ["vipVeh", ""]);
+private _veh = ((_c getOrDefault ["vipVeh", ""]) call BIS_fnc_objectFromNetId);
 if (!isNull _veh) then {
     private _val = _veh getVariable ["ADVSEC_vehValue", 20000];
     private _cost = round ((damage _veh) * _val * 0.5);
     if (!alive _veh) then {_cost = _val};
     if (_cost > 0) then {(_m get "costs") pushBack [("STR_ADVSEC_pmc_cost_vehicle" call ADVSEC_fnc_L), _cost]};
 };
+// 1.22: comisión de la subcontrata, que cobra el firmante original
+private _sf = _c getOrDefault ["subFrom", []];
+if (_sf isNotEqualTo []) then {
+    private _fee = round (_pay * (_sf select 2));
+    if (_fee > 0) then {
+        (_m get "costs") pushBack [("STR_ADVSEC_pmc_cost_subfee" call ADVSEC_fnc_L), _fee];
+        [-_fee, format [("STR_ADVSEC_pmc_treasury_sub" call ADVSEC_fnc_L), _id]] call ADVSEC_fnc_ecoTreasury;
+        [_sf select 0, _sf select 1, _fee, format [("STR_ADVSEC_pmc_sub_paid" call ADVSEC_fnc_L), _id]] call ADVSEC_fnc_pmcPay;
+    };
+};
 private _costs = 0; {_costs = _costs + (_x select 1)} forEach (_m get "costs");
 // Material perdido con seguro: se recupera la mitad
 private _lost = 0; {if ((_x select 0) == ("STR_ADVSEC_pmc_cost_lost" call ADVSEC_fnc_L)) then {_lost = _lost + (_x select 1)}} forEach (_m get "costs");
-private _ins = [0, round (_lost * 0.5)] select (_c get "insured");
+private _ins = [0, (round (_lost * 0.5) - (["contractFranchise", 0] call ADVSEC_fnc_setting)) max 0] select (_c get "insured"); // 1.22: el seguro descuenta una franquicia
 // Tesorería: el anticipo ya entró al firmar
 [_final + _bonus + _ins - _pen, format [("STR_ADVSEC_pmc_treasury_settle" call ADVSEC_fnc_L), _id, _res call ADVSEC_fnc_Lv]] call ADVSEC_fnc_ecoTreasury;
 private _profit = _adv + _final + _bonus + _ins - _pen - _costs;
@@ -72,6 +87,7 @@ private _lines = [
     format [("STR_ADVSEC_pmc_settle_advance" call ADVSEC_fnc_L), _adv call _fmt],
     format [("STR_ADVSEC_pmc_settle_final" call ADVSEC_fnc_L), _final call _fmt, round (_factor * 100)]
 ];
+if (_ms && {_rch isNotEqualTo []} && {_res in ["Parcial", "Fallido"]}) then {_lines pushBack format [("STR_ADVSEC_pmc_settle_milestones" call ADVSEC_fnc_L), _hit, count _rch]};
 if (_bonus > 0) then {_lines pushBack format [("STR_ADVSEC_pmc_settle_bonus" call ADVSEC_fnc_L), _bonus call _fmt]};
 if (_ins > 0) then {_lines pushBack format [("STR_ADVSEC_pmc_settle_insurance" call ADVSEC_fnc_L), _ins call _fmt]};
 {_lines pushBack format ["− %1: %2", (format ["STR_ADVSEC_pmc_inc_%1", _x select 0]) call ADVSEC_fnc_L, (_x select 1) call _fmt]} forEach (_m get "penal");
@@ -83,6 +99,23 @@ if (_share > 0) then {_lines pushBack format [("STR_ADVSEC_pmc_settle_share" cal
 if ((_c get "result") isNotEqualTo "" && {(_c get "result") isNotEqualTo _res}) then {_lines pushBack ((_c get "result") call ADVSEC_fnc_repEsc)};
 _c set ["sheet", (_lines joinString "<br/>") + ([ "", "<br/>" + ((_c get "sheet") call ADVSEC_fnc_repEsc)] select ((_c get "sheet") isNotEqualTo ""))];
 _c set ["profit", _profit];
+// 1.22: célula. Moral (sube con éxitos, baja con fallos y bajas), victorias para el ascenso,
+// descanso obligatorio para los asignados y registro de inteligencia compartida.
+private _mor = localNamespace getVariable ["ADVSEC_morale", 60];
+private _dm = switch (_res) do {case "Cumplido": {5}; case "Parcial": {0}; default {-10}};
+_dm = _dm - 3 * count (_m get "incidents");
+localNamespace setVariable ["ADVSEC_morale", (_mor + _dm) max 0 min 100];
+if (_res == "Cumplido") then {localNamespace setVariable ["ADVSEC_cellWins", (localNamespace getVariable ["ADVSEC_cellWins", 0]) + 1]};
+private _rest = ["contractRestMin", 0] call ADVSEC_fnc_setting;
+if (_rest > 0) then {
+    private _rdb = localNamespace getVariable ["ADVSEC_rest", createHashMap];
+    {_rdb set [_x select 0, serverTime + _rest * 60]} forEach (_c get "assigned");
+    localNamespace setVariable ["ADVSEC_rest", _rdb];
+};
+private _intel = localNamespace getVariable ["ADVSEC_intel", []];
+_intel pushBack [call ADVSEC_fnc_now, _id, _c get "title", _res, count (_m get "incidents")];
+if (count _intel > 30) then {_intel deleteAt 0};
+localNamespace setVariable ["ADVSEC_intel", _intel];
 // Informe F-PMC-01
 private _rid = ["FPMC01", format [("STR_ADVSEC_pmc_report_title" call ADVSEC_fnc_L), _id, _c get "title"], (_c get "assigned") apply {format ["%1 [%2]", _x select 1, _x select 0]},
     format [("STR_ADVSEC_pmc_report_body" call ADVSEC_fnc_L), _id, _client call _clName, _c get "type", _c get "start", _c get "end", (_c get "roe") call ADVSEC_fnc_Lv, endl,

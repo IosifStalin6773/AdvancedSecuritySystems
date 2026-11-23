@@ -65,4 +65,13 @@ if ("contracts" in _d) then {
 };
 if ("armory" in _d) then {profileNamespace setVariable [ADVSEC_repKey + "_armseq", localNamespace getVariable ["ADVSEC_armSeq", 0]]};
 if ("cyber" in _d) then {profileNamespace setVariable [ADVSEC_repKey + "_cyber", localNamespace getVariable ["ADVSEC_cyAlerts", []]]};
+// 1.22: bases nuevas (mapDB): pares [clave, valor]
+{
+    _x params ["_k", "_var"];
+    if (_k in _d) then {
+        private _out = [];
+        {_out pushBack [_x, _y]} forEach (localNamespace getVariable [_var, createHashMap]);
+        profileNamespace setVariable [ADVSEC_repKey + "_" + _k, _out];
+    };
+} forEach [["cases", "ADVSEC_caseDB"], ["warrants", "ADVSEC_warrantDB"], ["impound", "ADVSEC_impoundDB"], ["itv", "ADVSEC_itvDB"], ["points", "ADVSEC_pointsDB"], ["hr", "ADVSEC_hrDB"]];
 saveProfileNamespace;

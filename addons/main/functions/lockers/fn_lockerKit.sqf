@@ -1,10 +1,12 @@
 /*
     [acción, jugador, taquilla] (servidor) — equipo completo guardado en la taquilla
-    "save":  guarda todo lo que lleva encima (armas, chaleco, mochila, casco, gafas, prismáticos, objetos enlazados y el
-             contenido del uniforme) y le deja con el uniforme y su documentación/credenciales ADVSEC.
-    "load":  se equipa lo guardado; si lleva equipo encima, ese pasa a la taquilla (intercambio).
+    "save":  cada pieza que lleva encima va a su hueco de la taquilla (casco, armas, pistolas, lanzador, chaleco, mochila,
+             gafas, prismáticos y visión nocturna) con TSL_fnc_request "putAll". Se queda con el uniforme y su
+             documentación ADVSEC (la del chaleco y la mochila pasa al uniforme). Si el hueco está ocupado, la pieza no se mueve.
+    "load":  saca de los huecos cada pieza cuyo sitio en el cuerpo está libre ("takeAll"). Si queda un equipo completo
+             antiguo (guardado aparte, clave _lkit del perfil del servidor), se recupera ese primero.
     "info":  -> [hay equipo, fecha, resumen] al cliente (ADVSEC_fnc_lockerKitMenu).
-    Se guarda por SteamID en el perfil del servidor (clave _lkit), así que sobrevive a cambios de misión.
+    Sin TS_Lockers se usa el sistema antiguo: el equipo se guarda aparte por SteamID en el perfil del servidor.
 */
 params ["_action", "_p", ["_l", objNull]];
 if (!isServer || {isNull _p} || {!([_p] call ADVSEC_fnc_srvCaller)}) exitWith {};
@@ -70,14 +72,42 @@ private _summary = {
     format [("STR_ADVSEC_lkit_summary" call ADVSEC_fnc_L), (_n select {_x isNotEqualTo ""}) joinString ", ", _items]
 };
 
+private _slotNames = {
+    // piezas colocadas en los huecos de la taquilla (TSL_gear)
+    private _n = [];
+    {
+        if (_x isEqualType [] && {_x isNotEqualTo []}) then {
+            private _v = _x select 0;
+            private _cls = if (_v isEqualType "") then {_v} else {_v param [0, ""]};
+            if (_cls isEqualType "" && {_cls isNotEqualTo ""}) then {
+                private _t = getText (configFile >> "CfgWeapons" >> _cls >> "displayName");
+                if (_t isEqualTo "") then {_t = getText (configFile >> "CfgVehicles" >> _cls >> "displayName")};
+                if (_t isEqualTo "") then {_t = getText (configFile >> "CfgGlasses" >> _cls >> "displayName")};
+                _n pushBack ([_t, _cls] select (_t isEqualTo ""));
+            };
+        };
+    } forEach (_l getVariable ["TSL_gear", []]);
+    _n
+};
+private _slots = !isNil "TSL_fnc_request";
+
 switch (_action) do {
     case "info": {
         private _e = _db getOrDefault [_uid, []];
         private _sum = "";
         if (_e isNotEqualTo []) then {_sum = [_e select 1] call _summary};
-        [_e isNotEqualTo [], _e param [0, ""], _sum] remoteExecCall ["ADVSEC_fnc_lockerKitMenu", _p];
+        private _n = call _slotNames;
+        if (_n isNotEqualTo []) then {
+            _sum = [_sum, format [("STR_ADVSEC_lkit_slots_info" call ADVSEC_fnc_L), _n joinString ", "]] select {_x isNotEqualTo ""} joinString "<br/>";
+        };
+        [_e isNotEqualTo [] || {_n isNotEqualTo []}, _e param [0, ""], _sum] remoteExecCall ["ADVSEC_fnc_lockerKitMenu", _p];
     };
     case "save": {
+        // Con TS_Lockers cargado cada pieza va a su hueco de la taquilla (fn_request "putAll")
+        if (_slots) exitWith {
+            ["lockerKitSave", _p, [mapGridPosition _l]] call ADVSEC_fnc_logEvent;
+            [_l, _p, "putAll", []] call TSL_fnc_request;
+        };
         if (_uid in _db) exitWith {("STR_ADVSEC_lkit_already" call ADVSEC_fnc_L) call _say};
         ([getUnitLoadout _p] call _split) params ["_kit", "_keep", "_uCls"];
         if ([_kit] call _empty) exitWith {("STR_ADVSEC_lkit_nothing" call ADVSEC_fnc_L) call _say};
@@ -89,9 +119,16 @@ switch (_action) do {
     };
     case "load": {
         private _e = _db getOrDefault [_uid, []];
+        if (_e isEqualTo [] && {_slots}) exitWith {
+            ["lockerKitLoad", _p, [mapGridPosition _l, false]] call ADVSEC_fnc_logEvent;
+            [_l, _p, "takeAll", []] call TSL_fnc_request;
+        };
         if (_e isEqualTo []) exitWith {("STR_ADVSEC_lkit_none" call ADVSEC_fnc_L) call _say};
         private _kit = +(_e select 1);
         ([getUnitLoadout _p] call _split) params ["_cur", "_keep", "_uCls"];
+        // Equipo completo antiguo (guardado aparte, versiones < 1.22.1): solo se recupera; lo que lleva puesto
+        // se guarda antes en los huecos para no volver a crear un equipo aparte.
+        if (_slots && {!([_cur] call _empty)}) exitWith {("STR_ADVSEC_lkit_legacy_first" call ADVSEC_fnc_L) call _say};
         // El uniforme que lleva puesto se conserva; dentro va lo guardado y su documentación
         private _ku = _kit select 3;
         private _cls = [_uCls, _ku param [0, ""]] select (_uCls isEqualTo "");

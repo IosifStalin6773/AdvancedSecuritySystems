@@ -8,6 +8,10 @@ if (!isServer) exitWith {};
 [] call ADVSEC_fnc_cellDB;
 ["init"] call ADVSEC_fnc_ctrDamage;
 [] call ADVSEC_fnc_pmcLoop;
+[] call ADVSEC_fnc_trafficLoop;
+[] call ADVSEC_fnc_hrLoop;
+[] call ADVSEC_fnc_evDecayLoop;
+[] call ADVSEC_fnc_jailCareLoop;
 // Taquillas TS_Lockers colocadas con Zeus: se guardan y se recrean (Antistasi no conserva los objetos de Zeus)
 [] call ADVSEC_fnc_lockerPersist;
 // Radares: toda cámara cwa_Kamera (speedCamClass) colocada en la misión funciona como radar fijo (speedCamAuto)

@@ -9,7 +9,7 @@ if !([_caller] call ADVSEC_fnc_srvCaller) exitWith {};
 private _say = {_this remoteExecCall ["hint", _caller]};
 private _calls = localNamespace getVariable ["ADVSEC_dspCalls", createHashMap];
 localNamespace setVariable ["ADVSEC_dspCalls", _calls];
-private _pm = (allPlayers - entities "HeadlessClient_F") select {alive _x && {[_x, "PM"] call ADVSEC_fnc_repAccess}};
+private _pm = (allPlayers - entities "HeadlessClient_F") select {alive _x && {[_x, "PMC"] call ADVSEC_fnc_repAccess}};
 private _onDuty = _pm select {_x getVariable ["ADVSEC_onDuty", false]};
 private _new = {
     params ["_kind", "_text"];
@@ -36,7 +36,7 @@ switch (_action) do {
         if ((values ([] call ADVSEC_fnc_ctrDB)) findIf {(_x get "state") == "En curso" && {(_x get "pos") distance2D _caller <= ((_x get "radius") + 300)}} >= 0) then {["panic", _caller, [_id]] call ADVSEC_fnc_cellServer};
     };
     case "panic": {
-        if !([_caller, "PM"] call ADVSEC_fnc_repAccess) exitWith {};
+        if !([_caller, "PMC"] call ADVSEC_fnc_repAccess) exitWith {};
         private _id = ["panic", ("STR_ADVSEC_officer_in_danger" call ADVSEC_fnc_L)] call _new;
         [_id, format [("STR_ADVSEC_panic" call ADVSEC_fnc_L), name _caller], format [("STR_ADVSEC_needs_immediate_backup_at" call ADVSEC_fnc_L), name _caller, mapGridPosition _caller], getPosATL _caller, true] remoteExecCall ["ADVSEC_fnc_dspNotify", _pm];
         ("STR_ADVSEC_panic_button_activated_the_whole" call ADVSEC_fnc_L) call _say;

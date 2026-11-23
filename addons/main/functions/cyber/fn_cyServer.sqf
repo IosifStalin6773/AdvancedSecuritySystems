@@ -166,6 +166,37 @@ switch (_action) do {
         [_s, _set apply {_x select 4}] remoteExecCall ["ADVSEC_fnc_cyReplay", _caller];
         ["cctvReplay", _caller, [_s select 2, _s select 0]] call ADVSEC_fnc_logEvent;
     };
+    case "firewall": {
+        // 1.22: levanta un cortafuegos en una red CCTV (el mando de ciber). Dura cyberFirewallMin minutos.
+        _args params [["_net", "default"]];
+        if !([_caller, "cyberView"] call ADVSEC_fnc_perm) exitWith {[_caller, ("STR_ADVSEC_pmc_perm_cyber" call ADVSEC_fnc_L)] call ADVSEC_fnc_deny};
+        private _fw = missionNamespace getVariable ["ADVSEC_fw", createHashMap];
+        _fw set [_net, serverTime + (["cyberFirewallMin", 30] call ADVSEC_fnc_setting) * 60];
+        missionNamespace setVariable ["ADVSEC_fw", _fw, true];
+        (format [("STR_ADVSEC_pmc_cy_fw_on" call ADVSEC_fnc_L), _net]) call _say;
+    };
+    case "phish": {
+        // 1.22: phishing a un agente: si engaña, el atacante ve su cuadrícula y si está de servicio (inteligencia, no acceso)
+        _args params [["_uid", ""]];
+        if !("ADVSEC_HackKit" in (items _caller)) exitWith {("STR_ADVSEC_pmc_cy_need_kit" call ADVSEC_fnc_L) call _say};
+        private _u = [_uid] call ADVSEC_fnc_uidUnit;
+        if (isNull _u) exitWith {};
+        if (random 1 < (["hackChance", 0.5] call ADVSEC_fnc_setting) - 0.2) then {
+            format [("STR_ADVSEC_pmc_cy_phish_ok" call ADVSEC_fnc_L), name _u, mapGridPosition _u, _u getVariable ["ADVSEC_onDuty", false]] call _say;
+            ["alert", _caller, ["phish", format ["%1 · %2", name _u, mapGridPosition _u]]] call ADVSEC_fnc_cyServer;
+        } else {
+            ["alert", _caller, ["phishFail", name _u]] call ADVSEC_fnc_cyServer;
+            ("STR_ADVSEC_pmc_cy_phish_fail" call ADVSEC_fnc_L) call _say;
+        };
+    };
+    case "scan": {
+        // 1.22: escaneo de red: cuenta cámaras y cerraduras de teclado en 300 m alrededor del terminal
+        if !(call _view) exitWith {};
+        private _near = _caller nearObjects 300;
+        private _cams = (_near select {!isNil {_x getVariable "ADVSEC_camNet"}}) apply {_x getVariable ["ADVSEC_camNet", "default"]};
+        private _kps = _near select {!isNil {_x getVariable "ADVSEC_kpDoors"}};
+        format [("STR_ADVSEC_pmc_cy_scan_res" call ADVSEC_fnc_L), count _cams, count _kps, (_cams arrayIntersect _cams) joinString ", "] call _say;
+    };
     case "hack": {
         _args params [["_o", objNull]];
         if (isNull _o || {(_caller distance _o) > 5}) exitWith {};
@@ -184,6 +215,9 @@ switch (_action) do {
         if (!_isKp && {_net isEqualTo ""}) exitWith {};
         private _p = ["hackChance", 0.5] call ADVSEC_fnc_setting;
         if ((([_caller] call ADVSEC_fnc_cellRole) select 0) == "SEC") then {_p = _p + 0.3};
+        // 1.22: cortafuegos activo sobre la red: el hackeo es más difícil
+        private _fw = missionNamespace getVariable ["ADVSEC_fw", createHashMap];
+        if (!_isKp && {(_fw getOrDefault [_net, 0]) > serverTime}) then {_p = _p - 0.3};
         private _ok = random 1 < _p;
         private _where = [_net, _o getVariable ["ADVSEC_kpLabel", typeOf _o]] select _isKp;
         // El intento siempre deja rastro; si falla, además salta la alarma del teclado
@@ -210,6 +244,14 @@ switch (_action) do {
             private _d = missionNamespace getVariable ["ADVSEC_camDown", []];
             _d pushBackUnique _net;
             missionNamespace setVariable ["ADVSEC_camDown", _d, true];
+            // 1.22: apagón temporal: la red vuelve sola tras cyberBlackoutMin minutos (0 = hasta restaurar a mano)
+            private _bo = ["cyberBlackoutMin", 10] call ADVSEC_fnc_setting;
+            if (_bo > 0) then {[_net, _bo] spawn {
+                params ["_n", "_m"];
+                sleep (_m * 60);
+                private _dd = missionNamespace getVariable ["ADVSEC_camDown", []];
+                missionNamespace setVariable ["ADVSEC_camDown", _dd - [_n], true];
+            }};
         };
         ("STR_ADVSEC_pmc_cy_hack_ok" call ADVSEC_fnc_L) call _say;
     };
