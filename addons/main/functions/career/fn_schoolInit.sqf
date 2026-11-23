@@ -17,3 +17,4 @@ if (isServer) then {[_obj, "school", ("STR_ADVSEC_car_school_point" call ADVSEC_
     {[_player, "school"] call ADVSEC_fnc_perm},
     "main", [], 3
 ] call ADVSEC_fnc_addInteraction;
+[_obj, "advsec_school_train", ("STR_ADVSEC_tr_title" call ADVSEC_fnc_L), ADVSEC_icDoc, {[] call ADVSEC_fnc_trainStart}, {true}, "main", [], 3] call ADVSEC_fnc_addInteraction;

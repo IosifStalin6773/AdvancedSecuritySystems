@@ -15,7 +15,9 @@ if !([_caller] call ADVSEC_fnc_srvCaller) exitWith {};
 private _db = ["career", "ADVSEC_carDB"] call ADVSEC_fnc_mapDB;
 private _L = {_this call ADVSEC_fnc_L};
 private _say = {if (!isNull _caller && {isPlayer _caller}) then {_this remoteExecCall ["hint", _caller]}};
-private _sys = !(call ADVSEC_fnc_fromClient);
+// Acción del sistema: llamada interna del servidor, o validada antes por él (ADVSEC_carSys, de un solo uso)
+private _sys = !(call ADVSEC_fnc_fromClient) || {localNamespace getVariable ["ADVSEC_carSys", false]};
+localNamespace setVariable ["ADVSEC_carSys", false];
 private _can = {params ["_p"]; _sys || {[_caller, _p] call ADVSEC_fnc_perm}};
 private _push = {
     params ["_k", "_e", ["_max", 60]];

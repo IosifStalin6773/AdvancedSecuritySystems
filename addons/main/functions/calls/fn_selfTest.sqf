@@ -28,7 +28,7 @@ private _cls = {params ["_c"]; isClass (configFile >> "CfgWeapons" >> _c) || {is
     } forEach ([_k, []] call ADVSEC_fnc_setting);
 } forEach ["shopItems", "blackMarketItems", "blackMarketStolen", "mpCrateItems", "callCivs", "callHostiles", "callCars", "callConvoy"];
 {if !([[_x, ""] call ADVSEC_fnc_setting] call _cls) then {_bad pushBackUnique _x}} forEach ["callSoldier", "trialJudgeClass", "trialCounselClass"];
-{if !([_x] call _cls) then {_bad pushBackUnique _x}} forEach ["Land_MarketShelter_F", "Box_Syndicate_Ammo_F", "Box_Syndicate_Wps_F", "C_journalist_F", "Sh_82mm_AMOS", "Land_PaperBox_01_small_closed_brown_F"];
+{if !([_x] call _cls) then {_bad pushBackUnique _x}} forEach ["Land_MarketShelter_F", "Box_Syndicate_Ammo_F", "Box_Syndicate_Wps_F", "C_journalist_F", "Sh_82mm_AMOS", "Land_PaperBox_01_small_closed_brown_F", "Land_Medevac_house_V1_F", "Land_DataTerminal_01_F", "Land_Atm_01_F", "Land_MobilePhone_old_F", "Land_Loudspeakers_F", "Land_Cargo_HQ_V1_F", "Land_Razorwire_F", "Land_HelipadSquare_F", "CamoNet_BLUFOR_big_F", "Land_Laptop_unfolded_F", "Land_TableDesk_F", "Box_NATO_Equip_F", "B_Heli_Transport_01_F"];
 [_bad isEqualTo [], "STR_ADVSEC_st_classes", (_bad select [0, 8]) joinString ", "] call _add;
 // Mapa y misión
 private _base = call ADVSEC_fnc_callBase;

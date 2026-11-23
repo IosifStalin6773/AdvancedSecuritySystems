@@ -585,6 +585,28 @@ class CfgFunctions {
             class selfTest {};
             class selfTestShow {};
         };
+        class world {
+            file = "\x\advsec\addons\main\functions\world";
+            class buildServer {};
+            class clubDrunk {};
+            class clubInit {};
+            class clubServer {};
+            class hospInit {};
+            class hospServer {};
+            class hospSurgery {};
+            class jailLife {};
+            class lifeServer {};
+            class moduleBuild {};
+            class moduleClub {};
+            class moduleHospital {};
+            class moduleLife {};
+            class moduleRnR {};
+            class rnrFlight {};
+            class rnrInit {};
+            class rnrServer {};
+            class trainServer {};
+            class trainStart {};
+        };
         class station {
             file = "\x\advsec\addons\main\functions\station";
             class bmServer {};

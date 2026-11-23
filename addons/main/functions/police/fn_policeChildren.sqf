@@ -103,6 +103,7 @@ if (_mode in ["self", "company"]) exitWith {
     ["pm_com", ["advsec_pm_mega", ("STR_ADVSEC_hk_megaphone" call ADVSEC_fnc_L), ADVSEC_icPol, {["megaphone"] call ADVSEC_fnc_hotkey}, []]] call _put;
     if (vehicle _player != _player) then {["pm_trf", ["advsec_pm_vsiren", ("STR_ADVSEC_hk_siren" call ADVSEC_fnc_L), ADVSEC_icCar, {["siren"] call ADVSEC_fnc_hotkey}, []]] call _put};
     if ([_player] call ADVSEC_fnc_isZeus) then {["pm_com", ["advsec_pm_selftest", ("STR_ADVSEC_st_title" call ADVSEC_fnc_L), ADVSEC_icDoc, {[] call ADVSEC_fnc_selfTestShow}, []]] call _put};
+    if ([_player, "medical"] call ADVSEC_fnc_perm) then {["pm_det", ["advsec_pm_dustoff", ("STR_ADVSEC_hosp_dustoff" call ADVSEC_fnc_L), ADVSEC_icAlarm, {["dustoff", _player] remoteExecCall ["ADVSEC_fnc_hospServer", 2]}, []]] call _put};
     private _its = items _player;
     if ("ADVSEC_Flares" in _its) then {["pm_trf", ["advsec_pm_flare", ("STR_ADVSEC_it_flare" call ADVSEC_fnc_L), ADVSEC_icCar, {["flare"] call ADVSEC_fnc_itemAction}, []]] call _put};
     if ("ADVSEC_MeasureTape" in _its) then {["pm_trf", ["advsec_pm_tape", ("STR_ADVSEC_it_tape" call ADVSEC_fnc_L), ADVSEC_icSearch, {["tape"] call ADVSEC_fnc_itemAction}, []]] call _put};
@@ -201,6 +202,15 @@ if (isPlayer _target && {[_player, "licenseRevoke"] call ADVSEC_fnc_perm}) then 
 };
 if ([_player, "fine"] call ADVSEC_fnc_perm) then {
     ["advsec_pm_fine", ("STR_ADVSEC_fine_5" call ADVSEC_fnc_L), ADVSEC_icDoc, {if ([_player, "fine"] call ADVSEC_fnc_needItem) then {[_target] call ADVSEC_fnc_finePrompt}}, []] call _add;
+};
+if ([_player, "medical"] call ADVSEC_fnc_perm) then {
+    ["advsec_pm_triage", ("STR_ADVSEC_hosp_triage" call ADVSEC_fnc_L), ADVSEC_icAlarm, {["triage", _player, [_target]] remoteExecCall ["ADVSEC_fnc_hospServer", 2]}, []] call _add;
+};
+if (!isNil {_target getVariable "ADVSEC_triage"}) then {
+    ["advsec_pm_tcard", ("STR_ADVSEC_hosp_card" call ADVSEC_fnc_L), ADVSEC_icDoc, {
+        (_target getVariable ["ADVSEC_triage", [0, "", "", 0]]) params ["_c", "_d", "_by", "_p"];
+        hint format [("STR_ADVSEC_hosp_card_txt" call ADVSEC_fnc_L), name _target, format ["STR_ADVSEC_hosp_cat_%1", _c] call ADVSEC_fnc_L, _p, "%", _d, _by];
+    }, []] call _add;
 };
 if ([_player, "breath"] call ADVSEC_fnc_perm) then {
     ["advsec_pm_breath", ("STR_ADVSEC_m_breath_menu" call ADVSEC_fnc_L), ADVSEC_icSearch, {["breath", _player, [_target]] remoteExecCall ["ADVSEC_fnc_trafficServer", 2]}, []] call _add;

@@ -15436,6 +15436,396 @@ Cargo: %3</Spanish>
                 <English>Curfew! Go home!</English>
                 <Spanish>¡Toque de queda! ¡A casa!</Spanish>
             </Key>
+            <Key ID="STR_ADVSEC_hosp">
+                <Original>Hospital</Original>
+                <English>Hospital</English>
+                <Spanish>Hospital</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp_module">
+                <Original>Hospital</Original>
+                <English>Hospital</English>
+                <Spanish>Hospital</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp_module_desc">
+                <Original>The synced object (or a new medevac house) is a hospital: operating theatre for the seriously wounded and destination of the air evacuations requested from the MP menu.</Original>
+                <English>The synced object (or a new medevac house) is a hospital: operating theatre for the seriously wounded and destination of the air evacuations requested from the MP menu.</English>
+                <Spanish>El objeto sincronizado (o una casa de evacuación nueva) es un hospital: quirófano para heridos graves y destino de las evacuaciones aéreas que se piden desde el menú de la PM.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp_surgery">
+                <Original>Operating theatre: operate on the nearest casualty</Original>
+                <English>Operating theatre: operate on the nearest casualty</English>
+                <Spanish>Quirófano: operar al herido más cercano</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp_noone">
+                <Original>There is no seriously wounded casualty next to the hospital.</Original>
+                <English>There is no seriously wounded casualty next to the hospital.</English>
+                <Spanish>No hay ningún herido grave junto al hospital.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp_cancel">
+                <Original>Operation interrupted.</Original>
+                <English>Operation interrupted.</English>
+                <Spanish>Operación interrumpida.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp_operating">
+                <Original>Operating on %1...</Original>
+                <English>Operating on %1...</English>
+                <Spanish>Operando a %1...</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp_progress">
+                <Original>Operating on %1: %2%3</Original>
+                <English>Operating on %1: %2%3</English>
+                <Spanish>Operando a %1: %2%3</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp_done">
+                <Original>Operation successful: %1 has recovered.</Original>
+                <English>Operation successful: %1 has recovered.</English>
+                <Spanish>Operación con éxito: %1 se ha recuperado.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp_triage">
+                <Original>Triage</Original>
+                <English>Triage</English>
+                <Spanish>Triaje</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp_triage_done">
+                <Original>Triage card for %1: %2 (injuries %3%4).</Original>
+                <English>Triage card for %1: %2 (injuries %3%4).</English>
+                <Spanish>Tarjeta de triaje de %1: %2 (lesiones %3%4).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp_cat_0">
+                <Original>No injuries</Original>
+                <English>No injuries</English>
+                <Spanish>Sin lesiones</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp_cat_1">
+                <Original>Minor (green)</Original>
+                <English>Minor (green)</English>
+                <Spanish>Leve (verde)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp_cat_2">
+                <Original>Delayed (yellow)</Original>
+                <English>Delayed (yellow)</English>
+                <Spanish>Diferido (amarillo)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp_cat_3">
+                <Original>Immediate (red)</Original>
+                <English>Immediate (red)</English>
+                <Spanish>Inmediato (rojo)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp_cat_4">
+                <Original>Expectant (black)</Original>
+                <English>Expectant (black)</English>
+                <Spanish>Expectante (negro)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp_card">
+                <Original>Read triage card</Original>
+                <English>Read triage card</English>
+                <Spanish>Ver tarjeta de triaje</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp_card_txt">
+                <Original>Triage card · %1 · Category: %2 · Injuries: %3%4 · %5 · %6</Original>
+                <English>Triage card · %1 · Category: %2 · Injuries: %3%4 · %5 · %6</English>
+                <Spanish>Tarjeta de triaje · %1 · Categoría: %2 · Lesiones: %3%4 · %5 · %6</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp_dustoff">
+                <Original>Request air evacuation (dust-off)</Original>
+                <English>Request air evacuation (dust-off)</English>
+                <Spanish>Pedir evacuación aérea</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp_dustoff_on">
+                <Original>Dust-off on its way to %1. Wounded AI within 40 m will be loaded.</Original>
+                <English>Dust-off on its way to %1. Wounded AI within 40 m will be loaded.</English>
+                <Spanish>Evacuación aérea en camino a %1. Los heridos IA a menos de 40 m subirán al helicóptero.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp_none">
+                <Original>There is no hospital in this mission.</Original>
+                <English>There is no hospital in this mission.</English>
+                <Spanish>No hay ningún hospital en esta misión.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp_busy">
+                <Original>The evacuation helicopter is already flying.</Original>
+                <English>The evacuation helicopter is already flying.</English>
+                <Spanish>El helicóptero de evacuación ya está en vuelo.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jl_fight">
+                <Original>Fight between prisoners in %1.</Original>
+                <English>Fight between prisoners in %1.</English>
+                <Spanish>Pelea entre presos en %1.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jl_guard">
+                <Original>Prison guard</Original>
+                <English>Prison guard</English>
+                <Spanish>Guardia de la prisión</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jl_fight_short">
+                <Original>prison fight</Original>
+                <English>prison fight</English>
+                <Spanish>pelea en la prisión</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_life_module">
+                <Original>Base / town life</Original>
+                <English>Base / town life</English>
+                <Spanish>Vida en base / pueblo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_life_module_desc">
+                <Original>Ambient life around the module while a player is near: base staff seated on chairs and soldiers walking around, or civilians strolling and sitting on benches in town.</Original>
+                <English>Ambient life around the module while a player is near: base staff seated on chairs and soldiers walking around, or civilians strolling and sitting on benches in town.</English>
+                <Spanish>Vida de ambiente alrededor del módulo mientras haya un jugador cerca: personal de la base sentado en sillas y soldados de un lado a otro, o civiles paseando y sentados en bancos del pueblo.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_life_kind">
+                <Original>Type</Original>
+                <English>Type</English>
+                <Spanish>Tipo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_life_base">
+                <Original>Base</Original>
+                <English>Base</English>
+                <Spanish>Base</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_life_town">
+                <Original>Town</Original>
+                <English>Town</English>
+                <Spanish>Pueblo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_life_count">
+                <Original>People</Original>
+                <English>People</English>
+                <Spanish>Personas</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_build_module">
+                <Original>Build facility</Original>
+                <English>Build facility</English>
+                <Spanish>Construir instalación</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_build_module_desc">
+                <Original>Builds a ready-made facility around the module with its ADVSEC systems configured: base (siren, crate, duty terminal), station (reports terminal, phone, duty terminal, crate), stockade (cell), hospital, river base or shop (shop and ATM).</Original>
+                <English>Builds a ready-made facility around the module with its ADVSEC systems configured: base (siren, crate, duty terminal), station (reports terminal, phone, duty terminal, crate), stockade (cell), hospital, river base or shop (shop and ATM).</English>
+                <Spanish>Construye una instalación alrededor del módulo con sus sistemas ADVSEC ya configurados: base (sirena, caja, fichaje), comisaría (terminal de informes, teléfono, fichaje, caja), prisión (calabozo), hospital, base fluvial o tienda (tienda y cajero).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_build_kind">
+                <Original>Facility</Original>
+                <English>Facility</English>
+                <Spanish>Instalación</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_build_k0">
+                <Original>Base</Original>
+                <English>Base</English>
+                <Spanish>Base</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_build_k1">
+                <Original>MP station</Original>
+                <English>MP station</English>
+                <Spanish>Comisaría</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_build_k2">
+                <Original>Stockade</Original>
+                <English>Stockade</English>
+                <Spanish>Prisión</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_build_k3">
+                <Original>Hospital</Original>
+                <English>Hospital</English>
+                <Spanish>Hospital</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_build_k4">
+                <Original>River base</Original>
+                <English>River base</English>
+                <Spanish>Base fluvial</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_build_k5">
+                <Original>Shop</Original>
+                <English>Shop</English>
+                <Spanish>Tienda</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rnr">
+                <Original>Leave terminal</Original>
+                <English>Leave terminal</English>
+                <Spanish>Terminal de permisos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rnr_module">
+                <Original>Leave terminal (R&amp;R)</Original>
+                <English>Leave terminal (R&amp;R)</English>
+                <Spanish>Terminal de permisos (R&amp;R)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rnr_module_desc">
+                <Original>The synced object (or a new terminal) shows the base status and books leave flights: the player goes off duty and cannot clock in for rnrMinutes.</Original>
+                <English>The synced object (or a new terminal) shows the base status and books leave flights: the player goes off duty and cannot clock in for rnrMinutes.</English>
+                <Spanish>El objeto sincronizado (o un terminal nuevo) muestra el estado de la base y reserva vuelos de permiso: el jugador sale de servicio y no puede fichar durante rnrMinutes.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rnr_status">
+                <Original>Base status</Original>
+                <English>Base status</English>
+                <Spanish>Estado de la base</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rnr_status_txt">
+                <Original>&lt;t font='PuristaBold'&gt;Base status&lt;/t&gt;&lt;br/&gt;&lt;br/&gt;Officers on duty: %1 of %2&lt;br/&gt;Open alerts: %3 (AI: %4)&lt;br/&gt;Social unrest: %5/100&lt;br/&gt;Alert level: %6&lt;br/&gt;Prisoners: %7&lt;br/&gt;Curfew: %8&lt;br/&gt;Treasury: %9 %10&lt;br/&gt;On leave: %11</Original>
+                <English>&lt;t font='PuristaBold'&gt;Base status&lt;/t&gt;&lt;br/&gt;&lt;br/&gt;Officers on duty: %1 of %2&lt;br/&gt;Open alerts: %3 (AI: %4)&lt;br/&gt;Social unrest: %5/100&lt;br/&gt;Alert level: %6&lt;br/&gt;Prisoners: %7&lt;br/&gt;Curfew: %8&lt;br/&gt;Treasury: %9 %10&lt;br/&gt;On leave: %11</English>
+                <Spanish>&lt;t font='PuristaBold'&gt;Estado de la base&lt;/t&gt;&lt;br/&gt;&lt;br/&gt;Agentes de servicio: %1 de %2&lt;br/&gt;Avisos abiertos: %3 (IA: %4)&lt;br/&gt;Tensión social: %5/100&lt;br/&gt;Nivel de alerta: %6&lt;br/&gt;Presos: %7&lt;br/&gt;Toque de queda: %8&lt;br/&gt;Tesorería: %9 %10&lt;br/&gt;De permiso: %11</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rnr_leave">
+                <Original>Book leave flight (R&amp;R)</Original>
+                <English>Book leave flight (R&amp;R)</English>
+                <Spanish>Reservar vuelo de permiso (R&amp;R)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rnr_f_dest">
+                <Original>Destination</Original>
+                <English>Destination</English>
+                <Spanish>Destino</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rnr_flight">
+                <Original>Leave flight to %1 · %2 minutes of rest</Original>
+                <English>Leave flight to %1 · %2 minutes of rest</English>
+                <Spanish>Vuelo de permiso a %1 · %2 minutos de descanso</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rnr_on_leave">
+                <Original>You are on leave for %1 min. You cannot clock in until you return.</Original>
+                <English>You are on leave for %1 min. You cannot clock in until you return.</English>
+                <Spanish>Estás de permiso %1 min. No puedes fichar hasta que vuelvas.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rnr_no_duty">
+                <Original>You are on leave: %1 min left.</Original>
+                <English>You are on leave: %1 min left.</English>
+                <Spanish>Estás de permiso: faltan %1 min.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_club">
+                <Original>NCO club</Original>
+                <English>NCO club</English>
+                <Spanish>Club de suboficiales</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_club_module">
+                <Original>NCO club</Original>
+                <English>NCO club</English>
+                <Spanish>Club de suboficiales</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_club_module_desc">
+                <Original>The synced object (or a new table) is the NCO club bar: drinks, cards, darts and a record board. clubMinRank sets the minimum global rank.</Original>
+                <English>The synced object (or a new table) is the NCO club bar: drinks, cards, darts and a record board. clubMinRank sets the minimum global rank.</English>
+                <Spanish>El objeto sincronizado (o una mesa nueva) es la barra del club de suboficiales: copas, cartas, dardos y tablón de récords. clubMinRank fija el rango global mínimo.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_club_drink">
+                <Original>Have a drink</Original>
+                <English>Have a drink</English>
+                <Spanish>Tomar algo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_club_drink_ok">
+                <Original>Cheers. You feel rested.</Original>
+                <English>Cheers. You feel rested.</English>
+                <Spanish>Salud. Te sientes descansado.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_club_drink_much">
+                <Original>That was one too many...</Original>
+                <English>That was one too many...</English>
+                <Spanish>Esa ha sido una de más...</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_club_nomoney">
+                <Original>You don't have enough money.</Original>
+                <English>You don't have enough money.</English>
+                <Spanish>No tienes dinero suficiente.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_club_cards">
+                <Original>Play cards</Original>
+                <English>Play cards</English>
+                <Spanish>Jugar a las cartas</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_club_f_bet">
+                <Original>Bet</Original>
+                <English>Bet</English>
+                <Spanish>Apuesta</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_club_win">
+                <Original>You win %1 %2.</Original>
+                <English>You win %1 %2.</English>
+                <Spanish>Ganas %1 %2.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_club_lose">
+                <Original>You lose %1 %2.</Original>
+                <English>You lose %1 %2.</English>
+                <Spanish>Pierdes %1 %2.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_club_darts">
+                <Original>Throw darts</Original>
+                <English>Throw darts</English>
+                <Spanish>Tirar dardos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_club_darts_res">
+                <Original>Darts: %1 = %2 points (your record: %3)</Original>
+                <English>Darts: %1 = %2 points (your record: %3)</English>
+                <Spanish>Dardos: %1 = %2 puntos (tu récord: %3)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_club_darts_ton">
+                <Original>%1 scores %2 at darts!</Original>
+                <English>%1 scores %2 at darts!</English>
+                <Spanish>¡%1 hace %2 en los dardos!</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_club_board">
+                <Original>Darts record board</Original>
+                <English>Darts record board</English>
+                <Spanish>Tablón de récords de dardos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_club_board_empty">
+                <Original>Nobody has thrown yet.</Original>
+                <English>Nobody has thrown yet.</English>
+                <Spanish>Todavía no ha tirado nadie.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_tr_title">
+                <Original>Guided training</Original>
+                <English>Guided training</English>
+                <Spanish>Instrucción guiada</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_tr_stop">
+                <Original>Guided training stopped.</Original>
+                <English>Guided training stopped.</English>
+                <Spanish>Instrucción guiada detenida.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_tr_dist">
+                <Original>Objective at %1 m (map marker)</Original>
+                <English>Objective at %1 m (map marker)</English>
+                <Spanish>Objetivo a %1 m (marcador en el mapa)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_tr_s1">
+                <Original>Get your MP badge or accreditation</Original>
+                <English>Get your MP badge or accreditation</English>
+                <Spanish>Consigue tu placa o acreditación de la PM</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_tr_s2">
+                <Original>Clock in at a duty terminal</Original>
+                <English>Clock in at a duty terminal</English>
+                <Spanish>Ficha en un terminal de fichaje</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_tr_s3">
+                <Original>Go to the MP school</Original>
+                <English>Go to the MP school</English>
+                <Spanish>Ve a la escuela de la PM</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_tr_s4">
+                <Original>Visit the equipment crate</Original>
+                <English>Visit the equipment crate</English>
+                <Spanish>Pasa por la caja de equipo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_tr_s5">
+                <Original>Find the cells</Original>
+                <English>Find the cells</English>
+                <Spanish>Localiza los calabozos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_tr_s6">
+                <Original>Visit the station phone</Original>
+                <English>Visit the station phone</English>
+                <Spanish>Pasa por el teléfono de comisaría</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_tr_s7">
+                <Original>File an incident report</Original>
+                <English>File an incident report</English>
+                <Spanish>Presenta un informe de incidente</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_tr_done">
+                <Original>Guided training completed. Merits awarded.</Original>
+                <English>Guided training completed. Merits awarded.</English>
+                <Spanish>Instrucción guiada completada. Méritos concedidos.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_tr_done_again">
+                <Original>You had already completed the guided training.</Original>
+                <English>You had already completed the guided training.</English>
+                <Spanish>Ya habías completado la instrucción guiada.</Spanish>
+            </Key>
         </Container>
     </Package>
 </Project>

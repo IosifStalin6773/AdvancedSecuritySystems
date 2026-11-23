@@ -65,6 +65,16 @@ class ADVSEC_Settings {
     vehSirenSound = "A3\Sounds_F\sfx\alarm_independent.wss";
     selfTest = 1;                // autotest al arrancar el servidor (resultado en el menú Zeus y en el RPT)
     selfTestCalls = 0;           // 1 = el autotest también monta y desmonta avisos de prueba
+    // 1.24 (fase 4): hospital, prisión, vida ambiental, permisos y club
+    dustoffHeli = "B_Heli_Transport_01_F";   // helicóptero de evacuación aérea
+    jailLife = 1;                // 1 = los presos IA hacen cosas y a veces se pelean
+    jailAmbient = 0;             // presos IA de ambiente en cada calabozo (0 = ninguno)
+    lifeSoldiers[] = {"B_Soldier_unarmed_F", "B_officer_F", "B_Soldier_F"};   // personal del módulo «Vida en base»
+    rnrMinutes = 10;             // minutos de permiso (sin poder fichar)
+    rnrDestinations[] = {"Sídney", "Bangkok", "Hong Kong", "Honolulu", "Tokio"};
+    clubMinRank = 0;             // escalón de rango global mínimo para usar el club
+    clubDrinkPrice = 5;          // precio de una copa
+    trainMerit = 5;              // méritos al terminar la instrucción guiada (una vez)
     // Rangos por nivel de placa (1-5). El nivel es el campo "clearance" de la placa/credencial.
     ranksPM[] = {"$STR_ADVSEC_officer", "$STR_ADVSEC_corporal", "$STR_ADVSEC_sergeant", "$STR_ADVSEC_lieutenant", "$STR_ADVSEC_captain"};
     ranksAI[] = {"Inspector", "$STR_ADVSEC_chief_inspector", "$STR_ADVSEC_superintendent", "$STR_ADVSEC_chief_superintendent", "Director"};
@@ -142,6 +152,7 @@ class ADVSEC_Settings {
         baseAlarm[] = {"PMC", 2};    // 1.24: alarma de base y sirena de toque de queda
         mpCrate[] = {"PMC", 1};      // 1.24: reponer cajas de equipo de la PM
         callLaunch[] = {"PM", 4};    // 1.24: lanzar y cancelar avisos IA (el Zeus siempre puede)
+        medical[] = {"PMC", 1};      // 1.24: triaje, quirófano y evacuación aérea
         trial[] = {"PM", 3};          // 1.24: instruir juicios
     };
 

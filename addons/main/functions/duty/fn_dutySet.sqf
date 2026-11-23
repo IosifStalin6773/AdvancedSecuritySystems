@@ -3,6 +3,10 @@ params ["_unit", "_on"];
 if (isNull _unit) exitWith {};
 private _was = _unit getVariable ["ADVSEC_onDuty", false];
 if (_was isEqualTo _on) exitWith {};
+// 1.24: de permiso (R&R) no se puede fichar
+if (_on && {(_unit getVariable ["ADVSEC_leaveUntil", 0]) > serverTime}) exitWith {
+    (format [("STR_ADVSEC_rnr_no_duty" call ADVSEC_fnc_L), ceil (((_unit getVariable ["ADVSEC_leaveUntil", 0]) - serverTime) / 60)]) remoteExecCall ["hint", _unit];
+};
 private _uid = getPlayerUID _unit;
 private _db = [] call ADVSEC_fnc_dutyDB;
 private _e = _db getOrDefault [_uid, [0, name _unit, []]];

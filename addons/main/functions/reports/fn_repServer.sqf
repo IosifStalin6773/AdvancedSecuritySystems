@@ -100,6 +100,7 @@ switch (_action) do {
         ADVSEC_repDB set [_id, _r];
         [] call ADVSEC_fnc_repSave;
         ["report", _caller, [_id, _r get "subjects"]] call ADVSEC_fnc_logEvent;
+        _caller setVariable ["ADVSEC_trainRep", true, true];   // 1.24: paso de la instrucción guiada
         // 1.24: paga por informe. El aviso que este agente atendió (y aún no se pagó) se cierra y se paga una sola vez
         private _rp = ["reportPay", 50] call ADVSEC_fnc_setting;
         if (_rp > 0 && {[] call ADVSEC_fnc_ecoOn}) then {

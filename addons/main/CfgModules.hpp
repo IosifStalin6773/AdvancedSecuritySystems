@@ -313,6 +313,76 @@ class CfgVehicles {
             description = "$STR_ADVSEC_bm_module_desc";
         };
     };
+    class ADVSEC_ModuleHospital: ADVSEC_Module_Base {
+        scope = 2;
+        displayName = "$STR_ADVSEC_hosp_module";
+        icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\heal_ca.paa";
+        function = "ADVSEC_fnc_moduleHospital";
+        class Attributes: AttributesBase {
+            class ModuleDescription: ModuleDescription {};
+        };
+        class ModuleDescription: ModuleDescription {
+            description = "$STR_ADVSEC_hosp_module_desc";
+        };
+    };
+    class ADVSEC_ModuleRnR: ADVSEC_Module_Base {
+        scope = 2;
+        displayName = "$STR_ADVSEC_rnr_module";
+        icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\run_ca.paa";
+        function = "ADVSEC_fnc_moduleRnR";
+        class Attributes: AttributesBase {
+            class ModuleDescription: ModuleDescription {};
+        };
+        class ModuleDescription: ModuleDescription {
+            description = "$STR_ADVSEC_rnr_module_desc";
+        };
+    };
+    class ADVSEC_ModuleClub: ADVSEC_Module_Base {
+        scope = 2;
+        displayName = "$STR_ADVSEC_club_module";
+        icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\meet_ca.paa";
+        function = "ADVSEC_fnc_moduleClub";
+        class Attributes: AttributesBase {
+            class ModuleDescription: ModuleDescription {};
+        };
+        class ModuleDescription: ModuleDescription {
+            description = "$STR_ADVSEC_club_module_desc";
+        };
+    };
+    class ADVSEC_ModuleLife: ADVSEC_Module_Base {
+        scope = 2;
+        displayName = "$STR_ADVSEC_life_module";
+        icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\meet_ca.paa";
+        function = "ADVSEC_fnc_moduleLife";
+        isGlobal = 0;
+        class Attributes: AttributesBase {
+            class Kind: Combo { property = "ADVSEC_LF_Kind"; displayName = "$STR_ADVSEC_life_kind"; typeName = "NUMBER"; defaultValue = "0";
+                class Values { class B { name = "$STR_ADVSEC_life_base"; value = 0; }; class T { name = "$STR_ADVSEC_life_town"; value = 1; }; };
+            };
+            class Count: Edit { property = "ADVSEC_LF_Count"; displayName = "$STR_ADVSEC_life_count"; typeName = "NUMBER"; defaultValue = "8"; };
+            class Radius: Edit { property = "ADVSEC_LF_Radius"; displayName = "$STR_ADVSEC_bm_radius"; typeName = "NUMBER"; defaultValue = "80"; };
+            class ModuleDescription: ModuleDescription {};
+        };
+        class ModuleDescription: ModuleDescription { description = "$STR_ADVSEC_life_module_desc"; };
+    };
+    class ADVSEC_ModuleBuild: ADVSEC_Module_Base {
+        scope = 2;
+        displayName = "$STR_ADVSEC_build_module";
+        icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\container_ca.paa";
+        function = "ADVSEC_fnc_moduleBuild";
+        isGlobal = 0;
+        class Attributes: AttributesBase {
+            class Kind: Combo { property = "ADVSEC_BD_Kind"; displayName = "$STR_ADVSEC_build_kind"; typeName = "NUMBER"; defaultValue = "0";
+                class Values {
+                    class B { name = "$STR_ADVSEC_build_k0"; value = 0; }; class S { name = "$STR_ADVSEC_build_k1"; value = 1; };
+                    class P { name = "$STR_ADVSEC_build_k2"; value = 2; }; class H { name = "$STR_ADVSEC_build_k3"; value = 3; };
+                    class R { name = "$STR_ADVSEC_build_k4"; value = 4; }; class T { name = "$STR_ADVSEC_build_k5"; value = 5; };
+                };
+            };
+            class ModuleDescription: ModuleDescription {};
+        };
+        class ModuleDescription: ModuleDescription { description = "$STR_ADVSEC_build_module_desc"; };
+    };
     class ADVSEC_ModuleSpeedCam: ADVSEC_Module_Base {
         scope = 2;
         displayName = "$STR_ADVSEC_fixed_speed_camera_2";
