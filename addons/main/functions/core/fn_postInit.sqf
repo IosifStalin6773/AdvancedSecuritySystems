@@ -12,6 +12,7 @@ if (isServer) then {
     [] call ADVSEC_fnc_rpInit;
     // 1.24: motor de avisos IA y autotest
     ["start", objNull] call ADVSEC_fnc_callServer;
+    ["loop", objNull] call ADVSEC_fnc_radioServer;
     if ((["jailLife", 1] call ADVSEC_fnc_setting) isEqualTo 1) then {[] spawn ADVSEC_fnc_jailLife};
     if ((["selfTest", 1] call ADVSEC_fnc_setting) isEqualTo 1) then {[] spawn {sleep 20; [] call ADVSEC_fnc_selfTest}};
 };

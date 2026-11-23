@@ -28,6 +28,8 @@ switch (_id) do {
     case "halt": {["halt"] call ADVSEC_fnc_hotkey};
     case "vehSiren": {["siren"] call ADVSEC_fnc_hotkey};
     case "megaphone": {["megaphone"] call ADVSEC_fnc_hotkey};
+    case "radio": {[] call ADVSEC_fnc_radioOpen};
+    case "handUse": {[] call ADVSEC_fnc_handUse};
     case "hide": {[] call ADVSEC_fnc_hideItem};
     case "pmMenu": {if (call _needPM) then {[player, "self"] call ADVSEC_fnc_policeMenu}};
     case "targetMenu": {

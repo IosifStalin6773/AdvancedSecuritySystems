@@ -1,6 +1,10 @@
 class CfgWeapons {
     class ItemCore;
     class InventoryItem_Base_F;
+    class H_HelmetB_light;
+    class H_Cap_police;
+    class V_Rangemaster_belt;
+    class V_TacVest_blk_POLICE;
     class ADVSEC_ItemBase: ItemCore {
         scope = 1;
         author = "oscar";
@@ -140,4 +144,26 @@ class CfgWeapons {
     class ADVSEC_SceneTape: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_scenetape"; descriptionShort = "$STR_ADVSEC_it_scenetape_d"; picture = "\x\advsec\addons\main\data\item_scenetape_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 5; }; };
     class ADVSEC_KeyRing: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_keyring"; descriptionShort = "$STR_ADVSEC_it_keyring_d"; picture = "\x\advsec\addons\main\data\item_keyring_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 2; }; };
     class ADVSEC_OffLimits: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_offlimits"; descriptionShort = "$STR_ADVSEC_it_offlimits_d"; picture = "\x\advsec\addons\main\data\item_offlimits_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 1; }; };
+    // 1.24: material médico y objetos en la mano (iconos propios)
+    class ADVSEC_MedBag: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_medbag"; descriptionShort = "$STR_ADVSEC_it_medbag_d"; picture = "\x\advsec\addons\main\data\item_m5bag_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 40; }; };
+    class ADVSEC_Stethoscope: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_stethoscope"; descriptionShort = "$STR_ADVSEC_it_stethoscope_d"; picture = "\x\advsec\addons\main\data\item_stetho_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 3; }; };
+    class ADVSEC_BPCuff: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_bpcuff"; descriptionShort = "$STR_ADVSEC_it_bpcuff_d"; picture = "\x\advsec\addons\main\data\item_bpcuff_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 4; }; };
+    class ADVSEC_TriageTag: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_triagetag"; descriptionShort = "$STR_ADVSEC_it_triagetag_d"; picture = "\x\advsec\addons\main\data\item_triagetag_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 1; }; };
+    class ADVSEC_Ammonia: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_ammonia"; descriptionShort = "$STR_ADVSEC_it_ammonia_d"; picture = "\x\advsec\addons\main\data\item_ammonia_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 1; }; };
+    class ADVSEC_Splint: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_splint"; descriptionShort = "$STR_ADVSEC_it_splint_d"; picture = "\x\advsec\addons\main\data\item_splint_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 6; }; };
+    class ADVSEC_BurnDressing: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_burndressing"; descriptionShort = "$STR_ADVSEC_it_burndressing_d"; picture = "\x\advsec\addons\main\data\item_burn_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 2; }; };
+    class ADVSEC_Albumin: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_albumin"; descriptionShort = "$STR_ADVSEC_it_albumin_d"; picture = "\x\advsec\addons\main\data\item_albumin_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 10; }; };
+    class ADVSEC_Morphine: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_morphine"; descriptionShort = "$STR_ADVSEC_it_morphine_d"; picture = "\x\advsec\addons\main\data\item_morphine_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 1; }; };
+    class ADVSEC_Litter: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_litter"; descriptionShort = "$STR_ADVSEC_it_litter_d"; picture = "\x\advsec\addons\main\data\item_litter_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 60; }; };
+    class ADVSEC_Camera: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_camera"; descriptionShort = "$STR_ADVSEC_it_camera_d"; picture = "\x\advsec\addons\main\data\item_camera_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 8; }; };
+    class ADVSEC_Megaphone: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_megaphone"; descriptionShort = "$STR_ADVSEC_it_megaphone_d"; picture = "\x\advsec\addons\main\data\item_megaphone_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 12; }; };
+    class ADVSEC_Clipboard: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_clipboard"; descriptionShort = "$STR_ADVSEC_it_clipboard_d"; picture = "\x\advsec\addons\main\data\item_clipboard_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 4; }; };
+    class ADVSEC_RiotShield: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_riotshield"; descriptionShort = "$STR_ADVSEC_it_riotshield_d"; picture = "\x\advsec\addons\main\data\item_shield_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 60; }; };
+    class ADVSEC_RiotBaton: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_riotbaton"; descriptionShort = "$STR_ADVSEC_it_riotbaton_d"; picture = "\x\advsec\addons\main\data\item_baton_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 15; }; };
+    // 1.24: uniforme PM (texturas de procedimiento sobre modelos de Arma 3)
+    class ADVSEC_H_MPHelmet: H_HelmetB_light { author = "oscar"; displayName = "$STR_ADVSEC_it_mphelmet"; hiddenSelectionsTextures[] = {"#(argb,8,8,3)color(0.92,0.92,0.9,1)"}; };
+    class ADVSEC_H_MPHelmetBlk: H_HelmetB_light { author = "oscar"; displayName = "$STR_ADVSEC_it_mphelmetblk"; hiddenSelectionsTextures[] = {"#(argb,8,8,3)color(0.06,0.06,0.06,1)"}; };
+    class ADVSEC_H_MPCap: H_Cap_police { author = "oscar"; displayName = "$STR_ADVSEC_it_mpcap"; };
+    class ADVSEC_V_MPBelt: V_Rangemaster_belt { author = "oscar"; displayName = "$STR_ADVSEC_it_mpbelt"; hiddenSelectionsTextures[] = {"#(argb,8,8,3)color(0.92,0.92,0.9,1)"}; };
+    class ADVSEC_V_MPVest: V_TacVest_blk_POLICE { author = "oscar"; displayName = "$STR_ADVSEC_it_mpvest"; };
 };

@@ -75,6 +75,12 @@ class ADVSEC_Settings {
     clubMinRank = 0;             // escalón de rango global mínimo para usar el club
     clubDrinkPrice = 5;          // precio de una copa
     trainMerit = 5;              // méritos al terminar la instrucción guiada (una vez)
+    // 1.24: objetos en la mano (clase de modelo visible; "" = sin modelo, solo la función)
+    handProps[] = {{"camera", "Land_HandyCam_F"}, {"clipboard", "Land_File1_F"}, {"megaphone", ""}, {"shield", ""}, {"baton", ""}};
+    // 1.24: radio de la PM
+    radioCodes[] = {"10-4", "10-7", "10-8", "10-9", "10-15", "10-20", "10-23", "10-33", "10-76", "10-97"};
+    radioChatter = 1;            // 1 = tráfico de radio ambiental para quien está de servicio
+    radioCheckMin = 30;          // minutos entre comprobaciones de radio (0 = nunca)
     // Rangos por nivel de placa (1-5). El nivel es el campo "clearance" de la placa/credencial.
     ranksPM[] = {"$STR_ADVSEC_officer", "$STR_ADVSEC_corporal", "$STR_ADVSEC_sergeant", "$STR_ADVSEC_lieutenant", "$STR_ADVSEC_captain"};
     ranksAI[] = {"Inspector", "$STR_ADVSEC_chief_inspector", "$STR_ADVSEC_superintendent", "$STR_ADVSEC_chief_superintendent", "Director"};
@@ -434,6 +440,8 @@ class ADVSEC_Keys {
     class aiCalls { name = "$STR_ADVSEC_call_menu"; tooltip = "$STR_ADVSEC_call_key_tip"; category = "$STR_ADVSEC_military_police"; key[] = {0, 0, 0, 0}; };
     class halt { name = "$STR_ADVSEC_hk_halt"; tooltip = "$STR_ADVSEC_hk_halt_tip"; category = "$STR_ADVSEC_military_police"; key[] = {0, 0, 0, 0}; };
     class vehSiren { name = "$STR_ADVSEC_hk_siren"; tooltip = "$STR_ADVSEC_hk_siren_tip"; category = "$STR_ADVSEC_military_police"; key[] = {0, 0, 0, 0}; };
+    class radio { name = "$STR_ADVSEC_radio"; tooltip = "$STR_ADVSEC_radio_tip"; category = "$STR_ADVSEC_military_police"; key[] = {0, 0, 0, 0}; };
+    class handUse { name = "$STR_ADVSEC_hand_use"; tooltip = "$STR_ADVSEC_hand_use_tip"; category = "$STR_ADVSEC_military_police"; key[] = {0, 0, 0, 0}; };
     class megaphone { name = "$STR_ADVSEC_hk_megaphone"; tooltip = "$STR_ADVSEC_hk_megaphone_tip"; category = "$STR_ADVSEC_military_police"; key[] = {0, 0, 0, 0}; };
     class zeusPanel { name = "$STR_ADVSEC_security_panel_zeus"; tooltip = "$STR_ADVSEC_zeus_admin_only"; category = "Zeus"; key[] = {210, 1, 1, 0}; };
 };

@@ -585,6 +585,17 @@ class CfgFunctions {
             class selfTest {};
             class selfTestShow {};
         };
+        class gear {
+            file = "\x\advsec\addons\main\functions\gear";
+            class handProp {};
+            class handServer {};
+            class handUse {};
+            class medChildren {};
+            class medLitter {};
+            class medServer {};
+            class radioOpen {};
+            class radioServer {};
+        };
         class world {
             file = "\x\advsec\addons\main\functions\world";
             class buildServer {};

@@ -47,9 +47,11 @@ switch (_mode) do {
             [("STR_ADVSEC_hk_mg_own" call ADVSEC_fnc_L), ""]
         ], {
             params ["_v"];
+            // Con el megáfono en la mano se oye hasta 120 m
+            private _rng = [80, 120] select ((player getVariable ["ADVSEC_hand", ""]) == "megaphone");
             private _txt = [_v select 0, _v select 1] select ((_v select 1) isNotEqualTo "");
-            (format [("STR_ADVSEC_hk_mg_say" call ADVSEC_fnc_L), name player, _txt select [0, 120]]) remoteExecCall ["systemChat", allPlayers select {_x distance player < 80}];
-            {if (!isPlayer _x && {side group _x == civilian}) then {[_x] remoteExecCall ["doStop", _x]}} forEach (player nearEntities ["CAManBase", 80]);
+            (format [("STR_ADVSEC_hk_mg_say" call ADVSEC_fnc_L), name player, _txt select [0, 120]]) remoteExecCall ["systemChat", allPlayers select {_x distance player < _rng}];
+            {if (!isPlayer _x && {side group _x == civilian}) then {[_x] remoteExecCall ["doStop", _x]}} forEach (player nearEntities ["CAManBase", _rng]);
         }] call ADVSEC_fnc_zeusPrompt;
     };
 };

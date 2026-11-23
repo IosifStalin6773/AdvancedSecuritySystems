@@ -15826,6 +15826,446 @@ Cargo: %3</Spanish>
                 <English>You had already completed the guided training.</English>
                 <Spanish>Ya habías completado la instrucción guiada.</Spanish>
             </Key>
+            <Key ID="STR_ADVSEC_it_medbag">
+                <Original>Medic bag (M5)</Original>
+                <English>Medic bag (M5)</English>
+                <Spanish>Bolsa médica (M5)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_medbag_d">
+                <Original>Field kit: treats a wounded person on the spot (heals light wounds, stabilises serious ones).</Original>
+                <English>Field kit: treats a wounded person on the spot (heals light wounds, stabilises serious ones).</English>
+                <Spanish>Equipo de campaña: atiende a un herido en el sitio (cura heridas leves y estabiliza las graves).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_stethoscope">
+                <Original>Stethoscope</Original>
+                <English>Stethoscope</English>
+                <Spanish>Estetoscopio</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_stethoscope_d">
+                <Original>Check pulse and breathing.</Original>
+                <English>Check pulse and breathing.</English>
+                <Spanish>Comprueba el pulso y la respiración.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_bpcuff">
+                <Original>Blood pressure cuff</Original>
+                <English>Blood pressure cuff</English>
+                <Spanish>Tensiómetro</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_bpcuff_d">
+                <Original>Measures blood pressure.</Original>
+                <English>Measures blood pressure.</English>
+                <Spanish>Mide la tensión arterial.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_triagetag">
+                <Original>Triage tags</Original>
+                <English>Triage tags</English>
+                <Spanish>Etiquetas de triaje</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_triagetag_d">
+                <Original>Tag a casualty with a triage category.</Original>
+                <English>Tag a casualty with a triage category.</English>
+                <Spanish>Marca a un herido con una categoría de triaje.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_ammonia">
+                <Original>Ammonia inhalant</Original>
+                <English>Ammonia inhalant</English>
+                <Spanish>Sales de amoníaco</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_ammonia_d">
+                <Original>Wakes up an unconscious person who is not seriously hurt. Single use.</Original>
+                <English>Wakes up an unconscious person who is not seriously hurt. Single use.</English>
+                <Spanish>Despierta a alguien inconsciente que no está grave. Un solo uso.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_splint">
+                <Original>Splint</Original>
+                <English>Splint</English>
+                <Spanish>Férula</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_splint_d">
+                <Original>Immobilises a broken leg so the casualty can walk. Single use.</Original>
+                <English>Immobilises a broken leg so the casualty can walk. Single use.</English>
+                <Spanish>Inmoviliza una pierna rota para que el herido pueda andar. Un solo uso.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_burndressing">
+                <Original>Burn dressing</Original>
+                <English>Burn dressing</English>
+                <Spanish>Apósito para quemaduras</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_burndressing_d">
+                <Original>Treats burns. Single use.</Original>
+                <English>Treats burns. Single use.</English>
+                <Spanish>Trata quemaduras. Un solo uso.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_albumin">
+                <Original>Albumin (plasma expander)</Original>
+                <English>Albumin (plasma expander)</English>
+                <Spanish>Albúmina (expansor de plasma)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_albumin_d">
+                <Original>Restores blood volume after heavy bleeding. Single use.</Original>
+                <English>Restores blood volume after heavy bleeding. Single use.</English>
+                <Spanish>Repone volumen de sangre tras una hemorragia grave. Un solo uso.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_morphine">
+                <Original>Morphine autoinjector</Original>
+                <English>Morphine autoinjector</English>
+                <Spanish>Autoinyector de morfina</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_morphine_d">
+                <Original>Relieves pain. Single use.</Original>
+                <English>Relieves pain. Single use.</English>
+                <Spanish>Calma el dolor. Un solo uso.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_litter">
+                <Original>Folding litter</Original>
+                <English>Folding litter</English>
+                <Spanish>Camilla plegable</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_litter_d">
+                <Original>Carry an unconscious casualty.</Original>
+                <English>Carry an unconscious casualty.</English>
+                <Spanish>Para llevar a un herido inconsciente.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_camera">
+                <Original>Evidence camera</Original>
+                <English>Evidence camera</English>
+                <Spanish>Cámara de pruebas</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_camera_d">
+                <Original>Take it in your hand and use it to photograph a scene; the photo goes to the log.</Original>
+                <English>Take it in your hand and use it to photograph a scene; the photo goes to the log.</English>
+                <Spanish>Sácala en la mano y úsala para fotografiar una escena; la foto queda en el registro.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_megaphone">
+                <Original>Megaphone</Original>
+                <English>Megaphone</English>
+                <Spanish>Megáfono</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_megaphone_d">
+                <Original>In your hand, your announcements reach 120 m.</Original>
+                <English>In your hand, your announcements reach 120 m.</English>
+                <Spanish>En la mano, tus avisos llegan a 120 m.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_clipboard">
+                <Original>Clipboard</Original>
+                <English>Clipboard</English>
+                <Spanish>Carpeta de partes</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_clipboard_d">
+                <Original>In your hand, use it to write a report.</Original>
+                <English>In your hand, use it to write a report.</English>
+                <Spanish>En la mano, úsala para escribir un parte.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_riotshield">
+                <Original>Riot shield</Original>
+                <English>Riot shield</English>
+                <Spanish>Escudo antidisturbios</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_riotshield_d">
+                <Original>In your hand, it stops most of the damage coming from the front.</Original>
+                <English>In your hand, it stops most of the damage coming from the front.</English>
+                <Spanish>En la mano, para la mayor parte del daño que llega de frente.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_riotbaton">
+                <Original>Riot baton</Original>
+                <English>Riot baton</English>
+                <Spanish>Porra antidisturbios</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_riotbaton_d">
+                <Original>In your hand, a blow stuns a person within reach.</Original>
+                <English>In your hand, a blow stuns a person within reach.</English>
+                <Spanish>En la mano, un golpe aturde a una persona a tu alcance.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_mphelmet">
+                <Original>MP helmet (white)</Original>
+                <English>MP helmet (white)</English>
+                <Spanish>Casco PM (blanco)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_mphelmetblk">
+                <Original>MP helmet (black)</Original>
+                <English>MP helmet (black)</English>
+                <Spanish>Casco PM (negro)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_mpcap">
+                <Original>MP cap</Original>
+                <English>MP cap</English>
+                <Spanish>Gorra PM</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_mpbelt">
+                <Original>MP white belt</Original>
+                <English>MP white belt</English>
+                <Spanish>Cinturón blanco PM</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_mpvest">
+                <Original>MP vest</Original>
+                <English>MP vest</English>
+                <Spanish>Chaleco PM</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_med_bag_done">
+                <Original>You have treated %1.</Original>
+                <English>You have treated %1.</English>
+                <Spanish>Has atendido a %1.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_med_pulse">
+                <Original>%1 · pulse %2 bpm · %3</Original>
+                <English>%1 · pulse %2 bpm · %3</English>
+                <Spanish>%1 · pulso %2 ppm · %3</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_med_breath_ok">
+                <Original>breathing normally</Original>
+                <English>breathing normally</English>
+                <Spanish>respira con normalidad</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_med_breath_bad">
+                <Original>laboured breathing</Original>
+                <English>laboured breathing</English>
+                <Spanish>respiración dificultosa</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_med_bp">
+                <Original>%1 · blood pressure %2/%3</Original>
+                <English>%1 · blood pressure %2/%3</English>
+                <Spanish>%1 · tensión %2/%3</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_med_awake">
+                <Original>They are already conscious.</Original>
+                <English>They are already conscious.</English>
+                <Spanish>Ya está consciente.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_med_wake">
+                <Original>%1 comes round.</Original>
+                <English>%1 comes round.</English>
+                <Spanish>%1 vuelve en sí.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_med_splint">
+                <Original>You have splinted %1's leg.</Original>
+                <English>You have splinted %1's leg.</English>
+                <Spanish>Has entablillado la pierna de %1.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_med_burn">
+                <Original>You have dressed %1's burns.</Original>
+                <English>You have dressed %1's burns.</English>
+                <Spanish>Has curado las quemaduras de %1.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_med_albumin">
+                <Original>You have given albumin to %1.</Original>
+                <English>You have given albumin to %1.</English>
+                <Spanish>Has puesto albúmina a %1.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_med_morphine">
+                <Original>You have given morphine to %1.</Original>
+                <English>You have given morphine to %1.</English>
+                <Spanish>Has puesto morfina a %1.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_med_litter_on">
+                <Original>Carry on the litter</Original>
+                <English>Carry on the litter</English>
+                <Spanish>Llevar en la camilla</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_med_litter_off">
+                <Original>Put the litter down</Original>
+                <English>Put the litter down</English>
+                <Spanish>Dejar la camilla</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hand_on">
+                <Original>%1 in your hand. Use it with the «Use what I'm holding» key or menu.</Original>
+                <English>%1 in your hand. Use it with the «Use what I'm holding» key or menu.</English>
+                <Spanish>%1 en la mano. Úsalo con la tecla o el menú «Usar lo que llevo».</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hand_none">
+                <Original>You are not holding anything.</Original>
+                <English>You are not holding anything.</English>
+                <Spanish>No llevas nada en la mano.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hand_baton_far">
+                <Original>Get within reach of a person.</Original>
+                <English>Get within reach of a person.</English>
+                <Spanish>Acércate a una persona.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hand_photo">
+                <Original>Photo taken: %1 at %2.</Original>
+                <English>Photo taken: %1 at %2.</English>
+                <Spanish>Foto tomada: %1 en %2.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hand_baton_you">
+                <Original>You've been hit with a baton!</Original>
+                <English>You've been hit with a baton!</English>
+                <Spanish>¡Te han dado un porrazo!</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hand_take">
+                <Original>take in hand</Original>
+                <English>take in hand</English>
+                <Spanish>sacar en la mano</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hand_put">
+                <Original>put away</Original>
+                <English>put away</English>
+                <Spanish>guardar</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hand_use">
+                <Original>Use what I'm holding</Original>
+                <English>Use what I'm holding</English>
+                <Spanish>Usar lo que llevo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hand_use_tip">
+                <Original>Camera, megaphone, clipboard or baton</Original>
+                <English>Camera, megaphone, clipboard or baton</English>
+                <Spanish>Cámara, megáfono, carpeta o porra</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_radio">
+                <Original>MP radio</Original>
+                <English>MP radio</English>
+                <Spanish>Radio PM</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_radio_tip">
+                <Original>Send a 10 code or a message, or answer the radio check</Original>
+                <English>Send a 10 code or a message, or answer the radio check</English>
+                <Spanish>Enviar un código 10 o un mensaje, o responder a la comprobación</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_radio_line">
+                <Original>[Radio %1] %2: %3</Original>
+                <English>[Radio %1] %2: %3</English>
+                <Spanish>[Radio %1] %2: %3</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_radio_amb">
+                <Original>[Radio] %1</Original>
+                <English>[Radio] %1</English>
+                <Spanish>[Radio] %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rch_1">
+                <Original>Central: all units, stay alert at the checkpoints.</Original>
+                <English>Central: all units, stay alert at the checkpoints.</English>
+                <Spanish>Central: a todas las unidades, atentos en los controles.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rch_2">
+                <Original>Patrol 2: 10-8, back on patrol.</Original>
+                <English>Patrol 2: 10-8, back on patrol.</English>
+                <Spanish>Patrulla 2: 10-8, de vuelta a la patrulla.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rch_3">
+                <Original>Central: reminder, convoy arriving at the main gate in 20 minutes.</Original>
+                <English>Central: reminder, convoy arriving at the main gate in 20 minutes.</English>
+                <Spanish>Central: recuerdo, convoy llegando a la puerta principal en 20 minutos.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rch_4">
+                <Original>Gate: 10-4, two vehicles inspected, no incidents.</Original>
+                <English>Gate: 10-4, two vehicles inspected, no incidents.</English>
+                <Spanish>Puerta: 10-4, dos vehículos inspeccionados, sin novedad.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rch_5">
+                <Original>Central: units near the market, check for vendors without a licence.</Original>
+                <English>Central: units near the market, check for vendors without a licence.</English>
+                <Spanish>Central: unidades cerca del mercado, revisen vendedores sin licencia.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rch_6">
+                <Original>Patrol 1: 10-7, short stop for fuel.</Original>
+                <English>Patrol 1: 10-7, short stop for fuel.</English>
+                <Spanish>Patrulla 1: 10-7, parada breve para repostar.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rch_7">
+                <Original>Central: weather report, poor visibility expected tonight.</Original>
+                <English>Central: weather report, poor visibility expected tonight.</English>
+                <Spanish>Central: parte meteorológico, se espera poca visibilidad esta noche.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rch_8">
+                <Original>Stockade: head count complete, all present.</Original>
+                <English>Stockade: head count complete, all present.</English>
+                <Spanish>Calabozo: recuento terminado, todos presentes.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_radio_check">
+                <Original>Radio check: answer from the radio menu or key within 2 minutes.</Original>
+                <English>Radio check: answer from the radio menu or key within 2 minutes.</English>
+                <Spanish>Comprobación de radio: responde desde el menú o la tecla de radio en 2 minutos.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_radio_check_ask">
+                <Original>Radio check, all units report.</Original>
+                <English>Radio check, all units report.</English>
+                <Spanish>Comprobación de radio, todas las unidades informen.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_radio_check_ok">
+                <Original>Loud and clear.</Original>
+                <English>Loud and clear.</English>
+                <Spanish>Le recibo alto y claro.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_radio_check_miss">
+                <Original>No answer to the radio check: %1</Original>
+                <English>No answer to the radio check: %1</English>
+                <Spanish>Sin respuesta a la comprobación de radio: %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_radio_central">
+                <Original>Central</Original>
+                <English>Central</English>
+                <Spanish>Central</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_radio_cmd">
+                <Original>Command</Original>
+                <English>Command</English>
+                <Spanish>Mando</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_radio_f_net">
+                <Original>Net</Original>
+                <English>Net</English>
+                <Spanish>Red</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_radio_f_code">
+                <Original>10 code</Original>
+                <English>10 code</English>
+                <Spanish>Código 10</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_radio_f_text">
+                <Original>Free message (replaces the code)</Original>
+                <English>Free message (replaces the code)</English>
+                <Spanish>Mensaje libre (sustituye al código)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rc_104">
+                <Original>Acknowledged</Original>
+                <English>Acknowledged</English>
+                <Spanish>Recibido</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rc_107">
+                <Original>Out of service</Original>
+                <English>Out of service</English>
+                <Spanish>Fuera de servicio</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rc_108">
+                <Original>In service</Original>
+                <English>In service</English>
+                <Spanish>En servicio</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rc_109">
+                <Original>Repeat</Original>
+                <English>Repeat</English>
+                <Spanish>Repita</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rc_1015">
+                <Original>Prisoner in custody</Original>
+                <English>Prisoner in custody</English>
+                <Spanish>Detenido bajo custodia</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rc_1020">
+                <Original>My location: %1</Original>
+                <English>My location: %1</English>
+                <Spanish>Mi posición: %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rc_1023">
+                <Original>Arrived on scene</Original>
+                <English>Arrived on scene</English>
+                <Spanish>Llegado al lugar</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rc_1033">
+                <Original>Emergency, all units</Original>
+                <English>Emergency, all units</English>
+                <Spanish>Emergencia, todas las unidades</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rc_1076">
+                <Original>En route</Original>
+                <English>En route</English>
+                <Spanish>En camino</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rc_1097">
+                <Original>On scene</Original>
+                <English>On scene</English>
+                <Spanish>En el lugar</Spanish>
+            </Key>
         </Container>
     </Package>
 </Project>

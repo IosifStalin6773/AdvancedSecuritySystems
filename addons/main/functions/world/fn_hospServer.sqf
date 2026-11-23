@@ -5,7 +5,10 @@
 params ["_action", "_caller", ["_args", []]];
 if (!isServer) exitWith {};
 if !([_caller] call ADVSEC_fnc_srvCaller) exitWith {};
-if (call ADVSEC_fnc_fromClient && {!([_caller, "medical"] call ADVSEC_fnc_perm)}) exitWith {[_caller, ("STR_ADVSEC_hosp_surgery" call ADVSEC_fnc_L)] call ADVSEC_fnc_deny};
+// La tarjeta de triaje (fn_medServer) la puede usar quien la lleve: el servidor lo valida antes (ADVSEC_medOK, de un solo uso)
+private _medOK = localNamespace getVariable ["ADVSEC_medOK", false];
+localNamespace setVariable ["ADVSEC_medOK", false];
+if (call ADVSEC_fnc_fromClient && {!_medOK} && {!([_caller, "medical"] call ADVSEC_fnc_perm)}) exitWith {[_caller, ("STR_ADVSEC_hosp_surgery" call ADVSEC_fnc_L)] call ADVSEC_fnc_deny};
 private _heal = {
     params ["_u"];
     _u setDamage 0;

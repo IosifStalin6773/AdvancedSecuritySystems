@@ -108,6 +108,16 @@ if (_mode in ["self", "company"]) exitWith {
     if ("ADVSEC_Flares" in _its) then {["pm_trf", ["advsec_pm_flare", ("STR_ADVSEC_it_flare" call ADVSEC_fnc_L), ADVSEC_icCar, {["flare"] call ADVSEC_fnc_itemAction}, []]] call _put};
     if ("ADVSEC_MeasureTape" in _its) then {["pm_trf", ["advsec_pm_tape", ("STR_ADVSEC_it_tape" call ADVSEC_fnc_L), ADVSEC_icSearch, {["tape"] call ADVSEC_fnc_itemAction}, []]] call _put};
     if ("ADVSEC_Stopwatch" in _its) then {["pm_trf", ["advsec_pm_watch", ("STR_ADVSEC_it_watch" call ADVSEC_fnc_L), ADVSEC_icJail, {["watch"] call ADVSEC_fnc_itemAction}, []]] call _put};
+    // 1.24: radio, objetos en la mano y material médico sobre uno mismo
+    ["pm_com", ["advsec_pm_radio", ("STR_ADVSEC_radio" call ADVSEC_fnc_L), ADVSEC_icPol, {[] call ADVSEC_fnc_radioOpen}, []]] call _put;
+    {
+        _x params ["_k", "_c"];
+        if (_c in _its) then {
+            ["pm_com", [format ["advsec_pm_hand_%1", _k], format ["%1 · %2", getText (configFile >> "CfgWeapons" >> _c >> "displayName"), [("STR_ADVSEC_hand_take" call ADVSEC_fnc_L), ("STR_ADVSEC_hand_put" call ADVSEC_fnc_L)] select ((_player getVariable ["ADVSEC_hand", ""]) == _k)], ADVSEC_icPol, {[_args select 0] call ADVSEC_fnc_handProp}, [_k]]] call _put;
+        };
+    } forEach [["camera", "ADVSEC_Camera"], ["megaphone", "ADVSEC_Megaphone"], ["clipboard", "ADVSEC_Clipboard"], ["shield", "ADVSEC_RiotShield"], ["baton", "ADVSEC_RiotBaton"]];
+    if ((_player getVariable ["ADVSEC_hand", ""]) isNotEqualTo "") then {["pm_com", ["advsec_pm_handuse", ("STR_ADVSEC_hand_use" call ADVSEC_fnc_L), ADVSEC_icPol, {[] call ADVSEC_fnc_handUse}, []]] call _put};
+    {["pm_det", _x] call _put} forEach ([_player, _player] call ADVSEC_fnc_medChildren);
     private _cv = cursorObject;
     if (!isNull _cv && {_cv isKindOf "LandVehicle"} && {(_player distance _cv) < 5} && {"ADVSEC_SteeringLock" in _its || {_cv getVariable ["ADVSEC_chain", false]}}) then {
         ["pm_trf", ["advsec_pm_chain", [("STR_ADVSEC_it_chain_put" call ADVSEC_fnc_L), ("STR_ADVSEC_it_chain_take" call ADVSEC_fnc_L)] select (_cv getVariable ["ADVSEC_chain", false]), ADVSEC_icCar, {["chain", _args select 0] call ADVSEC_fnc_itemAction}, [_cv]]] call _put;
@@ -206,6 +216,7 @@ if ([_player, "fine"] call ADVSEC_fnc_perm) then {
 if ([_player, "medical"] call ADVSEC_fnc_perm) then {
     ["advsec_pm_triage", ("STR_ADVSEC_hosp_triage" call ADVSEC_fnc_L), ADVSEC_icAlarm, {["triage", _player, [_target]] remoteExecCall ["ADVSEC_fnc_hospServer", 2]}, []] call _add;
 };
+{_x call _add} forEach ([_target, _player] call ADVSEC_fnc_medChildren);
 if (!isNil {_target getVariable "ADVSEC_triage"}) then {
     ["advsec_pm_tcard", ("STR_ADVSEC_hosp_card" call ADVSEC_fnc_L), ADVSEC_icDoc, {
         (_target getVariable ["ADVSEC_triage", [0, "", "", 0]]) params ["_c", "_d", "_by", "_p"];
