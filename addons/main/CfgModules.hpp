@@ -261,6 +261,58 @@ class CfgVehicles {
             description = "$STR_ADVSEC_car_school_module_desc";
         };
     };
+    class ADVSEC_ModulePhone: ADVSEC_Module_Base {
+        scope = 2;
+        displayName = "$STR_ADVSEC_phone_module";
+        icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\documents_ca.paa";
+        function = "ADVSEC_fnc_modulePhone";
+        class Attributes: AttributesBase {
+            class ModuleDescription: ModuleDescription {};
+        };
+        class ModuleDescription: ModuleDescription {
+            description = "$STR_ADVSEC_phone_module_desc";
+        };
+    };
+    class ADVSEC_ModuleSiren: ADVSEC_Module_Base {
+        scope = 2;
+        displayName = "$STR_ADVSEC_siren_module";
+        icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\danger_ca.paa";
+        function = "ADVSEC_fnc_moduleSiren";
+        class Attributes: AttributesBase {
+            class ModuleDescription: ModuleDescription {};
+        };
+        class ModuleDescription: ModuleDescription {
+            description = "$STR_ADVSEC_siren_module_desc";
+        };
+    };
+    class ADVSEC_ModuleCrate: ADVSEC_Module_Base {
+        scope = 2;
+        displayName = "$STR_ADVSEC_crate_module";
+        icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\box_ca.paa";
+        function = "ADVSEC_fnc_moduleCrate";
+        class Attributes: AttributesBase {
+            class ModuleDescription: ModuleDescription {};
+        };
+        class ModuleDescription: ModuleDescription {
+            description = "$STR_ADVSEC_crate_module_desc";
+        };
+    };
+    class ADVSEC_ModuleBlackMarket: ADVSEC_Module_Base {
+        scope = 2;
+        displayName = "$STR_ADVSEC_bm_module";
+        icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\search_ca.paa";
+        function = "ADVSEC_fnc_moduleBlackMarket";
+        isGlobal = 0;
+        class Attributes: AttributesBase {
+            class Count: Edit { property = "ADVSEC_BM_Count"; displayName = "$STR_ADVSEC_bm_count"; typeName = "NUMBER"; defaultValue = "3"; };
+            class Radius: Edit { property = "ADVSEC_BM_Radius"; displayName = "$STR_ADVSEC_bm_radius"; tooltip = "$STR_ADVSEC_bm_radius_tip"; typeName = "NUMBER"; defaultValue = "3000"; };
+            class Items: Edit { property = "ADVSEC_BM_Items"; displayName = "$STR_ADVSEC_bm_items"; tooltip = "$STR_ADVSEC_bm_items_tip"; typeName = "STRING"; defaultValue = """"""; };
+            class ModuleDescription: ModuleDescription {};
+        };
+        class ModuleDescription: ModuleDescription {
+            description = "$STR_ADVSEC_bm_module_desc";
+        };
+    };
     class ADVSEC_ModuleSpeedCam: ADVSEC_Module_Base {
         scope = 2;
         displayName = "$STR_ADVSEC_fixed_speed_camera_2";

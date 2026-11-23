@@ -571,5 +571,23 @@ class CfgFunctions {
             class jusOpen {};
             class jusPlea {};
         };
+        class station {
+            file = "\x\advsec\addons\main\functions\station";
+            class bmServer {};
+            class crateInit {};
+            class crateServer {};
+            class itemAction {};
+            class moduleBlackMarket {};
+            class moduleCrate {};
+            class modulePhone {};
+            class moduleSiren {};
+            class needItem {};
+            class payslipShow {};
+            class phoneInit {};
+            class phoneRing {};
+            class phoneServer {};
+            class sirenInit {};
+            class sirenServer {};
+        };
     };
 };

@@ -20,6 +20,7 @@ if (_docs isNotEqualTo []) then {
 // Dinero y vehículos
 private _money = [];
 if (_eco) then {_money pushBack ["advsec_me_wallet", ("STR_ADVSEC_wallet_and_bank" call ADVSEC_fnc_L), ADVSEC_icDoc, {[] call ADVSEC_fnc_ecoOpen}, []]};
+if (_eco) then {_money pushBack ["advsec_me_payslip", ("STR_ADVSEC_pay_slip" call ADVSEC_fnc_L), ADVSEC_icDoc, {[] call ADVSEC_fnc_payslipShow}, []]};
 _money pushBack ["advsec_me_fines", ("STR_ADVSEC_my_fines" call ADVSEC_fnc_L), ADVSEC_icDoc, {[] call ADVSEC_fnc_fineOpen}, []];
 if (_eco) then {
     private _l = (_player getVariable ["ADVSEC_jailUntil", 0]) - serverTime;

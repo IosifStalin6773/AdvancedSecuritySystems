@@ -23,6 +23,29 @@ class ADVSEC_Settings {
     trialThreshold = 3;          // peso necesario para condenar sin confesión (pruebas + testigo + azar 0-2)
     trialJailPerLevel = 10;      // minutos de prisión por nivel de gravedad
     trialFinePerLevel = 300;     // multa por nivel de gravedad
+    // 1.24 (fase 2): paga, mostrador y equipo
+    payDynamic = 1;              // 1 = la nómina sube cuando hay pocos agentes de servicio
+    payDynTarget = 4;            // agentes de servicio deseados (por debajo, plus por cada uno que falta)
+    payDynStep = 0.1;            // plus por agente que falta (0,1 = +10 %)
+    payDynMax = 0.5;             // plus máximo (0,5 = +50 %)
+    bankCap = 0;                 // tope de ahorro en el banco (0 = sin tope); el exceso de la nómina va a la tesorería
+    reportPay = 50;              // pago por aviso atendido y cerrado con informe (una vez por aviso; 0 = no)
+    phoneSound = "A3\Sounds_F\sfx\beep_target.wss";   // timbre del teléfono de comisaría
+    curfewStart = -1;            // hora del toque de queda (0-23; -1 = sin toque de queda)
+    curfewEnd = 5;               // hora en que termina
+    curfewTowns = 3;             // ciudades cercanas a cada sirena donde también suena
+    curfewTownRadius = 4000;     // radio de búsqueda de esas ciudades (m)
+    sirenSound = "A3\Sounds_F\sfx\alarm_independent.wss";   // sonido de sirenas y alarma de base
+    blackMarketMove = 60;        // minutos hasta que un mercado negro cambia de casa (0 = no se mueve)
+    blackMarketStolen[] = {{"FirstAidKit", 4}, {"ToolKit", 1}, {"ItemGPS", 1}, {"ADVSEC_Handcuffs", 2}, {"ADVSEC_CellKeys", 1}, {"ADVSEC_MPBadge", 1}};   // material robado en la casa
+    blackMarketTip = 0.3;        // probabilidad por hora de que llegue un soplo al teléfono de comisaría
+    mpCrateItems[] = {{"ToolKit", 2}, {"FirstAidKit", 10}, {"ADVSEC_Handcuffs", 6}, {"ADVSEC_FPKit", 2}, {"ADVSEC_EvidenceBag", 10}, {"ADVSEC_CitationBook", 4}, {"ADVSEC_RightsCard", 6}, {"ADVSEC_Flares", 4}, {"ADVSEC_Gloves", 6}, {"ADVSEC_SceneTape", 3}, {"ADVSEC_BoltCutter", 1}, {"ADVSEC_InspMirror", 1}, {"SmokeShell", 6}, {"Chemlight_red", 6}};
+    mpCrateMags = 4;             // cargadores para las armas del que repone la caja
+    pmItemsRequired = 0;         // 1 = algunas acciones necesitan el objeto de la PM (pmItemUse)
+    pmItemUse[] = {
+        {"cuff", {"ADVSEC_Handcuffs", "ACE_CableTie"}}, {"release", {"ADVSEC_CellKeys"}}, {"fine", {"ADVSEC_CitationBook"}},
+        {"scene", {"ADVSEC_FPKit"}}, {"vehsearch", {"ADVSEC_InspMirror"}}, {"sniff", {"ADVSEC_ScentBag"}}
+    };
     // Rangos por nivel de placa (1-5). El nivel es el campo "clearance" de la placa/credencial.
     ranksPM[] = {"$STR_ADVSEC_officer", "$STR_ADVSEC_corporal", "$STR_ADVSEC_sergeant", "$STR_ADVSEC_lieutenant", "$STR_ADVSEC_captain"};
     ranksAI[] = {"Inspector", "$STR_ADVSEC_chief_inspector", "$STR_ADVSEC_superintendent", "$STR_ADVSEC_chief_superintendent", "Director"};
@@ -97,6 +120,8 @@ class ADVSEC_Settings {
         supervisor[] = {"PMC", 4};    // 1.24: prioridad de los avisos
         article15[] = {"PMC", 4};     // 1.24: Artículo 15
         courtMartial[] = {"PM", 4};   // 1.24: consejo de guerra
+        baseAlarm[] = {"PMC", 2};    // 1.24: alarma de base y sirena de toque de queda
+        mpCrate[] = {"PMC", 1};      // 1.24: reponer cajas de equipo de la PM
         trial[] = {"PM", 3};          // 1.24: instruir juicios
     };
 
@@ -373,6 +398,8 @@ class ADVSEC_Keys {
     class career { name = "$STR_ADVSEC_car_menu"; tooltip = "$STR_ADVSEC_car_key_tip"; category = "$STR_ADVSEC_military_police"; key[] = {0, 0, 0, 0}; };
     class serviceRecord { name = "$STR_ADVSEC_car_b_record"; tooltip = "$STR_ADVSEC_car_key_rec_tip"; category = "$STR_ADVSEC_military_police"; key[] = {0, 0, 0, 0}; };
     class justice { name = "$STR_ADVSEC_jus_menu"; tooltip = "$STR_ADVSEC_jus_key_tip"; category = "$STR_ADVSEC_military_police"; key[] = {0, 0, 0, 0}; };
+    class payslip { name = "$STR_ADVSEC_pay_slip"; tooltip = "$STR_ADVSEC_pay_slip_tip"; category = "$STR_ADVSEC_citizen"; key[] = {0, 0, 0, 0}; };
+    class baseAlarm { name = "$STR_ADVSEC_siren_alarm"; tooltip = "$STR_ADVSEC_siren_alarm_tip"; category = "$STR_ADVSEC_military_police"; key[] = {0, 0, 0, 0}; };
     class zeusPanel { name = "$STR_ADVSEC_security_panel_zeus"; tooltip = "$STR_ADVSEC_zeus_admin_only"; category = "Zeus"; key[] = {210, 1, 1, 0}; };
 };
 

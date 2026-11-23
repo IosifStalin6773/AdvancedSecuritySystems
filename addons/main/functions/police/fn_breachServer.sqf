@@ -17,7 +17,7 @@ switch (_action) do {
         private _run = _runs deleteAt _key;
         if (isNil "_run") exitWith {[_caller, ("STR_ADVSEC_complete_a_lockpick_that_was" call ADVSEC_fnc_L)] call ADVSEC_fnc_deny};
         _run params ["_rb", "_ri", "_t0"];
-        if (_rb isNotEqualTo _b || {_ri != _i} || {(time - _t0) < (((["breachTime", 20] call ADVSEC_fnc_cfg)) - 2)}) exitWith {
+        if (_rb isNotEqualTo _b || {_ri != _i} || {(time - _t0) < ((((["breachTime", 20] call ADVSEC_fnc_cfg)) * ([1, 0.5] select ("ADVSEC_BoltCutter" in items _caller))) - 2)}) exitWith {
             [_caller, ("STR_ADVSEC_shorten_a_lockpick" call ADVSEC_fnc_L)] call ADVSEC_fnc_deny;
         };
         [_b, _i, false] call ADVSEC_fnc_doorSet;

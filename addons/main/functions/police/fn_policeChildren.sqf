@@ -48,7 +48,7 @@ if (_mode in ["self", "company"]) exitWith {
         if ([_player, "plateQuery"] call ADVSEC_fnc_perm) then {["co_qry", ["advsec_pm_plate", ("STR_ADVSEC_check_plate_2" call ADVSEC_fnc_L), ADVSEC_icCar, {[] call ADVSEC_fnc_plateQuery}, []]] call _put};
         private _vc = (nearestObjects [_player, ["Car", "Motorcycle", "Tank", "Ship"], 7]) select {alive _x && {isNull objectParent _player}};
         if (_vc isNotEqualTo [] && {[_player, "vehicleSearch"] call ADVSEC_fnc_perm}) then {
-            ["co_qry", ["advsec_pm_vehsearch", format [("STR_ADVSEC_search_4" call ADVSEC_fnc_L), getText (configOf (_vc select 0) >> "displayName")], ADVSEC_icCar, {[_args select 0] call ADVSEC_fnc_vehOpen}, [_vc select 0]]] call _put;
+            ["co_qry", ["advsec_pm_vehsearch", format [("STR_ADVSEC_search_4" call ADVSEC_fnc_L), getText (configOf (_vc select 0) >> "displayName")], ADVSEC_icCar, {if ([_player, "vehsearch"] call ADVSEC_fnc_needItem) then {[_args select 0] call ADVSEC_fnc_vehOpen}}, [_vc select 0]]] call _put;
         };
         if ([_player, "playerDB"] call ADVSEC_fnc_perm) then {["co_adm", ["advsec_pmc_orbat", ("STR_ADVSEC_pmc_orbat" call ADVSEC_fnc_L), ADVSEC_icDoc, {[] call ADVSEC_fnc_pdbOpen}, []]] call _put};
         if ([_player, "treasury"] call ADVSEC_fnc_perm) then {["co_adm", ["advsec_pmc_treasury", ("STR_ADVSEC_pmc_treasury" call ADVSEC_fnc_L), ADVSEC_icDoc, {[] call ADVSEC_fnc_ecoTreasuryOpen}, []]] call _put};
@@ -83,16 +83,29 @@ if (_mode in ["self", "company"]) exitWith {
     if ([_player, "k9"] call ADVSEC_fnc_perm) then {
         ["pm_inv", ["advsec_pm_k9", [("STR_ADVSEC_k9_call_the_dog" call ADVSEC_fnc_L), ("STR_ADVSEC_k9_dismiss_the_dog" call ADVSEC_fnc_L)] select !isNull (_player getVariable ["ADVSEC_k9", objNull]), ADVSEC_icSearch, {["toggle", _player] remoteExecCall ["ADVSEC_fnc_k9Server", 2]}, []]] call _put;
         if (!isNull (_player getVariable ["ADVSEC_k9", objNull])) then {
-            ["pm_inv", ["advsec_pm_sniff", ("STR_ADVSEC_k9_sniff_what_you_aim" call ADVSEC_fnc_L), ADVSEC_icSearch, {["sniff", _player, [cursorObject]] remoteExecCall ["ADVSEC_fnc_k9Server", 2]}, []]] call _put;
+            ["pm_inv", ["advsec_pm_sniff", ("STR_ADVSEC_k9_sniff_what_you_aim" call ADVSEC_fnc_L), ADVSEC_icSearch, {if ([_player, "sniff"] call ADVSEC_fnc_needItem) then {["sniff", _player, [cursorObject]] remoteExecCall ["ADVSEC_fnc_k9Server", 2]}}, []]] call _put;
         };
     };
     ["pm_inv", ["advsec_pm_wanted", ("STR_ADVSEC_wanted_list" call ADVSEC_fnc_L), ADVSEC_icPol, {[] call ADVSEC_fnc_wantedOpen}, []]] call _put;
     ["pm_inv", ["advsec_pm_reports", ("STR_ADVSEC_report_archive" call ADVSEC_fnc_L), ADVSEC_icDoc, {["BOTH"] call ADVSEC_fnc_repOpen}, []]] call _put;
     ["pm_inv", ["advsec_pm_incident", ("STR_ADVSEC_log_incident" call ADVSEC_fnc_L), ADVSEC_icDoc, {["PM"] call ADVSEC_fnc_repEditorOpen}, []]] call _put;
-    if ([_player, "evidenceCollect"] call ADVSEC_fnc_perm) then {["pm_inv", ["advsec_pm_scene", ("STR_ADVSEC_inspect_scene_evidence" call ADVSEC_fnc_L), ADVSEC_icSearch, {["scene", _player] remoteExecCall ["ADVSEC_fnc_evidenceServer", 2]}, []]] call _put};
+    if ([_player, "evidenceCollect"] call ADVSEC_fnc_perm) then {["pm_inv", ["advsec_pm_scene", ("STR_ADVSEC_inspect_scene_evidence" call ADVSEC_fnc_L), ADVSEC_icSearch, {if ([_player, "scene"] call ADVSEC_fnc_needItem) then {["scene", _player] remoteExecCall ["ADVSEC_fnc_evidenceServer", 2]}}, []]] call _put};
     ["pm_inv", ["advsec_pm_evidence", ("STR_ADVSEC_evidence_log" call ADVSEC_fnc_L), ADVSEC_icDoc, {[] call ADVSEC_fnc_evOpen}, []]] call _put;
     if ([_player, "caseClose"] call ADVSEC_fnc_perm) then {["pm_inv", ["advsec_ai_cases", ("STR_ADVSEC_m_case_title_panel" call ADVSEC_fnc_L), ADVSEC_icDoc, {[] call ADVSEC_fnc_caseOpen}, []]] call _put};
     if ([_player, "cyberView"] call ADVSEC_fnc_perm || {(([_player] call ADVSEC_fnc_cellRole) select 0) == "SEC"}) then {["pm_inv", ["advsec_pmc_cy", ("STR_ADVSEC_pmc_cy_terminal" call ADVSEC_fnc_L), ADVSEC_icCam, {[] call ADVSEC_fnc_cyOpen}, []]] call _put};
+    // 1.24: alarma de base, toque de queda y objetos de la PM
+    if ([_player, "baseAlarm"] call ADVSEC_fnc_perm) then {
+        ["pm_com", ["advsec_pm_basealarm", ("STR_ADVSEC_siren_alarm" call ADVSEC_fnc_L), ADVSEC_icAlarm, {["alarm", _player, [_player]] remoteExecCall ["ADVSEC_fnc_sirenServer", 2]}, []]] call _put;
+        ["pm_com", ["advsec_pm_curfew", [("STR_ADVSEC_curfew_sound" call ADVSEC_fnc_L), ("STR_ADVSEC_curfew_lift" call ADVSEC_fnc_L)] select (missionNamespace getVariable ["ADVSEC_curfew", false]), ADVSEC_icAlarm, {["curfew", _player, [!(missionNamespace getVariable ["ADVSEC_curfew", false])]] remoteExecCall ["ADVSEC_fnc_sirenServer", 2]}, []]] call _put;
+    };
+    private _its = items _player;
+    if ("ADVSEC_Flares" in _its) then {["pm_trf", ["advsec_pm_flare", ("STR_ADVSEC_it_flare" call ADVSEC_fnc_L), ADVSEC_icCar, {["flare"] call ADVSEC_fnc_itemAction}, []]] call _put};
+    if ("ADVSEC_MeasureTape" in _its) then {["pm_trf", ["advsec_pm_tape", ("STR_ADVSEC_it_tape" call ADVSEC_fnc_L), ADVSEC_icSearch, {["tape"] call ADVSEC_fnc_itemAction}, []]] call _put};
+    if ("ADVSEC_Stopwatch" in _its) then {["pm_trf", ["advsec_pm_watch", ("STR_ADVSEC_it_watch" call ADVSEC_fnc_L), ADVSEC_icJail, {["watch"] call ADVSEC_fnc_itemAction}, []]] call _put};
+    private _cv = cursorObject;
+    if (!isNull _cv && {_cv isKindOf "LandVehicle"} && {(_player distance _cv) < 5} && {"ADVSEC_SteeringLock" in _its || {_cv getVariable ["ADVSEC_chain", false]}}) then {
+        ["pm_trf", ["advsec_pm_chain", [("STR_ADVSEC_it_chain_put" call ADVSEC_fnc_L), ("STR_ADVSEC_it_chain_take" call ADVSEC_fnc_L)] select (_cv getVariable ["ADVSEC_chain", false]), ADVSEC_icCar, {["chain", _args select 0] call ADVSEC_fnc_itemAction}, [_cv]]] call _put;
+    };
     // 1.22: marca táctica y mensaje del canal (cifrado con pdaCipherKey si está configurada)
     ["pm_com", ["advsec_pm_tacmark", ("STR_ADVSEC_m_tac_menu" call ADVSEC_fnc_L), ADVSEC_icCar, {
         [] spawn {
@@ -157,7 +170,7 @@ if (_r) then {
         ["advsec_pm_load", ("STR_ADVSEC_put_in_vehicle" call ADVSEC_fnc_L), ADVSEC_icCar, {[_target] call ADVSEC_fnc_policeLoad}, []] call _add;
     };
 } else {
-    ["advsec_pm_cuff", ("STR_ADVSEC_handcuff" call ADVSEC_fnc_L), ADVSEC_icPol, {[_target, true, _player] call ADVSEC_fnc_restrain}, []] call _add;
+    ["advsec_pm_cuff", ("STR_ADVSEC_handcuff" call ADVSEC_fnc_L), ADVSEC_icPol, {if ([_player, "cuff"] call ADVSEC_fnc_needItem) then {[_target, true, _player] call ADVSEC_fnc_restrain}}, []] call _add;
 };
 if ((_r || {_surr} || {_mode == "zeus"}) && {[_player, "search"] call ADVSEC_fnc_perm}) then {
     ["advsec_pm_search", ("STR_ADVSEC_search_frisk" call ADVSEC_fnc_L), ADVSEC_icSearch, {[_target] call ADVSEC_fnc_searchOpen}, []] call _add;
@@ -165,7 +178,7 @@ if ((_r || {_surr} || {_mode == "zeus"}) && {[_player, "search"] call ADVSEC_fnc
 if ((_target getVariable ["ADVSEC_jailUntil", 0]) > serverTime) then {
     ["advsec_pm_treat", ("STR_ADVSEC_m_care_treat" call ADVSEC_fnc_L), ADVSEC_icAlarm, {["treat", _player, [_target]] remoteExecCall ["ADVSEC_fnc_jailCare", 2]}, []] call _add;
     ["advsec_pm_feed", ("STR_ADVSEC_m_care_feed" call ADVSEC_fnc_L), ADVSEC_icDoc, {["feed", _player, [_target]] remoteExecCall ["ADVSEC_fnc_jailCare", 2]}, []] call _add;
-    ["advsec_pm_release", ("STR_ADVSEC_release_2" call ADVSEC_fnc_L), ADVSEC_icRun, {["release", _player, [_target]] remoteExecCall ["ADVSEC_fnc_jailServer", 2]}, []] call _add;
+    ["advsec_pm_release", ("STR_ADVSEC_release_2" call ADVSEC_fnc_L), ADVSEC_icRun, {if ([_player, "release"] call ADVSEC_fnc_needItem) then {["release", _player, [_target]] remoteExecCall ["ADVSEC_fnc_jailServer", 2]}}, []] call _add;
 } else {
     if ((_r || {_mode == "zeus"}) && {(missionNamespace getVariable ["ADVSEC_jails", []]) isNotEqualTo []}) then {
         ["advsec_pm_jail", ("STR_ADVSEC_arrest_jail" call ADVSEC_fnc_L), ADVSEC_icJail, {[_target] call ADVSEC_fnc_jailPrompt}, []] call _add;
@@ -182,7 +195,7 @@ if (isPlayer _target && {[_player, "licenseRevoke"] call ADVSEC_fnc_perm}) then 
     ["advsec_pm_lic", ("STR_ADVSEC_revoke_licence_2" call ADVSEC_fnc_L), ADVSEC_icDoc, {[_target] call ADVSEC_fnc_licRevokePrompt}, []] call _add;
 };
 if ([_player, "fine"] call ADVSEC_fnc_perm) then {
-    ["advsec_pm_fine", ("STR_ADVSEC_fine_5" call ADVSEC_fnc_L), ADVSEC_icDoc, {[_target] call ADVSEC_fnc_finePrompt}, []] call _add;
+    ["advsec_pm_fine", ("STR_ADVSEC_fine_5" call ADVSEC_fnc_L), ADVSEC_icDoc, {if ([_player, "fine"] call ADVSEC_fnc_needItem) then {[_target] call ADVSEC_fnc_finePrompt}}, []] call _add;
 };
 if ([_player, "breath"] call ADVSEC_fnc_perm) then {
     ["advsec_pm_breath", ("STR_ADVSEC_m_breath_menu" call ADVSEC_fnc_L), ADVSEC_icSearch, {["breath", _player, [_target]] remoteExecCall ["ADVSEC_fnc_trafficServer", 2]}, []] call _add;
