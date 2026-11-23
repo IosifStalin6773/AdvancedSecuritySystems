@@ -2,6 +2,27 @@
 class ADVSEC_Settings {
     // Idioma de los textos de ADVSEC: 0 = automático (idioma del juego; un servidor dedicado usa inglés), 1 = English, 2 = Español
     language = 0;
+
+    // --- Carrera y justicia (1.24)
+    // Medallas: {id, nombre, % de descuento en tiendas legales}
+    medals[] = {
+        {"merit", "$STR_ADVSEC_medal_merit", 2}, {"service", "$STR_ADVSEC_medal_service", 1}, {"valor", "$STR_ADVSEC_medal_valor", 3},
+        {"integrity", "$STR_ADVSEC_medal_integrity", 2}, {"investigation", "$STR_ADVSEC_medal_investigation", 2}, {"traffic", "$STR_ADVSEC_medal_traffic", 1},
+        {"lifesaving", "$STR_ADVSEC_medal_lifesaving", 3}, {"conduct", "$STR_ADVSEC_medal_conduct", 1}, {"commendation", "$STR_ADVSEC_medal_commendation", 2}, {"bronze", "$STR_ADVSEC_medal_bronze", 4}
+    };
+    medalDiscountMax = 15;       // tope del descuento total por medallas (%)
+    meritMaxPerCall = 10;        // puntos de mérito máximos por anotación de un mando
+    evalAuto = 1;                // nota automática al acabar el turno (eventos registrados por hora)
+    evalMerit[] = {5, 3, 1, 0, 0};   // méritos por nota A, B, C, D, E
+    requireSchool = 0;           // 1 = sin la escuela PM aprobada solo se pueden usar los permisos de nivel 1
+    inspectItems[] = {};         // revista: clases obligatorias (vacío = uniforme, chaleco, casco, placa o PDA, mapa y radio)
+    art15Merit = -10;            // méritos que resta un Artículo 15 (además de bajar un rango global)
+    courtFinePerLevel = 500;     // multa por nivel de gravedad en consejo de guerra (si no se indica importe)
+    trialJudgeClass = "C_man_1";
+    trialCounselClass = "C_man_1";
+    trialThreshold = 3;          // peso necesario para condenar sin confesión (pruebas + testigo + azar 0-2)
+    trialJailPerLevel = 10;      // minutos de prisión por nivel de gravedad
+    trialFinePerLevel = 300;     // multa por nivel de gravedad
     // Rangos por nivel de placa (1-5). El nivel es el campo "clearance" de la placa/credencial.
     ranksPM[] = {"$STR_ADVSEC_officer", "$STR_ADVSEC_corporal", "$STR_ADVSEC_sergeant", "$STR_ADVSEC_lieutenant", "$STR_ADVSEC_captain"};
     ranksAI[] = {"Inspector", "$STR_ADVSEC_chief_inspector", "$STR_ADVSEC_superintendent", "$STR_ADVSEC_chief_superintendent", "Director"};
@@ -68,6 +89,15 @@ class ADVSEC_Settings {
         cyberManage[] = {"AI", 3};    // restaurar sistemas comprometidos
         traffic[] = {"PM", 2};        // 1.22: desvíos, carriles, grúa, depósito, accidentes, ITV y libro de paso
         breath[] = {"PM", 1};         // 1.22: test de alcoholemia
+        merit[] = {"PMC", 3};         // 1.24: anotar méritos
+        award[] = {"PMC", 4};         // 1.24: conceder medallas
+        evaluate[] = {"PMC", 3};      // 1.24: evaluar a un agente
+        school[] = {"PMC", 3};        // 1.24: aprobar la escuela PM
+        inspect[] = {"PMC", 3};       // 1.24: revista de uniforme
+        supervisor[] = {"PMC", 4};    // 1.24: prioridad de los avisos
+        article15[] = {"PMC", 4};     // 1.24: Artículo 15
+        courtMartial[] = {"PM", 4};   // 1.24: consejo de guerra
+        trial[] = {"PM", 3};          // 1.24: instruir juicios
     };
 
     // Evidencias
@@ -340,6 +370,9 @@ class ADVSEC_Keys {
     class panic { name = "$STR_ADVSEC_panic_button"; tooltip = "$STR_ADVSEC_alerts_the_whole_mp_with"; category = "$STR_ADVSEC_military_police"; key[] = {211, 0, 0, 1}; };
     class dispatch { name = "$STR_ADVSEC_dispatch_centre"; tooltip = "$STR_ADVSEC_112_calls_and_panics"; category = "$STR_ADVSEC_military_police"; key[] = {210, 0, 1, 1}; };
     class specs { name = "$STR_ADVSEC_specialty_pda"; tooltip = "$STR_ADVSEC_patches_members_requests_joins_and"; category = "General"; key[] = {199, 0, 1, 1}; };
+    class career { name = "$STR_ADVSEC_car_menu"; tooltip = "$STR_ADVSEC_car_key_tip"; category = "$STR_ADVSEC_military_police"; key[] = {0, 0, 0, 0}; };
+    class serviceRecord { name = "$STR_ADVSEC_car_b_record"; tooltip = "$STR_ADVSEC_car_key_rec_tip"; category = "$STR_ADVSEC_military_police"; key[] = {0, 0, 0, 0}; };
+    class justice { name = "$STR_ADVSEC_jus_menu"; tooltip = "$STR_ADVSEC_jus_key_tip"; category = "$STR_ADVSEC_military_police"; key[] = {0, 0, 0, 0}; };
     class zeusPanel { name = "$STR_ADVSEC_security_panel_zeus"; tooltip = "$STR_ADVSEC_zeus_admin_only"; category = "Zeus"; key[] = {210, 1, 1, 0}; };
 };
 

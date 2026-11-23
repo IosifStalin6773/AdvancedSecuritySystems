@@ -13,7 +13,7 @@ class CfgPatches {
             "ADVSEC_ModuleLab", "ADVSEC_ZeusLab", "ADVSEC_ModuleCheckpoint", "ADVSEC_ZeusCheckpoint",
             "ADVSEC_ModuleAdmin", "ADVSEC_ZeusAdmin",
             "ADVSEC_ModuleAtm", "ADVSEC_ZeusAtm", "ADVSEC_ModuleShop", "ADVSEC_ZeusShop",
-            "ADVSEC_ModuleDealer", "ADVSEC_ZeusDealer", "ADVSEC_ModuleDuty", "ADVSEC_ZeusDuty", "ADVSEC_ModuleSpeedCam", "ADVSEC_ZeusSpeedCam",
+            "ADVSEC_ModuleDealer", "ADVSEC_ZeusDealer", "ADVSEC_ModuleDuty", "ADVSEC_ZeusDuty", "ADVSEC_ModuleSchool", "ADVSEC_ModuleSpeedCam", "ADVSEC_ZeusSpeedCam",
             "ADVSEC_ModuleContract", "ADVSEC_ModuleContractCustom", "ADVSEC_ZeusContract", "ADVSEC_ZeusContractOffer", "ADVSEC_ModuleArmory", "ADVSEC_ZeusArmory", "ADVSEC_ModuleCyber", "ADVSEC_ZeusCyber",
             "ADVSEC_Box_Equipment", "Item_ADVSEC_Passport", "Item_ADVSEC_IDCard", "Item_ADVSEC_Permit", "Item_ADVSEC_Keycard", "Item_ADVSEC_Key", "Item_ADVSEC_MilitaryID", "Item_ADVSEC_MPBadge", "Item_ADVSEC_IABadge", "Item_ADVSEC_PDA_PM", "Item_ADVSEC_PDA_AI", "Item_ADVSEC_PDA_JTAC", "Item_ADVSEC_PDA_RO", "Item_ADVSEC_PDA_SAN", "Item_ADVSEC_PDA_MED", "Item_ADVSEC_PDA_AT", "Item_ADVSEC_PDA_MG", "Item_ADVSEC_PDA_ENG", "Item_ADVSEC_PDA_EOD", "Item_ADVSEC_PDA_AA", "Item_ADVSEC_PDA_GRN", "Item_ADVSEC_PDA_TANK", "Item_ADVSEC_PDA_PARA", "Item_ADVSEC_PDA_PILOT", "Item_ADVSEC_PDA_LOG", "Item_ADVSEC_PDA_ART", "Item_ADVSEC_PDA_MRK", "Item_ADVSEC_EvidenceBag", "Item_ADVSEC_SpeedCamKit", "Item_ADVSEC_HackKit"
         };

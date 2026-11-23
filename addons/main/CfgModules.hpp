@@ -249,6 +249,18 @@ class CfgVehicles {
             description = "$STR_ADVSEC_mp_and_ia_clock_in";
         };
     };
+    class ADVSEC_ModuleSchool: ADVSEC_Module_Base {
+        scope = 2;
+        displayName = "$STR_ADVSEC_car_school_module";
+        icon = "\A3\ui_f\data\igui\cfg\simpleTasks\types\documents_ca.paa";
+        function = "ADVSEC_fnc_moduleSchool";
+        class Attributes: AttributesBase {
+            class ModuleDescription: ModuleDescription {};
+        };
+        class ModuleDescription: ModuleDescription {
+            description = "$STR_ADVSEC_car_school_module_desc";
+        };
+    };
     class ADVSEC_ModuleSpeedCam: ADVSEC_Module_Base {
         scope = 2;
         displayName = "$STR_ADVSEC_fixed_speed_camera_2";

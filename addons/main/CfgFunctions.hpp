@@ -556,5 +556,20 @@ class CfgFunctions {
             file = "\x\advsec\addons\main\functions\server";
             class mapDB {};
         };
+        class career {
+            file = "\x\advsec\addons\main\functions\career";
+            class carServer {};
+            class carOpen {};
+            class carShow {};
+            class carDiscount {};
+            class moduleSchool {};
+            class schoolInit {};
+        };
+        class justice {
+            file = "\x\advsec\addons\main\functions\justice";
+            class jusServer {};
+            class jusOpen {};
+            class jusPlea {};
+        };
     };
 };

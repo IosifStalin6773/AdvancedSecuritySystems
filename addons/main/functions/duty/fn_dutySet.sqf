@@ -15,6 +15,8 @@ if (_on) then {
     _e set [0, (_e select 0) + _min];
     (_e select 2) pushBack [_unit getVariable ["ADVSEC_dutyStartTxt", ""], call ADVSEC_fnc_now, _min];
     if (count (_e select 2) > 50) then {(_e select 2) deleteAt 0};
+    // 1.24: evaluación automática del turno
+    if ((["evalAuto", 1] call ADVSEC_fnc_setting) isEqualTo 1) then {["shift", objNull, [_unit, _min]] call ADVSEC_fnc_carServer};
 };
 _db set [_uid, _e];
 ["duty"] call ADVSEC_fnc_dbDirty;

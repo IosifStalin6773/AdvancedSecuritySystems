@@ -118,6 +118,8 @@ if (_mode in ["self", "company"]) exitWith {
     };
     if ([_player, "suspend"] call ADVSEC_fnc_perm) then {["pm_ai", ["advsec_ai_susp", ("STR_ADVSEC_suspensions" call ADVSEC_fnc_L), ADVSEC_icPol, {[] call ADVSEC_fnc_susOpen}, []]] call _put};
     if ([_player, "bankAudit"] call ADVSEC_fnc_perm) then {["pm_ai", ["advsec_ai_bank", ("STR_ADVSEC_bank_audit" call ADVSEC_fnc_L), ADVSEC_icSearch, {[] call ADVSEC_fnc_auditOpen}, []]] call _put};
+    if ([_player, "PM"] call ADVSEC_fnc_repAccess || {[_player, "PMC"] call ADVSEC_fnc_repAccess}) then {["pm_ai", ["advsec_ai_career", ("STR_ADVSEC_car_menu" call ADVSEC_fnc_L), ADVSEC_icDoc, {[] call ADVSEC_fnc_carOpen}, []]] call _put};
+    if ([_player, "article15"] call ADVSEC_fnc_perm || {[_player, "courtMartial"] call ADVSEC_fnc_perm} || {[_player, "trial"] call ADVSEC_fnc_perm}) then {["pm_inv", ["advsec_inv_justice", ("STR_ADVSEC_jus_menu" call ADVSEC_fnc_L), ADVSEC_icJail, {[] call ADVSEC_fnc_jusOpen}, []]] call _put};
     if ([_player, "PM"] call ADVSEC_fnc_repAccess || {[_player, "PMC"] call ADVSEC_fnc_repAccess}) then {["pm_ai", ["advsec_ai_hr", ("STR_ADVSEC_hr_menu" call ADVSEC_fnc_L), ADVSEC_icSearch, {[] call ADVSEC_fnc_hrOpen}, []]] call _put};
     ([["top"]] + _coGroups + [
         ["pm_trf", "advsec_grp_traffic", ("STR_ADVSEC_grp_traffic" call ADVSEC_fnc_L), ADVSEC_icCar],
@@ -132,6 +134,10 @@ if (!alive _target) exitWith {_list};
 private _r = [_target] call ADVSEC_fnc_isRestrained;
 private _surr = (_target getVariable ["ace_captives_isSurrendering", false]) || {"surrender" in toLower animationState _target};
 private _inVeh = !isNull objectParent _target;
+
+if (isPlayer _target && {[_player, "inspect"] call ADVSEC_fnc_perm}) then {
+    ["advsec_pm_inspect", ("STR_ADVSEC_car_b_inspect" call ADVSEC_fnc_L), ADVSEC_icSearch, {["inspect", _target] call ADVSEC_fnc_carOpen}, []] call _add;
+};
 
 if (!_r && {_inVeh} && {!isPlayer _target} && {[_player, "vehicleSearch"] call ADVSEC_fnc_perm}) then {
     ["advsec_pm_orderout", ("STR_ADVSEC_pmc_order_out" call ADVSEC_fnc_L), ADVSEC_icCar, {[_target, "orderOut"] call ADVSEC_fnc_policeLocal}, []] call _add;

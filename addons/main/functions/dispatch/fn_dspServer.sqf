@@ -66,9 +66,9 @@ switch (_action) do {
         {if (serverTime - (_y select 8) > 3600 && {(_y select 6) == "Cerrado"}) then {_calls deleteAt _x}} forEach +_calls;
         private _rows = [];
         {
-            _y params ["_kind", "", "_name", "_pos", "_text", "_date", "_state", "_who"];
+            _y params ["_kind", "", "_name", "_pos", "_text", "_date", "_state", "_who", "", ["_prio", ""]];
             private _stL = _state call ADVSEC_fnc_Lv;
-            _rows pushBack [format ["%1 · %2 · %3 · %4", _x, _name, mapGridPosition _pos, _stL], _x,
+            _rows pushBack [format ["%1%2 · %3 · %4 · %5", ["", format ["[%1] ", _prio call ADVSEC_fnc_Lv]] select (_prio isNotEqualTo ""), _x, _name, mapGridPosition _pos, _stL], _x,
                 format [("STR_ADVSEC_grid_time_status" call ADVSEC_fnc_L), [("STR_ADVSEC_112_call" call ADVSEC_fnc_L), ("STR_ADVSEC_panic_2" call ADVSEC_fnc_L)] select (_kind == "panic"), _x, _text call ADVSEC_fnc_repEsc, mapGridPosition _pos, _date, _stL, ["", " (" + _who + ")"] select (_who isNotEqualTo "")],
                 switch (true) do {case (_state == "Cerrado"): {[0.55, 0.55, 0.55, 1]}; case (_kind == "panic"): {[1, 0.3, 0.3, 1]}; case (_state == "Pendiente"): {[1, 0.75, 0.3, 1]}; default {[]}}, ""];
         } forEach _calls;

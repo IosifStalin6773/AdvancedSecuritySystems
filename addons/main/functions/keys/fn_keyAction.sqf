@@ -19,6 +19,9 @@ switch (_id) do {
         [player] call ADVSEC_fnc_docListOpen;
     };
     case "myFines": {[] call ADVSEC_fnc_fineOpen};
+    case "career": {if (call _needPM) then {[] call ADVSEC_fnc_carOpen}};
+    case "serviceRecord": {if (call _needPM) then {["record"] call ADVSEC_fnc_carOpen}};
+    case "justice": {if (call _needPM) then {[] call ADVSEC_fnc_jusOpen}};
     case "hide": {[] call ADVSEC_fnc_hideItem};
     case "pmMenu": {if (call _needPM) then {[player, "self"] call ADVSEC_fnc_policeMenu}};
     case "targetMenu": {

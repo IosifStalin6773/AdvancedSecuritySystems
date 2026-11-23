@@ -12709,8 +12709,8 @@ Detenidos:
                 <Spanish>La subasta ya ha cerrado.</Spanish>
             </Key>
             <Key ID="STR_ADVSEC_pmc_bid_ok">
-                <Original>Bid registered: %1%% of the pay (%2).</Original>
-                <English>Bid registered: %1%% of the pay (%2).</English>
+                <Original>Bid registered: %1% of the pay (%2).</Original>
+                <English>Bid registered: %1% of the pay (%2).</English>
                 <Spanish>Puja registrada: %1 %% del pago (%2).</Spanish>
             </Key>
             <Key ID="STR_ADVSEC_pmc_auction_lost">
@@ -13449,6 +13449,732 @@ Beneficio: %5 €</Spanish>
                 <Original>Swipe card (door %1)</Original>
                 <English>Swipe card (door %1)</English>
                 <Spanish>Pasar tarjeta (puerta %1)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_menu">
+                <Original>Career</Original>
+                <English>Career</English>
+                <Spanish>Carrera</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_menu_info">
+                <Original>Service record, merits, medals, evaluations and training.</Original>
+                <English>Service record, merits, medals, evaluations and training.</English>
+                <Spanish>Hoja de servicio, méritos, medallas, evaluaciones y formación.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_open">
+                <Original>Open</Original>
+                <English>Open</English>
+                <Spanish>Abrir</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_key_tip">
+                <Original>Career menu: record, merits, medals, organisation chart</Original>
+                <English>Career menu: record, merits, medals, organisation chart</English>
+                <Spanish>Menú de carrera: hoja de servicio, méritos, medallas, organigrama</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_key_rec_tip">
+                <Original>Your own service record</Original>
+                <English>Your own service record</English>
+                <Spanish>Tu propia hoja de servicio</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_b_record">
+                <Original>My service record</Original>
+                <English>My service record</English>
+                <Spanish>Mi hoja de servicio</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_b_record_of">
+                <Original>Service record of an officer</Original>
+                <English>Service record of an officer</English>
+                <Spanish>Hoja de servicio de un agente</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_b_org">
+                <Original>Organisation chart</Original>
+                <English>Organisation chart</English>
+                <Spanish>Organigrama</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_b_stats">
+                <Original>Leaderboard (30 days)</Original>
+                <English>Leaderboard (30 days)</English>
+                <Spanish>Clasificación (30 días)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_b_merit">
+                <Original>Record merit</Original>
+                <English>Record merit</English>
+                <Spanish>Anotar mérito</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_b_award">
+                <Original>Award a medal</Original>
+                <English>Award a medal</English>
+                <Spanish>Conceder medalla</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_b_eval">
+                <Original>Evaluate an officer</Original>
+                <English>Evaluate an officer</English>
+                <Spanish>Evaluar a un agente</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_b_school">
+                <Original>MP school: pass / revoke</Original>
+                <English>MP school: pass / revoke</English>
+                <Spanish>Escuela PM: aprobar / retirar</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_b_inspect">
+                <Original>Uniform inspection</Original>
+                <English>Uniform inspection</English>
+                <Spanish>Revista de uniforme</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_b_prio">
+                <Original>Set alert priority</Original>
+                <English>Set alert priority</English>
+                <Spanish>Cambiar prioridad de un aviso</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_f_who">
+                <Original>Officer</Original>
+                <English>Officer</English>
+                <Spanish>Agente</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_f_pts">
+                <Original>Points (negative subtracts)</Original>
+                <English>Points (negative subtracts)</English>
+                <Spanish>Puntos (negativo resta)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_f_why">
+                <Original>Reason</Original>
+                <English>Reason</English>
+                <Spanish>Motivo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_f_medal">
+                <Original>Medal</Original>
+                <English>Medal</English>
+                <Spanish>Medalla</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_f_grade">
+                <Original>Grade</Original>
+                <English>Grade</English>
+                <Spanish>Nota</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_f_comment">
+                <Original>Comment</Original>
+                <English>Comment</English>
+                <Spanish>Comentario</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_f_passed">
+                <Original>Passed</Original>
+                <English>Passed</English>
+                <Spanish>Aprobado</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_f_call">
+                <Original>Alert ID (e.g. 112-4)</Original>
+                <English>Alert ID (e.g. 112-4)</English>
+                <Spanish>ID del aviso (p. ej. 112-4)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_f_prio">
+                <Original>Priority</Original>
+                <English>Priority</English>
+                <Spanish>Prioridad</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_no_merit">
+                <Original>record merits</Original>
+                <English>record merits</English>
+                <Spanish>anotar méritos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_no_award">
+                <Original>award medals</Original>
+                <English>award medals</English>
+                <Spanish>conceder medallas</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_no_eval">
+                <Original>evaluate officers</Original>
+                <English>evaluate officers</English>
+                <Spanish>evaluar agentes</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_no_school">
+                <Original>manage the MP school</Original>
+                <English>manage the MP school</English>
+                <Spanish>gestionar la escuela PM</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_no_inspect">
+                <Original>hold uniform inspections</Original>
+                <English>hold uniform inspections</English>
+                <Spanish>pasar revista</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_no_supervisor">
+                <Original>change alert priorities</Original>
+                <English>change alert priorities</English>
+                <Spanish>cambiar la prioridad de los avisos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_no_medals">
+                <Original>No medals are configured (medals[]).</Original>
+                <English>No medals are configured (medals[]).</English>
+                <Spanish>No hay medallas configuradas (medals[]).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_merit_you">
+                <Original>Merit: %1 points (total %2). %3</Original>
+                <English>Merit: %1 points (total %2). %3</English>
+                <Spanish>Mérito: %1 puntos (total %2). %3</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_merit_done">
+                <Original>%1: %2 points (total %3).</Original>
+                <English>%1: %2 points (total %3).</English>
+                <Spanish>%1: %2 puntos (total %3).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_award_has">
+                <Original>%1 already has: %2</Original>
+                <English>%1 already has: %2</English>
+                <Spanish>%1 ya tiene: %2</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_award_you">
+                <Original>You have been awarded: %1</Original>
+                <English>You have been awarded: %1</English>
+                <Spanish>Te han concedido: %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_award_done">
+                <Original>Medal awarded to %1: %2</Original>
+                <English>Medal awarded to %1: %2</English>
+                <Spanish>Medalla concedida a %1: %2</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_award_removed">
+                <Original>Medal removed.</Original>
+                <English>Medal removed.</English>
+                <Spanish>Medalla retirada.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_points">
+                <Original>Merit points</Original>
+                <English>Merit points</English>
+                <Spanish>Puntos de mérito</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_medals">
+                <Original>MEDALS</Original>
+                <English>MEDALS</English>
+                <Spanish>CONDECORACIONES</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_school">
+                <Original>MP SCHOOL</Original>
+                <English>MP SCHOOL</English>
+                <Spanish>ESCUELA PM</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_school_ok">
+                <Original>Passed %1 (%2)</Original>
+                <English>Passed %1 (%2)</English>
+                <Spanish>Aprobada el %1 (%2)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_training">
+                <Original>TRAINING</Original>
+                <English>TRAINING</English>
+                <Spanish>FORMACIÓN</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_evals">
+                <Original>EVALUATIONS</Original>
+                <English>EVALUATIONS</English>
+                <Spanish>EVALUACIONES</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_discipline">
+                <Original>DISCIPLINE AND JUSTICE</Original>
+                <English>DISCIPLINE AND JUSTICE</English>
+                <Spanish>DISCIPLINA Y JUSTICIA</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_fines">
+                <Original>FINES RECEIVED</Original>
+                <English>FINES RECEIVED</English>
+                <Spanish>MULTAS RECIBIDAS</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_history">
+                <Original>LATEST MERITS</Original>
+                <English>LATEST MERITS</English>
+                <Spanish>ÚLTIMOS MÉRITOS</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_org_info">
+                <Original>%1 officers with rank · %2 on duty (●)</Original>
+                <English>%1 officers with rank · %2 on duty (●)</English>
+                <Spanish>%1 agentes con rango · %2 de servicio (●)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_stats_info">
+                <Original>Score = merits + 5 × arrests + 3 × reports + alerts handled (last 30 days).</Original>
+                <English>Score = merits + 5 × arrests + 3 × reports + alerts handled (last 30 days).</English>
+                <Spanish>Puntuación = méritos + 5 × detenciones + 3 × informes + avisos atendidos (últimos 30 días).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_stats_row">
+                <Original>&lt;t font='RobotoCondensedBold'&gt;%1&lt;/t&gt;&lt;br/&gt;Merit points: %2&lt;br/&gt;Arrests: %3&lt;br/&gt;Reports: %4&lt;br/&gt;Alerts handled: %5</Original>
+                <English>&lt;t font='RobotoCondensedBold'&gt;%1&lt;/t&gt;&lt;br/&gt;Merit points: %2&lt;br/&gt;Arrests: %3&lt;br/&gt;Reports: %4&lt;br/&gt;Alerts handled: %5</English>
+                <Spanish>&lt;t font='RobotoCondensedBold'&gt;%1&lt;/t&gt;&lt;br/&gt;Puntos de mérito: %2&lt;br/&gt;Detenciones: %3&lt;br/&gt;Informes: %4&lt;br/&gt;Avisos atendidos: %5</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_shift_reason">
+                <Original>End of shift, grade %1</Original>
+                <English>End of shift, grade %1</English>
+                <Spanish>Fin de turno, nota %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_shift_you">
+                <Original>Shift evaluation: %1 (%2 h, %3 recorded actions).</Original>
+                <English>Shift evaluation: %1 (%2 h, %3 recorded actions).</English>
+                <Spanish>Evaluación del turno: %1 (%2 h, %3 actuaciones registradas).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_eval_you">
+                <Original>You have been evaluated: %1. %2</Original>
+                <English>You have been evaluated: %1. %2</English>
+                <Spanish>Te han evaluado: %1. %2</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_eval_done">
+                <Original>Evaluation recorded: %1 · %2</Original>
+                <English>Evaluation recorded: %1 · %2</English>
+                <Spanish>Evaluación anotada: %1 · %2</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_school_passed">
+                <Original>%1 has passed the MP school.</Original>
+                <English>%1 has passed the MP school.</English>
+                <Spanish>%1 ha aprobado la escuela PM.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_school_revoked">
+                <Original>MP school removed from %1.</Original>
+                <English>MP school removed from %1.</English>
+                <Spanish>Escuela PM retirada a %1.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_school_passed_you">
+                <Original>You have passed the MP school.</Original>
+                <English>You have passed the MP school.</English>
+                <Spanish>Has aprobado la escuela PM.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_school_revoked_you">
+                <Original>Your MP school pass has been removed.</Original>
+                <English>Your MP school pass has been removed.</English>
+                <Spanish>Te han retirado la escuela PM.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_ins_uniform">
+                <Original>Uniform</Original>
+                <English>Uniform</English>
+                <Spanish>Uniforme</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_ins_vest">
+                <Original>Vest</Original>
+                <English>Vest</English>
+                <Spanish>Chaleco</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_ins_head">
+                <Original>Headgear</Original>
+                <English>Headgear</English>
+                <Spanish>Casco o gorra</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_ins_badge">
+                <Original>Badge or PDA</Original>
+                <English>Badge or PDA</English>
+                <Spanish>Placa o PDA</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_ins_map">
+                <Original>Map</Original>
+                <English>Map</English>
+                <Spanish>Mapa</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_ins_radio">
+                <Original>Radio</Original>
+                <English>Radio</English>
+                <Spanish>Radio</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_ins_result">
+                <Original>UNIFORM INSPECTION · %1: %2%
+%3</Original>
+                <English>UNIFORM INSPECTION · %1: %2%
+%3</English>
+                <Spanish>REVISTA DE UNIFORME · %1: %2%
+%3</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_ins_reason">
+                <Original>Uniform inspection %1%</Original>
+                <English>Uniform inspection %1%</English>
+                <Spanish>Revista de uniforme %1%</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_prio_none">
+                <Original>There is no alert with that ID.</Original>
+                <English>There is no alert with that ID.</English>
+                <Spanish>No hay ningún aviso con ese ID.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_prio_done">
+                <Original>Alert %1: priority %2.</Original>
+                <English>Alert %1: priority %2.</English>
+                <Spanish>Aviso %1: prioridad %2.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_menu">
+                <Original>Military justice</Original>
+                <English>Military justice</English>
+                <Spanish>Justicia militar</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_menu_info">
+                <Original>Article 15, court-martial and trials.</Original>
+                <English>Article 15, court-martial and trials.</English>
+                <Spanish>Artículo 15, consejo de guerra y juicios.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_key_tip">
+                <Original>Article 15, court-martial and trials</Original>
+                <English>Article 15, court-martial and trials</English>
+                <Spanish>Artículo 15, consejo de guerra y juicios</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_no_any">
+                <Original>You have no military justice permissions.</Original>
+                <English>You have no military justice permissions.</English>
+                <Spanish>No tienes permisos de justicia militar.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_b_art15">
+                <Original>Article 15 (non-judicial punishment)</Original>
+                <English>Article 15 (non-judicial punishment)</English>
+                <Spanish>Artículo 15 (castigo no judicial)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_b_court">
+                <Original>Court-martial</Original>
+                <English>Court-martial</English>
+                <Spanish>Consejo de guerra</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_b_trial">
+                <Original>Open a trial</Original>
+                <English>Open a trial</English>
+                <Spanish>Abrir un juicio</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_b_trials">
+                <Original>Trials in progress</Original>
+                <English>Trials in progress</English>
+                <Spanish>Juicios en curso</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_b_exhibit">
+                <Original>Present evidence</Original>
+                <English>Present evidence</English>
+                <Spanish>Presentar prueba</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_b_plea_ai">
+                <Original>Ask for plea (AI defendant)</Original>
+                <English>Ask for plea (AI defendant)</English>
+                <Spanish>Pedir declaración (acusado IA)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_b_rest">
+                <Original>Close and sentence</Original>
+                <English>Close and sentence</English>
+                <Spanish>Cerrar y dictar sentencia</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_f_charge">
+                <Original>Charge</Original>
+                <English>Charge</English>
+                <Spanish>Cargo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_f_sev">
+                <Original>Severity (1-6)</Original>
+                <English>Severity (1-6)</English>
+                <Spanish>Gravedad (1-6)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_f_verdict">
+                <Original>Verdict</Original>
+                <English>Verdict</English>
+                <Spanish>Fallo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_f_amount">
+                <Original>Fine (0 = by severity)</Original>
+                <English>Fine (0 = by severity)</English>
+                <Spanish>Multa (0 = según gravedad)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_f_exhibit">
+                <Original>Evidence (description)</Original>
+                <English>Evidence (description)</English>
+                <Spanish>Prueba (descripción)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_v_acquit">
+                <Original>Acquit</Original>
+                <English>Acquit</English>
+                <Spanish>Absolver</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_v_fine">
+                <Original>Fine</Original>
+                <English>Fine</English>
+                <Spanish>Multa</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_v_reduce">
+                <Original>Reduction in rank</Original>
+                <English>Reduction in rank</English>
+                <Spanish>Degradación</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_no_art15">
+                <Original>impose Article 15</Original>
+                <English>impose Article 15</English>
+                <Spanish>imponer el Artículo 15</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_no_court">
+                <Original>hold courts-martial</Original>
+                <English>hold courts-martial</English>
+                <Spanish>celebrar consejos de guerra</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_no_trial">
+                <Original>open trials</Original>
+                <English>open trials</English>
+                <Spanish>abrir juicios</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_demoted">
+                <Original>reduced one rank</Original>
+                <English>reduced one rank</English>
+                <Spanish>baja un rango</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_art15_you">
+                <Original>ARTICLE 15: %1. %2</Original>
+                <English>ARTICLE 15: %1. %2</English>
+                <Spanish>ARTÍCULO 15: %1. %2</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_art15_done">
+                <Original>Article 15 imposed on %1.</Original>
+                <English>Article 15 imposed on %1.</English>
+                <Spanish>Artículo 15 impuesto a %1.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_court_fine_reason">
+                <Original>Military justice: %1</Original>
+                <English>Military justice: %1</English>
+                <Spanish>Justicia militar: %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_res_fine">
+                <Original>fine of %1 (%2)</Original>
+                <English>fine of %1 (%2)</English>
+                <Spanish>multa de %1 (%2)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_res_reduce">
+                <Original>reduction in rank</Original>
+                <English>reduction in rank</English>
+                <Spanish>degradación</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_res_noreduce">
+                <Original>reduction not possible (no rank above the first)</Original>
+                <English>reduction not possible (no rank above the first)</English>
+                <Spanish>no se puede degradar (no tiene rango por encima del primero)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_res_acquit">
+                <Original>acquitted</Original>
+                <English>acquitted</English>
+                <Spanish>absuelto</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_res_guilty">
+                <Original>%1 min of prison and a fine of %2</Original>
+                <English>%1 min of prison and a fine of %2</English>
+                <Spanish>%1 min de prisión y multa de %2</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_court_merit">
+                <Original>Court case against %1</Original>
+                <English>Court case against %1</English>
+                <Spanish>Caso judicial contra %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_court_txt">
+                <Original>COURT-MARTIAL · %1
+Charge: %2 (severity %3)
+Verdict: %4</Original>
+                <English>COURT-MARTIAL · %1
+Charge: %2 (severity %3)
+Verdict: %4</English>
+                <Spanish>CONSEJO DE GUERRA · %1
+Cargo: %2 (gravedad %3)
+Fallo: %4</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_trial_near">
+                <Original>The defendant must be within 15 m.</Original>
+                <English>The defendant must be within 15 m.</English>
+                <Spanish>El acusado debe estar a menos de 15 m.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_trial_open">
+                <Original>That person already has a trial in progress.</Original>
+                <English>That person already has a trial in progress.</English>
+                <Spanish>Esa persona ya tiene un juicio en curso.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_judge">
+                <Original>Judge</Original>
+                <English>Judge</English>
+                <Spanish>Juez</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_counsel">
+                <Original>Defence counsel</Original>
+                <English>Defence counsel</English>
+                <Spanish>Abogado defensor</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_trial_open_txt">
+                <Original>TRIAL %1 OPENED
+Defendant: %2
+Charge: %3</Original>
+                <English>TRIAL %1 OPENED
+Defendant: %2
+Charge: %3</English>
+                <Spanish>JUICIO %1 ABIERTO
+Acusado: %2
+Cargo: %3</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_trial_plea_hint">
+                <Original>You must plead guilty or not guilty.</Original>
+                <English>You must plead guilty or not guilty.</English>
+                <Spanish>Debes declararte culpable o no culpable.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_plea_self">
+                <Original>The defendant must plead in person.</Original>
+                <English>The defendant must plead in person.</English>
+                <Spanish>El acusado debe declarar en persona.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_plea_done">
+                <Original>%1 pleads: %2</Original>
+                <English>%1 pleads: %2</English>
+                <Spanish>%1 se declara: %2</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_plea_title">
+                <Original>Plea</Original>
+                <English>Plea</English>
+                <Spanish>Declaración</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_plea_q">
+                <Original>How do you plead?</Original>
+                <English>How do you plead?</English>
+                <Spanish>¿Cómo se declara?</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_guilty">
+                <Original>guilty</Original>
+                <English>guilty</English>
+                <Spanish>culpable</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_notguilty">
+                <Original>not guilty</Original>
+                <English>not guilty</English>
+                <Spanish>no culpable</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_pending">
+                <Original>pending</Original>
+                <English>pending</English>
+                <Spanish>pendiente</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_exhibit_done">
+                <Original>Evidence no. %1 added to %2.</Original>
+                <English>Evidence no. %1 added to %2.</English>
+                <Spanish>Prueba n.º %1 añadida a %2.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_trial_row">
+                <Original>&lt;t font='RobotoCondensedBold'&gt;%1 · %2&lt;/t&gt;&lt;br/&gt;Charge: %3 (severity %4)&lt;br/&gt;Plea: %5&lt;br/&gt;&lt;br/&gt;Evidence:&lt;br/&gt;%6</Original>
+                <English>&lt;t font='RobotoCondensedBold'&gt;%1 · %2&lt;/t&gt;&lt;br/&gt;Charge: %3 (severity %4)&lt;br/&gt;Plea: %5&lt;br/&gt;&lt;br/&gt;Evidence:&lt;br/&gt;%6</English>
+                <Spanish>&lt;t font='RobotoCondensedBold'&gt;%1 · %2&lt;/t&gt;&lt;br/&gt;Cargo: %3 (gravedad %4)&lt;br/&gt;Declaración: %5&lt;br/&gt;&lt;br/&gt;Pruebas:&lt;br/&gt;%6</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_trials_info">
+                <Original>%1 trials in progress. Select one to present evidence or sentence.</Original>
+                <English>%1 trials in progress. Select one to present evidence or sentence.</English>
+                <Spanish>%1 juicios en curso. Elige uno para presentar pruebas o dictar sentencia.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_rest_only">
+                <Original>Only the officer who opened the trial can close it.</Original>
+                <English>Only the officer who opened the trial can close it.</English>
+                <Spanish>Solo el agente que abrió el juicio puede cerrarlo.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_no_plea">
+                <Original>The defendant has not pleaded yet.</Original>
+                <English>The defendant has not pleaded yet.</English>
+                <Spanish>El acusado aún no ha declarado.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_rep_title">
+                <Original>Trial %1: %2</Original>
+                <English>Trial %1: %2</English>
+                <Spanish>Juicio %1: %2</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_rep_body">
+                <Original>Charge: %1 (severity %2). Plea: %3. Evidence: %4. Witness weight: %5. Sentence: %6.</Original>
+                <English>Charge: %1 (severity %2). Plea: %3. Evidence: %4. Witness weight: %5. Sentence: %6.</English>
+                <Spanish>Cargo: %1 (gravedad %2). Declaración: %3. Pruebas: %4. Peso del testigo: %5. Sentencia: %6.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_verdict">
+                <Original>SENTENCE · %1
+%2: %3
+%4</Original>
+                <English>SENTENCE · %1
+%2: %3
+%4</English>
+                <Spanish>SENTENCIA · %1
+%2: %3
+%4</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_medal_merit">
+                <Original>Police Merit Medal</Original>
+                <English>Police Merit Medal</English>
+                <Spanish>Medalla al Mérito Policial</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_medal_service">
+                <Original>Service Medal</Original>
+                <English>Service Medal</English>
+                <Spanish>Medalla de Servicio</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_medal_valor">
+                <Original>Medal of Valor</Original>
+                <English>Medal of Valor</English>
+                <Spanish>Medalla al Valor</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_medal_integrity">
+                <Original>Integrity Award</Original>
+                <English>Integrity Award</English>
+                <Spanish>Distintivo de Integridad</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_medal_investigation">
+                <Original>Investigation Award</Original>
+                <English>Investigation Award</English>
+                <Spanish>Distintivo de Investigación</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_medal_traffic">
+                <Original>Traffic Safety Award</Original>
+                <English>Traffic Safety Award</English>
+                <Spanish>Distintivo de Seguridad Vial</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_medal_lifesaving">
+                <Original>Lifesaving Medal</Original>
+                <English>Lifesaving Medal</English>
+                <Spanish>Medalla de Salvamento</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_medal_conduct">
+                <Original>Good Conduct Medal</Original>
+                <English>Good Conduct Medal</English>
+                <Spanish>Medalla de Buena Conducta</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_medal_commendation">
+                <Original>Commendation Medal</Original>
+                <English>Commendation Medal</English>
+                <Spanish>Medalla de Encomienda</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_medal_bronze">
+                <Original>Bronze Star</Original>
+                <English>Bronze Star</English>
+                <Spanish>Estrella de Bronce</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_v_art15">
+                <Original>Article 15</Original>
+                <English>Article 15</English>
+                <Spanish>Art15</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_v_court">
+                <Original>Court-martial</Original>
+                <English>Court-martial</English>
+                <Spanish>Consejo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_v_trial">
+                <Original>Trial</Original>
+                <English>Trial</English>
+                <Spanish>Juicio</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_school_point">
+                <Original>MP school</Original>
+                <English>MP school</English>
+                <Spanish>Escuela PM</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_school_ask">
+                <Original>MP school: request exam</Original>
+                <English>MP school: request exam</English>
+                <Spanish>Escuela PM: pedir examen</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_school_noone">
+                <Original>There is no instructor within 300 m.</Original>
+                <English>There is no instructor within 300 m.</English>
+                <Spanish>No hay ningún instructor a menos de 300 m.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_school_asked">
+                <Original>MP SCHOOL: %1 requests the exam (%2).</Original>
+                <English>MP SCHOOL: %1 requests the exam (%2).</English>
+                <Spanish>ESCUELA PM: %1 pide el examen (%2).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_school_sent">
+                <Original>Request sent to the instructors.</Original>
+                <English>Request sent to the instructors.</English>
+                <Spanish>Petición enviada a los instructores.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_school_module">
+                <Original>MP school</Original>
+                <English>MP school</English>
+                <Spanish>Escuela PM</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_school_module_desc">
+                <Original>Exam point of the MP school. Synchronise an object or leave it alone to create a notice board. With requireSchool = 1, officers without the course can only use level 1 permissions.</Original>
+                <English>Exam point of the MP school. Synchronise an object or leave it alone to create a notice board. With requireSchool = 1, officers without the course can only use level 1 permissions.</English>
+                <Spanish>Punto de examen de la escuela PM. Sincroniza un objeto o déjalo solo para crear un tablón. Con requireSchool = 1, los agentes sin el curso solo pueden usar permisos de nivel 1.</Spanish>
             </Key>
         </Container>
     </Package>
