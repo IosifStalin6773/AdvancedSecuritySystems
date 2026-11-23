@@ -6,6 +6,8 @@ if ([_unit] call ADVSEC_fnc_isZeus) exitWith {true};
 private _cba = missionNamespace getVariable ("ADVSEC_cba_perm_" + _action);
 if (!isNil "_cba") then {_min = round _cba};
 if !([_unit, _dept] call ADVSEC_fnc_repAccess) exitWith {false};
+// 1.24: escuela PM obligatoria (requireSchool): sin el curso solo se puede lo de nivel 1
+if (_min > 1 && {_dept in ["PM", "PMC"]} && {(["requireSchool", 0] call ADVSEC_fnc_setting) isEqualTo 1} && {!(_unit getVariable ["ADVSEC_schoolOk", false])}) exitWith {false};
 private _lvl = [_unit, _dept] call ADVSEC_fnc_rankLevel;
 if (_lvl == 0) exitWith {((["pdaGrantsAccess", 0] call ADVSEC_fnc_cfg)) isEqualTo 1 && {_min <= 1}};
 _lvl >= _min

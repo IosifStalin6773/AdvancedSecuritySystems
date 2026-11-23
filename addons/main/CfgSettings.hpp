@@ -2,6 +2,85 @@
 class ADVSEC_Settings {
     // Idioma de los textos de ADVSEC: 0 = automático (idioma del juego; un servidor dedicado usa inglés), 1 = English, 2 = Español
     language = 0;
+
+    // --- Carrera y justicia (1.24)
+    // Medallas: {id, nombre, % de descuento en tiendas legales}
+    medals[] = {
+        {"merit", "$STR_ADVSEC_medal_merit", 2}, {"service", "$STR_ADVSEC_medal_service", 1}, {"valor", "$STR_ADVSEC_medal_valor", 3},
+        {"integrity", "$STR_ADVSEC_medal_integrity", 2}, {"investigation", "$STR_ADVSEC_medal_investigation", 2}, {"traffic", "$STR_ADVSEC_medal_traffic", 1},
+        {"lifesaving", "$STR_ADVSEC_medal_lifesaving", 3}, {"conduct", "$STR_ADVSEC_medal_conduct", 1}, {"commendation", "$STR_ADVSEC_medal_commendation", 2}, {"bronze", "$STR_ADVSEC_medal_bronze", 4}
+    };
+    medalDiscountMax = 15;       // tope del descuento total por medallas (%)
+    meritMaxPerCall = 10;        // puntos de mérito máximos por anotación de un mando
+    evalAuto = 1;                // nota automática al acabar el turno (eventos registrados por hora)
+    evalMerit[] = {5, 3, 1, 0, 0};   // méritos por nota A, B, C, D, E
+    requireSchool = 0;           // 1 = sin la escuela PM aprobada solo se pueden usar los permisos de nivel 1
+    inspectItems[] = {};         // revista: clases obligatorias (vacío = uniforme, chaleco, casco, placa o PDA, mapa y radio)
+    art15Merit = -10;            // méritos que resta un Artículo 15 (además de bajar un rango global)
+    courtFinePerLevel = 500;     // multa por nivel de gravedad en consejo de guerra (si no se indica importe)
+    trialJudgeClass = "C_man_1";
+    trialCounselClass = "C_man_1";
+    trialThreshold = 3;          // peso necesario para condenar sin confesión (pruebas + testigo + azar 0-2)
+    trialJailPerLevel = 10;      // minutos de prisión por nivel de gravedad
+    trialFinePerLevel = 300;     // multa por nivel de gravedad
+    // 1.24 (fase 2): paga, mostrador y equipo
+    payDynamic = 1;              // 1 = la nómina sube cuando hay pocos agentes de servicio
+    payDynTarget = 4;            // agentes de servicio deseados (por debajo, plus por cada uno que falta)
+    payDynStep = 0.1;            // plus por agente que falta (0,1 = +10 %)
+    payDynMax = 0.5;             // plus máximo (0,5 = +50 %)
+    bankCap = 0;                 // tope de ahorro en el banco (0 = sin tope); el exceso de la nómina va a la tesorería
+    reportPay = 50;              // pago por aviso atendido y cerrado con informe (una vez por aviso; 0 = no)
+    phoneSound = "A3\Sounds_F\sfx\beep_target.wss";   // timbre del teléfono de comisaría
+    curfewStart = -1;            // hora del toque de queda (0-23; -1 = sin toque de queda)
+    curfewEnd = 5;               // hora en que termina
+    curfewTowns = 3;             // ciudades cercanas a cada sirena donde también suena
+    curfewTownRadius = 4000;     // radio de búsqueda de esas ciudades (m)
+    sirenSound = "A3\Sounds_F\sfx\alarm_independent.wss";   // sonido de sirenas y alarma de base
+    blackMarketMove = 60;        // minutos hasta que un mercado negro cambia de casa (0 = no se mueve)
+    blackMarketStolen[] = {{"FirstAidKit", 4}, {"ToolKit", 1}, {"ItemGPS", 1}, {"ADVSEC_Handcuffs", 2}, {"ADVSEC_CellKeys", 1}, {"ADVSEC_MPBadge", 1}};   // material robado en la casa
+    blackMarketTip = 0.3;        // probabilidad por hora de que llegue un soplo al teléfono de comisaría
+    mpCrateItems[] = {{"ToolKit", 2}, {"FirstAidKit", 10}, {"ADVSEC_Handcuffs", 6}, {"ADVSEC_FPKit", 2}, {"ADVSEC_EvidenceBag", 10}, {"ADVSEC_CitationBook", 4}, {"ADVSEC_RightsCard", 6}, {"ADVSEC_Flares", 4}, {"ADVSEC_Gloves", 6}, {"ADVSEC_SceneTape", 3}, {"ADVSEC_BoltCutter", 1}, {"ADVSEC_InspMirror", 1}, {"SmokeShell", 6}, {"Chemlight_red", 6}};
+    mpCrateMags = 4;             // cargadores para las armas del que repone la caja
+    pmItemsRequired = 0;         // 1 = algunas acciones necesitan el objeto de la PM (pmItemUse)
+    pmItemUse[] = {
+        {"cuff", {"ADVSEC_Handcuffs", "ACE_CableTie"}}, {"release", {"ADVSEC_CellKeys"}}, {"fine", {"ADVSEC_CitationBook"}},
+        {"scene", {"ADVSEC_FPKit"}}, {"vehsearch", {"ADVSEC_InspMirror"}}, {"sniff", {"ADVSEC_ScentBag"}}, {"sketch", {"ADVSEC_MeasureTape"}}
+    };
+    // 1.24 (fase 3): avisos generados por IA, tensión social, autotest
+    aiCalls = 1;                 // 1 = la central genera avisos IA mientras haya agentes de servicio
+    callMinDuty = 1;             // agentes de servicio necesarios para que se generen
+    callInterval = 12;           // minutos entre avisos (menos con tensión alta)
+    callMax = 2;                 // avisos IA a la vez
+    callRadius = 3000;           // radio desde la base (marcador advsec_base, sirena, calabozo o teléfono) donde se buscan pueblos
+    callSpecial = 0;             // 1 = la redada y el atrincherado también salen al azar (si no, solo los lanza el Zeus)
+    callTypes[] = {"awol", "speeding", "blackmarket", "apo", "boq", "sapper", "convoy", "ambush", "transfer", "accident", "raid", "barricade", "pow", "refugees", "asp", "port", "perimeter", "hospguard", "amnesty", "trophy", "follow", "wake", "mortar", "press", "down", "tire", "server"};
+    callMerit = 3;               // méritos para los agentes que resuelven un aviso
+    callGuardMin = 10;           // minutos de presencia que pide un servicio de guardia
+    callCivs[] = {"C_man_1", "C_man_polo_1_F", "C_man_polo_2_F", "C_man_polo_4_F", "C_man_p_beggar_F"};
+    callHostiles[] = {"O_G_Soldier_F", "O_G_Soldier_lite_F", "O_G_Soldier_AR_F", "O_G_Soldier_SL_F"};
+    callSoldier = "B_Soldier_unarmed_F";
+    callCars[] = {"C_Offroad_01_F", "C_Hatchback_01_F", "C_SUV_01_F"};
+    callConvoy[] = {"B_MRAP_01_F", "B_Truck_01_transport_F", "B_Truck_01_covered_F"};
+    callTrophyWeapon = "arifle_AKM_F";
+    vehSirenSound = "A3\Sounds_F\sfx\alarm_independent.wss";
+    selfTest = 1;                // autotest al arrancar el servidor (resultado en el menú Zeus y en el RPT)
+    selfTestCalls = 0;           // 1 = el autotest también monta y desmonta avisos de prueba
+    // 1.24 (fase 4): hospital, prisión, vida ambiental, permisos y club
+    dustoffHeli = "B_Heli_Transport_01_F";   // helicóptero de evacuación aérea
+    jailLife = 1;                // 1 = los presos IA hacen cosas y a veces se pelean
+    jailAmbient = 0;             // presos IA de ambiente en cada calabozo (0 = ninguno)
+    lifeSoldiers[] = {"B_Soldier_unarmed_F", "B_officer_F", "B_Soldier_F"};   // personal del módulo «Vida en base»
+    rnrMinutes = 10;             // minutos de permiso (sin poder fichar)
+    rnrDestinations[] = {"Sídney", "Bangkok", "Hong Kong", "Honolulu", "Tokio"};
+    clubMinRank = 0;             // escalón de rango global mínimo para usar el club
+    clubDrinkPrice = 5;          // precio de una copa
+    trainMerit = 5;              // méritos al terminar la instrucción guiada (una vez)
+    // 1.24: objetos en la mano (clase de modelo visible; "" = sin modelo, solo la función)
+    handProps[] = {{"camera", "Land_HandyCam_F"}, {"clipboard", "Land_File1_F"}, {"megaphone", ""}, {"shield", ""}, {"baton", ""}};
+    // 1.24: radio de la PM
+    radioCodes[] = {"10-4", "10-7", "10-8", "10-9", "10-15", "10-20", "10-23", "10-33", "10-76", "10-97"};
+    radioChatter = 1;            // 1 = tráfico de radio ambiental para quien está de servicio
+    radioCheckMin = 30;          // minutos entre comprobaciones de radio (0 = nunca)
     // Rangos por nivel de placa (1-5). El nivel es el campo "clearance" de la placa/credencial.
     ranksPM[] = {"$STR_ADVSEC_officer", "$STR_ADVSEC_corporal", "$STR_ADVSEC_sergeant", "$STR_ADVSEC_lieutenant", "$STR_ADVSEC_captain"};
     ranksAI[] = {"Inspector", "$STR_ADVSEC_chief_inspector", "$STR_ADVSEC_superintendent", "$STR_ADVSEC_chief_superintendent", "Director"};
@@ -68,6 +147,19 @@ class ADVSEC_Settings {
         cyberManage[] = {"AI", 3};    // restaurar sistemas comprometidos
         traffic[] = {"PM", 2};        // 1.22: desvíos, carriles, grúa, depósito, accidentes, ITV y libro de paso
         breath[] = {"PM", 1};         // 1.22: test de alcoholemia
+        merit[] = {"PMC", 3};         // 1.24: anotar méritos
+        award[] = {"PMC", 4};         // 1.24: conceder medallas
+        evaluate[] = {"PMC", 3};      // 1.24: evaluar a un agente
+        school[] = {"PMC", 3};        // 1.24: aprobar la escuela PM
+        inspect[] = {"PMC", 3};       // 1.24: revista de uniforme
+        supervisor[] = {"PMC", 4};    // 1.24: prioridad de los avisos
+        article15[] = {"PMC", 4};     // 1.24: Artículo 15
+        courtMartial[] = {"PM", 4};   // 1.24: consejo de guerra
+        baseAlarm[] = {"PMC", 2};    // 1.24: alarma de base y sirena de toque de queda
+        mpCrate[] = {"PMC", 1};      // 1.24: reponer cajas de equipo de la PM
+        callLaunch[] = {"PM", 4};    // 1.24: lanzar y cancelar avisos IA (el Zeus siempre puede)
+        medical[] = {"PMC", 1};      // 1.24: triaje, quirófano y evacuación aérea
+        trial[] = {"PM", 3};          // 1.24: instruir juicios
     };
 
     // Evidencias
@@ -340,6 +432,17 @@ class ADVSEC_Keys {
     class panic { name = "$STR_ADVSEC_panic_button"; tooltip = "$STR_ADVSEC_alerts_the_whole_mp_with"; category = "$STR_ADVSEC_military_police"; key[] = {211, 0, 0, 1}; };
     class dispatch { name = "$STR_ADVSEC_dispatch_centre"; tooltip = "$STR_ADVSEC_112_calls_and_panics"; category = "$STR_ADVSEC_military_police"; key[] = {210, 0, 1, 1}; };
     class specs { name = "$STR_ADVSEC_specialty_pda"; tooltip = "$STR_ADVSEC_patches_members_requests_joins_and"; category = "General"; key[] = {199, 0, 1, 1}; };
+    class career { name = "$STR_ADVSEC_car_menu"; tooltip = "$STR_ADVSEC_car_key_tip"; category = "$STR_ADVSEC_military_police"; key[] = {0, 0, 0, 0}; };
+    class serviceRecord { name = "$STR_ADVSEC_car_b_record"; tooltip = "$STR_ADVSEC_car_key_rec_tip"; category = "$STR_ADVSEC_military_police"; key[] = {0, 0, 0, 0}; };
+    class justice { name = "$STR_ADVSEC_jus_menu"; tooltip = "$STR_ADVSEC_jus_key_tip"; category = "$STR_ADVSEC_military_police"; key[] = {0, 0, 0, 0}; };
+    class payslip { name = "$STR_ADVSEC_pay_slip"; tooltip = "$STR_ADVSEC_pay_slip_tip"; category = "$STR_ADVSEC_citizen"; key[] = {0, 0, 0, 0}; };
+    class baseAlarm { name = "$STR_ADVSEC_siren_alarm"; tooltip = "$STR_ADVSEC_siren_alarm_tip"; category = "$STR_ADVSEC_military_police"; key[] = {0, 0, 0, 0}; };
+    class aiCalls { name = "$STR_ADVSEC_call_menu"; tooltip = "$STR_ADVSEC_call_key_tip"; category = "$STR_ADVSEC_military_police"; key[] = {0, 0, 0, 0}; };
+    class halt { name = "$STR_ADVSEC_hk_halt"; tooltip = "$STR_ADVSEC_hk_halt_tip"; category = "$STR_ADVSEC_military_police"; key[] = {0, 0, 0, 0}; };
+    class vehSiren { name = "$STR_ADVSEC_hk_siren"; tooltip = "$STR_ADVSEC_hk_siren_tip"; category = "$STR_ADVSEC_military_police"; key[] = {0, 0, 0, 0}; };
+    class radio { name = "$STR_ADVSEC_radio"; tooltip = "$STR_ADVSEC_radio_tip"; category = "$STR_ADVSEC_military_police"; key[] = {0, 0, 0, 0}; };
+    class handUse { name = "$STR_ADVSEC_hand_use"; tooltip = "$STR_ADVSEC_hand_use_tip"; category = "$STR_ADVSEC_military_police"; key[] = {0, 0, 0, 0}; };
+    class megaphone { name = "$STR_ADVSEC_hk_megaphone"; tooltip = "$STR_ADVSEC_hk_megaphone_tip"; category = "$STR_ADVSEC_military_police"; key[] = {0, 0, 0, 0}; };
     class zeusPanel { name = "$STR_ADVSEC_security_panel_zeus"; tooltip = "$STR_ADVSEC_zeus_admin_only"; category = "Zeus"; key[] = {210, 1, 1, 0}; };
 };
 

@@ -1,6 +1,8 @@
 // [edificio, puerta] (spawn) — forzado con barra de progreso. El servidor valida el tiempo y dispara las alarmas.
 params ["_b", "_i"];
 private _time = (["breachTime", 20] call ADVSEC_fnc_cfg);
+// 1.24: con cortapernos, la mitad de tiempo
+if ("ADVSEC_BoltCutter" in items player) then {_time = _time * 0.5};
 ["start", player, _b, _i] remoteExecCall ["ADVSEC_fnc_breachServer", 2];
 private _done = {
     params ["_b", "_i"];

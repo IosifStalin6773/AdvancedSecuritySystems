@@ -12709,8 +12709,8 @@ Detenidos:
                 <Spanish>La subasta ya ha cerrado.</Spanish>
             </Key>
             <Key ID="STR_ADVSEC_pmc_bid_ok">
-                <Original>Bid registered: %1%% of the pay (%2).</Original>
-                <English>Bid registered: %1%% of the pay (%2).</English>
+                <Original>Bid registered: %1% of the pay (%2).</Original>
+                <English>Bid registered: %1% of the pay (%2).</English>
                 <Spanish>Puja registrada: %1 %% del pago (%2).</Spanish>
             </Key>
             <Key ID="STR_ADVSEC_pmc_auction_lost">
@@ -13294,6 +13294,2977 @@ Beneficio: %5 €</Spanish>
                 <Original>Clear tactical marks</Original>
                 <English>Clear tactical marks</English>
                 <Spanish>Borrar marcas tácticas</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_cat">
+                <Original>Doors (ADVSEC)</Original>
+                <English>Doors (ADVSEC)</English>
+                <Spanish>Puertas (ADVSEC)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_attr">
+                <Original>Door setup</Original>
+                <English>Door setup</English>
+                <Spanish>Configuración de puertas</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_attr_tip">
+                <Original>One box per door of the building. Click a door to give it a lock or a keypad.</Original>
+                <English>One box per door of the building. Click a door to give it a lock or a keypad.</English>
+                <Spanish>Una casilla por puerta del edificio. Haz clic en una puerta para ponerle cerradura o keypad.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_no_doors">
+                <Original>This object has no doors.</Original>
+                <English>This object has no doors.</English>
+                <Spanish>Este objeto no tiene puertas.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_info">
+                <Original>%1 doors · %2 configured · C = lock, K = keypad</Original>
+                <English>%1 doors · %2 configured · C = lock, K = keypad</English>
+                <Spanish>%1 puertas · %2 configuradas · C = cerradura, K = keypad</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_tip_free">
+                <Original>Door %1: no ADVSEC setup. Click to configure.</Original>
+                <English>Door %1: no ADVSEC setup. Click to configure.</English>
+                <Spanish>Puerta %1: sin configurar. Clic para configurarla.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_tip_set">
+                <Original>Door %1: %2 · %3 · level %4 · docs %5 · key %6</Original>
+                <English>Door %1: %2 · %3 · level %4 · docs %5 · key %6</English>
+                <Spanish>Puerta %1: %2 · %3 · nivel %4 · documentos %5 · llave %6</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_none">
+                <Original>No setup</Original>
+                <English>No setup</English>
+                <Spanish>Sin configurar</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_lock">
+                <Original>Lock</Original>
+                <English>Lock</English>
+                <Spanish>Cerradura</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_keypad">
+                <Original>Keypad</Original>
+                <English>Keypad</English>
+                <Spanish>Keypad</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_open">
+                <Original>Open at start</Original>
+                <English>Open at start</English>
+                <Spanish>Abierta al inicio</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_closed">
+                <Original>Locked at start</Original>
+                <English>Locked at start</English>
+                <Spanish>Cerrada al inicio</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_title">
+                <Original>DOOR %1 · %2</Original>
+                <English>DOOR %1 · %2</English>
+                <Spanish>PUERTA %1 · %2</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_f_type">
+                <Original>Type</Original>
+                <English>Type</English>
+                <Spanish>Tipo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_f_state">
+                <Original>Initial state</Original>
+                <English>Initial state</English>
+                <Spanish>Estado inicial</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_f_pin">
+                <Original>PIN (keypad)</Original>
+                <English>PIN (keypad)</English>
+                <Spanish>PIN (keypad)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_f_zone">
+                <Original>Alarm zone (keypad)</Original>
+                <English>Alarm zone (keypad)</English>
+                <Spanish>Zona de alarma (keypad)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_f_docs">
+                <Original>Valid documents</Original>
+                <English>Valid documents</English>
+                <Spanish>Documentos válidos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_f_docs_tip">
+                <Original>Comma separated (empty = none): Passport, IDCard, Permit, Keycard, Key, MilitaryID, MPBadge, IABadge</Original>
+                <English>Comma separated (empty = none): Passport, IDCard, Permit, Keycard, Key, MilitaryID, MPBadge, IABadge</English>
+                <Spanish>Separados por coma (vacío = ninguno): Passport, IDCard, Permit, Keycard, Key, MilitaryID, MPBadge, IABadge</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_f_key">
+                <Original>Key ID</Original>
+                <English>Key ID</English>
+                <Spanish>ID de llave</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_f_key_tip">
+                <Original>Key or keycard that also opens it (empty = none)</Original>
+                <English>Key or keycard that also opens it (empty = none)</English>
+                <Spanish>Llave o tarjeta que también la abre (vacío = ninguna)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_ok">
+                <Original>Apply</Original>
+                <English>Apply</English>
+                <Spanish>Aplicar</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_all">
+                <Original>Apply to all</Original>
+                <English>Apply to all</English>
+                <Spanish>Aplicar a todas</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_clear">
+                <Original>Remove</Original>
+                <English>Remove</English>
+                <Spanish>Quitar</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_cancel">
+                <Original>Cancel</Original>
+                <English>Cancel</English>
+                <Spanish>Cancelar</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_hint_none">
+                <Original>The door works as normal (no ADVSEC lock).</Original>
+                <English>The door works as normal (no ADVSEC lock).</English>
+                <Spanish>La puerta funciona normal (sin cerradura ADVSEC).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_hint_lock">
+                <Original>Lock: whoever meets the level, documents or key can lock and unlock it at the door. With no requirement only Zeus and lockpicking open it.</Original>
+                <English>Lock: whoever meets the level, documents or key can lock and unlock it at the door. With no requirement only Zeus and lockpicking open it.</English>
+                <Spanish>Cerradura: quien cumpla el nivel, los documentos o la llave la abre y cierra en la propia puerta. Sin requisito solo la abren Zeus o forzándola.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_hint_keypad">
+                <Original>Keypad at the door: the PIN toggles it. Level, documents or key allow swiping a card instead. Wrong PIN 3 times triggers the alarm of that zone.</Original>
+                <English>Keypad at the door: the PIN toggles it. Level, documents or key allow swiping a card instead. Wrong PIN 3 times triggers the alarm of that zone.</English>
+                <Spanish>Keypad en la puerta: el PIN la abre y cierra. Nivel, documentos o llave permiten pasar tarjeta. 3 PIN fallidos disparan la alarma de esa zona.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_kp_label">
+                <Original>DOOR %1 · ENTER PIN</Original>
+                <English>DOOR %1 · ENTER PIN</English>
+                <Spanish>PUERTA %1 · INTRODUZCA PIN</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_use_kp">
+                <Original>Use keypad (door %1)</Original>
+                <English>Use keypad (door %1)</English>
+                <Spanish>Usar keypad (puerta %1)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_dr_card_kp">
+                <Original>Swipe card (door %1)</Original>
+                <English>Swipe card (door %1)</English>
+                <Spanish>Pasar tarjeta (puerta %1)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_menu">
+                <Original>Career</Original>
+                <English>Career</English>
+                <Spanish>Carrera</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_menu_info">
+                <Original>Service record, merits, medals, evaluations and training.</Original>
+                <English>Service record, merits, medals, evaluations and training.</English>
+                <Spanish>Hoja de servicio, méritos, medallas, evaluaciones y formación.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_open">
+                <Original>Open</Original>
+                <English>Open</English>
+                <Spanish>Abrir</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_key_tip">
+                <Original>Career menu: record, merits, medals, organisation chart</Original>
+                <English>Career menu: record, merits, medals, organisation chart</English>
+                <Spanish>Menú de carrera: hoja de servicio, méritos, medallas, organigrama</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_key_rec_tip">
+                <Original>Your own service record</Original>
+                <English>Your own service record</English>
+                <Spanish>Tu propia hoja de servicio</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_b_record">
+                <Original>My service record</Original>
+                <English>My service record</English>
+                <Spanish>Mi hoja de servicio</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_b_record_of">
+                <Original>Service record of an officer</Original>
+                <English>Service record of an officer</English>
+                <Spanish>Hoja de servicio de un agente</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_b_org">
+                <Original>Organisation chart</Original>
+                <English>Organisation chart</English>
+                <Spanish>Organigrama</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_b_stats">
+                <Original>Leaderboard (30 days)</Original>
+                <English>Leaderboard (30 days)</English>
+                <Spanish>Clasificación (30 días)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_b_merit">
+                <Original>Record merit</Original>
+                <English>Record merit</English>
+                <Spanish>Anotar mérito</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_b_award">
+                <Original>Award a medal</Original>
+                <English>Award a medal</English>
+                <Spanish>Conceder medalla</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_b_eval">
+                <Original>Evaluate an officer</Original>
+                <English>Evaluate an officer</English>
+                <Spanish>Evaluar a un agente</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_b_school">
+                <Original>MP school: pass / revoke</Original>
+                <English>MP school: pass / revoke</English>
+                <Spanish>Escuela PM: aprobar / retirar</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_b_inspect">
+                <Original>Uniform inspection</Original>
+                <English>Uniform inspection</English>
+                <Spanish>Revista de uniforme</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_b_prio">
+                <Original>Set alert priority</Original>
+                <English>Set alert priority</English>
+                <Spanish>Cambiar prioridad de un aviso</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_f_who">
+                <Original>Officer</Original>
+                <English>Officer</English>
+                <Spanish>Agente</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_f_pts">
+                <Original>Points (negative subtracts)</Original>
+                <English>Points (negative subtracts)</English>
+                <Spanish>Puntos (negativo resta)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_f_why">
+                <Original>Reason</Original>
+                <English>Reason</English>
+                <Spanish>Motivo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_f_medal">
+                <Original>Medal</Original>
+                <English>Medal</English>
+                <Spanish>Medalla</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_f_grade">
+                <Original>Grade</Original>
+                <English>Grade</English>
+                <Spanish>Nota</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_f_comment">
+                <Original>Comment</Original>
+                <English>Comment</English>
+                <Spanish>Comentario</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_f_passed">
+                <Original>Passed</Original>
+                <English>Passed</English>
+                <Spanish>Aprobado</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_f_call">
+                <Original>Alert ID (e.g. 112-4)</Original>
+                <English>Alert ID (e.g. 112-4)</English>
+                <Spanish>ID del aviso (p. ej. 112-4)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_f_prio">
+                <Original>Priority</Original>
+                <English>Priority</English>
+                <Spanish>Prioridad</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_no_merit">
+                <Original>record merits</Original>
+                <English>record merits</English>
+                <Spanish>anotar méritos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_no_award">
+                <Original>award medals</Original>
+                <English>award medals</English>
+                <Spanish>conceder medallas</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_no_eval">
+                <Original>evaluate officers</Original>
+                <English>evaluate officers</English>
+                <Spanish>evaluar agentes</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_no_school">
+                <Original>manage the MP school</Original>
+                <English>manage the MP school</English>
+                <Spanish>gestionar la escuela PM</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_no_inspect">
+                <Original>hold uniform inspections</Original>
+                <English>hold uniform inspections</English>
+                <Spanish>pasar revista</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_no_supervisor">
+                <Original>change alert priorities</Original>
+                <English>change alert priorities</English>
+                <Spanish>cambiar la prioridad de los avisos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_no_medals">
+                <Original>No medals are configured (medals[]).</Original>
+                <English>No medals are configured (medals[]).</English>
+                <Spanish>No hay medallas configuradas (medals[]).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_merit_you">
+                <Original>Merit: %1 points (total %2). %3</Original>
+                <English>Merit: %1 points (total %2). %3</English>
+                <Spanish>Mérito: %1 puntos (total %2). %3</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_merit_done">
+                <Original>%1: %2 points (total %3).</Original>
+                <English>%1: %2 points (total %3).</English>
+                <Spanish>%1: %2 puntos (total %3).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_award_has">
+                <Original>%1 already has: %2</Original>
+                <English>%1 already has: %2</English>
+                <Spanish>%1 ya tiene: %2</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_award_you">
+                <Original>You have been awarded: %1</Original>
+                <English>You have been awarded: %1</English>
+                <Spanish>Te han concedido: %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_award_done">
+                <Original>Medal awarded to %1: %2</Original>
+                <English>Medal awarded to %1: %2</English>
+                <Spanish>Medalla concedida a %1: %2</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_award_removed">
+                <Original>Medal removed.</Original>
+                <English>Medal removed.</English>
+                <Spanish>Medalla retirada.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_points">
+                <Original>Merit points</Original>
+                <English>Merit points</English>
+                <Spanish>Puntos de mérito</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_medals">
+                <Original>MEDALS</Original>
+                <English>MEDALS</English>
+                <Spanish>CONDECORACIONES</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_school">
+                <Original>MP SCHOOL</Original>
+                <English>MP SCHOOL</English>
+                <Spanish>ESCUELA PM</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_school_ok">
+                <Original>Passed %1 (%2)</Original>
+                <English>Passed %1 (%2)</English>
+                <Spanish>Aprobada el %1 (%2)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_training">
+                <Original>TRAINING</Original>
+                <English>TRAINING</English>
+                <Spanish>FORMACIÓN</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_evals">
+                <Original>EVALUATIONS</Original>
+                <English>EVALUATIONS</English>
+                <Spanish>EVALUACIONES</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_discipline">
+                <Original>DISCIPLINE AND JUSTICE</Original>
+                <English>DISCIPLINE AND JUSTICE</English>
+                <Spanish>DISCIPLINA Y JUSTICIA</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_fines">
+                <Original>FINES RECEIVED</Original>
+                <English>FINES RECEIVED</English>
+                <Spanish>MULTAS RECIBIDAS</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_history">
+                <Original>LATEST MERITS</Original>
+                <English>LATEST MERITS</English>
+                <Spanish>ÚLTIMOS MÉRITOS</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_org_info">
+                <Original>%1 officers with rank · %2 on duty (●)</Original>
+                <English>%1 officers with rank · %2 on duty (●)</English>
+                <Spanish>%1 agentes con rango · %2 de servicio (●)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_stats_info">
+                <Original>Score = merits + 5 × arrests + 3 × reports + alerts handled (last 30 days).</Original>
+                <English>Score = merits + 5 × arrests + 3 × reports + alerts handled (last 30 days).</English>
+                <Spanish>Puntuación = méritos + 5 × detenciones + 3 × informes + avisos atendidos (últimos 30 días).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_stats_row">
+                <Original>&lt;t font='RobotoCondensedBold'&gt;%1&lt;/t&gt;&lt;br/&gt;Merit points: %2&lt;br/&gt;Arrests: %3&lt;br/&gt;Reports: %4&lt;br/&gt;Alerts handled: %5</Original>
+                <English>&lt;t font='RobotoCondensedBold'&gt;%1&lt;/t&gt;&lt;br/&gt;Merit points: %2&lt;br/&gt;Arrests: %3&lt;br/&gt;Reports: %4&lt;br/&gt;Alerts handled: %5</English>
+                <Spanish>&lt;t font='RobotoCondensedBold'&gt;%1&lt;/t&gt;&lt;br/&gt;Puntos de mérito: %2&lt;br/&gt;Detenciones: %3&lt;br/&gt;Informes: %4&lt;br/&gt;Avisos atendidos: %5</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_shift_reason">
+                <Original>End of shift, grade %1</Original>
+                <English>End of shift, grade %1</English>
+                <Spanish>Fin de turno, nota %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_shift_you">
+                <Original>Shift evaluation: %1 (%2 h, %3 recorded actions).</Original>
+                <English>Shift evaluation: %1 (%2 h, %3 recorded actions).</English>
+                <Spanish>Evaluación del turno: %1 (%2 h, %3 actuaciones registradas).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_eval_you">
+                <Original>You have been evaluated: %1. %2</Original>
+                <English>You have been evaluated: %1. %2</English>
+                <Spanish>Te han evaluado: %1. %2</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_eval_done">
+                <Original>Evaluation recorded: %1 · %2</Original>
+                <English>Evaluation recorded: %1 · %2</English>
+                <Spanish>Evaluación anotada: %1 · %2</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_school_passed">
+                <Original>%1 has passed the MP school.</Original>
+                <English>%1 has passed the MP school.</English>
+                <Spanish>%1 ha aprobado la escuela PM.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_school_revoked">
+                <Original>MP school removed from %1.</Original>
+                <English>MP school removed from %1.</English>
+                <Spanish>Escuela PM retirada a %1.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_school_passed_you">
+                <Original>You have passed the MP school.</Original>
+                <English>You have passed the MP school.</English>
+                <Spanish>Has aprobado la escuela PM.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_school_revoked_you">
+                <Original>Your MP school pass has been removed.</Original>
+                <English>Your MP school pass has been removed.</English>
+                <Spanish>Te han retirado la escuela PM.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_ins_uniform">
+                <Original>Uniform</Original>
+                <English>Uniform</English>
+                <Spanish>Uniforme</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_ins_vest">
+                <Original>Vest</Original>
+                <English>Vest</English>
+                <Spanish>Chaleco</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_ins_head">
+                <Original>Headgear</Original>
+                <English>Headgear</English>
+                <Spanish>Casco o gorra</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_ins_badge">
+                <Original>Badge or PDA</Original>
+                <English>Badge or PDA</English>
+                <Spanish>Placa o PDA</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_ins_map">
+                <Original>Map</Original>
+                <English>Map</English>
+                <Spanish>Mapa</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_ins_radio">
+                <Original>Radio</Original>
+                <English>Radio</English>
+                <Spanish>Radio</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_ins_result">
+                <Original>UNIFORM INSPECTION · %1: %2%
+%3</Original>
+                <English>UNIFORM INSPECTION · %1: %2%
+%3</English>
+                <Spanish>REVISTA DE UNIFORME · %1: %2%
+%3</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_ins_reason">
+                <Original>Uniform inspection %1%</Original>
+                <English>Uniform inspection %1%</English>
+                <Spanish>Revista de uniforme %1%</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_prio_none">
+                <Original>There is no alert with that ID.</Original>
+                <English>There is no alert with that ID.</English>
+                <Spanish>No hay ningún aviso con ese ID.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_prio_done">
+                <Original>Alert %1: priority %2.</Original>
+                <English>Alert %1: priority %2.</English>
+                <Spanish>Aviso %1: prioridad %2.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_menu">
+                <Original>Military justice</Original>
+                <English>Military justice</English>
+                <Spanish>Justicia militar</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_menu_info">
+                <Original>Article 15, court-martial and trials.</Original>
+                <English>Article 15, court-martial and trials.</English>
+                <Spanish>Artículo 15, consejo de guerra y juicios.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_key_tip">
+                <Original>Article 15, court-martial and trials</Original>
+                <English>Article 15, court-martial and trials</English>
+                <Spanish>Artículo 15, consejo de guerra y juicios</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_no_any">
+                <Original>You have no military justice permissions.</Original>
+                <English>You have no military justice permissions.</English>
+                <Spanish>No tienes permisos de justicia militar.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_b_art15">
+                <Original>Article 15 (non-judicial punishment)</Original>
+                <English>Article 15 (non-judicial punishment)</English>
+                <Spanish>Artículo 15 (castigo no judicial)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_b_court">
+                <Original>Court-martial</Original>
+                <English>Court-martial</English>
+                <Spanish>Consejo de guerra</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_b_trial">
+                <Original>Open a trial</Original>
+                <English>Open a trial</English>
+                <Spanish>Abrir un juicio</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_b_trials">
+                <Original>Trials in progress</Original>
+                <English>Trials in progress</English>
+                <Spanish>Juicios en curso</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_b_exhibit">
+                <Original>Present evidence</Original>
+                <English>Present evidence</English>
+                <Spanish>Presentar prueba</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_b_plea_ai">
+                <Original>Ask for plea (AI defendant)</Original>
+                <English>Ask for plea (AI defendant)</English>
+                <Spanish>Pedir declaración (acusado IA)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_b_rest">
+                <Original>Close and sentence</Original>
+                <English>Close and sentence</English>
+                <Spanish>Cerrar y dictar sentencia</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_f_charge">
+                <Original>Charge</Original>
+                <English>Charge</English>
+                <Spanish>Cargo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_f_sev">
+                <Original>Severity (1-6)</Original>
+                <English>Severity (1-6)</English>
+                <Spanish>Gravedad (1-6)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_f_verdict">
+                <Original>Verdict</Original>
+                <English>Verdict</English>
+                <Spanish>Fallo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_f_amount">
+                <Original>Fine (0 = by severity)</Original>
+                <English>Fine (0 = by severity)</English>
+                <Spanish>Multa (0 = según gravedad)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_f_exhibit">
+                <Original>Evidence (description)</Original>
+                <English>Evidence (description)</English>
+                <Spanish>Prueba (descripción)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_v_acquit">
+                <Original>Acquit</Original>
+                <English>Acquit</English>
+                <Spanish>Absolver</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_v_fine">
+                <Original>Fine</Original>
+                <English>Fine</English>
+                <Spanish>Multa</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_v_reduce">
+                <Original>Reduction in rank</Original>
+                <English>Reduction in rank</English>
+                <Spanish>Degradación</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_no_art15">
+                <Original>impose Article 15</Original>
+                <English>impose Article 15</English>
+                <Spanish>imponer el Artículo 15</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_no_court">
+                <Original>hold courts-martial</Original>
+                <English>hold courts-martial</English>
+                <Spanish>celebrar consejos de guerra</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_no_trial">
+                <Original>open trials</Original>
+                <English>open trials</English>
+                <Spanish>abrir juicios</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_demoted">
+                <Original>reduced one rank</Original>
+                <English>reduced one rank</English>
+                <Spanish>baja un rango</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_art15_you">
+                <Original>ARTICLE 15: %1. %2</Original>
+                <English>ARTICLE 15: %1. %2</English>
+                <Spanish>ARTÍCULO 15: %1. %2</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_art15_done">
+                <Original>Article 15 imposed on %1.</Original>
+                <English>Article 15 imposed on %1.</English>
+                <Spanish>Artículo 15 impuesto a %1.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_court_fine_reason">
+                <Original>Military justice: %1</Original>
+                <English>Military justice: %1</English>
+                <Spanish>Justicia militar: %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_res_fine">
+                <Original>fine of %1 (%2)</Original>
+                <English>fine of %1 (%2)</English>
+                <Spanish>multa de %1 (%2)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_res_reduce">
+                <Original>reduction in rank</Original>
+                <English>reduction in rank</English>
+                <Spanish>degradación</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_res_noreduce">
+                <Original>reduction not possible (no rank above the first)</Original>
+                <English>reduction not possible (no rank above the first)</English>
+                <Spanish>no se puede degradar (no tiene rango por encima del primero)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_res_acquit">
+                <Original>acquitted</Original>
+                <English>acquitted</English>
+                <Spanish>absuelto</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_res_guilty">
+                <Original>%1 min of prison and a fine of %2</Original>
+                <English>%1 min of prison and a fine of %2</English>
+                <Spanish>%1 min de prisión y multa de %2</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_court_merit">
+                <Original>Court case against %1</Original>
+                <English>Court case against %1</English>
+                <Spanish>Caso judicial contra %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_court_txt">
+                <Original>COURT-MARTIAL · %1
+Charge: %2 (severity %3)
+Verdict: %4</Original>
+                <English>COURT-MARTIAL · %1
+Charge: %2 (severity %3)
+Verdict: %4</English>
+                <Spanish>CONSEJO DE GUERRA · %1
+Cargo: %2 (gravedad %3)
+Fallo: %4</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_trial_near">
+                <Original>The defendant must be within 15 m.</Original>
+                <English>The defendant must be within 15 m.</English>
+                <Spanish>El acusado debe estar a menos de 15 m.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_trial_open">
+                <Original>That person already has a trial in progress.</Original>
+                <English>That person already has a trial in progress.</English>
+                <Spanish>Esa persona ya tiene un juicio en curso.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_judge">
+                <Original>Judge</Original>
+                <English>Judge</English>
+                <Spanish>Juez</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_counsel">
+                <Original>Defence counsel</Original>
+                <English>Defence counsel</English>
+                <Spanish>Abogado defensor</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_trial_open_txt">
+                <Original>TRIAL %1 OPENED
+Defendant: %2
+Charge: %3</Original>
+                <English>TRIAL %1 OPENED
+Defendant: %2
+Charge: %3</English>
+                <Spanish>JUICIO %1 ABIERTO
+Acusado: %2
+Cargo: %3</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_trial_plea_hint">
+                <Original>You must plead guilty or not guilty.</Original>
+                <English>You must plead guilty or not guilty.</English>
+                <Spanish>Debes declararte culpable o no culpable.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_plea_self">
+                <Original>The defendant must plead in person.</Original>
+                <English>The defendant must plead in person.</English>
+                <Spanish>El acusado debe declarar en persona.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_plea_done">
+                <Original>%1 pleads: %2</Original>
+                <English>%1 pleads: %2</English>
+                <Spanish>%1 se declara: %2</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_plea_title">
+                <Original>Plea</Original>
+                <English>Plea</English>
+                <Spanish>Declaración</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_plea_q">
+                <Original>How do you plead?</Original>
+                <English>How do you plead?</English>
+                <Spanish>¿Cómo se declara?</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_guilty">
+                <Original>guilty</Original>
+                <English>guilty</English>
+                <Spanish>culpable</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_notguilty">
+                <Original>not guilty</Original>
+                <English>not guilty</English>
+                <Spanish>no culpable</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_pending">
+                <Original>pending</Original>
+                <English>pending</English>
+                <Spanish>pendiente</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_exhibit_done">
+                <Original>Evidence no. %1 added to %2.</Original>
+                <English>Evidence no. %1 added to %2.</English>
+                <Spanish>Prueba n.º %1 añadida a %2.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_trial_row">
+                <Original>&lt;t font='RobotoCondensedBold'&gt;%1 · %2&lt;/t&gt;&lt;br/&gt;Charge: %3 (severity %4)&lt;br/&gt;Plea: %5&lt;br/&gt;&lt;br/&gt;Evidence:&lt;br/&gt;%6</Original>
+                <English>&lt;t font='RobotoCondensedBold'&gt;%1 · %2&lt;/t&gt;&lt;br/&gt;Charge: %3 (severity %4)&lt;br/&gt;Plea: %5&lt;br/&gt;&lt;br/&gt;Evidence:&lt;br/&gt;%6</English>
+                <Spanish>&lt;t font='RobotoCondensedBold'&gt;%1 · %2&lt;/t&gt;&lt;br/&gt;Cargo: %3 (gravedad %4)&lt;br/&gt;Declaración: %5&lt;br/&gt;&lt;br/&gt;Pruebas:&lt;br/&gt;%6</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_trials_info">
+                <Original>%1 trials in progress. Select one to present evidence or sentence.</Original>
+                <English>%1 trials in progress. Select one to present evidence or sentence.</English>
+                <Spanish>%1 juicios en curso. Elige uno para presentar pruebas o dictar sentencia.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_rest_only">
+                <Original>Only the officer who opened the trial can close it.</Original>
+                <English>Only the officer who opened the trial can close it.</English>
+                <Spanish>Solo el agente que abrió el juicio puede cerrarlo.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_no_plea">
+                <Original>The defendant has not pleaded yet.</Original>
+                <English>The defendant has not pleaded yet.</English>
+                <Spanish>El acusado aún no ha declarado.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_rep_title">
+                <Original>Trial %1: %2</Original>
+                <English>Trial %1: %2</English>
+                <Spanish>Juicio %1: %2</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_rep_body">
+                <Original>Charge: %1 (severity %2). Plea: %3. Evidence: %4. Witness weight: %5. Sentence: %6.</Original>
+                <English>Charge: %1 (severity %2). Plea: %3. Evidence: %4. Witness weight: %5. Sentence: %6.</English>
+                <Spanish>Cargo: %1 (gravedad %2). Declaración: %3. Pruebas: %4. Peso del testigo: %5. Sentencia: %6.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jus_verdict">
+                <Original>SENTENCE · %1
+%2: %3
+%4</Original>
+                <English>SENTENCE · %1
+%2: %3
+%4</English>
+                <Spanish>SENTENCIA · %1
+%2: %3
+%4</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_medal_merit">
+                <Original>Police Merit Medal</Original>
+                <English>Police Merit Medal</English>
+                <Spanish>Medalla al Mérito Policial</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_medal_service">
+                <Original>Service Medal</Original>
+                <English>Service Medal</English>
+                <Spanish>Medalla de Servicio</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_medal_valor">
+                <Original>Medal of Valor</Original>
+                <English>Medal of Valor</English>
+                <Spanish>Medalla al Valor</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_medal_integrity">
+                <Original>Integrity Award</Original>
+                <English>Integrity Award</English>
+                <Spanish>Distintivo de Integridad</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_medal_investigation">
+                <Original>Investigation Award</Original>
+                <English>Investigation Award</English>
+                <Spanish>Distintivo de Investigación</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_medal_traffic">
+                <Original>Traffic Safety Award</Original>
+                <English>Traffic Safety Award</English>
+                <Spanish>Distintivo de Seguridad Vial</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_medal_lifesaving">
+                <Original>Lifesaving Medal</Original>
+                <English>Lifesaving Medal</English>
+                <Spanish>Medalla de Salvamento</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_medal_conduct">
+                <Original>Good Conduct Medal</Original>
+                <English>Good Conduct Medal</English>
+                <Spanish>Medalla de Buena Conducta</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_medal_commendation">
+                <Original>Commendation Medal</Original>
+                <English>Commendation Medal</English>
+                <Spanish>Medalla de Encomienda</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_medal_bronze">
+                <Original>Bronze Star</Original>
+                <English>Bronze Star</English>
+                <Spanish>Estrella de Bronce</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_v_art15">
+                <Original>Article 15</Original>
+                <English>Article 15</English>
+                <Spanish>Art15</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_v_court">
+                <Original>Court-martial</Original>
+                <English>Court-martial</English>
+                <Spanish>Consejo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_v_trial">
+                <Original>Trial</Original>
+                <English>Trial</English>
+                <Spanish>Juicio</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_school_point">
+                <Original>MP school</Original>
+                <English>MP school</English>
+                <Spanish>Escuela PM</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_school_ask">
+                <Original>MP school: request exam</Original>
+                <English>MP school: request exam</English>
+                <Spanish>Escuela PM: pedir examen</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_school_noone">
+                <Original>There is no instructor within 300 m.</Original>
+                <English>There is no instructor within 300 m.</English>
+                <Spanish>No hay ningún instructor a menos de 300 m.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_school_asked">
+                <Original>MP SCHOOL: %1 requests the exam (%2).</Original>
+                <English>MP SCHOOL: %1 requests the exam (%2).</English>
+                <Spanish>ESCUELA PM: %1 pide el examen (%2).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_school_sent">
+                <Original>Request sent to the instructors.</Original>
+                <English>Request sent to the instructors.</English>
+                <Spanish>Petición enviada a los instructores.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_school_module">
+                <Original>MP school</Original>
+                <English>MP school</English>
+                <Spanish>Escuela PM</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_car_school_module_desc">
+                <Original>Exam point of the MP school. Synchronise an object or leave it alone to create a notice board. With requireSchool = 1, officers without the course can only use level 1 permissions.</Original>
+                <English>Exam point of the MP school. Synchronise an object or leave it alone to create a notice board. With requireSchool = 1, officers without the course can only use level 1 permissions.</English>
+                <Spanish>Punto de examen de la escuela PM. Sincroniza un objeto o déjalo solo para crear un tablón. Con requireSchool = 1, los agentes sin el curso solo pueden usar permisos de nivel 1.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_bm_count">
+                <Original>Number of houses</Original>
+                <English>Number of houses</English>
+                <Spanish>Número de casas</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_bm_items">
+                <Original>Items for sale</Original>
+                <English>Items for sale</English>
+                <Spanish>Artículos a la venta</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_bm_items_tip">
+                <Original>class:price, class:price (empty = blackMarketItems)</Original>
+                <English>class:price, class:price (empty = blackMarketItems)</English>
+                <Spanish>clase:precio, clase:precio (vacío = blackMarketItems)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_bm_module">
+                <Original>Black market in villages</Original>
+                <English>Black market in villages</English>
+                <Spanish>Mercado negro en pueblos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_bm_module_desc">
+                <Original>Opens dealers in random village houses within the radius, each with a stash of stolen gear. They move house every blackMarketMove minutes and tips reach the station phone. The MP can seize the stash.</Original>
+                <English>Opens dealers in random village houses within the radius, each with a stash of stolen gear. They move house every blackMarketMove minutes and tips reach the station phone. The MP can seize the stash.</English>
+                <Spanish>Abre vendedores en casas al azar de los pueblos del radio, cada uno con un alijo de material robado. Cambian de casa cada blackMarketMove minutos y llegan soplos al teléfono de comisaría. La PM puede incautar el alijo.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_bm_name">
+                <Original>Fence</Original>
+                <English>Fence</English>
+                <Spanish>Perista</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_bm_radius">
+                <Original>Radius (m)</Original>
+                <English>Radius (m)</English>
+                <Spanish>Radio (m)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_bm_radius_tip">
+                <Original>0 = whole map</Original>
+                <English>0 = whole map</English>
+                <Spanish>0 = todo el mapa</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_bm_seize">
+                <Original>Seize stolen gear</Original>
+                <English>Seize stolen gear</English>
+                <Spanish>Incautar material robado</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_bm_seized">
+                <Original>Stash seized (%1 items). The fence has fled.</Original>
+                <English>Stash seized (%1 items). The fence has fled.</English>
+                <Spanish>Alijo incautado (%1 objetos). El perista ha huido.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_bm_tip">
+                <Original>Anonymous tip: they are selling stolen gear in a house near %1.</Original>
+                <English>Anonymous tip: they are selling stolen gear in a house near %1.</English>
+                <Spanish>Soplo anónimo: venden material robado en una casa cerca de %1.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_crate">
+                <Original>MP equipment crate</Original>
+                <English>MP equipment crate</English>
+                <Spanish>Caja de equipo PM</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_crate_done">
+                <Original>Crate restocked, with magazines for your weapons.</Original>
+                <English>Crate restocked, with magazines for your weapons.</English>
+                <Spanish>Caja repuesta, con cargadores para tus armas.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_crate_module">
+                <Original>MP equipment crate</Original>
+                <English>MP equipment crate</English>
+                <Spanish>Caja de equipo PM</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_crate_module_desc">
+                <Original>The synced boxes (or a new one) are filled with mpCrateItems. MP officers with the mpCrate permission can restock them every 5 minutes and get magazines for their own weapons.</Original>
+                <English>The synced boxes (or a new one) are filled with mpCrateItems. MP officers with the mpCrate permission can restock them every 5 minutes and get magazines for their own weapons.</English>
+                <Spanish>Las cajas sincronizadas (o una nueva) se llenan con mpCrateItems. Los agentes con permiso mpCrate pueden reponerlas cada 5 minutos y reciben cargadores para sus armas.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_crate_restock">
+                <Original>Restock crate</Original>
+                <English>Restock crate</English>
+                <Spanish>Reponer caja</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_crate_wait">
+                <Original>This crate was restocked recently. Try again in %1 min.</Original>
+                <English>This crate was restocked recently. Try again in %1 min.</English>
+                <Spanish>Esta caja se repuso hace poco. Prueba dentro de %1 min.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_curfew_end">
+                <Original>The curfew is over.</Original>
+                <English>The curfew is over.</English>
+                <Spanish>Ha terminado el toque de queda.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_curfew_lift">
+                <Original>Lift curfew</Original>
+                <English>Lift curfew</English>
+                <Spanish>Levantar toque de queda</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_curfew_sound">
+                <Original>Sound curfew siren</Original>
+                <English>Sound curfew siren</English>
+                <Spanish>Tocar sirena de toque de queda</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_curfew_start">
+                <Original>The curfew siren sounds: nobody belongs on the street without a pass. Patrols, check everyone you meet.</Original>
+                <English>The curfew siren sounds: nobody belongs on the street without a pass. Patrols, check everyone you meet.</English>
+                <Spanish>Suena la sirena del toque de queda: nadie debe estar en la calle sin pase. Patrullas, identificad a todo el que encontréis.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_item_needed">
+                <Original>You need: %1</Original>
+                <English>You need: %1</English>
+                <Spanish>Necesitas: %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pay_cap_treas">
+                <Original>Savings cap surplus: %1</Original>
+                <English>Savings cap surplus: %1</English>
+                <Spanish>Exceso sobre el tope de ahorro: %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pay_dyn_note">
+                <Original>Understaffing bonus on duty pay: +%1%2</Original>
+                <English>Understaffing bonus on duty pay: +%1%2</English>
+                <Spanish>Plus por falta de agentes en el plus de servicio: +%1%2</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pay_l_arrest">
+                <Original>Arrests (24 h)</Original>
+                <English>Arrests (24 h)</English>
+                <Spanish>Arrestos (24 h)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pay_l_bank">
+                <Original>Bank balance</Original>
+                <English>Bank balance</English>
+                <Spanish>Saldo en el banco</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pay_l_base">
+                <Original>Base pay</Original>
+                <English>Base pay</English>
+                <Spanish>Sueldo base</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pay_l_cap">
+                <Original>To treasury (savings cap)</Original>
+                <English>To treasury (savings cap)</English>
+                <Spanish>A la tesorería (tope de ahorro)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pay_l_dyn">
+                <Original>Understaffing bonus</Original>
+                <English>Understaffing bonus</English>
+                <Spanish>Plus por falta de agentes</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pay_l_global">
+                <Original>Global rank</Original>
+                <English>Global rank</English>
+                <Spanish>Rango global</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pay_l_qrf">
+                <Original>QRF standby</Original>
+                <English>QRF standby</English>
+                <Spanish>Guardia de la QRF</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pay_l_rank">
+                <Original>Rank (on duty)</Original>
+                <English>Rank (on duty)</English>
+                <Spanish>Rango (de servicio)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pay_l_reports">
+                <Original>Report pay (already paid in)</Original>
+                <English>Report pay (already paid in)</English>
+                <Spanish>Pagos por informe (ya ingresados)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pay_l_total">
+                <Original>Paid in</Original>
+                <English>Paid in</English>
+                <Spanish>Ingresado</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pay_none">
+                <Original>You have not received any pay yet.</Original>
+                <English>You have not received any pay yet.</English>
+                <Spanish>Todavía no has cobrado ninguna nómina.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pay_report_done">
+                <Original>Report filed: +%1 %2 for alert %3.</Original>
+                <English>Report filed: +%1 %2 for alert %3.</English>
+                <Spanish>Informe presentado: +%1 %2 por el aviso %3.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pay_report_hist">
+                <Original>Report pay (%1 · %2)</Original>
+                <English>Report pay (%1 · %2)</English>
+                <Spanish>Pago por informe (%1 · %2)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pay_slip">
+                <Original>Pay slip</Original>
+                <English>Pay slip</English>
+                <Spanish>Recibo de nómina</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_pay_slip_tip">
+                <Original>Breakdown of your last pay</Original>
+                <English>Breakdown of your last pay</English>
+                <Spanish>Desglose de tu última nómina</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_phone">
+                <Original>Station phone</Original>
+                <English>Station phone</English>
+                <Spanish>Teléfono de comisaría</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_phone_anon">
+                <Original>Anonymous</Original>
+                <English>Anonymous</English>
+                <Spanish>Anónimo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_phone_answer">
+                <Original>Answer the phone</Original>
+                <English>Answer the phone</English>
+                <Spanish>Contestar al teléfono</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_phone_f_msg">
+                <Original>Message</Original>
+                <English>Message</English>
+                <Spanish>Mensaje</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_phone_leave">
+                <Original>Leave a message for the MP</Original>
+                <English>Leave a message for the MP</English>
+                <Spanish>Dejar un mensaje a la PM</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_phone_left">
+                <Original>Message left at the MP desk.</Original>
+                <English>Message left at the MP desk.</English>
+                <Spanish>Mensaje dejado en el mostrador de la PM.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_phone_module">
+                <Original>Station phone</Original>
+                <English>Station phone</English>
+                <Spanish>Teléfono de comisaría</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_phone_module_desc">
+                <Original>The synced object (or a new phone) rings with every 112 call and every tip until an MP officer answers, which opens the dispatch centre. Anyone can leave a message, which enters dispatch as an alert.</Original>
+                <English>The synced object (or a new phone) rings with every 112 call and every tip until an MP officer answers, which opens the dispatch centre. Anyone can leave a message, which enters dispatch as an alert.</English>
+                <Spanish>El objeto sincronizado (o un teléfono nuevo) suena con cada llamada al 112 y cada soplo hasta que un agente contesta, lo que abre la central. Cualquiera puede dejar un mensaje, que entra en la central como aviso.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_phone_title">
+                <Original>Phone · %1</Original>
+                <English>Phone · %1</English>
+                <Spanish>Teléfono · %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_siren">
+                <Original>Base siren</Original>
+                <English>Base siren</English>
+                <Spanish>Sirena de la base</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_siren_alarm">
+                <Original>Base alarm (on/off)</Original>
+                <English>Base alarm (on/off)</English>
+                <Spanish>Alarma de base (activar/apagar)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_siren_alarm_tip">
+                <Original>Sounds or silences the base sirens within 2 km</Original>
+                <English>Sounds or silences the base sirens within 2 km</English>
+                <Spanish>Hace sonar o apaga las sirenas de la base a menos de 2 km</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_siren_module">
+                <Original>Base siren</Original>
+                <English>Base siren</English>
+                <Spanish>Sirena de la base</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_siren_module_desc">
+                <Original>The synced object (or a new loudspeaker) is a base siren: it sounds with the base alarm and with the curfew (curfewStart/curfewEnd), together with the nearest towns.</Original>
+                <English>The synced object (or a new loudspeaker) is a base siren: it sounds with the base alarm and with the curfew (curfewStart/curfewEnd), together with the nearest towns.</English>
+                <Spanish>El objeto sincronizado (o un altavoz nuevo) es una sirena de la base: suena con la alarma de base y con el toque de queda (curfewStart/curfewEnd), junto con las ciudades más cercanas.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_siren_none">
+                <Original>There are no base sirens in this mission.</Original>
+                <English>There are no base sirens in this mission.</English>
+                <Spanish>No hay sirenas de base en esta misión.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_siren_off">
+                <Original>Base alarm silenced by %1 (%2).</Original>
+                <English>Base alarm silenced by %1 (%2).</English>
+                <Spanish>Alarma de base apagada por %1 (%2).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_siren_on">
+                <Original>BASE ALARM sounded by %1 (%2).</Original>
+                <English>BASE ALARM sounded by %1 (%2).</English>
+                <Spanish>ALARMA DE BASE activada por %1 (%2).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_flare">
+                <Original>Light road flares</Original>
+                <English>Light road flares</English>
+                <Spanish>Encender bengalas de carretera</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_flare_done">
+                <Original>Flares placed on the road.</Original>
+                <English>Flares placed on the road.</English>
+                <Spanish>Bengalas colocadas en la carretera.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_tape">
+                <Original>Measure distance</Original>
+                <English>Measure distance</English>
+                <Spanish>Medir distancia</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_tape_far">
+                <Original>Too far to measure with the tape.</Original>
+                <English>Too far to measure with the tape.</English>
+                <Spanish>Demasiado lejos para medir con la cinta.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_tape_res">
+                <Original>Distance: %1 m</Original>
+                <English>Distance: %1 m</English>
+                <Spanish>Distancia: %1 m</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_watch">
+                <Original>Stopwatch (start/stop)</Original>
+                <English>Stopwatch (start/stop)</English>
+                <Spanish>Cronómetro (empezar/parar)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_watch_go">
+                <Original>Stopwatch running.</Original>
+                <English>Stopwatch running.</English>
+                <Spanish>Cronómetro en marcha.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_watch_stop">
+                <Original>Stopwatch: %1 s</Original>
+                <English>Stopwatch: %1 s</English>
+                <Spanish>Cronómetro: %1 s</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_chain_locked">
+                <Original>The steering lock is not yours. You need bolt cutters.</Original>
+                <English>The steering lock is not yours. You need bolt cutters.</English>
+                <Spanish>La cadena no es tuya. Necesitas un cortapernos.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_chain_off">
+                <Original>Steering lock removed.</Original>
+                <English>Steering lock removed.</English>
+                <Spanish>Cadena antirrobo quitada.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_chain_on">
+                <Original>Steering lock fitted: the vehicle is locked.</Original>
+                <English>Steering lock fitted: the vehicle is locked.</English>
+                <Spanish>Cadena antirrobo puesta: el vehículo queda bloqueado.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_chain_put">
+                <Original>Fit steering lock</Original>
+                <English>Fit steering lock</English>
+                <Spanish>Poner cadena antirrobo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_chain_take">
+                <Original>Remove steering lock</Original>
+                <English>Remove steering lock</English>
+                <Spanish>Quitar cadena antirrobo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_cellkeys">
+                <Original>Cell keys</Original>
+                <English>Cell keys</English>
+                <Spanish>Llaves de celda</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_cellkeys_d">
+                <Original>Keys to the holding cells. Needed to release a prisoner when items are required.</Original>
+                <English>Keys to the holding cells. Needed to release a prisoner when items are required.</English>
+                <Spanish>Llaves de los calabozos. Necesarias para soltar a un detenido si se exigen objetos.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_deskstamp">
+                <Original>Desk stamp</Original>
+                <English>Desk stamp</English>
+                <Spanish>Sello del mostrador</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_deskstamp_d">
+                <Original>Rubber stamp of the MP desk.</Original>
+                <English>Rubber stamp of the MP desk.</English>
+                <Spanish>Sello de caucho del mostrador de la PM.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_handcuffs">
+                <Original>Handcuffs</Original>
+                <English>Handcuffs</English>
+                <Spanish>Esposas</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_handcuffs_d">
+                <Original>Steel handcuffs. Needed to restrain someone when items are required.</Original>
+                <English>Steel handcuffs. Needed to restrain someone when items are required.</English>
+                <Spanish>Esposas de acero. Necesarias para esposar si se exigen objetos.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_legirons">
+                <Original>Leg irons</Original>
+                <English>Leg irons</English>
+                <Spanish>Grilletes de pies</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_legirons_d">
+                <Original>Ankle shackles for moving prisoners.</Original>
+                <English>Ankle shackles for moving prisoners.</English>
+                <Spanish>Grilletes de tobillo para trasladar presos.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_fpkit">
+                <Original>Fingerprint kit</Original>
+                <English>Fingerprint kit</English>
+                <Spanish>Kit de huellas</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_fpkit_d">
+                <Original>Powder, brush, tape and cards. Needed to inspect a scene when items are required.</Original>
+                <English>Powder, brush, tape and cards. Needed to inspect a scene when items are required.</English>
+                <Spanish>Polvo, brocha, cinta y fichas. Necesario para inspeccionar una escena si se exigen objetos.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_drugkit">
+                <Original>Drug test kit</Original>
+                <English>Drug test kit</English>
+                <Spanish>Kit de detección de drogas</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_drugkit_d">
+                <Original>Reagents and swabs for a field drug test.</Original>
+                <English>Reagents and swabs for a field drug test.</English>
+                <Spanish>Reactivos y torundas para una prueba de drogas en el sitio.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_breathalyzer">
+                <Original>Breathalyser</Original>
+                <English>Breathalyser</English>
+                <Spanish>Alcoholímetro</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_breathalyzer_d">
+                <Original>Handheld breath alcohol tester.</Original>
+                <English>Handheld breath alcohol tester.</English>
+                <Spanish>Medidor portátil de alcohol en aliento.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_scentbag">
+                <Original>K-9 scent bag</Original>
+                <English>K-9 scent bag</English>
+                <Spanish>Bolsa de olor K-9</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_scentbag_d">
+                <Original>Keeps a scent article for the dog. Needed to sniff when items are required.</Original>
+                <English>Keeps a scent article for the dog. Needed to sniff when items are required.</English>
+                <Spanish>Guarda una prenda con olor para el perro. Necesaria para rastrear si se exigen objetos.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_rightscard">
+                <Original>Rights card</Original>
+                <English>Rights card</English>
+                <Spanish>Tarjeta de derechos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_rightscard_d">
+                <Original>Pocket card with the rights to read to a detainee.</Original>
+                <English>Pocket card with the rights to read to a detainee.</English>
+                <Spanish>Tarjeta de bolsillo con los derechos que se leen al detenido.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_inspmirror">
+                <Original>Inspection mirror</Original>
+                <English>Inspection mirror</English>
+                <Spanish>Espejo de inspección</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_inspmirror_d">
+                <Original>Mirror on a pole to look under vehicles. Needed to search a vehicle when items are required.</Original>
+                <English>Mirror on a pole to look under vehicles. Needed to search a vehicle when items are required.</English>
+                <Spanish>Espejo con pértiga para mirar bajo los vehículos. Necesario para registrar un vehículo si se exigen objetos.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_boltcutter">
+                <Original>Bolt cutters</Original>
+                <English>Bolt cutters</English>
+                <Spanish>Cortapernos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_boltcutter_d">
+                <Original>Cuts padlocks and chains: forcing a lock takes half the time.</Original>
+                <English>Cuts padlocks and chains: forcing a lock takes half the time.</English>
+                <Spanish>Corta candados y cadenas: forzar una cerradura lleva la mitad de tiempo.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_stopwatch">
+                <Original>Stopwatch</Original>
+                <English>Stopwatch</English>
+                <Spanish>Cronómetro</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_stopwatch_d">
+                <Original>Mechanical stopwatch.</Original>
+                <English>Mechanical stopwatch.</English>
+                <Spanish>Cronómetro mecánico.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_measuretape">
+                <Original>Measuring tape</Original>
+                <English>Measuring tape</English>
+                <Spanish>Cinta métrica</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_measuretape_d">
+                <Original>50 m tape for accident and crime scenes.</Original>
+                <English>50 m tape for accident and crime scenes.</English>
+                <Spanish>Cinta de 50 m para accidentes y escenas.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_citationbook">
+                <Original>Citation book</Original>
+                <English>Citation book</English>
+                <Spanish>Talonario de multas</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_citationbook_d">
+                <Original>Ticket book. Needed to fine when items are required.</Original>
+                <English>Ticket book. Needed to fine when items are required.</English>
+                <Spanish>Talonario de boletines. Necesario para multar si se exigen objetos.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_whistle">
+                <Original>Whistle</Original>
+                <English>Whistle</English>
+                <Spanish>Silbato</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_whistle_d">
+                <Original>Brass police whistle.</Original>
+                <English>Brass police whistle.</English>
+                <Spanish>Silbato de latón.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_blotter">
+                <Original>Desk blotter</Original>
+                <English>Desk blotter</English>
+                <Spanish>Libro de novedades</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_blotter_d">
+                <Original>The desk sergeant's log of the shift.</Original>
+                <English>The desk sergeant's log of the shift.</English>
+                <Spanish>Registro del turno del sargento de guardia.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_castkit">
+                <Original>Casting kit</Original>
+                <English>Casting kit</English>
+                <Spanish>Kit de moldes</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_castkit_d">
+                <Original>Plaster to cast footprints and tyre tracks.</Original>
+                <English>Plaster to cast footprints and tyre tracks.</English>
+                <Spanish>Escayola para sacar moldes de huellas y rodadas.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_flares">
+                <Original>Road flares</Original>
+                <English>Road flares</English>
+                <Spanish>Bengalas de carretera</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_flares_d">
+                <Original>Red flares to mark an accident or a checkpoint on the road.</Original>
+                <English>Red flares to mark an accident or a checkpoint on the road.</English>
+                <Spanish>Bengalas rojas para señalizar un accidente o un control en la carretera.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_prisonertags">
+                <Original>Prisoner tags</Original>
+                <English>Prisoner tags</English>
+                <Spanish>Etiquetas de detenido</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_prisonertags_d">
+                <Original>Pad of tags to label detainees and their property.</Original>
+                <English>Pad of tags to label detainees and their property.</English>
+                <Spanish>Bloc de etiquetas para identificar a los detenidos y sus pertenencias.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_steeringlock">
+                <Original>Steering lock chain</Original>
+                <English>Steering lock chain</English>
+                <Spanish>Cadena antirrobo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_steeringlock_d">
+                <Original>Chain and padlock that lock a vehicle.</Original>
+                <English>Chain and padlock that lock a vehicle.</English>
+                <Spanish>Cadena y candado que bloquean un vehículo.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_brassard">
+                <Original>MP brassard</Original>
+                <English>MP brassard</English>
+                <Spanish>Brazalete PM</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_brassard_d">
+                <Original>Black MP armband worn on duty.</Original>
+                <English>Black MP armband worn on duty.</English>
+                <Spanish>Brazalete negro de la PM que se lleva de servicio.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_seizedcash">
+                <Original>Seized cash</Original>
+                <English>Seized cash</English>
+                <Spanish>Dinero incautado</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_seizedcash_d">
+                <Original>Cash held as evidence.</Original>
+                <English>Cash held as evidence.</English>
+                <Spanish>Dinero retenido como prueba.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_penlight">
+                <Original>Penlight</Original>
+                <English>Penlight</English>
+                <Spanish>Linterna de bolsillo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_penlight_d">
+                <Original>Small light for checking pupils and documents.</Original>
+                <English>Small light for checking pupils and documents.</English>
+                <Spanish>Luz pequeña para revisar pupilas y documentos.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_gloves">
+                <Original>Nitrile gloves</Original>
+                <English>Nitrile gloves</English>
+                <Spanish>Guantes de nitrilo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_gloves_d">
+                <Original>Disposable gloves for handling evidence.</Original>
+                <English>Disposable gloves for handling evidence.</English>
+                <Spanish>Guantes desechables para manipular pruebas.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_scenemarkers">
+                <Original>Scene markers</Original>
+                <English>Scene markers</English>
+                <Spanish>Marcadores de escena</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_scenemarkers_d">
+                <Original>Numbered markers for evidence at a scene.</Original>
+                <English>Numbered markers for evidence at a scene.</English>
+                <Spanish>Marcadores numerados para las pruebas de una escena.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_notebook">
+                <Original>Pocket notebook</Original>
+                <English>Pocket notebook</English>
+                <Spanish>Libreta</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_notebook_d">
+                <Original>Officer's notebook.</Original>
+                <English>Officer's notebook.</English>
+                <Spanish>Libreta del agente.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_scenetape">
+                <Original>Scene tape</Original>
+                <English>Scene tape</English>
+                <Spanish>Cinta de precinto</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_scenetape_d">
+                <Original>Roll of tape to cordon off a scene.</Original>
+                <English>Roll of tape to cordon off a scene.</English>
+                <Spanish>Rollo de cinta para acordonar una escena.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_keyring">
+                <Original>Vehicle key ring</Original>
+                <English>Vehicle key ring</English>
+                <Spanish>Llavero de vehículos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_keyring_d">
+                <Original>Keys of the motor pool vehicles.</Original>
+                <English>Keys of the motor pool vehicles.</English>
+                <Spanish>Llaves de los vehículos del parque móvil.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_offlimits">
+                <Original>Off-limits list</Original>
+                <English>Off-limits list</English>
+                <Spanish>Lista de locales prohibidos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_offlimits_d">
+                <Original>List of places off limits to personnel.</Original>
+                <English>List of places off limits to personnel.</English>
+                <Spanish>Lista de locales vetados al personal.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_t_awol">
+                <Original>AWOL soldier</Original>
+                <English>AWOL soldier</English>
+                <Spanish>Desertor sin pase</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_d_awol">
+                <Original>A soldier without a pass is waiting by the road near %1. Pick him up.</Original>
+                <English>A soldier without a pass is waiting by the road near %1. Pick him up.</English>
+                <Spanish>Un soldado sin pase espera junto a la carretera cerca de %1. Recogedlo.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_t_speeding">
+                <Original>Speeding driver</Original>
+                <English>Speeding driver</English>
+                <Spanish>Exceso de velocidad</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_d_speeding">
+                <Original>A car is racing through the streets near %1. The driver may be drunk.</Original>
+                <English>A car is racing through the streets near %1. The driver may be drunk.</English>
+                <Spanish>Un coche va a toda velocidad por las calles cerca de %1. El conductor puede ir bebido.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_t_blackmarket">
+                <Original>Black market stall</Original>
+                <English>Black market stall</English>
+                <Spanish>Puesto de mercado negro</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_d_blackmarket">
+                <Original>A market stall near %1 is selling stolen military gear.</Original>
+                <English>A market stall near %1 is selling stolen military gear.</English>
+                <Spanish>Un puesto del mercado cerca de %1 vende material militar robado.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_t_apo">
+                <Original>Suspicious parcel at the post office</Original>
+                <English>Suspicious parcel at the post office</English>
+                <Spanish>Paquete sospechoso en correos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_d_apo">
+                <Original>Someone near %1 is sending suspicious parcels. Inspect the package.</Original>
+                <English>Someone near %1 is sending suspicious parcels. Inspect the package.</English>
+                <Spanish>Alguien cerca de %1 envía paquetes sospechosos. Inspeccionad el paquete.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_t_boq">
+                <Original>Prowler at the fence</Original>
+                <English>Prowler at the fence</English>
+                <Spanish>Merodeador en la alambrada</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_d_boq">
+                <Original>A person with a package is prowling the base fence near %1.</Original>
+                <English>A person with a package is prowling the base fence near %1.</English>
+                <Spanish>Una persona con un paquete merodea la alambrada de la base cerca de %1.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_t_sapper">
+                <Original>Sapper attack</Original>
+                <English>Sapper attack</English>
+                <Spanish>Ataque de zapadores</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_d_sapper">
+                <Original>Sappers are approaching the base from %1. All units respond.</Original>
+                <English>Sappers are approaching the base from %1. All units respond.</English>
+                <Spanish>Zapadores se acercan a la base desde %1. Todas las unidades, responded.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_t_convoy">
+                <Original>Convoy escort</Original>
+                <English>Convoy escort</English>
+                <Spanish>Escolta de convoy</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_d_convoy">
+                <Original>A convoy is waiting at %1 for an escort. Reach the lead vehicle to set off.</Original>
+                <English>A convoy is waiting at %1 for an escort. Reach the lead vehicle to set off.</English>
+                <Spanish>Un convoy espera escolta en %1. Llegad al vehículo de cabeza para salir.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_t_ambush">
+                <Original>Suspected ambush</Original>
+                <English>Suspected ambush</English>
+                <Spanish>Sospecha de emboscada</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_d_ambush">
+                <Original>Reports of armed men waiting by the road near %1.</Original>
+                <English>Reports of armed men waiting by the road near %1.</English>
+                <Spanish>Avisan de hombres armados esperando junto a la carretera cerca de %1.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_t_transfer">
+                <Original>Prisoner transfer</Original>
+                <English>Prisoner transfer</English>
+                <Spanish>Traslado de preso</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_d_transfer">
+                <Original>A handcuffed prisoner at %1 must be taken to the prison.</Original>
+                <English>A handcuffed prisoner at %1 must be taken to the prison.</English>
+                <Spanish>Un preso esposado en %1 debe llevarse a la prisión.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_t_accident">
+                <Original>Traffic accident</Original>
+                <English>Traffic accident</English>
+                <Spanish>Accidente de tráfico</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_d_accident">
+                <Original>Collision near %1: treat the injured, take two statements and make a sketch.</Original>
+                <English>Collision near %1: treat the injured, take two statements and make a sketch.</English>
+                <Spanish>Colisión cerca de %1: atended al herido, tomad dos declaraciones y haced el croquis.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_t_raid">
+                <Original>House raid</Original>
+                <English>House raid</English>
+                <Spanish>Redada en una casa</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_d_raid">
+                <Original>Armed suspects inside a house at %1. Raid it.</Original>
+                <English>Armed suspects inside a house at %1. Raid it.</English>
+                <Spanish>Sospechosos armados dentro de una casa en %1. Entrad.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_t_barricade">
+                <Original>Barricaded suspect</Original>
+                <English>Barricaded suspect</English>
+                <Spanish>Sospechoso atrincherado</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_d_barricade">
+                <Original>An armed suspect has barricaded himself in a house at %1. Negotiate or go in.</Original>
+                <English>An armed suspect has barricaded himself in a house at %1. Negotiate or go in.</English>
+                <Spanish>Un sospechoso armado se ha atrincherado en una casa en %1. Negociad o entrad.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_t_pow">
+                <Original>Prisoner guard</Original>
+                <English>Prisoner guard</English>
+                <Spanish>Custodia de prisioneros</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_d_pow">
+                <Original>Guard the prisoners at %1.</Original>
+                <English>Guard the prisoners at %1.</English>
+                <Spanish>Custodiad a los prisioneros en %1.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_t_refugees">
+                <Original>Refugee camp</Original>
+                <English>Refugee camp</English>
+                <Spanish>Campo de refugiados</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_d_refugees">
+                <Original>Keep order among the refugees at %1.</Original>
+                <English>Keep order among the refugees at %1.</English>
+                <Spanish>Mantened el orden entre los refugiados en %1.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_t_asp">
+                <Original>Ammunition depot guard</Original>
+                <English>Ammunition depot guard</English>
+                <Spanish>Guardia del polvorín</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_d_asp">
+                <Original>Guard the ammunition depot at %1.</Original>
+                <English>Guard the ammunition depot at %1.</English>
+                <Spanish>Haced guardia en el polvorín en %1.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_t_port">
+                <Original>Port guard</Original>
+                <English>Port guard</English>
+                <Spanish>Guardia del puerto</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_d_port">
+                <Original>Guard the port at %1.</Original>
+                <English>Guard the port at %1.</English>
+                <Spanish>Haced guardia en el puerto en %1.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_t_perimeter">
+                <Original>Perimeter patrol</Original>
+                <English>Perimeter patrol</English>
+                <Spanish>Ronda del perímetro</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_d_perimeter">
+                <Original>Patrol the base perimeter at %1.</Original>
+                <English>Patrol the base perimeter at %1.</English>
+                <Spanish>Haced la ronda del perímetro en %1.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_t_hospguard">
+                <Original>Hospital guard</Original>
+                <English>Hospital guard</English>
+                <Spanish>Guardia del hospital</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_d_hospguard">
+                <Original>Guard the hospital entrance at %1.</Original>
+                <English>Guard the hospital entrance at %1.</English>
+                <Spanish>Haced guardia en la entrada del hospital en %1.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_t_amnesty">
+                <Original>Weapon amnesty</Original>
+                <English>Weapon amnesty</English>
+                <Spanish>Entrega de armas</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_d_amnesty">
+                <Original>A civilian at %1 wants to hand in a weapon.</Original>
+                <English>A civilian at %1 wants to hand in a weapon.</English>
+                <Spanish>Un civil en %1 quiere entregar un arma.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_t_trophy">
+                <Original>Illegal war trophy</Original>
+                <English>Illegal war trophy</English>
+                <Spanish>Trofeo de guerra ilegal</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_d_trophy">
+                <Original>A soldier near %1 is carrying an unregistered captured rifle. Take it from him.</Original>
+                <English>A soldier near %1 is carrying an unregistered captured rifle. Take it from him.</English>
+                <Spanish>Un soldado cerca de %1 lleva un fusil capturado sin registrar. Quitádselo.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_t_follow">
+                <Original>Surveillance</Original>
+                <English>Surveillance</English>
+                <Spanish>Seguimiento</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_d_follow">
+                <Original>Follow the suspect leaving %1 without losing him or being seen.</Original>
+                <English>Follow the suspect leaving %1 without losing him or being seen.</English>
+                <Spanish>Seguid al sospechoso que sale de %1 sin perderlo ni dejaros ver.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_t_wake">
+                <Original>Wake</Original>
+                <English>Wake</English>
+                <Spanish>Velatorio</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_d_wake">
+                <Original>Keep watch over the wake at %1.</Original>
+                <English>Keep watch over the wake at %1.</English>
+                <Spanish>Vigilad el velatorio en %1.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_t_mortar">
+                <Original>Mortar attack</Original>
+                <English>Mortar attack</English>
+                <Spanish>Ataque de morteros</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_d_mortar">
+                <Original>Mortar rounds falling around the base (%1). Take cover.</Original>
+                <English>Mortar rounds falling around the base (%1). Take cover.</English>
+                <Spanish>Caen morteros alrededor de la base (%1). A cubierto.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_t_press">
+                <Original>Journalist</Original>
+                <English>Journalist</English>
+                <Spanish>Periodista</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_d_press">
+                <Original>A journalist is following a patrol near %1. Behave.</Original>
+                <English>A journalist is following a patrol near %1. Behave.</English>
+                <Spanish>Un periodista sigue a una patrulla cerca de %1. Comportaos.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_t_down">
+                <Original>Man down</Original>
+                <English>Man down</English>
+                <Spanish>Hombre caído</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_d_down">
+                <Original>A man is lying injured near %1.</Original>
+                <English>A man is lying injured near %1.</English>
+                <Spanish>Un hombre yace herido cerca de %1.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_t_tire">
+                <Original>Flat tyre</Original>
+                <English>Flat tyre</English>
+                <Spanish>Pinchazo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_d_tire">
+                <Original>A patrol vehicle has a flat tyre (%1).</Original>
+                <English>A patrol vehicle has a flat tyre (%1).</English>
+                <Spanish>Un vehículo de patrulla ha pinchado (%1).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_t_server">
+                <Original>Blackout</Original>
+                <English>Blackout</English>
+                <Spanish>Apagón</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_d_server">
+                <Original>Power cut around the base (%1) for five minutes.</Original>
+                <English>Power cut around the base (%1) for five minutes.</English>
+                <Spanish>Corte de luz alrededor de la base (%1) durante cinco minutos.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_menu">
+                <Original>AI alerts and unrest</Original>
+                <English>AI alerts and unrest</English>
+                <Spanish>Avisos IA y tensión social</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_key_tip">
+                <Original>Active AI alerts and social unrest</Original>
+                <English>Active AI alerts and social unrest</English>
+                <Spanish>Avisos IA activos y tensión social</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_list_info">
+                <Original>%1 active AI alerts · social unrest %2/100</Original>
+                <English>%1 active AI alerts · social unrest %2/100</English>
+                <Spanish>%1 avisos IA activos · tensión social %2/100</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_launch">
+                <Original>Launch an alert</Original>
+                <English>Launch an alert</English>
+                <Spanish>Lanzar un aviso</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_launch_ok">
+                <Original>Alert launched.</Original>
+                <English>Alert launched.</English>
+                <Spanish>Aviso lanzado.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_launch_fail">
+                <Original>That alert cannot be set up here.</Original>
+                <English>That alert cannot be set up here.</English>
+                <Spanish>Ese aviso no se puede montar aquí.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_cancel">
+                <Original>Cancel alert</Original>
+                <English>Cancel alert</English>
+                <Spanish>Cancelar aviso</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_f_type">
+                <Original>Type</Original>
+                <English>Type</English>
+                <Spanish>Tipo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_f_where">
+                <Original>Where</Original>
+                <English>Where</English>
+                <Spanish>Dónde</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_w_rand">
+                <Original>Random town</Original>
+                <English>Random town</English>
+                <Spanish>Pueblo al azar</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_w_me">
+                <Original>Where I am</Original>
+                <English>Where I am</English>
+                <Spanish>Donde estoy</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_w_aim">
+                <Original>Where I aim</Original>
+                <English>Where I aim</English>
+                <Spanish>Donde apunto</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_unrest_now">
+                <Original>Social unrest: %1/100 (%2)</Original>
+                <English>Social unrest: %1/100 (%2)</English>
+                <Spanish>Tensión social: %1/100 (%2)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_civ_killed">
+                <Original>civilian killed</Original>
+                <English>civilian killed</English>
+                <Spanish>civil muerto</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_merit">
+                <Original>Alert %1 resolved: %2</Original>
+                <English>Alert %1 resolved: %2</English>
+                <Spanish>Aviso %1 resuelto: %2</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_done">
+                <Original>Alert %1 resolved: %2. %3</Original>
+                <English>Alert %1 resolved: %2. %3</English>
+                <Spanish>Aviso %1 resuelto: %2. %3</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_failed">
+                <Original>Alert %1 failed: %2. Unrest rises.</Original>
+                <English>Alert %1 failed: %2. Unrest rises.</English>
+                <Spanish>Aviso %1 fallido: %2. Sube la tensión.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_fault">
+                <Original>Vehicle %1 was at fault.</Original>
+                <English>Vehicle %1 was at fault.</English>
+                <Spanish>La culpa fue del vehículo %1.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_press_good">
+                <Original>Press: the paper praises the Military Police patrol.</Original>
+                <English>Press: the paper praises the Military Police patrol.</English>
+                <Spanish>Prensa: el periódico elogia a la patrulla de la Policía Militar.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_press_bad">
+                <Original>Press: the paper criticises the Military Police.</Original>
+                <English>Press: the paper criticises the Military Police.</English>
+                <Spanish>Prensa: el periódico critica a la Policía Militar.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_a_seize">
+                <Original>Seize stolen gear</Original>
+                <English>Seize stolen gear</English>
+                <Spanish>Incautar material robado</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_a_inspect">
+                <Original>Inspect package</Original>
+                <English>Inspect package</English>
+                <Spanish>Inspeccionar paquete</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_a_treat">
+                <Original>Help the injured</Original>
+                <English>Help the injured</English>
+                <Spanish>Atender al herido</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_a_statement">
+                <Original>Take statement</Original>
+                <English>Take statement</English>
+                <Spanish>Tomar declaración</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_a_sketch">
+                <Original>Make accident sketch</Original>
+                <English>Make accident sketch</English>
+                <Spanish>Hacer el croquis del accidente</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_a_negotiate">
+                <Original>Negotiate</Original>
+                <English>Negotiate</English>
+                <Spanish>Negociar</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_a_collect">
+                <Original>Collect weapon</Original>
+                <English>Collect weapon</English>
+                <Spanish>Recoger el arma</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_pkg_clean">
+                <Original>The package holds nothing illegal.</Original>
+                <English>The package holds nothing illegal.</English>
+                <Spanish>El paquete no contiene nada ilegal.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_pkg_contra">
+                <Original>Contraband inside! Detain the sender.</Original>
+                <English>Contraband inside! Detain the sender.</English>
+                <Spanish>¡Hay contrabando! Detened al remitente.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_pkg_bomb">
+                <Original>Explosive device inside! Detain the suspect.</Original>
+                <English>Explosive device inside! Detain the suspect.</English>
+                <Spanish>¡Hay un artefacto explosivo! Detened al sospechoso.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_treated">
+                <Original>You have helped the injured.</Original>
+                <English>You have helped the injured.</English>
+                <Spanish>Has atendido al herido.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_stmt_again">
+                <Original>You already have this statement.</Original>
+                <English>You already have this statement.</English>
+                <Spanish>Ya tienes esta declaración.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_stmt">
+                <Original>%1: "Vehicle %2 caused it."</Original>
+                <English>%1: "Vehicle %2 caused it."</English>
+                <Spanish>%1: «Lo provocó el vehículo %2».</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_sketch">
+                <Original>Sketch done: %1 m between the vehicles.</Original>
+                <English>Sketch done: %1 m between the vehicles.</English>
+                <Spanish>Croquis hecho: %1 m entre los vehículos.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_surrender">
+                <Original>The suspect gives up and drops his weapon.</Original>
+                <English>The suspect gives up and drops his weapon.</English>
+                <Spanish>El sospechoso se rinde y suelta el arma.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_refuse">
+                <Original>He refuses to come out (attempt %1).</Original>
+                <English>He refuses to come out (attempt %1).</English>
+                <Spanish>Se niega a salir (intento %1).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_call_collected">
+                <Original>Weapon collected.</Original>
+                <English>Weapon collected.</English>
+                <Spanish>Arma recogida.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_siren_auto">
+                <Original>the sentry</Original>
+                <English>the sentry</English>
+                <Spanish>el centinela</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_st_title">
+                <Original>Self-test</Original>
+                <English>Self-test</English>
+                <Spanish>Autotest</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_st_none">
+                <Original>The self-test has not run yet.</Original>
+                <English>The self-test has not run yet.</English>
+                <Spanish>El autotest aún no se ha ejecutado.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_st_summary">
+                <Original>ADVSEC self-test: %1/%2 checks passed (Military Police menu &gt; Self-test).</Original>
+                <English>ADVSEC self-test: %1/%2 checks passed (Military Police menu &gt; Self-test).</English>
+                <Spanish>Autotest ADVSEC: %1/%2 comprobaciones correctas (menú Policía Militar &gt; Autotest).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_st_cba">
+                <Original>CBA loaded</Original>
+                <English>CBA loaded</English>
+                <Spanish>CBA cargado</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_st_ace">
+                <Original>ACE loaded</Original>
+                <English>ACE loaded</English>
+                <Spanish>ACE cargado</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_st_noace">
+                <Original>Without ACE (own menus)</Original>
+                <English>Without ACE (own menus)</English>
+                <Spanish>Sin ACE (menús propios)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_st_fns">
+                <Original>All functions compiled %1</Original>
+                <English>All functions compiled %1</English>
+                <Spanish>Todas las funciones compiladas %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_st_classes">
+                <Original>Classes in the settings exist %1</Original>
+                <English>Classes in the settings exist %1</English>
+                <Spanish>Las clases de los ajustes existen %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_st_towns">
+                <Original>Towns for AI alerts: %1</Original>
+                <English>Towns for AI alerts: %1</English>
+                <Spanish>Pueblos para avisos IA: %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_st_base">
+                <Original>MP base at %1 (advsec_base marker or siren)</Original>
+                <English>MP base at %1 (advsec_base marker or siren)</English>
+                <Spanish>Base de la PM en %1 (marcador advsec_base o sirena)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_st_jails">
+                <Original>Prison cells: %1</Original>
+                <English>Prison cells: %1</English>
+                <Spanish>Calabozos: %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_st_phone">
+                <Original>Station phone placed</Original>
+                <English>Station phone placed</English>
+                <Spanish>Teléfono de comisaría colocado</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_st_calls">
+                <Original>Test alerts set up %1</Original>
+                <English>Test alerts set up %1</English>
+                <Spanish>Avisos de prueba montados %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hk_halt">
+                <Original>Halt!</Original>
+                <English>Halt!</English>
+                <Spanish>¡Alto!</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hk_halt_tip">
+                <Original>Order what you aim at to stop</Original>
+                <English>Order what you aim at to stop</English>
+                <Spanish>Da el alto a lo que apuntas</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hk_halt_none">
+                <Original>Nobody to stop within 40 m.</Original>
+                <English>Nobody to stop within 40 m.</English>
+                <Spanish>No hay nadie a quien dar el alto a menos de 40 m.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hk_halt_you">
+                <Original>HALT! Military Police!</Original>
+                <English>HALT! Military Police!</English>
+                <Spanish>¡ALTO! ¡Policía Militar!</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hk_halt_say">
+                <Original>%1: Halt! Military Police!</Original>
+                <English>%1: Halt! Military Police!</English>
+                <Spanish>%1: ¡Alto! ¡Policía Militar!</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hk_siren">
+                <Original>Vehicle siren (on/off)</Original>
+                <English>Vehicle siren (on/off)</English>
+                <Spanish>Sirena del vehículo (activar/apagar)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hk_siren_tip">
+                <Original>Toggles the siren of your vehicle</Original>
+                <English>Toggles the siren of your vehicle</English>
+                <Spanish>Activa o apaga la sirena de tu vehículo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hk_siren_veh">
+                <Original>You must be in a vehicle.</Original>
+                <English>You must be in a vehicle.</English>
+                <Spanish>Tienes que estar en un vehículo.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hk_siren_on">
+                <Original>Siren on.</Original>
+                <English>Siren on.</English>
+                <Spanish>Sirena activada.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hk_siren_off">
+                <Original>Siren off.</Original>
+                <English>Siren off.</English>
+                <Spanish>Sirena apagada.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hk_megaphone">
+                <Original>Megaphone</Original>
+                <English>Megaphone</English>
+                <Spanish>Megáfono</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hk_megaphone_tip">
+                <Original>Say a phrase to everyone within 80 m</Original>
+                <English>Say a phrase to everyone within 80 m</English>
+                <Spanish>Dice una frase a todos los que estén a menos de 80 m</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hk_mg_phrase">
+                <Original>Phrase</Original>
+                <English>Phrase</English>
+                <Spanish>Frase</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hk_mg_own">
+                <Original>Or your own text</Original>
+                <English>Or your own text</English>
+                <Spanish>O tu propio texto</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hk_mg_say">
+                <Original>[Megaphone] %1: %2</Original>
+                <English>[Megaphone] %1: %2</English>
+                <Spanish>[Megáfono] %1: %2</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hk_mg_1">
+                <Original>Military Police! Stop where you are!</Original>
+                <English>Military Police! Stop where you are!</English>
+                <Spanish>¡Policía Militar! ¡Quietos donde estáis!</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hk_mg_2">
+                <Original>Clear the street!</Original>
+                <English>Clear the street!</English>
+                <Spanish>¡Despejad la calle!</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hk_mg_3">
+                <Original>Pull over and switch off the engine!</Original>
+                <English>Pull over and switch off the engine!</English>
+                <Spanish>¡Arrime el vehículo y apague el motor!</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hk_mg_4">
+                <Original>Come out with your hands up!</Original>
+                <English>Come out with your hands up!</English>
+                <Spanish>¡Salga con las manos en alto!</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hk_mg_5">
+                <Original>Curfew! Go home!</Original>
+                <English>Curfew! Go home!</English>
+                <Spanish>¡Toque de queda! ¡A casa!</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp">
+                <Original>Hospital</Original>
+                <English>Hospital</English>
+                <Spanish>Hospital</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp_module">
+                <Original>Hospital</Original>
+                <English>Hospital</English>
+                <Spanish>Hospital</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp_module_desc">
+                <Original>The synced object (or a new medevac house) is a hospital: operating theatre for the seriously wounded and destination of the air evacuations requested from the MP menu.</Original>
+                <English>The synced object (or a new medevac house) is a hospital: operating theatre for the seriously wounded and destination of the air evacuations requested from the MP menu.</English>
+                <Spanish>El objeto sincronizado (o una casa de evacuación nueva) es un hospital: quirófano para heridos graves y destino de las evacuaciones aéreas que se piden desde el menú de la PM.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp_surgery">
+                <Original>Operating theatre: operate on the nearest casualty</Original>
+                <English>Operating theatre: operate on the nearest casualty</English>
+                <Spanish>Quirófano: operar al herido más cercano</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp_noone">
+                <Original>There is no seriously wounded casualty next to the hospital.</Original>
+                <English>There is no seriously wounded casualty next to the hospital.</English>
+                <Spanish>No hay ningún herido grave junto al hospital.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp_cancel">
+                <Original>Operation interrupted.</Original>
+                <English>Operation interrupted.</English>
+                <Spanish>Operación interrumpida.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp_operating">
+                <Original>Operating on %1...</Original>
+                <English>Operating on %1...</English>
+                <Spanish>Operando a %1...</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp_progress">
+                <Original>Operating on %1: %2%3</Original>
+                <English>Operating on %1: %2%3</English>
+                <Spanish>Operando a %1: %2%3</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp_done">
+                <Original>Operation successful: %1 has recovered.</Original>
+                <English>Operation successful: %1 has recovered.</English>
+                <Spanish>Operación con éxito: %1 se ha recuperado.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp_triage">
+                <Original>Triage</Original>
+                <English>Triage</English>
+                <Spanish>Triaje</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp_triage_done">
+                <Original>Triage card for %1: %2 (injuries %3%4).</Original>
+                <English>Triage card for %1: %2 (injuries %3%4).</English>
+                <Spanish>Tarjeta de triaje de %1: %2 (lesiones %3%4).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp_cat_0">
+                <Original>No injuries</Original>
+                <English>No injuries</English>
+                <Spanish>Sin lesiones</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp_cat_1">
+                <Original>Minor (green)</Original>
+                <English>Minor (green)</English>
+                <Spanish>Leve (verde)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp_cat_2">
+                <Original>Delayed (yellow)</Original>
+                <English>Delayed (yellow)</English>
+                <Spanish>Diferido (amarillo)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp_cat_3">
+                <Original>Immediate (red)</Original>
+                <English>Immediate (red)</English>
+                <Spanish>Inmediato (rojo)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp_cat_4">
+                <Original>Expectant (black)</Original>
+                <English>Expectant (black)</English>
+                <Spanish>Expectante (negro)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp_card">
+                <Original>Read triage card</Original>
+                <English>Read triage card</English>
+                <Spanish>Ver tarjeta de triaje</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp_card_txt">
+                <Original>Triage card · %1 · Category: %2 · Injuries: %3%4 · %5 · %6</Original>
+                <English>Triage card · %1 · Category: %2 · Injuries: %3%4 · %5 · %6</English>
+                <Spanish>Tarjeta de triaje · %1 · Categoría: %2 · Lesiones: %3%4 · %5 · %6</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp_dustoff">
+                <Original>Request air evacuation (dust-off)</Original>
+                <English>Request air evacuation (dust-off)</English>
+                <Spanish>Pedir evacuación aérea</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp_dustoff_on">
+                <Original>Dust-off on its way to %1. Wounded AI within 40 m will be loaded.</Original>
+                <English>Dust-off on its way to %1. Wounded AI within 40 m will be loaded.</English>
+                <Spanish>Evacuación aérea en camino a %1. Los heridos IA a menos de 40 m subirán al helicóptero.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp_none">
+                <Original>There is no hospital in this mission.</Original>
+                <English>There is no hospital in this mission.</English>
+                <Spanish>No hay ningún hospital en esta misión.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hosp_busy">
+                <Original>The evacuation helicopter is already flying.</Original>
+                <English>The evacuation helicopter is already flying.</English>
+                <Spanish>El helicóptero de evacuación ya está en vuelo.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jl_fight">
+                <Original>Fight between prisoners in %1.</Original>
+                <English>Fight between prisoners in %1.</English>
+                <Spanish>Pelea entre presos en %1.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jl_guard">
+                <Original>Prison guard</Original>
+                <English>Prison guard</English>
+                <Spanish>Guardia de la prisión</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_jl_fight_short">
+                <Original>prison fight</Original>
+                <English>prison fight</English>
+                <Spanish>pelea en la prisión</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_life_module">
+                <Original>Base / town life</Original>
+                <English>Base / town life</English>
+                <Spanish>Vida en base / pueblo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_life_module_desc">
+                <Original>Ambient life around the module while a player is near: base staff seated on chairs and soldiers walking around, or civilians strolling and sitting on benches in town.</Original>
+                <English>Ambient life around the module while a player is near: base staff seated on chairs and soldiers walking around, or civilians strolling and sitting on benches in town.</English>
+                <Spanish>Vida de ambiente alrededor del módulo mientras haya un jugador cerca: personal de la base sentado en sillas y soldados de un lado a otro, o civiles paseando y sentados en bancos del pueblo.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_life_kind">
+                <Original>Type</Original>
+                <English>Type</English>
+                <Spanish>Tipo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_life_base">
+                <Original>Base</Original>
+                <English>Base</English>
+                <Spanish>Base</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_life_town">
+                <Original>Town</Original>
+                <English>Town</English>
+                <Spanish>Pueblo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_life_count">
+                <Original>People</Original>
+                <English>People</English>
+                <Spanish>Personas</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_build_module">
+                <Original>Build facility</Original>
+                <English>Build facility</English>
+                <Spanish>Construir instalación</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_build_module_desc">
+                <Original>Builds a ready-made facility around the module with its ADVSEC systems configured: base (siren, crate, duty terminal), station (reports terminal, phone, duty terminal, crate), stockade (cell), hospital, river base or shop (shop and ATM).</Original>
+                <English>Builds a ready-made facility around the module with its ADVSEC systems configured: base (siren, crate, duty terminal), station (reports terminal, phone, duty terminal, crate), stockade (cell), hospital, river base or shop (shop and ATM).</English>
+                <Spanish>Construye una instalación alrededor del módulo con sus sistemas ADVSEC ya configurados: base (sirena, caja, fichaje), comisaría (terminal de informes, teléfono, fichaje, caja), prisión (calabozo), hospital, base fluvial o tienda (tienda y cajero).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_build_kind">
+                <Original>Facility</Original>
+                <English>Facility</English>
+                <Spanish>Instalación</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_build_k0">
+                <Original>Base</Original>
+                <English>Base</English>
+                <Spanish>Base</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_build_k1">
+                <Original>MP station</Original>
+                <English>MP station</English>
+                <Spanish>Comisaría</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_build_k2">
+                <Original>Stockade</Original>
+                <English>Stockade</English>
+                <Spanish>Prisión</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_build_k3">
+                <Original>Hospital</Original>
+                <English>Hospital</English>
+                <Spanish>Hospital</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_build_k4">
+                <Original>River base</Original>
+                <English>River base</English>
+                <Spanish>Base fluvial</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_build_k5">
+                <Original>Shop</Original>
+                <English>Shop</English>
+                <Spanish>Tienda</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rnr">
+                <Original>Leave terminal</Original>
+                <English>Leave terminal</English>
+                <Spanish>Terminal de permisos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rnr_module">
+                <Original>Leave terminal (R&amp;R)</Original>
+                <English>Leave terminal (R&amp;R)</English>
+                <Spanish>Terminal de permisos (R&amp;R)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rnr_module_desc">
+                <Original>The synced object (or a new terminal) shows the base status and books leave flights: the player goes off duty and cannot clock in for rnrMinutes.</Original>
+                <English>The synced object (or a new terminal) shows the base status and books leave flights: the player goes off duty and cannot clock in for rnrMinutes.</English>
+                <Spanish>El objeto sincronizado (o un terminal nuevo) muestra el estado de la base y reserva vuelos de permiso: el jugador sale de servicio y no puede fichar durante rnrMinutes.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rnr_status">
+                <Original>Base status</Original>
+                <English>Base status</English>
+                <Spanish>Estado de la base</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rnr_status_txt">
+                <Original>&lt;t font='PuristaBold'&gt;Base status&lt;/t&gt;&lt;br/&gt;&lt;br/&gt;Officers on duty: %1 of %2&lt;br/&gt;Open alerts: %3 (AI: %4)&lt;br/&gt;Social unrest: %5/100&lt;br/&gt;Alert level: %6&lt;br/&gt;Prisoners: %7&lt;br/&gt;Curfew: %8&lt;br/&gt;Treasury: %9 %10&lt;br/&gt;On leave: %11</Original>
+                <English>&lt;t font='PuristaBold'&gt;Base status&lt;/t&gt;&lt;br/&gt;&lt;br/&gt;Officers on duty: %1 of %2&lt;br/&gt;Open alerts: %3 (AI: %4)&lt;br/&gt;Social unrest: %5/100&lt;br/&gt;Alert level: %6&lt;br/&gt;Prisoners: %7&lt;br/&gt;Curfew: %8&lt;br/&gt;Treasury: %9 %10&lt;br/&gt;On leave: %11</English>
+                <Spanish>&lt;t font='PuristaBold'&gt;Estado de la base&lt;/t&gt;&lt;br/&gt;&lt;br/&gt;Agentes de servicio: %1 de %2&lt;br/&gt;Avisos abiertos: %3 (IA: %4)&lt;br/&gt;Tensión social: %5/100&lt;br/&gt;Nivel de alerta: %6&lt;br/&gt;Presos: %7&lt;br/&gt;Toque de queda: %8&lt;br/&gt;Tesorería: %9 %10&lt;br/&gt;De permiso: %11</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rnr_leave">
+                <Original>Book leave flight (R&amp;R)</Original>
+                <English>Book leave flight (R&amp;R)</English>
+                <Spanish>Reservar vuelo de permiso (R&amp;R)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rnr_f_dest">
+                <Original>Destination</Original>
+                <English>Destination</English>
+                <Spanish>Destino</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rnr_flight">
+                <Original>Leave flight to %1 · %2 minutes of rest</Original>
+                <English>Leave flight to %1 · %2 minutes of rest</English>
+                <Spanish>Vuelo de permiso a %1 · %2 minutos de descanso</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rnr_on_leave">
+                <Original>You are on leave for %1 min. You cannot clock in until you return.</Original>
+                <English>You are on leave for %1 min. You cannot clock in until you return.</English>
+                <Spanish>Estás de permiso %1 min. No puedes fichar hasta que vuelvas.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rnr_no_duty">
+                <Original>You are on leave: %1 min left.</Original>
+                <English>You are on leave: %1 min left.</English>
+                <Spanish>Estás de permiso: faltan %1 min.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_club">
+                <Original>NCO club</Original>
+                <English>NCO club</English>
+                <Spanish>Club de suboficiales</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_club_module">
+                <Original>NCO club</Original>
+                <English>NCO club</English>
+                <Spanish>Club de suboficiales</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_club_module_desc">
+                <Original>The synced object (or a new table) is the NCO club bar: drinks, cards, darts and a record board. clubMinRank sets the minimum global rank.</Original>
+                <English>The synced object (or a new table) is the NCO club bar: drinks, cards, darts and a record board. clubMinRank sets the minimum global rank.</English>
+                <Spanish>El objeto sincronizado (o una mesa nueva) es la barra del club de suboficiales: copas, cartas, dardos y tablón de récords. clubMinRank fija el rango global mínimo.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_club_drink">
+                <Original>Have a drink</Original>
+                <English>Have a drink</English>
+                <Spanish>Tomar algo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_club_drink_ok">
+                <Original>Cheers. You feel rested.</Original>
+                <English>Cheers. You feel rested.</English>
+                <Spanish>Salud. Te sientes descansado.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_club_drink_much">
+                <Original>That was one too many...</Original>
+                <English>That was one too many...</English>
+                <Spanish>Esa ha sido una de más...</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_club_nomoney">
+                <Original>You don't have enough money.</Original>
+                <English>You don't have enough money.</English>
+                <Spanish>No tienes dinero suficiente.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_club_cards">
+                <Original>Play cards</Original>
+                <English>Play cards</English>
+                <Spanish>Jugar a las cartas</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_club_f_bet">
+                <Original>Bet</Original>
+                <English>Bet</English>
+                <Spanish>Apuesta</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_club_win">
+                <Original>You win %1 %2.</Original>
+                <English>You win %1 %2.</English>
+                <Spanish>Ganas %1 %2.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_club_lose">
+                <Original>You lose %1 %2.</Original>
+                <English>You lose %1 %2.</English>
+                <Spanish>Pierdes %1 %2.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_club_darts">
+                <Original>Throw darts</Original>
+                <English>Throw darts</English>
+                <Spanish>Tirar dardos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_club_darts_res">
+                <Original>Darts: %1 = %2 points (your record: %3)</Original>
+                <English>Darts: %1 = %2 points (your record: %3)</English>
+                <Spanish>Dardos: %1 = %2 puntos (tu récord: %3)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_club_darts_ton">
+                <Original>%1 scores %2 at darts!</Original>
+                <English>%1 scores %2 at darts!</English>
+                <Spanish>¡%1 hace %2 en los dardos!</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_club_board">
+                <Original>Darts record board</Original>
+                <English>Darts record board</English>
+                <Spanish>Tablón de récords de dardos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_club_board_empty">
+                <Original>Nobody has thrown yet.</Original>
+                <English>Nobody has thrown yet.</English>
+                <Spanish>Todavía no ha tirado nadie.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_tr_title">
+                <Original>Guided training</Original>
+                <English>Guided training</English>
+                <Spanish>Instrucción guiada</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_tr_stop">
+                <Original>Guided training stopped.</Original>
+                <English>Guided training stopped.</English>
+                <Spanish>Instrucción guiada detenida.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_tr_dist">
+                <Original>Objective at %1 m (map marker)</Original>
+                <English>Objective at %1 m (map marker)</English>
+                <Spanish>Objetivo a %1 m (marcador en el mapa)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_tr_s1">
+                <Original>Get your MP badge or accreditation</Original>
+                <English>Get your MP badge or accreditation</English>
+                <Spanish>Consigue tu placa o acreditación de la PM</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_tr_s2">
+                <Original>Clock in at a duty terminal</Original>
+                <English>Clock in at a duty terminal</English>
+                <Spanish>Ficha en un terminal de fichaje</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_tr_s3">
+                <Original>Go to the MP school</Original>
+                <English>Go to the MP school</English>
+                <Spanish>Ve a la escuela de la PM</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_tr_s4">
+                <Original>Visit the equipment crate</Original>
+                <English>Visit the equipment crate</English>
+                <Spanish>Pasa por la caja de equipo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_tr_s5">
+                <Original>Find the cells</Original>
+                <English>Find the cells</English>
+                <Spanish>Localiza los calabozos</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_tr_s6">
+                <Original>Visit the station phone</Original>
+                <English>Visit the station phone</English>
+                <Spanish>Pasa por el teléfono de comisaría</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_tr_s7">
+                <Original>File an incident report</Original>
+                <English>File an incident report</English>
+                <Spanish>Presenta un informe de incidente</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_tr_done">
+                <Original>Guided training completed. Merits awarded.</Original>
+                <English>Guided training completed. Merits awarded.</English>
+                <Spanish>Instrucción guiada completada. Méritos concedidos.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_tr_done_again">
+                <Original>You had already completed the guided training.</Original>
+                <English>You had already completed the guided training.</English>
+                <Spanish>Ya habías completado la instrucción guiada.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_medbag">
+                <Original>Medic bag (M5)</Original>
+                <English>Medic bag (M5)</English>
+                <Spanish>Bolsa médica (M5)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_medbag_d">
+                <Original>Field kit: treats a wounded person on the spot (heals light wounds, stabilises serious ones).</Original>
+                <English>Field kit: treats a wounded person on the spot (heals light wounds, stabilises serious ones).</English>
+                <Spanish>Equipo de campaña: atiende a un herido en el sitio (cura heridas leves y estabiliza las graves).</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_stethoscope">
+                <Original>Stethoscope</Original>
+                <English>Stethoscope</English>
+                <Spanish>Estetoscopio</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_stethoscope_d">
+                <Original>Check pulse and breathing.</Original>
+                <English>Check pulse and breathing.</English>
+                <Spanish>Comprueba el pulso y la respiración.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_bpcuff">
+                <Original>Blood pressure cuff</Original>
+                <English>Blood pressure cuff</English>
+                <Spanish>Tensiómetro</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_bpcuff_d">
+                <Original>Measures blood pressure.</Original>
+                <English>Measures blood pressure.</English>
+                <Spanish>Mide la tensión arterial.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_triagetag">
+                <Original>Triage tags</Original>
+                <English>Triage tags</English>
+                <Spanish>Etiquetas de triaje</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_triagetag_d">
+                <Original>Tag a casualty with a triage category.</Original>
+                <English>Tag a casualty with a triage category.</English>
+                <Spanish>Marca a un herido con una categoría de triaje.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_ammonia">
+                <Original>Ammonia inhalant</Original>
+                <English>Ammonia inhalant</English>
+                <Spanish>Sales de amoníaco</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_ammonia_d">
+                <Original>Wakes up an unconscious person who is not seriously hurt. Single use.</Original>
+                <English>Wakes up an unconscious person who is not seriously hurt. Single use.</English>
+                <Spanish>Despierta a alguien inconsciente que no está grave. Un solo uso.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_splint">
+                <Original>Splint</Original>
+                <English>Splint</English>
+                <Spanish>Férula</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_splint_d">
+                <Original>Immobilises a broken leg so the casualty can walk. Single use.</Original>
+                <English>Immobilises a broken leg so the casualty can walk. Single use.</English>
+                <Spanish>Inmoviliza una pierna rota para que el herido pueda andar. Un solo uso.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_burndressing">
+                <Original>Burn dressing</Original>
+                <English>Burn dressing</English>
+                <Spanish>Apósito para quemaduras</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_burndressing_d">
+                <Original>Treats burns. Single use.</Original>
+                <English>Treats burns. Single use.</English>
+                <Spanish>Trata quemaduras. Un solo uso.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_albumin">
+                <Original>Albumin (plasma expander)</Original>
+                <English>Albumin (plasma expander)</English>
+                <Spanish>Albúmina (expansor de plasma)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_albumin_d">
+                <Original>Restores blood volume after heavy bleeding. Single use.</Original>
+                <English>Restores blood volume after heavy bleeding. Single use.</English>
+                <Spanish>Repone volumen de sangre tras una hemorragia grave. Un solo uso.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_morphine">
+                <Original>Morphine autoinjector</Original>
+                <English>Morphine autoinjector</English>
+                <Spanish>Autoinyector de morfina</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_morphine_d">
+                <Original>Relieves pain. Single use.</Original>
+                <English>Relieves pain. Single use.</English>
+                <Spanish>Calma el dolor. Un solo uso.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_litter">
+                <Original>Folding litter</Original>
+                <English>Folding litter</English>
+                <Spanish>Camilla plegable</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_litter_d">
+                <Original>Carry an unconscious casualty.</Original>
+                <English>Carry an unconscious casualty.</English>
+                <Spanish>Para llevar a un herido inconsciente.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_camera">
+                <Original>Evidence camera</Original>
+                <English>Evidence camera</English>
+                <Spanish>Cámara de pruebas</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_camera_d">
+                <Original>Take it in your hand and use it to photograph a scene; the photo goes to the log.</Original>
+                <English>Take it in your hand and use it to photograph a scene; the photo goes to the log.</English>
+                <Spanish>Sácala en la mano y úsala para fotografiar una escena; la foto queda en el registro.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_megaphone">
+                <Original>Megaphone</Original>
+                <English>Megaphone</English>
+                <Spanish>Megáfono</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_megaphone_d">
+                <Original>In your hand, your announcements reach 120 m.</Original>
+                <English>In your hand, your announcements reach 120 m.</English>
+                <Spanish>En la mano, tus avisos llegan a 120 m.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_clipboard">
+                <Original>Clipboard</Original>
+                <English>Clipboard</English>
+                <Spanish>Carpeta de partes</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_clipboard_d">
+                <Original>In your hand, use it to write a report.</Original>
+                <English>In your hand, use it to write a report.</English>
+                <Spanish>En la mano, úsala para escribir un parte.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_riotshield">
+                <Original>Riot shield</Original>
+                <English>Riot shield</English>
+                <Spanish>Escudo antidisturbios</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_riotshield_d">
+                <Original>In your hand, it stops most of the damage coming from the front.</Original>
+                <English>In your hand, it stops most of the damage coming from the front.</English>
+                <Spanish>En la mano, para la mayor parte del daño que llega de frente.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_riotbaton">
+                <Original>Riot baton</Original>
+                <English>Riot baton</English>
+                <Spanish>Porra antidisturbios</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_riotbaton_d">
+                <Original>In your hand, a blow stuns a person within reach.</Original>
+                <English>In your hand, a blow stuns a person within reach.</English>
+                <Spanish>En la mano, un golpe aturde a una persona a tu alcance.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_mphelmet">
+                <Original>MP helmet (white)</Original>
+                <English>MP helmet (white)</English>
+                <Spanish>Casco PM (blanco)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_mphelmetblk">
+                <Original>MP helmet (black)</Original>
+                <English>MP helmet (black)</English>
+                <Spanish>Casco PM (negro)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_mpcap">
+                <Original>MP cap</Original>
+                <English>MP cap</English>
+                <Spanish>Gorra PM</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_mpbelt">
+                <Original>MP white belt</Original>
+                <English>MP white belt</English>
+                <Spanish>Cinturón blanco PM</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_it_mpvest">
+                <Original>MP vest</Original>
+                <English>MP vest</English>
+                <Spanish>Chaleco PM</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_med_bag_done">
+                <Original>You have treated %1.</Original>
+                <English>You have treated %1.</English>
+                <Spanish>Has atendido a %1.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_med_pulse">
+                <Original>%1 · pulse %2 bpm · %3</Original>
+                <English>%1 · pulse %2 bpm · %3</English>
+                <Spanish>%1 · pulso %2 ppm · %3</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_med_breath_ok">
+                <Original>breathing normally</Original>
+                <English>breathing normally</English>
+                <Spanish>respira con normalidad</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_med_breath_bad">
+                <Original>laboured breathing</Original>
+                <English>laboured breathing</English>
+                <Spanish>respiración dificultosa</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_med_bp">
+                <Original>%1 · blood pressure %2/%3</Original>
+                <English>%1 · blood pressure %2/%3</English>
+                <Spanish>%1 · tensión %2/%3</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_med_awake">
+                <Original>They are already conscious.</Original>
+                <English>They are already conscious.</English>
+                <Spanish>Ya está consciente.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_med_wake">
+                <Original>%1 comes round.</Original>
+                <English>%1 comes round.</English>
+                <Spanish>%1 vuelve en sí.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_med_splint">
+                <Original>You have splinted %1's leg.</Original>
+                <English>You have splinted %1's leg.</English>
+                <Spanish>Has entablillado la pierna de %1.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_med_burn">
+                <Original>You have dressed %1's burns.</Original>
+                <English>You have dressed %1's burns.</English>
+                <Spanish>Has curado las quemaduras de %1.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_med_albumin">
+                <Original>You have given albumin to %1.</Original>
+                <English>You have given albumin to %1.</English>
+                <Spanish>Has puesto albúmina a %1.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_med_morphine">
+                <Original>You have given morphine to %1.</Original>
+                <English>You have given morphine to %1.</English>
+                <Spanish>Has puesto morfina a %1.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_med_litter_on">
+                <Original>Carry on the litter</Original>
+                <English>Carry on the litter</English>
+                <Spanish>Llevar en la camilla</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_med_litter_off">
+                <Original>Put the litter down</Original>
+                <English>Put the litter down</English>
+                <Spanish>Dejar la camilla</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hand_on">
+                <Original>%1 in your hand. Use it with the «Use what I'm holding» key or menu.</Original>
+                <English>%1 in your hand. Use it with the «Use what I'm holding» key or menu.</English>
+                <Spanish>%1 en la mano. Úsalo con la tecla o el menú «Usar lo que llevo».</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hand_none">
+                <Original>You are not holding anything.</Original>
+                <English>You are not holding anything.</English>
+                <Spanish>No llevas nada en la mano.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hand_baton_far">
+                <Original>Get within reach of a person.</Original>
+                <English>Get within reach of a person.</English>
+                <Spanish>Acércate a una persona.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hand_photo">
+                <Original>Photo taken: %1 at %2.</Original>
+                <English>Photo taken: %1 at %2.</English>
+                <Spanish>Foto tomada: %1 en %2.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hand_baton_you">
+                <Original>You've been hit with a baton!</Original>
+                <English>You've been hit with a baton!</English>
+                <Spanish>¡Te han dado un porrazo!</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hand_take">
+                <Original>take in hand</Original>
+                <English>take in hand</English>
+                <Spanish>sacar en la mano</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hand_put">
+                <Original>put away</Original>
+                <English>put away</English>
+                <Spanish>guardar</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hand_use">
+                <Original>Use what I'm holding</Original>
+                <English>Use what I'm holding</English>
+                <Spanish>Usar lo que llevo</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_hand_use_tip">
+                <Original>Camera, megaphone, clipboard or baton</Original>
+                <English>Camera, megaphone, clipboard or baton</English>
+                <Spanish>Cámara, megáfono, carpeta o porra</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_radio">
+                <Original>MP radio</Original>
+                <English>MP radio</English>
+                <Spanish>Radio PM</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_radio_tip">
+                <Original>Send a 10 code or a message, or answer the radio check</Original>
+                <English>Send a 10 code or a message, or answer the radio check</English>
+                <Spanish>Enviar un código 10 o un mensaje, o responder a la comprobación</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_radio_line">
+                <Original>[Radio %1] %2: %3</Original>
+                <English>[Radio %1] %2: %3</English>
+                <Spanish>[Radio %1] %2: %3</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_radio_amb">
+                <Original>[Radio] %1</Original>
+                <English>[Radio] %1</English>
+                <Spanish>[Radio] %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rch_1">
+                <Original>Central: all units, stay alert at the checkpoints.</Original>
+                <English>Central: all units, stay alert at the checkpoints.</English>
+                <Spanish>Central: a todas las unidades, atentos en los controles.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rch_2">
+                <Original>Patrol 2: 10-8, back on patrol.</Original>
+                <English>Patrol 2: 10-8, back on patrol.</English>
+                <Spanish>Patrulla 2: 10-8, de vuelta a la patrulla.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rch_3">
+                <Original>Central: reminder, convoy arriving at the main gate in 20 minutes.</Original>
+                <English>Central: reminder, convoy arriving at the main gate in 20 minutes.</English>
+                <Spanish>Central: recuerdo, convoy llegando a la puerta principal en 20 minutos.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rch_4">
+                <Original>Gate: 10-4, two vehicles inspected, no incidents.</Original>
+                <English>Gate: 10-4, two vehicles inspected, no incidents.</English>
+                <Spanish>Puerta: 10-4, dos vehículos inspeccionados, sin novedad.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rch_5">
+                <Original>Central: units near the market, check for vendors without a licence.</Original>
+                <English>Central: units near the market, check for vendors without a licence.</English>
+                <Spanish>Central: unidades cerca del mercado, revisen vendedores sin licencia.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rch_6">
+                <Original>Patrol 1: 10-7, short stop for fuel.</Original>
+                <English>Patrol 1: 10-7, short stop for fuel.</English>
+                <Spanish>Patrulla 1: 10-7, parada breve para repostar.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rch_7">
+                <Original>Central: weather report, poor visibility expected tonight.</Original>
+                <English>Central: weather report, poor visibility expected tonight.</English>
+                <Spanish>Central: parte meteorológico, se espera poca visibilidad esta noche.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rch_8">
+                <Original>Stockade: head count complete, all present.</Original>
+                <English>Stockade: head count complete, all present.</English>
+                <Spanish>Calabozo: recuento terminado, todos presentes.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_radio_check">
+                <Original>Radio check: answer from the radio menu or key within 2 minutes.</Original>
+                <English>Radio check: answer from the radio menu or key within 2 minutes.</English>
+                <Spanish>Comprobación de radio: responde desde el menú o la tecla de radio en 2 minutos.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_radio_check_ask">
+                <Original>Radio check, all units report.</Original>
+                <English>Radio check, all units report.</English>
+                <Spanish>Comprobación de radio, todas las unidades informen.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_radio_check_ok">
+                <Original>Loud and clear.</Original>
+                <English>Loud and clear.</English>
+                <Spanish>Le recibo alto y claro.</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_radio_check_miss">
+                <Original>No answer to the radio check: %1</Original>
+                <English>No answer to the radio check: %1</English>
+                <Spanish>Sin respuesta a la comprobación de radio: %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_radio_central">
+                <Original>Central</Original>
+                <English>Central</English>
+                <Spanish>Central</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_radio_cmd">
+                <Original>Command</Original>
+                <English>Command</English>
+                <Spanish>Mando</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_radio_f_net">
+                <Original>Net</Original>
+                <English>Net</English>
+                <Spanish>Red</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_radio_f_code">
+                <Original>10 code</Original>
+                <English>10 code</English>
+                <Spanish>Código 10</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_radio_f_text">
+                <Original>Free message (replaces the code)</Original>
+                <English>Free message (replaces the code)</English>
+                <Spanish>Mensaje libre (sustituye al código)</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rc_104">
+                <Original>Acknowledged</Original>
+                <English>Acknowledged</English>
+                <Spanish>Recibido</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rc_107">
+                <Original>Out of service</Original>
+                <English>Out of service</English>
+                <Spanish>Fuera de servicio</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rc_108">
+                <Original>In service</Original>
+                <English>In service</English>
+                <Spanish>En servicio</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rc_109">
+                <Original>Repeat</Original>
+                <English>Repeat</English>
+                <Spanish>Repita</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rc_1015">
+                <Original>Prisoner in custody</Original>
+                <English>Prisoner in custody</English>
+                <Spanish>Detenido bajo custodia</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rc_1020">
+                <Original>My location: %1</Original>
+                <English>My location: %1</English>
+                <Spanish>Mi posición: %1</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rc_1023">
+                <Original>Arrived on scene</Original>
+                <English>Arrived on scene</English>
+                <Spanish>Llegado al lugar</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rc_1033">
+                <Original>Emergency, all units</Original>
+                <English>Emergency, all units</English>
+                <Spanish>Emergencia, todas las unidades</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rc_1076">
+                <Original>En route</Original>
+                <English>En route</English>
+                <Spanish>En camino</Spanish>
+            </Key>
+            <Key ID="STR_ADVSEC_rc_1097">
+                <Original>On scene</Original>
+                <English>On scene</English>
+                <Spanish>En el lugar</Spanish>
             </Key>
         </Container>
     </Package>
