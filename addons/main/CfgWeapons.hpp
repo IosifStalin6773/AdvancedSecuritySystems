@@ -1,6 +1,10 @@
 class CfgWeapons {
     class ItemCore;
     class InventoryItem_Base_F;
+    class H_HelmetB_light;
+    class H_Cap_police;
+    class V_Rangemaster_belt;
+    class V_TacVest_blk_POLICE;
     class ADVSEC_ItemBase: ItemCore {
         scope = 1;
         author = "oscar";
@@ -108,6 +112,58 @@ class CfgWeapons {
         scope = 2;
         displayName = "$STR_ADVSEC_evidence_bag";
         descriptionShort = "$STR_ADVSEC_sealed_evidence_with_chain_of";
-        picture = "\A3\ui_f\data\igui\cfg\simpleTasks\types\box_ca.paa";
+        picture = "\x\advsec\addons\main\data\item_evbag_ca.paa";
     };
+    // 1.24: objetos de la PM (iconos propios)
+    class ADVSEC_CellKeys: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_cellkeys"; descriptionShort = "$STR_ADVSEC_it_cellkeys_d"; picture = "\x\advsec\addons\main\data\item_cellkeys_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 2; }; };
+    class ADVSEC_DeskStamp: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_deskstamp"; descriptionShort = "$STR_ADVSEC_it_deskstamp_d"; picture = "\x\advsec\addons\main\data\item_stamp_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 3; }; };
+    class ADVSEC_Handcuffs: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_handcuffs"; descriptionShort = "$STR_ADVSEC_it_handcuffs_d"; picture = "\x\advsec\addons\main\data\item_handcuffs_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 4; }; };
+    class ADVSEC_LegIrons: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_legirons"; descriptionShort = "$STR_ADVSEC_it_legirons_d"; picture = "\x\advsec\addons\main\data\item_legirons_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 8; }; };
+    class ADVSEC_FPKit: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_fpkit"; descriptionShort = "$STR_ADVSEC_it_fpkit_d"; picture = "\x\advsec\addons\main\data\item_fpkit_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 6; }; };
+    class ADVSEC_DrugKit: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_drugkit"; descriptionShort = "$STR_ADVSEC_it_drugkit_d"; picture = "\x\advsec\addons\main\data\item_drugkit_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 5; }; };
+    class ADVSEC_Breathalyzer: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_breathalyzer"; descriptionShort = "$STR_ADVSEC_it_breathalyzer_d"; picture = "\x\advsec\addons\main\data\item_breath_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 4; }; };
+    class ADVSEC_ScentBag: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_scentbag"; descriptionShort = "$STR_ADVSEC_it_scentbag_d"; picture = "\x\advsec\addons\main\data\item_scentbag_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 2; }; };
+    class ADVSEC_RightsCard: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_rightscard"; descriptionShort = "$STR_ADVSEC_it_rightscard_d"; picture = "\x\advsec\addons\main\data\item_rightscard_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 1; }; };
+    class ADVSEC_InspMirror: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_inspmirror"; descriptionShort = "$STR_ADVSEC_it_inspmirror_d"; picture = "\x\advsec\addons\main\data\item_mirror_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 10; }; };
+    class ADVSEC_BoltCutter: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_boltcutter"; descriptionShort = "$STR_ADVSEC_it_boltcutter_d"; picture = "\x\advsec\addons\main\data\item_boltcutter_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 25; }; };
+    class ADVSEC_Stopwatch: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_stopwatch"; descriptionShort = "$STR_ADVSEC_it_stopwatch_d"; picture = "\x\advsec\addons\main\data\item_stopwatch_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 2; }; };
+    class ADVSEC_MeasureTape: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_measuretape"; descriptionShort = "$STR_ADVSEC_it_measuretape_d"; picture = "\x\advsec\addons\main\data\item_tape_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 3; }; };
+    class ADVSEC_CitationBook: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_citationbook"; descriptionShort = "$STR_ADVSEC_it_citationbook_d"; picture = "\x\advsec\addons\main\data\item_citation_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 2; }; };
+    class ADVSEC_Whistle: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_whistle"; descriptionShort = "$STR_ADVSEC_it_whistle_d"; picture = "\x\advsec\addons\main\data\item_whistle_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 1; }; };
+    class ADVSEC_Blotter: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_blotter"; descriptionShort = "$STR_ADVSEC_it_blotter_d"; picture = "\x\advsec\addons\main\data\item_blotter_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 8; }; };
+    class ADVSEC_CastKit: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_castkit"; descriptionShort = "$STR_ADVSEC_it_castkit_d"; picture = "\x\advsec\addons\main\data\item_castkit_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 10; }; };
+    class ADVSEC_Flares: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_flares"; descriptionShort = "$STR_ADVSEC_it_flares_d"; picture = "\x\advsec\addons\main\data\item_flares_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 6; }; };
+    class ADVSEC_PrisonerTags: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_prisonertags"; descriptionShort = "$STR_ADVSEC_it_prisonertags_d"; picture = "\x\advsec\addons\main\data\item_tags_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 1; }; };
+    class ADVSEC_SteeringLock: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_steeringlock"; descriptionShort = "$STR_ADVSEC_it_steeringlock_d"; picture = "\x\advsec\addons\main\data\item_chain_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 12; }; };
+    class ADVSEC_Brassard: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_brassard"; descriptionShort = "$STR_ADVSEC_it_brassard_d"; picture = "\x\advsec\addons\main\data\item_brassard_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 1; }; };
+    class ADVSEC_SeizedCash: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_seizedcash"; descriptionShort = "$STR_ADVSEC_it_seizedcash_d"; picture = "\x\advsec\addons\main\data\item_cash_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 1; }; };
+    class ADVSEC_Penlight: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_penlight"; descriptionShort = "$STR_ADVSEC_it_penlight_d"; picture = "\x\advsec\addons\main\data\item_penlight_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 1; }; };
+    class ADVSEC_Gloves: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_gloves"; descriptionShort = "$STR_ADVSEC_it_gloves_d"; picture = "\x\advsec\addons\main\data\item_gloves_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 1; }; };
+    class ADVSEC_SceneMarkers: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_scenemarkers"; descriptionShort = "$STR_ADVSEC_it_scenemarkers_d"; picture = "\x\advsec\addons\main\data\item_chalk_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 3; }; };
+    class ADVSEC_Notebook: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_notebook"; descriptionShort = "$STR_ADVSEC_it_notebook_d"; picture = "\x\advsec\addons\main\data\item_notebook_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 1; }; };
+    class ADVSEC_SceneTape: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_scenetape"; descriptionShort = "$STR_ADVSEC_it_scenetape_d"; picture = "\x\advsec\addons\main\data\item_scenetape_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 5; }; };
+    class ADVSEC_KeyRing: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_keyring"; descriptionShort = "$STR_ADVSEC_it_keyring_d"; picture = "\x\advsec\addons\main\data\item_keyring_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 2; }; };
+    class ADVSEC_OffLimits: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_offlimits"; descriptionShort = "$STR_ADVSEC_it_offlimits_d"; picture = "\x\advsec\addons\main\data\item_offlimits_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 1; }; };
+    // 1.24: material médico y objetos en la mano (iconos propios)
+    class ADVSEC_MedBag: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_medbag"; descriptionShort = "$STR_ADVSEC_it_medbag_d"; picture = "\x\advsec\addons\main\data\item_m5bag_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 40; }; };
+    class ADVSEC_Stethoscope: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_stethoscope"; descriptionShort = "$STR_ADVSEC_it_stethoscope_d"; picture = "\x\advsec\addons\main\data\item_stetho_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 3; }; };
+    class ADVSEC_BPCuff: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_bpcuff"; descriptionShort = "$STR_ADVSEC_it_bpcuff_d"; picture = "\x\advsec\addons\main\data\item_bpcuff_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 4; }; };
+    class ADVSEC_TriageTag: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_triagetag"; descriptionShort = "$STR_ADVSEC_it_triagetag_d"; picture = "\x\advsec\addons\main\data\item_triagetag_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 1; }; };
+    class ADVSEC_Ammonia: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_ammonia"; descriptionShort = "$STR_ADVSEC_it_ammonia_d"; picture = "\x\advsec\addons\main\data\item_ammonia_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 1; }; };
+    class ADVSEC_Splint: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_splint"; descriptionShort = "$STR_ADVSEC_it_splint_d"; picture = "\x\advsec\addons\main\data\item_splint_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 6; }; };
+    class ADVSEC_BurnDressing: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_burndressing"; descriptionShort = "$STR_ADVSEC_it_burndressing_d"; picture = "\x\advsec\addons\main\data\item_burn_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 2; }; };
+    class ADVSEC_Albumin: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_albumin"; descriptionShort = "$STR_ADVSEC_it_albumin_d"; picture = "\x\advsec\addons\main\data\item_albumin_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 10; }; };
+    class ADVSEC_Morphine: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_morphine"; descriptionShort = "$STR_ADVSEC_it_morphine_d"; picture = "\x\advsec\addons\main\data\item_morphine_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 1; }; };
+    class ADVSEC_Litter: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_litter"; descriptionShort = "$STR_ADVSEC_it_litter_d"; picture = "\x\advsec\addons\main\data\item_litter_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 60; }; };
+    class ADVSEC_Camera: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_camera"; descriptionShort = "$STR_ADVSEC_it_camera_d"; picture = "\x\advsec\addons\main\data\item_camera_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 8; }; };
+    class ADVSEC_Megaphone: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_megaphone"; descriptionShort = "$STR_ADVSEC_it_megaphone_d"; picture = "\x\advsec\addons\main\data\item_megaphone_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 12; }; };
+    class ADVSEC_Clipboard: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_clipboard"; descriptionShort = "$STR_ADVSEC_it_clipboard_d"; picture = "\x\advsec\addons\main\data\item_clipboard_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 4; }; };
+    class ADVSEC_RiotShield: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_riotshield"; descriptionShort = "$STR_ADVSEC_it_riotshield_d"; picture = "\x\advsec\addons\main\data\item_shield_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 60; }; };
+    class ADVSEC_RiotBaton: ADVSEC_ItemBase { scope = 2; displayName = "$STR_ADVSEC_it_riotbaton"; descriptionShort = "$STR_ADVSEC_it_riotbaton_d"; picture = "\x\advsec\addons\main\data\item_baton_ca.paa"; class ItemInfo: InventoryItem_Base_F { mass = 15; }; };
+    // 1.24: uniforme PM (texturas de procedimiento sobre modelos de Arma 3)
+    class ADVSEC_H_MPHelmet: H_HelmetB_light { author = "oscar"; displayName = "$STR_ADVSEC_it_mphelmet"; hiddenSelectionsTextures[] = {"#(argb,8,8,3)color(0.92,0.92,0.9,1)"}; };
+    class ADVSEC_H_MPHelmetBlk: H_HelmetB_light { author = "oscar"; displayName = "$STR_ADVSEC_it_mphelmetblk"; hiddenSelectionsTextures[] = {"#(argb,8,8,3)color(0.06,0.06,0.06,1)"}; };
+    class ADVSEC_H_MPCap: H_Cap_police { author = "oscar"; displayName = "$STR_ADVSEC_it_mpcap"; };
+    class ADVSEC_V_MPBelt: V_Rangemaster_belt { author = "oscar"; displayName = "$STR_ADVSEC_it_mpbelt"; hiddenSelectionsTextures[] = {"#(argb,8,8,3)color(0.92,0.92,0.9,1)"}; };
+    class ADVSEC_V_MPVest: V_TacVest_blk_POLICE { author = "oscar"; displayName = "$STR_ADVSEC_it_mpvest"; };
 };

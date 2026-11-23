@@ -11,6 +11,10 @@ private _eco = [] call ADVSEC_fnc_ecoOn;
 private _free = isNull objectParent _player && {!([_player] call ADVSEC_fnc_isRestrained)};
 
 ["advsec_me_112", ("STR_ADVSEC_call_112" call ADVSEC_fnc_L), ADVSEC_icAlarm, {[] call ADVSEC_fnc_dspCall}, []] call _add;
+// 1.24: instrucción guiada para reclutas (empezar / dejarla)
+if (!(_player getVariable ["ADVSEC_onDuty", false]) || {!isNil "ADVSEC_trainH" && {!scriptDone ADVSEC_trainH}}) then {
+    ["advsec_me_train", ("STR_ADVSEC_tr_title" call ADVSEC_fnc_L), ADVSEC_icDoc, {[] call ADVSEC_fnc_trainStart}, []] call _add;
+};
 
 private _docs = [_player, "review"] call ADVSEC_fnc_docChildren;
 if (_docs isNotEqualTo []) then {
@@ -20,6 +24,7 @@ if (_docs isNotEqualTo []) then {
 // Dinero y vehículos
 private _money = [];
 if (_eco) then {_money pushBack ["advsec_me_wallet", ("STR_ADVSEC_wallet_and_bank" call ADVSEC_fnc_L), ADVSEC_icDoc, {[] call ADVSEC_fnc_ecoOpen}, []]};
+if (_eco) then {_money pushBack ["advsec_me_payslip", ("STR_ADVSEC_pay_slip" call ADVSEC_fnc_L), ADVSEC_icDoc, {[] call ADVSEC_fnc_payslipShow}, []]};
 _money pushBack ["advsec_me_fines", ("STR_ADVSEC_my_fines" call ADVSEC_fnc_L), ADVSEC_icDoc, {[] call ADVSEC_fnc_fineOpen}, []];
 if (_eco) then {
     private _l = (_player getVariable ["ADVSEC_jailUntil", 0]) - serverTime;

@@ -100,6 +100,26 @@ switch (_action) do {
         ADVSEC_repDB set [_id, _r];
         [] call ADVSEC_fnc_repSave;
         ["report", _caller, [_id, _r get "subjects"]] call ADVSEC_fnc_logEvent;
+        _caller setVariable ["ADVSEC_trainRep", true, true];   // 1.24: paso de la instrucción guiada
+        // 1.24: paga por informe. El aviso que este agente atendió (y aún no se pagó) se cierra y se paga una sola vez
+        private _rp = ["reportPay", 50] call ADVSEC_fnc_setting;
+        if (_rp > 0 && {[] call ADVSEC_fnc_ecoOn}) then {
+            private _calls = localNamespace getVariable ["ADVSEC_dspCalls", createHashMap];
+            private _uid = getPlayerUID _caller;
+            private _cid = "";
+            {if ((_y param [10, ""]) == _uid && {!(_y param [11, false])} && {serverTime - (_y select 8) < 7200}) exitWith {_cid = _x}} forEach _calls;
+            if (_cid isNotEqualTo "") then {
+                private _c = _calls get _cid;
+                _c set [6, "Cerrado"];
+                _c set [11, true];
+                private _a = [_uid, name _caller] call ADVSEC_fnc_ecoAcc;
+                _a set [1, (_a select 1) + _rp];
+                _caller setVariable ["ADVSEC_bank", _a select 1, true];
+                [_a, format [("STR_ADVSEC_pay_report_hist" call ADVSEC_fnc_L), _cid, _id], _rp] call ADVSEC_fnc_ecoHist;
+                _caller setVariable ["ADVSEC_payRep", (_caller getVariable ["ADVSEC_payRep", 0]) + _rp];
+                (format [("STR_ADVSEC_pay_report_done" call ADVSEC_fnc_L), _rp, ["currency", "€"] call ADVSEC_fnc_setting, _cid]) remoteExecCall ["systemChat", _caller];
+            };
+        };
         ["created", _id] call _reply;
     };
     case "note": {
